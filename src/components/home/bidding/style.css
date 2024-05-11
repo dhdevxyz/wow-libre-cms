@@ -1,0 +1,61 @@
+.bidding-primary {
+  display: flex;
+  justify-content: space-between; /* Distribuye los elementos a lo largo del contenedor */
+  width: 100%; /* Ocupa todo el ancho disponible */
+  border-radius: 20;
+}
+
+.bidding-day {
+  width: 50rem;
+  height: 50rem;
+  background-color: wheat;
+}
+
+.bidding-day-title {
+  text-align: start;
+  padding-left: 2rem;
+  font-size: 2rem;
+}
+
+.bidding-day-image {
+  flex-grow: 1; /* Hace que la imagen ocupe todo el espacio restante */
+  display: flex; /* Utiliza flexbox para centrar la imagen */
+  justify-content: center; /* Centra horizontalmente la imagen */
+  align-items: center; /* Centra verticalmente la imagen */
+  overflow: hidden; /* Evita que la imagen se desborde de su contenedor */
+}
+
+.bidding-day-content {
+  display: flex;
+  flex-direction: column;
+  text-align: start;
+  padding-left: 2rem;
+  font-size: 2rem;
+}
+/** OFFERT **/
+
+.bidding-offert {
+  margin-left: 2rem;
+  background-color: white;
+  width: 80rem;
+  height: 50rem;
+  display: flex;
+  flex-direction: column; /* Cambia la dirección del flexbox a columna */
+}
+
+.bidding-offert-image {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* Alinea la imagen arriba */
+  overflow: hidden;
+}
+
+.bidding-offert-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end; /* Alinea el contenido en la parte inferior */
+  align-items: center; /* Centra horizontalmente el contenido */
+  padding: 1rem; /* Añade un poco de espacio alrededor del contenido */
+  text-align: center; /* Alinea el texto al centro */
+}
