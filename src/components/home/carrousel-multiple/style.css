@@ -21,6 +21,7 @@
   border-radius: 1rem;
   overflow: hidden;
   max-width: auto;
+  padding-left: 2rem;
 }
 
 .carrousel-offert-content-product img {
@@ -31,6 +32,7 @@
 
 .carrousel-offert-content-product-detail-title {
   color: #f6a001;
+  margin-top: 0.5rem;
 }
 .carrousel-offert-content-product-detail-description {
   color: #2af10b;

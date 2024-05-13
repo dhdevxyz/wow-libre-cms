@@ -21,7 +21,14 @@
     width: 100%;
   }
 }
-
+@media (max-width: 768px) {
+  .bidding-offert {
+    margin: 2rem 1rem 0 1rem;
+    width: 100%; /* Ajusta el ancho al 100% en dispositivos más pequeños */
+    height: auto; /* Permite que la altura se ajuste automáticamente según el contenido */
+    max-width: 100%; /* Establece el ancho máximo al 100% para evitar desbordamientos */
+  }
+}
 .bidding-day {
   border-radius: 2%;
   width: 100%;

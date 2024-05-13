@@ -17,7 +17,7 @@ const Bidding = () => {
       items: 1, // Muestra 2 elementos a la vez
     },
     tablet: {
-      breakpoint: { max: 1024, min: 464 },
+      breakpoint: { max: 1024, min: 400 },
       items: 1, // Muestra 2 elementos a la vez
     },
     mobile: {
