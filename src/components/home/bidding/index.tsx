@@ -27,28 +27,41 @@ const Bidding = () => {
   };
   return (
     <div>
-      <div className="bidding-primary contenedor">
-        <div className="bidding-day">
-          <div className="bidding-day-title">
-            <h3>Oferta del dia</h3>
+      <div className="contenedor mt-4 ">
+        <h2 className="bidding-introduction-title title-server mb-4 text-lg md:text-xl lg:text-1xl xl:text-2xl">
+          Ofertas
+        </h2>
+        <p className="bidding-introduction-description text-lg md:text-x2 lg:text-2xl xl:text-3xl">
+          Encuentra las mejores promociones para ti.
+        </p>
+        <div className="bidding-primary">
+          <div className="bidding-day">
+            <div className="bidding-day-title">
+              <h3>Oferta del dia</h3>
+            </div>
+            <div className="bidding-day-image">
+              <img
+                src="https://i.ibb.co/j4BFfSb/NLH1-TYFS474-Z1682703162669.jpg"
+                alt=""
+                className="w-full transition duration-300 hover:opacity-75"
+              />
+            </div>
+            <div className="bidding-day-content">
+              <p className="bidding-day-content-product-title">
+                Dragon Comodo terrestre
+              </p>
+              <p className="bidding-day-content-product-price">200g</p>
+              <a href="#" className="bidding-day-content-product-disclaimer">
+                Oferta disponible solo hoy
+              </a>
+              <button className="bidding-day-content-product-button">
+                Comprar
+              </button>
+            </div>
           </div>
-          <div className="bidding-day-image">
-            <img src="https://via.placeholder.com/200x300" alt="" />
+          <div className="bidding-offert">
+            <MultiCarousel />
           </div>
-          <div className="bidding-day-content">
-            <p>Samsing Galaxy</p>
-            <p className="bidding-day-price">$ 20000</p>
-            <a href="#" className="bidding-day-disclaimer">
-              Envio Gratis{" "}
-            </a>
-            <button>comprar</button>
-          </div>
-        </div>
-        <div className="bidding-offert">
-          <div>
-            <h3>Ofertas</h3>
-          </div>
-          <MultiCarousel />
         </div>
       </div>
     </div>

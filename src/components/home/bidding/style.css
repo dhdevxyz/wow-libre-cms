@@ -1,20 +1,40 @@
+.bidding-introduction-title {
+  font-size: 2.5rem;
+  color: #f6a001;
+}
+.bidding-introduction-description {
+  color: #fff;
+  margin-bottom: 2rem;
+}
 .bidding-primary {
   display: flex;
-  justify-content: space-between; /* Distribuye los elementos a lo largo del contenedor */
+  flex-direction: column; /* Cambiamos la dirección a columna */
+  align-items: center; /* Centramos los elementos horizontalmente */
+  margin-bottom: 1rem;
   width: 100%; /* Ocupa todo el ancho disponible */
-  border-radius: 20;
+}
+
+@media (min-width: 768px) {
+  .bidding-primary {
+    flex-direction: row; /* Cambiamos la dirección a fila */
+    justify-content: space-between; /* Distribuimos los elementos horizontalmente */
+    width: 100%;
+  }
 }
 
 .bidding-day {
-  width: 50rem;
+  border-radius: 2%;
+  width: 100%;
+  max-width: 50rem;
   height: 50rem;
-  background-color: wheat;
+  background-image: linear-gradient(to bottom, #273c50, #161d2a);
 }
 
 .bidding-day-title {
   text-align: start;
-  padding-left: 2rem;
+  padding-left: 1rem;
   font-size: 2rem;
+  color: #f3e1e1;
 }
 
 .bidding-day-image {
@@ -22,7 +42,10 @@
   display: flex; /* Utiliza flexbox para centrar la imagen */
   justify-content: center; /* Centra horizontalmente la imagen */
   align-items: center; /* Centra verticalmente la imagen */
+  margin: 1rem 1rem 1rem 1rem;
+  border-radius: 1rem;
   overflow: hidden; /* Evita que la imagen se desborde de su contenedor */
+  max-width: auto;
 }
 
 .bidding-day-content {
@@ -32,30 +55,44 @@
   padding-left: 2rem;
   font-size: 2rem;
 }
+
+.bidding-day-content-product-title {
+  color: #f6a001;
+}
+.bidding-day-content-product-price {
+  color: rgb(57, 101, 182);
+}
+.bidding-day-content-product-disclaimer {
+  color: chartreuse;
+  font-size: 1.4rem;
+}
+
+.bidding-day-content-product-button {
+  background-color: #202b4d;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  max-width: 96%;
+  margin-top: 2rem;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.bidding-day-content-product-button:hover {
+  background-color: #304994;
+  color: #fff;
+}
+
 /** OFFERT **/
 
 .bidding-offert {
-  margin-left: 2rem;
-  background-color: white;
+  border-radius: 2%;
+  margin-left: 0.5rem;
+  background-image: linear-gradient(to bottom, #273c50, #161d2a);
   width: 80rem;
   height: 50rem;
   display: flex;
-  flex-direction: column; /* Cambia la dirección del flexbox a columna */
-}
-
-.bidding-offert-image {
-  flex-grow: 1;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start; /* Alinea la imagen arriba */
-  overflow: hidden;
-}
-
-.bidding-offert-content {
-  display: flex;
   flex-direction: column;
-  justify-content: flex-end; /* Alinea el contenido en la parte inferior */
-  align-items: center; /* Centra horizontalmente el contenido */
-  padding: 1rem; /* Añade un poco de espacio alrededor del contenido */
-  text-align: center; /* Alinea el texto al centro */
 }
