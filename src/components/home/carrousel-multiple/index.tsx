@@ -60,7 +60,7 @@ const MultiCarousel = () => {
     },
     tablet: {
       breakpoint: { max: 1024, min: 464 },
-      items: 1,
+      items: 2,
     },
     mobile: {
       breakpoint: { max: 464, min: 0 },
@@ -70,7 +70,7 @@ const MultiCarousel = () => {
   return (
     <div className="carrousel-offert">
       <div>
-        <h3 className="carrousel-offert-title">
+        <h3 className="carrousel-offert-title text-lg md:text-x2 lg:text-3xl xl:text-3xl mt-3 ml-7">
           Inspirado en lo último que viste
         </h3>
       </div>
@@ -85,19 +85,19 @@ const MultiCarousel = () => {
               />
             </div>
             <div className="carrousel-offert-content-product-detail">
-              <p className="carrousel-offert-content-product-detail-title">
+              <p className="carrousel-offert-content-product-detail-title text-lg md:text-x4 lg:text-4xl xl:text-4xl mb-4 pt-4">
                 {item.title}
               </p>
-              <p className="carrousel-offert-content-product-detail-description">
+              <p className="carrousel-offert-content-product-detail-description text-lg md:text-x2 lg:text-2xl xl:text-2xl">
                 {item.description}
               </p>
-              <p className="carrousel-offert-content-product-detail-price">
+              <p className="carrousel-offert-content-product-detail-price text-lg md:text-xl lg:text-3xl xl:text-3xl pt-9">
                 {item.price}
               </p>
-              <p className="carrousel-offert-content-product-detail-disclaimer">
+              <p className="carrousel-offert-content-product-detail-disclaimer text-lg md:text-xl lg:text-3xl xl:text-2xl pt-2">
                 {item.disclaimer}
               </p>
-              <button className="carrousel-offert-content-product-detail-button">
+              <button className="carrousel-offert-content-product-detail-button text-lg md:text-xl lg:text-1xl xl:text-2xl ">
                 Comprar
               </button>
             </div>

@@ -3,7 +3,7 @@ import "./style.css"; // Asegúrate de tener tus estilos CSS configurados correc
 
 const Us = () => {
   return (
-    <section className="  py-24">
+    <section className="pt-10">
       <div className="contenedor  bg-gradient-to-r from-transparent via-blue-950 to-blue-950 mx-auto px-4 ">
         <div className="flex flex-wrap items-center ">
           <div className="w-full md:w-1/2 relative">
@@ -19,7 +19,7 @@ const Us = () => {
               <br />
               Empoderando a la Comunidad de Jugadores
             </h2>
-            <p className="text-gray-200 leading-relaxed mt-10">
+            <p className="text-gray-200 leading-relaxed mt-10 text-justify">
               En el mundo digital de World of Warcraft, la comunidad posee un
               tesoro invaluable: los datos generados por su pasión y dedicación.
               En WoW Libre, esta riqueza se convierte en un recurso libremente
@@ -32,7 +32,7 @@ const Us = () => {
               comunidad, y su capacidad para compartir y expandir el
               conocimiento define el rumbo del futuro de Azeroth.
             </p>
-            <button className="bg-blue-700 text-white py-3 px-7 rounded-lg hover:bg-blue-600 mt-5">
+            <button className="buttom text-white py-3 px-7 rounded-lg hover:bg-blue-600 mt-5">
               Documentacion
             </button>
           </div>

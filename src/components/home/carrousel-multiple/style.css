@@ -6,7 +6,7 @@
   text-align: start;
   padding-left: 1rem;
   font-size: 2rem;
-  color: #f3e1e1;
+  color: rgb(178, 178, 177);
 }
 
 .carrousel-offert-content {
@@ -35,7 +35,7 @@
   margin-top: 0.5rem;
 }
 .carrousel-offert-content-product-detail-description {
-  color: #2af10b;
+  color: rgb(178, 178, 177);
 }
 .carrousel-offert-content-product-detail-price {
   color: rgb(57, 101, 182);
@@ -54,7 +54,7 @@
   border-radius: 5px;
   font-size: 16px;
   cursor: pointer;
-  width: 90%;
+  width: 100%;
   margin-top: 2rem;
   transition: background-color 0.3s, color 0.3s;
 }

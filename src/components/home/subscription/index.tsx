@@ -3,11 +3,11 @@ import React from "react";
 
 const Subscription = () => {
   return (
-    <div className="contenedor rounded-lg overflow-hidden mt-10 mb-10">
+    <div className="contenedor rounded-lg overflow-hidden mt-10 mb-20">
       <div className="max-w-52xl mx-auto">
         <div className="relative">
           <div className="bg-gradient-to-br from-pink-600 to-indigo-900 rounded-t-lg">
-            <h2 className="text-2xl font-bold  p-6 text-white">
+            <h2 className="text-3xl font-bold  p-6 text-white">
               Suscríbete al pase azeroth
             </h2>
           </div>
@@ -19,7 +19,9 @@ const Subscription = () => {
           </p>
           <div className="grid grid-cols-3 gap-4 mb-4">
             <div className="text-center">
-              <div className="rounded-full h-24 w-24 overflow-hidden mx-auto mb-2">
+              <div className="rounded-full h-32 w-32 overflow-hidden mx-auto mb-2">
+                {" "}
+                {/* Aumentamos el tamaño de los contenedores */}
                 <img
                   className="rounded-full h-full w-full object-cover"
                   src="https://i.ibb.co/txq9mB8/migraciones.jpg"
@@ -31,7 +33,9 @@ const Subscription = () => {
               </p>
             </div>
             <div className="text-center">
-              <div className="rounded-full  h-24 w-24 overflow-hidden mx-auto mb-2">
+              <div className="rounded-full  h-32 w-32 overflow-hidden mx-auto mb-2">
+                {" "}
+                {/* Aumentamos el tamaño de los contenedores */}
                 <img
                   className="rounded-full h-full w-full object-cover"
                   src="https://i.ibb.co/RY9s1k6/281-mobile-background.jpg"
@@ -43,7 +47,9 @@ const Subscription = () => {
               </p>
             </div>
             <div className="text-center">
-              <div className="rounded-full h-24 w-24 overflow-hidden mx-auto mb-2">
+              <div className="rounded-full h-32 w-32 overflow-hidden mx-auto mb-2">
+                {" "}
+                {/* Aumentamos el tamaño de los contenedores */}
                 <img
                   className="rounded-full h-full w-full object-cover"
                   src="https://i.ibb.co/Bc0z2Bw/regalos-navidad.png"

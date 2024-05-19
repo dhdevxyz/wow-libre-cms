@@ -34,14 +34,14 @@
   width: 100%;
   max-width: 50rem;
   height: 50rem;
-  background-image: linear-gradient(to bottom, #273c50, #161d2a);
+  background-image: linear-gradient(to bottom, #27445f, #161d2a);
 }
 
 .bidding-day-title {
   text-align: start;
   padding-left: 1rem;
   font-size: 2rem;
-  color: #f3e1e1;
+  color: rgb(178, 178, 177);
 }
 
 .bidding-day-image {
@@ -66,12 +66,14 @@
 .bidding-day-content-product-title {
   color: #f6a001;
 }
+.bidding-day-content-product-description {
+  color: rgb(178, 178, 177);
+}
 .bidding-day-content-product-price {
   color: rgb(57, 101, 182);
 }
 .bidding-day-content-product-disclaimer {
   color: chartreuse;
-  font-size: 1.4rem;
 }
 
 .bidding-day-content-product-button {

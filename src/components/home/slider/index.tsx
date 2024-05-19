@@ -24,8 +24,7 @@ const SliderHome = () => {
       description:
         "lorem okdasokdaoskdok oaksdokasdkaoskdoakso dkasokdaskodkos",
       price: "24.500",
-      rating: 4.5, // Ejemplo de valoración por estrellas
-
+      rating: 4.5,
       background_image:
         "https://i.ibb.co/16MZH1b/openart-image-U0q-MOA8-D-1715448872483-raw.png", // Cambiado a una URL de imagen válida
     },
@@ -35,8 +34,7 @@ const SliderHome = () => {
       profession: "Joyero",
       description: "Joyero",
       price: "24.500",
-      rating: 4.2, // Ejemplo de valoración por estrellas
-
+      rating: 4.2,
       background_image:
         "https://i.ibb.co/tssPHCd/openart-image-5-SLn-QCib-1715448637386-raw.jpg", // Cambiado a una URL de imagen válida
     },
@@ -46,8 +44,7 @@ const SliderHome = () => {
       profession: "Herrero",
       description: "Herrero",
       price: "24.500",
-      rating: 4.5, // Ejemplo de valoración por estrellas
-
+      rating: 4.5,
       background_image:
         "https://i.ibb.co/x1rfz3r/image-p-M3-Gnzxb-1715448233309-raw.jpg", // Cambiado a una URL de imagen válida
     },
@@ -57,8 +54,7 @@ const SliderHome = () => {
       profession: "Minero",
       description: "Minero",
       price: "24.500",
-      rating: 1.5, // Ejemplo de valoración por estrellas
-
+      rating: 1.5,
       background_image: "https://i.ibb.co/c3cfJzy/image0-0.jpg", // Cambiado a una URL de imagen válida
     },
     {
@@ -67,8 +63,7 @@ const SliderHome = () => {
       profession: "Herrero",
       description: "Herrero",
       price: "24.500",
-      rating: 5.5, // Ejemplo de valoración por estrellas
-
+      rating: 5.5,
       background_image:
         "https://i.ibb.co/cQp3ztM/openart-image-Fd-Jr-Sk-Po-1715448972349-raw.jpg", // Cambiado a una URL de imagen válida
     },
@@ -182,7 +177,7 @@ const SliderHome = () => {
                     )
                   )}
                 </div>
-                <div className="slider-contract">
+                <div className="slider-contract mb-4">
                   <button className="contract-button">Contratar</button>
                 </div>
               </div>

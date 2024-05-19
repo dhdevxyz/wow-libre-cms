@@ -4,6 +4,8 @@ import "./globals.css";
 import "./normalize.css";
 import Navbar from "@/components/navbar/navbar";
 import Footer from "@/components/footer";
+import ClientNavbar from "@/components/ClientNavbar/navbar";
+import ClientFooter from "@/components/ClientNavbar/footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,13 +22,10 @@ export default function RootLayout({
   return (
     <html lang="es" className="bg-midnight">
       <body className={inter.className}>
-        <div className="contenedor">
-          <Navbar />
-        </div>
+        <ClientNavbar />
         {children}
-        <div className="contenedor">
-          <Footer />
-        </div>
+
+        <ClientFooter />
       </body>
     </html>
   );

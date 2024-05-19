@@ -5,6 +5,7 @@ import "./style.css";
 import Searcher from "../search/searcher";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
+import Link from "next/link";
 
 const Navbar = () => {
   const handleSearch = (query: string) => {
@@ -12,16 +13,16 @@ const Navbar = () => {
   };
 
   return (
-    <div className="navbar">
+    <div className="navbar contenedor">
       <header>
-        <a className="logo-home" href="#">
+        <Link className="logo-home" href="/">
           <img
             className="nav-small-image"
             src="./img/logos/logo.png"
             alt="Logo Primary World Of Warcraft"
           />
           <p className="title-server title-home">Wow Libre</p>
-        </a>
+        </Link>
       </header>
       <div className="searcher">
         <Searcher onSearch={handleSearch}></Searcher>
@@ -56,19 +57,21 @@ const Navbar = () => {
           <a className="category-link" href="#">
             Vender
           </a>
-          <a className="category-link" href="#">
+
+          <Link className="category-link" href="/help">
             Ayuda
-          </a>
+          </Link>
         </nav>
       </div>
       <div className="auth">
         <nav className="nav-auth">
-          <a className="nav-auth-category" href="#">
+          <Link className="nav-auth-category" href="/register">
             Crea tu cuenta
-          </a>
-          <a className="nav-auth-category" href="#">
+          </Link>
+          <Link className="nav-auth-category" href="/login">
             Ingresa
-          </a>
+          </Link>
+
           <a className="nav-auth-category" href="#">
             Mis Compras
           </a>

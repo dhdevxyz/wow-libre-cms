@@ -9,3 +9,11 @@
     1.2
   ); /* Escala ligeramente la imagen al pasar el cursor sobre ella */
 }
+
+.buttom {
+  background-color: #19368e;
+}
+.buttom:hover {
+  background-color: #304994;
+  color: #fff;
+}
