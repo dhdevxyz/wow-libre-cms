@@ -1,0 +1,31 @@
+.highlight-text {
+  color: #ff4e16;
+  font-weight: bold;
+}
+
+.title-text {
+  color: #fff;
+}
+
+.title-wow-container {
+  margin-top: 4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center; /* Ensure text is centered */
+}
+
+.title-wow-container h2 {
+  margin-bottom: 2rem; /* Space between title and description */
+}
+
+.description-container {
+  max-width: 65%;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.description-text {
+  color: #fff; /* Ensure the text is white */
+  margin: 0;
+}

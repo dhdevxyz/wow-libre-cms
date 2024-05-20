@@ -31,6 +31,7 @@ export interface UserModel {
   email: string;
   password: string;
   password_web: string;
+  token: string;
   logged_in: boolean;
   refresh_token: string | null;
   expiration_date: string | null;
@@ -51,6 +52,7 @@ const initialUserData: UserModel = {
   email: "",
   password: "",
   password_web: "",
+  token: "",
   refresh_token: null,
   expiration_date: null,
   logged_in: false,
@@ -87,12 +89,12 @@ const UserProvider = ({ children }: UserProviderProps) => {
   const [user, setUser] = useState<UserModel>(initialUser);
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      if (user) {
-        localStorage.setItem("user", JSON.stringify(user));
-      } else {
-        localStorage.removeItem("user");
-      }
+    if (user) {
+      console.log("xxxxxxxxxxxxxxx" + user);
+
+      localStorage.setItem("user", JSON.stringify(user));
+    } else {
+      localStorage.removeItem("user");
     }
   }, [user]);
 

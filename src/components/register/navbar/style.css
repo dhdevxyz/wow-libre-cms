@@ -1,0 +1,35 @@
+.nav-minimalist-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 2rem 2rem;
+  box-sizing: border-box; /* Ensure padding is included in the width */
+}
+
+.nav-minimalist-logo {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+}
+
+.nav-minimalist-img {
+  max-width: 5%;
+}
+
+.nav-minimalist-help {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+}
+
+.nav-minimalist-help-img {
+  max-width: 60%;
+}
+
+.nav-minimalist-logo-title {
+  padding-top: 2rem;
+  padding-left: 1rem;
+  color: #fff;
+  font-size: 3rem;
+}

@@ -5,9 +5,13 @@ import Navbar from "@/components/navbar/navbar";
 
 const ClientNavbar = () => {
   const pathname = usePathname();
-  const pathsWithoutNavbar = ["/login"];
+  const pathsWithoutNavbar = ["/login", "/register"];
 
-  return !pathsWithoutNavbar.includes(pathname) ? <Navbar /> : null;
+  const isPathExcluded =
+    pathsWithoutNavbar.includes(pathname) ||
+    pathsWithoutNavbar.some((path) => pathname.startsWith(path));
+
+  return !isPathExcluded ? <Navbar /> : null;
 };
 
 export default ClientNavbar;

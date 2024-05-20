@@ -2,6 +2,7 @@
 
 import React, { ChangeEvent, useState } from "react";
 import "./style.css";
+import Link from "next/link";
 
 const Login = () => {
   const [userName, setUsername] = useState("");
@@ -68,9 +69,9 @@ const Login = () => {
           <div className="login-form-section-question mt-2">
             <p>
               ¿No tienes una cuenta?{" "}
-              <a className="register-link" href="#">
-                Registrate aquí
-              </a>
+              <Link className="register-link" href="/register">
+                Crea tu cuenta
+              </Link>
             </p>
             <p>
               <a href="#">¿Olvidaste tu contraseña?</a>

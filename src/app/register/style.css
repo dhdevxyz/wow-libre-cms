@@ -1,0 +1,55 @@
+.register {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-inline: auto;
+}
+
+.register-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 800px;
+  padding: 20px;
+}
+
+.register-container-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Alinea los labels al inicio */
+  width: 100%;
+  max-width: 500px;
+  margin-bottom: 1rem;
+}
+
+.register-container-form-label {
+  color: #fff;
+  margin-bottom: 0.5rem;
+}
+
+.register-input {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+}
+
+.button-register {
+  width: 100%;
+  max-width: 500px;
+  background-color: #202b4d;
+  transition: background-color 0.3s, color 0.3s;
+}
+.button-register:hover {
+  background-color: #304994;
+  color: #fff;
+}

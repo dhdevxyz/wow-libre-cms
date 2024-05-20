@@ -38,7 +38,6 @@ const Navbar = () => {
       </div>
       <div className="nav-ubication">
         <a className="text-white">
-          <FontAwesomeIcon icon={faMapMarkerAlt} className="mr-2" size="lg" />
           Ingrese tu <br />
           ubicación
         </a>
