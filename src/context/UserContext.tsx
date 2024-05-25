@@ -24,6 +24,7 @@ export interface UserModel {
   salt: number[] | null;
   verifier: number[] | null;
   country: string;
+  language: string;
   date_of_birth: Date | null;
   first_name: string;
   last_name: string;
@@ -31,10 +32,7 @@ export interface UserModel {
   email: string;
   password: string;
   password_web: string;
-  token: string;
   logged_in: boolean;
-  refresh_token: string | null;
-  expiration_date: string | null;
   account_banned: AccountBannedModel | null;
   account_muted: AccountMutedModel | null;
 }
@@ -45,6 +43,7 @@ const initialUserData: UserModel = {
   salt: null,
   verifier: null,
   country: "",
+  language: "es",
   date_of_birth: null,
   first_name: "",
   last_name: "",
@@ -52,9 +51,6 @@ const initialUserData: UserModel = {
   email: "",
   password: "",
   password_web: "",
-  token: "",
-  refresh_token: null,
-  expiration_date: null,
   logged_in: false,
   account_banned: null,
   account_muted: null,
@@ -90,8 +86,6 @@ const UserProvider = ({ children }: UserProviderProps) => {
 
   useEffect(() => {
     if (user) {
-      console.log("xxxxxxxxxxxxxxx" + user);
-
       localStorage.setItem("user", JSON.stringify(user));
     } else {
       localStorage.removeItem("user");

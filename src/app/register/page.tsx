@@ -9,21 +9,19 @@ import PageCounter from "@/components/register/counter";
 import { useUserContext } from "@/context/UserContext";
 import { useRouter } from "next/navigation";
 import Swal from "sweetalert2";
+import { CountryModel } from "@/model/model";
+import { getAvailableCountries } from "@/api/country";
 
-export interface CountryModel {
-  value: string;
-  label: string;
-  language: string;
-  site: string;
-}
 const defaultCountryOptions: CountryModel[] = [
-  { value: "Otro", label: "Otro", language: "es", site: "ot" },
+  { value: "Otro", label: "Otro", language: "es" },
 ];
+
 const Register = () => {
   const { user, setUser } = useUserContext();
   const router = useRouter();
-
   const [country, setCountry] = useState<string>("");
+  const [language, setLanguage] = useState<string>("");
+
   const [fecha, setFecha] = useState<string>("");
 
   const [countryOptions, setCountryOptions] = useState<CountryModel[]>(
@@ -64,22 +62,22 @@ const Register = () => {
       return;
     }
 
-    // Actualizar el estado del usuario y redirigir a la siguiente página
     if (user) {
       setUser({
         ...user,
+        language: language,
         country: country,
         date_of_birth: new Date(fecha),
       });
     }
-    console.log(user);
     router.push("/register/know-you");
   };
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        setCountryOptions(defaultCountryOptions);
+        const fetchedCountryOptions = await getAvailableCountries();
+        setCountryOptions(fetchedCountryOptions);
       } catch (error) {
         setCountryOptions(defaultCountryOptions);
       }
@@ -127,6 +125,7 @@ const Register = () => {
               className="mb-3 border rounded-md text-black register-input"
               options={countryOptions}
               onChange={handleCountryChange}
+              value={countryOptions.find((option) => option.value === country)}
               placeholder="Selecciona el país"
               isSearchable
             />

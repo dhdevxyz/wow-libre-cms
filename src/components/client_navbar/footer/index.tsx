@@ -5,7 +5,7 @@ import Footer from "@/components/footer";
 
 const ClientFooter = () => {
   const pathname = usePathname();
-  const pathsWithoutNavbar = ["/login", "/register"];
+  const pathsWithoutNavbar = ["/login", "/register", "/congrats"];
 
   const isPathExcluded =
     pathsWithoutNavbar.includes(pathname) ||

@@ -66,11 +66,9 @@ const AccountIngame = () => {
     }
 
     if (user) {
-      const encryptedPassword = encryptPassword(password);
-
       setUser({
         ...user,
-        password: encryptedPassword,
+        password_web: encryptPassword(password),
       });
     }
     router.push("/register/username");

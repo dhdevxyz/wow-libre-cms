@@ -1,11 +1,9 @@
-"use client";
-
 import React from "react";
 import "./style.css";
 import Searcher from "../search/searcher";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
+import NavLogged from "./auth";
+import Auth from "./auth";
 
 const Navbar = () => {
   const handleSearch = (query: string) => {
@@ -63,18 +61,7 @@ const Navbar = () => {
         </nav>
       </div>
       <div className="auth">
-        <nav className="nav-auth">
-          <Link className="nav-auth-category" href="/register">
-            Crea tu cuenta
-          </Link>
-          <Link className="nav-auth-category" href="/login">
-            Ingresa
-          </Link>
-
-          <a className="nav-auth-category" href="#">
-            Mis Compras
-          </a>
-        </nav>
+        <Auth />
       </div>
     </div>
   );

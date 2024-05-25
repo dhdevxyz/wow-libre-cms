@@ -3,10 +3,21 @@
 import React, { ChangeEvent, useState } from "react";
 import "./style.css";
 import Link from "next/link";
+import { login } from "@/api/account/login";
+import Cookies from "js-cookie";
+import { useUserContext } from "@/context/UserContext";
+import { useRouter } from "next/navigation";
+import Swal from "sweetalert2";
 
 const Login = () => {
+  const { user, setUser } = useUserContext();
   const [userName, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const router = useRouter();
+
+  if (user.logged_in) {
+    //router.push("/profile");
+  }
 
   const handleUserNameChange = (event: ChangeEvent<HTMLInputElement>) => {
     setUsername(event.target.value);
@@ -16,9 +27,47 @@ const Login = () => {
     setPassword(event.target.value);
   };
 
-  const handleFormSubmit = async (
-    event: React.FormEvent<HTMLFormElement>
-  ) => {};
+  const handleFormSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (!userName.trim() && !password.trim()) {
+      Swal.fire({
+        imageUrl:
+          "https://static.actugaming.net/media/2022/07/world-of-warcraft-lich-king-classic-889x500.jpg",
+        imageHeight: 200,
+        title: "Error de Inicio de Sesión",
+        text: "Por favor, complete todos los campos obligatorios para continuar.",
+        confirmButtonColor: "#3085d6",
+        confirmButtonText: "Entendido",
+        timer: 4500,
+      });
+      return;
+    }
+
+    try {
+      const response = await login(userName, password);
+      Cookies.set("jwt", response.jwt, { expires: 7 }); // Ajusta la expiración y la ruta según tus necesidades
+      Cookies.set("refresh_token", response.refresh_token, { expires: 7 }); // Ajusta la expiración y la ruta según tus necesidades
+
+      if (user) {
+        setUser({
+          ...user,
+          username: userName,
+          logged_in: true,
+        });
+      }
+
+      router.push("/profile");
+    } catch (error: any) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "No se ha podido autenticarse",
+        color: "white",
+        background: "#0B1218",
+        timer: 4500,
+      });
+    }
+  };
 
   return (
     <div className="login-page">

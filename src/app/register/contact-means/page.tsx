@@ -8,6 +8,8 @@ import { useRouter } from "next/navigation";
 import React, { ChangeEvent, useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import "../style.css";
+import { ExistEmailModel } from "@/model/model";
+import { existEmail } from "@/api/account/exist-email";
 
 const ContactMeans = () => {
   const { user, setUser } = useUserContext(); // Obteniendo el contexto y funciones del contexto
@@ -48,6 +50,33 @@ const ContactMeans = () => {
         icon: "error",
         title: "Oops...",
         text: "Por favor, ingrese un correo electrónico válido.",
+        color: "white",
+        background: "#0B1218",
+        timer: 43500,
+      });
+      return;
+    }
+
+    try {
+      const response: ExistEmailModel = await existEmail(email);
+
+      if (response.exist) {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "El correo electrónico ingresado ya está registrado. Por favor, ingrese otro correo electrónico.",
+          color: "white",
+          background: "#0B1218",
+          timer: 43500,
+        });
+
+        return;
+      }
+    } catch (error) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "No fue posible validar su información, por favor intente nuevamente más tarde.",
         color: "white",
         background: "#0B1218",
         timer: 43500,

@@ -4,8 +4,8 @@ import "./globals.css";
 import "./normalize.css";
 import Navbar from "@/components/navbar/navbar";
 import Footer from "@/components/footer";
-import ClientNavbar from "@/components/ClientNavbar/navbar";
-import ClientFooter from "@/components/ClientNavbar/footer";
+import ClientNavbar from "@/components/client_navbar/navbar";
+import ClientFooter from "@/components/client_navbar/footer";
 import UserProvider from "@/context/UserContext";
 
 const inter = Inter({ subsets: ["latin"] });
