@@ -17,7 +17,7 @@ export interface CountryModel {
   site: string;
 }
 const defaultCountryOptions: CountryModel[] = [
-  { value: "Otro", label: "Otro", language: "es", site: "wow" },
+  { value: "Otro", label: "Otro", language: "es", site: "ot" },
 ];
 const Register = () => {
   const { user, setUser } = useUserContext();
@@ -40,7 +40,6 @@ const Register = () => {
   const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    // Validación de los campos antes de enviar el formulario
     if (!country.trim()) {
       Swal.fire({
         icon: "error",
