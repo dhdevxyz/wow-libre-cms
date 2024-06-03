@@ -27,11 +27,12 @@ import CharacterSelection from "@/components/character_selection";
 import Friend from "@/components/friends/friend";
 import NavbarMinimalist from "@/components/register/navbar";
 import { getAccount } from "@/api/account";
+import AccountForm from "@/components/account";
 
 const AccountDetail = () => {
   const searchParams = useSearchParams();
 
-  const jwt = Cookies.get("token");
+  const token = Cookies.get("token");
   const accountId = searchParams.get("id");
 
   const [isLoading, setIsLoading] = useState(true);
@@ -48,7 +49,7 @@ const AccountDetail = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response: Characters = await getCharacters(jwt || "");
+        const response: Characters = await getCharacters(token || "");
         setCharacters(response.characters);
       } catch (error) {
         console.error("Ha ocurrido un error al obtener los personajes", error);
@@ -66,7 +67,7 @@ const AccountDetail = () => {
     const fetchData = async () => {
       try {
         const response: AccountDetailDto = await getAccount(
-          jwt || "",
+          token || "",
           accountId || ""
         );
         setUserDetail(response);
@@ -93,9 +94,9 @@ const AccountDetail = () => {
 
   if (isLoading) {
     return (
-      <div className="flex items-center justify-center ">
+      <div className="flex items-center justify-center min-h-screen min-w-full">
         <div className="flex flex-col items-center">
-          <LoadingSpinner />{" "}
+          <LoadingSpinner />
           <p className="mt-4 text-white text-lg">Cargando...</p>
         </div>
       </div>
@@ -146,32 +147,32 @@ const AccountDetail = () => {
           <div className="flex flex-col lg:flex-row">
             {/* TabList para móviles (oculto en pantallas grandes) */}
             <TabList className=" flex flex-col border-b">
-              <Tab className="py-6 px-6 text-white  bg-profile2 cursor-pointer text-lg font-semibold flex items-center">
+              <Tab className="py-6 px-6 text-white  bg-tablist cursor-pointer text-lg font-semibold flex items-center">
                 <FontAwesomeIcon icon={faComment} className="mr-2 text-2xl" />
                 Amigos
               </Tab>
-              <Tab className="py-6 px-6 text-white bg-profile2 first-letter:text-white   cursor-pointer text-lg font-semibold flex items-center">
+              <Tab className="py-6 px-6 text-white bg-tablist first-letter:text-white   cursor-pointer text-lg font-semibold flex items-center">
                 <FontAwesomeIcon icon={faEnvelope} className="mr-2 text-2xl" />
                 Notificaciones
               </Tab>
-              <Tab className="py-6 px-6 text-white bg-profile2  cursor-pointer text-lg font-semibold flex items-center">
+              <Tab className="py-6 px-6 text-white bg-tablist  cursor-pointer text-lg font-semibold flex items-center">
                 <FontAwesomeIcon icon={faUser} className="mr-2 text-2xl" />
-                Perfil
+                Account
               </Tab>
-              <Tab className="py-6 px-6 text-white  bg-profile2 cursor-pointer text-lg font-semibold flex items-center">
+              <Tab className="py-6 px-6 text-white  bg-tablist cursor-pointer text-lg font-semibold flex items-center">
                 <FontAwesomeIcon icon={faClipboard} className="mr-2 text-2xl" />
                 Movimientos
               </Tab>
-              <Tab className="py-6 px-6 text-white  bg-profile2 cursor-pointer text-lg font-semibold flex items-center">
+              <Tab className="py-6 px-6 text-white  bg-tablist cursor-pointer text-lg font-semibold flex items-center">
                 <FontAwesomeIcon
                   icon={faShieldHeart}
                   className="mr-2 text-2xl"
                 />
                 Seguridad
               </Tab>
-              <Tab className="py-6 px-6 text-white bg-profile2  cursor-pointer text-lg font-semibold flex items-center">
+              <Tab className="py-6 px-6 text-white bg-tablist  cursor-pointer text-lg font-semibold flex items-center">
                 <FontAwesomeIcon icon={faCrown} className="mr-2" />
-                Cuenta
+                Pass Battle
               </Tab>
             </TabList>
 
@@ -183,7 +184,7 @@ const AccountDetail = () => {
               <TabPanel>
                 {/* Contenido de la pestaña Amigos */}
                 {selectedCharacter && (
-                  <Friend character={selectedCharacter} token={jwt || ""} />
+                  <Friend character={selectedCharacter} token={token || ""} />
                 )}
               </TabPanel>
               <TabPanel>
@@ -194,6 +195,9 @@ const AccountDetail = () => {
               </TabPanel>
               <TabPanel>
                 {/* Contenido de la pestaña Perfil Detallado */}
+                {userDetail && token ? (
+                  <AccountForm account={userDetail} tokenJwt={token} />
+                ) : null}
               </TabPanel>
               <TabPanel>
                 {/* Contenido de la pestaña Transacciones */}

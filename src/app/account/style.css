@@ -125,12 +125,12 @@
   border-radius: 1rem;
   border-width: 1px;
 }
-.bg-profile2 {
-  background-color: rgba(0, 0, 0, 0.1);
+.bg-tablist {
+  background-color: rgba(35, 35, 35, 0.1);
   color: rgba(180, 176, 171, 0.656);
   font-size: 1.5rem;
 }
-.bg-profile2:hover {
+.bg-tablist:hover {
   background-color: rgba(106, 162, 230, 0.746);
   color: rgb(255, 255, 255);
 }

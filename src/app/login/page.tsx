@@ -16,7 +16,7 @@ const Login = () => {
   const router = useRouter();
 
   if (user.logged_in) {
-    //router.push("/profile");
+    router.push("/account");
   }
 
   const handleUserNameChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -56,7 +56,7 @@ const Login = () => {
         });
       }
 
-      router.push("/profile");
+      router.push("/account");
     } catch (error: any) {
       Swal.fire({
         icon: "error",

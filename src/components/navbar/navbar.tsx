@@ -2,8 +2,7 @@ import React from "react";
 import "./style.css";
 import Searcher from "../search/searcher";
 import Link from "next/link";
-import NavLogged from "./auth";
-import Auth from "./auth";
+import NavbarAuth from "./auth";
 
 const Navbar = () => {
   const handleSearch = (query: string) => {
@@ -61,7 +60,7 @@ const Navbar = () => {
         </nav>
       </div>
       <div className="auth relative">
-        <Auth />
+        <NavbarAuth />
       </div>
     </div>
   );

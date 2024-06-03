@@ -5,6 +5,7 @@
   font-family: "Folkard";
   src: url("/font/Folkard-Regular.ttf") format("truetype");
 }
+@import url("https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
 
 html {
   box-sizing: border-box;
@@ -17,7 +18,7 @@ html {
 }
 
 body {
-  font-family: "Raleway", sans-serif;
+  font-family: "Lora", serif;
   font-size: 1.6rem;
   line-height: 2;
 }

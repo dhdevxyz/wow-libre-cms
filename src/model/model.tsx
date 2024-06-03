@@ -110,3 +110,10 @@ export interface AccountDetailDto {
   os: string;
   account_web: AccountWeb;
 }
+
+export interface AccountChangePasswordGameDto {
+  salt: string;
+  verifier: string;
+  account_id: number;
+  password: string;
+}
