@@ -1,28 +1,3 @@
-/* Snowflakes */
-@keyframes snowfall {
-  0% {
-    transform: translate(0, 0);
-  }
-  100% {
-    transform: translate(100vw, 100vh);
-  }
-}
-
-.snowflake {
-  position: absolute;
-  top: -10px;
-  left: 0; /* Cambiado de right a left */
-  color: rgba(13, 148, 193, 0.8); /* Color azul claro */
-  font-size: 1em;
-  user-select: none;
-  pointer-events: none;
-  z-index: 2;
-  animation-name: snowfall;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-  will-change: transform; /* Para mejorar el rendimiento */
-}
-
 .congrats {
   position: relative;
   display: flex;
@@ -44,7 +19,7 @@
   background: rgba(255, 255, 255, 0.1);
   padding: 40px;
   border-radius: 10px;
-  box-shadow: 0 4px 15px rgba(87, 128, 179, 0.746);
+  box-shadow: 0 4px 15px rgba(94, 172, 232, 0.746);
   width: 100%;
   max-width: 100%; /* Ajusta el tamaño máximo del contenedor */
   text-align: center;
@@ -64,12 +39,14 @@
   height: auto;
   margin-bottom: 20px;
 }
+
 .congrats-img-large {
   width: 100%; /* Ajusta el ancho de la imagen */
   height: auto; /* Mantiene la proporción de aspecto */
   margin-bottom: 0; /* Elimina el margen inferior */
   margin-right: 0; /* Elimina el margen derecho */
 }
+
 .title {
   color: white;
   margin-bottom: 24px;
@@ -82,6 +59,7 @@
   font-size: 1rem;
   margin-top: 10px;
 }
+
 .account-username,
 .account-email {
   color: #abbbcd;
@@ -108,4 +86,36 @@
 
 .download-button:hover {
   background-color: #3b82f6;
+}
+
+/* Media query para ocultar la imagen y la nieve en dispositivos móviles */
+@media (max-width: 768px) {
+  .congrats-img-large {
+    display: none;
+  }
+
+  .snowflake {
+    display: none;
+  }
+
+  .congrats-container {
+    flex-direction: column; /* Ajusta el layout para pantallas pequeñas */
+    padding: 20px; /* Ajusta el padding */
+  }
+
+  .congrats-content {
+    margin-bottom: 0; /* Ajusta el margen para pantallas pequeñas */
+  }
+
+  .title {
+    font-size: 1.5rem; /* Ajusta el tamaño del texto */
+  }
+
+  .account-info {
+    font-size: 0.875rem; /* Ajusta el tamaño del texto */
+  }
+
+  .download-button {
+    font-size: 0.875rem; /* Ajusta el tamaño del texto */
+  }
 }

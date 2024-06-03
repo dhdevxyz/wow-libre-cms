@@ -35,3 +35,8 @@ img {
 .title-server {
   font-family: "Folkard", sans-serif;
 }
+
+.box-shadow-server {
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(94, 172, 232, 0.746);
+}

@@ -45,7 +45,7 @@ const Login = () => {
 
     try {
       const response = await login(userName, password);
-      Cookies.set("jwt", response.jwt, { expires: 7 }); // Ajusta la expiración y la ruta según tus necesidades
+      Cookies.set("token", response.jwt, { expires: 7 }); // Ajusta la expiración y la ruta según tus necesidades
       Cookies.set("refresh_token", response.refresh_token, { expires: 7 }); // Ajusta la expiración y la ruta según tus necesidades
 
       if (user) {
@@ -82,7 +82,7 @@ const Login = () => {
           <a href="/">X</a>
         </div>
         <div className="login-form-section-primary">
-          <h2 className="text-lg md:text-6xl lg:text-6xl xl:text-6xl">
+          <h2 className="font-semibold text-3xl md:text-6xl lg:text-6xl xl:text-6xl">
             Iniciar sesión
           </h2>
         </div>

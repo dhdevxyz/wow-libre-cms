@@ -33,6 +33,7 @@ const Register = () => {
   };
   const handleCountryChange = (selectedOption: CountryModel | null) => {
     setCountry(selectedOption ? selectedOption.value : "");
+    setLanguage(selectedOption ? selectedOption.language : "es");
   };
 
   const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -109,11 +110,8 @@ const Register = () => {
             ¡compártenos esos datos y prepárate para algo fuera de serie!"
         />
 
-        <form
-          className="register-container-form pt-5"
-          onSubmit={handleFormSubmit}
-        >
-          <div className="form-group">
+        <form className="register-container-form " onSubmit={handleFormSubmit}>
+          <div className="form-group select-container">
             <label
               htmlFor="countrySelect"
               className="mb-2 register-container-form-label"
@@ -122,7 +120,7 @@ const Register = () => {
             </label>
             <Select
               instanceId={"wsad123wqwe"}
-              className="mb-3 border rounded-md text-black register-input"
+              className="mb-3 border-gray-300 rounded-md text-black register-input p-1"
               options={countryOptions}
               onChange={handleCountryChange}
               value={countryOptions.find((option) => option.value === country)}
@@ -148,7 +146,7 @@ const Register = () => {
             />
           </div>
 
-          <PageCounter currentSection={1} totalSections={7} />
+          <PageCounter currentSection={1} totalSections={5} />
           <button
             className=" text-white px-5 py-5 rounded-md mt-8 button-register"
             type="submit"

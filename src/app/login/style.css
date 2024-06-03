@@ -54,7 +54,7 @@
   width: 100%; /* Asegura que las secciones tomen todo el ancho del contenedor */
   max-width: 400px; /* Opcional: limita el ancho máximo para una mejor apariencia */
   text-align: center; /* Centra el texto */
-  margin-bottom: 2rem;
+  margin-bottom: 4rem;
 }
 
 .login-form-section-register form {
@@ -96,7 +96,7 @@
 
 @media screen and (max-width: 768px) {
   .login-form-btn-back {
-    font-size: 24px; /* Tamaño de fuente para dispositivos móviles */
+    font-size: 26px; /* Tamaño de fuente para dispositivos móviles */
   }
 }
 
@@ -109,12 +109,12 @@
   left: 0;
   width: 100%;
   text-align: center;
-  margin-top: auto; /* Asegura que esté alineado al final */
-  padding: 0 20px; /* Añade un poco de espacio alrededor del texto */
+  margin-top: auto;
+  padding: 0 20px;
   margin-bottom: 4rem;
 }
 
 .login-form-section-footer p {
-  margin: 0 auto; /* Centra horizontalmente el texto */
-  max-width: 600px; /* Opcional: Limita el ancho del texto para una mejor apariencia */
+  margin: 0 auto;
+  max-width: 600px;
 }

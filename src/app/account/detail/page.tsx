@@ -16,27 +16,33 @@ import React, { useEffect, useState } from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import LoadingSpinner from "@/components/loading-spinner";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import Swal from "sweetalert2";
-import "./style.css";
+import "../style.css";
 
 import { getCharacters } from "@/api/account/character";
-import { AccountDetail, Character, Characters } from "@/model/model";
+import { AccountDetailDto, Character, Characters } from "@/model/model";
 import Cookies from "js-cookie";
-import { getAccountDetail } from "@/api/account";
 import CharacterSelection from "@/components/character_selection";
 import Friend from "@/components/friends/friend";
 import NavbarMinimalist from "@/components/register/navbar";
+import { getAccount } from "@/api/account";
 
-const Profile = () => {
-  const jwt = Cookies.get("jwt");
-  const refreshToken = Cookies.get("refresh_token");
+const AccountDetail = () => {
+  const searchParams = useSearchParams();
 
-  const { user, setUser } = useUserContext();
+  const jwt = Cookies.get("token");
+  const accountId = searchParams.get("id");
+
   const [isLoading, setIsLoading] = useState(true);
+  const [userDetail, setUserDetail] = useState<AccountDetailDto>();
   const [characters, setCharacters] = useState<Character[]>([]);
   const [selectedCharacter, setSelectedCharacter] = useState<Character>();
   const router = useRouter();
+
+  if (accountId == null) {
+    router.push("/account");
+  }
 
   /* Api Obtener los personajes del cliente */
   useEffect(() => {
@@ -55,24 +61,15 @@ const Profile = () => {
     fetchData();
   }, [setIsLoading]);
 
-  /* Api Obtener los personajes del cliente */
+  /* Api Obtener  los detalles del cliente*/
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response: AccountDetail = await getAccountDetail(jwt || "");
-        if (user) {
-          setUser({
-            ...user,
-            email: response.email,
-            cell_phone: response.cell_phone,
-            country: response.country,
-            last_name: response.last_name,
-            first_name: response.first_name,
-            date_of_birth: response.date_of_birth,
-            account_banned: response.account_banned,
-            account_muted: response.account_muted,
-          });
-        }
+        const response: AccountDetailDto = await getAccount(
+          jwt || "",
+          accountId || ""
+        );
+        setUserDetail(response);
         setIsLoading(false); // Marcamos la carga como completada
       } catch (error) {
         Swal.fire({
@@ -83,7 +80,7 @@ const Profile = () => {
           background: "#0B1218",
           timer: 4500,
         });
-        router.push("/");
+        router.push("/account");
       }
     };
 
@@ -118,12 +115,17 @@ const Profile = () => {
         />
         <div className="text-center ">
           <h1 className="text-white text-4xl font-semibold">
-            {user.first_name} {user.last_name}
+            {userDetail?.account_web.first_name}{" "}
+            {userDetail?.account_web.last_name}
           </h1>
-          <p className="text-white  pb-2 text-2xl ">Email: {user.email}</p>
-          <p className="text-white  pb-2 text-2xl ">Pais: {user.country}</p>
           <p className="text-white  pb-2 text-2xl ">
-            Username: {user.username}
+            Email: {userDetail?.email}
+          </p>
+          <p className="text-white  pb-2 text-2xl ">
+            Pais: {userDetail?.account_web.country}
+          </p>
+          <p className="text-white  pb-2 text-2xl ">
+            Username: {userDetail?.username}
           </p>
           <div className="mt-4">
             {!isLoading && characters.length > 0 ? (
@@ -209,4 +211,4 @@ const Profile = () => {
   );
 };
 
-export default Profile;
+export default AccountDetail;

@@ -76,34 +76,38 @@ const Friend: React.FC<CharacterProps> = ({ character, token }) => {
   };
 
   return (
-    <div className="p-4">
-      <h2 className="text-2xl font-semibold mb-4">Lista de Amigos</h2>
-      <div className="grid grid-cols-3 gap-4">
+    <div className="p-4 ">
+      <h2 className="text-2xl font-semibold mb-4 text-white ">
+        Lista de Amigos
+      </h2>
+      <div className="grid grid-cols-3 gap-4  ">
         {currentFriends.map((friend) => (
           <div
             key={friend.id}
-            className="bg-white rounded-lg shadow-md p-4 overflow-hidden cursor-pointer"
+            className="bg-slate-200 rounded-lg shadow-md p-4 overflow-hidden cursor-pointer"
             onClick={() => openModal(friend)} // Pasa el ID del amigo al hacer clic
           >
             <img
               src="https://via.placeholder.com/50"
               alt={`Avatar de ${friend.name}`}
-              className="w-16 h-16 rounded-full mx-auto mb-2"
+              className="w-20 h-20 rounded-full mx-auto mb-2"
             />
-            <h3 className="text-lg font-semibold">{friend.name}</h3>
-            <p className="text-gray-500 overflow-hidden overflow-ellipsis whitespace-nowrap">
+            <h3 className="text-2xl font-semibold text-amber-400">
+              {friend.name}
+            </h3>
+            <p className="text-black overflow-hidden overflow-ellipsis whitespace-nowrap">
               Level: {friend.level}
             </p>
-            <p className="text-gray-500 overflow-hidden overflow-ellipsis whitespace-nowrap">
+            <p className="text-black  overflow-hidden overflow-ellipsis whitespace-nowrap">
               Class: {friend.class}
             </p>
-            <p className="text-gray-500 overflow-hidden overflow-ellipsis whitespace-nowrap">
+            <p className="text-black overflow-hidden overflow-ellipsis whitespace-nowrap">
               Race: {friend.race}
             </p>
-            <p className="text-gray-500 overflow-hidden overflow-ellipsis whitespace-nowrap">
+            <p className="text-black  overflow-hidden overflow-ellipsis whitespace-nowrap">
               Status: {friend.flags}
             </p>
-            <p className="text-gray-500 overflow-hidden overflow-ellipsis whitespace-nowrap">
+            <p className="text-black  overflow-hidden overflow-ellipsis whitespace-nowrap">
               Nota: {friend.note}
             </p>
           </div>
@@ -113,12 +117,12 @@ const Friend: React.FC<CharacterProps> = ({ character, token }) => {
       {isModalOpen && selectedFriendId !== null && (
         <>
           <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center">
-            <div className="bg-white p-4 relative">
+            <div className="bg-slate-200 rounded-2xl  p-4 relative">
               <button
                 className="absolute top-0 right-0 mt-2 mr-2 action-button text-black"
                 onClick={closeModal}
               >
-                &#10005; {/* Carácter 'X' (✕) */}
+                &#10005;
               </button>
               <FriendDetail
                 jwt={token || ""}

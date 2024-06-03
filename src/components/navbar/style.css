@@ -84,3 +84,11 @@
 .nav-auth-category:hover {
   color: #e6d324;
 }
+
+.positionAbsolut {
+  position: absolute;
+  z-index: 1000;
+}
+.hoover-text-yellow:hover {
+  color: #e6d324;
+}

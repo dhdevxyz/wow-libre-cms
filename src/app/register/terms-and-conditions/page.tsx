@@ -37,7 +37,7 @@ const TermsAndConditions = () => {
       });
       return;
     }
-    router.push("/register/account-ingame");
+    router.push("/register/account-web");
   };
 
   const handleVolverClick = () => {
@@ -56,43 +56,45 @@ const TermsAndConditions = () => {
           noticias emocionantes y mucho más."
         />
 
-        <form
-          className="register-container-form pt-5"
-          onSubmit={handleFormSubmit}
-        >
+        <form className="register-container-form" onSubmit={handleFormSubmit}>
           <div className="form-group-flex-row">
-            <input
-              type="checkbox"
-              name="option1"
-              checked={selectedOptions.option1}
-              onChange={handleCheckboxChange}
-            />
-            <label
-              htmlFor="countrySelect"
-              className="ml-2 register-container-form-label"
-            >
-              El correo de la cuenta recibirá ofertas especiales, noticias y
-              demás de Wow Libre
-            </label>
+            <div className="flex items-center">
+              <input
+                type="checkbox"
+                name="option1"
+                checked={selectedOptions.option1}
+                onChange={handleCheckboxChange}
+                className="checkbox-custom"
+              />
+              <label
+                htmlFor="countrySelect"
+                className="pt-9 register-container-form-label  text-xl sm:text-2xl md:text-2xl lg:text-2xl xl:text-2xl"
+              >
+                El correo de la cuenta recibirá ofertas especiales, noticias y
+                demás de Wow Libre
+              </label>
+            </div>
           </div>
 
-          <div className="form-group-flex-row">
-            <input
-              type="checkbox"
-              name="option2"
-              checked={selectedOptions.option2}
-              onChange={handleCheckboxChange}
-              className=""
-            />
-            <span className="ml-2 register-container-form-label register-widget-20">
-              He leído y acepto lo siguiente:{" "}
-              <a href="/login" className="underline">
-                Términos y condiciones
-              </a>
-            </span>
+          <div className="form-group-flex-row mb-11">
+            <div className="flex items-center">
+              <input
+                type="checkbox"
+                name="option2"
+                checked={selectedOptions.option2}
+                onChange={handleCheckboxChange}
+                className="checkbox-custom"
+              />
+              <span className="pt-3 register-container-form-label  text-xl sm:text-2xl md:text-2xl lg:text-2xl xl:text-2xl">
+                He leído y acepto lo siguiente:{" "}
+                <a href="/login" className="underline">
+                  Términos y condiciones
+                </a>
+              </span>
+            </div>
           </div>
 
-          <PageCounter currentSection={4} totalSections={7} />
+          <PageCounter currentSection={4} totalSections={5} />
           <button
             className=" text-white px-5 py-5 rounded-md mt-8 button-register"
             type="submit"

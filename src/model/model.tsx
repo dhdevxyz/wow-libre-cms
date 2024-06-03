@@ -8,10 +8,13 @@ export interface ExistEmailModel {
   exist: boolean;
 }
 
-export interface RegisterData {
+export interface AccountGameRequestDto {
   username: string;
   salt: string;
   verifier: string;
+}
+
+export interface AccountWebRequestDto {
   country: string;
   date_of_birth: string;
   first_name: string;
@@ -47,16 +50,15 @@ export interface Character {
   class_id: number;
 }
 
-export interface AccountDetail {
+export interface AccountsModel {
+  id: number;
   username: string;
-  country: string;
-  first_name: string;
-  last_name: string;
-  cell_phone: string;
   email: string;
-  date_of_birth: Date;
-  account_banned: AccountBannedModel;
-  account_muted: AccountMutedModel;
+  expansion: string;
+  online: boolean;
+  failed_logins: string;
+  join_date: string;
+  last_ip: string;
 }
 
 export interface AccountBannedModel {
@@ -77,4 +79,34 @@ export interface AccountMutedModel {
 export interface Friends {
   friends: Character[];
   total_quantity: number;
+}
+
+interface AccountWeb {
+  id: number;
+  country: string;
+  date_of_birth: string;
+  first_name: string;
+  last_name: string;
+  cell_phone: string;
+  email: string;
+  rol_name: string;
+  status: boolean;
+  verified: boolean;
+}
+
+export interface AccountDetailDto {
+  id: number;
+  username: string;
+  email: string;
+  expansion: string;
+  online: boolean;
+  failed_logins: string;
+  join_date: string;
+  last_ip: string;
+  mute_reason: string;
+  mute_by: string;
+  mute: boolean;
+  last_login: string;
+  os: string;
+  account_web: AccountWeb;
 }

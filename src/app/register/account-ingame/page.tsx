@@ -9,12 +9,20 @@ import { useRouter } from "next/navigation";
 import React, { ChangeEvent, useState } from "react";
 import Swal from "sweetalert2";
 import "../style.css";
+import { registerAccountGame } from "@/api/account/register";
+import { AccountGameRequestDto } from "@/model/model";
+import LoadingSpinner from "@/components/loading-spinner";
+const crypto = require("crypto");
+import Cookies from "js-cookie";
 
 const AccountIngame = () => {
   const { user, setUser } = useUserContext(); // Obteniendo el contexto y funciones del contexto
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState(""); // Nuevo estado para la confirmación de contraseña
   const router = useRouter();
+  const { computeVerifier, params } = require(`trinitycore-srp6`);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const jwt = Cookies.get("token");
 
   const handlePasswordChange = (event: ChangeEvent<HTMLInputElement>) => {
     setPassword(event.target.value);
@@ -26,7 +34,7 @@ const AccountIngame = () => {
     setConfirmPassword(event.target.value);
   };
 
-  const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleFormSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     if (password !== confirmPassword) {
@@ -64,16 +72,40 @@ const AccountIngame = () => {
       });
       return;
     }
+    setIsSubmitting(true);
 
-    if (user) {
-      const encryptedPassword = encryptPassword(password);
+    try {
+      const salt = crypto.randomBytes(32);
 
-      setUser({
-        ...user,
-        password: encryptedPassword,
+      const verifier = computeVerifier(
+        params.trinitycore,
+        Buffer.from(salt),
+        user.username.toUpperCase(),
+        password.toUpperCase()
+      );
+
+      await registerAccountGame(
+        {
+          username: user.username,
+          salt: Buffer.from(salt).toString("hex"),
+          verifier: Buffer.from(verifier).toString("hex"),
+        },
+        jwt || ""
+      );
+
+      router.push("/account");
+    } catch (error: any) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: error.message, // Imprimir el mensaje de error
+        color: "white",
+        background: "#0B1218",
+        timer: 4500,
       });
+    } finally {
+      setIsSubmitting(false);
     }
-    router.push("/register/account-web");
   };
 
   const handleVolverClick = () => {
@@ -125,18 +157,25 @@ const AccountIngame = () => {
               onChange={handleConfirmPasswordChange}
             />
           </div>
-
-          <PageCounter currentSection={5} totalSections={7} />
+          {isSubmitting && (
+            <div className="mb-4 text-center">
+              <LoadingSpinner />{" "}
+              <p className="mt-4 text-gray-600 text-lg">Creando cuenta...</p>
+            </div>
+          )}
+          <PageCounter currentSection={2} totalSections={2} />
           <button
             className=" text-white px-5 py-5 rounded-md mt-8 button-register"
             type="submit"
+            disabled={isSubmitting}
           >
             Continuar
           </button>
           <button
             className="text-white px-5 py-5 rounded-md mt-8 button-register"
-            type="button" // Asegúrate de cambiar el tipo a "button"
-            onClick={handleVolverClick} // Agrega el evento onClick
+            type="button"
+            disabled={isSubmitting}
+            onClick={handleVolverClick}
           >
             Volver
           </button>

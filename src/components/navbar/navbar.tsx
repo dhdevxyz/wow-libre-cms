@@ -60,7 +60,7 @@ const Navbar = () => {
           </Link>
         </nav>
       </div>
-      <div className="auth">
+      <div className="auth relative">
         <Auth />
       </div>
     </div>

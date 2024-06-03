@@ -8,6 +8,7 @@ import {
   faSortUp,
   faCoins,
 } from "@fortawesome/free-solid-svg-icons";
+import "./style.css";
 
 import Swal from "sweetalert2";
 import { Character } from "@/model/model";
@@ -92,27 +93,27 @@ const FriendDetail: React.FC<FriendsDetailProps> = ({
   };
 
   return (
-    <div className="flex flex-col items-center justify-center h-full">
-      <div className="bg-white rounded-lg shadow-md p-8 max-w-md">
-        <div className="flex items-center mb-4">
+    <div className="friend-detail ">
+      <div className="friend-detail-component ">
+        <div className="mb-4 friend-detail-picture">
           <img
             src="https://via.placeholder.com/150"
             alt="Avatar del amigo"
-            className="w-20 h-20 rounded-full mr-4"
+            className="w-40 h-40 rounded-full m-20"
           />
-          <div className="flex flex-col">
-            <h2 className="text-xl font-semibold mb-2">{friend.name}</h2>
-            <div className="text-gray-600">
-              <p>Nivel {friend.level}</p>
-              <p>Clase: {friend.class}</p>
-              <p>Raza: {friend.race}</p>
-              <p>Status: {friend.flags}</p>
-            </div>
+        </div>
+        <div className="friend-detail-container">
+          <h2 className="text-xl font-semibold mb-2">{friend.name}</h2>
+          <div className="text-gray-600">
+            <p>Nivel {friend.level}</p>
+            <p>Clase: {friend.class}</p>
+            <p>Raza: {friend.race}</p>
+            <p>Status: {friend.flags}</p>
           </div>
         </div>
         {friend.note && (
           <p className="text-gray-700 mb-4">Nota: {friend.note}</p>
-        )}{" "}
+        )}
         <div className="flex flex-col space-y-4">
           <button
             className="action-button bg-blue-500 hover:bg-blue-600 text-white py-1 px-2 rounded-full transition duration-300"
@@ -122,14 +123,14 @@ const FriendDetail: React.FC<FriendsDetailProps> = ({
             Regalar Niveles
           </button>
           <button
-            className="action-button bg-yellow-500 hover:bg-yellow-400  text-white py-1 px-2 rounded-full transition duration-300"
+            className="action-button  bg-blue-500 hover:bg-blue-600 text-white py-1 px-2 rounded-full transition duration-300"
             onClick={openGiftMoneyOpenModal}
           >
             <FontAwesomeIcon icon={faCoins} className="mr-2" />
             Enviar Oro
           </button>
           <button
-            className="action-button bg-red-500 hover:bg-red-600 text-white py-1 px-2 rounded-full transition duration-300"
+            className="action-button bg-blue-500 hover:bg-blue-600  text-white py-1 px-2 rounded-full transition duration-300"
             onClick={deleteFriendInput}
           >
             <FontAwesomeIcon icon={faTrashAlt} className="mr-2" />

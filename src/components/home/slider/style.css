@@ -21,13 +21,14 @@
 }
 
 .cards-slider {
-  border: 0.2rem solid #8c6002;
+  border: 0.2rem solid rgba(94, 172, 232, 0.903);
+
   display: flex; /* Utiliza flexbox para distribuir los elementos internos */
   flex-direction: column; /* Coloca los elementos internos en una columna */
   margin: 1rem 1rem 0 0;
   border-radius: 3%;
   max-width: 40rem;
-  background-color: #1e3346;
+  background-image: linear-gradient(to bottom, #0c243b, #161d2a);
   position: relative; /* Añade posicionamiento relativo */
   height: 400px; /* Establece una altura fija para todas las tarjetas */
   overflow: hidden; /* Oculta el contenido que se desborde */
@@ -87,7 +88,7 @@
   font-size: 16px; /* Tamaño de la fuente */
   font-weight: bold; /* Negrita */
   color: #000000; /* Color del texto */
-  background-color: #a27f21; /* Color de fondo */
+  background-color: #5472cd;
   border: none; /* Sin borde */
   border-radius: 5px; /* Borde redondeado */
   cursor: pointer; /* Cursor de tipo puntero */
@@ -95,5 +96,5 @@
 }
 
 .contract-button:hover {
-  background-color: #f5a906; /* Cambio de color de fondo al pasar el mouse */
+  background-color: #92a7e7;
 }

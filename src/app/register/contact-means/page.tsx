@@ -22,7 +22,9 @@ const ContactMeans = () => {
   };
 
   const handleCellPhoneChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setCellPhone(event.target.value);
+    const { value } = event.target;
+    const filteredValue = value.replace(/[eE]/g, "");
+    setCellPhone(filteredValue);
   };
 
   const isValidEmail = (email: string) => {
@@ -115,10 +117,7 @@ const ContactMeans = () => {
           description="Esto es lo que utilizarás cuando inicies sesión en los sitios web y aplicaciones móviles."
         />
 
-        <form
-          className="register-container-form pt-5"
-          onSubmit={handleFormSubmit}
-        >
+        <form className="register-container-form" onSubmit={handleFormSubmit}>
           <div className="form-group">
             <label
               htmlFor="countrySelect"
@@ -152,7 +151,7 @@ const ContactMeans = () => {
             />
           </div>
 
-          <PageCounter currentSection={3} totalSections={7} />
+          <PageCounter currentSection={3} totalSections={5} />
           <button
             className=" text-white px-5 py-5 rounded-md mt-8 button-register"
             type="submit"

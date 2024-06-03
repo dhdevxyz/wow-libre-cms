@@ -1,5 +1,5 @@
 .bg-paper-image {
-  background-image: url("../../../../public/img/homes/us/us.jpg");
+  background-image: url("/img/homes/us/us.jpg");
   border-radius: 20px; /* Ajusta el redondeo según prefieras */
   transition: transform 0.3s ease-in-out; /* Agrega una transición suave */
 }

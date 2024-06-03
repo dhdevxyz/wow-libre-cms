@@ -4,10 +4,10 @@ import type { NextRequest } from "next/server";
 
 export default function myMiddleware(request: NextRequest) {
    
-    const protectedPaths = ["/profile", "/dashboard", "/settings"]; // Definir las rutas que requieren autenticación
+    const protectedPaths = ["/account", "/dashboard", "/settings","/character"]; // Definir las rutas que requieren autenticación
 
     if (protectedPaths.includes(request.nextUrl.pathname)) {
-        const cookie = request.cookies.get('jwt')
+        const cookie = request.cookies.get('token')
 
         if (!cookie) {
             // Si no hay token en la cookie, redirigir a otra ruta

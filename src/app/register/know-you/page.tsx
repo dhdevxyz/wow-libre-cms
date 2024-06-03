@@ -128,7 +128,7 @@ const KnowYou = () => {
             />
           </div>
 
-          <PageCounter currentSection={2} totalSections={7} />
+          <PageCounter currentSection={2} totalSections={5} />
           <button
             className=" text-white px-5 py-5 rounded-md mt-8 button-register"
             type="submit"

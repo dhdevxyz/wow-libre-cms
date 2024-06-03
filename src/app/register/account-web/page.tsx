@@ -9,11 +9,17 @@ import { useRouter } from "next/navigation";
 import React, { ChangeEvent, useState } from "react";
 import Swal from "sweetalert2";
 import "../style.css";
+import { registerAccountWeb } from "@/api/account/register";
+import { AccountWebRequestDto } from "@/model/model";
+import Cookies from "js-cookie";
 
 const AccountIngame = () => {
-  const { user, setUser } = useUserContext(); // Obteniendo el contexto y funciones del contexto
+  const { user, setUser, clearUserData } = useUserContext();
+  const language = user.language;
+  const country = user.country;
+
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState(""); // Nuevo estado para la confirmación de contraseña
+  const [confirmPassword, setConfirmPassword] = useState("");
   const router = useRouter();
 
   const handlePasswordChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -26,7 +32,7 @@ const AccountIngame = () => {
     setConfirmPassword(event.target.value);
   };
 
-  const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleFormSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     if (password !== confirmPassword) {
@@ -65,13 +71,56 @@ const AccountIngame = () => {
       return;
     }
 
-    if (user) {
-      setUser({
-        ...user,
-        password_web: encryptPassword(password),
+    try {
+      const userDateOfBirth = user.date_of_birth;
+
+      const formattedDateOfBirth = userDateOfBirth
+        ? !isNaN(new Date(userDateOfBirth).getTime())
+          ? new Date(userDateOfBirth).toISOString().split("T")[0]
+          : new Date().toISOString()
+        : new Date().toISOString();
+
+      const requestBody: AccountWebRequestDto = {
+        country: user.country,
+        date_of_birth: formattedDateOfBirth,
+        first_name: user.first_name,
+        last_name: user.last_name,
+        cell_phone: user.cell_phone,
+        email: user.email,
+        password: password,
+      };
+
+      const response = await registerAccountWeb(requestBody);
+      console.log(response.jwt);
+      Cookies.set("token", response.jwt, { expires: 7 });
+      Cookies.set("refresh_token", response.refresh_token, { expires: 7 });
+    } catch (error) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Ha ocurrido un error inesperado al intentar continuar con el registro. Por favor, inténtelo de nuevo más tarde o comuníquese con el soporte técnico.",
+        background: "#0B1218",
+        timer: 4500,
       });
+      return;
     }
-    router.push("/register/username");
+    clearUserData();
+
+    setUser({
+      id: null,
+      username: "",
+      country: country,
+      language: language,
+      date_of_birth: null,
+      first_name: "",
+      last_name: "",
+      cell_phone: "",
+      email: "",
+      logged_in: true,
+    });
+    router.push(
+      `/congrats?email=${user.email}&country=${user.country}&phone=${user.cell_phone}`
+    );
   };
 
   const handleVolverClick = () => {
@@ -124,12 +173,12 @@ const AccountIngame = () => {
             />
           </div>
 
-          <PageCounter currentSection={6} totalSections={7} />
+          <PageCounter currentSection={5} totalSections={5} />
           <button
             className=" text-white px-5 py-5 rounded-md mt-8 button-register"
             type="submit"
           >
-            Continuar
+            Confirmar
           </button>
           <button
             className="text-white px-5 py-5 rounded-md mt-8 button-register"
