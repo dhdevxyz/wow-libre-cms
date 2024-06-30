@@ -151,3 +151,24 @@ export interface MailsDto {
   mails: Mails[];
   size: number;
 }
+
+export interface GuildDto {
+  id: number;
+  name: string;
+  avatar: string;
+  leader_name: string;
+  emblem_style: number;
+  emblem_color: number;
+  border_style: number;
+  border_color: number;
+  info: string;
+  motd: string;
+  create_date: string;
+  bank_money: number;
+  members: number;
+}
+
+export interface GuildsDto {
+  guilds: GuildDto[];
+  size: number;
+}

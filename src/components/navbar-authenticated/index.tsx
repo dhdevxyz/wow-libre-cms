@@ -11,10 +11,12 @@ const NavbarAuthenticated = () => {
   const { user, clearUserData } = useUserContext();
   const router = useRouter();
   const [avatar, setAvatar] = useState("");
+  const [loggin, setLoggin] = useState(false);
 
   useEffect(() => {
     setAvatar(user.avatar);
     setIsLoading(false);
+    setLoggin(user.logged_in);
   }, [user]);
 
   if (isLoading) {
@@ -101,22 +103,10 @@ const NavbarAuthenticated = () => {
                 </Link>
                 <Link
                   className="rounded-md  px-4 py-3 text-x2 font-medium text-gray-300 hover:bg-gray-700 hover:text-white "
-                  href="/accounts"
+                  href="/guild"
                 >
-                  Cuentas
+                  Hermandades
                 </Link>
-                <a
-                  href="#"
-                  className="rounded-md px-4 py-3 text-x2 font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
-                >
-                  Servidores Privados
-                </a>
-                <a
-                  href="#"
-                  className="rounded-md px-4 py-3 text-x2 font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
-                >
-                  Servicios
-                </a>
                 <a
                   href="#"
                   className="rounded-md px-4 py-3 text-x2 font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
@@ -161,11 +151,19 @@ const NavbarAuthenticated = () => {
                 >
                   <span className="absolute -inset-1.5"></span>
                   <span className="sr-only">Open user menu</span>
-                  <img
-                    className="h-14 w-14 rounded-full"
-                    src={user.avatar}
-                    alt=""
-                  />
+                  {loggin ? (
+                    <img
+                      className="h-14 w-14 rounded-full"
+                      src={avatar}
+                      alt="Icon profile"
+                    />
+                  ) : (
+                    <img
+                      className="h-14 w-14 rounded-full"
+                      src="/img/logos/logo.png"
+                      alt="Icon Profile Default"
+                    />
+                  )}
                 </button>
               </div>
               {isUserMenuOpen && (
@@ -175,32 +173,54 @@ const NavbarAuthenticated = () => {
                   aria-orientation="vertical"
                   aria-labelledby="user-menu-button"
                 >
-                  <Link
-                    href="/accounts"
-                    className="block px-4 py-3 text-base text-gray-700"
-                    role="menuitem"
-                    id="user-menu-item-0"
-                  >
-                    {" "}
-                    Cuentas
-                  </Link>
-                  <a
-                    href="#"
-                    className="block px-4 py-3 text-base text-gray-700"
-                    role="menuitem"
-                    id="user-menu-item-1"
-                  >
-                    Configuracion
-                  </a>
-                  <a
-                    href="#"
-                    className="block px-4 py-3 text-base text-gray-700"
-                    role="menuitem"
-                    id="user-menu-item-2"
-                    onClick={handleLogout}
-                  >
-                    Salir
-                  </a>
+                  {loggin ? (
+                    <div className="hover:text-blue-500">
+                      <Link
+                        href="/accounts"
+                        className="block px-4 py-3 text-base text-gray-700"
+                        role="menuitem"
+                        id="user-menu-item-0"
+                      >
+                        Cuentas
+                      </Link>
+                      <a
+                        href="#"
+                        className="block px-4 py-3 text-base text-gray-700"
+                        role="menuitem"
+                        id="user-menu-item-1"
+                      >
+                        Configuracion
+                      </a>
+                      <a
+                        href="#"
+                        className="block px-4 py-3 text-base text-gray-700"
+                        role="menuitem"
+                        id="user-menu-item-2"
+                        onClick={handleLogout}
+                      >
+                        Salir
+                      </a>
+                    </div>
+                  ) : (
+                    <div>
+                      <Link
+                        href="/login"
+                        className="block px-4 py-3 text-base text-gray-700 hover:bg-blue-100"
+                        role="menuitem"
+                        id="user-menu-item-0"
+                      >
+                        Ingresar
+                      </Link>
+                      <Link
+                        href="/register"
+                        className="block px-4 py-3 text-base text-gray-700 hover:bg-blue-100"
+                        role="menuitem"
+                        id="user-menu-item-0"
+                      >
+                        Registrarme
+                      </Link>
+                    </div>
+                  )}
                 </div>
               )}
             </div>

@@ -9,6 +9,7 @@ import {
   faEnvelope,
   faShieldHeart,
   faCrown,
+  faFlag,
 } from "@fortawesome/free-solid-svg-icons";
 
 import { useUserContext } from "@/context/UserContext";
@@ -175,10 +176,7 @@ const AccountDetail = () => {
                 Profesiones
               </Tab>
               <Tab className="py-6 px-5 text-white  bg-tablist cursor-pointer text-lg font-semibold flex items-center">
-                <FontAwesomeIcon
-                  icon={faShieldHeart}
-                  className="mr-2 text-2xl"
-                />
+                <FontAwesomeIcon icon={faFlag} className="mr-2 text-2xl" />
                 Hermandad
               </Tab>
               <Tab className="py-6 px-5 text-white bg-tablist  cursor-pointer text-lg font-semibold flex items-center">

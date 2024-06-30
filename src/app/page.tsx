@@ -4,7 +4,6 @@ import SliderHome from "@/components/home/slider";
 import Subscription from "@/components/home/subscription";
 import Us from "@/components/home/us";
 import Navbar from "@/components/navbar/navbar";
-import WowHead from "@/components/navbar/text";
 
 const Home = () => {
   return (

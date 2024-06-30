@@ -43,9 +43,10 @@ const Navbar = () => {
       </div>
       <div className="nav-category">
         <nav className="category">
-          <a className="category-link" href="#">
-            Categorias
-          </a>
+          <Link className="category-link" href="/guild">
+            Hermandades
+          </Link>
+
           <a className="category-link" href="#">
             Comunidad
           </a>
