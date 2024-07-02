@@ -172,3 +172,30 @@ export interface GuildsDto {
   guilds: GuildDto[];
   size: number;
 }
+
+export interface GuildData {
+  id: number;
+  name: string;
+  leader_name: string;
+  emblem_style: number;
+  emblem_color: number;
+  border_style: number;
+  border_color: number;
+  info: string;
+  motd: string;
+  create_date: string;
+  bank_money: number;
+  members: number;
+  benefits: Benefit[];
+}
+
+interface Benefit {
+  id: number;
+  guild_id: number;
+  logo: string;
+  acquisition_date: string;
+  expiration_date: string;
+  title: string;
+  sub_title: string;
+  description: string;
+}

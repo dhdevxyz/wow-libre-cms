@@ -1,18 +1,30 @@
 "use client";
+import { getGuild } from "@/api/guilds";
 import NavbarAuthenticated from "@/components/navbar-authenticated";
-import React from "react";
-
-interface Guild {
-  id: number;
-  name: string;
-  description: string;
-  mesagge: string;
-  member_master: number;
-  members: number;
-  create_date: string; // Supongamos que es una cadena de fecha por simplicidad
-}
+import { useUserContext } from "@/context/UserContext";
+import { GuildData } from "@/model/model";
+import Link from "next/link";
+import { useParams, useSearchParams } from "next/navigation";
+import React, { useContext, useEffect, useState } from "react";
 
 const GuildDetail = () => {
+  const guildId = useParams<{ id: string }>();
+  const [guild, setGuild] = useState<GuildData>();
+  const { user } = useUserContext();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response: GuildData = await getGuild(guildId.id);
+        setGuild(response);
+      } catch (error) {
+        console.error("Ha ocurrido un error al obtener los personajes", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <div>
       <div className="contenedor">
@@ -29,23 +41,28 @@ const GuildDetail = () => {
             <div className="flex flex-col justify-between max-w-2xl">
               <div>
                 <h2 className="text-3xl lg:text-4xl font-bold mb-10">
-                  Hermandad: Los caballeros vengadores
+                  Hermandad: {guild?.name}
                 </h2>
-                <p className="text-lg lg:text-2xl mb-4">
-                  ¡Únete a la Hermandad de Los caballeros vengadores! Descubre
-                  un mundo de camaradería, aventuras épicas y desafíos que te
-                  esperan. ¡Forja tu leyenda junto a los héroes más valientes de
-                  World of Warcraft!
-                </p>
+                <p className="text-lg lg:text-2xl mb-4">{guild?.info}</p>
               </div>
               <div>
-                <button className="px-6 py-3 bg-blue-500 hover:bg-blue-600 rounded-lg text-white font-semibold mb-4">
-                  Unirme
-                </button>
-                <p className="text-lg">
-                  Al suscribirte, aceptas los Términos y condiciones xx. Puedes
-                  cancelar cuando quieras.
-                </p>
+                {user.logged_in ? (
+                  <Link
+                    href="/login"
+                    className="px-6 py-3 bg-blue-500 hover:bg-blue-600 rounded-lg text-white font-semibold mb-4"
+                  >
+                    Unirme
+                  </Link>
+                ) : (
+                  <Link
+                    href="/login"
+                    className="px-6 py-3 bg-blue-500 hover:bg-blue-600 rounded-lg text-white font-semibold mb-4"
+                  >
+                    Ingresar
+                  </Link>
+                )}
+
+                <p className="text-lg pt-4">{guild?.motd}</p>
               </div>
             </div>
             <div className="grid grid-cols-2 gap-4 lg:gap-8">
@@ -72,27 +89,25 @@ const GuildDetail = () => {
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <dl className="grid grid-cols-1 gap-x-8 gap-y-16 text-center lg:grid-cols-3">
             <div className="mx-auto flex max-w-xs flex-col gap-y-4">
-              <dt className="text-base leading-7 text-white">
+              <dt className="text-lg leading-7 text-white">
                 Miembros suscritos
               </dt>
               <dd className="order-first text-3xl font-semibold tracking-tight text-white sm:text-5xl">
-                44 million
+                {guild?.members}
               </dd>
             </div>
             <div className="mx-auto flex max-w-xs flex-col gap-y-4">
-              <dt className="text-base leading-7 text-white">
-                Cantidad de lideres
-              </dt>
+              <dt className="text-lg leading-7 text-white">Beneficios</dt>
               <dd className="order-first text-3xl font-semibold tracking-tight text-white sm:text-5xl">
-                $119 trillion
+                {guild?.benefits.length}
               </dd>
             </div>
             <div className="mx-auto flex max-w-xs flex-col gap-y-4">
-              <dt className="text-base leading-7 text-white">
-                Dinero disponible
+              <dt className="text-lg leading-7 text-white">
+                Dinero de la guild
               </dt>
               <dd className="order-first text-3xl font-semibold tracking-tight text-white sm:text-5xl">
-                46,000
+                {guild?.bank_money}
               </dd>
             </div>
           </dl>
@@ -394,88 +409,42 @@ const GuildDetail = () => {
       <section className="dark contenedor">
         <div className="container px-6 py-10 mx-auto">
           <h1 className="text-2xl font-semibold text-center text-gray-800 capitalize lg:text-3xl dark:text-white">
-            Beneficios <span className="text-blue-500"> obtenidos</span>
+            Beneficios <span className="text-blue-500">obtenidos</span>
           </h1>
 
           <p className="max-w-2xl mx-auto my-6 text-center text-gray-500 dark:text-gray-300">
-            Al unirte a esta hermandad podras obtener los siguientes beneficios:
+            Al unirte a esta hermandad podrás obtener los siguientes beneficios:
           </p>
 
           <div className="grid grid-cols-1 gap-8 mt-8 xl:mt-16 md:grid-cols-2 xl:grid-cols-2">
-            <div className="px-12 py-8 transition-colors duration-300 transform border cursor-pointer rounded-xl hover:border-transparent group hover:bg-gray-800 dark:border-gray-700 dark:hover:border-transparent">
-              <div className="flex flex-col sm:-mx-4 sm:flex-row">
-                <img
-                  className="flex-shrink-0 object-cover w-24 h-24 rounded-full sm:mx-4 ring-4 ring-gray-300"
-                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjz4daItnqmX0G16I3EBnqZwbKmvRp7VwfOA&s"
-                  alt=""
-                />
+            {guild?.benefits.map((benefit) => (
+              <div
+                key={benefit.id}
+                className="px-12 py-8 transition-colors duration-300 transform border cursor-pointer rounded-xl hover:border-transparent group hover:bg-gray-800 dark:border-gray-700 dark:hover:border-transparent"
+              >
+                <div className="flex flex-col sm:-mx-4 sm:flex-row">
+                  <img
+                    className="flex-shrink-0 object-cover w-24 h-24 rounded-full sm:mx-4 ring-4 ring-gray-300"
+                    src={benefit.logo}
+                    alt=""
+                  />
 
-                <div className="mt-4 sm:mx-4 sm:mt-0">
-                  <h1 className="text-xl font-semibold text-gray-700 capitalize md:text-2xl dark:text-white group-hover:text-white">
-                    Reto 1: Cumplido
-                  </h1>
+                  <div className="mt-4 sm:mx-4 sm:mt-0">
+                    <h1 className="text-xl font-semibold text-gray-700 capitalize md:text-2xl dark:text-white group-hover:text-white">
+                      {benefit.title}
+                    </h1>
 
-                  <p className="mt-2 text-gray-500 capitalize dark:text-gray-300 group-hover:text-gray-300 text-lg">
-                    Mas de 500 miembros
-                  </p>
+                    <p className="mt-2 text-gray-500 capitalize dark:text-gray-300 group-hover:text-gray-300 text-lg">
+                      {benefit.sub_title}
+                    </p>
+                  </div>
                 </div>
+
+                <p className="mt-10 text-gray-500 dark:text-gray-300 group-hover:text-gray-300">
+                  {benefit.description}
+                </p>
               </div>
-
-              <p className="mt-10 text-gray-500  dark:text-gray-300 group-hover:text-gray-300">
-                Al unirte a esta hermandad podras reclamar el beneficio de los
-                500 miembros.
-              </p>
-            </div>
-
-            <div className="px-12 py-8 transition-colors duration-300 transform border cursor-pointer rounded-xl hover:border-transparent group hover:bg-gray-800 dark:border-gray-700 dark:hover:border-transparent">
-              <div className="flex flex-col sm:-mx-4 sm:flex-row">
-                <img
-                  className="flex-shrink-0 object-cover w-24 h-24 rounded-full sm:mx-4 ring-4 ring-gray-300"
-                  src="https://mmonster.co/media/d8/d1/1f/1669320223/1-mmnstr-gold.jpg"
-                  alt=""
-                />
-
-                <div className="mt-10 sm:mx-4 sm:mt-0">
-                  <h1 className="text-xl font-semibold text-gray-700 capitalize md:text-2xl dark:text-white group-hover:text-white">
-                    Reto 2: Cumplido
-                  </h1>
-
-                  <p className="mt-2 text-gray-500 capitalize dark:text-gray-300 group-hover:text-gray-300 text-lg">
-                    Banco Con Todas Las Casillas
-                  </p>
-                </div>
-              </div>
-
-              <p className="mt-10 text-gray-500 capitalize dark:text-gray-300 group-hover:text-gray-300">
-                Al unirte a esta hermandad podras reclamar el beneficio de un
-                companero
-              </p>
-            </div>
-
-            <div className="px-12 py-8 transition-colors duration-300 transform border cursor-pointer rounded-xl hover:border-transparent group hover:bg-gray-800 dark:border-gray-700 dark:hover:border-transparent">
-              <div className="flex flex-col sm:-mx-4 sm:flex-row">
-                <img
-                  className="flex-shrink-0 object-cover w-24 h-24 rounded-full sm:mx-4 ring-4 ring-gray-300"
-                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPNsDFYyi70GSYHK520iJWFB_KPRNAakSKO6hNqQ3vgusZajGZ9bSbc_1Ep66nPohOeb8&usqp=CAU"
-                  alt=""
-                />
-
-                <div className="mt-4 sm:mx-4 sm:mt-0">
-                  <h1 className="text-xl font-semibold text-gray-700 capitalize md:text-2xl dark:text-white group-hover:text-white">
-                    Reto 3: Cumplido
-                  </h1>
-
-                  <p className="mt-2 text-gray-500 capitalize dark:text-gray-300 group-hover:text-gray-300 text-lg">
-                    Lead designer
-                  </p>
-                </div>
-              </div>
-
-              <p className="mt-10 text-gray-500 capitalize dark:text-gray-300 group-hover:text-gray-300">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum
-                nesciunt officia aliquam neque optio? Cumque facere numquam est.
-              </p>
-            </div>
+            ))}
           </div>
         </div>
       </section>

@@ -46,16 +46,15 @@ const Navbar = () => {
           <Link className="category-link" href="/guild">
             Hermandades
           </Link>
-
-          <a className="category-link" href="#">
+          <Link className="category-link" href="/comunity">
             Comunidad
-          </a>
-          <a className="category-link" href="#">
-            Historial
-          </a>
-          <a className="category-link" href="#">
-            Vender
-          </a>
+          </Link>
+          <Link className="category-link" href="/comunity">
+            Banco
+          </Link>
+          <Link className="category-link" href="/comunity">
+            Tienda
+          </Link>
 
           <Link className="category-link" href="/help">
             Ayuda

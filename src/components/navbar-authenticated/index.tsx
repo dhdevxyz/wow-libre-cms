@@ -107,12 +107,24 @@ const NavbarAuthenticated = () => {
                 >
                   Hermandades
                 </Link>
-                <a
-                  href="#"
-                  className="rounded-md px-4 py-3 text-x2 font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
+                <Link
+                  className="rounded-md  px-4 py-3 text-x2 font-medium text-gray-300 hover:bg-gray-700 hover:text-white "
+                  href="/comunity"
                 >
                   Comunidad
-                </a>
+                </Link>
+                <Link
+                  className="rounded-md  px-4 py-3 text-x2 font-medium text-gray-300 hover:bg-gray-700 hover:text-white "
+                  href="/bank"
+                >
+                  Banco
+                </Link>
+                <Link
+                  className="rounded-md  px-4 py-3 text-x2 font-medium text-gray-300 hover:bg-gray-700 hover:text-white "
+                  href="/store"
+                >
+                  Tienda
+                </Link>
               </div>
             </div>
           </div>

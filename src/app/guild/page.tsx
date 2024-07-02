@@ -7,181 +7,7 @@ import React, { useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
 
 const Guild = () => {
-  const [guilds, setGuilds] = useState<GuildDto[]>([
-    {
-      id: 1,
-      name: "WowLibre",
-      avatar: "",
-      email: "usuario1@example.com",
-      member_master: 2,
-      members: 200,
-      create_date: "3333", // Ejemplo de fecha
-    },
-    {
-      id: 2,
-      name: "Guild 2",
-      avatar: "",
-      email: "usuario2@example.com",
-      member_master: 4,
-      members: 200,
-      create_date: "4444", // Ejemplo de fecha
-    },
-    {
-      id: 3,
-      name: "Guild 3",
-      avatar: "",
-      email: "usuario2@example.com",
-      member_master: 4,
-      members: 200,
-      create_date: "444", // Ejemplo de fecha
-    },
-    {
-      id: 4,
-      name: "Guild 4",
-      avatar: "",
-      email: "usuario2@example.com",
-      member_master: 4,
-      members: 200,
-      create_date: "3333", // Ejemplo de fecha
-    },
-    {
-      id: 5,
-      name: "Guild 5",
-      avatar: "",
-      email: "usuario2@example.com",
-      member_master: 4,
-      members: 200,
-      create_date: "333", // Ejemplo de fecha
-    },
-    {
-      id: 6,
-      name: "Guild 6",
-      avatar: "",
-      email: "usuario2@example.com",
-      member_master: 4,
-      members: 200,
-      create_date: "333", // Ejemplo de fecha
-    },
-    {
-      id: 7,
-      name: "Guild 7",
-      avatar: "",
-      email: "usuario2@example.com",
-      member_master: 4,
-      members: 200,
-      create_date: "23", // Ejemplo de fecha
-    },
-    {
-      id: 8,
-      name: "Guild 8",
-      avatar: "",
-      email: "usuario2@example.com",
-      member_master: 4,
-      members: 200,
-      create_date: "2", // Ejemplo de fecha
-    },
-    {
-      id: 9,
-      name: "Guild 9",
-      avatar: "",
-      email: "usuario2@example.com",
-      member_master: 4,
-      members: 200,
-      create_date: "444", // Ejemplo de fecha
-    },
-    {
-      id: 10,
-      name: "Guild 10",
-      avatar: "",
-      email: "usuario2@example.com",
-      member_master: 4,
-      members: 200,
-      create_date: "33", // Ejemplo de fecha
-    },
-    {
-      id: 11,
-      name: "Guild 11",
-      avatar: "",
-      email: "usuario2@example.com",
-      member_master: 4,
-      members: 200,
-      create_date: "242", // Ejemplo de fecha
-    },
-    {
-      id: 12,
-      name: "Guild 12",
-      avatar: "",
-      email: "usuario2@example.com",
-      member_master: 4,
-      members: 200,
-      create_date: "2024-06-26", // Ejemplo de fecha
-    },
-    {
-      id: 13,
-      name: "Guild 13",
-      avatar: "",
-      email: "usuario2@example.com",
-      member_master: 4,
-      members: 200,
-      create_date: "336", // Ejemplo de fecha
-    },
-    {
-      id: 14,
-      name: "Guild 14",
-      avatar: "",
-      email: "usuario2@example.com",
-      member_master: 4,
-      members: 200,
-      create_date: "233", // Ejemplo de fecha
-    },
-    {
-      id: 15,
-      name: "Guild 15",
-      avatar: "",
-      email: "usuario2@example.com",
-      member_master: 4,
-      members: 200,
-      create_date: "242", // Ejemplo de fecha
-    },
-    {
-      id: 16,
-      name: "Guild 16",
-      avatar: "",
-      email: "usuario2@example.com",
-      member_master: 4,
-      members: 200,
-      create_date: "222", // Ejemplo de fecha
-    },
-    {
-      id: 17,
-      name: "Guild 17",
-      avatar: "",
-      email: "usuario2@example.com",
-      member_master: 4,
-      members: 200,
-      create_date: "3333", // Ejemplo de fecha
-    },
-    {
-      id: 18,
-      name: "Guild 18",
-      avatar: "",
-      email: "usuario2@example.com",
-      member_master: 4,
-      members: 200,
-      create_date: "2024-06-26", // Ejemplo de fecha
-    },
-    {
-      id: 19,
-      name: "Guild 19",
-      avatar: "",
-      email: "usuario2@example.com",
-      member_master: 4,
-      members: 200,
-      create_date: "2024-06-26", // Ejemplo de fecha
-    },
-    // Añadir más cuentas para probar la paginación
-  ]);
-  const [isloading, setIsLoading] = useState<boolean>(false);
+  const [guilds, setGuilds] = useState<GuildDto[]>([]);
 
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [filteredAccounts, setFilteredAccounts] = useState<GuildDto[]>([]);
@@ -199,13 +25,11 @@ const Guild = () => {
       } catch (error) {
         console.error("Ha ocurrido un error al obtener los personajes", error);
         setGuilds([]);
-      } finally {
-        setIsLoading(false);
       }
     };
 
     fetchData();
-  }, [setIsLoading]);
+  }, []);
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
@@ -227,10 +51,6 @@ const Guild = () => {
     offset,
     offset + accountsPerPage
   );
-
-  if (isloading) {
-    return;
-  }
 
   return (
     <div className="contenedor dark h-screen-md">
@@ -321,9 +141,9 @@ const Guild = () => {
               >
                 <path
                   stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
                   d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
                 />
               </svg>
