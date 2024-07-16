@@ -1,16 +1,27 @@
 "use client";
 import { getGuild } from "@/api/guilds";
+import GuildCharacter from "@/components/guild_character";
+import LoadingSpinner from "@/components/loading-spinner";
 import NavbarAuthenticated from "@/components/navbar-authenticated";
 import { useUserContext } from "@/context/UserContext";
 import { GuildData } from "@/model/model";
 import Link from "next/link";
 import { useParams, useSearchParams } from "next/navigation";
 import React, { useContext, useEffect, useState } from "react";
+import Cookies from "js-cookie";
 
 const GuildDetail = () => {
   const guildId = useParams<{ id: string }>();
   const [guild, setGuild] = useState<GuildData>();
-  const { user } = useUserContext();
+  const token = Cookies.get("token");
+  const [isModalOpen, setIsModalOpen] = useState(false); // Estado para controlar la visibilidad del modal
+  const [isLoading, setIsLoading] = useState(true);
+  const [loggin, setLoggin] = useState(false);
+
+  useEffect(() => {
+    setIsLoading(false);
+    setLoggin(token != null);
+  }, [token]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -24,6 +35,22 @@ const GuildDetail = () => {
 
     fetchData();
   }, []);
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
+  if (isLoading) {
+    return (
+      <div className="flex justify-center mt-20 items-center">
+        <LoadingSpinner />;
+      </div>
+    );
+  }
 
   return (
     <div>
@@ -46,19 +73,21 @@ const GuildDetail = () => {
                 <p className="text-lg lg:text-2xl mb-4">{guild?.info}</p>
               </div>
               <div>
-                {user.logged_in ? (
-                  <Link
-                    href="/login"
-                    className="px-6 py-3 bg-blue-500 hover:bg-blue-600 rounded-lg text-white font-semibold mb-4"
-                  >
-                    Unirme
-                  </Link>
+                {loggin ? (
+                  <>
+                    <button
+                      onClick={openModal}
+                      className="px-6 py-3 bg-blue-500 hover:bg-blue-600 rounded-lg text-white font-semibold mb-4"
+                    >
+                      Vincularme
+                    </button>
+                  </>
                 ) : (
                   <Link
-                    href="/login"
+                    href="/register"
                     className="px-6 py-3 bg-blue-500 hover:bg-blue-600 rounded-lg text-white font-semibold mb-4"
                   >
-                    Ingresar
+                    Registrarme
                   </Link>
                 )}
 
@@ -448,6 +477,14 @@ const GuildDetail = () => {
           </div>
         </div>
       </section>
+      {token && (
+        <GuildCharacter
+          isOpen={isModalOpen}
+          token={token}
+          guild_id={guildId.id}
+          onClose={closeModal}
+        />
+      )}
     </div>
   );
 };

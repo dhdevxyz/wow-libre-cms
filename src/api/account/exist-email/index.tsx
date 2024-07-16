@@ -6,7 +6,9 @@ import { v4 as uuidv4 } from "uuid";
 export const existEmail = async (email: string): Promise<ExistEmailModel> => {
   try {
     const response = await fetch(
-      `${BASE_URL_AUTH}/api/account/search?email=${encodeURIComponent(email)}`,
+      `${BASE_URL_AUTH}/api/account/web/search?email=${encodeURIComponent(
+        email
+      )}`,
       {
         method: "GET",
         headers: {

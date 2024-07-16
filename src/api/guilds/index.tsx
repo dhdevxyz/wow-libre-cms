@@ -67,3 +67,38 @@ export const getGuild = async (guildId: string): Promise<GuildData> => {
     );
   }
 };
+
+export const attach = async (
+  guildId: string,
+  accountId: string,
+  characterId: string,
+  token: string
+): Promise<void> => {
+  try {
+    const transactionId = uuidv4();
+
+    const response = await fetch(
+      `${BASE_URL_CHARACTER}/api/guilds/${guildId}/attach?account_id=${accountId}&character_id=${characterId}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          transaction_id: transactionId,
+          Authorization: "Bearer " + token,
+        },
+      }
+    );
+
+    if (response.ok && response.status === 204) {
+      return;
+    } else {
+      const errorMessage = await response.text();
+      throw new Error(`Error [${response.status}]: ${errorMessage}`);
+    }
+  } catch (error: any) {
+    console.error(`Error: ${error.message}`, error);
+    throw new Error(
+      `No fue posible obtener los datos de la hermandad: ${error.message}`
+    );
+  }
+};

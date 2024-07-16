@@ -31,68 +31,56 @@ import AccountForm from "@/components/account";
 import NavbarAuthenticated from "@/components/navbar-authenticated";
 import DetailAccount from "@/components/account";
 import Mails from "@/components/account/mails";
+import useAuth from "@/hook/useAuth";
+import Professions from "@/components/professions";
 
 const AccountDetail = () => {
   const searchParams = useSearchParams();
 
   const token = Cookies.get("token");
   const accountId = searchParams.get("id");
+  const { user, clearUserData } = useUserContext();
+  const router = useRouter();
 
   const [isLoading, setIsLoading] = useState(true);
   const [userDetail, setUserDetail] = useState<AccountDetailDto>();
   const [characters, setCharacters] = useState<Character[]>([]);
   const [selectedCharacter, setSelectedCharacter] = useState<Character>();
-  const router = useRouter();
 
-  if (accountId == null) {
-    router.push("/account");
-  }
+  useAuth();
 
-  /* Api Obtener los personajes del cliente */
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response: Characters = await getCharacters(
-          token || "",
-          accountId || ""
-        );
-        setCharacters(response.characters);
-      } catch (error) {
-        console.error("Ha ocurrido un error al obtener los personajes", error);
-        setCharacters([]);
-      } finally {
-        setIsLoading(false);
-      }
-    };
+        if (accountId && token) {
+          setIsLoading(true);
 
-    fetchData();
-  }, [setIsLoading]);
+          const [charactersResponse, accountDetailResponse] = await Promise.all(
+            [getCharacters(token, accountId), getAccount(token, accountId)]
+          );
 
-  /* Api Obtener  los detalles del cliente*/
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response: AccountDetailDto = await getAccount(
-          token || "",
-          accountId || ""
-        );
-        setUserDetail(response);
-        setIsLoading(false); // Marcamos la carga como completada
+          setCharacters(charactersResponse.characters);
+          setUserDetail(accountDetailResponse);
+        } else {
+          router.push("/account");
+        }
       } catch (error) {
+        console.error("Ha ocurrido un error al obtener los datos", error);
         Swal.fire({
           icon: "error",
           title: "Oops...",
-          text: "No se ha podido obtener el detalle",
+          text: "No se ha podido obtener los detalles",
           color: "white",
           background: "#0B1218",
           timer: 4500,
         });
         router.push("/account");
+      } finally {
+        setIsLoading(false);
       }
     };
-
     fetchData();
-  }, [setIsLoading]);
+  }, [accountId, token]);
 
   const handleSelectCharacter = (character: Character) => {
     setSelectedCharacter(character);
@@ -192,21 +180,18 @@ const AccountDetail = () => {
             <div className="w-full px-4">
               <TabPanel>
                 {/* Contenido de la pestaña Amigos */}
-                {selectedCharacter && (
+                {selectedCharacter && token && accountId && (
                   <Friend
                     character={selectedCharacter}
-                    token={token || ""}
-                    account_id={accountId || ""}
+                    token={token}
+                    account_id={accountId}
                   />
                 )}
               </TabPanel>
               <TabPanel>
                 {/* Contenido de la pestaña Notificaciones */}
-                {selectedCharacter && (
-                  <Mails
-                    token={token || ""}
-                    character_id={selectedCharacter.id}
-                  />
+                {selectedCharacter && token && (
+                  <Mails token={token} character_id={selectedCharacter.id} />
                 )}
               </TabPanel>
               <TabPanel>
@@ -219,7 +204,16 @@ const AccountDetail = () => {
                 {/* Contenido de la pestaña Inventario */}
                 <div className="p-4">Contenido de la pestaña Inventario</div>
               </TabPanel>
-              <TabPanel>{/* Contenido de la pestaña Profesiones */}</TabPanel>
+              <TabPanel>
+                {/* Contenido de la pestaña Profesiones */}
+                {selectedCharacter && token && accountId && (
+                  <Professions
+                    character={selectedCharacter}
+                    token={token}
+                    account_id={accountId}
+                  />
+                )}
+              </TabPanel>
               <TabPanel>{/* Contenido de la pestaña Hermandad */}</TabPanel>
 
               <TabPanel>{/* Contenido de la pestaña Premim */}</TabPanel>

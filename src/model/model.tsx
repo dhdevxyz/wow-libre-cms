@@ -42,7 +42,7 @@ export interface Characters {
 }
 
 export interface Character {
-  id: 1;
+  id: number;
   name: String;
   race: String;
   gender: String;
