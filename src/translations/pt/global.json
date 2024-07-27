@@ -1,0 +1,72 @@
+{
+    "navbar": {
+        "language": "Selecione seu idioma"
+    },
+    "register": {
+        "error": {
+            "country-empty": "Por favor, selecione um país válido.",
+            "birth-date-empty": "Por favor, insira uma data de nascimento válida.",
+            "last-name-invalid": "Por favor, certifique-se de que seu sobrenome tenha entre 5 e 50 caracteres.",
+            "first-name-invalid": "Por favor, certifique-se de que seu nome tenha entre 5 e 50 caracteres.",
+            "email-empty": "Por favor, insira seu endereço de e-mail.",
+            "email-invalid": "Por favor, insira um endereço de e-mail válido.",
+            "phone-empty": "Por favor, insira um número de contato.",
+            "email-exist": "O endereço de e-mail inserido já está registrado. Por favor, insira outro endereço de e-mail."
+        },
+        "title-server-sub-title": "Registrar-se em",
+        "section-page": {
+            "register": {
+                "title-server-message": "Todas as informações que você compartilha conosco no Wow Libre são como o ingrediente especial em sua experiência incrível! Quanto mais soubermos, melhor poderemos tornar sua experiência realmente extraordinária. Então, compartilhe esses dados conosco e prepare-se para algo fora do comum!",
+                "input": {
+                    "select-country": "Selecione um país",
+                    "select-country-place-holder": "Selecione o país",
+                    "select-birthday": "Data de Nascimento"
+                },
+                "button": {
+                    "btn-primary": "Continuar"
+                }
+            },
+            "kown-you": {
+                "title-server-message": "Seu nome real pode ser usado no futuro para verificar sua identidade quando você entrar em contato com o WowLibre. Por padrão, seu nome real permanecerá oculto para outros usuários.",
+                "input": {
+                    "select-lastname": "Digite seu sobrenome",
+                    "select-lastname-place-holder": "Digite seu sobrenome",
+                    "select-firstname": "Digite seu nome",
+                    "select-firstname-place-holder": "Digite seu nome"
+                },
+                "button": {
+                    "btn-primary": "Continuar",
+                    "btn-secondary": "Voltar"
+                }
+            },
+            "contact-means": {
+                "title-server-message": "Isso é o que você usará ao fazer login em sites e aplicativos móveis.",
+                "input": {
+                    "email-text": "Digite seu endereço de e-mail",
+                    "email-text-place-holder": "Digite um e-mail válido",
+                    "phone-text": "Digite um número de telefone",
+                    "phone-text-place-holder": "Digite um número de telefone para contato."
+                },
+                "button": {
+                    "btn-primary": "Continuar",
+                    "btn-secondary": "Voltar"
+                }
+            }
+        }
+    },
+    "login": {
+        "error": {
+            "empty-field-title": "Formulário incompleto",
+            "empty-field-message": "Por favor, preencha todos os campos obrigatórios para continuar",
+            "empty-field-buttom-message": "Entendido",
+            "authentication-message": "Os dados são inválidos, por favor verifique suas informações"
+        },
+        "title": "Entrar",
+        "username": "Digite seu nome de usuário",
+        "password": "Digite sua senha",
+        "buttom": "Entrar",
+        "old-password": "Esqueceu sua senha?",
+        "create-account-message": "Crie sua conta",
+        "create-account-question": "Não tem uma conta?"
+    }
+}

@@ -37,11 +37,11 @@
   width: 120%;
   padding-top: 2rem;
   scroll-snap-align: start;
-  margin-right: 10px; /* Espacio entre cada slide */
+  margin-right: 20px; /* Espacio entre cada slide */
 }
 
 .carousel-slide img {
-  width: 100%;
+  width: 80%;
   height: auto;
   border-radius: 8px;
 }

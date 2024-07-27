@@ -185,6 +185,7 @@ export interface GuildData {
   motd: string;
   create_date: string;
   bank_money: number;
+  formatted_bank_money: string;
   members: number;
   benefits: Benefit[];
 }
@@ -198,4 +199,22 @@ interface Benefit {
   title: string;
   sub_title: string;
   description: string;
+}
+
+export interface Profession {
+  logo: string;
+  name: string;
+  value: number;
+  max: number;
+  service: Service;
+}
+
+interface Service {
+  id: number;
+  character_id: number;
+  skill_id: number;
+  name: string;
+  description: string;
+  score: number;
+  is_public: boolean;
 }

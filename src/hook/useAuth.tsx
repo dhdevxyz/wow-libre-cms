@@ -4,7 +4,7 @@ import Cookies from "js-cookie";
 import { useUserContext } from "@/context/UserContext";
 import { useRouter } from "next/navigation";
 
-const useAuth = () => {
+const useAuth = (message: string) => {
   const router = useRouter();
   const { user, clearUserData } = useUserContext();
   const token = Cookies.get("token");
@@ -15,7 +15,7 @@ const useAuth = () => {
       Swal.fire({
         icon: "error",
         title: "Oops...",
-        text: "Su sesión ha expirado",
+        text: message,
         color: "white",
         background: "#0B1218",
         timer: 4000,

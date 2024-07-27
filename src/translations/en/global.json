@@ -5,28 +5,68 @@
     "register": {
         "error": {
             "country-empty": "Please select a valid country.",
-            "birth-date-empty": "Please enter a valid date of birth."
+            "birth-date-empty": "Please enter a valid birth date.",
+            "last-name-invalid": "Please make sure your last name is between 5 and 50 characters long.",
+            "first-name-invalid": "Please make sure your first name is between 5 and 50 characters long.",
+            "email-empty": "Please enter your email address.",
+            "email-invalid": "Please enter a valid email address.",
+            "phone-empty": "Please enter a contact number.",
+            "email-exist": "The entered email address is already registered. Please enter another email address."
         },
-        "title-server-sub-title": "Register in",
-        "title-server-message": "All the information you share with us at Wow Libre is like the special ingredient of your amazing experience! The more we know, the better we can make you experience something truly extraordinary. So, share that information with us and get ready for something out of this world!",
-        "input": {
-            "select-country": "Select a country",
-            "select-birthday": "Birthdate"
+        "title-server-sub-title": "Register on",
+        "section-page": {
+            "register": {
+                "title-server-message": "All the information you share with us on Wow Libre is like the special ingredient in your amazing experience! The more we know, the better we can make your experience truly extraordinary. So, share that data with us and get ready for something out of the ordinary!",
+                "input": {
+                    "select-country": "Select a country",
+                    "select-country-place-holder": "Select country",
+                    "select-birthday": "Date of Birth"
+                },
+                "button": {
+                    "btn-primary": "Continue"
+                }
+            },
+            "kown-you": {
+                "title-server-message": "Your real name may be used in the future to verify your identity when you contact WowLibre. By default, your real name will remain hidden from other users.",
+                "input": {
+                    "select-lastname": "Enter your last name",
+                    "select-lastname-place-holder": "Enter your last name",
+                    "select-firstname": "Enter your first name",
+                    "select-firstname-place-holder": "Enter your first name"
+                },
+                "button": {
+                    "btn-primary": "Continue",
+                    "btn-secondary": "Back"
+                }
+            },
+            "contact-means": {
+                "title-server-message": "This is what you will use when logging into websites and mobile applications.",
+                "input": {
+                    "email-text": "Enter your email address",
+                    "email-text-place-holder": "Enter a valid email",
+                    "phone-text": "Enter a phone number",
+                    "phone-text-place-holder": "Enter a contact phone number."
+                },
+                "button": {
+                    "btn-primary": "Continue",
+                    "btn-secondary": "Back"
+                }
+            }
         }
     },
     "login": {
         "error": {
-            "empty-field-title": "incomplete form",
+            "empty-field-title": "Incomplete Form",
             "empty-field-message": "Please complete all required fields to continue",
             "empty-field-buttom-message": "Understood",
             "authentication-message": "The data is invalid, please check your information"
         },
-        "title": "Log in",
+        "title": "Log In",
         "username": "Enter your username",
         "password": "Enter your password",
-        "buttom": "Log in",
-        "old-password": "¿Did you forget your password?",
-        "create-account-message": "Creat your account",
-        "create-account-question": "¿You do not have an account? "
+        "buttom": "Log me in",
+        "old-password": "Forgot your password?",
+        "create-account-message": "Create your account",
+        "create-account-question": "Don't have an account?"
     }
 }

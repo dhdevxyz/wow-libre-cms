@@ -27,7 +27,6 @@ import Cookies from "js-cookie";
 import CharacterSelection from "@/components/character_selection";
 import Friend from "@/components/friends/friend";
 import { getAccount } from "@/api/account";
-import AccountForm from "@/components/account";
 import NavbarAuthenticated from "@/components/navbar-authenticated";
 import DetailAccount from "@/components/account";
 import Mails from "@/components/account/mails";
@@ -47,7 +46,7 @@ const AccountDetail = () => {
   const [characters, setCharacters] = useState<Character[]>([]);
   const [selectedCharacter, setSelectedCharacter] = useState<Character>();
 
-  useAuth();
+  useAuth("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -98,10 +97,9 @@ const AccountDetail = () => {
   }
 
   return (
-    <div className="contenedor mx-auto ">
+    <div className="contenedor mx-auto">
       ​
       <NavbarAuthenticated />
-      {/* Sección de perfil */}
       <div className="flex flex-col items-center justify-center py-20 ">
         <img
           src="https://via.placeholder.com/150"

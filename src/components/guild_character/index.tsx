@@ -80,34 +80,38 @@ const GuildCharacter: React.FC<GuildCharacterProps> = ({
 
   const handleJoinGuild = async () => {
     if (!selectedAccountId || !selectedCharacterId) {
-      // Manejar el caso donde no se ha seleccionado cuenta o personaje
       return;
     }
 
-    setLoading(true); // Activar el estado de carga
+    setLoading(true);
 
     try {
       await attach(
-        guild_id, // Reemplaza con el guildId correspondiente
+        guild_id,
         selectedAccountId.toString(),
         selectedCharacterId.toString(),
         token
       );
-      // Lógica adicional después de unirse al guild si es necesaria
-      console.log("Se ha unido correctamente al guild");
-      // Cierra el modal u otra lógica necesaria
-      onClose();
+      Swal.fire({
+        icon: "success",
+        title: "Guild Success",
+        text: "Vinculacion exitosa",
+        color: "white",
+        background: "#0B1218",
+        timer: 4500,
+      });
     } catch (error: any) {
       Swal.fire({
         icon: "error",
         title: "Oops...",
-        text: `No fue posible unirse al guild: ${error.message}`,
+        text: `${error.message}`,
         color: "white",
         background: "#0B1218",
         timer: 4500,
       });
     } finally {
-      setLoading(false); // Desactivar el estado de carga
+      setLoading(false);
+      onClose();
     }
   };
 
@@ -117,15 +121,18 @@ const GuildCharacter: React.FC<GuildCharacterProps> = ({
 
   return isOpen ? (
     <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
-      <div className="bg-white rounded-lg p-8">
-        <h2 className="text-2xl font-bold mb-4">Detalles del Personaje</h2>
-        <p>Aquí irán los detalles del personaje.</p>
+      <div className="bg-midnight rounded-lg p-8">
+        <h2 className="text-2xl font-bold mb-4 text-gray-200">
+          Seleccion de personajes
+        </h2>
+        <p className=" text-gray-400">
+          Seleciona el personaje al cual deseas vincular
+        </p>
 
-        {/* Selector de cuentas */}
         <select
           onChange={(e) => handleAccountChange(Number(e.target.value))}
           value={selectedAccountId || ""}
-          className="mt-4 px-4 py-2  bg-transparent text-gray-800 rounded"
+          className="mt-4 px-4 py-2  bg-transparent text-gray-300 rounded"
         >
           <option value="" disabled>
             Selecciona una cuenta
@@ -142,13 +149,17 @@ const GuildCharacter: React.FC<GuildCharacterProps> = ({
           <select
             onChange={(e) => handleCharacterChange(Number(e.target.value))}
             value={selectedCharacterId || ""}
-            className="mt-4 px-4 py-2  text-gray-800 rounded bg-transparent"
+            className="mt-4 px-4 py-2  rounded bg-transparent text-gray-300"
           >
             <option value="" disabled>
               Selecciona un personaje
             </option>
             {characters.map((character) => (
-              <option key={character.id} value={character.id}>
+              <option
+                className="text-black"
+                key={character.id}
+                value={character.id}
+              >
                 {character.name}
               </option>
             ))}
@@ -159,7 +170,7 @@ const GuildCharacter: React.FC<GuildCharacterProps> = ({
         <div className="flex mt-4">
           <button
             onClick={handleClose}
-            className="flex-1 px-4 py-2 bg-red-500 text-white rounded mr-2"
+            className="flex-1 px-4 py-2 bg-red-900 text-white rounded mr-2"
           >
             Cancelar
           </button>
@@ -167,7 +178,7 @@ const GuildCharacter: React.FC<GuildCharacterProps> = ({
             onClick={handleJoinGuild}
             disabled={!selectedAccountId || !selectedCharacterId || loading}
             className={`flex-1 px-4 py-2 ${
-              loading ? "bg-gray-400 cursor-not-allowed" : "bg-blue-500"
+              loading ? "bg-gray-400 cursor-not-allowed" : "bg-blue-800"
             } text-white rounded ml-2`}
           >
             {loading ? "Uniendo..." : "Unirme"}

@@ -52,16 +52,18 @@ export const getGuild = async (guildId: string): Promise<GuildData> => {
       }
     );
 
-    const responseData: GenericResponseDto<GuildData> = await response.json();
-
     if (response.ok && response.status === 200) {
+      const responseData: GenericResponseDto<GuildData> = await response.json();
+
       return responseData.data;
     } else {
-      const errorMessage = await response.text();
-      throw new Error(`Error [${response.status}]: ${errorMessage}`);
+      const errorGeneric: GenericResponseDto<void> = await response.json();
+
+      throw new Error(
+        `${errorGeneric.message} - Transaction Id: ${transactionId}`
+      );
     }
   } catch (error: any) {
-    console.error(`Error: ${error.message}`, error);
     throw new Error(
       `It was not possible to obtain the guilds: ${error.message}`
     );
@@ -92,13 +94,11 @@ export const attach = async (
     if (response.ok && response.status === 204) {
       return;
     } else {
-      const errorMessage = await response.text();
-      throw new Error(`Error [${response.status}]: ${errorMessage}`);
+      const responseData: GenericResponseDto<void> = await response.json();
+      throw new Error(`${responseData.message}`);
     }
   } catch (error: any) {
     console.error(`Error: ${error.message}`, error);
-    throw new Error(
-      `No fue posible obtener los datos de la hermandad: ${error.message}`
-    );
+    throw new Error(` ${error.message}`);
   }
 };
