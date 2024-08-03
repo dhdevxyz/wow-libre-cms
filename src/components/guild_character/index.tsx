@@ -75,7 +75,6 @@ const GuildCharacter: React.FC<GuildCharacterProps> = ({
 
   const handleCharacterChange = async (characterId: number) => {
     setSelectedCharacterId(characterId);
-    // Aquí puedes manejar la lógica adicional si es necesario al seleccionar un personaje
   };
 
   const handleJoinGuild = async () => {

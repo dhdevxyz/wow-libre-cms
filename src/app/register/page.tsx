@@ -95,6 +95,7 @@ const Register = () => {
           ? new Date(user.date_of_birth).toISOString().split("T")[0]
           : ""
       );
+      setLanguage(user.language);
     }
   }, [user]);
 

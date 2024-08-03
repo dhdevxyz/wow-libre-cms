@@ -10,7 +10,12 @@
             "first-name-invalid": "Por favor, asegúrate de que tu nombre tenga entre 5 y 50 caracteres.",
             "email-empty": "Por favor, ingrese su correo electrónico.",
             "email-invalid": "Por favor, ingrese un correo electrónico válido.",
-            "phone-empty": "Por favor, ingrese un numero de contacto."
+            "phone-empty": "Por favor, ingrese un numero de contacto.",
+            "email-exist": "El correo electrónico ingresado ya está registrado. Por favor, ingrese otro correo electrónico.",
+            "terms-and-conditions-empty": "Por favor, acepta los terminos y condiciones.",
+            "password-web-no-matches": "Las contraseñas no coinciden",
+            "password-web-empty": "La contraseña no puede estar  vacía.",
+            "password-web-invalid-length": "La contraseña debe ser superior a 5 caracteres e inferior a 30 caracteres."
         },
         "title-server-sub-title": "Registrarme en",
         "section-page": {
@@ -45,6 +50,31 @@
                     "email-text-place-holder": "Ingrese un correo valido",
                     "phone-text": "Ingrese un número de teléfono",
                     "phone-text-place-holder": "Ingrese un telefono de contacto."
+                },
+                "button": {
+                    "btn-primary": "Continuar",
+                    "btn-secondary": "Volver"
+                }
+            },
+            "terms-and-conditions": {
+                "title-server-message": "¡Bienvenido a Wow Libre! Aceptar nuestras opciones te permite sumergirte en una experiencia personalizada llena de ofertas exclusivas,  noticias emocionantes y mucho más.",
+                "button": {
+                    "btn-primary": "Continuar",
+                    "btn-secondary": "Volver"
+                },
+                "input": {
+                    "email-check-text": "El correo de la cuenta recibirá ofertas especiales, noticias y demás de Wow Libre",
+                    "term-check-text": "He leído y acepto lo siguiente: Términos y condiciones ",
+                    "term-check-link": "Términos y condiciones"
+                }
+            },
+            "account-web": {
+                "title-server-message": "Protege tu cuenta y elige una contraseña segura para la web administrativa.",
+                "input": {
+                    "password-web-text": "Contraseña para la web",
+                    "password-web-placeholder": "Contraseña para la web",
+                    "password-confirm-web-text": "Confirmar Contraseña",
+                    "password-confirm-web-text-placeholder": "Confirmar Contraseña"
                 },
                 "button": {
                     "btn-primary": "Continuar",

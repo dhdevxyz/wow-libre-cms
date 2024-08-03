@@ -18,7 +18,7 @@ const Professions: React.FC<ProfessionsProps> = ({
   token,
   account_id,
 }) => {
-  const [partners, setPartners] = useState<Profession[]>([]);
+  const [professions, setPartners] = useState<Profession[]>([]);
 
   useEffect(() => {
     const fetchProfessions = async () => {
@@ -51,6 +51,23 @@ const Professions: React.FC<ProfessionsProps> = ({
     },
   };
 
+  if (!professions || professions.length <= 0) {
+    return (
+      <div className="flex flex-col items-center justify-center p-8">
+        <p className="text-white text-3xl font-bold mb-4">
+          ¡Explora nuevas habilidades!
+        </p>
+        <p className="text-white text-xl">
+          Aún no has aprendido ninguna profesión. ¡Sumérgete en el mundo de
+          World of Warcraft y descubre un sinfín de profesiones que te ayudarán
+          a mejorar tu experiencia de juego! Conviértete en un maestro artesano,
+          un herborista experto o un ingeniero innovador. ¡Las posibilidades son
+          infinitas!
+        </p>
+      </div>
+    );
+  }
+
   return (
     <div className="professions-carousel-container">
       <Carousel
@@ -68,7 +85,7 @@ const Professions: React.FC<ProfessionsProps> = ({
         customLeftArrow={<CustomLeftArrow />}
         customRightArrow={<CustomRightArrow />}
       >
-        {partners.map((profession) => (
+        {professions.map((profession) => (
           <div
             key={profession.name}
             className="carousel-slide select-none cursor-pointer"
@@ -128,9 +145,6 @@ const Professions: React.FC<ProfessionsProps> = ({
                     ) : null}
                     <button className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 focus:outline-none mt-2 mr-20">
                       Editar
-                    </button>
-                    <button className="bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 focus:outline-none mt-2 mr-20">
-                      Upgrade
                     </button>
                   </div>
                 </div>
