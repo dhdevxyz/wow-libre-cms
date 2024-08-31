@@ -3,19 +3,69 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGift } from "@fortawesome/free-solid-svg-icons";
 import DisplayMoney from "@/components/money";
 import { getMails } from "@/api/account/mails";
-import { MailsDto } from "@/model/model";
+import { Items, MailsDto } from "@/model/model";
 import Swal from "sweetalert2";
+import "./style.css";
 
 interface MailsProps {
   token: string;
   character_id: number;
 }
 
+const Modal: React.FC<{
+  isOpen: boolean;
+  items: Items[];
+  onClose: () => void;
+}> = ({ isOpen, items, onClose }) => {
+  if (!isOpen) return null;
+
+  return (
+    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-70 z-50">
+      <div className="bg-gray-900 p-8 rounded-lg max-w-lg w-full shadow-lg border border-gray-800">
+        <h3 className="text-2xl font-bold text-yellow-500 mb-4 border-b border-gray-700 pb-2">
+          <i className="fas fa-gem"></i> Detalles de Items
+        </h3>
+        <ul className="space-y-2">
+          {items.length > 0 ? (
+            items.map((item) => (
+              <li
+                key={item.item_id}
+                className="bg-gray-800 p-4 rounded-lg shadow-md border border-gray-700"
+              >
+                <a
+                  href={`https://www.wowhead.com/item=${item.item_id}`}
+                  className="text-blue-400 hover:text-blue-600 font-semibold flex items-center"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-wowhead="item=2828"
+                >
+                  <i className="fas fa-info-circle mr-2"></i>
+                  {`Ver detalles del ítem ${item.item_id}`}
+                </a>
+              </li>
+            ))
+          ) : (
+            <li className="text-gray-400">No hay items.</li>
+          )}
+        </ul>
+        <button
+          className="mt-6 px-4 py-2 rounded-md bg-red-600 text-white hover:bg-red-800 transition duration-300"
+          onClick={onClose}
+        >
+          Cerrar
+        </button>
+      </div>
+    </div>
+  );
+};
+
 const Mails: React.FC<MailsProps> = ({ token, character_id }) => {
-  const [mails, setMails] = useState<MailsDto>();
+  const [mails, setMails] = useState<MailsDto | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [currentPage, setCurrentPage] = useState(1);
   const mailsPerPage = 1;
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [currentItems, setCurrentItems] = useState<Items[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -47,30 +97,37 @@ const Mails: React.FC<MailsProps> = ({ token, character_id }) => {
     );
   }
 
+  const handleShowItems = (items: Items[]) => {
+    if (items && Array.isArray(items)) {
+      setCurrentItems(items);
+    } else {
+      setCurrentItems([]); // Asegúrate de pasar un arreglo vacío si `items` es inválido
+    }
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setCurrentItems([]);
+  };
+
   const indexOfLastMail = currentPage * mailsPerPage;
   const indexOfFirstMail = indexOfLastMail - mailsPerPage;
-  const currentMails = mails?.mails.slice(indexOfFirstMail, indexOfLastMail);
+  const currentMails =
+    mails?.mails.slice(indexOfFirstMail, indexOfLastMail) || []; // Asegúrate de manejar el caso en que `mails` o `mails.mails` es null
 
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
-
-  const deleteMail = (mailId: number) => {
-    console.log(`Eliminando correo con ID: ${mailId}`);
-  };
-
-  const markAsReceived = (mailId: number) => {
-    console.log(`Marcando como recibido correo con ID: ${mailId}`);
-  };
 
   return (
     <div className="container mx-auto py-8">
       <div className="my-4 mx-8">
-        <h2 className=" text-3xl font-semibold text-white mb-6">Mensajes</h2>
-        <hr className="border-t-1 border-gray-300 " />
+        <h2 className="text-3xl font-semibold text-white mb-6">Mensajes</h2>
+        <hr className="border-t-1 border-gray-300" />
       </div>
 
       <div className="mx-2">
         {mails?.mails.length ? (
-          currentMails?.map((mail) => (
+          currentMails.map((mail) => (
             <div key={mail.id} className="p-6 rounded-lg shadow-md mb-4">
               <div className="flex justify-between items-center mb-4">
                 <h3 className="text-2xl text-yellow-300 font-semibold">
@@ -81,17 +138,26 @@ const Mails: React.FC<MailsProps> = ({ token, character_id }) => {
                 </span>
               </div>
               {mail.body && (
-                <p className="text-white mb-4 text-md">{mail.body}</p>
+                <div className="text-white mb-4 text-md max-h-40 overflow-y-auto custom-scrollbar">
+                  <p
+                    dangerouslySetInnerHTML={{
+                      __html: mail.body.replaceAll("$B$B", "<br />"),
+                    }}
+                  />
+                </div>
               )}
               <div className="flex items-center space-x-2">
                 {mail.has_items && (
-                  <div className="text-white flex flex-col ">
+                  <div className="text-white flex flex-col">
                     <FontAwesomeIcon
                       icon={faGift}
                       className="text-green-400 pt-5 pr-5"
                       title="Tiene items"
                     />
-                    <button className="mt-4 px-3 py-1 rounded-md bg-gray-600 text-white hover:bg-blue-600">
+                    <button
+                      className="mt-4 px-3 py-1 rounded-md bg-blue-500 text-white hover:bg-blue-600"
+                      onClick={() => handleShowItems(mail.items || [])}
+                    >
                       Detalle de items
                     </button>
                   </div>
@@ -114,20 +180,7 @@ const Mails: React.FC<MailsProps> = ({ token, character_id }) => {
                   Expira: {new Date(mail.expire_time).toLocaleDateString()}
                 </span>
               </div>
-              <div className="flex justify-end mt-4 space-x-4">
-                <button
-                  className="px-3 py-1 rounded-md bg-red-500 text-white hover:bg-red-600"
-                  onClick={() => deleteMail(mail.id)}
-                >
-                  Eliminar
-                </button>
-                <button
-                  className="px-3 py-1 rounded-md bg-blue-500 text-white hover:bg-blue-600"
-                  onClick={() => markAsReceived(mail.id)}
-                >
-                  Recibir
-                </button>
-              </div>
+              <div className="flex justify-end mt-4 space-x-4"></div>
             </div>
           ))
         ) : (
@@ -137,7 +190,7 @@ const Mails: React.FC<MailsProps> = ({ token, character_id }) => {
         )}
 
         {/* Paginación */}
-        {mails?.mails.length > mailsPerPage && (
+        {mails && mails?.mails.length > mailsPerPage && (
           <div className="flex justify-between mt-4">
             <button
               className={`mx-1 px-3 py-1 rounded-md ${
@@ -163,6 +216,11 @@ const Mails: React.FC<MailsProps> = ({ token, character_id }) => {
             </button>
           </div>
         )}
+        <Modal
+          isOpen={isModalOpen}
+          items={currentItems}
+          onClose={handleCloseModal}
+        />
       </div>
     </div>
   );

@@ -32,19 +32,24 @@ import DetailAccount from "@/components/account";
 import Mails from "@/components/account/mails";
 import useAuth from "@/hook/useAuth";
 import Professions from "@/components/professions";
-
+import AccountGuild from "@/components/account/guild";
+import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
 const AccountDetail = () => {
   const searchParams = useSearchParams();
 
   const token = Cookies.get("token");
   const accountId = Number(searchParams.get("id"));
-  const { user, clearUserData } = useUserContext();
   const router = useRouter();
+  const [isPanelOpen, setIsPanelOpen] = useState(false);
 
+  const togglePanel = () => {
+    setIsPanelOpen(!isPanelOpen);
+  };
   const [isLoading, setIsLoading] = useState(true);
   const [userDetail, setUserDetail] = useState<AccountDetailDto>();
   const [characters, setCharacters] = useState<Character[]>([]);
   const [selectedCharacter, setSelectedCharacter] = useState<Character>();
+  const [avatar, setAvatar] = useState("https://via.placeholder.com/150");
 
   useAuth("");
 
@@ -83,6 +88,7 @@ const AccountDetail = () => {
 
   const handleSelectCharacter = (character: Character) => {
     setSelectedCharacter(character);
+    setAvatar(character.race_logo || "https://via.placeholder.com/150");
   };
 
   if (isLoading) {
@@ -100,26 +106,47 @@ const AccountDetail = () => {
     <div className="contenedor mx-auto">
       ​
       <NavbarAuthenticated />
-      <div className="flex flex-col items-center justify-center py-20 ">
+      <div className="flex flex-col items-center justify-center py-20">
         <img
-          src="https://via.placeholder.com/150"
+          src={avatar}
           alt="Avatar del usuario"
           className="w-36 h-36 rounded-full mb-4 box-shadow-primary"
         />
-        <div className="text-center ">
-          <h1 className="text-white text-4xl font-semibold">
-            {userDetail?.account_web.first_name}
-            {userDetail?.account_web.last_name}
-          </h1>
-          <p className="text-white  pb-2 text-2xl ">
-            Email: {userDetail?.email}
-          </p>
-          <p className="text-white  pb-2 text-2xl ">
-            Pais: {userDetail?.account_web.country}
-          </p>
-          <p className="text-white  pb-2 text-2xl ">
-            Username: {userDetail?.username}
-          </p>
+        <div className="text-center w-full max-w-md">
+          <button
+            onClick={togglePanel}
+            className={`w-full py-2 px-4 rounded-lg flex items-center justify-center ${
+              isPanelOpen ? "bg-transparent" : "bg-transparent"
+            } text-white transition-colors duration-300`}
+          >
+            <span className="text-lg font-semibold">
+              {isPanelOpen ? "Ocultar detalles" : "Mostrar detalles"}
+            </span>
+            <FontAwesomeIcon
+              icon={isPanelOpen ? faChevronUp : faChevronDown}
+              className="text-xl ml-2"
+            />
+          </button>
+          {isPanelOpen && (
+            <div className="mt-4  p-4 rounded-lg shadow-lg">
+              <h2 className="text-white text-2xl font-bold">
+                Detalles del personaje
+              </h2>
+              <p className="text-white text-lg mt-2">
+                <strong>Nombre:</strong> {userDetail?.account_web.first_name}{" "}
+                {userDetail?.account_web.last_name}
+              </p>
+              <p className="text-white text-lg mt-2">
+                <strong>Email:</strong> {userDetail?.email}
+              </p>
+              <p className="text-white text-lg mt-2">
+                <strong>País:</strong> {userDetail?.account_web.country}
+              </p>
+              <p className="text-white text-lg mt-2">
+                <strong>Username:</strong> {userDetail?.username}
+              </p>
+            </div>
+          )}
           <div className="mt-4">
             {!isLoading && characters.length > 0 ? (
               <CharacterSelection
@@ -212,7 +239,15 @@ const AccountDetail = () => {
                   />
                 )}
               </TabPanel>
-              <TabPanel>{/* Contenido de la pestaña Hermandad */}</TabPanel>
+              <TabPanel>
+                {selectedCharacter && token && accountId && (
+                  <AccountGuild
+                    character_id={selectedCharacter.id}
+                    token={token}
+                    account_id={accountId}
+                  />
+                )}
+              </TabPanel>
 
               <TabPanel>{/* Contenido de la pestaña Premim */}</TabPanel>
             </div>

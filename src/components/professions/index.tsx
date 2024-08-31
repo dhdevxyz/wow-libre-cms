@@ -57,17 +57,19 @@ const Professions: React.FC<ProfessionsProps> = ({
   const handleCancelAnnounce = () => {
     setShowConfirmDialog(false);
   };
-  useEffect(() => {
-    const fetchProfessions = async () => {
-      try {
-        const professions = await getProfessions(character.id, token);
-        setPartners(professions);
-      } catch (error) {
-        console.error("Error fetching professions:", error);
-      }
-    };
 
-    fetchProfessions();
+  // Función para actualizar la lista de profesiones
+  const refreshProfessions = async () => {
+    try {
+      const professions = await getProfessions(character.id, token);
+      setPartners(professions);
+    } catch (error) {
+      console.error("Error fetching professions:", error);
+    }
+  };
+
+  useEffect(() => {
+    refreshProfessions();
   }, [character.id, token]);
 
   const responsive = {
@@ -191,7 +193,7 @@ const Professions: React.FC<ProfessionsProps> = ({
                         className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 focus:outline-none mb-2 md:mb-0"
                         onClick={() => openModal(profession)}
                       >
-                        Publicar
+                        Publicar en la web
                       </button>
                     ) : (
                       <button
@@ -203,9 +205,9 @@ const Professions: React.FC<ProfessionsProps> = ({
                     )}
                     <button
                       onClick={() => handleAnnounce(profession)}
-                      className="bg-violet-700 text-white px-4 py-2 rounded-lg hover:bg-violet-800 mt-3 focus:outline-none"
+                      className="bg-orange-400 text-white px-4 py-2 rounded-lg hover:bg-orange-600 mt-3 focus:outline-none"
                     >
-                      Anunciarme
+                      Enviar anuncio
                     </button>
                   </div>
                 </div>
@@ -238,6 +240,7 @@ const Professions: React.FC<ProfessionsProps> = ({
           skill_id={selectedProfession.id}
           account_id={account_id}
           onClose={closeModal}
+          onUpdate={refreshProfessions}
         />
       )}
     </div>

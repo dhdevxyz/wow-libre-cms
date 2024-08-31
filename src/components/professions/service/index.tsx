@@ -11,7 +11,8 @@ interface GuildCharacterProps {
   character_id: number;
   skill_id: number;
   account_id: number;
-  onClose: () => void;
+  onClose: () => void; // Recibimos la función de refresco
+  onUpdate: () => void; // Recibimos la función de refresco
 }
 
 const ProfesionService: React.FC<GuildCharacterProps> = ({
@@ -23,6 +24,7 @@ const ProfesionService: React.FC<GuildCharacterProps> = ({
   skill_id,
   account_id,
   onClose,
+  onUpdate,
 }) => {
   const [description, setDescription] = useState("");
   const [isPublic, setIsPublic] = useState(is_public);
@@ -48,6 +50,7 @@ const ProfesionService: React.FC<GuildCharacterProps> = ({
         title: "Opss!!",
         text: message,
       });
+      onUpdate();
       onClose();
     } catch (error: any) {
       Swal.fire({

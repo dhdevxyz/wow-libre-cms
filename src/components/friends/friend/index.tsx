@@ -8,7 +8,7 @@ import { getFriends } from "@/api/account/character";
 interface CharacterProps {
   character: Character;
   token: string | null;
-  account_id: string;
+  account_id: number;
 }
 
 const Friend: React.FC<CharacterProps> = ({ character, token, account_id }) => {
@@ -82,41 +82,53 @@ const Friend: React.FC<CharacterProps> = ({ character, token, account_id }) => {
 
   return (
     <div className="p-4 ">
-      <h2 className="text-2xl font-semibold mb-4 text-white ">
-        Lista de Amigos
-      </h2>
+      <div></div>
+      <div className="text-center mx-auto mt-8 max-w-2xl">
+        <h2 className="text-3xl font-semibold mt-4 mb-5 ml-2 text-orange-200">
+          Listado de Amigos
+        </h2>
+      </div>
+
+      <hr className="border-t-1 border-white my-4 mx-8" />
+
       <div className="grid grid-cols-3 gap-4 ">
         {currentFriends.map((friend) => (
           <div
             key={friend.id}
             className=" rounded-2xl shadow-2xl border border-gray-600 p-4 overflow-hidden cursor-pointer"
-            onClick={() => openModal(friend)} // Pasa el ID del amigo al hacer clic
+            onClick={() => openModal(friend)}
           >
             <img
-              src="https://via.placeholder.com/50"
+              src={
+                friend.race_logo
+                  ? friend.race_logo
+                  : "https://via.placeholder.com/50"
+              }
               alt={`Avatar de ${friend.name}`}
-              className="w-20 h-20 rounded-full mx-auto mb-2"
+              className="w-30 h-30 rounded-full mx-auto mb-2"
             />
             <div className="text-center">
-              <h3 className="pt-2 text-3xl font-semibold text-white">
+              <h3 className="pt-2 text-3xl font-semibold text-orange-200">
                 {friend.name}
               </h3>
             </div>
-            <p className="text-white overflow-hidden overflow-ellipsis whitespace-nowrap">
-              Nivel: {friend.level}
+            <p className="text-orange-200  overflow-hidden overflow-ellipsis whitespace-nowrap">
+              Nivel: <span className="text-white">{friend.level}</span>
             </p>
-            <p className="text-white  overflow-hidden overflow-ellipsis whitespace-nowrap">
-              Clase: {friend.class}
+            <p className="text-orange-200  overflow-hidden overflow-ellipsis whitespace-nowrap">
+              Clase: <span className="text-white">{friend.class}</span>
             </p>
-            <p className="text-white overflow-hidden overflow-ellipsis whitespace-nowrap">
-              Raza: {friend.race}
+            <p className="text-orange-200  overflow-hidden overflow-ellipsis whitespace-nowrap">
+              Raza: <span className="text-white">{friend.race}</span>
             </p>
-            <p className="text-white  overflow-hidden overflow-ellipsis whitespace-nowrap">
-              Estado: {friend.flags}
+            <p className="text-orange-200   overflow-hidden overflow-ellipsis whitespace-nowrap">
+              Estado: <span className="text-white">{friend.flags} </span>
             </p>
-            <p className="text-white  overflow-hidden overflow-ellipsis whitespace-nowrap">
-              Nota: {friend.note}
-            </p>
+            {friend.note && (
+              <p className="text-orange-200  overflow-hidden overflow-ellipsis whitespace-nowrap">
+                Nota: <span className="text-white">{friend.note} </span>
+              </p>
+            )}
           </div>
         ))}
       </div>
@@ -155,7 +167,7 @@ const Friend: React.FC<CharacterProps> = ({ character, token, account_id }) => {
         pageClassName={"page-item inline-block mx-1"}
         pageLinkClassName={"page-link px-3 py-1 border-gray-300 rounded "}
         activeClassName={"active"}
-        activeLinkClassName={"active-link  text-blue-200"}
+        activeLinkClassName={"active-link  text-orange-200"}
         previousClassName={"inline-block mr-2"}
         previousLinkClassName={
           "previous-link px-3 py-1  border-gray-300 rounded text-white "

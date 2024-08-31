@@ -81,7 +81,7 @@ const Login = () => {
       Swal.fire({
         icon: "error",
         title: "Oops...",
-        text: t("login.error.authentication-message"),
+        text: `${error.message}`,
         color: "white",
         background: "#0B1218",
         timer: 4500,
@@ -108,7 +108,7 @@ const Login = () => {
         <div className="login-form-section-register">
           <form onSubmit={handleFormSubmit}>
             <label htmlFor="email" className="mb-2">
-              {t("login.email")}
+              {t("login.username")}
             </label>
             <input
               className="mb-4 px-4 py-2 border rounded-md text-black"

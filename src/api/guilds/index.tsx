@@ -102,3 +102,77 @@ export const attach = async (
     throw new Error(` ${error.message}`);
   }
 };
+
+export const getMemberDetailGuild = async (
+  accountId: number,
+  characterId: number,
+  token: string
+): Promise<GuildData> => {
+  try {
+    const transactionId = uuidv4();
+
+    const response = await fetch(
+      `${BASE_URL_CHARACTER}/api/guilds/member/${characterId}?account_id=${accountId}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          transaction_id: transactionId,
+          Authorization: "Bearer " + token,
+        },
+      }
+    );
+
+    if (response.ok && response.status === 200) {
+      const responseData: GenericResponseDto<GuildData> = await response.json();
+
+      return responseData.data;
+    } else {
+      const errorGeneric: GenericResponseDto<void> = await response.json();
+
+      throw new Error(
+        `${errorGeneric.message} - Transaction Id: ${transactionId}`
+      );
+    }
+  } catch (error: any) {
+    throw new Error(
+      `It was not possible to obtain the guilds: ${error.message}`
+    );
+  }
+};
+
+export const unlinkGuild = async (
+  accountId: number,
+  characterId: number,
+  token: string
+): Promise<GenericResponseDto<void>> => {
+  try {
+    const transactionId = uuidv4();
+
+    const response = await fetch(
+      `${BASE_URL_CHARACTER}/api/guilds/member/${characterId}?account_id=${accountId}`,
+      {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          transaction_id: transactionId,
+          Authorization: "Bearer " + token,
+        },
+      }
+    );
+
+    if (response.ok && response.status === 200) {
+      const responseData: GenericResponseDto<void> = await response.json();
+      return responseData;
+    } else {
+      const errorGeneric: GenericResponseDto<void> = await response.json();
+      throw new Error(
+        `${errorGeneric.message} - Transaction Id: ${transactionId}`
+      );
+    }
+  } catch (error: any) {
+    throw new Error(
+      `It was not possible to separate from the brotherhood: ${error.message}`
+    );
+  }
+};

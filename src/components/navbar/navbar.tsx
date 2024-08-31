@@ -52,7 +52,7 @@ const Navbar = () => {
           <Link className="category-link" href="/comunity">
             Banco
           </Link>
-          <Link className="category-link" href="/comunity">
+          <Link className="category-link" href="/store">
             Tienda
           </Link>
 

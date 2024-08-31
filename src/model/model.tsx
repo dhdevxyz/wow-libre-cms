@@ -43,6 +43,8 @@ export interface Characters {
 
 export interface Character {
   id: number;
+  race_logo: string;
+  class_logo: string;
   name: String;
   race: String;
   gender: String;
@@ -145,6 +147,10 @@ interface Mails {
   expire_time: string;
   deliver_time: string;
   money: number;
+  items: Items[];
+}
+export interface Items {
+  item_id: number;
 }
 
 export interface MailsDto {
@@ -180,6 +186,7 @@ export interface GuildData {
   emblem_style: number;
   emblem_color: number;
   border_style: number;
+  public_access: boolean;
   border_color: number;
   info: string;
   motd: string;
@@ -188,6 +195,7 @@ export interface GuildData {
   formatted_bank_money: string;
   members: number;
   benefits: Benefit[];
+  claimed_benefits: number;
 }
 
 interface Benefit {
@@ -213,6 +221,18 @@ export interface Profession {
 interface Service {
   id: number;
   character_id: number;
+  skill_id: number;
+  name: string;
+  description: string;
+  score: number;
+  is_public: boolean;
+}
+
+export interface ProfesionsServices {
+  id: number;
+  character_name: string;
+  character_id: number;
+  logo: string;
   skill_id: number;
   name: string;
   description: string;

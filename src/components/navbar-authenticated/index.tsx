@@ -188,6 +188,14 @@ const NavbarAuthenticated = () => {
                   {loggin ? (
                     <div className="hover:text-blue-500">
                       <Link
+                        href="/profile"
+                        className="block px-4 py-3 text-base text-gray-700"
+                        role="menuitem"
+                        id="user-menu-item-0"
+                      >
+                        Perfil
+                      </Link>
+                      <Link
                         href="/accounts"
                         className="block px-4 py-3 text-base text-gray-700"
                         role="menuitem"
@@ -195,14 +203,6 @@ const NavbarAuthenticated = () => {
                       >
                         Cuentas
                       </Link>
-                      <a
-                        href="#"
-                        className="block px-4 py-3 text-base text-gray-700"
-                        role="menuitem"
-                        id="user-menu-item-1"
-                      >
-                        Configuracion
-                      </a>
                       <a
                         href="#"
                         className="block px-4 py-3 text-base text-gray-700"

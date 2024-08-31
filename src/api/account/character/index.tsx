@@ -36,7 +36,7 @@ export const getCharacters = async (
 export const getFriends = async (
   jwt: string,
   characterId: number,
-  accountId: string
+  accountId: number
 ): Promise<Friends> => {
   console.log(characterId);
   try {

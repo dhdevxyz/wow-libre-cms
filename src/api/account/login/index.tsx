@@ -30,10 +30,9 @@ export const login = async (
       return responseData.data;
     } else {
       const errorMessage = await response.text();
-      throw new Error(`Error [${response.status}]: ${errorMessage}`);
+      throw new Error(`${errorMessage}`);
     }
   } catch (error: any) {
-    console.error(`Error: ${error.message}`, error);
-    throw new Error(`Services are not available: ${error.message}`);
+    throw new Error(`Services not available, please try again later`);
   }
 };

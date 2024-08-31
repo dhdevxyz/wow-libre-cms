@@ -6,6 +6,7 @@ import ClientFooter from "@/components/client_navbar/footer";
 import UserProvider from "@/context/UserContext";
 import I18Next from "@/context/I8nProviders";
 import WowheadTooltip from "@/utils/wowhead";
+import React from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
