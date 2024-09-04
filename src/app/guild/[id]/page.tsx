@@ -1,7 +1,7 @@
 "use client";
 import { getGuild } from "@/api/guilds";
 import GuildCharacter from "@/components/guild_character";
-import LoadingSpinner from "@/components/loading-spinner";
+import LoadingSpinner from "@/components/utilities/loading-spinner";
 import NavbarAuthenticated from "@/components/navbar-authenticated";
 import { GuildData } from "@/model/model";
 import Link from "next/link";

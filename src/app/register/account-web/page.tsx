@@ -12,7 +12,7 @@ import { registerAccountWeb } from "@/api/account/register";
 import { AccountWebRequestDto } from "@/model/model";
 import Cookies from "js-cookie";
 import { useTranslation } from "react-i18next";
-import LoadingSpinner from "@/components/loading-spinner";
+import LoadingSpinner from "@/components/utilities/loading-spinner";
 
 const AccountWeb = () => {
   const { user, setUser } = useUserContext();
@@ -92,6 +92,7 @@ const AccountWeb = () => {
         cell_phone: user.cell_phone,
         email: user.email,
         password: password,
+        language: language,
       };
 
       const response = await registerAccountWeb(requestBody);

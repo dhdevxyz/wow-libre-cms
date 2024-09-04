@@ -1,6 +1,20 @@
 {
     "navbar": {
-        "language": "Seleccione su idioma"
+        "language": "Seleccione su idioma",
+        "search": {
+            "place-holder": "Ingresa lo que quieras encontrar"
+        },
+        "sections": {
+            "position-one": "Hermandades",
+            "position-two": "Comunidad",
+            "position-three": "Banco",
+            "position-four": "Tienda",
+            "position-five": "Ayuda",
+            "position-six": "Ingresa",
+            "position-seven": "Crea tu cuenta",
+            "position-eight": "Mis Compras",
+            "position-nine": "Vender"
+        }
     },
     "register": {
         "error": {
@@ -91,11 +105,11 @@
             "authentication-message": "Los datos son invalidos, por favor revisa tu informacion"
         },
         "title": "Iniciar sesión",
-        "username": " Ingresa tu username",
-        "password": " Ingresa tu password",
+        "username": " Ingresa tu email",
+        "password": " Ingresa tu contraseña",
         "buttom": "Loguearme",
         "old-password": "¿Olvidaste tu contraseña?",
         "create-account-message": "Crea tu cuenta",
-        "create-account-question": "¿No tienes una cuenta?"
+        "create-account-question": "¿No tienes una cuenta? "
     }
 }

@@ -1,22 +1,26 @@
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import "../style.css";
-import { UserModel, useUserContext } from "@/context/UserContext";
+import { useUserContext } from "@/context/UserContext";
 import DropDown from "../dropdown";
-import LoadingSpinner from "@/components/loading-spinner";
+import LoadingSpinner from "@/components/utilities/loading-spinner";
+import Cookies from "js-cookie";
+import { useTranslation } from "react-i18next";
 
 const NavbarAuth = () => {
+  const { t } = useTranslation();
   const { user, clearUserData } = useUserContext();
   const [showDropdown, setShowDropdown] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const jwt = Cookies.get("token");
 
   const toggleDropdown = () => {
     setShowDropdown(!showDropdown);
   };
 
   useEffect(() => {
-    setIsLoggedIn(user.logged_in);
+    setIsLoggedIn(user.logged_in && jwt != null);
     setIsLoading(false);
   }, [user]);
 
@@ -29,10 +33,10 @@ const NavbarAuth = () => {
       {!isLoggedIn && (
         <>
           <Link className="nav-auth-category" href="/login">
-            Ingresa
+            {t("navbar.sections.position-six")}
           </Link>
           <Link className="nav-auth-category" href="/register">
-            Crea tu cuenta
+            {t("navbar.sections.position-seven")}
           </Link>
         </>
       )}
@@ -40,10 +44,10 @@ const NavbarAuth = () => {
       {isLoggedIn && (
         <>
           <Link className="nav-auth-category" href="/purchases">
-            Mis Compras
+            {t("navbar.sections.position-eight")}
           </Link>
           <Link className="nav-auth-category" href="/purchases">
-            Otros
+            {t("navbar.sections.position-nine")}
           </Link>
 
           <button className="nav-auth-category" onClick={toggleDropdown}>

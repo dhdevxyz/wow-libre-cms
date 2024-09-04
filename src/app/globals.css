@@ -42,3 +42,33 @@ img {
   border-radius: 10px;
   box-shadow: 0 4px 15px rgba(94, 172, 232, 0.746);
 }
+
+/* Estilo para el contenedor del diálogo */
+.swal-dark-theme-popup {
+  background: #0b1218 !important; /* Fondo oscuro */
+  color: white !important; /* Texto blanco */
+}
+
+/* Estilo para el texto de error */
+.swal-dark-theme-popup .swal2-html-container {
+  color: white !important; /* Color del texto */
+}
+
+/* Estilo para el campo de entrada */
+.swal-dark-theme-popup input {
+  background-color: #1e2a38 !important; /* Fondo del campo de entrada */
+  color: white !important; /* Texto del campo de entrada */
+  border: 1px solid #444 !important; /* Borde del campo de entrada */
+}
+
+/* Estilo para el botón de confirmación */
+.swal-dark-theme-confirm-btn {
+  background-color: #3085d6 !important; /* Color del botón de confirmación */
+  color: white !important; /* Texto del botón de confirmación */
+}
+
+/* Estilo para el botón de cancelar */
+.swal-dark-theme-cancel-btn {
+  background-color: #d33 !important; /* Color del botón de cancelar */
+  color: white !important; /* Texto del botón de cancelar */
+}

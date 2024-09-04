@@ -1,6 +1,7 @@
 "use client";
 import React, { createContext, useContext, useState, useEffect } from "react";
 import Cookies from "js-cookie";
+import i18n from "@/i18n";
 
 export interface UserModel {
   id: number | null;
@@ -30,7 +31,6 @@ const initialUserData: UserModel = {
   avatar: "",
 };
 
-// Definición del contexto y sus tipos
 interface UserContextProps {
   user: UserModel;
   setUser: React.Dispatch<React.SetStateAction<UserModel>>;
@@ -60,6 +60,7 @@ const UserProvider = ({ children }: UserProviderProps) => {
   useEffect(() => {
     if (user) {
       localStorage.setItem("user", JSON.stringify(user));
+      i18n.changeLanguage(user.language);
     } else {
       localStorage.removeItem("user");
     }
@@ -70,6 +71,12 @@ const UserProvider = ({ children }: UserProviderProps) => {
     setUser(initialUserData);
     Cookies.remove("token");
     Cookies.remove("refresh_token");
+  };
+
+  const updateLanguage = (lang: string) => {
+    setUser((prevUser) => ({ ...prevUser, language: lang }));
+    localStorage.setItem("user", JSON.stringify({ ...user, language: lang }));
+    i18n.changeLanguage(lang);
   };
 
   return (

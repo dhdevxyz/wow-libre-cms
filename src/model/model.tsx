@@ -27,6 +27,7 @@ export interface AccountWebRequestDto {
   cell_phone: string;
   email: string;
   password: string;
+  language: string;
 }
 
 export interface LoginData {
@@ -34,6 +35,7 @@ export interface LoginData {
   refresh_token: string;
   expiration_date: string;
   avatar_url: string;
+  language: string;
 }
 
 export interface Characters {

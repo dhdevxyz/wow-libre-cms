@@ -11,7 +11,7 @@ import Swal from "sweetalert2";
 import "../style.css";
 import { registerAccountGame } from "@/api/account/register";
 import { AccountGameRequestDto } from "@/model/model";
-import LoadingSpinner from "@/components/loading-spinner";
+import LoadingSpinner from "@/components/utilities/loading-spinner";
 const crypto = require("crypto");
 import Cookies from "js-cookie";
 

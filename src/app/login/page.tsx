@@ -9,24 +9,23 @@ import { useUserContext } from "@/context/UserContext";
 import { useRouter } from "next/navigation";
 import Swal from "sweetalert2";
 import { useTranslation } from "react-i18next";
-import LoadingSpinner from "@/components/loading-spinner";
+import LoadingSpinner from "@/components/utilities/loading-spinner";
+import AlertComponent from "@/components/utilities/show-alert";
 
 const Login = () => {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const jwt = Cookies.get("token");
   const { user, setUser } = useUserContext();
   const [userName, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState<Error | null>(null);
+
   const router = useRouter();
 
   if (user.logged_in && jwt != null) {
     router.push("/accounts");
   }
-
-  useEffect(() => {
-    i18n.changeLanguage(user.language);
-  }, [user.language, i18n]);
 
   const handleUserNameChange = (event: ChangeEvent<HTMLInputElement>) => {
     setUsername(event.target.value);
@@ -53,7 +52,8 @@ const Login = () => {
 
     try {
       const response = await login(userName, password);
-      const { jwt, refresh_token, expiration_date, avatar_url } = response;
+      const { jwt, refresh_token, expiration_date, avatar_url, language } =
+        response;
       const expirationDateUTC = new Date(expiration_date).toUTCString();
 
       Cookies.set("token", jwt, {
@@ -73,19 +73,13 @@ const Login = () => {
           ...user,
           logged_in: true,
           avatar: avatar_url,
+          language: language,
         });
       }
 
       router.push("/account");
     } catch (error: any) {
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: `${error.message}`,
-        color: "white",
-        background: "#0B1218",
-        timer: 4500,
-      });
+      setError(error);
     } finally {
       setIsSubmitting(false);
     }
@@ -93,6 +87,7 @@ const Login = () => {
 
   return (
     <div className="login-page">
+      {error && <AlertComponent error={error} />}
       <div className="login-banner">
         <img src="/img/login/login-banner.png" alt="Img Login Wow" />
       </div>
@@ -144,15 +139,21 @@ const Login = () => {
           <div className="login-form-section-question mt-2">
             <p>
               {t("login.create-account-question")}
-              <Link className="register-link" href="/register">
+              <Link
+                className="hover:text-gray-400 font-semibold border-b-2 border-orange-400"
+                href="/register"
+              >
                 {t("login.create-account-message")}
               </Link>
             </p>
 
             <p>
-              <a className=" hover:text-orange-600" href="#">
+              <Link
+                className=" hover:text-gray-400 font-semibold"
+                href="/recovery"
+              >
                 {t("login.old-password")}
-              </a>
+              </Link>
             </p>
           </div>
           <div className="login-form-section-footer pt-2">

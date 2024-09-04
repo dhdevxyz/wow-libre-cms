@@ -7,7 +7,7 @@ import { getAccounts } from "@/api/account";
 import Link from "next/link";
 import { useUserContext } from "@/context/UserContext";
 import "./style.css";
-import LoadingSpinner from "@/components/loading-spinner";
+import LoadingSpinner from "@/components/utilities/loading-spinner";
 import NavbarAuthenticated from "@/components/navbar-authenticated";
 import { InternalServerError } from "@/dto/generic";
 import { useRouter } from "next/navigation";

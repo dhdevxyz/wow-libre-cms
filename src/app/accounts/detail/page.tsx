@@ -16,7 +16,7 @@ import { useUserContext } from "@/context/UserContext";
 import React, { useEffect, useState } from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
-import LoadingSpinner from "@/components/loading-spinner";
+import LoadingSpinner from "@/components/utilities/loading-spinner";
 import { useRouter, useSearchParams } from "next/navigation";
 import Swal from "sweetalert2";
 import "../style.css";

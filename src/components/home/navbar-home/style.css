@@ -1,9 +1,9 @@
-/** Navbar Logo And Title **/
-
+/** General Navbar (Desktop) **/
 .navbar {
   margin-top: 0.1rem;
   display: grid;
   grid-template-columns: 2fr 2fr 2fr;
+  gap: 1rem;
 }
 
 .logo-home {
@@ -21,6 +21,7 @@
   color: #fff;
   font-size: 1.6rem;
 }
+
 /** Searcher **/
 .searcher {
   width: 70rem;
@@ -35,8 +36,8 @@
 .image-promotion {
   max-width: 100%;
 }
-/** Nav Category **/
 
+/** Nav Category **/
 .category {
   display: flex;
   gap: 5rem;
@@ -47,8 +48,8 @@
 .category-link:hover {
   color: #e8c500;
 }
-/**  Ubication **/
 
+/**  Ubication **/
 .nav-ubication {
   display: flex;
   padding: 0.4rem;
@@ -89,6 +90,51 @@
   position: absolute;
   z-index: 1000;
 }
+
 .hoover-text-yellow:hover {
   color: #e6d324;
+}
+
+/** Media Queries for Mobile **/
+@media (max-width: 768px) {
+  .navbar {
+    grid-template-columns: 1fr; /* Cambia a una sola columna en móviles */
+  }
+
+  .logo-home {
+    padding-top: 1rem;
+  }
+
+  .nav-small-image {
+    max-width: 10%;
+  }
+
+  .title-home {
+    font-size: 1.4rem;
+  }
+
+  .searcher {
+    display: none; /* Oculta el buscador en móviles */
+  }
+
+  .category {
+    flex-direction: column; /* Cambia la dirección a columna para móviles */
+    gap: 2rem;
+    align-items: center; /* Centra los enlaces en móviles */
+  }
+
+  .auth {
+    width: 100%; /* Aumenta el ancho al 100% en móviles */
+    padding-left: 0;
+    align-self: center;
+    justify-content: center;
+  }
+
+  .nav-auth {
+    gap: 1rem;
+  }
+
+  .nav-auth-category {
+    font-size: 1.2rem; /* Reduce el tamaño de la fuente en móviles */
+  }
 }

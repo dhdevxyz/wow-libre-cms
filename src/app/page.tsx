@@ -3,7 +3,7 @@ import Bidding from "@/components/home/bidding";
 import SliderHome from "@/components/home/slider";
 import Subscription from "@/components/home/subscription";
 import Us from "@/components/home/us";
-import Navbar from "@/components/navbar/navbar";
+import Navbar from "@/components/home/navbar-home/navbar";
 
 const Home = () => {
   return (

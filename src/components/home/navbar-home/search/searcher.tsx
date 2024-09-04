@@ -1,12 +1,13 @@
 import React, { ChangeEvent, FormEvent, useState } from "react";
-import { FaSearch } from "react-icons/fa"; // Importa el icono de búsqueda de react-icons/fa
+import { FaSearch } from "react-icons/fa";
 import "./style.css";
 
 interface Props {
-  onSearch: (query: string) => void; // Cambié el tipo de onSearch a función que toma un string como argumento
+  onSearch: (query: string) => void;
+  placeHolder: string;
 }
 
-const Searcher: React.FC<Props> = ({ onSearch }) => {
+const Searcher: React.FC<Props> = ({ onSearch, placeHolder }) => {
   const [query, setQuery] = useState("");
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -15,7 +16,6 @@ const Searcher: React.FC<Props> = ({ onSearch }) => {
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    // Llama a la función onSearch pasando la consulta como argumento
     onSearch(query);
   };
 
@@ -24,7 +24,7 @@ const Searcher: React.FC<Props> = ({ onSearch }) => {
       <input
         className="search-input"
         type="text"
-        placeholder="Ingresa lo que quieras encontrar"
+        placeholder={placeHolder}
         value={query}
         onChange={handleChange}
       />

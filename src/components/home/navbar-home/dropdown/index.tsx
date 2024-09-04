@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Link from "next/link";
-import { UserModel, useUserContext } from "@/context/UserContext";
+import { UserModel } from "@/context/UserContext";
 import { useRouter } from "next/navigation";
 import "../style.css";
 
