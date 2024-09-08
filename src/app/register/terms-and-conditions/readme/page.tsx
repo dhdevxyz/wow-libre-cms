@@ -115,7 +115,7 @@ const TermsAndConditions = () => {
                 type="button"
                 onClick={handleBackClick}
               >
-                Volver
+                Rechazar
               </button>
             </div>
           </div>

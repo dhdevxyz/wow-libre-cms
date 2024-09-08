@@ -59,7 +59,7 @@ const Bank = () => {
         <NavbarAuthenticated />
       </div>
       <div
-        className="text-white mb-20"
+        className="text-white mb-20 mt-14"
         style={{
           background: "linear-gradient(to right, #2D2D2A, #6C2C77, #D3A82C)",
         }}

@@ -124,7 +124,9 @@ const Store = () => {
   return (
     <div className="contenedor">
       <NavbarAuthenticated />
-      <AdvertisingStore />
+      <div className="mt-14">
+        <AdvertisingStore />
+      </div>
       <nav className="w-full h-20 flex items-center justify-start bg-gray-900 text-white mt-10 mb-10">
         {categories.map((category) => (
           <a

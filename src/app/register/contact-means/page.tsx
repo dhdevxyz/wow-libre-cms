@@ -61,7 +61,7 @@ const ContactMeans = () => {
       return;
     }
 
-    if (!cellPhone.trim()) {
+    if (!cellPhone.trim() || cellPhone.length < 5) {
       Swal.fire({
         icon: "error",
         title: "Oops...",

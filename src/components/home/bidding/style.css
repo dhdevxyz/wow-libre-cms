@@ -41,7 +41,7 @@
   text-align: start;
   padding-left: 1rem;
   font-size: 2rem;
-  color: rgb(178, 178, 177);
+  color: rgb(255, 255, 255);
 }
 
 .bidding-day-image {
@@ -64,7 +64,7 @@
 }
 
 .bidding-day-content-product-title {
-  color: #f6a001;
+  color: #ffa600;
 }
 .bidding-day-content-product-description {
   color: rgb(178, 178, 177);

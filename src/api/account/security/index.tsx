@@ -1,5 +1,7 @@
 import { BASE_URL_AUTH } from "@/configs/configs";
+import { GenericResponseDto } from "@/dto/generic";
 import { LoginData } from "@/model/model";
+import { v4 as uuidv4 } from "uuid";
 
 export const renewToken = async (refreshToken: string): Promise<LoginData> => {
   const response = await fetch(`${BASE_URL_AUTH}/api/token/renew`, {
@@ -15,5 +17,77 @@ export const renewToken = async (refreshToken: string): Promise<LoginData> => {
     return responseData.data;
   } else {
     throw new Error("No se pudo renovar el token.");
+  }
+};
+
+export const recoverPassword = async (
+  email: string
+): Promise<GenericResponseDto<void>> => {
+  try {
+    const response = await fetch(
+      `${BASE_URL_AUTH}/api/account/web/recover/password?email=${email}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          transaction_id: uuidv4(),
+        },
+      }
+    );
+
+    if (response.ok && response.status === 200) {
+      const responseData: GenericResponseDto<void> = await response.json();
+
+      return responseData;
+    } else {
+      const errorGeneric: GenericResponseDto<void> = await response.json();
+      throw new Error(`${errorGeneric.message}`);
+    }
+  } catch (error: any) {
+    if (error instanceof TypeError && error.message === "Failed to fetch") {
+      throw new Error(`Please try again later, services are not available.`);
+    } else {
+      throw new Error(`${error.message}`);
+    }
+  }
+};
+
+export const validateOtp = async (
+  email: string,
+  otp: string
+): Promise<GenericResponseDto<void>> => {
+  const requestBody: {
+    email: string;
+    otp: string;
+  } = {
+    email: email,
+    otp: otp,
+  };
+  try {
+    const response = await fetch(
+      `${BASE_URL_AUTH}/api/account/web/validate/otp`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          transaction_id: uuidv4(),
+        },
+        body: JSON.stringify(requestBody),
+      }
+    );
+
+    if (response.ok && response.status === 200) {
+      const responseData: GenericResponseDto<void> = await response.json();
+      return responseData;
+    } else {
+      const responseData: GenericResponseDto<void> = await response.json();
+      throw new Error(`${responseData.message}`);
+    }
+  } catch (error: any) {
+    if (error instanceof TypeError && error.message === "Failed to fetch") {
+      throw new Error(`Please try again later, services are not available.`);
+    } else {
+      throw new Error(`${error.message}`);
+    }
   }
 };

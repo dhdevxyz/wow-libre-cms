@@ -1,6 +1,6 @@
 "use client";
 
-import React, { ChangeEvent, useEffect, useState } from "react";
+import React, { ChangeEvent, useState } from "react";
 import "./style.css";
 import Link from "next/link";
 import { login } from "@/api/account/login";
@@ -11,21 +11,19 @@ import Swal from "sweetalert2";
 import { useTranslation } from "react-i18next";
 import LoadingSpinner from "@/components/utilities/loading-spinner";
 import AlertComponent from "@/components/utilities/show-alert";
+import UseAuthRedirect from "@/components/utilities/logged-in";
 
 const Login = () => {
   const { t } = useTranslation();
-  const jwt = Cookies.get("token");
   const { user, setUser } = useUserContext();
   const [userName, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<Error | null>(null);
-
   const router = useRouter();
 
-  if (user.logged_in && jwt != null) {
-    router.push("/accounts");
-  }
+  /* VALIDA SI YA ESTA LOGUEADO */
+  UseAuthRedirect();
 
   const handleUserNameChange = (event: ChangeEvent<HTMLInputElement>) => {
     setUsername(event.target.value);
@@ -89,7 +87,10 @@ const Login = () => {
     <div className="login-page">
       {error && <AlertComponent error={error} />}
       <div className="login-banner">
-        <img src="/img/login/login-banner.png" alt="Img Login Wow" />
+        <img
+          src="https://bnetcmsus-a.akamaihd.net/cms/blog_header/7k/7KGWCRHVH4GW1572627335155.jpg"
+          alt="Img Login Wow"
+        />
       </div>
       <div className="login-form">
         <div className="login-form-btn-back text-xl md:text-4xl lg:text-5xl xl:text-5xl">

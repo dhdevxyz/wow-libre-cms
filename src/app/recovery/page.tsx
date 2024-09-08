@@ -1,12 +1,82 @@
 "use client";
+import { recoverPassword, validateOtp } from "@/api/account/security";
 import NavbarMinimalist from "@/components/navbar-minimalist";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
+import Swal from "sweetalert2";
 
 const ChangePassword = () => {
   const [currentForm, setCurrentForm] = useState("reset");
+  const [email, setEmail] = useState("");
+  const [error, setError] = useState<string | null>(null);
+  const [successMessage, setSuccessMessage] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
+  const [otp, setOtp] = useState<string[]>(["", "", "", "", ""]);
+  const router = useRouter();
+
   const handleFormChange = (formType: string) => {
     setCurrentForm(formType);
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    setError(null);
+    setSuccessMessage(null);
+
+    try {
+      await recoverPassword(email);
+      setSuccessMessage("Correo enviado. Revisa tu bandeja de entrada.");
+      handleFormChange("additional");
+    } catch (err: any) {
+      setError(err.message || "Error al enviar el correo.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleOtpChange = (index: number, value: string) => {
+    const newOtp = [...otp];
+    newOtp[index] = value;
+    setOtp(newOtp);
+  };
+
+  const handleOtpSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    setError(null);
+    setSuccessMessage(null);
+    const otpCode = otp.join("");
+
+    try {
+      await validateOtp(email, otpCode);
+      setSuccessMessage("OTP verificado correctamente.");
+      Swal.fire({
+        icon: "success",
+        title: "Contraseña restablecida",
+        text: `Se te envió una contraseña temporal al correo electrónico.`,
+        color: "white",
+        background: "#0B1218",
+        willClose: () => {
+          router.push("/login");
+        },
+      }).then((result) => {
+        if (result.isConfirmed) {
+          router.push("/login");
+        }
+      });
+    } catch (err: any) {
+      setError(err.message || "Error al verificar el OTP.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleBackClick = () => {
+    setLoading(false);
+    setError(null);
+    setSuccessMessage(null);
+    handleFormChange("reset");
   };
 
   return (
@@ -15,7 +85,7 @@ const ChangePassword = () => {
       <div className="antialiased flex items-center justify-center p-4 mt-10">
         <div className="max-w-8xl w-full bg-gray-800 p-8 md:p-12 rounded-xl shadow shadow-slate-300 flex flex-col md:flex-row">
           {/* Form Section */}
-          <div className="w-full md:w-1/3 md:pr-8">
+          <div className="w-full md:w-1/3 md:pr-8 mt-10">
             {currentForm === "reset" ? (
               <>
                 <h1 className="text-3xl md:text-4xl font-medium text-white">
@@ -28,63 +98,36 @@ const ChangePassword = () => {
                   of Warcraft.
                 </p>
 
-                <form action="" className="my-10">
+                <form onSubmit={handleSubmit} className="my-10">
                   <div className="flex flex-col space-y-5 mt-20">
                     <label htmlFor="email">
                       <p className="font-medium text-white pb-2">
-                        Email address
+                        Dirección de correo electrónico
                       </p>
                       <input
                         id="email"
                         name="email"
                         type="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
                         className="w-full py-3 border border-slate-200 rounded-lg px-3 focus:outline-none focus:border-slate-500 hover:shadow"
-                        placeholder="Enter email address"
+                        placeholder="Introduce tu correo electrónico"
+                        required
                       />
                     </label>
 
-                    <button className="w-full py-3 font-medium text-white bg-indigo-600 hover:bg-indigo-500 rounded-lg border-indigo-500 hover:shadow inline-flex space-x-2 items-center justify-center">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        strokeWidth="1.5"
-                        stroke="currentColor"
-                        className="w-6 h-6"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M15.75 5.25a3 3 0 013 3m3 0a6 6 0 01-7.029 5.912c-.563-.097-1.159.026-1.563.43L10.5 17.25H8.25v2.25H6v2.25H2.25v-2.818c0-.597.237-1.17.659-1.591l6.499-6.499c.404-.404.527-1 .43-1.563A6 6 0 1121.75 8.25z"
-                        />
-                      </svg>
-                      <span>Restablecer</span>
+                    {error && <p className="text-red-500 text-sm">{error}</p>}
+                    {successMessage && (
+                      <p className="text-green-500 text-sm">{successMessage}</p>
+                    )}
+
+                    <button
+                      type="submit"
+                      className="w-full py-3 font-medium text-white bg-indigo-600 hover:bg-indigo-500 rounded-lg border-indigo-500 hover:shadow inline-flex space-x-2 items-center justify-center"
+                      disabled={loading}
+                    >
+                      {loading ? "Enviando..." : "Restablecer"}
                     </button>
-                    <p className="text-center text-white">
-                      ¿Aún no estás registrado?{" "}
-                      <a
-                        href="#"
-                        className="text-indigo-600 font-medium inline-flex space-x-1 items-center"
-                      >
-                        <Link href="/register">Registrarme</Link>
-                        <span>
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            className="h-4 w-4"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                            strokeWidth="2"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                            />
-                          </svg>
-                        </span>
-                      </a>
-                    </p>
                   </div>
                 </form>
               </>
@@ -98,56 +141,60 @@ const ChangePassword = () => {
                   correo electrónico.
                 </p>
 
-                <form action="" className="my-10">
-                  <div className="flex flex-col space-y-5 mt-20">
-                    <label htmlFor="otp">
-                      <p className="font-medium text-white pb-6">
-                        Código de seguridad
-                      </p>
-                      <div className="flex justify-center space-x-2">
-                        {Array.from({ length: 4 }).map((_, index) => (
+                <form onSubmit={handleOtpSubmit} className="my-10">
+                  <div className="flex flex-col space-y-5 mt-10">
+                    <p className="font-medium text-white pb-6">
+                      Código de seguridad
+                    </p>
+
+                    <div className="flex justify-center space-x-2">
+                      {otp.map((value, index) => (
+                        <label key={index} htmlFor={`otp-${index}`}>
                           <input
-                            key={index}
                             id={`otp-${index}`}
                             name={`otp-${index}`}
                             type="text"
                             maxLength={1}
-                            className=" py-4 px-2  w-28 text-xl md:text-2xl text-center border font-bold border-slate-200 rounded-lg focus:outline-none focus:border-slate-500 hover:shadow"
+                            className="py-4 px-2 w-16 text-xl md:text-2xl text-center border font-bold border-slate-200 rounded-lg focus:outline-none focus:border-slate-500 hover:shadow"
+                            value={value}
+                            onChange={(e) =>
+                              handleOtpChange(index, e.target.value)
+                            }
                             placeholder="-"
                           />
-                        ))}
-                      </div>
-                    </label>
+                        </label>
+                      ))}
+                    </div>
+                    {error && <p className="text-red-500 text-lg">{error}</p>}
 
-                    <button className="w-full py-3 font-medium text-white bg-indigo-600 hover:bg-indigo-500 rounded-lg border-indigo-500 hover:shadow inline-flex space-x-2 items-center justify-center">
-                      <span>Validate OTP</span>
+                    <button
+                      type="submit"
+                      className="w-full py-3 font-medium text-white bg-indigo-600 hover:bg-indigo-500 rounded-lg border-indigo-500 hover:shadow inline-flex space-x-2 items-center justify-center"
+                    >
+                      {loading ? "Enviando..." : "Validar OTP"}
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        handleBackClick();
+                      }}
+                      className="w-full py-3 font-medium text-white bg-indigo-600 hover:bg-indigo-500 rounded-lg border-indigo-500 hover:shadow inline-flex space-x-2 items-center justify-center mt-4"
+                    >
+                      <span>Volver</span>
                     </button>
                   </div>
                 </form>
               </>
             )}
-
-            <div className="text-center mt-5">
-              <button
-                className="py-2 px-4 font-medium text-white bg-blue-600 hover:bg-blue-500 rounded-lg"
-                onClick={() =>
-                  handleFormChange(
-                    currentForm === "reset" ? "additional" : "reset"
-                  )
-                }
-              >
-                {currentForm === "reset"
-                  ? "Show Additional Form"
-                  : "Back to Reset Password"}
-              </button>
-            </div>
           </div>
 
           {/* Image Section */}
           <div className="w-full md:w-2/3 flex items-center justify-center mt-8 md:mt-0 select-none">
             <img
-              src="https://i.ibb.co/JBDS19V/png-transparent-world-of-warcraft-mists-of-pandaria-tauren-chibi-chibi-chibi-video-game-fictional-ch.png"
-              alt="Reset Password Illustration"
+              src="https://i.postimg.cc/Jnfb0TWJ/businessman-designing-a-website-by-coding-on-a-desktop-computer-images-for-web-banners-free-vector-r.png"
+              alt="Ilustración de Restablecer Contraseña"
               className="rounded-lg w-full md:w-auto"
             />
           </div>

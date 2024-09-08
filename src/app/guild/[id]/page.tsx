@@ -76,7 +76,7 @@ const GuildDetail = () => {
         <NavbarAuthenticated />
       </div>
       <div
-        className="text-white"
+        className="text-white mt-14"
         style={{
           background: "linear-gradient(to right, #0B1218, #2B5876, #4E4376)",
         }}

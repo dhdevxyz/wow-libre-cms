@@ -4,6 +4,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import React, { ChangeEvent, useEffect } from "react";
 import "./style.css";
 import NavbarMinimalist from "@/components/navbar-minimalist";
+import NavbarAuthenticated from "@/components/navbar-authenticated";
 
 const Congrats = () => {
   const searchParams = useSearchParams();
@@ -18,7 +19,7 @@ const Congrats = () => {
 
   return (
     <div className=" contenedor">
-      <NavbarMinimalist />
+      <NavbarAuthenticated />
       <div className="congrats">
         <div className="congrats-container">
           <img

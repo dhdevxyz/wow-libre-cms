@@ -8,7 +8,7 @@ import { ProfesionsServices } from "@/model/model";
 import { ProfessionsServicesApi } from "@/api/home";
 
 const SliderHome = () => {
-  const [partners, setPartners] = useState<ProfesionsServices[]>([]);
+  const [services, setPartners] = useState<ProfesionsServices[]>([]);
   const [page, setPage] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -16,8 +16,8 @@ const SliderHome = () => {
     const fetchPartners = async () => {
       setIsLoading(true);
       try {
-        const data = await ProfessionsServicesApi(page, 6); // Asumiendo 6 items por página
-        setPartners((prevPartners) => [...prevPartners, ...data]);
+        const data = await ProfessionsServicesApi(page, 6);
+        setPartners(data);
       } catch (error) {
         console.error("Error fetching partners:", error);
       } finally {
@@ -29,12 +29,12 @@ const SliderHome = () => {
   }, [page]);
 
   const handleAfterChange = (currentIndex: number) => {
-    if (currentIndex + 4 >= partners.length && !isLoading) {
+    if (currentIndex + 4 >= services.length && !isLoading) {
       setPage((prevPage) => prevPage + 1);
     }
   };
 
-  const slidesToShow = partners.length < 4 ? partners.length : 4;
+  const slidesToShow = services.length < 4 ? services.length : 4;
 
   const settings = {
     dots: false,
@@ -50,7 +50,7 @@ const SliderHome = () => {
       {
         breakpoint: 1024,
         settings: {
-          slidesToShow: partners.length < 2 ? partners.length : 2,
+          slidesToShow: services.length < 1 ? services.length : 2,
           slidesToScroll: 1,
           infinite: false,
           dots: true,
@@ -59,7 +59,7 @@ const SliderHome = () => {
       {
         breakpoint: 600,
         settings: {
-          slidesToShow: partners.length < 2 ? partners.length : 2,
+          slidesToShow: services.length < 2 ? services.length : 2,
           slidesToScroll: 1,
           infinite: false,
           initialSlide: 2,
@@ -68,7 +68,7 @@ const SliderHome = () => {
       {
         breakpoint: 480,
         settings: {
-          slidesToShow: partners.length < 1 ? partners.length : 1,
+          slidesToShow: services.length < 1 ? services.length : 1,
           slidesToScroll: 1,
           infinite: false,
         },
@@ -96,60 +96,54 @@ const SliderHome = () => {
         </a>
       </div>
 
-      {partners.length === 0 && !isLoading ? (
-        <div className="no-partners-message text-lg md:text-xl lg:text-2xl xl:text-2xl text-white mb-20">
+      {services.length === 0 && !isLoading ? (
+        <div className="no-partners-message text-lg md:text-xl lg:text-2xl xl:text-2xl text-white mb-20 ">
           No se encontraron servicios disponibles. ¡Vuelve pronto para ver las
           nuevas ofertas de nuestros guerreros!
         </div>
       ) : (
         <Slider {...settings}>
-          {partners.map((partner) => (
-            <div key={partner.id} className="slider">
-              <div className="cards-slider">
-                <div className="slider-content">
+          {services.map((service) => (
+            <div key={service.id} className="slider cursor-pointer ">
+              <div className="cards-slider ">
+                <div className="slider-content ">
                   <p className="slider-title text-lg md:text-xl lg:text-2xl xl:text-3xl">
-                    {partner.character_name}
+                    {service.character_name}
                   </p>
                   <p className="slider-subtitle text-lg md:text-xl lg:text-1xl xl:text-2xl">
-                    {partner.name}
+                    {service.name}
                   </p>
                 </div>
                 <div className="slider-image">
                   <img
-                    src={partner.logo}
+                    src={service.logo}
                     draggable="false"
                     className="w-full h-full object-cover"
                     style={{
                       borderRadius: "50%",
                       width: "50%",
-                      height: "50%",
+                      height: "90%",
                       objectFit: "cover",
                     }}
                   />
                 </div>
                 <div className="slider-text">
-                  <p className="slider-description text-lg md:text-xl lg:text-2xl xl:text-2xl">
-                    {partner.description.length > 50
-                      ? `${partner.description.substring(0, 50)}...`
-                      : partner.description}
+                  <p className="slider-description text-2xl md:text-xl lg:text-2xl xl:text-2xl">
+                    {service.description.length > 50
+                      ? `${service.description.substring(0, 50)}...`
+                      : service.description}
                   </p>
                   <div className="slider-rating">
-                    {Array.from(
-                      { length: Math.floor(partner.score) },
-                      (_, index) => (
-                        <span key={index} className="star-icon">
-                          &#9733;
-                        </span>
-                      )
-                    )}
-                    {Array.from(
-                      { length: 5 - Math.floor(partner.score) },
-                      (_, index) => (
-                        <span key={index} className="star-icon">
-                          &#9734;
-                        </span>
-                      )
-                    )}
+                    {Array.from({ length: Math.floor(3) }, (_, index) => (
+                      <span key={index} className="star-icon">
+                        &#9733;
+                      </span>
+                    ))}
+                    {Array.from({ length: 1 - Math.floor(-1) }, (_, index) => (
+                      <span key={index} className="star-icon">
+                        &#9734;
+                      </span>
+                    ))}
                   </div>
                   <div className="slider-contract mb-4">
                     <button className="contract-button">Contactar</button>

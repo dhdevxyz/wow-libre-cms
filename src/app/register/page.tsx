@@ -12,6 +12,7 @@ import { CountryModel } from "@/model/model";
 import { getAvailableCountries } from "@/api/country";
 import { useTranslation } from "react-i18next";
 import NavbarMinimalist from "@/components/navbar-minimalist";
+import Cookies from "js-cookie";
 
 const defaultCountryOptions: CountryModel[] = [
   { value: "Otro", label: "Otro", language: "pt" },
@@ -19,12 +20,19 @@ const defaultCountryOptions: CountryModel[] = [
 ];
 
 const Register = () => {
+  const jwt = Cookies.get("token");
+
   const { t, i18n } = useTranslation();
   const { user, setUser } = useUserContext();
   const router = useRouter();
   const [country, setCountry] = useState<string>("");
   const [language, setLanguage] = useState<string>("");
   const [date, setDate] = useState<string>("");
+
+  if (user.logged_in && jwt != null) {
+    router.push("/accounts");
+  }
+
   const [countryOptions, setCountryOptions] = useState<CountryModel[]>(
     defaultCountryOptions
   );

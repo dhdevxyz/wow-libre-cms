@@ -36,7 +36,7 @@ const NavbarAuthenticated = () => {
   };
 
   return (
-    <nav className="bg-midnight mt-10 mb-20">
+    <nav className="bg-midnight mt-10 ">
       <div className="mx-auto max-w-9xl px-2 sm:px-6 lg:px-8">
         <div className="relative flex h-20 items-center justify-between">
           <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">

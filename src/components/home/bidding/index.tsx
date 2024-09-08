@@ -5,29 +5,9 @@ import "react-multi-carousel/lib/styles.css";
 import MultiCarousel from "../carrousel-multiple";
 
 const Bidding = () => {
-  const images = [
-    { src: "https://via.placeholder.com/500x600", alt: "Producto 5" },
-    { src: "https://via.placeholder.com/500x600", alt: "Producto 6" },
-    { src: "https://via.placeholder.com/500x600", alt: "Producto 4" },
-    { src: "https://via.placeholder.com/500x600", alt: "Producto 3" },
-  ];
-  const responsive = {
-    desktop: {
-      breakpoint: { max: 800, min: 1024 },
-      items: 1, // Muestra 2 elementos a la vez
-    },
-    tablet: {
-      breakpoint: { max: 1024, min: 400 },
-      items: 1, // Muestra 2 elementos a la vez
-    },
-    mobile: {
-      breakpoint: { max: 464, min: 0 },
-      items: 1, // Muestra 1 elemento a la vez en dispositivos móviles
-    },
-  };
   return (
     <div>
-      <div className="contenedor mt-4 ">
+      <div className="contenedor mt-10 ">
         <div className="text-center md:text-left">
           <h2 className="bidding-introduction-title title-server mb-4 text-lg md:text-xl lg:text-1xl xl:text-2xl">
             Ofertas
@@ -39,7 +19,7 @@ const Bidding = () => {
         <div className="bidding-primary">
           <div className="bidding-day">
             <div className="bidding-day-title">
-              <h3 className="text-lg md:text-x2 lg:text-3xl xl:text-3xl mt-4">
+              <h3 className="text-xl md:text-x2 lg:text-3xl xl:text-3xl mt-4">
                 Oferta del dia
               </h3>
             </div>

@@ -7,7 +7,7 @@
   min-height: 100vh;
   background-color: #0b1218;
   text-align: center;
-  padding: 20px; /* Añade un poco de padding para pantallas pequeñas */
+  padding: 10px; /* Añade un poco de padding para pantallas pequeñas */
   overflow: hidden; /* Asegura que los copos de nieve no causen desplazamiento */
 }
 

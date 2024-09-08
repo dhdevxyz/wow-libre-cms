@@ -3,8 +3,11 @@ import React from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import "./style.css";
+import { useRouter } from "next/navigation";
 
 const MultiCarousel = () => {
+  const router = useRouter();
+
   const items = [
     {
       id: 1,
@@ -50,7 +53,6 @@ const MultiCarousel = () => {
 
   const responsive = {
     superLargeDesktop: {
-      // the naming can be any, depends on you.
       breakpoint: { max: 4000, min: 3000 },
       items: 4,
     },
@@ -67,6 +69,11 @@ const MultiCarousel = () => {
       items: 1,
     },
   };
+
+  const handleSelectItem = (id: number) => {
+    router.push(`/store/${id}`);
+  };
+
   return (
     <div className="carrousel-offert">
       <div>
@@ -76,7 +83,11 @@ const MultiCarousel = () => {
       </div>
       <Carousel className="carrousel-offert-content" responsive={responsive}>
         {items.map((item) => (
-          <div className="carrousel-offert-content-product" key={item.id}>
+          <div
+            className="carrousel-offert-content-product"
+            key={item.id}
+            onClick={() => handleSelectItem(item.id)}
+          >
             <div className="relative">
               <img
                 src={item.image}
