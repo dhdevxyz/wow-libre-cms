@@ -176,3 +176,39 @@ export const unlinkGuild = async (
     );
   }
 };
+
+export const claimBenefits = async (
+  accountId: number,
+  characterId: number,
+  token: string
+): Promise<GenericResponseDto<void>> => {
+  try {
+    const transactionId = uuidv4();
+
+    const response = await fetch(
+      `${BASE_URL_CHARACTER}/api/guilds/claim-benefits/${characterId}?account_id=${accountId}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          transaction_id: transactionId,
+          Authorization: "Bearer " + token,
+        },
+      }
+    );
+
+    if (response.ok && response.status === 200) {
+      const responseData: GenericResponseDto<void> = await response.json();
+      return responseData;
+    } else {
+      const errorGeneric: GenericResponseDto<void> = await response.json();
+      throw new Error(
+        `${errorGeneric.message} - Transaction Id: ${transactionId}`
+      );
+    }
+  } catch (error: any) {
+    throw new Error(
+      `It was not possible to separate from the brotherhood: ${error.message}`
+    );
+  }
+};

@@ -56,10 +56,7 @@ const GuildCharacter: React.FC<GuildCharacterProps> = ({
     setSelectedCharacterId(null);
 
     try {
-      const fetchedCharacters = await getCharacters(
-        token,
-        accountId.toString()
-      );
+      const fetchedCharacters = await getCharacters(token, accountId);
       setCharacters(fetchedCharacters.characters);
     } catch (error: any) {
       Swal.fire({

@@ -315,11 +315,11 @@ const Page = () => {
         </div>
       ) : (
         <div className="empty-table-message items-center justify-center">
-          <div className="content shadow-md sm:rounded-lg">
+          <div className="content shadow-md sm:rounded-lg select-none">
             <img
               src="/img/profile/create-account.png"
               alt="World of Warcraft Logo"
-              className="logo pb-10 pt-10"
+              className="logo pb-10 pt-10 "
             />
             <p className="mb-10">
               No hay cuentas registradas. <br />
