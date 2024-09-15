@@ -2,7 +2,7 @@
 
 import PageCounter from "@/components/register/counter";
 import NavbarMinimalist from "@/components/navbar-minimalist";
-import TitleWow from "@/components/title";
+import TitleWow from "@/components/utilities/serverTitle";
 import { useUserContext } from "@/context/UserContext";
 import { useRouter } from "next/navigation";
 import React, { ChangeEvent, useState } from "react";
@@ -13,12 +13,14 @@ import { AccountWebRequestDto } from "@/model/model";
 import Cookies from "js-cookie";
 import { useTranslation } from "react-i18next";
 import LoadingSpinner from "@/components/utilities/loading-spinner";
+import AlertComponent from "@/components/utilities/show-alert";
 
 const AccountWeb = () => {
   const { user, setUser } = useUserContext();
   const language = user.language;
   const country = user.country;
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState<Error | null>(null);
 
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -125,13 +127,7 @@ const AccountWeb = () => {
         sameSite: "Strict",
       });
     } catch (error: any) {
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: `${error.message}`,
-        background: "#0B1218",
-        timer: 4500,
-      });
+      setError(error);
       return;
     } finally {
       setIsSubmitting(false);
@@ -149,7 +145,13 @@ const AccountWeb = () => {
   return (
     <div className="contenedor register">
       <NavbarMinimalist />
-
+      {error && (
+        <AlertComponent
+          error={error}
+          btn_primary_txt={t("errors.show-alert.btn-primary")}
+          btn_secondary_txt={t("errors.show-alert.btn-secondary")}
+        />
+      )}
       <div className="register-container">
         <TitleWow
           title={t("register.title-server-sub-title")}

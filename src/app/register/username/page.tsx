@@ -1,23 +1,24 @@
 "use client";
 
 import PageCounter from "@/components/register/counter";
-import TitleWow from "@/components/title";
+import TitleWow from "@/components/utilities/serverTitle";
 import { useUserContext } from "@/context/UserContext";
 import { useRouter } from "next/navigation";
 import React, { ChangeEvent, useState } from "react";
 import Swal from "sweetalert2";
 import "../style.css";
-import NavbarMinimalist from "@/components/navbar-minimalist";
 import useAuth from "@/hook/useAuth";
+import NavbarAuthenticated from "@/components/navbar-authenticated";
+import Footer from "@/components/footer";
+import { useTranslation } from "react-i18next";
 
 const AccountIngame = () => {
   const { user, setUser } = useUserContext();
   const [userName, setUsername] = useState("");
   const router = useRouter();
+  const { t } = useTranslation();
 
-  useAuth(
-    "Tu sesión ha expirado. Por favor, vuelve a autenticarte para continuar."
-  );
+  useAuth(t("errors.message.expiration-session"));
 
   const handleUserNameChange = (event: ChangeEvent<HTMLInputElement>) => {
     setUsername(event.target.value);
@@ -30,7 +31,7 @@ const AccountIngame = () => {
       Swal.fire({
         icon: "error",
         title: "Oops...",
-        text: "Ingrese un usuario.",
+        text: t("register.error.username-empty"),
         color: "white",
         background: "#0B1218",
         timer: 4500,
@@ -42,7 +43,7 @@ const AccountIngame = () => {
       Swal.fire({
         icon: "error",
         title: "Oops...",
-        text: "La contraseña debe ser superior a 5 caracteres e inferior a 20 caracteres.",
+        text: t("register.error.username-invalid-length"),
         color: "white",
         background: "#0B1218",
         timer: 4500,
@@ -64,13 +65,14 @@ const AccountIngame = () => {
   };
 
   return (
-    <div className="contenedor register">
-      <NavbarMinimalist />
-
-      <div className="register-container">
+    <div className="contenedor ">
+      <NavbarAuthenticated />
+      <div className="register register-container">
         <TitleWow
-          title=" Registrarme en "
-          description="Este nombre será tu identidad pública. Podrás cambiarlo una vez de manera gratuita."
+          title={t("register.title-server-sub-title")}
+          description={t(
+            "register.section-page.account-game.title-server-message"
+          )}
         />
         <form
           className="register-container-form pt-5"
@@ -81,13 +83,15 @@ const AccountIngame = () => {
               htmlFor="countrySelect"
               className="mb-2 register-container-form-label"
             >
-              Usuario
+              {t("register.section-page.account-game.username-txt")}
             </label>
 
             <input
               className="mb-3 px-4 py-2 border rounded-md text-black register-input"
               type="text"
-              placeholder="Ingrese un usuario"
+              placeholder={t(
+                "register.section-page.account-game.username-placeholder"
+              )}
               value={userName}
               onChange={handleUserNameChange}
             />
@@ -98,17 +102,19 @@ const AccountIngame = () => {
             className=" text-white px-5 py-5 rounded-md mt-8 button-register"
             type="submit"
           >
-            Continuar
+            {t("register.section-page.account-game.button.btn-primary")}
           </button>
           <button
             className="text-white px-5 py-5 rounded-md mt-8 button-register"
             type="button"
             onClick={handleVolverClick}
           >
-            Volver
+            {t("register.section-page.account-game.button.btn-secondary")}
           </button>
         </form>
       </div>
+
+      <Footer />
     </div>
   );
 };

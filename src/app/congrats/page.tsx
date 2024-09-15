@@ -1,10 +1,12 @@
 "use client";
 
 import { useRouter, useSearchParams } from "next/navigation";
-import React, { ChangeEvent, useEffect } from "react";
+import React from "react";
 import "./style.css";
-import NavbarMinimalist from "@/components/navbar-minimalist";
 import NavbarAuthenticated from "@/components/navbar-authenticated";
+import Footer from "@/components/footer";
+import { useTranslation } from "react-i18next";
+import Link from "next/link";
 
 const Congrats = () => {
   const searchParams = useSearchParams();
@@ -12,6 +14,7 @@ const Congrats = () => {
   const country = searchParams.get("country");
   const phone = searchParams.get("phone");
   const router = useRouter();
+  const { t } = useTranslation();
 
   const handleLinkAccounts = () => {
     router.push("/accounts");
@@ -20,48 +23,47 @@ const Congrats = () => {
   return (
     <div className=" contenedor">
       <NavbarAuthenticated />
-      <div className="congrats">
+      <div className="congrats md:mt-0 mt-5">
         <div className="congrats-container">
           <img
             src="/img/congrats/pngegg.png"
-            alt="WarImgCongrats"
-            className="congrats-img-large "
+            alt="Congratulations warrior"
+            className="congrats-img-large select-none "
           />
-          <div className="congrats-content">
+          <div className="congrats-content 	">
             <img
               src="/img/logos/logo.png"
-              alt="Logo WowLibre"
-              className="congrats-img"
+              alt="WowLibre Logo"
+              className="congrats-img select-none"
             />
 
             <h2 className="title">
-              Bienvenido a <br /> la comunidad libre
+              {t("register.section-page.congrats.message-welcome-part-one")}
+              <br />
+              {t("register.section-page.congrats.message-welcome-part-two")}
             </h2>
 
             <div className="account-info text-white">
               <p className="text-2xl md:text-4xl lg:text-3xl xl:text-2xl pb-5">
-                ¡Te damos la más cordial bienvenida a nuestra comunidad! Estamos
-                encantados de tenerte aquí. Estás a solo un paso de disfrutar de
-                tus juegos favoritos de forma gratuita. ¡Termina de crear tu
-                cuenta de juego y comienza a jugar ahora!
+                {t("register.section-page.congrats.body-welcome")}
               </p>
-              <p className="mt-2 text-2xl md:text-3xl lg:text-4xl xl:text-3xl pb-10">
-                Detalles de la cuenta creada:
+              <p className="mt-2 text-2xl md:text-3xl lg:text-4xl xl:text-3xl pb-3 pt-5 font-bold">
+                {t("register.section-page.congrats.title-details")}
               </p>
 
               {email && (
-                <p className="account-email text-2xl md:text-4xl lg:text-3xl xl:text-2xl">
+                <p className="account-text font-semibold text-2xl md:text-4xl lg:text-3xl xl:text-2xl">
                   Email: {email}
                 </p>
               )}
               {country && (
-                <p className="account-username text-2xl md:text-4xl lg:text-3xl xl:text-2xl">
-                  País: {country}
+                <p className="account-text  font-semibold text-2xl md:text-4xl lg:text-3xl xl:text-2xl">
+                  Country: {country}
                 </p>
               )}
               {phone && (
-                <p className="account-username text-2xl md:text-4xl lg:text-3xl xl:text-2xl">
-                  Teléfono: {phone}
+                <p className="account-text  font-semibold text-2xl md:text-4xl lg:text-3xl xl:text-2xl">
+                  Phone: {phone}
                 </p>
               )}
               <button
@@ -69,26 +71,25 @@ const Congrats = () => {
                 type="button"
                 onClick={handleLinkAccounts}
               >
-                Crear cuenta de juego
+                {t("register.section-page.congrats.btn-txt-action-primary")}
               </button>
-              <button
+              <Link
+                href="https://wowdl.net/es/client/World-of-Warcraft-3.3.5a.12340"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="download-button  text-white text-lg md:text-xl lg:text-2xl xl:text-2xl "
                 type="button"
               >
-                Descargar Cliente
-              </button>
+                {t("register.section-page.congrats.btn-txt-action-secondary")}
+              </Link>
             </div>
             <p className="text-white mt-10 text-lg md:text-xl lg:text-1xl xl:text-1xl">
-              World of Warcraft® and Blizzard Entertainment® are all trademarks
-              or registered trademarks of Blizzard Entertainment in the United
-              States and/or other countries. These terms and all related
-              materials, logos, and images are copyright © Blizzard
-              Entertainment. This site is in no way associated with or endorsed
-              by Blizzard Entertainment®.
+              {t("register.section-page.congrats.disclaimer")}
             </p>
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

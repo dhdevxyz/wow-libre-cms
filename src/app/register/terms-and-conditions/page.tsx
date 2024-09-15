@@ -1,19 +1,17 @@
 "use client";
 
 import PageCounter from "@/components/register/counter";
-import TitleWow from "@/components/title";
+import TitleWow from "@/components/utilities/serverTitle";
 import React, { ChangeEvent, useEffect, useState } from "react";
 import "../style.css";
 import { useRouter } from "next/navigation";
 import Swal from "sweetalert2";
 import NavbarMinimalist from "@/components/navbar-minimalist";
 import { useTranslation } from "react-i18next";
-import { useUserContext } from "@/context/UserContext";
 
 const TermsAndConditions = () => {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const router = useRouter();
-  const { user } = useUserContext();
 
   const [selectedOptions, setSelectedOptions] = useState({
     option1: false,
@@ -52,12 +50,6 @@ const TermsAndConditions = () => {
   const handleVolverClick = () => {
     router.back();
   };
-
-  useEffect(() => {
-    if (user) {
-      i18n.changeLanguage(user.language);
-    }
-  }, [user]);
 
   return (
     <div className="contenedor register">

@@ -16,8 +16,40 @@
             "position-nine": "Vender"
         }
     },
+    "navbar_authenticated": {
+        "sections": {
+            "position-one": "Inicio",
+            "position-two": "Hermandades",
+            "position-three": "Comunidad",
+            "position-four": "Banco",
+            "position-five": "Tienda"
+        },
+        "menu": {
+            "logged-in": {
+                "position-one": "Perfil",
+                "position-two": "Cuentas",
+                "position-three": "Salir"
+            },
+            "logged-out": {
+                "position-one": "Ingresar",
+                "position-two": "Registrarme"
+            }
+        }
+    },
+    "navbar-minimalist": {
+        "sections": {
+            "position-one": "Inicio",
+            "position-two": "Hermandades",
+            "position-three": "Banco",
+            "position-four": "Tienda",
+            "position-five": "Comunidad",
+            "position-six": "Soporte"
+        }
+    },
     "register": {
         "error": {
+            "birth-date-future": "La fecha de nacimiento no puede ser una fecha futura.",
+            "age-restriction": "Debes tener al menos 13 años para registrarte.",
             "country-empty": "Por favor, selecciona un país válido.",
             "birth-date-empty": "Por favor, ingresa una fecha de nacimiento válida.",
             "last-name-invalid": "Por favor, asegúrate de que tu apellido tenga entre 5 y 50 caracteres.",
@@ -29,15 +61,50 @@
             "terms-and-conditions-empty": "Por favor, acepta los terminos y condiciones.",
             "password-web-no-matches": "Las contraseñas no coinciden",
             "password-web-empty": "La contraseña no puede estar  vacía.",
-            "password-web-invalid-length": "La contraseña debe ser superior a 5 caracteres e inferior a 30 caracteres."
+            "password-web-invalid-length": "La contraseña debe ser superior a 5 caracteres e inferior a 30 caracteres.",
+            "username-empty": "El usuario no puede estar vacio",
+            "username-invalid-length": "El usuario debe ser superior a 5 caracteres e inferior a 20 caracteres.",
+            "password-game-no-matches": "Las contraseñas no coinciden",
+            "password-game-empty": "La contraseña no puede estar  vacía.",
+            "password-game-invalid-length": "La contraseña debe ser superior a 5 caracteres e inferior a 30 caracteres."
         },
         "title-server-sub-title": "Registrarme en",
         "section-page": {
+            "finaly-create-account-game": {
+                "title-server-message": "Protege tu cuenta y elige una contraseña segura para el juego.",
+                "password-txt": "Contraseña para el juego",
+                "password-placeholder": "Ingrese su contraseña",
+                "confirm-password-placeholder": "Ingrese de nuevo la Contraseña",
+                "confirm-password-txt": "Confirmar Contraseña",
+                "loading-sniper-txt": "Creando la cuenta.......",
+                "buttons": {
+                    "btn-primary": "Continuar",
+                    "btn-secondary": "Volver"
+                }
+            },
+            "account-game": {
+                "username-txt": "Usuario",
+                "username-placeholder": "Ingrese el nombre de usuario",
+                "title-server-message": "Este nombre será tu identidad pública. Podrás cambiarlo una vez de manera gratuita.",
+                "button": {
+                    "btn-primary": "Continuar",
+                    "btn-secondary": "Volver"
+                }
+            },
+            "congrats": {
+                "message-welcome-part-one": "Bienvenido a la comunidad",
+                "message-welcome-part-two": "Wow libre",
+                "body-welcome": "¡Te damos la más cordial bienvenida a nuestra comunidad! Estamos encantados de tenerte aquí. Estás a solo un paso de disfrutar de tus juegos favoritos de forma gratuita. ¡Termina de crear tu cuenta de juego y comienza a jugar ahora!",
+                "title-details": "Detalles de la cuenta creada:",
+                "btn-txt-action-primary": "Crear cuenta de juego",
+                "btn-txt-action-secondary": "Descargar Cliente",
+                "disclaimer": "Garantizamos la total seguridad de tus datos, y tú mantienes el control absoluto sobre tu información. Si en algún momento decides darte de baja, eliminaremos por completo todos tus datos de nuestro sistema."
+            },
             "register": {
                 "title-server-message": "¡Toda la información que nos compartas en Wow Libre es como el ingrediente especial de tu experiencia alucinante! Cuanto más sepamos, mejor podremos hacerte vivir algo realmente extraordinario. Así que, ¡compártenos esos datos y prepárate para algo fuera de serie!",
                 "input": {
-                    "select-country": "Seleccione un pais",
-                    "select-country-place-holder": "Seleccione el pais",
+                    "select-country": "País de residencia",
+                    "select-country-place-holder": "Selecciona el país",
                     "select-birthday": "Fecha de Nacimiento"
                 },
                 "button": {
@@ -111,5 +178,44 @@
         "old-password": "¿Olvidaste tu contraseña?",
         "create-account-message": "Crea tu cuenta",
         "create-account-question": "¿No tienes una cuenta? "
+    },
+    "account": {
+        "search-placeholder": "Buscar por usuario",
+        "service-unavailable": {
+            "message": "No es posible obtener el detalle de tus cuentas en este momento, por favor espera."
+        },
+        "service-available": {
+            "title-txt-message": "Administración de Cuentas de World of Warcraft",
+            "txt-message": "Gestiona y administra las cuentas de World of Warcraft de manera eficiente y segura."
+        },
+        "without-accounts": {
+            "title-message": "No hay cuentas registradas.",
+            "sub-title-message": "¡Crea una cuenta de juego ahora!",
+            "btn-text": " Crear una cuenta"
+        },
+        "with-accounts": {
+            "txt-create-account": "Crear cuenta",
+            "txt-delete-account": "Eliminar cuenta"
+        },
+        "column-table": {
+            "position-one": "id",
+            "position-two": "Usuario",
+            "position-three": "Expansion",
+            "position-four": "Online",
+            "position-five": "Login Fallidos",
+            "position-six": " Ultima Conexion",
+            "position-seven": "Ultima Ip",
+            "position-action": "Action",
+            "position-btn-admin": "Administrar"
+        }
+    },
+    "errors": {
+        "show-alert": {
+            "btn-primary": "Aceptar",
+            "btn-secondary": "Reportar Problema"
+        },
+        "message": {
+            "expiration-session": "¡Oops! Tu sesión ha expirado. Por favor, vuelve a autenticarte para continuar."
+        }
     }
 }

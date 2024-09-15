@@ -2,6 +2,7 @@ import { useUserContext } from "@/context/UserContext";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 const NavbarAuthenticated = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -12,6 +13,7 @@ const NavbarAuthenticated = () => {
   const router = useRouter();
   const [avatar, setAvatar] = useState("");
   const [loggin, setLoggin] = useState(false);
+  const { t } = useTranslation();
 
   useEffect(() => {
     setAvatar(user.avatar);
@@ -94,36 +96,36 @@ const NavbarAuthenticated = () => {
               </p>
             </a>
             <div className="hidden sm:ml-40 sm:block sm:mt-5">
-              <div className="flex space-x-9">
+              <div className="flex space-x-5">
                 <Link
                   className="rounded-md  px-4 py-3 text-x2 font-medium text-gray-300 hover:bg-gray-700 hover:text-white "
                   href="/"
                 >
-                  Inicio
+                  {t("navbar_authenticated.sections.position-one")}
                 </Link>
                 <Link
                   className="rounded-md  px-4 py-3 text-x2 font-medium text-gray-300 hover:bg-gray-700 hover:text-white "
                   href="/guild"
                 >
-                  Hermandades
+                  {t("navbar_authenticated.sections.position-two")}
                 </Link>
                 <Link
                   className="rounded-md  px-4 py-3 text-x2 font-medium text-gray-300 hover:bg-gray-700 hover:text-white "
                   href="/comunity"
                 >
-                  Comunidad
+                  {t("navbar_authenticated.sections.position-three")}
                 </Link>
                 <Link
                   className="rounded-md  px-4 py-3 text-x2 font-medium text-gray-300 hover:bg-gray-700 hover:text-white "
                   href="/bank"
                 >
-                  Banco
+                  {t("navbar_authenticated.sections.position-four")}
                 </Link>
                 <Link
                   className="rounded-md  px-4 py-3 text-x2 font-medium text-gray-300 hover:bg-gray-700 hover:text-white "
                   href="/store"
                 >
-                  Tienda
+                  {t("navbar_authenticated.sections.position-five")}
                 </Link>
               </div>
             </div>
@@ -134,7 +136,6 @@ const NavbarAuthenticated = () => {
               className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
             >
               <span className="absolute -inset-1.5"></span>
-              <span className="sr-only">View notifications</span>
               <svg
                 className="h-8 w-8"
                 fill="none"
@@ -173,7 +174,7 @@ const NavbarAuthenticated = () => {
                     <img
                       className="h-14 w-14 rounded-full"
                       src="/img/logos/logo.png"
-                      alt="Icon Profile Default"
+                      alt="WowLibre Logo"
                     />
                   )}
                 </button>
@@ -193,7 +194,7 @@ const NavbarAuthenticated = () => {
                         role="menuitem"
                         id="user-menu-item-0"
                       >
-                        Perfil
+                        {t("navbar_authenticated.menu.logged-in.position-one")}
                       </Link>
                       <Link
                         href="/accounts"
@@ -201,7 +202,7 @@ const NavbarAuthenticated = () => {
                         role="menuitem"
                         id="user-menu-item-0"
                       >
-                        Cuentas
+                        {t("navbar_authenticated.menu.logged-in.position-two")}
                       </Link>
                       <a
                         href="#"
@@ -210,7 +211,9 @@ const NavbarAuthenticated = () => {
                         id="user-menu-item-2"
                         onClick={handleLogout}
                       >
-                        Salir
+                        {t(
+                          "navbar_authenticated.menu.logged-in.position-three"
+                        )}
                       </a>
                     </div>
                   ) : (
@@ -221,7 +224,7 @@ const NavbarAuthenticated = () => {
                         role="menuitem"
                         id="user-menu-item-0"
                       >
-                        Ingresar
+                        {t("navbar_authenticated.menu.logged-in.position-one")}
                       </Link>
                       <Link
                         href="/register"
@@ -229,7 +232,7 @@ const NavbarAuthenticated = () => {
                         role="menuitem"
                         id="user-menu-item-0"
                       >
-                        Registrarme
+                        {t("navbar_authenticated.menu.logged-in.position-two")}
                       </Link>
                     </div>
                   )}
@@ -239,38 +242,6 @@ const NavbarAuthenticated = () => {
           </div>
         </div>
       </div>
-
-      {isMobileMenuOpen && (
-        <div className="sm:hidden" id="mobile-menu">
-          <div className="space-y-1 px-2 pb-3 pt-2">
-            <a
-              href="#"
-              className="block rounded-md px-4 py-3 text-x2 font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
-              aria-current="page"
-            >
-              Dashboard
-            </a>
-            <a
-              href="#"
-              className="block rounded-md px-4 py-3 text-x2 font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
-            >
-              Team
-            </a>
-            <a
-              href="#"
-              className="block rounded-md px-4 py-3 text-x2 font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
-            >
-              Projects
-            </a>
-            <a
-              href="#"
-              className="block rounded-md px-4 py-3 text-x2 font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
-            >
-              Calendar
-            </a>
-          </div>
-        </div>
-      )}
     </nav>
   );
 };

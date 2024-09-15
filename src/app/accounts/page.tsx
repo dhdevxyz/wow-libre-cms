@@ -12,6 +12,7 @@ import NavbarAuthenticated from "@/components/navbar-authenticated";
 import { InternalServerError } from "@/dto/generic";
 import { useRouter } from "next/navigation";
 import useAuth from "@/hook/useAuth";
+import { useTranslation } from "react-i18next";
 
 const LimitAccountRegister = 10;
 
@@ -24,7 +25,9 @@ const Page = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [dropdownVisible, setDropdownVisible] = useState<boolean>(false);
-  useAuth("Session expirada");
+  const { t } = useTranslation();
+
+  useAuth(t("errors.message.expiration-session"));
 
   useEffect(() => {
     if (!token) {
@@ -43,7 +46,7 @@ const Page = () => {
             Swal.fire({
               icon: "error",
               title: "Oops...",
-              text: "Su sesión ha expirado",
+              text: t("errors.message.expiration-session"),
               color: "white",
               background: "#0B1218",
               timer: 4000,
@@ -67,7 +70,7 @@ const Page = () => {
       }
     };
     fetchData();
-  }, []);
+  }, [accounts]);
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value);
@@ -93,10 +96,7 @@ const Page = () => {
                 alt="World of Warcraft Logo"
                 className="logo"
               />
-              <p className="mb-5">
-                No es posible obtener el detalle de tus cuentas en este momento,
-                por favor espera.
-              </p>
+              <p className="mb-5">{t("account.service-unavailable.message")}</p>
               <LoadingSpinner />
             </div>
           </div>
@@ -112,15 +112,14 @@ const Page = () => {
 
       <div className="text-center pt-20">
         <h1 className="text-4xl font-bold text-white">
-          Administración de Cuentas de World of Warcraft
+          {t("account.service-available.title-txt-message")}
         </h1>
         <p className="mt-4 text-xl text-gray-300 max-w-3xl mx-auto">
-          Gestiona y administra las cuentas de World of Warcraft de manera
-          eficiente y segura.
+          {t("account.service-available.txt-message")}
         </p>
       </div>
       {accounts && accounts.length > 0 ? (
-        <div className="relative overflow-x-auto shadow-md sm:rounded-lg pt-20">
+        <div className="relative  shadow-md sm:rounded-lg pt-20">
           <div className="flex items-center justify-between flex-column flex-wrap md:flex-row space-y-4 md:space-y-0 pb-4 bg-white dark:bg-midnight">
             <div className="relative inline-block text-left ml-2">
               <button
@@ -164,7 +163,7 @@ const Page = () => {
                         href="/register/username"
                         className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                       >
-                        Crear cuenta
+                        {t("account.with-accounts.txt-create-account")}
                       </Link>
                     </li>
                   </ul>
@@ -174,15 +173,12 @@ const Page = () => {
                     href="#"
                     className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
                   >
-                    Eliminar usuario
+                    {t("account.with-accounts.txt-delete-account")}
                   </a>
                 </div>
               </div>
             </div>
 
-            <label htmlFor="table-search-users" className="sr-only">
-              Search
-            </label>
             <div className="relative pr-2">
               <div className="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none ">
                 <svg
@@ -205,132 +201,134 @@ const Page = () => {
                 type="text"
                 id="table-search-users"
                 className="block p-2 ps-10 text-lg text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="Buscar por usuario"
+                placeholder={t("account.search-placeholder")}
                 value={searchTerm}
                 onChange={handleSearchChange}
               />
             </div>
           </div>
-
-          <table className="w-full text-lg text-left rtl:text-right text-gray-500 dark:text-gray-400">
-            <thead className="text-lg text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-              <tr>
-                <th scope="col" className="p-4">
-                  <div className="flex items-center"></div>
-                </th>
-                <th scope="col" className="px-6 py-3">
-                  Id
-                </th>
-                <th scope="col" className="px-6 py-3">
-                  Usuario
-                </th>
-                <th scope="col" className="px-6 py-3">
-                  Expansion
-                </th>
-                <th scope="col" className="px-6 py-3">
-                  Online
-                </th>
-                <th scope="col" className="px-6 py-3">
-                  Login Fallidos
-                </th>
-                <th scope="col" className="px-6 py-3">
-                  Ultima Conexion
-                </th>
-                <th scope="col" className="px-6 py-3">
-                  Ultima Ip
-                </th>
-                <th scope="col" className="px-6 py-3">
-                  Action
-                </th>
-              </tr>
-            </thead>
-
-            <tbody>
-              {filteredAccounts.map((row) => (
-                <tr
-                  key={row.id}
-                  className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
-                >
-                  <td className="w-4 p-4">
-                    <div className="flex items-center">
-                      <input
-                        id={`checkbox-table-search-${row.id}`}
-                        type="checkbox"
-                        className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                      />
-                      <label
-                        htmlFor={`checkbox-table-search-${row.id}`}
-                        className="sr-only"
-                      >
-                        checkbox
-                      </label>
-                    </div>
-                  </td>
-                  <td className="px-6 py-4">{row.id}</td>
-                  <td className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
-                    <img
-                      className="w-10 h-10 rounded-full"
-                      src={row.logo_expansion}
-                      alt="Icon Version Wow"
-                    />
-                    <div className="ps-3">
-                      <div className="text-base font-semibold">
-                        {row.username}
-                      </div>
-                      <div className="font-normal text-gray-500">
-                        {row.email}
-                      </div>
-                    </div>
-                  </td>
-                  <td className="px-6 py-4">{row.expansion}</td>
-                  <td className="px-6 py-4">
-                    <div className="flex items-center">
-                      <div
-                        className={`h-2.5 w-2.5 rounded-full ${
-                          row.online ? "bg-green-500" : "bg-red-500"
-                        } me-2`}
-                      ></div>
-                      {row.online ? "Online" : "Offline"}
-                    </div>
-                  </td>
-                  <td className="px-6 py-4 items-center">
-                    {row.failed_logins}
-                  </td>
-                  <td className="px-6 py-4">{row.join_date}</td>
-                  <td className="px-6 py-4">{row.last_ip}</td>
-                  <td className="px-6 py-4">
-                    <a
-                      className="font-medium text-blue-600 dark:text-blue-500 hover:underline cursor-pointer"
-                      onClick={() =>
-                        router.push(`/accounts/detail?id=${row.id}`)
-                      }
-                    >
-                      Administrar
-                    </a>
-                  </td>
+          <div className="max-h-[400px] overflow-y-auto">
+            <table className="w-full  text-lg text-left rtl:text-right text-gray-500 dark:text-gray-400">
+              <thead className="text-lg text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                <tr>
+                  <th scope="col" className="p-4">
+                    <div className="flex items-center"></div>
+                  </th>
+                  <th scope="col" className="px-6 py-3">
+                    {t("account.column-table.position-one")}
+                  </th>
+                  <th scope="col" className="px-6 py-3">
+                    {t("account.column-table.position-two")}
+                  </th>
+                  <th scope="col" className="px-6 py-3">
+                    {t("account.column-table.position-three")}
+                  </th>
+                  <th scope="col" className="px-6 py-3">
+                    {t("account.column-table.position-four")}
+                  </th>
+                  <th scope="col" className="px-6 py-3">
+                    {t("account.column-table.position-five")}
+                  </th>
+                  <th scope="col" className="px-6 py-3">
+                    {t("account.column-table.position-six")}
+                  </th>
+                  <th scope="col" className="px-6 py-3">
+                    {t("account.column-table.position-seven")}
+                  </th>
+                  <th scope="col" className="px-6 py-3">
+                    {t("account.column-table.position-action")}
+                  </th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+
+              <tbody>
+                {filteredAccounts.map((row) => (
+                  <tr
+                    key={row.id}
+                    className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+                  >
+                    <td className="w-4 p-4">
+                      <div className="flex items-center">
+                        <input
+                          id={`checkbox-table-search-${row.id}`}
+                          type="checkbox"
+                          className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                        />
+                        <label
+                          htmlFor={`checkbox-table-search-${row.id}`}
+                          className="sr-only"
+                        >
+                          checkbox
+                        </label>
+                      </div>
+                    </td>
+                    <td className="px-6 py-4">{row.id}</td>
+                    <td className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
+                      <img
+                        className="w-10 h-10 rounded-full"
+                        src={row.logo_expansion}
+                        alt="Icon Version Wow"
+                      />
+                      <div className="ps-3">
+                        <div className="text-base font-semibold">
+                          {row.username}
+                        </div>
+                        <div className="font-normal text-gray-500">
+                          {row.email}
+                        </div>
+                      </div>
+                    </td>
+                    <td className="px-6 py-4">{row.expansion}</td>
+                    <td className="px-6 py-4">
+                      <div className="flex items-center">
+                        <div
+                          className={`h-2.5 w-2.5 rounded-full ${
+                            row.online ? "bg-green-500" : "bg-red-500"
+                          } me-2`}
+                        ></div>
+                        {row.online ? "Online" : "Offline"}
+                      </div>
+                    </td>
+                    <td className="px-6 py-4 items-center">
+                      {row.failed_logins}
+                    </td>
+                    <td className="px-6 py-4">{row.join_date}</td>
+                    <td className="px-6 py-4">{row.last_ip}</td>
+                    <td className="px-6 py-4">
+                      <a
+                        className="font-medium text-blue-600 dark:text-blue-500 hover:underline cursor-pointer"
+                        onClick={() =>
+                          router.push(`/accounts/detail?id=${row.id}`)
+                        }
+                      >
+                        {t("account.column-table.position-btn-admin")}
+                      </a>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       ) : (
         <div className="empty-table-message items-center justify-center">
           <div className="content shadow-md sm:rounded-lg select-none">
             <img
               src="/img/profile/create-account.png"
-              alt="World of Warcraft Logo"
+              alt="wow-account-create"
               className="logo pb-10 pt-10 "
             />
             <p className="mb-10">
-              No hay cuentas registradas. <br />
-              ¡Crea una cuenta de juego ahora!
+              {t("account.without-accounts.title-message")}
+              <br />
+              {t("account.without-accounts.sub-title-message")}
             </p>
             {accounts && accounts.length <= 10 && (
               <Link
                 className="create-account-btn mb-2"
                 href="/register/username"
               >
-                Crear una cuenta
+                {t("account.without-accounts.btn-text")}
               </Link>
             )}
           </div>

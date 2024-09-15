@@ -2,7 +2,7 @@
 
 import React, { ChangeEvent, useEffect, useState } from "react";
 import "./style.css";
-import TitleWow from "@/components/title";
+import TitleWow from "@/components/utilities/serverTitle";
 import Select from "react-select";
 import PageCounter from "@/components/register/counter";
 import { useUserContext } from "@/context/UserContext";
@@ -68,6 +68,41 @@ const Register = () => {
         icon: "error",
         title: "Oops...",
         text: t("register.error.birth-date-empty"),
+        color: "white",
+        background: "#0B1218",
+        timer: 43500,
+      });
+      return;
+    }
+
+    const enteredDate = new Date(date);
+
+    if (enteredDate > new Date()) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: t("register.error.birth-date-future"),
+        color: "white",
+        background: "#0B1218",
+        timer: 43500,
+      });
+      return;
+    }
+
+    const today = new Date();
+    let age = today.getFullYear() - enteredDate.getFullYear();
+    const monthDifference = today.getMonth() - enteredDate.getMonth();
+    const dayDifference = today.getDate() - enteredDate.getDate();
+
+    if (monthDifference < 0 || (monthDifference === 0 && dayDifference < 0)) {
+      age--;
+    }
+
+    if (age < 13) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: t("register.error.age-restriction"),
         color: "white",
         background: "#0B1218",
         timer: 43500,
