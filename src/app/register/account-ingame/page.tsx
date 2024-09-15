@@ -95,7 +95,7 @@ const AccountIngame = () => {
           salt: Buffer.from(salt).toString("hex"),
           verifier: Buffer.from(verifier).toString("hex"),
         },
-        jwt
+        jwt || ""
       );
 
       router.push("/accounts");

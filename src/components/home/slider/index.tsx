@@ -89,7 +89,7 @@ const SliderHome = () => {
           servicios de profesiones.
         </p>
         <a
-          className="slider-introduction-other text-lg md:text-xl lg:text-1xl xl:text-2xl"
+          className="slider-introduction-other text-lg md:text-xl lg:text-1xl xl:text-2xl hover:text-gray-300"
           href="#"
         >
           Conoce otros guerreros!
@@ -128,6 +128,9 @@ const SliderHome = () => {
                   />
                 </div>
                 <div className="slider-text">
+                  <p className="slider-description font-bold text-3xl md:text-xl lg:text-2xl xl:text-2xl">
+                    Adquirir servicios
+                  </p>
                   <p className="slider-description text-2xl md:text-xl lg:text-2xl xl:text-2xl">
                     {service.description.length > 50
                       ? `${service.description.substring(0, 50)}...`
@@ -145,7 +148,7 @@ const SliderHome = () => {
                       </span>
                     ))}
                   </div>
-                  <div className="slider-contract mb-4">
+                  <div className="slider-contract ">
                     <button className="contract-button">Contactar</button>
                   </div>
                 </div>
