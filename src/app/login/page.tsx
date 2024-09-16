@@ -56,13 +56,13 @@ const Login = () => {
 
       Cookies.set("token", jwt, {
         expires: new Date(expirationDateUTC),
-        secure: true,
+        secure: false,
         sameSite: "Strict",
       });
 
       Cookies.set("refresh_token", refresh_token, {
         expires: new Date(expirationDateUTC),
-        secure: true,
+        secure: false,
         sameSite: "Strict",
       });
 
