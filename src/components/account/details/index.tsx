@@ -31,6 +31,7 @@ import useAuth from "@/hook/useAuth";
 import Professions from "@/components/professions";
 import AccountGuild from "@/components/account/guild";
 import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
+import { useTranslation } from "react-i18next";
 const AccountDetail = () => {
   const searchParams = useSearchParams();
 
@@ -47,8 +48,9 @@ const AccountDetail = () => {
   const [characters, setCharacters] = useState<Character[]>([]);
   const [selectedCharacter, setSelectedCharacter] = useState<Character>();
   const [avatar, setAvatar] = useState("https://via.placeholder.com/150");
+  const { t } = useTranslation();
 
-  useAuth("");
+  useAuth(t("errors.message.expiration-session"));
 
   useEffect(() => {
     const fetchData = async () => {

@@ -12,6 +12,7 @@ import { BenefitsModel } from "@/model/benefit-model";
 import { benefitsActive } from "@/api/benefit";
 import Swal from "sweetalert2";
 import DisplayMoney from "@/components/money";
+import { useUserContext } from "@/context/UserContext";
 
 const GuildDetail = () => {
   const guildId = useParams<{ id: string }>();
@@ -22,6 +23,7 @@ const GuildDetail = () => {
   const [loggin, setLoggin] = useState(false);
   const [benefits, setBenefits] = useState<BenefitsModel[]>([]);
   const router = useRouter();
+  const { user } = useUserContext();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -51,7 +53,7 @@ const GuildDetail = () => {
       }
     };
     fetchData();
-    setLoggin(token != null);
+    setLoggin(token != null && user.logged_in);
   }, [token]);
 
   const openModal = () => {
@@ -399,7 +401,7 @@ const GuildDetail = () => {
           </div>
         </div>
       </section>
-      {token && (
+      {token && loggin && (
         <GuildCharacter
           isOpen={isModalOpen}
           token={token}

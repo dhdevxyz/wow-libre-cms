@@ -3,9 +3,22 @@
 import NavbarAuthenticated from "@/components/navbar-authenticated";
 import Plans from "@/components/plan";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import Cookies from "js-cookie";
+import { useUserContext } from "@/context/UserContext";
+import BankCharacter from "@/components/bank_character";
 
 const Bank = () => {
+  const token = Cookies.get("token");
+  const { user } = useUserContext();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const [loggin, setLoggin] = useState(false);
+
+  useEffect(() => {
+    setLoggin(token != null && user.logged_in);
+  }, [token]);
+
   const pricingPlans = [
     {
       name: "Inicial",
@@ -52,6 +65,14 @@ const Bank = () => {
       buttonLink: "#",
     },
   ];
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
 
   return (
     <div className="">
@@ -100,12 +121,25 @@ const Bank = () => {
                 </ul>
               </div>
               <div className="mt-10">
-                <Link
-                  href="#plans"
-                  className="px-6 py-3 bg-blue-500 hover:bg-blue-600 rounded-lg text-white font-semibold mb-4"
-                >
-                  Solicitar prestamo
-                </Link>
+                {loggin ? (
+                  <>
+                    <Link
+                      href="#plans"
+                      onClick={openModal}
+                      className="px-6 py-3 bg-blue-500 hover:bg-blue-600 rounded-lg text-white font-semibold mb-4"
+                    >
+                      Solicitar prestamo
+                    </Link>
+                  </>
+                ) : (
+                  <Link
+                    href="/register"
+                    className="px-6 py-3 bg-blue-500 hover:bg-blue-600 rounded-lg text-white font-semibold mb-4"
+                  >
+                    Registrarme
+                  </Link>
+                )}
+
                 <p className="text-lg pt-4 break-words">
                   Los préstamos tienen intereses. Consulta la sección de
                   "Clientes en Mora" si no puedes pagar.
@@ -113,17 +147,17 @@ const Bank = () => {
               </div>
             </div>
             <div className="grid grid-cols-2 gap-4 lg:gap-8">
-              <div className="relative h-80 lg:h-auto">
+              <div className="relative h-80 lg:h-auto select-none">
                 <img
-                  src="https://gamepedia.cursecdn.com/wowpedia/4/4e/Trade_Prince_Gallywix_HS.jpg"
-                  alt="Envíos"
+                  src="/img/bank/globlin-gold-bank.webp"
+                  alt="Globin-loan"
                   className="object-cover rounded-xl w-full h-full transition duration-300 hover:opacity-75"
                 />
               </div>
-              <div className="relative h-80 lg:h-auto">
+              <div className="relative h-80 lg:h-auto select-none">
                 <img
-                  src="https://i.pinimg.com/736x/57/df/b9/57dfb96d59eedfc1dadcf4dff8be90be.jpg"
-                  alt="Disney"
+                  src="/img/bank/globlin-gold-bank-loan.webp"
+                  alt="Globin-loan-bank"
                   className="object-cover rounded-xl w-full h-full transition duration-300 hover:opacity-75"
                 />
               </div>
@@ -263,14 +297,14 @@ const Bank = () => {
             <div className="relative">
               <img
                 className="absolute inset-x-0 bottom-0 -mb-48 -translate-x-1/2 left-1/2"
-                src="https://cdn.rareblocks.xyz/collection/celebration/images/team/1/blob-shape.svg"
-                alt=""
+                src="/img/bank/blob-shape.svg"
+                alt="goblin_ground"
               />
 
               <img
                 className="relative w-full xl:max-w-lg xl:mx-auto 2xl:origin-bottom 2xl:scale-110"
-                src="https://i.postimg.cc/L54MQ0BL/67cfced5c4ed43d08ed793ce587fc7c2-removebg-preview.png"
-                alt=""
+                src="/img/bank/globin-bamboozled.webp"
+                alt="goblin_ground_bamboozled"
               />
             </div>
           </div>
@@ -420,6 +454,13 @@ const Bank = () => {
       <section id="plans">
         <Plans pricingPlans={pricingPlans} />
       </section>
+      {token && loggin && (
+        <BankCharacter
+          isOpen={isModalOpen}
+          token={token}
+          onClose={closeModal}
+        />
+      )}
     </div>
   );
 };

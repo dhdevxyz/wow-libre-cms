@@ -37,35 +37,37 @@ const Footer = () => {
             <div className="flex flex-col items-center sm:items-start">
               <div className="flex justify-center sm:justify-start space-x-6">
                 <a
-                  href="#"
+                  href="https://www.facebook.com/WowLibre/"
+                  target="_blank"
                   className="text-gray-400 hover:text-gray-300 transition duration-150 ease-in-out"
                 >
                   <span className="sr-only">Facebook</span>
                   <img
                     className="h-8 w-8"
-                    src="../img/footer/facebook.png"
+                    src="../img/footer/facebook.webp"
                     alt="Facebook Icon"
                   />
                 </a>
                 <a
-                  href="#"
+                  href="https://www.tiktok.com/@wowlibre?lang=es"
                   className="text-gray-400 hover:text-gray-300 transition duration-150 ease-in-out"
                 >
                   <span className="sr-only">Instagram</span>
                   <img
                     className="h-8 w-8"
-                    src="../img/footer/instagram.png"
+                    src="../img/footer/instagram.webp"
                     alt="Instagram Icon"
                   />
                 </a>
                 <a
-                  href="#"
+                  href="https://chat.whatsapp.com/KSfPkvHWgP66dFx8DvrVDx"
+                  target="_blank"
                   className="text-gray-400 hover:text-gray-300 transition duration-150 ease-in-out"
                 >
                   <span className="sr-only">WhatsApp</span>
                   <img
                     className="h-8 w-8"
-                    src="../img/footer/whatsapp.png"
+                    src="../img/footer/whatsapp.webp"
                     alt="WhatsApp Icon"
                   />
                 </a>

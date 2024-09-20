@@ -25,7 +25,7 @@ const DropDown = ({ user, clearUserData }: UserContextProps) => {
         <ul className="absolute w-64 right-0 bg-midnight rounded-lg shadow-md py-10 px-5 box-shadow-server">
           <li>
             <Link
-              className="block px-5 py-2 mb-5 text-white hoover-text-yellow  text-sm  sm:text-2xl md:text-2xl lg:text-2xl xl:text-2xl"
+              className="block px-5 py-2 mb-5 text-white hoover-text-yellow  text-sm  sm:text-2xl md:text-2xl lg:text-2xl xl:text-2xl font-serif"
               href="/profile"
             >
               Perfil
@@ -33,7 +33,7 @@ const DropDown = ({ user, clearUserData }: UserContextProps) => {
           </li>
           <li>
             <Link
-              className="block px-5 py-2 mb-5 text-white hoover-text-yellow  text-sm  sm:text-2xl md:text-2xl lg:text-2xl xl:text-2xl"
+              className="block px-5 py-2 mb-5 text-white hoover-text-yellow  text-sm  sm:text-2xl md:text-2xl lg:text-2xl xl:text-2xl font-serif"
               href="/accounts"
             >
               Cuentas
@@ -42,7 +42,7 @@ const DropDown = ({ user, clearUserData }: UserContextProps) => {
           <li>
             <a
               onClick={handleLogout}
-              className="block px-4 py-2 text-white hoover-text-yellow cursor-pointer text-sm sm:text-2xl md:text-2xl lg:text-2xl xl:text-2xl"
+              className="block px-4 py-2 text-white hoover-text-yellow cursor-pointer text-sm sm:text-2xl md:text-2xl lg:text-2xl xl:text-2xl font-serif"
             >
               Salir
             </a>

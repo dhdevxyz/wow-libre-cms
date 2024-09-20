@@ -87,9 +87,9 @@ const NavbarAuthenticated = () => {
               href="/"
             >
               <img
-                className="h-16 w-auto mt-2"
+                className="w-16 h-16 mt-2"
                 src="/img/logos/logo.png"
-                alt="Your Company"
+                alt="WowLibreLogo"
               />
               <p className="text-gray-300 ml-5  title-server mt-9 text-4xl">
                 Wow Libre
@@ -98,31 +98,31 @@ const NavbarAuthenticated = () => {
             <div className="hidden sm:ml-40 sm:block sm:mt-5">
               <div className="flex space-x-5">
                 <Link
-                  className="rounded-md  px-4 py-3 text-x2 font-medium text-gray-300 hover:bg-gray-700 hover:text-white "
+                  className="rounded-md  px-4 py-3 text-x2 font-medium text-gray-300 hover:bg-gray-700 hover:text-white font-serif "
                   href="/"
                 >
                   {t("navbar_authenticated.sections.position-one")}
                 </Link>
                 <Link
-                  className="rounded-md  px-4 py-3 text-x2 font-medium text-gray-300 hover:bg-gray-700 hover:text-white "
+                  className="rounded-md  px-4 py-3 text-x2 font-medium text-gray-300 hover:bg-gray-700 hover:text-white font-serif"
                   href="/guild"
                 >
                   {t("navbar_authenticated.sections.position-two")}
                 </Link>
                 <Link
-                  className="rounded-md  px-4 py-3 text-x2 font-medium text-gray-300 hover:bg-gray-700 hover:text-white "
+                  className="rounded-md  px-4 py-3 text-x2 font-medium text-gray-300 hover:bg-gray-700 hover:text-white font-serif"
                   href="/comunity"
                 >
                   {t("navbar_authenticated.sections.position-three")}
                 </Link>
                 <Link
-                  className="rounded-md  px-4 py-3 text-x2 font-medium text-gray-300 hover:bg-gray-700 hover:text-white "
+                  className="rounded-md  px-4 py-3 text-x2 font-medium text-gray-300 hover:bg-gray-700 hover:text-white font-serif"
                   href="/bank"
                 >
                   {t("navbar_authenticated.sections.position-four")}
                 </Link>
                 <Link
-                  className="rounded-md  px-4 py-3 text-x2 font-medium text-gray-300 hover:bg-gray-700 hover:text-white "
+                  className="rounded-md  px-4 py-3 text-x2 font-medium text-gray-300 hover:bg-gray-700 hover:text-white font-serif"
                   href="/store"
                 >
                   {t("navbar_authenticated.sections.position-five")}

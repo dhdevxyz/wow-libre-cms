@@ -20,12 +20,12 @@ const Page = () => {
   const router = useRouter();
   const { clearUserData } = useUserContext();
   const token = Cookies.get("token");
+  const { t } = useTranslation();
 
   const [accounts, setAccounts] = useState<AccountsModel[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [dropdownVisible, setDropdownVisible] = useState<boolean>(false);
-  const { t } = useTranslation();
 
   useAuth(t("errors.message.expiration-session"));
 
@@ -61,7 +61,7 @@ const Page = () => {
           Swal.fire({
             icon: "error",
             title: "Oops...",
-            text: "Por favor intente más tarde, el servicio no se encuentra disponible.",
+            text: `${error.message}`,
             color: "white",
             background: "#0B1218",
             timer: 4500,
@@ -89,14 +89,16 @@ const Page = () => {
       <div className="contenedor mx-auto">
         <NavbarAuthenticated />
         <div className="flex items-center justify-center mt-5">
-          <div className="empty-table-message mb-4">
-            <div className="content mb-48">
+          <div className="empty-table-message mb-4 select-none">
+            <div className="content mb-30 mt-16">
               <img
-                src="/img/profile/create-account.png"
+                src="/img/profile/create-account.webp"
                 alt="World of Warcraft Logo"
                 className="logo"
               />
-              <p className="mb-5">{t("account.service-unavailable.message")}</p>
+              <p className="mb-5 font-serif">
+                {t("account.service-unavailable.message")}
+              </p>
               <LoadingSpinner />
             </div>
           </div>
@@ -110,7 +112,7 @@ const Page = () => {
     <div className="contenedor dark h-screen-md">
       <NavbarAuthenticated />
 
-      <div className="text-center pt-20">
+      <div className="text-center pt-40">
         <h1 className="text-4xl font-bold text-white">
           {t("account.service-available.title-txt-message")}
         </h1>
@@ -119,7 +121,7 @@ const Page = () => {
         </p>
       </div>
       {accounts && accounts.length > 0 ? (
-        <div className="relative  shadow-md sm:rounded-lg pt-20">
+        <div className="relative  shadow-md sm:rounded-lg pt-5">
           <div className="flex items-center justify-between flex-column flex-wrap md:flex-row space-y-4 md:space-y-0 pb-4 bg-white dark:bg-midnight">
             <div className="relative inline-block text-left ml-2">
               <button
@@ -314,7 +316,7 @@ const Page = () => {
         <div className="empty-table-message items-center justify-center">
           <div className="content shadow-md sm:rounded-lg select-none">
             <img
-              src="/img/profile/create-account.png"
+              src="/img/profile/create-account.webp"
               alt="wow-account-create"
               className="logo pb-10 pt-10 "
             />

@@ -70,7 +70,7 @@ const AccountIngame = () => {
       Swal.fire({
         icon: "error",
         title: "Oops...",
-        text: t("register.errors.password-game-invalid-length"),
+        text: t("register.error.password-game-invalid-length"),
         color: "white",
         background: "#0B1218",
         timer: 43500,

@@ -16,7 +16,7 @@ const NavbarMinimalist = () => {
           href="/"
         >
           <img
-            className="max-w-[15%] md:max-w-[10%]"
+            className="max-w-[10%] md:max-w-[6%]"
             src="/img/logos/logo.png"
             alt="WowLibre Logo"
           />
@@ -39,37 +39,37 @@ const NavbarMinimalist = () => {
         } md:block`}
       >
         <Link
-          className="flex items-center text-white text-2xl md:text-3xl hover:bg-gray-700 px-6 py-3 rounded-lg transition duration-300"
+          className="flex items-center text-white text-2xl md:text-3xl hover:bg-gray-700 px-6 py-3 rounded-lg transition duration-300 font-serif"
           href="/"
         >
           <p className="">{t("navbar-minimalist.sections.position-one")}</p>
         </Link>
         <Link
-          className="flex items-center text-white text-2xl md:text-3xl hover:bg-gray-700 px-6 py-3 rounded-lg transition duration-300"
+          className="flex items-center text-white text-2xl md:text-3xl hover:bg-gray-700 px-6 py-3 rounded-lg transition duration-300 font-serif"
           href="/"
         >
           <p className="">{t("navbar-minimalist.sections.position-two")}</p>
         </Link>
         <Link
-          className="flex items-center text-white text-2xl md:text-3xl hover:bg-gray-700 px-6 py-3 rounded-lg transition duration-300"
+          className="flex items-center text-white text-2xl md:text-3xl hover:bg-gray-700 px-6 py-3 rounded-lg transition duration-300 font-serif"
           href="/"
         >
           <p className="">{t("navbar-minimalist.sections.position-three")}</p>
         </Link>
         <Link
-          className="flex items-center text-white text-2xl md:text-3xl hover:bg-gray-700 px-6 py-3 rounded-lg transition duration-300"
+          className="flex items-center text-white text-2xl md:text-3xl hover:bg-gray-700 px-6 py-3 rounded-lg transition duration-300 font-serif"
           href="/"
         >
           <p className="">{t("navbar-minimalist.sections.position-four")}</p>
         </Link>
         <Link
-          className="flex items-center text-white text-2xl md:text-3xl hover:bg-gray-700 px-6 py-3 rounded-lg transition duration-300"
+          className="flex items-center text-white text-2xl md:text-3xl hover:bg-gray-700 px-6 py-3 rounded-lg transition duration-300 font-serif"
           href="/"
         >
           <p className="">{t("navbar-minimalist.sections.position-four")}</p>
         </Link>
         <Link
-          className="flex items-center text-white text-2xl md:text-3xl hover:bg-gray-700 px-6 py-3 rounded-lg transition duration-300"
+          className="flex items-center text-white text-2xl md:text-3xl hover:bg-gray-700 px-6 py-3 rounded-lg transition duration-300 font-serif"
           href="/help"
         >
           <p className="">Support</p>
