@@ -1,104 +1,130 @@
-import { BASE_URL_CHARACTER } from "@/configs/configs";
+import { BASE_URL_AUTH, BASE_URL_CHARACTER } from "@/configs/configs";
 import { GenericResponseDto } from "@/dto/generic";
-import { GuildData, GuildsDto } from "@/model/model";
+import { BankPlans, Characters } from "@/model/model";
 import { v4 as uuidv4 } from "uuid";
 
-export const getGuilds = async (
-  page: number = 0,
-  size: number = 10
-): Promise<GuildsDto> => {
-  try {
-    const transactionId = uuidv4();
+export const potentialClients = async (
+  jwt: string,
+  accountId: number
+): Promise<Characters> => {
+  const transactionId = uuidv4();
 
+  try {
     const response = await fetch(
-      `${BASE_URL_CHARACTER}/api/guilds?size=${size}&page=${page}`,
+      `${BASE_URL_CHARACTER}/api/bank?account_id=${accountId}`,
       {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-          transaction_id: transactionId,
-        },
-      }
-    );
-
-    const responseData: GenericResponseDto<GuildsDto> = await response.json();
-
-    if (response.ok && response.status === 200) {
-      return responseData.data;
-    } else {
-      const errorMessage = await response.text();
-      throw new Error(`Error [${response.status}]: ${errorMessage}`);
-    }
-  } catch (error: any) {
-    console.error(`Error: ${error.message}`, error);
-    throw new Error(
-      `It was not possible to obtain the guilds: ${error.message}`
-    );
-  }
-};
-
-export const getGuild = async (guildId: string): Promise<GuildData> => {
-  try {
-    const transactionId = uuidv4();
-
-    const response = await fetch(
-      `${BASE_URL_CHARACTER}/api/guilds/${guildId}`,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
+          Authorization: "Bearer " + jwt,
           transaction_id: transactionId,
         },
       }
     );
 
     if (response.ok && response.status === 200) {
-      const responseData: GenericResponseDto<GuildData> = await response.json();
-
+      const responseData: GenericResponseDto<Characters> =
+        await response.json();
       return responseData.data;
     } else {
       const errorGeneric: GenericResponseDto<void> = await response.json();
-
-      throw new Error(
-        `${errorGeneric.message} - Transaction Id: ${transactionId}`
-      );
+      throw new Error(`${errorGeneric.message}`);
     }
   } catch (error: any) {
-    throw new Error(
-      `It was not possible to obtain the guilds: ${error.message}`
-    );
+    if (error instanceof TypeError && error.message === "Failed to fetch") {
+      throw new Error(`Please try again later, services are not available.`);
+    } else if (error instanceof Error) {
+      throw error;
+    } else {
+      throw new Error(
+        `Unknown error occurred - TransactionId: ${transactionId}`
+      );
+    }
   }
 };
 
-export const attach = async (
-  guildId: string,
-  accountId: string,
-  characterId: string,
-  token: string
+export const applyForBankLoan = async (
+  planId: number,
+  accountId: number,
+  characterId: number,
+  token: string,
+  language: string
 ): Promise<void> => {
-  try {
-    const transactionId = uuidv4();
+  const requestBody: {
+    character_id: number;
+    account_id: number;
+    plan_id: number;
+  } = {
+    character_id: characterId,
+    account_id: accountId,
+    plan_id: planId,
+  };
+  const transactionId = uuidv4();
 
+  try {
+    const response = await fetch(`${BASE_URL_CHARACTER}/api/bank`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        transaction_id: transactionId,
+        "Accept-Language": language,
+        Authorization: "Bearer " + token,
+      },
+      body: JSON.stringify(requestBody),
+    });
+
+    if (response.ok && response.status === 200) {
+      const responseData: GenericResponseDto<void> = await response.json();
+      return responseData.data;
+    } else {
+      const errorGeneric: GenericResponseDto<void> = await response.json();
+      throw new Error(`${errorGeneric.message}`);
+    }
+  } catch (error: any) {
+    if (error instanceof TypeError && error.message === "Failed to fetch") {
+      throw new Error(`Please try again later, services are not available.`);
+    } else if (error instanceof Error) {
+      throw error;
+    } else {
+      throw new Error(
+        `Unknown error occurred - TransactionId: ${transactionId}`
+      );
+    }
+  }
+};
+
+export const getPlans = async (language: string): Promise<BankPlans[]> => {
+  const transactionId = uuidv4();
+
+  try {
     const response = await fetch(
-      `${BASE_URL_CHARACTER}/api/guilds/${guildId}/attach?account_id=${accountId}&character_id=${characterId}`,
+      `${BASE_URL_AUTH}/api/resources/bank/plans?language=${language}`,
       {
-        method: "PUT",
+        method: "GET",
         headers: {
           "Content-Type": "application/json",
           transaction_id: transactionId,
-          Authorization: "Bearer " + token,
         },
       }
     );
 
-    if (response.ok && response.status === 204) {
-      return;
+    if (response.ok && response.status === 200) {
+      const responseData: GenericResponseDto<BankPlans[]> =
+        await response.json();
+      return responseData.data;
     } else {
-      const responseData: GenericResponseDto<void> = await response.json();
-      throw new Error(`${responseData.message}`);
+      const errorGeneric: GenericResponseDto<void> = await response.json();
+      throw new Error(`${errorGeneric.message}`);
     }
   } catch (error: any) {
-    console.error(`Error: ${error.message}`, error);
-    throw new Error(` ${error.message}`);
+    if (error instanceof TypeError && error.message === "Failed to fetch") {
+      throw new Error(`Please try again later, services are not available.`);
+    } else if (error instanceof Error) {
+      throw error;
+    } else {
+      throw new Error(
+        `Unknown error occurred - TransactionId: ${transactionId}`
+      );
+    }
   }
 };

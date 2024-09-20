@@ -217,5 +217,96 @@
         "message": {
             "expiration-session": "¡Oops! Tu sesión ha expirado. Por favor, vuelve a autenticarte para continuar."
         }
+    },
+    "bank": {
+        "btn": {
+            "primary": "Solicitar prestamo",
+            "secondary": "Registrarme"
+        },
+        "title": "¡Domina Azeroth con un Préstamo de Oro Exclusivo!",
+        "description": "Eleva tu aventura en Azeroth a un nivel épico con nuestro Préstamo de Oro. Consigue la financiación necesaria para potenciar tu equipo, expandir tu colección de tesoros, o simplemente disfrutar al máximo de las mejores experiencias del juego.",
+        "benefits": {
+            "primary": "Solicita tu préstamo y recibe tu dinero hoy mismo."
+        },
+        "disclaimer": "Los préstamos tienen intereses. Consulta la sección de 'Guia de prestamos' para conocer mas los detalles.",
+        "collection_guide": {
+            "title": "Guía de Cobro en Azeroth",
+            "sub_title": "¿Cómo ",
+            "sub_title_two": "Funciona?",
+            "guide_steps": {
+                "primary": {
+                    "title": "Notificaciones de Pago",
+                    "description": "Recibirás notificaciones en el juego para recordarte cuando tu préstamo esté próximo a vencer."
+                },
+                "secondary": {
+                    "title": "Período de Gracia",
+                    "description": "Si no pagas a tiempo, tendrás un período de gracia de 15 días para ponerte al día antes de que se apliquen sanciones."
+                },
+                "tertiary": {
+                    "title": "Consecuencias de Incumplimiento",
+                    "description": "Si no realizas el pago, el sistema deducirá automáticamente el oro adeudado de tus cuentas. En caso de no contar con suficiente oro, se descontarán objetos del juego de valor equivalente."
+                }
+            }
+        },
+        "loan_guide": {
+            "title": "Guía de Préstamos",
+            "sub_title": "Obtén el Plan de Préstamos Ideal",
+            "complementary_subtitle": "Elige el que mejor se ajuste a tus necesidades",
+            "guide_steps": {
+                "primary": {
+                    "title": "Requisitos",
+                    "requirements": {
+                        "primary": "Tiempo de juego minimo 23 horas",
+                        "secondary": "Ser nivel 80"
+                    }
+                },
+                "secondary": {
+                    "title": "Selecciona el Plan Ideal para Ti",
+                    "description": "Elige el plan perfecto que se adapte a tus necesidades y maximiza tu experiencia."
+                },
+                "tertiary": {
+                    "title": "¡Tu Paquete de Oro Está en Camino!",
+                    "description": "En unos minutos, revisa el correo en el juego para recibir tu valioso paquete."
+                },
+                "quaternary": {
+                    "title": "¡Recuerda el pago oportuno!",
+                    "description": "Disfruta del oro recién llegado en tu juego, sin descuidar la fecha del pago oportuno."
+                }
+            }
+        },
+        "plans": {
+            "title": "¡Descubre Nuestros Planes!",
+            "subtitle": "Precios claros y ajustados a tus necesidades. ¡Transparencia total para que elijas lo mejor para tu cuenta!"
+        },
+        "our_clients": {
+            "title": "Nuestros clientes",
+            "subtitle": "Testimonios de nuestros clientes",
+            "testimony": {
+                "title": "¡Hola! 👋",
+                "sub_title": "Soy Fizzle Glint",
+                "primary_paragraph": "En una lejana región de Azeroth, hubo una vez un aventurero llamado Fizzle que, tentado por una oferta de oro fácil, decidió tomar un préstamo sin pensarlo dos veces. Aunque el oro prometía mejorar su equipo y llenar sus cofres de tesoros, pronto descubrió que las deudas y las promesas incumplidas se convirtieron en un peso abrumador.",
+                "secondary_paragraph": "Fizzle aprendió la lección de la manera más dura: a veces, la codicia puede llevarnos por caminos oscuros. En lugar de aceptar el oro sin considerar las consecuencias, es mejor evaluar cuidadosamente nuestras opciones y buscar caminos que no nos lleven a la desesperación.",
+                "tertiary_paragraph": "Así que, antes de tomar una decisión, piénsalo bien. El oro puede brillar, pero la libertad y la paz mental son aún más valiosas.",
+                "text_link": "Tienes dudas? ",
+                "sub_text_link": " Visitanos en ",
+                "facebook_text_link": " Facebook"
+            }
+        },
+        "bank_characters": {
+            "title": "Seleccion de personajes",
+            "description": "Elige el personaje para solicitar el préstamo. Si algunos personajes no aparecen, es porque no cumplen con los requisitos del préstamo.",
+            "select-account": "Selecciona una cuenta",
+            "select-character": "Selecciona un personaje",
+            "success-loan": "¡Hehe, has conseguido tu oro! Pero recuerda, amigo, este trato me llena los bolsillos también. ¡No olvides tus pagos o el interés me hará sonreír aún más!",
+            "btn": {
+                "primary": "Aceptar",
+                "loading": "Solicitando Prestamo...",
+                "secondary": "Cancelar"
+            }
+        },
+        "errors": {
+            "fails_to_obtain_accounts": "¡Ups! Estamos teniendo problemas para obtener tus cuentas. ¡Por favor, intenta de nuevo más tarde!",
+            "fails_to_obtain_characters":"¡Ups! Estamos teniendo problemas para obtener tus personajes. ¡Por favor, intenta de nuevo más tarde!"
+        }
     }
 }

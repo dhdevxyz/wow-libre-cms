@@ -1,171 +1,169 @@
 {
-  
-        "navbar": {
-            "language": "Selecione seu idioma",
-            "search": {
-                "place-holder": "Digite o que você deseja encontrar"
-            },
-            "sections": {
-                "position-one": "Guildas",
-                "position-two": "Comunidade",
-                "position-three": "Banco",
-                "position-four": "Loja",
-                "position-five": "Ajuda",
-                "position-six": "Entrar",
-                "position-seven": "Crie sua Conta",
-                "position-eight": "Minhas Compras",
-                "position-nine": "Vender"
-            }
+    "navbar": {
+        "language": "Selecione seu idioma",
+        "search": {
+            "place-holder": "Digite o que você deseja encontrar"
         },
-        "navbar_authenticated": {
-            "sections": {
-                "position-one": "Início",
-                "position-two": "Guildas",
-                "position-three": "Comunidade",
-                "position-four": "Banco",
-                "position-five": "Loja"
+        "sections": {
+            "position-one": "Guildas",
+            "position-two": "Comunidade",
+            "position-three": "Banco",
+            "position-four": "Loja",
+            "position-five": "Ajuda",
+            "position-six": "Entrar",
+            "position-seven": "Crie sua Conta",
+            "position-eight": "Minhas Compras",
+            "position-nine": "Vender"
+        }
+    },
+    "navbar_authenticated": {
+        "sections": {
+            "position-one": "Início",
+            "position-two": "Guildas",
+            "position-three": "Comunidade",
+            "position-four": "Banco",
+            "position-five": "Loja"
+        },
+        "menu": {
+            "logged-in": {
+                "position-one": "Perfil",
+                "position-two": "Contas",
+                "position-three": "Sair"
             },
-            "menu": {
-                "logged-in": {
-                    "position-one": "Perfil",
-                    "position-two": "Contas",
-                    "position-three": "Sair"
-                },
-                "logged-out": {
-                    "position-one": "Entrar",
-                    "position-two": "Cadastrar"
+            "logged-out": {
+                "position-one": "Entrar",
+                "position-two": "Cadastrar"
+            }
+        }
+    },
+    "navbar-minimalist": {
+        "sections": {
+            "position-one": "Início",
+            "position-two": "Guildas",
+            "position-three": "Banco",
+            "position-four": "Loja",
+            "position-five": "Comunidade",
+            "position-six": "Suporte"
+        }
+    },
+    "register": {
+        "error": {
+            "birth-date-future": "A data de nascimento não pode ser uma data futura.",
+            "age-restriction": "Você deve ter pelo menos 13 anos para se registrar.",
+            "country-empty": "Por favor, selecione um país válido.",
+            "birth-date-empty": "Por favor, insira uma data de nascimento válida.",
+            "last-name-invalid": "Certifique-se de que seu sobrenome tenha entre 5 e 50 caracteres.",
+            "first-name-invalid": "Certifique-se de que seu nome tenha entre 5 e 50 caracteres.",
+            "email-empty": "Por favor, insira seu e-mail.",
+            "email-invalid": "Por favor, insira um endereço de e-mail válido.",
+            "phone-empty": "Por favor, insira um número de contato.",
+            "email-exist": "O e-mail informado já está registrado. Por favor, insira outro e-mail.",
+            "terms-and-conditions-empty": "Por favor, aceite os termos e condições.",
+            "password-web-no-matches": "As senhas não coincidem",
+            "password-web-empty": "A senha não pode estar vazia.",
+            "password-web-invalid-length": "A senha deve ter mais de 5 caracteres e menos de 30 caracteres.",
+            "username-empty": "O nome de usuário não pode estar vazio",
+            "username-invalid-length": "O nome de usuário deve ter mais de 5 caracteres e menos de 20 caracteres.",
+            "password-game-no-matches": "As senhas não coincidem",
+            "password-game-empty": "A senha não pode estar vazia.",
+            "password-game-invalid-length": "A senha deve ter mais de 5 caracteres e menos de 30 caracteres."
+        },
+        "title-server-sub-title": "Registre-se em",
+        "section-page": {
+            "finaly-create-account-game": {
+                "title-server-message": "Proteja sua conta e escolha uma senha segura para o jogo.",
+                "password-txt": "Senha do Jogo",
+                "password-placeholder": "Digite sua senha",
+                "confirm-password-placeholder": "Reinsira a Senha",
+                "confirm-password-txt": "Confirmar Senha",
+                "loading-sniper-txt": "Criando a conta.......",
+                "button": {
+                    "btn-primary": "Continuar",
+                    "btn-secondary": "Voltar"
                 }
-            }
-        },
-        "navbar-minimalist": {
-            "sections": {
-                "position-one": "Início",
-                "position-two": "Guildas",
-                "position-three": "Banco",
-                "position-four": "Loja",
-                "position-five": "Comunidade",
-                "position-six": "Suporte"
-            }
-        },
-        "register": {
-            "error": {
-                "birth-date-future": "A data de nascimento não pode ser uma data futura.",
-                "age-restriction": "Você deve ter pelo menos 13 anos para se registrar.",
-                "country-empty": "Por favor, selecione um país válido.",
-                "birth-date-empty": "Por favor, insira uma data de nascimento válida.",
-                "last-name-invalid": "Certifique-se de que seu sobrenome tenha entre 5 e 50 caracteres.",
-                "first-name-invalid": "Certifique-se de que seu nome tenha entre 5 e 50 caracteres.",
-                "email-empty": "Por favor, insira seu e-mail.",
-                "email-invalid": "Por favor, insira um endereço de e-mail válido.",
-                "phone-empty": "Por favor, insira um número de contato.",
-                "email-exist": "O e-mail informado já está registrado. Por favor, insira outro e-mail.",
-                "terms-and-conditions-empty": "Por favor, aceite os termos e condições.",
-                "password-web-no-matches": "As senhas não coincidem",
-                "password-web-empty": "A senha não pode estar vazia.",
-                "password-web-invalid-length": "A senha deve ter mais de 5 caracteres e menos de 30 caracteres.",
-                "username-empty": "O nome de usuário não pode estar vazio",
-                "username-invalid-length": "O nome de usuário deve ter mais de 5 caracteres e menos de 20 caracteres.",
-                "password-game-no-matches": "As senhas não coincidem",
-                "password-game-empty": "A senha não pode estar vazia.",
-                "password-game-invalid-length": "A senha deve ter mais de 5 caracteres e menos de 30 caracteres."
             },
-            "title-server-sub-title": "Registre-se em",
-            "section-page": {
-                "finaly-create-account-game": {
-                    "title-server-message": "Proteja sua conta e escolha uma senha segura para o jogo.",
-                    "password-txt": "Senha do Jogo",
-                    "password-placeholder": "Digite sua senha",
-                    "confirm-password-placeholder": "Reinsira a Senha",
-                    "confirm-password-txt": "Confirmar Senha",
-                    "loading-sniper-txt": "Criando a conta.......",
-                    "button": {
-                        "btn-primary": "Continuar",
-                        "btn-secondary": "Voltar"
-                    }
+            "account-game": {
+                "username-txt": "Nome de Usuário",
+                "username-placeholder": "Digite o nome de usuário",
+                "title-server-message": "Este nome será sua identidade pública. Você pode alterá-lo uma vez gratuitamente.",
+                "button": {
+                    "btn-primary": "Continuar",
+                    "btn-secondary": "Voltar"
+                }
+            },
+            "congrats": {
+                "message-welcome-part-one": "Bem-vindo à comunidade",
+                "message-welcome-part-two": "Wow Libre",
+                "body-welcome": "Damos as boas-vindas à nossa comunidade! Estamos felizes por tê-lo aqui. Você está a um passo de desfrutar dos seus jogos favoritos gratuitamente. Complete a criação da sua conta de jogo e comece a jogar agora!",
+                "title-details": "Detalhes da conta criada:",
+                "btn-txt-action-primary": "Criar conta de jogo",
+                "btn-txt-action-secondary": "Baixar Cliente",
+                "disclaimer": "Garantimos a completa segurança dos seus dados e você mantém total controle sobre suas informações. Se decidir cancelar a qualquer momento, excluiremos todos os seus dados do nosso sistema."
+            },
+            "register": {
+                "title-server-message": "Todas as informações que você compartilha conosco no Wow Libre são como o ingrediente especial da sua experiência incrível! Quanto mais soubermos, melhor poderemos proporcionar algo realmente extraordinário. Então, compartilhe esses detalhes conosco e prepare-se para algo fora deste mundo!",
+                "input": {
+                    "select-country": "País de residência",
+                    "select-country-place-holder": "Selecione o país",
+                    "select-birthday": "Data de Nascimento"
                 },
-                "account-game": {
-                    "username-txt": "Nome de Usuário",
-                    "username-placeholder": "Digite o nome de usuário",
-                    "title-server-message": "Este nome será sua identidade pública. Você pode alterá-lo uma vez gratuitamente.",
-                    "button": {
-                        "btn-primary": "Continuar",
-                        "btn-secondary": "Voltar"
-                    }
+                "button": {
+                    "btn-primary": "Continuar"
+                }
+            },
+            "kown-you": {
+                "title-server-message": "Seu nome verdadeiro pode ser usado no futuro para verificar sua identidade ao entrar em contato com o WowLibre. Por padrão, seu nome verdadeiro permanecerá oculto de outros usuários.",
+                "input": {
+                    "select-lastname": "Digite seu sobrenome",
+                    "select-lastname-place-holder": "Digite seu sobrenome",
+                    "select-firstname": "Digite seu nome",
+                    "select-firstname-place-holder": "Digite seu nome"
                 },
-                "congrats": {
-                    "message-welcome-part-one": "Bem-vindo à comunidade",
-                    "message-welcome-part-two": "Wow Libre",
-                    "body-welcome": "Damos as boas-vindas à nossa comunidade! Estamos felizes por tê-lo aqui. Você está a um passo de desfrutar dos seus jogos favoritos gratuitamente. Complete a criação da sua conta de jogo e comece a jogar agora!",
-                    "title-details": "Detalhes da conta criada:",
-                    "btn-txt-action-primary": "Criar conta de jogo",
-                    "btn-txt-action-secondary": "Baixar Cliente",
-                    "disclaimer": "Garantimos a completa segurança dos seus dados e você mantém total controle sobre suas informações. Se decidir cancelar a qualquer momento, excluiremos todos os seus dados do nosso sistema."
+                "button": {
+                    "btn-primary": "Continuar",
+                    "btn-secondary": "Voltar"
+                }
+            },
+            "contact-means": {
+                "title-server-message": "Isso é o que você usará ao fazer login em sites e aplicativos móveis.",
+                "input": {
+                    "email-text": "Digite seu e-mail",
+                    "email-text-place-holder": "Digite um e-mail válido",
+                    "phone-text": "Digite um número de telefone",
+                    "phone-text-place-holder": "Digite um telefone de contato."
                 },
-                "register": {
-                    "title-server-message": "Todas as informações que você compartilha conosco no Wow Libre são como o ingrediente especial da sua experiência incrível! Quanto mais soubermos, melhor poderemos proporcionar algo realmente extraordinário. Então, compartilhe esses detalhes conosco e prepare-se para algo fora deste mundo!",
-                    "input": {
-                        "select-country": "País de residência",
-                        "select-country-place-holder": "Selecione o país",
-                        "select-birthday": "Data de Nascimento"
-                    },
-                    "button": {
-                        "btn-primary": "Continuar"
-                    }
+                "button": {
+                    "btn-primary": "Continuar",
+                    "btn-secondary": "Voltar"
+                }
+            },
+            "terms-and-conditions": {
+                "title-server-message": "Bem-vindo ao Wow Libre! Aceitar nossas opções permite que você mergulhe em uma experiência personalizada cheia de ofertas exclusivas, notícias empolgantes e muito mais.",
+                "button": {
+                    "btn-primary": "Continuar",
+                    "btn-secondary": "Voltar"
                 },
-                "kown-you": {
-                    "title-server-message": "Seu nome verdadeiro pode ser usado no futuro para verificar sua identidade ao entrar em contato com o WowLibre. Por padrão, seu nome verdadeiro permanecerá oculto de outros usuários.",
-                    "input": {
-                        "select-lastname": "Digite seu sobrenome",
-                        "select-lastname-place-holder": "Digite seu sobrenome",
-                        "select-firstname": "Digite seu nome",
-                        "select-firstname-place-holder": "Digite seu nome"
-                    },
-                    "button": {
-                        "btn-primary": "Continuar",
-                        "btn-secondary": "Voltar"
-                    }
+                "input": {
+                    "email-check-text": "O e-mail da conta receberá ofertas especiais, notícias e mais do Wow Libre",
+                    "term-check-text": "Eu li e aceito o seguinte: Termos e Condições",
+                    "term-check-link": "Termos e Condições"
+                }
+            },
+            "account-web": {
+                "title-server-message": "Proteja sua conta e escolha uma senha segura para a web administrativa.",
+                "input": {
+                    "password-web-text": "Senha da Web",
+                    "password-web-placeholder": "Senha da Web",
+                    "password-confirm-web-text": "Confirmar Senha",
+                    "password-confirm-web-text-placeholder": "Confirmar Senha"
                 },
-                "contact-means": {
-                    "title-server-message": "Isso é o que você usará ao fazer login em sites e aplicativos móveis.",
-                    "input": {
-                        "email-text": "Digite seu e-mail",
-                        "email-text-place-holder": "Digite um e-mail válido",
-                        "phone-text": "Digite um número de telefone",
-                        "phone-text-place-holder": "Digite um telefone de contato."
-                    },
-                    "button": {
-                        "btn-primary": "Continuar",
-                        "btn-secondary": "Voltar"
-                    }
-                },
-                "terms-and-conditions": {
-                    "title-server-message": "Bem-vindo ao Wow Libre! Aceitar nossas opções permite que você mergulhe em uma experiência personalizada cheia de ofertas exclusivas, notícias empolgantes e muito mais.",
-                    "button": {
-                        "btn-primary": "Continuar",
-                        "btn-secondary": "Voltar"
-                    },
-                    "input": {
-                        "email-check-text": "O e-mail da conta receberá ofertas especiais, notícias e mais do Wow Libre",
-                        "term-check-text": "Eu li e aceito o seguinte: Termos e Condições",
-                        "term-check-link": "Termos e Condições"
-                    }
-                },
-                "account-web": {
-                    "title-server-message": "Proteja sua conta e escolha uma senha segura para a web administrativa.",
-                    "input": {
-                        "password-web-text": "Senha da Web",
-                        "password-web-placeholder": "Senha da Web",
-                        "password-confirm-web-text": "Confirmar Senha",
-                        "password-confirm-web-text-placeholder": "Confirmar Senha"
-                    },
-                    "button": {
-                        "btn-primary": "Continuar",
-                        "btn-secondary": "Voltar"
-                    }
+                "button": {
+                    "btn-primary": "Continuar",
+                    "btn-secondary": "Voltar"
                 }
             }
         }
-    ,
+    },
     "login": {
         "error": {
             "empty-field-title": "Formulário incompleto",
@@ -218,6 +216,97 @@
         },
         "message": {
             "expiration-session": "Ops! Sua sessão expirou. Por favor, autentique-se novamente para continuar."
+        }
+    },
+    "bank": {
+        "btn": {
+            "primary": "Solicitar Empréstimo",
+            "secondary": "Cadastrar-se"
+        },
+        "title": "Domine Azeroth com um Empréstimo de Ouro Exclusivo!",
+        "description": "Eleve sua aventura em Azeroth a um nível épico com nosso Empréstimo de Ouro. Obtenha o financiamento necessário para aprimorar seu equipamento, expandir sua coleção de tesouros ou simplesmente aproveitar ao máximo as melhores experiências do jogo.",
+        "benefits": {
+            "primary": "Solicite seu empréstimo e receba seu dinheiro hoje mesmo."
+        },
+        "disclaimer": "Os empréstimos têm juros. Consulte a seção 'Guia de Empréstimos' para mais detalhes.",
+        "collection_guide": {
+            "title": "Guia de Cobrança em Azeroth",
+            "sub_title": "Como ",
+            "sub_title_two": "Funciona?",
+            "guide_steps": {
+                "primary": {
+                    "title": "Notificações de Pagamento",
+                    "description": "Você receberá notificações no jogo para lembrá-lo quando seu empréstimo estiver próximo do vencimento."
+                },
+                "secondary": {
+                    "title": "Período de Carência",
+                    "description": "Se você não pagar a tempo, terá um período de carência de 15 dias para regularizar antes que as penalidades sejam aplicadas."
+                },
+                "tertiary": {
+                    "title": "Consequências do Inadimplemento",
+                    "description": "Se você não realizar o pagamento, o sistema deduzirá automaticamente o ouro devido das suas contas. Caso não haja ouro suficiente, serão descontados itens do jogo de valor equivalente."
+                }
+            }
+        },
+        "loan_guide": {
+            "title": "Guia de Empréstimos",
+            "sub_title": "Obtenha o Plano de Empréstimo Ideal",
+            "complementary_subtitle": "Escolha o que melhor se adapta às suas necessidades",
+            "guide_steps": {
+                "primary": {
+                    "title": "Requisitos",
+                    "requirements": {
+                        "primary": "Tempo mínimo de jogo 23 horas",
+                        "secondary": "Ser nível 80"
+                    }
+                },
+                "secondary": {
+                    "title": "Escolha o Plano Ideal para Você",
+                    "description": "Escolha o plano perfeito que se adapte às suas necessidades e maximize sua experiência."
+                },
+                "tertiary": {
+                    "title": "Seu Pacote de Ouro Está a Caminho!",
+                    "description": "Em alguns minutos, verifique seu correio no jogo para receber seu valioso pacote."
+                },
+                "quaternary": {
+                    "title": "Lembre-se do pagamento pontual!",
+                    "description": "Aproveite o ouro recém-chegado no seu jogo, sem esquecer a data do pagamento pontual."
+                }
+            }
+        },
+        "plans": {
+            "title": "Descubra Nossos Planos!",
+            "subtitle": "Preços claros e ajustados às suas necessidades. Transparência total para que você escolha o melhor para sua conta!"
+        },
+        "our_clients": {
+            "title": "Nossos Clientes",
+            "subtitle": "Depoimentos dos nossos clientes",
+            "testimony": {
+                "title": "Olá! 👋",
+                "sub_title": "Eu sou Fizzle Glint",
+                "primary_paragraph": "Em uma região distante de Azeroth, houve um aventureiro chamado Fizzle que, tentado por uma oferta de ouro fácil, decidiu pegar um empréstimo sem pensar duas vezes. Embora o ouro prometesse melhorar seu equipamento e encher seus cofres de tesouros, ele logo descobriu que as dívidas e promessas não cumpridas se tornaram um fardo esmagador.",
+                "secondary_paragraph": "Fizzle aprendeu da maneira mais difícil: às vezes, a ganância pode nos levar por caminhos sombrios. Em vez de aceitar o ouro sem considerar as consequências, é melhor avaliar cuidadosamente nossas opções e buscar caminhos que não nos levem ao desespero.",
+                "tertiary_paragraph": "Então, antes de tomar uma decisão, pense bem. O ouro pode brilhar, mas a liberdade e a paz de espírito são ainda mais valiosas.",
+                "text_link": "Tem dúvidas? ",
+                "sub_text_link": " Visite-nos no ",
+                "facebook_text_link": " Facebook"
+            }
+        },
+        "bank_characters": {
+            "title": "Seleção de Personagens",
+            "description": "Escolha o personagem para solicitar o empréstimo. Se alguns personagens não aparecerem, é porque não atendem aos requisitos do empréstimo.",
+            "select-account": "Selecione uma conta",
+            "select-character": "Selecione um personagem",
+            "success-loan": "Haha, você conseguiu seu ouro! Mas lembre-se, amigo, esse negócio também enche meus bolsos. Não se esqueça dos seus pagamentos ou os juros me farão sorrir ainda mais!",
+            "btn": {
+                "primary": "Aceitar",
+                "loading": "Solicitando Empréstimo...",
+                "secondary": "Cancelar"
+            }
+        },
+        "errors": {
+            "fails_to_obtain_accounts": "Oops! Estamos enfrentando dificuldades para obter suas contas. Por favor, tente novamente mais tarde!",
+            "fails_to_obtain_characters": "Ops! Estamos tendo problemas para obter seus personagens. Por favor, tente novamente mais tarde!"
         }
     }
 }

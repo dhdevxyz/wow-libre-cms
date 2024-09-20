@@ -1,20 +1,23 @@
 "use client";
 import { getAccounts } from "@/api/account";
-import { getCharacters } from "@/api/account/character";
-import { attach } from "@/api/guilds";
+import { applyForBankLoan, potentialClients } from "@/api/bank";
+import { useUserContext } from "@/context/UserContext";
 import { AccountsModel, Character } from "@/model/model";
 import React, { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import Swal from "sweetalert2";
 
 interface GuildCharacterProps {
   isOpen: boolean;
   token: string;
+  planId: number;
   onClose: () => void;
 }
 
 const BankCharacter: React.FC<GuildCharacterProps> = ({
   isOpen,
   token,
+  planId,
   onClose,
 }) => {
   const [accounts, setAccounts] = useState<AccountsModel[]>([]);
@@ -25,18 +28,20 @@ const BankCharacter: React.FC<GuildCharacterProps> = ({
   const [selectedCharacterId, setSelectedCharacterId] = useState<number | null>(
     null
   );
-  const [loading, setLoading] = useState<boolean>(false); // Añade un estado para el estado de carga si es necesario
+  const [loading, setLoading] = useState<boolean>(false);
+  const { t } = useTranslation();
+  const { user } = useUserContext();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const fetchedAccounts = await getAccounts(token);
-        setAccounts(fetchedAccounts);
+        const availableaccounts = await getAccounts(token);
+        setAccounts(availableaccounts);
       } catch (error: any) {
         Swal.fire({
           icon: "error",
           title: "Oops...",
-          text: "Por favor intente más tarde, el servicio no se encuentra disponible.",
+          text: t("bank.errors.fails_to_obtain_accounts"),
           color: "white",
           background: "#0B1218",
           timer: 4500,
@@ -52,44 +57,54 @@ const BankCharacter: React.FC<GuildCharacterProps> = ({
   const handleAccountChange = async (accountId: number) => {
     setSelectedAccountId(accountId);
     setSelectedCharacterId(null);
-
     try {
-      const fetchedCharacters = await getCharacters(token, accountId);
+      const fetchedCharacters = await potentialClients(token, accountId);
       setCharacters(fetchedCharacters.characters);
     } catch (error: any) {
       Swal.fire({
         icon: "error",
         title: "Oops...",
-        text: "No se pudieron obtener los personajes de la cuenta seleccionada.",
+        text: t("bank.errors.fails_to_obtain_characters"),
         color: "white",
         background: "#0B1218",
         timer: 4500,
       });
+    } finally {
+      setSelectedAccountId(accountId);
     }
   };
 
-  const handleCharacterChange = async (characterId: number) => {
+  const handleCharacterChange = (characterId: number) => {
     setSelectedCharacterId(characterId);
   };
 
   const handleJoinGuild = async () => {
     if (!selectedAccountId || !selectedCharacterId) {
+      Swal.fire({
+        icon: "warning",
+        title: "¡Atención!",
+        text: t("bank.bank_characters.errors.missing_data"),
+        color: "white",
+        background: "#0B1218",
+        timer: 4500,
+      });
       return;
     }
 
     setLoading(true);
 
     try {
-      await attach(
-        guild_id,
-        selectedAccountId.toString(),
-        selectedCharacterId.toString(),
-        token
+      await applyForBankLoan(
+        planId,
+        selectedAccountId,
+        selectedCharacterId,
+        token,
+        user.language
       );
       Swal.fire({
         icon: "success",
-        title: "Guild Success",
-        text: "Vinculacion exitosa",
+        title: "¡Negocio Redondo, Socio!",
+        text: t("bank.bank_characters.success-loan"),
         color: "white",
         background: "#0B1218",
         timer: 4500,
@@ -117,40 +132,44 @@ const BankCharacter: React.FC<GuildCharacterProps> = ({
     <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
       <div className="bg-midnight rounded-lg p-8">
         <h2 className="text-2xl font-bold mb-4 text-gray-200">
-          Seleccion de personajes
+          {t("bank.bank_characters.title")}
         </h2>
-        <p className=" text-gray-400">
-          Seleciona el personaje al cual deseas vincular
+        <p className="text-gray-400 max-w-[50rem] overflow-y-auto whitespace-normal font-mono">
+          {t("bank.bank_characters.description")}
         </p>
-
-        <select
-          onChange={(e) => handleAccountChange(Number(e.target.value))}
-          value={selectedAccountId || ""}
-          className="mt-4 px-4 py-2  bg-transparent text-gray-300 rounded"
-        >
-          <option value="" disabled>
-            Selecciona una cuenta
-          </option>
-          {accounts.map((account) => (
-            <option key={account.id} value={account.id}>
-              {account.username}
+        {accounts && (
+          <select
+            onChange={(e) => handleAccountChange(Number(e.target.value))}
+            value={selectedAccountId ?? ""}
+            className="mt-4 px-4 py-2 bg-gray-800 text-gray-300 rounded focus:outline-none focus:ring focus:border-blue-300"
+          >
+            <option value="" disabled>
+              {t("bank.bank_characters.select-account")}
             </option>
-          ))}
-        </select>
+            {accounts.map((account) => (
+              <option
+                key={account.id}
+                value={account.id}
+                className="bg-gray-800 text-gray-300"
+              >
+                {account.username}
+              </option>
+            ))}
+          </select>
+        )}
 
-        {/* Selector de personajes */}
         {selectedAccountId && (
           <select
             onChange={(e) => handleCharacterChange(Number(e.target.value))}
-            value={selectedCharacterId || ""}
-            className="mt-4 px-4 py-2  rounded bg-transparent text-gray-300"
+            value={selectedCharacterId ?? ""}
+            className="mt-4 px-4 py-2 bg-gray-800 text-gray-300 rounded focus:outline-none focus:ring focus:border-blue-300"
           >
             <option value="" disabled>
-              Selecciona un personaje
+              {t("bank.bank_characters.select-character")}
             </option>
             {characters.map((character) => (
               <option
-                className="text-black"
+                className="bg-gray-800 text-gray-300"
                 key={character.id}
                 value={character.id}
               >
@@ -160,22 +179,23 @@ const BankCharacter: React.FC<GuildCharacterProps> = ({
           </select>
         )}
 
-        {/* Botones */}
-        <div className="flex mt-4">
+        <div className="flex mt-10">
           <button
             onClick={handleClose}
-            className="flex-1 px-4 py-2 bg-red-900 text-white rounded mr-2"
+            className="flex-1 px-4 py-2 bg-red-900 text-white rounded mr-2 font-serif"
           >
-            Cancelar
+            {t("bank.bank_characters.btn.secondary")}
           </button>
           <button
             onClick={handleJoinGuild}
             disabled={!selectedAccountId || !selectedCharacterId || loading}
-            className={`flex-1 px-4 py-2 ${
+            className={`flex-1 px-4 py-2 font-serif ${
               loading ? "bg-gray-400 cursor-not-allowed" : "bg-blue-800"
             } text-white rounded ml-2`}
           >
-            {loading ? "Uniendo..." : "Unirme"}
+            {loading
+              ? t("bank.bank_characters.btn.loading")
+              : t("bank.bank_characters.btn.primary")}
           </button>
         </div>
       </div>
