@@ -4,9 +4,14 @@ import { useTranslation } from "react-i18next";
 interface PlansProps {
   pricingPlans: BankPlans[];
   onPlanSelect: (planId: number) => void;
+  isLogged: boolean;
 }
 
-const Plans: React.FC<PlansProps> = ({ pricingPlans, onPlanSelect }) => {
+const Plans: React.FC<PlansProps> = ({
+  pricingPlans,
+  onPlanSelect,
+  isLogged,
+}) => {
   const { t } = useTranslation();
 
   return (
@@ -62,12 +67,14 @@ const Plans: React.FC<PlansProps> = ({ pricingPlans, onPlanSelect }) => {
                   </li>
                 ))}
               </ul>
-              <button
-                onClick={() => onPlanSelect(plan.id)}
-                className="block w-full py-3 px-6 text-center rounded-md text-white font-medium bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600"
-              >
-                {plan.button}
-              </button>
+              {isLogged && (
+                <button
+                  onClick={() => onPlanSelect(plan.id)}
+                  className="block w-full py-3 px-6 text-center rounded-md text-white font-medium bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600"
+                >
+                  {plan.button}
+                </button>
+              )}
             </div>
           ))}
         </div>

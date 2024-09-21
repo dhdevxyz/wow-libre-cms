@@ -224,7 +224,7 @@ const NavbarAuthenticated = () => {
                         role="menuitem"
                         id="user-menu-item-0"
                       >
-                        {t("navbar_authenticated.menu.logged-in.position-one")}
+                        {t("navbar_authenticated.menu.logged-out.position-one")}
                       </Link>
                       <Link
                         href="/register"
@@ -232,7 +232,7 @@ const NavbarAuthenticated = () => {
                         role="menuitem"
                         id="user-menu-item-0"
                       >
-                        {t("navbar_authenticated.menu.logged-in.position-two")}
+                        {t("navbar_authenticated.menu.logged-out.position-two")}
                       </Link>
                     </div>
                   )}

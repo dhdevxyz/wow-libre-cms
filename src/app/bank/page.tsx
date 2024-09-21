@@ -39,56 +39,6 @@ const Bank = () => {
     fetchData();
   }, [token]);
 
-  const pricingPlans = [
-    {
-      id: 1,
-      name: "Inicial",
-      description:
-        "Inicia tu aventura en Azeroth con un préstamo básico de oro para ayudarte a comenzar.",
-      price: "1,050g",
-      frecuency: "/Pago único",
-      features: [
-        "Interés del 5% ",
-        "Préstamo de un 1k de oro",
-        "Pago máximo: 1 mes",
-      ],
-      buttonText: "Solicitar Préstamo",
-      buttonLink: "#",
-    },
-
-    {
-      id: 2,
-      name: "Pro",
-      description:
-        "Domina Azeroth con ventajas exclusivas y sin preocupaciones.",
-      price: "48,000g",
-      frecuency: "/Pago único",
-      features: [
-        "Interés del 20% ",
-        "Préstamo de 40k de oro",
-        "Pago máximo: 2 mes",
-        "Exclusión del cobro diario en eventos",
-      ],
-      buttonText: "Solicitar Préstamo",
-      buttonLink: "#",
-    },
-    {
-      id: 3,
-      name: "Starter",
-      description:
-        "Potencia tu aventura con recursos esenciales para tu crecimiento.",
-      price: "11,000g",
-      frecuency: "/Pago único",
-      features: [
-        "Interés del 10% ",
-        "Préstamo de un 10k de oro",
-        "Pago máximo: 1 mes",
-      ],
-      buttonText: "Solicitar Préstamo",
-      buttonLink: "#",
-    },
-  ];
-
   const openModal = (planId: number) => {
     setIsModalOpen(true);
     setSelectedPlanId(planId);
@@ -394,7 +344,11 @@ const Bank = () => {
         </div>
       </section>
       <section id="plans">
-        <Plans pricingPlans={bankPlans} onPlanSelect={openModal} />
+        <Plans
+          pricingPlans={bankPlans}
+          onPlanSelect={openModal}
+          isLogged={loggin}
+        />
       </section>
       <section className=" pt-10 overflow-hidden  md:pt-0 sm:pt-16 2xl:pt-16 ">
         <div className="text-center mb-12">
