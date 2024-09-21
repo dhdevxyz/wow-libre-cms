@@ -12,7 +12,14 @@
 # next.js
 /.next/
 /out/
+# logs
+*.log
 
+# local config files
+*.local
+
+# build artifacts
+dist/
 # production
 /build
 
