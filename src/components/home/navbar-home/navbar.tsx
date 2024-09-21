@@ -130,19 +130,34 @@ const Navbar = () => {
 
       <div className="nav-category">
         <nav className="category flex space-x-4">
-          <Link className="category-link hover:text-gray-400" href="/guild">
+          <Link
+            className="category-link hover:text-gray-400 font-serif"
+            href="/guild"
+          >
             {t("navbar.sections.position-one")}
           </Link>
-          <Link className="category-link hover:text-gray-400" href="/comunity">
+          <Link
+            className="category-link hover:text-gray-400 font-serif"
+            href="/comunity"
+          >
             {t("navbar.sections.position-two")}
           </Link>
-          <Link className="category-link hover:text-gray-400" href="/bank">
+          <Link
+            className="category-link hover:text-gray-400 font-serif"
+            href="/bank"
+          >
             {t("navbar.sections.position-three")}
           </Link>
-          <Link className="category-link hover:text-gray-400" href="/store">
+          <Link
+            className="category-link hover:text-gray-400 font-serif"
+            href="/store"
+          >
             {t("navbar.sections.position-four")}
           </Link>
-          <Link className="category-link hover:text-gray-400" href="/help">
+          <Link
+            className="category-link hover:text-gray-400 font-serif"
+            href="/help"
+          >
             {t("navbar.sections.position-five")}
           </Link>
         </nav>

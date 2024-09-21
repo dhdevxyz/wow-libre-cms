@@ -5,19 +5,19 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 const banners = [
   {
-    image: "/img/homes/banner/banner_one.jpg",
+    image: "/img/homes/banner/banner_one.webp",
     alt: "Advertising banner for the game, showing arthas",
   },
   {
-    image: "/img/homes/banner/banner_two.jpg",
+    image: "/img/homes/banner/banner_two.webp",
     alt: "World of warcraft game advertising banner",
   },
   {
-    image: "/img/homes/banner/banner_three.jpg",
+    image: "/img/homes/banner/banner_three.webp",
     alt: "World of warcraft game advertising banner",
   },
   {
-    image: "/img/homes/banner/banner_four.jpg",
+    image: "/img/homes/banner/banner_four.webp",
     alt: "World of warcraft game advertising banner",
   },
 ];

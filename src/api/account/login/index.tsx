@@ -9,6 +9,14 @@ interface ErrorLogin {
   message_trace: string;
 }
 
+/**
+ * Intenta iniciar sesión con el nombre de usuario y la contraseña proporcionados.
+ *
+ * @param userName - Nombre de usuario para el inicio de sesión.
+ * @param password - Contraseña asociada con el nombre de usuario.
+ * @returns Promise<LoginData> - Un objeto que contiene la información del usuario al iniciar sesión correctamente.
+ * @throws Error - Lanza un error si la solicitud falla o si el servidor responde con un error.
+ */
 export const login = async (
   userName: string,
   password: string
@@ -20,19 +28,20 @@ export const login = async (
     username: userName,
     password: password,
   };
+  const transactionId = uuidv4();
+
   try {
     const response = await fetch(`${BASE_URL_AUTH}/api/auth/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        transaction_id: uuidv4(),
+        transaction_id: transactionId,
       },
       body: JSON.stringify(requestBody),
     });
 
     if (response.ok && response.status === 200) {
       const responseData: GenericResponseDto<LoginData> = await response.json();
-
       return responseData.data;
     } else {
       const errorGeneric: ErrorLogin = await response.json();
@@ -41,8 +50,12 @@ export const login = async (
   } catch (error: any) {
     if (error instanceof TypeError && error.message === "Failed to fetch") {
       throw new Error(`Please try again later, services are not available.`);
+    } else if (error instanceof Error) {
+      throw error;
     } else {
-      throw new Error(`${error.message}`);
+      throw new Error(
+        `Unknown error occurred - TransactionId: ${transactionId}`
+      );
     }
   }
 };

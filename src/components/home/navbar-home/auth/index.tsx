@@ -32,10 +32,10 @@ const NavbarAuth = () => {
     <nav className="nav-auth relative">
       {!isLoggedIn && (
         <>
-          <Link className="nav-auth-category" href="/login">
+          <Link className="nav-auth-category font-serif" href="/login">
             {t("navbar.sections.position-six")}
           </Link>
-          <Link className="nav-auth-category" href="/register">
+          <Link className="nav-auth-category font-serif" href="/register">
             {t("navbar.sections.position-seven")}
           </Link>
         </>
@@ -43,10 +43,10 @@ const NavbarAuth = () => {
 
       {isLoggedIn && (
         <>
-          <Link className="nav-auth-category" href="/purchases">
+          <Link className="nav-auth-category font-serif" href="/purchases">
             {t("navbar.sections.position-eight")}
           </Link>
-          <Link className="nav-auth-category" href="/purchases">
+          <Link className="nav-auth-category font-serif" href="/purchases">
             {t("navbar.sections.position-nine")}
           </Link>
 

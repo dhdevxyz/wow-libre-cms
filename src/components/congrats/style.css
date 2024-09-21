@@ -60,9 +60,8 @@
   margin-top: 10px;
 }
 
-.account-username,
-.account-email {
-  color: #abbbcd;
+.account-text {
+  color: #d3cdc4;
   margin-top: 10px;
   margin-bottom: 20px;
 }

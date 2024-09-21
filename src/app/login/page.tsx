@@ -56,13 +56,13 @@ const Login = () => {
 
       Cookies.set("token", jwt, {
         expires: new Date(expirationDateUTC),
-        secure: true,
+        secure: false,
         sameSite: "Strict",
       });
 
       Cookies.set("refresh_token", refresh_token, {
         expires: new Date(expirationDateUTC),
-        secure: true,
+        secure: false,
         sameSite: "Strict",
       });
 
@@ -85,7 +85,13 @@ const Login = () => {
 
   return (
     <div className="login-page">
-      {error && <AlertComponent error={error} />}
+      {error && (
+        <AlertComponent
+          error={error}
+          btn_primary_txt={t("errors.show-alert.btn-primary")}
+          btn_secondary_txt={t("errors.show-alert.btn-secondary")}
+        />
+      )}
       <div className="login-banner">
         <img
           src="https://bnetcmsus-a.akamaihd.net/cms/blog_header/7k/7KGWCRHVH4GW1572627335155.jpg"

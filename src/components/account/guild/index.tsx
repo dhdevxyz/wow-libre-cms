@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import DisplayMoney from "@/components/money";
 import { GuildData } from "@/model/model";
-import { getMemberDetailGuild, unlinkGuild } from "@/api/guilds";
+import { claimBenefits, getMemberDetailGuild, unlinkGuild } from "@/api/guilds";
 import Swal from "sweetalert2";
 import Link from "next/link";
 
@@ -18,6 +18,7 @@ const AccountGuild: React.FC<AccountGuildProps> = ({
 }) => {
   const [guildData, setGuildData] = useState<GuildData | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
+  const [refresh, setRefresh] = useState<boolean>(false);
 
   useEffect(() => {
     const fetchGuildData = async () => {
@@ -36,7 +37,7 @@ const AccountGuild: React.FC<AccountGuildProps> = ({
     };
 
     fetchGuildData();
-  }, [account_id, character_id, token]);
+  }, [account_id, character_id, token, refresh]);
 
   const handleUnlinkGuild = async () => {
     try {
@@ -46,6 +47,30 @@ const AccountGuild: React.FC<AccountGuildProps> = ({
         icon: "success",
         title: "Desvinculacion",
         text: "Ha sido desvinculado exitosamente",
+        color: "white",
+        background: "#0B1218",
+        timer: 4000,
+      });
+    } catch (error: any) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: `${error.message}`,
+        color: "white",
+        background: "#0B1218",
+        timer: 4000,
+      });
+    }
+  };
+
+  const handleBenefitsGuild = async () => {
+    try {
+      await claimBenefits(account_id, character_id, token);
+      setRefresh(true);
+      Swal.fire({
+        icon: "success",
+        title: "Beneficios",
+        text: "Reclamado los beneficios",
         color: "white",
         background: "#0B1218",
         timer: 4000,
@@ -111,9 +136,22 @@ const AccountGuild: React.FC<AccountGuildProps> = ({
                 </div>
               </div>
 
-              <div className="text-center">
+              <div className="flex flex-row text-center">
+                <button className="px-6 py-3 bg-blue-400 hover:bg-blue-600 rounded-lg text-white font-semibold mb-4 mr-2">
+                  Editar
+                </button>
+                {guildData.benefits.length > 0 &&
+                  guildData.claimed_benefits <= 0 && (
+                    <button
+                      className="px-6 py-3 bg-green-400 hover:bg-green-600 rounded-lg text-white font-semibold mb-4 mr-2"
+                      onClick={handleBenefitsGuild}
+                    >
+                      Reclamar beneficios
+                    </button>
+                  )}
+
                 <button
-                  className="px-6 py-3 bg-red-400 hover:bg-red-600 rounded-lg text-white font-semibold mb-4"
+                  className="px-6 py-3 bg-red-400 hover:bg-red-600 rounded-lg text-white font-semibold mb-4  "
                   onClick={handleUnlinkGuild}
                 >
                   Abandonar

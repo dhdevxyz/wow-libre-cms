@@ -82,7 +82,7 @@ const ChangePassword = () => {
   return (
     <div className="contenedor">
       <NavbarMinimalist />
-      <div className="antialiased flex items-center justify-center p-4 mt-10">
+      <div className="antialiased flex items-center justify-center p-4 mt-24 mb-16">
         <div className="max-w-8xl w-full bg-gray-800 p-8 md:p-12 rounded-xl shadow shadow-slate-300 flex flex-col md:flex-row">
           {/* Form Section */}
           <div className="w-full md:w-1/3 md:pr-8 mt-10">

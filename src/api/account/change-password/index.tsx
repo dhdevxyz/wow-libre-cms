@@ -1,5 +1,5 @@
 import { BASE_URL_AUTH } from "@/configs/configs";
-import { BadRequestDto, GenericResponseDto } from "@/dto/generic";
+import { GenericResponseDto } from "@/dto/generic";
 import { AccountChangePasswordGameDto } from "@/model/model";
 import { v4 as uuidv4 } from "uuid";
 

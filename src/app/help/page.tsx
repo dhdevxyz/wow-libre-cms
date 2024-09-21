@@ -1,7 +1,6 @@
 "use client";
 
 import { getFaqs } from "@/api/faqs";
-import Features from "@/components/features";
 import NavbarMinimalist from "@/components/navbar-minimalist";
 import MeetTheTeam from "@/components/team";
 import { FaqsModel } from "@/model/model";
@@ -60,14 +59,30 @@ const Help: React.FC = () => {
         <NavbarMinimalist />
       </div>
 
+      <div className="mt-10">
+        <section
+          id="features"
+          className="container mx-auto px-4 space-y-6   py-8 md:py-12 lg:py-20"
+        >
+          <div className="mx-auto flex max-w-[58rem] flex-col items-center space-y-4 text-center">
+            <h2 className="font-bold text-3xl leading-[1.1] sm:text-3xl md:text-6xl text-white">
+              Servicio de Soporte
+            </h2>
+            <p className="max-w-[80%] leading-normal text-muted-foreground sm:text-xl sm:leading-9 text-gray-300">
+              Explora nuestra dedicación a ofrecer un soporte de calidad
+              excepcional.
+            </p>
+          </div>
+        </section>
+      </div>
       <section className="bg-midnight text-white contenedor mt-10">
         <div className="container max-w-9xl px-6 py-10 mx-auto">
           <div className="flex flex-col lg:flex-row">
-            <div className=" lg:w-1/2 mb-6 lg:mb-0 rounded-2xl hover:shadow hover:shadow-teal-800">
+            <div className=" lg:w-1/2 mb-6 lg:mb-0 rounded-2xl select-none">
               <img
                 src="https://i.ytimg.com/vi/6N3kjHebBKA/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLANEhPve2j69u5A_Iaoxz0n_VWLzw"
                 alt="FAQ tailwind section"
-                className="rounded-2xl"
+                className="rounded-2xl  hover:shadow hover:shadow-teal-800"
               />
             </div>
             <div className="w-full lg:w-1/2 lg:pl-8">
@@ -118,7 +133,7 @@ const Help: React.FC = () => {
           </div>
         </div>
       </section>
-      <Features />
+      <MeetTheTeam />
     </div>
   );
 };

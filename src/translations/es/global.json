@@ -16,8 +16,40 @@
             "position-nine": "Vender"
         }
     },
+    "navbar_authenticated": {
+        "sections": {
+            "position-one": "Inicio",
+            "position-two": "Hermandades",
+            "position-three": "Comunidad",
+            "position-four": "Banco",
+            "position-five": "Tienda"
+        },
+        "menu": {
+            "logged-in": {
+                "position-one": "Perfil",
+                "position-two": "Cuentas",
+                "position-three": "Salir"
+            },
+            "logged-out": {
+                "position-one": "Ingresar",
+                "position-two": "Registrarme"
+            }
+        }
+    },
+    "navbar-minimalist": {
+        "sections": {
+            "position-one": "Inicio",
+            "position-two": "Hermandades",
+            "position-three": "Banco",
+            "position-four": "Tienda",
+            "position-five": "Comunidad",
+            "position-six": "Soporte"
+        }
+    },
     "register": {
         "error": {
+            "birth-date-future": "La fecha de nacimiento no puede ser una fecha futura.",
+            "age-restriction": "Debes tener al menos 13 años para registrarte.",
             "country-empty": "Por favor, selecciona un país válido.",
             "birth-date-empty": "Por favor, ingresa una fecha de nacimiento válida.",
             "last-name-invalid": "Por favor, asegúrate de que tu apellido tenga entre 5 y 50 caracteres.",
@@ -29,15 +61,50 @@
             "terms-and-conditions-empty": "Por favor, acepta los terminos y condiciones.",
             "password-web-no-matches": "Las contraseñas no coinciden",
             "password-web-empty": "La contraseña no puede estar  vacía.",
-            "password-web-invalid-length": "La contraseña debe ser superior a 5 caracteres e inferior a 30 caracteres."
+            "password-web-invalid-length": "La contraseña debe ser superior a 5 caracteres e inferior a 30 caracteres.",
+            "username-empty": "El usuario no puede estar vacio",
+            "username-invalid-length": "El usuario debe ser superior a 5 caracteres e inferior a 20 caracteres.",
+            "password-game-no-matches": "Las contraseñas no coinciden",
+            "password-game-empty": "La contraseña no puede estar  vacía.",
+            "password-game-invalid-length": "La contraseña debe ser superior a 5 caracteres e inferior a 30 caracteres."
         },
         "title-server-sub-title": "Registrarme en",
         "section-page": {
+            "finaly-create-account-game": {
+                "title-server-message": "Protege tu cuenta y elige una contraseña segura para el juego.",
+                "password-txt": "Contraseña para el juego",
+                "password-placeholder": "Ingrese su contraseña",
+                "confirm-password-placeholder": "Ingrese de nuevo la Contraseña",
+                "confirm-password-txt": "Confirmar Contraseña",
+                "loading-sniper-txt": "Creando la cuenta.......",
+                "buttons": {
+                    "btn-primary": "Continuar",
+                    "btn-secondary": "Volver"
+                }
+            },
+            "account-game": {
+                "username-txt": "Usuario",
+                "username-placeholder": "Ingrese el nombre de usuario",
+                "title-server-message": "Este nombre será tu identidad pública. Podrás cambiarlo una vez de manera gratuita.",
+                "button": {
+                    "btn-primary": "Continuar",
+                    "btn-secondary": "Volver"
+                }
+            },
+            "congrats": {
+                "message-welcome-part-one": "Bienvenido a la comunidad",
+                "message-welcome-part-two": "Wow libre",
+                "body-welcome": "¡Te damos la más cordial bienvenida a nuestra comunidad! Estamos encantados de tenerte aquí. Estás a solo un paso de disfrutar de tus juegos favoritos de forma gratuita. ¡Termina de crear tu cuenta de juego y comienza a jugar ahora!",
+                "title-details": "Detalles de la cuenta creada:",
+                "btn-txt-action-primary": "Crear cuenta de juego",
+                "btn-txt-action-secondary": "Descargar Cliente",
+                "disclaimer": "Garantizamos la total seguridad de tus datos, y tú mantienes el control absoluto sobre tu información. Si en algún momento decides darte de baja, eliminaremos por completo todos tus datos de nuestro sistema."
+            },
             "register": {
                 "title-server-message": "¡Toda la información que nos compartas en Wow Libre es como el ingrediente especial de tu experiencia alucinante! Cuanto más sepamos, mejor podremos hacerte vivir algo realmente extraordinario. Así que, ¡compártenos esos datos y prepárate para algo fuera de serie!",
                 "input": {
-                    "select-country": "Seleccione un pais",
-                    "select-country-place-holder": "Seleccione el pais",
+                    "select-country": "País de residencia",
+                    "select-country-place-holder": "Selecciona el país",
                     "select-birthday": "Fecha de Nacimiento"
                 },
                 "button": {
@@ -111,5 +178,135 @@
         "old-password": "¿Olvidaste tu contraseña?",
         "create-account-message": "Crea tu cuenta",
         "create-account-question": "¿No tienes una cuenta? "
+    },
+    "account": {
+        "search-placeholder": "Buscar por usuario",
+        "service-unavailable": {
+            "message": "No es posible obtener el detalle de tus cuentas en este momento, por favor espera."
+        },
+        "service-available": {
+            "title-txt-message": "Administración de Cuentas de World of Warcraft",
+            "txt-message": "Gestiona y administra las cuentas de World of Warcraft de manera eficiente y segura."
+        },
+        "without-accounts": {
+            "title-message": "No hay cuentas registradas.",
+            "sub-title-message": "¡Crea una cuenta de juego ahora!",
+            "btn-text": " Crear una cuenta"
+        },
+        "with-accounts": {
+            "txt-create-account": "Crear cuenta",
+            "txt-delete-account": "Eliminar cuenta"
+        },
+        "column-table": {
+            "position-one": "id",
+            "position-two": "Usuario",
+            "position-three": "Expansion",
+            "position-four": "Online",
+            "position-five": "Login Fallidos",
+            "position-six": " Ultima Conexion",
+            "position-seven": "Ultima Ip",
+            "position-action": "Action",
+            "position-btn-admin": "Administrar"
+        }
+    },
+    "errors": {
+        "show-alert": {
+            "btn-primary": "Aceptar",
+            "btn-secondary": "Reportar Problema"
+        },
+        "message": {
+            "expiration-session": "¡Oops! Tu sesión ha expirado. Por favor, vuelve a autenticarte para continuar."
+        }
+    },
+    "bank": {
+        "btn": {
+            "primary": "Solicitar prestamo",
+            "secondary": "Registrarme"
+        },
+        "title": "¡Domina Azeroth con un Préstamo de Oro Exclusivo!",
+        "description": "Eleva tu aventura en Azeroth a un nivel épico con nuestro Préstamo de Oro. Consigue la financiación necesaria para potenciar tu equipo, expandir tu colección de tesoros, o simplemente disfrutar al máximo de las mejores experiencias del juego.",
+        "benefits": {
+            "primary": "Solicita tu préstamo y recibe tu dinero hoy mismo."
+        },
+        "disclaimer": "Los préstamos tienen intereses. Consulta la sección de 'Guia de prestamos' para conocer mas los detalles.",
+        "collection_guide": {
+            "title": "Guía de Cobro en Azeroth",
+            "sub_title": "¿Cómo ",
+            "sub_title_two": "Funciona?",
+            "guide_steps": {
+                "primary": {
+                    "title": "Notificaciones de Pago",
+                    "description": "Recibirás notificaciones en el juego para recordarte cuando tu préstamo esté próximo a vencer."
+                },
+                "secondary": {
+                    "title": "Período de Gracia",
+                    "description": "Si no pagas a tiempo, tendrás un período de gracia de 15 días para ponerte al día antes de que se apliquen sanciones."
+                },
+                "tertiary": {
+                    "title": "Consecuencias de Incumplimiento",
+                    "description": "Si no realizas el pago, el sistema deducirá automáticamente el oro adeudado de tus cuentas. En caso de no contar con suficiente oro, se descontarán objetos del juego de valor equivalente."
+                }
+            }
+        },
+        "loan_guide": {
+            "title": "Guía de Préstamos",
+            "sub_title": "Obtén el Plan de Préstamos Ideal",
+            "complementary_subtitle": "Elige el que mejor se ajuste a tus necesidades",
+            "guide_steps": {
+                "primary": {
+                    "title": "Requisitos",
+                    "requirements": {
+                        "primary": "Tiempo de juego minimo 23 horas",
+                        "secondary": "Ser nivel 80"
+                    }
+                },
+                "secondary": {
+                    "title": "Selecciona el Plan Ideal para Ti",
+                    "description": "Elige el plan perfecto que se adapte a tus necesidades y maximiza tu experiencia."
+                },
+                "tertiary": {
+                    "title": "¡Tu Paquete de Oro Está en Camino!",
+                    "description": "En unos minutos, revisa el correo en el juego para recibir tu valioso paquete."
+                },
+                "quaternary": {
+                    "title": "¡Recuerda el pago oportuno!",
+                    "description": "Disfruta del oro recién llegado en tu juego, sin descuidar la fecha del pago oportuno."
+                }
+            }
+        },
+        "plans": {
+            "title": "¡Descubre Nuestros Planes!",
+            "subtitle": "Precios claros y ajustados a tus necesidades. ¡Transparencia total para que elijas lo mejor para tu cuenta!"
+        },
+        "our_clients": {
+            "title": "Nuestros clientes",
+            "subtitle": "Testimonios de nuestros clientes",
+            "testimony": {
+                "title": "¡Hola! 👋",
+                "sub_title": "Soy Fizzle Glint",
+                "primary_paragraph": "En una lejana región de Azeroth, hubo una vez un aventurero llamado Fizzle que, tentado por una oferta de oro fácil, decidió tomar un préstamo sin pensarlo dos veces. Aunque el oro prometía mejorar su equipo y llenar sus cofres de tesoros, pronto descubrió que las deudas y las promesas incumplidas se convirtieron en un peso abrumador.",
+                "secondary_paragraph": "Fizzle aprendió la lección de la manera más dura: a veces, la codicia puede llevarnos por caminos oscuros. En lugar de aceptar el oro sin considerar las consecuencias, es mejor evaluar cuidadosamente nuestras opciones y buscar caminos que no nos lleven a la desesperación.",
+                "tertiary_paragraph": "Así que, antes de tomar una decisión, piénsalo bien. El oro puede brillar, pero la libertad y la paz mental son aún más valiosas.",
+                "text_link": "Tienes dudas? ",
+                "sub_text_link": " Visitanos en ",
+                "facebook_text_link": " Facebook"
+            }
+        },
+        "bank_characters": {
+            "title": "Seleccion de personajes",
+            "description": "Elige el personaje para solicitar el préstamo. Si algunos personajes no aparecen, es porque no cumplen con los requisitos del préstamo.",
+            "select-account": "Selecciona una cuenta",
+            "select-character": "Selecciona un personaje",
+            "success-loan": "¡Hehe, has conseguido tu oro! Pero recuerda, amigo, este trato me llena los bolsillos también. ¡No olvides tus pagos o el interés me hará sonreír aún más!",
+            "btn": {
+                "primary": "Aceptar",
+                "loading": "Solicitando Prestamo...",
+                "secondary": "Cancelar"
+            }
+        },
+        "errors": {
+            "fails_to_obtain_accounts": "¡Ups! Estamos teniendo problemas para obtener tus cuentas. ¡Por favor, intenta de nuevo más tarde!",
+            "fails_to_obtain_characters":"¡Ups! Estamos teniendo problemas para obtener tus personajes. ¡Por favor, intenta de nuevo más tarde!"
+        }
     }
 }

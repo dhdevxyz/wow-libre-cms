@@ -77,7 +77,7 @@ const SliderHome = () => {
   };
 
   return (
-    <div className="contenedor">
+    <div className="contenedor pt-5 pb-15">
       <div className="slider-introduction">
         <h2 className="slider-introduction-title title-server">
           Servicios de guerra!
@@ -89,17 +89,34 @@ const SliderHome = () => {
           servicios de profesiones.
         </p>
         <a
-          className="slider-introduction-other text-lg md:text-xl lg:text-1xl xl:text-2xl"
-          href="#"
+          className="slider-introduction-other text-lg md:text-xl lg:text-1xl xl:text-2xl hover:text-gray-300"
+          href="/services"
         >
           Conoce otros guerreros!
         </a>
       </div>
 
       {services.length === 0 && !isLoading ? (
-        <div className="no-partners-message text-lg md:text-xl lg:text-2xl xl:text-2xl text-white mb-20 ">
-          No se encontraron servicios disponibles. ¡Vuelve pronto para ver las
-          nuevas ofertas de nuestros guerreros!
+        <div className="text-lg md:text-xl lg:text-2xl xl:text-2xl text-white mb-20 flex flex-col items-center">
+          <img
+            src="https://bnetcmsus-a.akamaihd.net/cms/blog_header/sd/SDKC28FNI82S1696978734260.png"
+            alt="Espada épica"
+            className="w-40 h-40 md:w-80 md:h-80 mb-6 select-none rounded-full transition-transform duration-500 ease-in-out transform hover:rotate-180"
+          />
+
+          <div className="text-center text-2xl font-serif">
+            ⚔️
+            <span className="text-neon_green">
+              ¡Nuestros expertos están en acción!
+            </span>
+            ⚔️
+            <br />
+            Actualmente no hay servicios disponibles. <br />
+            Pero no te preocupes, nuestros valientes profesionales están
+            perfeccionando
+            <br /> sus habilidades para ofrecerte las mejores experiencias. 🛡️
+            <br />
+          </div>
         </div>
       ) : (
         <Slider {...settings}>
@@ -128,6 +145,9 @@ const SliderHome = () => {
                   />
                 </div>
                 <div className="slider-text">
+                  <p className="slider-description font-bold text-3xl md:text-xl lg:text-2xl xl:text-2xl">
+                    Adquirir servicios
+                  </p>
                   <p className="slider-description text-2xl md:text-xl lg:text-2xl xl:text-2xl">
                     {service.description.length > 50
                       ? `${service.description.substring(0, 50)}...`
@@ -145,7 +165,7 @@ const SliderHome = () => {
                       </span>
                     ))}
                   </div>
-                  <div className="slider-contract mb-4">
+                  <div className="slider-contract ">
                     <button className="contract-button">Contactar</button>
                   </div>
                 </div>

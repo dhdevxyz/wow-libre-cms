@@ -241,3 +241,14 @@ export interface ProfesionsServices {
   score: number;
   is_public: boolean;
 }
+
+export interface BankPlans {
+  id: number;
+  name: string;
+  description: string;
+  price: number;
+  logo: string;
+  frecuency: number;
+  features: [];
+  button: string;
+}

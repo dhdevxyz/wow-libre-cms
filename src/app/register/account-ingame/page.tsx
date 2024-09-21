@@ -2,18 +2,20 @@
 
 import PageCounter from "@/components/register/counter";
 import NavbarMinimalist from "@/components/navbar-minimalist";
-import TitleWow from "@/components/title";
+import TitleWow from "@/components/utilities/serverTitle";
 import { useUserContext } from "@/context/UserContext";
-import { encryptPassword } from "@/security";
 import { useRouter } from "next/navigation";
 import React, { ChangeEvent, useState } from "react";
 import Swal from "sweetalert2";
 import "../style.css";
 import { registerAccountGame } from "@/api/account/register";
-import { AccountGameRequestDto } from "@/model/model";
 import LoadingSpinner from "@/components/utilities/loading-spinner";
 const crypto = require("crypto");
 import Cookies from "js-cookie";
+import NavbarAuthenticated from "@/components/navbar-authenticated";
+import Footer from "@/components/footer";
+import { useTranslation } from "react-i18next";
+import useAuth from "@/hook/useAuth";
 
 const AccountIngame = () => {
   const { user } = useUserContext();
@@ -23,6 +25,7 @@ const AccountIngame = () => {
   const { computeVerifier, params } = require(`trinitycore-srp6`);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const jwt = Cookies.get("token");
+  const { t } = useTranslation();
 
   const handlePasswordChange = (event: ChangeEvent<HTMLInputElement>) => {
     setPassword(event.target.value);
@@ -34,6 +37,8 @@ const AccountIngame = () => {
     setConfirmPassword(event.target.value);
   };
 
+  useAuth(t("errors.message.expiration-session"));
+
   const handleFormSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
@@ -41,7 +46,7 @@ const AccountIngame = () => {
       Swal.fire({
         icon: "error",
         title: "Oops...",
-        text: "Las contraseñas no coinciden",
+        text: t("register.errors.password-game-no-matches"),
         color: "white",
         background: "#0B1218",
         timer: 43500,
@@ -53,7 +58,7 @@ const AccountIngame = () => {
       Swal.fire({
         icon: "error",
         title: "Oops...",
-        text: "La contraseña está vacía.",
+        text: t("register.errors.password-game-empty"),
         color: "white",
         background: "#0B1218",
         timer: 43500,
@@ -65,7 +70,7 @@ const AccountIngame = () => {
       Swal.fire({
         icon: "error",
         title: "Oops...",
-        text: "La contraseña debe ser superior a 5 caracteres e inferior a 30 caracteres.",
+        text: t("register.error.password-game-invalid-length"),
         color: "white",
         background: "#0B1218",
         timer: 43500,
@@ -113,13 +118,14 @@ const AccountIngame = () => {
   };
 
   return (
-    <div className="contenedor register">
-      <NavbarMinimalist />
-
-      <div className="register-container">
+    <div className="contenedor ">
+      <NavbarAuthenticated />
+      <div className="register-container register">
         <TitleWow
-          title=" Registrarme en "
-          description="Protege tu cuenta y elige una contraseña segura para el juego."
+          title={t("register.title-server-sub-title")}
+          description={t(
+            "register.section-page.finaly-create-account-gam.title-server-message"
+          )}
         />
         <form
           className="register-container-form pt-5"
@@ -130,13 +136,17 @@ const AccountIngame = () => {
               htmlFor="countrySelect"
               className="mb-2 register-container-form-label"
             >
-              Contraseña para el juego
+              {t(
+                "register.section-page.finaly-create-account-game.password-txt"
+              )}
             </label>
 
             <input
               className="mb-3 px-4 py-2 border rounded-md text-black register-input"
               type="password"
-              placeholder="Ingrese su contraseña"
+              placeholder={t(
+                "register.section-page.finaly-create-account-game.password-placeholder"
+              )}
               value={password}
               onChange={handlePasswordChange}
             />
@@ -147,12 +157,16 @@ const AccountIngame = () => {
               htmlFor="firstNameInput"
               className="mb-2 register-container-form-label"
             >
-              Confirmar Contraseña
+              {t(
+                "register.section-page.finaly-create-account-game.confirm-password-txt"
+              )}
             </label>
             <input
               className="mb-3 px-4 py-2 border rounded-md text-black register-input"
               type="password"
-              placeholder="Ingrese nuevamente su contraseña"
+              placeholder={t(
+                "register.section-page.finaly-create-account-game.confirm-password-placeholder"
+              )}
               value={confirmPassword}
               onChange={handleConfirmPasswordChange}
             />
@@ -160,7 +174,11 @@ const AccountIngame = () => {
           {isSubmitting && (
             <div className="mb-4 text-center">
               <LoadingSpinner />{" "}
-              <p className="mt-4 text-gray-600 text-lg">Creando cuenta...</p>
+              <p className="mt-4 text-gray-600 text-lg">
+                {t(
+                  "register.section-page.finaly-create-account-game.loading-sniper-txt"
+                )}
+              </p>
             </div>
           )}
           <PageCounter currentSection={2} totalSections={2} />
@@ -169,7 +187,9 @@ const AccountIngame = () => {
             type="submit"
             disabled={isSubmitting}
           >
-            Continuar
+            {t(
+              "register.section-page.finaly-create-account-game.button.btn-primary"
+            )}
           </button>
           <button
             className="text-white px-5 py-5 rounded-md mt-8 button-register"
@@ -177,10 +197,13 @@ const AccountIngame = () => {
             disabled={isSubmitting}
             onClick={handleVolverClick}
           >
-            Volver
+            {t(
+              "register.section-page.finaly-create-account-game.button.btn-secondary"
+            )}
           </button>
         </form>
       </div>
+      <Footer />
     </div>
   );
 };
