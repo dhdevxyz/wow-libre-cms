@@ -11,27 +11,30 @@ const Guild = () => {
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [filteredAccounts, setFilteredAccounts] = useState<GuildDto[]>([]);
   const [currentPage, setCurrentPage] = useState<number>(0);
-  const [hasGuilds, setHasGuilds] = useState<boolean>(false); // Nuevo estado para verificar si hay guilds
+  const [hasGuilds, setHasGuilds] = useState<boolean>(false);
   const accountsPerPage = 5;
+  const [totalGuilds, setTotalGuilds] = useState<number>(0);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response: GuildsDto = await getGuilds(
           currentPage,
-          accountsPerPage
+          accountsPerPage,
+          searchTerm
         );
         setGuilds(response.guilds);
-        setHasGuilds(response.guilds.length > 0); // Actualizar el estado según la respuesta
+        setHasGuilds(response.size > 0);
+        setTotalGuilds(response.size);
       } catch (error) {
         console.error("Ha ocurrido un error al obtener los personajes", error);
         setGuilds([]);
-        setHasGuilds(false); // En caso de error, no hay guilds
+        setHasGuilds(false);
       }
     };
 
     fetchData();
-  }, [currentPage]);
+  }, [currentPage, searchTerm]);
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
@@ -47,12 +50,6 @@ const Guild = () => {
   const handlePageClick = (data: { selected: number }) => {
     setCurrentPage(data.selected);
   };
-
-  const offset = currentPage * accountsPerPage;
-  const currentAccounts = filteredAccounts.slice(
-    offset,
-    offset + accountsPerPage
-  );
 
   return (
     <div className="contenedor dark h-screen-md">
@@ -72,7 +69,7 @@ const Guild = () => {
 
       {hasGuilds ? (
         <>
-          <div className="contenedor dark h-screen-md">
+          <div className=" dark h-screen-md w-full min-h-[50vh]">
             <div className="relative overflow-x-auto  sm:rounded-lg pt-20">
               <div className="flex items-center justify-between flex-column flex-wrap md:flex-row space-y-4 md:space-y-0 pb-4 bg-white dark:bg-midnight">
                 <div className="relative inline-block text-left ml-2">
@@ -157,7 +154,7 @@ const Guild = () => {
                     type="text"
                     id="table-search"
                     className="block p-2 ps-10 text-lg text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    placeholder="Buscar por usuario"
+                    placeholder="Buscar por nombre"
                     value={searchTerm}
                     onChange={handleSearchChange}
                   />
@@ -198,7 +195,7 @@ const Guild = () => {
                 </thead>
 
                 <tbody>
-                  {currentAccounts.map((row) => (
+                  {filteredAccounts.map((row) => (
                     <tr
                       key={row.id}
                       className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
@@ -221,13 +218,13 @@ const Guild = () => {
                       <td className="px-6 py-4">{row.id}</td>
                       <td className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
                         <img
-                          className="w-10 h-10 rounded-full"
+                          className="w-12 h-12 p-1 rounded-full select-none"
                           src={
                             row.avatar != null
                               ? row.avatar
-                              : "/img/guilds/guild_default.jpg"
+                              : "/img/guilds/guild-icon-default.png"
                           }
-                          alt="icon-guild-default"
+                          alt="https://icons8.com"
                         />
                         <div className="ps-3">
                           <div className="text-base font-semibold">
@@ -267,9 +264,7 @@ const Guild = () => {
                   previousLabel={"Anterior"}
                   nextLabel={"Siguiente"}
                   breakLabel={""}
-                  pageCount={Math.ceil(
-                    filteredAccounts.length / accountsPerPage
-                  )}
+                  pageCount={Math.ceil(totalGuilds / accountsPerPage)}
                   marginPagesDisplayed={1}
                   pageRangeDisplayed={1}
                   onPageChange={handlePageClick}

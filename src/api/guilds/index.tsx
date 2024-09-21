@@ -5,13 +5,16 @@ import { v4 as uuidv4 } from "uuid";
 
 export const getGuilds = async (
   page: number = 0,
-  size: number = 10
+  size: number = 10,
+  search: string = ""
 ): Promise<GuildsDto> => {
   try {
     const transactionId = uuidv4();
 
     const response = await fetch(
-      `${BASE_URL_CHARACTER}/api/guilds?size=${size}&page=${page}`,
+      `${BASE_URL_CHARACTER}/api/guilds?size=${size}&page=${page}&search=${encodeURIComponent(
+        search
+      )}`,
       {
         method: "GET",
         headers: {
