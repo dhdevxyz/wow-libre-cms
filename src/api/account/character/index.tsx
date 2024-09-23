@@ -41,7 +41,7 @@ export const getFriends = async (
   console.log(characterId);
   try {
     const response = await fetch(
-      `${BASE_URL_CHARACTER}/api/characters/${characterId}/friends?account_id=${accountId}`,
+      `${BASE_URL_CHARACTER}/api/social/${characterId}/friends?account_id=${accountId}`,
       {
         method: "GET",
         headers: {
@@ -68,11 +68,12 @@ export const getFriends = async (
 export const deleteFriend = async (
   jwt: String,
   characterId: number,
-  friendId: number
+  friendId: number,
+  accountId: number
 ): Promise<void> => {
   try {
     const response = await fetch(
-      `${BASE_URL_CHARACTER}/api/social/${characterId}/${friendId}`,
+      `${BASE_URL_CHARACTER}/api/social/${characterId}/${friendId}?account_id=${accountId}`,
       {
         method: "DELETE",
         headers: {
@@ -96,5 +97,119 @@ export const deleteFriend = async (
     throw new Error(
       `Ocurrió un error al intentar registrar los datos: ${error.message}`
     );
+  }
+};
+
+export const sendMoneyByFriend = async (
+  jwt: String,
+  characterId: number,
+  friendId: number,
+  accountId: number,
+  money: number
+): Promise<void> => {
+  const transactionId = uuidv4();
+
+  try {
+    const requestBody: {
+      character_id: number;
+      friend_id: number;
+      account_id: number;
+      money: number;
+    } = {
+      character_id: characterId,
+      friend_id: friendId,
+      account_id: accountId,
+      money: money,
+    };
+
+    const response = await fetch(
+      `${BASE_URL_CHARACTER}/api/social/send/money`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + jwt,
+          transaction_id: transactionId,
+        },
+        body: JSON.stringify(requestBody),
+      }
+    );
+
+    if (response.ok && response.status >= 200 && response.status < 300) {
+      return;
+    } else {
+      const responseData = await response.json();
+      const badRequestError: GenericResponseDto<void> = responseData;
+      throw new Error(
+        `${badRequestError.message} - TransactionId: ${transactionId}`
+      );
+    }
+  } catch (error: any) {
+    if (error instanceof TypeError && error.message === "Failed to fetch") {
+      throw new Error(`Please try again later, services are not available.`);
+    } else if (error instanceof Error) {
+      throw error;
+    } else {
+      throw new Error(
+        `Unknown error occurred - TransactionId: ${transactionId}`
+      );
+    }
+  }
+};
+
+export const sendLevelByFriend = async (
+  jwt: String,
+  characterId: number,
+  friendId: number,
+  accountId: number,
+  level: number
+): Promise<void> => {
+  const transactionId = uuidv4();
+
+  try {
+    const requestBody: {
+      character_id: number;
+      friend_id: number;
+      account_id: number;
+      level: number;
+    } = {
+      character_id: characterId,
+      friend_id: friendId,
+      account_id: accountId,
+      level: level,
+    };
+
+    const response = await fetch(
+      `${BASE_URL_CHARACTER}/api/social/send/level`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + jwt,
+          transaction_id: transactionId,
+        },
+        body: JSON.stringify(requestBody),
+      }
+    );
+
+    if (response.ok && response.status >= 200 && response.status < 300) {
+      return;
+    } else {
+      const responseData = await response.json();
+      const badRequestError: GenericResponseDto<void> = responseData;
+      throw new Error(
+        `${badRequestError.message} - TransactionId: ${transactionId}`
+      );
+    }
+  } catch (error: any) {
+    if (error instanceof TypeError && error.message === "Failed to fetch") {
+      throw new Error(`Please try again later, services are not available.`);
+    } else if (error instanceof Error) {
+      throw error;
+    } else {
+      throw new Error(
+        `Unknown error occurred - TransactionId: ${transactionId}`
+      );
+    }
   }
 };

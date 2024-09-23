@@ -65,7 +65,7 @@ const AccountDetail = () => {
           setCharacters(charactersResponse.characters);
           setUserDetail(accountDetailResponse);
         } else {
-          router.push("/account");
+          router.push("/accounts");
         }
       } catch (error) {
         console.error("Ha ocurrido un error al obtener los datos", error);
@@ -102,8 +102,7 @@ const AccountDetail = () => {
   }
 
   return (
-    <div className="contenedor mx-auto">
-      ​
+    <div className="contenedor">
       <NavbarAuthenticated />
       <div className="flex flex-col items-center justify-center py-20">
         <img

@@ -7,7 +7,7 @@ import { getFriends } from "@/api/account/character";
 
 interface CharacterProps {
   character: Character;
-  token: string | null;
+  token: string;
   account_id: number;
 }
 
@@ -15,8 +15,9 @@ const Friend: React.FC<CharacterProps> = ({ character, token, account_id }) => {
   const [friendsModel, setFriends] = useState<Friends | null>(null);
   const [currentPage, setCurrentPage] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedFriendId, setSelectedFriendId] = useState<Character | null>(); // Nuevo estado
+  const [selectedFriendId, setSelectedFriendId] = useState<Character | null>();
 
+  console.log(account_id);
   const openModal = (friend: Character) => {
     setSelectedFriendId(friend);
     setIsModalOpen(true);
@@ -44,7 +45,7 @@ const Friend: React.FC<CharacterProps> = ({ character, token, account_id }) => {
     };
 
     fetchData();
-  }, [character]);
+  }, [character, selectedFriendId]);
 
   if (!character || character == null) {
     return <p>Selecciona un personaje para mostrar detalles.</p>;
@@ -67,7 +68,6 @@ const Friend: React.FC<CharacterProps> = ({ character, token, account_id }) => {
   // Número de elementos por página
   const itemsPerPage = 3;
 
-  // Calcula el índice del primer y último elemento en la página actual
   const indexOfLastFriend = (currentPage + 1) * itemsPerPage;
   const indexOfFirstFriend = indexOfLastFriend - itemsPerPage;
   const currentFriends = friendsModel.friends.slice(
@@ -79,10 +79,16 @@ const Friend: React.FC<CharacterProps> = ({ character, token, account_id }) => {
     const selectedPage = data.selected;
     setCurrentPage(selectedPage);
   };
-
+  const onFriendDeleted = (friendId: number) => {
+    if (friendsModel) {
+      const updatedFriends = friendsModel.friends.filter(
+        (friend) => friend.id !== friendId
+      );
+      setFriends({ ...friendsModel, friends: updatedFriends });
+    }
+  };
   return (
     <div className="p-4 ">
-      <div></div>
       <div className="text-center mx-auto mt-8 max-w-2xl">
         <h2 className="text-3xl font-semibold mt-4 mb-5 ml-2 text-orange-200">
           Listado de Amigos
@@ -91,7 +97,7 @@ const Friend: React.FC<CharacterProps> = ({ character, token, account_id }) => {
 
       <hr className="border-t-1 border-white my-4 mx-8" />
 
-      <div className="grid grid-cols-3 gap-4 ">
+      <div className="grid grid-cols-3 gap-4 select-none">
         {currentFriends.map((friend) => (
           <div
             key={friend.id}
@@ -124,30 +130,27 @@ const Friend: React.FC<CharacterProps> = ({ character, token, account_id }) => {
             <p className="text-orange-200   overflow-hidden overflow-ellipsis whitespace-nowrap">
               Estado: <span className="text-white">{friend.flags} </span>
             </p>
-            {friend.note && (
-              <p className="text-orange-200  overflow-hidden overflow-ellipsis whitespace-nowrap">
-                Nota: <span className="text-white">{friend.note} </span>
-              </p>
-            )}
           </div>
         ))}
       </div>
 
-      {isModalOpen && selectedFriendId !== null && (
+      {isModalOpen && selectedFriendId != null && (
         <>
           <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center">
-            <div className="bg-slate-200 rounded-2xl  p-4 relative">
+            <div className="bg-slate-200 rounded-2xl  p-3 relative">
               <button
-                className="absolute top-0 right-0 mt-2 mr-2 action-button text-black"
+                className="absolute top-0 right-0 mt-6 mr-6 action-button text-4xl text-white select-none"
                 onClick={closeModal}
               >
                 &#10005;
               </button>
               <FriendDetail
-                jwt={token || ""}
+                jwt={token}
+                accountId={account_id}
                 character={character}
-                friend={selectedFriendId || null}
+                friend={selectedFriendId}
                 onCloseModal={closeModal}
+                onFriendDeleted={onFriendDeleted}
               />
             </div>
           </div>
