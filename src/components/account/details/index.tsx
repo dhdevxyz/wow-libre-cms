@@ -32,6 +32,7 @@ import Professions from "@/components/professions";
 import AccountGuild from "@/components/account/guild";
 import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
 import { useTranslation } from "react-i18next";
+import Premium from "@/components/premium";
 const AccountDetail = () => {
   const searchParams = useSearchParams();
 
@@ -200,21 +201,49 @@ const AccountDetail = () => {
             <div className="lg:border-l border-gray-300 hidden lg:block"></div>
 
             {/* Paneles de las pestañas */}
-            <div className="w-full px-4">
+            <div className="w-full">
               <TabPanel>
                 {/* Contenido de la pestaña Amigos */}
-                {selectedCharacter && token && accountId && (
+                {selectedCharacter && token && accountId ? (
                   <Friend
                     character={selectedCharacter}
                     token={token}
                     account_id={accountId}
                   />
+                ) : (
+                  <div className=" p-6 bg-gradient-to-r from-gray-800 via-black to-gray-900 text-neon_green rounded-lg shadow-lg text-center">
+                    <h2 className="text-2xl font-bold mb-2 text-gray-200">
+                      ⚔️ ¡Selecciona tu héroe! ⚔️
+                    </h2>
+                    <p className="text-xl text-gray-200 mb-4">
+                      En Azeroth, la verdadera fuerza proviene de los amigos.
+                      ¡Agrega a tus aliados y comparte aventuras!
+                    </p>
+                    <p className="text-lg italic text-gray-200">
+                      Juntos, podrán enfrentar desafíos y celebrar victorias.
+                      ¡La amistad es la mayor magia de todas!
+                    </p>
+                  </div>
                 )}
               </TabPanel>
               <TabPanel>
                 {/* Contenido de la pestaña Notificaciones */}
-                {selectedCharacter && token && (
+                {selectedCharacter && token ? (
                   <Mails token={token} character_id={selectedCharacter.id} />
+                ) : (
+                  <div className=" p-6 bg-gradient-to-r from-gray-800 via-black to-gray-900 text-neon_green rounded-lg shadow-lg text-center">
+                    <h2 className="text-2xl font-bold mb-2 text-gray-200">
+                      ⚔️ ¡Selecciona tu héroe! ⚔️
+                    </h2>
+                    <p className="text-xl text-gray-200 mb-4">
+                      La comunicación es clave en el mundo de Warcraft. ¡Envía
+                      cartas y mensajes a tus amigos y aliados!
+                    </p>
+                    <p className="text-lg italic text-gray-200">
+                      Comparte tus aventuras, estrategias y secretos. ¡Cada
+                      palabra cuenta en la batalla por el destino de Azeroth!
+                    </p>
+                  </div>
                 )}
               </TabPanel>
               <TabPanel>
@@ -225,29 +254,65 @@ const AccountDetail = () => {
               </TabPanel>
               <TabPanel>
                 {/* Contenido de la pestaña Inventario */}
-                <div className="p-4">Contenido de la pestaña Inventario</div>
+                <div className="p-6 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg shadow-lg text-center">
+                  <h2 className="text-xl font-bold mb-2">
+                    ⚔️ Contenido no disponible actualmente⚔️
+                  </h2>
+                  <p className="text-lg">En desarrollo</p>
+                </div>
               </TabPanel>
               <TabPanel>
                 {/* Contenido de la pestaña Profesiones */}
-                {selectedCharacter && token && accountId && (
+                {selectedCharacter && token && accountId ? (
                   <Professions
                     character={selectedCharacter}
                     token={token}
                     account_id={accountId}
                   />
+                ) : (
+                  <div className=" p-6 bg-gradient-to-r from-gray-800 via-black to-gray-900 text-neon_green rounded-lg shadow-lg text-center">
+                    <h2 className="text-2xl font-bold mb-2 text-gray-200">
+                      ⚔️ ¡Selecciona tu héroe! ⚔️
+                    </h2>
+                    <p className="text-xl text-gray-200 mb-4">
+                      ¡Conviértete en un maestro herrero, alquimista, o incluso
+                      en un sabio encantador! Las oportunidades son infinitas...
+                      ¡elige tu camino dentro del juego!
+                    </p>
+                    <p className="text-lg italic text-gray-200">
+                      La clave del poder está en tus manos. ¡Las profesiones te
+                      llevarán más allá!
+                    </p>
+                  </div>
                 )}
               </TabPanel>
               <TabPanel>
-                {selectedCharacter && token && accountId && (
+                {selectedCharacter && token && accountId ? (
                   <AccountGuild
                     character_id={selectedCharacter.id}
                     token={token}
                     account_id={accountId}
                   />
+                ) : (
+                  <div className=" p-6 bg-gradient-to-r from-gray-800 via-black to-gray-900 text-neon_green rounded-lg shadow-lg text-center">
+                    <h2 className="text-2xl font-bold mb-2 text-gray-200">
+                      ⚔️ ¡Selecciona tu héroe! ⚔️
+                    </h2>
+                    <p className="text-xl text-gray-200 mb-4">
+                      La fuerza de Azeroth radica en la unidad. ¡Forma parte de
+                      una guild poderosa y lucha junto a tus amigos!
+                    </p>
+                    <p className="text-lg italic text-gray-200">
+                      Juntos, podrán conquistar grandes desafíos y forjar un
+                      legado eterno. ¡La aventura comienza aquí!
+                    </p>
+                  </div>
                 )}
               </TabPanel>
 
-              <TabPanel>{/* Contenido de la pestaña Premim */}</TabPanel>
+              <TabPanel>
+                <Premium />
+              </TabPanel>
             </div>
           </div>
         </Tabs>

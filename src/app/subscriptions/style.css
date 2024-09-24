@@ -1,0 +1,27 @@
+.perspective {
+  perspective: 1000px; /* Controla la intensidad del efecto 3D */
+}
+
+.card {
+  position: relative; /* Necesario para la rotación */
+  width: 100%;
+  height: 300px; /* Ajusta la altura según sea necesario */
+  transform-style: preserve-3d;
+  transition: transform 0.5s; /* Asegúrate de que haya una transición suave */
+}
+
+.front,
+.back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden; /* Oculta la parte trasera cuando está girada */
+}
+
+.back {
+  transform: rotateY(180deg); /* Rota la parte trasera */
+}
+
+.backface-hidden {
+  backface-visibility: hidden; /* Oculta el lado opuesto */
+}

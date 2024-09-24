@@ -32,6 +32,27 @@ img {
   margin-inline: auto;
 }
 
+@keyframes rotate {
+  0% {
+    transform: rotateY(0deg);
+  }
+  100% {
+    transform: rotateY(360deg);
+  }
+}
+
+.rotate-animation {
+  animation: rotate 3s ease-in-out infinite; /* Ajusta la duración y la repetición según sea necesario */
+}
+
+.contenedor2 {
+  max-width: 110rem;
+  margin-inline: auto;
+}
+.contenedor3 {
+  max-width: 50rem;
+  margin-inline: auto;
+}
 .title-server {
   font-family: "Folkard", sans-serif;
 }
