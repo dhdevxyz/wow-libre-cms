@@ -78,7 +78,7 @@ const AccountDetail = () => {
           background: "#0B1218",
           timer: 4500,
         });
-        router.push("/account");
+        router.push("/accounts");
       } finally {
         setIsLoading(false);
       }

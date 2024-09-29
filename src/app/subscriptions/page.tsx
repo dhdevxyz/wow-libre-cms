@@ -1,5 +1,7 @@
 "use client";
+import MultiCarousel from "@/components/home/carrousel-multiple";
 import NavbarAuthenticated from "@/components/navbar-authenticated";
+import MultiCarouselSubs from "@/components/subscriptions/carrousel";
 import Link from "next/link";
 import React, { useState } from "react";
 import { FaCreditCard, FaMoneyCheckAlt, FaCashRegister } from "react-icons/fa"; // Asegúrate de tener react-icons instalado
@@ -103,6 +105,7 @@ const Subscriptions = () => {
       <div className="contenedor">
         <NavbarAuthenticated />
       </div>
+
       <div
         className="text-white mb-20 mt-14"
         style={{
@@ -176,6 +179,7 @@ const Subscriptions = () => {
           </div>
         </div>
       </div>
+
       <div className="contenedor2">
         <div className="py-12 rounded-lg">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -228,11 +232,9 @@ const Subscriptions = () => {
             </span>
             <div className="flex flex-col">
               <h2 className="text-3xl lg:text-4xl font-bold text-white mr-4 mb-1">
-                Título del Promocional
+                Plan promocional
               </h2>
-              <h3 className="text-xl text-gray-300">
-                Subtítulo atractivo que acompaña el título
-              </h3>
+              <h3 className="text-xl text-gray-300">No pierdas tus datos</h3>
             </div>
           </div>
 
@@ -245,6 +247,8 @@ const Subscriptions = () => {
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             ></iframe>
           </div>
+
+          <MultiCarouselSubs />
         </div>
       </div>
 
