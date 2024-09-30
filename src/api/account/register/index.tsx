@@ -1,4 +1,4 @@
-import { BASE_URL_AUTH } from "@/configs/configs";
+import { BASE_URL, BASE_URL_AUTH } from "@/configs/configs";
 import {
   BadRequestDto,
   GenericResponseDto,
@@ -59,7 +59,7 @@ export const registerAccountWeb = async (
 ): Promise<LoginData> => {
   const transactionId = uuidv4();
   try {
-    const response = await fetch(`${BASE_URL_AUTH}/api/account/web/create`, {
+    const response = await fetch(`${BASE_URL}/api/account/create`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

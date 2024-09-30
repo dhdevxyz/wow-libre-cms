@@ -58,6 +58,7 @@
             "email-invalid": "Por favor, ingrese un correo electrónico válido.",
             "phone-empty": "Por favor, ingrese un numero de contacto.",
             "email-exist": "El correo electrónico ingresado ya está registrado. Por favor, ingrese otro correo electrónico.",
+            "phone-exist": "El numero de contacto ingresado ya está registrado. Por favor, ingrese otro.",
             "terms-and-conditions-empty": "Por favor, acepta los terminos y condiciones.",
             "password-web-no-matches": "Las contraseñas no coinciden",
             "password-web-empty": "La contraseña no puede estar  vacía.",
@@ -306,7 +307,7 @@
         },
         "errors": {
             "fails_to_obtain_accounts": "¡Ups! Estamos teniendo problemas para obtener tus cuentas. ¡Por favor, intenta de nuevo más tarde!",
-            "fails_to_obtain_characters":"¡Ups! Estamos teniendo problemas para obtener tus personajes. ¡Por favor, intenta de nuevo más tarde!"
+            "fails_to_obtain_characters": "¡Ups! Estamos teniendo problemas para obtener tus personajes. ¡Por favor, intenta de nuevo más tarde!"
         }
     }
 }

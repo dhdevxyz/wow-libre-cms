@@ -58,6 +58,7 @@
             "email-invalid": "Por favor, insira um endereço de e-mail válido.",
             "phone-empty": "Por favor, insira um número de contato.",
             "email-exist": "O e-mail informado já está registrado. Por favor, insira outro e-mail.",
+            "phone-exist": "O número de contato inserido já está registrado. Por favor, insira outro.",
             "terms-and-conditions-empty": "Por favor, aceite os termos e condições.",
             "password-web-no-matches": "As senhas não coincidem",
             "password-web-empty": "A senha não pode estar vazia.",

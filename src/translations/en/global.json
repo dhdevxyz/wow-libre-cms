@@ -58,6 +58,7 @@
             "email-invalid": "Please enter a valid email address.",
             "phone-empty": "Please enter a contact number.",
             "email-exist": "The entered email is already registered. Please enter another email.",
+            "phone-exist": "The entered contact number is already registered. Please enter another one.",
             "terms-and-conditions-empty": "Please accept the terms and conditions.",
             "password-web-no-matches": "Passwords do not match",
             "password-web-empty": "Password cannot be empty.",

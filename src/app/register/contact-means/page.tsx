@@ -8,9 +8,10 @@ import { useRouter } from "next/navigation";
 import React, { ChangeEvent, useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import "../style.css";
-import { ExistEmailModel } from "@/model/model";
-import { existEmail } from "@/api/account/exist-email";
+import { existEmail, existPhone } from "@/api/account/exist-email";
 import { useTranslation } from "react-i18next";
+import PhoneInput from "react-phone-input-2";
+import "react-phone-input-2/lib/style.css";
 
 const ContactMeans = () => {
   const { user, setUser } = useUserContext();
@@ -21,12 +22,6 @@ const ContactMeans = () => {
 
   const handleEmailChange = (event: ChangeEvent<HTMLInputElement>) => {
     setEmail(event.target.value);
-  };
-
-  const handleCellPhoneChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const { value } = event.target;
-    const filteredValue = value.replace(/[eE]/g, "");
-    setCellPhone(filteredValue);
   };
 
   const isValidEmail = (email: string) => {
@@ -74,9 +69,24 @@ const ContactMeans = () => {
     }
 
     try {
-      const response: ExistEmailModel = await existEmail(email);
+      const [emailResponse, phoneResponse] = await Promise.all([
+        existEmail(email),
+        existPhone(cellPhone),
+      ]);
 
-      if (response.exist) {
+      if (emailResponse.exist) {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: t("register.error.email-exist"),
+          color: "white",
+          background: "#0B1218",
+          timer: 43500,
+        });
+
+        return;
+      }
+      if (phoneResponse.exist) {
         Swal.fire({
           icon: "error",
           title: "Oops...",
@@ -143,7 +153,7 @@ const ContactMeans = () => {
             </label>
 
             <input
-              className="mb-3 px-4 py-2 border rounded-md text-black register-input"
+              className="mb-3 w-full px-4 py-2 border rounded-md text-black register-input"
               type="email"
               id="emailInput"
               placeholder={t(
@@ -161,21 +171,24 @@ const ContactMeans = () => {
             >
               {t("register.section-page.contact-means.input.phone-text")}
             </label>
-            <input
-              id="phoneInput"
-              className="mb-3 px-4 py-2 border rounded-md text-black register-input"
-              type="number"
-              placeholder={t(
-                "register.section-page.contact-means.input.phone-text-place-holder"
-              )}
+            <PhoneInput
+              country={"us"}
               value={cellPhone}
-              onChange={handleCellPhoneChange}
+              onChange={(value) => setCellPhone(value)}
+              inputClass="!w-full !text-black !rounded-md"
+              containerClass="!mb-3 !w-full"
+              buttonClass="!bg-gray-200 !rounded-l-md"
+              inputStyle={{
+                width: "100%",
+                paddingLeft: "58px",
+              }}
+              dropdownClass="custom-dropdown"
             />
           </div>
 
           <PageCounter currentSection={3} totalSections={5} />
           <button
-            className=" text-white px-5 py-5 rounded-md mt-8 button-register"
+            className="text-white px-5 py-5 rounded-md mt-8 button-register"
             type="submit"
           >
             {t("register.section-page.contact-means.button.btn-primary")}
