@@ -13,6 +13,7 @@ import { InternalServerError } from "@/dto/generic";
 import { useRouter } from "next/navigation";
 import useAuth from "@/hook/useAuth";
 import { useTranslation } from "react-i18next";
+import ReactPaginate from "react-paginate";
 
 const LimitAccountRegister = 10;
 
@@ -21,6 +22,9 @@ const Page = () => {
   const { clearUserData } = useUserContext();
   const token = Cookies.get("token");
   const { t } = useTranslation();
+  const [totalPages, setTotalPages] = useState(0);
+  const accountsPerPage = 5;
+  const [currentPage, setCurrentPage] = useState<number>(0);
 
   const [accounts, setAccounts] = useState<AccountsModel[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
@@ -37,8 +41,13 @@ const Page = () => {
 
     const fetchData = async () => {
       try {
-        const fetchedAccounts = await getAccounts(token);
-        setAccounts(fetchedAccounts);
+        const fetchedAccounts = await getAccounts(
+          token,
+          currentPage,
+          accountsPerPage
+        );
+        setAccounts(fetchedAccounts.accounts);
+        setTotalPages(fetchedAccounts.size);
         setLoading(false);
       } catch (error: any) {
         if (error instanceof InternalServerError) {
@@ -70,7 +79,7 @@ const Page = () => {
       }
     };
     fetchData();
-  }, [accounts]);
+  }, [token, currentPage]);
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value);
@@ -82,6 +91,10 @@ const Page = () => {
 
   const toggleDropdown = () => {
     setDropdownVisible(!dropdownVisible);
+  };
+
+  const handlePageClick = (data: { selected: number }) => {
+    setCurrentPage(data.selected);
   };
 
   if (loading) {
@@ -235,9 +248,6 @@ const Page = () => {
                     {t("account.column-table.position-six")}
                   </th>
                   <th scope="col" className="px-6 py-3">
-                    {t("account.column-table.position-seven")}
-                  </th>
-                  <th scope="col" className="px-6 py-3">
                     {t("account.column-table.position-action")}
                   </th>
                 </tr>
@@ -268,7 +278,7 @@ const Page = () => {
                     <td className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
                       <img
                         className="w-10 h-10 rounded-full"
-                        src={row.logo_expansion}
+                        src={row.avatar}
                         alt="Icon Version Wow"
                       />
                       <div className="ps-3">
@@ -285,22 +295,34 @@ const Page = () => {
                       <div className="flex items-center">
                         <div
                           className={`h-2.5 w-2.5 rounded-full ${
-                            row.online ? "bg-green-500" : "bg-red-500"
+                            row.status ? "bg-green-500" : "bg-red-500"
                           } me-2`}
                         ></div>
-                        {row.online ? "Online" : "Offline"}
+                        {row.status ? "Enable" : "Disable"}
                       </div>
                     </td>
-                    <td className="px-6 py-4 items-center">
-                      {row.failed_logins}
-                    </td>
-                    <td className="px-6 py-4">{row.join_date}</td>
-                    <td className="px-6 py-4">{row.last_ip}</td>
+                    <td className="px-6 py-4 items-center"> {row.server}</td>
                     <td className="px-6 py-4">
                       <a
-                        className="font-medium text-blue-600 dark:text-blue-500 hover:underline cursor-pointer"
+                        href={
+                          row.web_site.startsWith("http")
+                            ? row.web_site
+                            : `http://${row.web_site}`
+                        }
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="font-medium text-blue-500 text-xl  dark:text-blue-500 hover:underline cursor-pointer"
+                      >
+                        Visitar
+                      </a>
+                    </td>
+                    <td className="px-6 py-4">
+                      <a
+                        className="font-medium text-blue-600 text-xl dark:text-blue-500 hover:underline cursor-pointer"
                         onClick={() =>
-                          router.push(`/accounts/detail?id=${row.id}`)
+                          router.push(
+                            `/accounts/detail?id=${row.account_id}&server_id=${row.server_id}`
+                          )
                         }
                       >
                         {t("account.column-table.position-btn-admin")}
@@ -310,6 +332,36 @@ const Page = () => {
                 ))}
               </tbody>
             </table>
+            <div className="flex justify-center items-center mt-10 ">
+              <ReactPaginate
+                previousLabel={"Anterior"}
+                nextLabel={"Siguiente"}
+                breakLabel={""}
+                pageCount={Math.ceil(totalPages / accountsPerPage)}
+                marginPagesDisplayed={1}
+                pageRangeDisplayed={1}
+                onPageChange={handlePageClick}
+                containerClassName={"pagination flex space-x-2"}
+                pageClassName={"page-item"}
+                pageLinkClassName={
+                  "text-white py-2 px-3 rounded-lg hover:bg-gray-600"
+                }
+                previousClassName={"page-item"}
+                previousLinkClassName={
+                  "page-link text-white py-2 px-3 rounded-lg hover:bg-gray-600"
+                }
+                nextClassName={"page-item"}
+                nextLinkClassName={
+                  "page-link text-white py-2 px-3 rounded-lg hover:bg-gray-600"
+                }
+                breakClassName={"page-item"}
+                breakLinkClassName={
+                  "page-link text-white py-2 px-3 rounded-lg hover:bg-gray-600"
+                }
+                activeClassName={"active"}
+                activeLinkClassName={"bg-blue-900"}
+              />
+            </div>
           </div>
         </div>
       ) : (

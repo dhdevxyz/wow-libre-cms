@@ -1,17 +1,19 @@
-import { BASE_URL_CHARACTER } from "@/configs/configs";
+import { BASE_URL, BASE_URL_CHARACTER } from "@/configs/configs";
 import { GenericResponseDto } from "@/dto/generic";
 import { Profession } from "@/model/model";
 import { v4 as uuidv4 } from "uuid";
 
 export const getProfessions = async (
-  character_id: number,
+  characterId: number,
+  accountId: number,
+  serverId: number,
   token: string
 ): Promise<Profession[]> => {
   try {
     const transactionId = uuidv4();
 
     const response = await fetch(
-      `${BASE_URL_CHARACTER}/api/professions?character_id=${character_id}`,
+      `${BASE_URL}/api/characters/professions?character_id=${characterId}&account_id=${accountId}&server_id=${serverId}`,
       {
         method: "GET",
 
@@ -53,25 +55,22 @@ export const professionsServices = async (
   try {
     const transactionId = uuidv4();
 
-    const response = await fetch(
-      `${BASE_URL_CHARACTER}/api/professions/services`,
-      {
-        method: "POST",
+    const response = await fetch(`${BASE_URL}/api/professions/services`, {
+      method: "POST",
 
-        headers: {
-          "Content-Type": "application/json",
-          transaction_id: transactionId,
-          Authorization: "Bearer " + token,
-        },
-        body: JSON.stringify({
-          character_id: characterId,
-          skill_id: skillId,
-          account_id: accountId,
-          description: description,
-          public: is_public,
-        }),
-      }
-    );
+      headers: {
+        "Content-Type": "application/json",
+        transaction_id: transactionId,
+        Authorization: "Bearer " + token,
+      },
+      body: JSON.stringify({
+        character_id: characterId,
+        skill_id: skillId,
+        account_id: accountId,
+        description: description,
+        public: is_public,
+      }),
+    });
 
     if (response.ok && response.status === 200) {
       const responseData: GenericResponseDto<void> = await response.json();

@@ -23,7 +23,7 @@ import { AccountDetailDto, Character, Characters } from "@/model/model";
 import Cookies from "js-cookie";
 import CharacterSelection from "@/components/character_selection";
 import Friend from "@/components/friends/friend";
-import { getAccount } from "@/api/account";
+import { getAccount, getUser } from "@/api/account";
 import NavbarAuthenticated from "@/components/navbar-authenticated";
 import DetailAccount from "@/components/account";
 import Mails from "@/components/account/mails";
@@ -33,11 +33,15 @@ import AccountGuild from "@/components/account/guild";
 import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
 import { useTranslation } from "react-i18next";
 import Premium from "@/components/premium";
+import { UserModel } from "@/context/UserContext";
+
 const AccountDetail = () => {
   const searchParams = useSearchParams();
 
   const token = Cookies.get("token");
   const accountId = Number(searchParams.get("id"));
+  const serverId = Number(searchParams.get("server_id"));
+
   const router = useRouter();
   const [isPanelOpen, setIsPanelOpen] = useState(false);
 
@@ -45,7 +49,9 @@ const AccountDetail = () => {
     setIsPanelOpen(!isPanelOpen);
   };
   const [isLoading, setIsLoading] = useState(true);
-  const [userDetail, setUserDetail] = useState<AccountDetailDto>();
+  const [accountDetail, setAccountDetail] = useState<AccountDetailDto>();
+  const [userDetail, setUserDetail] = useState<UserModel>();
+
   const [characters, setCharacters] = useState<Character[]>([]);
   const [selectedCharacter, setSelectedCharacter] = useState<Character>();
   const [avatar, setAvatar] = useState("https://via.placeholder.com/150");
@@ -59,12 +65,16 @@ const AccountDetail = () => {
         if (accountId && token) {
           setIsLoading(true);
 
-          const [charactersResponse, accountDetailResponse] = await Promise.all(
-            [getCharacters(token, accountId), getAccount(token, accountId)]
-          );
+          const [charactersResponse, accountDetailResponse, userModel] =
+            await Promise.all([
+              getCharacters(token, accountId, serverId),
+              getAccount(token, accountId, serverId),
+              getUser(token),
+            ]);
 
           setCharacters(charactersResponse.characters);
-          setUserDetail(accountDetailResponse);
+          setAccountDetail(accountDetailResponse);
+          setUserDetail(userModel);
         } else {
           router.push("/accounts");
         }
@@ -111,7 +121,14 @@ const AccountDetail = () => {
           alt="Avatar del usuario"
           className="w-36 h-36 rounded-full mb-4 box-shadow-primary"
         />
-        <div className="text-center w-full max-w-md">
+        <div className="text-center w-full max-w-md pt-2">
+          <p className="text-4xl title-server">
+            {accountDetail?.server.split("").map((letter, index) => (
+              <span key={index} className="text-white animate-color-cycle ">
+                {letter}
+              </span>
+            ))}
+          </p>
           <button
             onClick={togglePanel}
             className={`w-full py-2 px-4 rounded-lg flex items-center justify-center ${
@@ -126,23 +143,23 @@ const AccountDetail = () => {
               className="text-xl ml-2"
             />
           </button>
-          {isPanelOpen && (
+          {isPanelOpen && userDetail && (
             <div className="mt-4  p-4 rounded-lg shadow-lg">
               <h2 className="text-white text-2xl font-bold">
                 Detalles del personaje
               </h2>
               <p className="text-white text-lg mt-2">
-                <strong>Nombre:</strong> {userDetail?.account_web.first_name}{" "}
-                {userDetail?.account_web.last_name}
+                <strong>Nombre:</strong> {userDetail?.first_name}
+                {userDetail?.last_name}
               </p>
               <p className="text-white text-lg mt-2">
                 <strong>Email:</strong> {userDetail?.email}
               </p>
               <p className="text-white text-lg mt-2">
-                <strong>País:</strong> {userDetail?.account_web.country}
+                <strong>País:</strong> {userDetail?.country}
               </p>
               <p className="text-white text-lg mt-2">
-                <strong>Username:</strong> {userDetail?.username}
+                <strong>Username:</strong> {accountDetail?.username}
               </p>
             </div>
           )}
@@ -153,7 +170,9 @@ const AccountDetail = () => {
                 onSelectCharacter={handleSelectCharacter}
               />
             ) : (
-              <p className="text-white">No hay personajes disponibles</p>
+              <div>
+                <p className="text-white">No hay personajes disponibles</p>
+              </div>
             )}
           </div>
         </div>
@@ -175,10 +194,6 @@ const AccountDetail = () => {
               <Tab className="py-6 px-6 text-white bg-tablist  cursor-pointer text-lg font-semibold flex items-center">
                 <FontAwesomeIcon icon={faUser} className="mr-2 text-2xl" />{" "}
                 Cuenta
-              </Tab>
-              <Tab className="py-6 px-6 text-white  bg-tablist cursor-pointer text-lg font-semibold flex items-center">
-                <FontAwesomeIcon icon={faClipboard} className="mr-2 text-2xl" />
-                Inventario
               </Tab>
               <Tab className="py-6 px-5 text-white  bg-tablist cursor-pointer text-lg font-semibold flex items-center">
                 <FontAwesomeIcon
@@ -208,7 +223,8 @@ const AccountDetail = () => {
                   <Friend
                     character={selectedCharacter}
                     token={token}
-                    account_id={accountId}
+                    accountId={accountId}
+                    serverId={serverId}
                   />
                 ) : (
                   <div className=" p-6 bg-gradient-to-r from-gray-800 via-black to-gray-900 text-neon_green rounded-lg shadow-lg text-center">
@@ -229,7 +245,12 @@ const AccountDetail = () => {
               <TabPanel>
                 {/* Contenido de la pestaña Notificaciones */}
                 {selectedCharacter && token ? (
-                  <Mails token={token} character_id={selectedCharacter.id} />
+                  <Mails
+                    token={token}
+                    characterId={selectedCharacter.id}
+                    accountId={accountId}
+                    serverId={serverId}
+                  />
                 ) : (
                   <div className=" p-6 bg-gradient-to-r from-gray-800 via-black to-gray-900 text-neon_green rounded-lg shadow-lg text-center">
                     <h2 className="text-2xl font-bold mb-2 text-gray-200">
@@ -248,18 +269,13 @@ const AccountDetail = () => {
               </TabPanel>
               <TabPanel>
                 {/* Contenido de la pestaña Perfil Detallado */}
-                {userDetail && token ? (
-                  <DetailAccount account={userDetail} token={token} />
+                {accountDetail && token ? (
+                  <DetailAccount
+                    account={accountDetail}
+                    token={token}
+                    serverId={serverId}
+                  />
                 ) : null}
-              </TabPanel>
-              <TabPanel>
-                {/* Contenido de la pestaña Inventario */}
-                <div className="p-6 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg shadow-lg text-center">
-                  <h2 className="text-xl font-bold mb-2">
-                    ⚔️ Contenido no disponible actualmente⚔️
-                  </h2>
-                  <p className="text-lg">En desarrollo</p>
-                </div>
               </TabPanel>
               <TabPanel>
                 {/* Contenido de la pestaña Profesiones */}
@@ -267,7 +283,8 @@ const AccountDetail = () => {
                   <Professions
                     character={selectedCharacter}
                     token={token}
-                    account_id={accountId}
+                    accountId={accountId}
+                    serverId={serverId}
                   />
                 ) : (
                   <div className=" p-6 bg-gradient-to-r from-gray-800 via-black to-gray-900 text-neon_green rounded-lg shadow-lg text-center">
@@ -309,7 +326,6 @@ const AccountDetail = () => {
                   </div>
                 )}
               </TabPanel>
-
               <TabPanel>
                 <Premium />
               </TabPanel>

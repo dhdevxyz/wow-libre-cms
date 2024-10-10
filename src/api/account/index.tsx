@@ -1,6 +1,7 @@
-import { BASE_URL_AUTH } from "@/configs/configs";
+import { BASE_URL, BASE_URL_AUTH } from "@/configs/configs";
+import { UserModel } from "@/context/UserContext";
 import { GenericResponseDto, InternalServerError } from "@/dto/generic";
-import { AccountDetailDto, AccountsModel } from "@/model/model";
+import { AccountDetailDto, AccountsDto, AccountsModel } from "@/model/model";
 import { v4 as uuidv4 } from "uuid";
 
 /**
@@ -9,18 +10,25 @@ import { v4 as uuidv4 } from "uuid";
  * @returns Una promesa que resuelve con un array de modelos de cuentas.
  * @throws Error - Lanza un error si la solicitud falla o si los datos son inválidos.
  */
-export const getAccounts = async (jwt: string): Promise<AccountsModel[]> => {
+export const getAccounts = async (
+  jwt: string,
+  page: number = 0,
+  size: number = 10
+): Promise<AccountsDto> => {
   const transactionId = uuidv4();
 
   try {
-    const response = await fetch(`${BASE_URL_AUTH}/api/account/`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + jwt,
-        transaction_id: transactionId,
-      },
-    });
+    const response = await fetch(
+      `${BASE_URL}/api/account/game/available?size=${size}&page=${page}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + jwt,
+          transaction_id: transactionId,
+        },
+      }
+    );
 
     if (response.ok && response.status === 200) {
       const responseData = await response.json();
@@ -50,9 +58,38 @@ export const getAccounts = async (jwt: string): Promise<AccountsModel[]> => {
 
 export const getAccount = async (
   jwt: string,
-  account_id: number
+  account_id: number,
+  server_id: number
 ): Promise<AccountDetailDto> => {
-  const response = await fetch(`${BASE_URL_AUTH}/api/account/${account_id}`, {
+  const response = await fetch(
+    `${BASE_URL}/api/account/game/${account_id}/${server_id}`,
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + jwt,
+        transaction_id: uuidv4(),
+      },
+    }
+  );
+
+  const responseData = await response.json();
+
+  if (response.ok && response.status === 200) {
+    return responseData.data;
+  } else if (response.status == 404 || response.status == 409) {
+    const badRequestError: GenericResponseDto<void> = responseData;
+    throw new Error(`Error: ${badRequestError.message}`);
+  } else {
+    const errorMessage = await response.text();
+    throw new Error(
+      `An error occurred while trying to register data: ${errorMessage}`
+    );
+  }
+};
+
+export const getUser = async (jwt: string): Promise<UserModel> => {
+  const response = await fetch(`${BASE_URL}/api/account`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",

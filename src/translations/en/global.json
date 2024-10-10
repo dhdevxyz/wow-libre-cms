@@ -202,10 +202,9 @@
             "position-one": "id",
             "position-two": "User",
             "position-three": "Expansion",
-            "position-four": "Online",
-            "position-five": "Failed Logins",
-            "position-six": "Last Connection",
-            "position-seven": "Last Ip",
+            "position-four": "Administrable",
+            "position-five": "Server",
+            "position-six": "Web",
             "position-action": "Action",
             "position-btn-admin": "Administer"
         }

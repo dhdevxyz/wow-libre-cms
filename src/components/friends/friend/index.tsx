@@ -8,16 +8,21 @@ import { getFriends } from "@/api/account/character";
 interface CharacterProps {
   character: Character;
   token: string;
-  account_id: number;
+  accountId: number;
+  serverId: number;
 }
 
-const Friend: React.FC<CharacterProps> = ({ character, token, account_id }) => {
+const Friend: React.FC<CharacterProps> = ({
+  character,
+  token,
+  accountId,
+  serverId,
+}) => {
   const [friendsModel, setFriends] = useState<Friends | null>(null);
   const [currentPage, setCurrentPage] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedFriendId, setSelectedFriendId] = useState<Character | null>();
 
-  console.log(account_id);
   const openModal = (friend: Character) => {
     setSelectedFriendId(friend);
     setIsModalOpen(true);
@@ -34,7 +39,8 @@ const Friend: React.FC<CharacterProps> = ({ character, token, account_id }) => {
           const response: Friends = await getFriends(
             token,
             character.id,
-            account_id
+            accountId,
+            serverId
           );
           setFriends(response);
         }
@@ -79,6 +85,7 @@ const Friend: React.FC<CharacterProps> = ({ character, token, account_id }) => {
     const selectedPage = data.selected;
     setCurrentPage(selectedPage);
   };
+
   const onFriendDeleted = (friendId: number) => {
     if (friendsModel) {
       const updatedFriends = friendsModel.friends.filter(
@@ -146,8 +153,9 @@ const Friend: React.FC<CharacterProps> = ({ character, token, account_id }) => {
               </button>
               <FriendDetail
                 jwt={token}
-                accountId={account_id}
+                accountId={accountId}
                 character={character}
+                serverId={serverId}
                 friend={selectedFriendId}
                 onCloseModal={closeModal}
                 onFriendDeleted={onFriendDeleted}

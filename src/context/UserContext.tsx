@@ -15,6 +15,8 @@ export interface UserModel {
   email: string;
   logged_in: boolean;
   avatar: string;
+  server: string | null;
+  expansion: string;
 }
 
 const initialUserData: UserModel = {
@@ -29,6 +31,8 @@ const initialUserData: UserModel = {
   email: "",
   logged_in: false,
   avatar: "",
+  server: null,
+  expansion: "",
 };
 
 interface UserContextProps {

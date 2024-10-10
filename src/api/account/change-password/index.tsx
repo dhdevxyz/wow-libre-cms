@@ -1,4 +1,4 @@
-import { BASE_URL_AUTH } from "@/configs/configs";
+import { BASE_URL } from "@/configs/configs";
 import { GenericResponseDto } from "@/dto/generic";
 import { AccountChangePasswordGameDto } from "@/model/model";
 import { v4 as uuidv4 } from "uuid";
@@ -8,7 +8,7 @@ export const changePasswordGame = async (
   jwt: string
 ): Promise<void> => {
   const response = await fetch(
-    `${BASE_URL_AUTH}/api/account/games/change-password`,
+    `${BASE_URL}/api/characters/account/change-password`,
     {
       method: "PUT",
       headers: {
@@ -21,7 +21,7 @@ export const changePasswordGame = async (
   );
 
   const responseData = await response.json();
-  if (response.ok && response.status === 201) {
+  if (response.ok && response.status === 200) {
     return responseData;
   } else if (response.status == 409) {
     const badRequestError: GenericResponseDto<void> = responseData;

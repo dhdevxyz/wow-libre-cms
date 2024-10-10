@@ -15,8 +15,9 @@ export interface ExistEmailModel {
 
 export interface AccountGameRequestDto {
   username: string;
-  salt: string;
-  verifier: string;
+  password: string;
+  server_name: string;
+  expansion: string;
 }
 
 export interface AccountWebRequestDto {
@@ -60,16 +61,22 @@ export interface Character {
   class_id: number;
 }
 
+export interface AccountsDto {
+  accounts: AccountsModel[];
+  size: number;
+}
+
 export interface AccountsModel {
   id: number;
   username: string;
+  account_id: number;
   email: string;
-  logo_expansion: string;
+  server: string;
+  server_id: number;
   expansion: string;
-  online: boolean;
-  failed_logins: string;
-  join_date: string;
-  last_ip: string;
+  web_site: string;
+  avatar: string;
+  status: boolean;
 }
 
 export interface AccountBannedModel {
@@ -92,7 +99,7 @@ export interface Friends {
   total_quantity: number;
 }
 
-interface AccountWeb {
+interface UserModel {
   id: number;
   country: string;
   date_of_birth: string;
@@ -128,15 +135,15 @@ export interface AccountDetailDto {
   mute: boolean;
   last_login: string;
   os: string;
-  account_web: AccountWeb;
+  server: string;
   account_banned: AccountBanned;
 }
 
 export interface AccountChangePasswordGameDto {
-  salt: string;
-  verifier: string;
+  server_id: number;
   account_id: number;
   password: string;
+  new_password: string;
 }
 
 interface Mails {
@@ -251,4 +258,15 @@ export interface BankPlans {
   frecuency: number;
   features: [];
   button: string;
+}
+
+export interface ServerModel {
+  id: number;
+  name: string;
+  status: boolean;
+  emulator: string;
+  avatar: string;
+  expansion: string;
+  exp_name: string;
+  web_site: string;
 }

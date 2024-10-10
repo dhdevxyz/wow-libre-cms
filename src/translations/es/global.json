@@ -202,10 +202,9 @@
             "position-one": "id",
             "position-two": "Usuario",
             "position-three": "Expansion",
-            "position-four": "Online",
-            "position-five": "Login Fallidos",
-            "position-six": " Ultima Conexion",
-            "position-seven": "Ultima Ip",
+            "position-four": "Administrable",
+            "position-five": "Server",
+            "position-six": " Web",
             "position-action": "Action",
             "position-btn-admin": "Administrar"
         }

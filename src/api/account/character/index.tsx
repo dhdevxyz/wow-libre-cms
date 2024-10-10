@@ -1,15 +1,16 @@
-import { BASE_URL_CHARACTER } from "@/configs/configs";
+import { BASE_URL, BASE_URL_CHARACTER } from "@/configs/configs";
 import { GenericResponseDto } from "@/dto/generic";
 import { Characters, Friends } from "@/model/model";
 import { v4 as uuidv4 } from "uuid";
 
 export const getCharacters = async (
   jwt: string,
-  accountId: number
+  accountId: number,
+  serverId: number
 ): Promise<Characters> => {
   try {
     const response = await fetch(
-      `${BASE_URL_CHARACTER}/api/characters?account_id=${accountId}`,
+      `${BASE_URL}/api/characters?account_id=${accountId}&server_id=${serverId}`,
       {
         method: "GET",
         headers: {
@@ -36,12 +37,13 @@ export const getCharacters = async (
 export const getFriends = async (
   jwt: string,
   characterId: number,
-  accountId: number
+  accountId: number,
+  serverId: number
 ): Promise<Friends> => {
   console.log(characterId);
   try {
     const response = await fetch(
-      `${BASE_URL_CHARACTER}/api/social/${characterId}/friends?account_id=${accountId}`,
+      `${BASE_URL}/api/characters/social/friends?account_id=${accountId}&server_id=${serverId}&character_id=${characterId}`,
       {
         method: "GET",
         headers: {
@@ -69,20 +71,31 @@ export const deleteFriend = async (
   jwt: String,
   characterId: number,
   friendId: number,
-  accountId: number
+  accountId: number,
+  serverId: number
 ): Promise<void> => {
   try {
-    const response = await fetch(
-      `${BASE_URL_CHARACTER}/api/social/${characterId}/${friendId}?account_id=${accountId}`,
-      {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + jwt,
-          transaction_id: uuidv4(),
-        },
-      }
-    );
+    const requestBody: {
+      character_id: number;
+      friend_id: number;
+      account_id: number;
+      server_id: number;
+    } = {
+      character_id: characterId,
+      friend_id: friendId,
+      account_id: accountId,
+      server_id: serverId,
+    };
+
+    const response = await fetch(`${BASE_URL}/api/characters/friend`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + jwt,
+        transaction_id: uuidv4(),
+      },
+      body: JSON.stringify(requestBody),
+    });
 
     if (response.ok && response.status >= 200 && response.status < 300) {
       return;
@@ -105,6 +118,7 @@ export const sendMoneyByFriend = async (
   characterId: number,
   friendId: number,
   accountId: number,
+  serverId: number,
   money: number
 ): Promise<void> => {
   const transactionId = uuidv4();
@@ -114,16 +128,18 @@ export const sendMoneyByFriend = async (
       character_id: number;
       friend_id: number;
       account_id: number;
+      server_id: number;
       money: number;
     } = {
       character_id: characterId,
       friend_id: friendId,
       account_id: accountId,
+      server_id: serverId,
       money: money,
     };
 
     const response = await fetch(
-      `${BASE_URL_CHARACTER}/api/social/send/money`,
+      `${BASE_URL}/api/characters/social/send/money`,
       {
         method: "POST",
         headers: {
@@ -135,7 +151,7 @@ export const sendMoneyByFriend = async (
       }
     );
 
-    if (response.ok && response.status >= 200 && response.status < 300) {
+    if (response.ok && response.status == 200) {
       return;
     } else {
       const responseData = await response.json();
@@ -162,6 +178,7 @@ export const sendLevelByFriend = async (
   characterId: number,
   friendId: number,
   accountId: number,
+  serverId: number,
   level: number
 ): Promise<void> => {
   const transactionId = uuidv4();
@@ -171,16 +188,18 @@ export const sendLevelByFriend = async (
       character_id: number;
       friend_id: number;
       account_id: number;
+      server_id: number;
       level: number;
     } = {
       character_id: characterId,
       friend_id: friendId,
       account_id: accountId,
+      server_id: serverId,
       level: level,
     };
 
     const response = await fetch(
-      `${BASE_URL_CHARACTER}/api/social/send/level`,
+      `${BASE_URL}/api/characters/social/send/level`,
       {
         method: "POST",
         headers: {
@@ -192,7 +211,7 @@ export const sendLevelByFriend = async (
       }
     );
 
-    if (response.ok && response.status >= 200 && response.status < 300) {
+    if (response.ok && response.status == 200) {
       return;
     } else {
       const responseData = await response.json();

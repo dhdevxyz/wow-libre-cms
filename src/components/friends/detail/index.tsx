@@ -17,8 +17,9 @@ import {
 interface FriendsDetailProps {
   jwt: String;
   character: Character;
-  friend: Character | null;
+  friend: Character;
   accountId: number;
+  serverId: number;
   onCloseModal: () => void;
   onFriendDeleted: (friendId: number) => void;
 }
@@ -28,6 +29,7 @@ const FriendDetail: React.FC<FriendsDetailProps> = ({
   character,
   friend,
   accountId,
+  serverId,
   onCloseModal,
   onFriendDeleted,
 }) => {
@@ -55,7 +57,7 @@ const FriendDetail: React.FC<FriendsDetailProps> = ({
 
   const deleteFriendInput = async () => {
     try {
-      await deleteFriend(jwt, character.id, friend.id, accountId);
+      await deleteFriend(jwt, character.id, friend.id, accountId, serverId);
       Swal.fire({
         icon: "success",
         title: "Amigo Eliminado",
@@ -95,6 +97,7 @@ const FriendDetail: React.FC<FriendsDetailProps> = ({
         character.id,
         friend.id,
         accountId,
+        serverId,
         giftLevels
       );
       Swal.fire({
@@ -120,12 +123,24 @@ const FriendDetail: React.FC<FriendsDetailProps> = ({
   };
 
   const handleGiftMoneySubmit = async () => {
+    if (giftMoney <= 0) {
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: "El dinero a enviar debe ser superior a 1 de oro",
+        color: "white",
+        background: "#0B1218",
+        timer: 4500,
+      });
+      return;
+    }
     try {
       await sendMoneyByFriend(
         jwt,
         character.id,
         friend.id,
         accountId,
+        serverId,
         giftMoney
       );
       Swal.fire({

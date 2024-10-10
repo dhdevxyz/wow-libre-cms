@@ -9,7 +9,9 @@ import "./style.css";
 
 interface MailsProps {
   token: string;
-  character_id: number;
+  characterId: number;
+  accountId: number;
+  serverId: number;
 }
 
 const Modal: React.FC<{
@@ -59,7 +61,12 @@ const Modal: React.FC<{
   );
 };
 
-const Mails: React.FC<MailsProps> = ({ token, character_id }) => {
+const Mails: React.FC<MailsProps> = ({
+  token,
+  characterId,
+  serverId,
+  accountId,
+}) => {
   const [mails, setMails] = useState<MailsDto | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [currentPage, setCurrentPage] = useState(1);
@@ -70,7 +77,12 @@ const Mails: React.FC<MailsProps> = ({ token, character_id }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const fetchedMails: MailsDto = await getMails(token, character_id);
+        const fetchedMails: MailsDto = await getMails(
+          token,
+          characterId,
+          accountId,
+          serverId
+        );
         setMails(fetchedMails);
       } catch (error) {
         Swal.fire({
@@ -87,7 +99,7 @@ const Mails: React.FC<MailsProps> = ({ token, character_id }) => {
     };
 
     fetchData();
-  }, [token, character_id]);
+  }, [token, characterId]);
 
   if (loading) {
     return (

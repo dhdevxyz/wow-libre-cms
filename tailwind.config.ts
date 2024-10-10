@@ -8,7 +8,16 @@ const config: Config = {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {  
-    extend: {
+    extend: { keyframes: {
+      colorCycle: {
+        '0%, 100%': { color: '#C5A880' }, // Dorado suave
+        '25%': { color: '#8D99AE' }, // Plata/gris azulado
+        '50%': { color: '#A26769' }, // Vino tinto suave
+        '75%': { color: '#F5F5F5' }, // Blanco roto
+      },
+    }, animation: {
+      'color-cycle': 'colorCycle 4s ease-in-out infinite',
+    },
     colors: {
       midnight: '#0B1218',
       orange_500: '#f97316', 

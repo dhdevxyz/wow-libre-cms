@@ -1,6 +1,5 @@
-import { UserModel } from "@/context/UserContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { ChangeEvent, useEffect, useState } from "react";
+import React, { ChangeEvent, useState } from "react";
 import {
   faSave,
   faTimes,
@@ -11,16 +10,14 @@ import Swal from "sweetalert2";
 import { AccountDetailDto } from "@/model/model";
 import { changePasswordGame } from "@/api/account/change-password";
 
-const crypto = require("crypto");
-
 interface ProfileSecurityProps {
   account: AccountDetailDto;
   token: string;
+  serverId: number;
 }
 
-const DetailAccount = ({ account, token }: ProfileSecurityProps) => {
+const DetailAccount = ({ account, token, serverId }: ProfileSecurityProps) => {
   const [isEditing, setIsEditing] = useState(false);
-  const { computeVerifier, params } = require(`trinitycore-srp6`);
   const [passwordWeb, setPasswordWeb] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -74,18 +71,9 @@ const DetailAccount = ({ account, token }: ProfileSecurityProps) => {
       return;
     }
 
-    const salt = crypto.randomBytes(32);
-
-    const verifier = computeVerifier(
-      params.trinitycore,
-      Buffer.from(salt),
-      account.username.toUpperCase(),
-      password.toUpperCase()
-    );
-
     const userSecurity = {
-      salt: Buffer.from(salt).toString("hex"),
-      verifier: Buffer.from(verifier).toString("hex"),
+      server_id: serverId,
+      new_password: password,
       password: passwordWeb,
       account_id: account.id,
     };

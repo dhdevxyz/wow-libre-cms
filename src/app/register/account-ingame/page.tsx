@@ -1,16 +1,13 @@
 "use client";
 
 import PageCounter from "@/components/register/counter";
-import NavbarMinimalist from "@/components/navbar-minimalist";
 import TitleWow from "@/components/utilities/serverTitle";
 import { useUserContext } from "@/context/UserContext";
 import { useRouter } from "next/navigation";
 import React, { ChangeEvent, useState } from "react";
 import Swal from "sweetalert2";
-import "../style.css";
 import { registerAccountGame } from "@/api/account/register";
 import LoadingSpinner from "@/components/utilities/loading-spinner";
-const crypto = require("crypto");
 import Cookies from "js-cookie";
 import NavbarAuthenticated from "@/components/navbar-authenticated";
 import Footer from "@/components/footer";
@@ -22,7 +19,6 @@ const AccountIngame = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const router = useRouter();
-  const { computeVerifier, params } = require(`trinitycore-srp6`);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const jwt = Cookies.get("token");
   const { t } = useTranslation();
@@ -80,20 +76,12 @@ const AccountIngame = () => {
     setIsSubmitting(true);
 
     try {
-      const salt = crypto.randomBytes(32);
-
-      const verifier = computeVerifier(
-        params.trinitycore,
-        Buffer.from(salt),
-        user.username.toUpperCase(),
-        password.toUpperCase()
-      );
-
       await registerAccountGame(
         {
           username: user.username,
-          salt: Buffer.from(salt).toString("hex"),
-          verifier: Buffer.from(verifier).toString("hex"),
+          password: password,
+          server_name: user.server || "",
+          expansion: user.expansion,
         },
         jwt || ""
       );

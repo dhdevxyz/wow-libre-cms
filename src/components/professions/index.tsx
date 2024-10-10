@@ -11,7 +11,8 @@ import Announcement from "./annoucement";
 interface ProfessionsProps {
   character: Character;
   token: string;
-  account_id: number;
+  accountId: number;
+  serverId: number;
 }
 interface ArrowProps {
   onClick?: MouseEventHandler<HTMLButtonElement>;
@@ -19,7 +20,8 @@ interface ArrowProps {
 const Professions: React.FC<ProfessionsProps> = ({
   character,
   token,
-  account_id,
+  accountId,
+  serverId,
 }) => {
   const [professions, setPartners] = useState<Profession[]>([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -61,7 +63,12 @@ const Professions: React.FC<ProfessionsProps> = ({
   // Función para actualizar la lista de profesiones
   const refreshProfessions = async () => {
     try {
-      const professions = await getProfessions(character.id, token);
+      const professions = await getProfessions(
+        character.id,
+        accountId,
+        serverId,
+        token
+      );
       setPartners(professions);
     } catch (error) {
       console.error("Error fetching professions:", error);
@@ -221,7 +228,7 @@ const Professions: React.FC<ProfessionsProps> = ({
           cost={1000}
           characterId={character.id}
           skillId={selectedProfession.id}
-          accountId={account_id}
+          accountId={accountId}
           token={token}
           onConfirm={handleConfirmAnnounce}
           onCancel={handleCancelAnnounce}
@@ -238,7 +245,7 @@ const Professions: React.FC<ProfessionsProps> = ({
           token={token}
           character_id={character.id}
           skill_id={selectedProfession.id}
-          account_id={account_id}
+          account_id={accountId}
           onClose={closeModal}
           onUpdate={refreshProfessions}
         />

@@ -1,13 +1,15 @@
-import { BASE_URL_CHARACTER } from "@/configs/configs";
+import { BASE_URL, BASE_URL_CHARACTER } from "@/configs/configs";
 import { MailsDto } from "@/model/model";
 import { v4 as uuidv4 } from "uuid";
 
 export const getMails = async (
   jwt: string,
-  character_id: number
+  characterId: number,
+  accountId: number,
+  serverId: number
 ): Promise<MailsDto> => {
   const response = await fetch(
-    `${BASE_URL_CHARACTER}/api/mails/${character_id}`,
+    `${BASE_URL}/api/characters/mails?character_id=${characterId}&account_id=${accountId}&server_id=${serverId}`,
     {
       method: "GET",
       headers: {
