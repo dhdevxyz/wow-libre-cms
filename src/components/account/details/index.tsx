@@ -115,6 +115,7 @@ const AccountDetail = () => {
   return (
     <div className="contenedor">
       <NavbarAuthenticated />
+
       <div className="flex flex-col items-center justify-center py-20">
         <img
           src={avatar}
@@ -177,6 +178,7 @@ const AccountDetail = () => {
           </div>
         </div>
       </div>
+
       {/* Secciones con pestañas */}
       <div className="mt-10  bg-profile eyelashes box-shadow-primary  overflow-hidden">
         <Tabs>

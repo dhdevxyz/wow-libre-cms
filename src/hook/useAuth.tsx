@@ -25,7 +25,7 @@ const useAuth = (message: string) => {
       });
       router.push("/");
     }
-  }, [token, user]);
+  }, []);
 
   return { isAuthenticated: !!token && user.logged_in };
 };

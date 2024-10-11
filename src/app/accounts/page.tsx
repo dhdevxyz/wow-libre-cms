@@ -22,13 +22,18 @@ const Page = () => {
   const { clearUserData } = useUserContext();
   const token = Cookies.get("token");
   const { t } = useTranslation();
+  const [filteredAccounts, setFilteredAccounts] = useState<AccountsModel[]>([]);
+
   const [totalPages, setTotalPages] = useState(0);
   const accountsPerPage = 5;
   const [currentPage, setCurrentPage] = useState<number>(0);
+  const [hasAccount, setHasAccount] = useState<boolean>(false);
 
   const [accounts, setAccounts] = useState<AccountsModel[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
-  const [searchTerm, setSearchTerm] = useState<string>("");
+  const [searchUsername, setUsername] = useState<string>("");
+  const [searchServer, setSearchServer] = useState<string>("");
+
   const [dropdownVisible, setDropdownVisible] = useState<boolean>(false);
 
   useAuth(t("errors.message.expiration-session"));
@@ -44,10 +49,13 @@ const Page = () => {
         const fetchedAccounts = await getAccounts(
           token,
           currentPage,
-          accountsPerPage
+          accountsPerPage,
+          searchServer,
+          searchUsername
         );
         setAccounts(fetchedAccounts.accounts);
         setTotalPages(fetchedAccounts.size);
+        setHasAccount(fetchedAccounts.size > 0);
         setLoading(false);
       } catch (error: any) {
         if (error instanceof InternalServerError) {
@@ -79,15 +87,29 @@ const Page = () => {
       }
     };
     fetchData();
-  }, [token, currentPage]);
+  }, [currentPage, searchUsername, searchServer]);
+
+  useEffect(() => {
+    const filtered = accounts.filter((account) => {
+      const matchesUsername = account.username
+        .toLowerCase()
+        .includes(searchUsername.toLowerCase());
+      const matchesServer = account.server
+        .toLowerCase()
+        .includes(searchServer.toLowerCase());
+      return matchesUsername && matchesServer;
+    });
+
+    setFilteredAccounts(filtered);
+  }, [searchUsername, searchServer, accounts]);
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchTerm(event.target.value);
+    setUsername(event.target.value);
   };
 
-  const filteredAccounts = accounts.filter((account) =>
-    account.username.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  const handleServerChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchServer(event.target.value);
+  };
 
   const toggleDropdown = () => {
     setDropdownVisible(!dropdownVisible);
@@ -99,8 +121,7 @@ const Page = () => {
 
   if (loading) {
     return (
-      <div className="contenedor mx-auto">
-        <NavbarAuthenticated />
+      <div className="contenedor mx-auto ">
         <div className="flex items-center justify-center mt-5">
           <div className="empty-table-message mb-4 select-none">
             <div className="content mb-30 mt-16">
@@ -122,7 +143,7 @@ const Page = () => {
   const accountMaximus = accounts && accounts.length > LimitAccountRegister;
 
   return (
-    <div className="contenedor dark h-screen-md">
+    <div className="contenedor dark h-screen-md select-none">
       <NavbarAuthenticated />
 
       <div className="text-center pt-40">
@@ -133,9 +154,10 @@ const Page = () => {
           {t("account.service-available.txt-message")}
         </p>
       </div>
-      {accounts && accounts.length > 0 ? (
-        <div className="relative  shadow-md sm:rounded-lg pt-5">
-          <div className="flex items-center justify-between flex-column flex-wrap md:flex-row space-y-4 md:space-y-0 pb-4 bg-white dark:bg-midnight">
+      {hasAccount ? (
+        <div className="relative shadow-md sm:rounded-lg pt-5">
+          <div className="flex items-center justify-between flex-wrap md:flex-nowrap space-y-4 md:space-y-0 pb-4 bg-white dark:bg-midnight">
+            {/* Botón de acción alineado a la izquierda */}
             <div className="relative inline-block text-left ml-2">
               <button
                 id="dropdownActionButton"
@@ -194,36 +216,69 @@ const Page = () => {
               </div>
             </div>
 
-            <div className="relative pr-2">
-              <div className="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none ">
-                <svg
-                  className="w-4 h-4 text-gray-500 dark:text-gray-400"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
-                  />
-                </svg>
+            {/* Contenedor para el select y el buscador juntos */}
+            <div className="flex items-center space-x-2">
+              <div className="relative">
+                <div className="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none ">
+                  <svg
+                    className="w-4 h-4 text-gray-500 dark:text-gray-400"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      stroke="currentColor"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
+                    />
+                  </svg>
+                </div>
+                <input
+                  type="text"
+                  id="table-search-users"
+                  className="block p-2 ps-10 text-lg text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  placeholder="Buscar por servidor"
+                  value={searchServer}
+                  onChange={handleServerChange}
+                />
               </div>
-              <input
-                type="text"
-                id="table-search-users"
-                className="block p-2 ps-10 text-lg text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder={t("account.search-placeholder")}
-                value={searchTerm}
-                onChange={handleSearchChange}
-              />
+              {/* buscador Username */}
+
+              <div className="relative">
+                <div className="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none ">
+                  <svg
+                    className="w-4 h-4 text-gray-500 dark:text-gray-400"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      stroke="currentColor"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
+                    />
+                  </svg>
+                </div>
+                <input
+                  type="text"
+                  id="table-search-users"
+                  className="block p-2 ps-10 text-lg text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  placeholder={t("account.search-placeholder")}
+                  value={searchUsername}
+                  onChange={handleSearchChange}
+                />
+              </div>
             </div>
           </div>
+
           <div className="max-h-[400px] overflow-y-auto">
-            <table className="w-full  text-lg text-left rtl:text-right text-gray-500 dark:text-gray-400">
+            <table className="w-full text-lg text-left rtl:text-right text-gray-500 dark:text-gray-400">
               <thead className="text-lg text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
                   <th scope="col" className="p-4">
@@ -311,7 +366,7 @@ const Page = () => {
                         }
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="font-medium text-blue-500 text-xl  dark:text-blue-500 hover:underline cursor-pointer"
+                        className="font-medium text-blue-500 text-xl dark:text-blue-500 hover:underline cursor-pointer"
                       >
                         Visitar
                       </a>

@@ -15,7 +15,6 @@ export const getServers = async (jwt: string): Promise<ServerModel[]> => {
         transaction_id: transactionId,
       },
     });
-
     if (response.ok && response.status === 200) {
       const responseData = await response.json();
       return responseData.data;

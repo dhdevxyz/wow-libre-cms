@@ -72,6 +72,7 @@ export interface AccountsModel {
   account_id: number;
   email: string;
   server: string;
+  realmlist: string;
   server_id: number;
   expansion: string;
   web_site: string;
