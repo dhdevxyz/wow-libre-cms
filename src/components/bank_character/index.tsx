@@ -1,8 +1,9 @@
 "use client";
 import { getAccounts } from "@/api/account";
+import { getServersBanks } from "@/api/account/bank";
 import { applyForBankLoan, potentialClients } from "@/api/bank";
 import { useUserContext } from "@/context/UserContext";
-import { AccountsModel, Character } from "@/model/model";
+import { AccountsModel, Character, ServerAvailableBank } from "@/model/model";
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import Swal from "sweetalert2";
@@ -21,6 +22,9 @@ const BankCharacter: React.FC<GuildCharacterProps> = ({
   onClose,
 }) => {
   const [accounts, setAccounts] = useState<AccountsModel[]>([]);
+  const [serverAvailables, setServers] = useState<ServerAvailableBank[]>([]);
+  const [selectedServerId, setSelectedServerId] = useState<number | null>(null);
+
   const [selectedAccountId, setSelectedAccountId] = useState<number | null>(
     null
   );
@@ -35,8 +39,9 @@ const BankCharacter: React.FC<GuildCharacterProps> = ({
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const availableaccounts = await getAccounts(token);
-        setAccounts(availableaccounts);
+        const servers = await getServersBanks(token);
+        setServers(servers);
+        // const availableaccounts = await getAccounts(token);
       } catch (error: any) {
         Swal.fire({
           icon: "error",
@@ -54,11 +59,35 @@ const BankCharacter: React.FC<GuildCharacterProps> = ({
     }
   }, [isOpen, token]);
 
+  const handleServerChange = async (serverId: number, serverName: string) => {
+    setSelectedServerId(serverId);
+    setSelectedAccountId(null);
+    try {
+      const accountsServer = await getAccounts(token, 0, 100, serverName, "");
+      setAccounts(accountsServer.accounts);
+    } catch (error: any) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: t("bank.errors.fails_to_obtain_characters"),
+        color: "white",
+        background: "#0B1218",
+        timer: 4500,
+      });
+    } finally {
+      setSelectedServerId(serverId);
+    }
+  };
+
   const handleAccountChange = async (accountId: number) => {
     setSelectedAccountId(accountId);
     setSelectedCharacterId(null);
     try {
-      const fetchedCharacters = await potentialClients(token, accountId);
+      const fetchedCharacters = await potentialClients(
+        token,
+        accountId,
+        selectedServerId || 0
+      );
       setCharacters(fetchedCharacters.characters);
     } catch (error: any) {
       Swal.fire({
@@ -98,6 +127,7 @@ const BankCharacter: React.FC<GuildCharacterProps> = ({
         planId,
         selectedAccountId,
         selectedCharacterId,
+        selectedServerId || 0,
         token,
         user.language
       );
@@ -137,7 +167,34 @@ const BankCharacter: React.FC<GuildCharacterProps> = ({
         <p className="text-gray-400 max-w-[50rem] overflow-y-auto whitespace-normal font-mono">
           {t("bank.bank_characters.description")}
         </p>
-        {accounts && (
+
+        {serverAvailables && (
+          <select
+            onChange={(e) => {
+              const selectedIndex = e.target.selectedIndex;
+              const serverId = Number(e.target.value);
+              const serverName = e.target.options[selectedIndex].text;
+              handleServerChange(serverId, serverName);
+            }}
+            value={selectedServerId ?? ""}
+            className="mt-4 px-4 py-2 bg-gray-800 text-gray-300 rounded focus:outline-none focus:ring focus:border-blue-300"
+          >
+            <option value="" disabled>
+              Seleccione un servidor
+            </option>
+            {serverAvailables.map((server) => (
+              <option
+                key={server.id}
+                value={server.id}
+                className="bg-gray-800 text-gray-300"
+              >
+                {server.name}
+              </option>
+            ))}
+          </select>
+        )}
+
+        {selectedServerId && (
           <select
             onChange={(e) => handleAccountChange(Number(e.target.value))}
             value={selectedAccountId ?? ""}
@@ -149,7 +206,7 @@ const BankCharacter: React.FC<GuildCharacterProps> = ({
             {accounts.map((account) => (
               <option
                 key={account.id}
-                value={account.id}
+                value={account.account_id}
                 className="bg-gray-800 text-gray-300"
               >
                 {account.username}
@@ -188,7 +245,12 @@ const BankCharacter: React.FC<GuildCharacterProps> = ({
           </button>
           <button
             onClick={handleJoinGuild}
-            disabled={!selectedAccountId || !selectedCharacterId || loading}
+            disabled={
+              !selectedServerId ||
+              !selectedAccountId ||
+              !selectedCharacterId ||
+              loading
+            }
             className={`flex-1 px-4 py-2 font-serif ${
               loading ? "bg-gray-400 cursor-not-allowed" : "bg-blue-800"
             } text-white rounded ml-2`}

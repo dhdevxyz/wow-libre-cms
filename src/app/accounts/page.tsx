@@ -121,8 +121,8 @@ const Page = () => {
 
   if (loading) {
     return (
-      <div className="contenedor mx-auto ">
-        <div className="flex items-center justify-center mt-5">
+      <div className="contenedor mx-auto  h-screen-md">
+        <div className="flex items-center justify-center mt-10">
           <div className="empty-table-message mb-4 select-none">
             <div className="content mb-30 mt-16">
               <img
@@ -216,7 +216,7 @@ const Page = () => {
               </div>
             </div>
 
-            {/* Contenedor para el select y el buscador juntos */}
+            {/* Buscador de servidor */}
             <div className="flex items-center space-x-2">
               <div className="relative">
                 <div className="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none ">
@@ -238,15 +238,14 @@ const Page = () => {
                 </div>
                 <input
                   type="text"
-                  id="table-search-users"
+                  id="table-search-server"
                   className="block p-2 ps-10 text-lg text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   placeholder="Buscar por servidor"
                   value={searchServer}
                   onChange={handleServerChange}
                 />
               </div>
-              {/* buscador Username */}
-
+              {/* Buscador de usuario */}
               <div className="relative">
                 <div className="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none ">
                   <svg
@@ -277,7 +276,7 @@ const Page = () => {
             </div>
           </div>
 
-          <div className="max-h-[400px] overflow-y-auto">
+          <div className="max-h-[400px] overflow-y-auto min-h-[400px] flex flex-col justify-between">
             <table className="w-full text-lg text-left rtl:text-right text-gray-500 dark:text-gray-400">
               <thead className="text-lg text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
@@ -393,7 +392,7 @@ const Page = () => {
                 nextLabel={"Siguiente"}
                 breakLabel={""}
                 pageCount={Math.ceil(totalPages / accountsPerPage)}
-                marginPagesDisplayed={1}
+                marginPagesDisplayed={2}
                 pageRangeDisplayed={1}
                 onPageChange={handlePageClick}
                 containerClassName={"pagination flex space-x-2"}

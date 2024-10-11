@@ -8,6 +8,7 @@ import {
   faShieldHeart,
   faCrown,
   faFlag,
+  faRotateLeft,
 } from "@fortawesome/free-solid-svg-icons";
 
 import React, { useEffect, useState } from "react";
@@ -19,7 +20,7 @@ import Swal from "sweetalert2";
 import "./style.css";
 
 import { getCharacters } from "@/api/account/character";
-import { AccountDetailDto, Character, Characters } from "@/model/model";
+import { AccountDetailDto, Character } from "@/model/model";
 import Cookies from "js-cookie";
 import CharacterSelection from "@/components/character_selection";
 import Friend from "@/components/friends/friend";
@@ -34,6 +35,7 @@ import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
 import { useTranslation } from "react-i18next";
 import Premium from "@/components/premium";
 import { UserModel } from "@/context/UserContext";
+import ReturnToView from "@/components/utilities/returnToView";
 
 const AccountDetail = () => {
   const searchParams = useSearchParams();
@@ -100,7 +102,9 @@ const AccountDetail = () => {
     setSelectedCharacter(character);
     setAvatar(character.race_logo || "https://via.placeholder.com/150");
   };
-
+  const handleBack = () => {
+    router.back();
+  };
   if (isLoading) {
     return (
       <div className="flex items-center justify-center min-h-screen min-w-full">
@@ -116,7 +120,7 @@ const AccountDetail = () => {
     <div className="contenedor">
       <NavbarAuthenticated />
 
-      <div className="flex flex-col items-center justify-center py-20">
+      <div className="flex flex-col items-center justify-center py-20 relative mt-20">
         <img
           src={avatar}
           alt="Avatar del usuario"
@@ -180,7 +184,7 @@ const AccountDetail = () => {
       </div>
 
       {/* Secciones con pestañas */}
-      <div className="mt-10  bg-profile eyelashes box-shadow-primary  overflow-hidden">
+      <div className="mt-2  bg-profile eyelashes box-shadow-primary  overflow-hidden  mb-16">
         <Tabs>
           <div className="flex flex-col lg:flex-row">
             {/* TabList para móviles (oculto en pantallas grandes) */}
@@ -211,6 +215,13 @@ const AccountDetail = () => {
               <Tab className="py-6 px-5 text-white bg-tablist  cursor-pointer text-lg font-semibold flex items-center">
                 <FontAwesomeIcon icon={faCrown} className="mr-2 text-2xl" />{" "}
                 Premium
+              </Tab>
+              <Tab className="py-6 px-6 text-white  bg-tablist cursor-pointer text-lg font-semibold flex items-center">
+                <FontAwesomeIcon
+                  icon={faRotateLeft}
+                  className="mr-2 text-2xl"
+                />
+                Cuentas
               </Tab>
             </TabList>
 
@@ -330,6 +341,9 @@ const AccountDetail = () => {
               </TabPanel>
               <TabPanel>
                 <Premium />
+              </TabPanel>
+              <TabPanel>
+                <ReturnToView />
               </TabPanel>
             </div>
           </div>

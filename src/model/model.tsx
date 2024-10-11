@@ -271,3 +271,7 @@ export interface ServerModel {
   exp_name: string;
   web_site: string;
 }
+export interface ServerAvailableBank {
+  id: number;
+  name: string;
+}
