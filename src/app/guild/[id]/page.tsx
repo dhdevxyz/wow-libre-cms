@@ -5,7 +5,7 @@ import LoadingSpinner from "@/components/utilities/loading-spinner";
 import NavbarAuthenticated from "@/components/navbar-authenticated";
 import { GuildData } from "@/model/model";
 import Link from "next/link";
-import { useParams, useRouter } from "next/navigation";
+import { useParams, useRouter, useSearchParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import { BenefitsModel } from "@/model/benefit-model";
@@ -15,25 +15,33 @@ import DisplayMoney from "@/components/money";
 import { useUserContext } from "@/context/UserContext";
 
 const GuildDetail = () => {
-  const guildId = useParams<{ id: string }>();
+  const searchParams = useSearchParams();
+
+  const { id } = useParams<{ id: string }>();
+  const guildId = Number(id);
   const [guild, setGuild] = useState<GuildData>();
   const token = Cookies.get("token");
-  const [isModalOpen, setIsModalOpen] = useState(false); // Estado para controlar la visibilidad del modal
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [loggin, setLoggin] = useState(false);
   const [benefits, setBenefits] = useState<BenefitsModel[]>([]);
   const router = useRouter();
   const { user } = useUserContext();
+  const serverId = Number(searchParams.get("server"));
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [guildsResponse, benefitsResponse] = await Promise.all([
-          getGuild(guildId.id),
+        const [guildsResponse, benefits] = await Promise.all([
+          getGuild(guildId, serverId),
           benefitsActive(),
         ]);
+
+        if (!guildsResponse.public_access) {
+          router.push("/guild");
+        }
+        setBenefits(benefits);
         setGuild(guildsResponse);
-        setBenefits(benefitsResponse);
         setIsLoading(false);
       } catch (error: any) {
         Swal.fire({
@@ -115,7 +123,7 @@ const GuildDetail = () => {
                 <p className="text-lg pt-4 break-words">{guild?.motd}</p>
               </div>
             </div>
-            <div className="grid grid-cols-2 gap-4 lg:gap-8">
+            <div className="grid grid-cols-2 gap-4 lg:gap-8 select-none">
               <div className="relative h-80 lg:h-auto">
                 <img
                   src="https://pbs.twimg.com/media/F6U741xWgAAfvX2.jpg"
@@ -149,7 +157,7 @@ const GuildDetail = () => {
             <div className="mx-auto flex max-w-xs flex-col gap-y-4">
               <dt className="text-lg leading-7 text-white">Beneficios</dt>
               <dd className="order-first text-3xl font-semibold tracking-tight text-white sm:text-5xl">
-                {guild?.benefits.length}
+                {0}
               </dd>
             </div>
             <div className="mx-auto flex max-w-xs flex-col gap-y-4">
@@ -168,15 +176,16 @@ const GuildDetail = () => {
         <div className="container px-6 py-10 mx-auto">
           <div className="xl:flex xl:items-center xL:-mx-4">
             <div className="xl:w-1/2 xl:mx-4">
-              <h1 className="text-2xl font-semibold  capitalize lg:text-3xl text-white">
+              <h1 className="text-2xl font-semibold   lg:text-3xl text-white">
                 Beneficios de pertenecer a una hermandad
               </h1>
 
-              <p className="max-w-2xl mt-4 text-gray-300">
-                Unirse a una hermandad en World of Warcraft ofrece una
+              <p className="max-w-2xl mt-4 text-gray-400 ">
+                Unirte a una comunidad de jugadores en un MMORPG ofrece una
                 experiencia única y enriquecedora. Te permite conectarte con
-                otros jugadores apasionados, colaborar en misiones épicas y
-                acceder a recursos exclusivos que mejorarán tu juego.
+                otros jugadores apasionados, colaborar en desafíos emocionantes
+                y acceder a recursos exclusivos que mejorarán tu experiencia de
+                juego.
               </p>
             </div>
 
@@ -320,11 +329,13 @@ const GuildDetail = () => {
                     />
                   </span>
 
-                  <h1 className="text-xl font-semibold text-gray-700 capitalize dark:text-white">
-                    {benefit.title}
-                  </h1>
-
-                  <p className="text-gray-500 dark:text-gray-300 text-xl">
+                  <p className="flex flex-col  font-semibold  capitalize text-white">
+                    <div className="text-3xl"> {benefit.title}</div>
+                    <div className="text-lg text-yellow-500 pt-1">
+                      {benefit.sub_title}
+                    </div>
+                  </p>
+                  <p className="text-gray-400  text-2xl">
                     {benefit.description}
                   </p>
                   <br />
@@ -393,7 +404,7 @@ const GuildDetail = () => {
               ))
             ) : (
               <div className="col-span-full flex justify-center items-center">
-                <p className="text-center text-gray-500 dark:text-gray-300  ">
+                <p className="text-center text-yellow-500 text-2xl">
                   Esta hermandad no cuenta con beneficios aún
                 </p>
               </div>
@@ -405,7 +416,8 @@ const GuildDetail = () => {
         <GuildCharacter
           isOpen={isModalOpen}
           token={token}
-          guild_id={guildId.id}
+          guildId={guildId}
+          serverId={serverId}
           onClose={closeModal}
         />
       )}

@@ -3,7 +3,7 @@ import { GenericResponseDto, InternalServerError } from "@/dto/generic";
 import { ServerModel } from "@/model/model";
 import { v4 as uuidv4 } from "uuid";
 
-export const getServers = async (jwt: string): Promise<ServerModel[]> => {
+export const getServers = async (): Promise<ServerModel[]> => {
   const transactionId = uuidv4();
 
   try {
@@ -11,7 +11,6 @@ export const getServers = async (jwt: string): Promise<ServerModel[]> => {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        Authorization: "Bearer " + jwt,
         transaction_id: transactionId,
       },
     });

@@ -1,4 +1,4 @@
-import { BASE_URL_CHARACTER } from "@/configs/configs";
+import { BASE_URL, BASE_URL_CHARACTER } from "@/configs/configs";
 import { GenericResponseDto } from "@/dto/generic";
 import { GuildData, GuildsDto } from "@/model/model";
 import { v4 as uuidv4 } from "uuid";
@@ -6,15 +6,17 @@ import { v4 as uuidv4 } from "uuid";
 export const getGuilds = async (
   page: number = 0,
   size: number = 10,
-  search: string = ""
+  search: string = "",
+  server: string,
+  expansion: string = "2"
 ): Promise<GuildsDto> => {
   try {
     const transactionId = uuidv4();
 
     const response = await fetch(
-      `${BASE_URL_CHARACTER}/api/guilds?size=${size}&page=${page}&search=${encodeURIComponent(
+      `${BASE_URL}/api/guilds?size=${size}&page=${page}&search=${encodeURIComponent(
         search
-      )}`,
+      )}&server=${server}&expansion=${expansion}`,
       {
         method: "GET",
         headers: {
@@ -40,12 +42,15 @@ export const getGuilds = async (
   }
 };
 
-export const getGuild = async (guildId: string): Promise<GuildData> => {
+export const getGuild = async (
+  guildId: number,
+  serverId: number
+): Promise<GuildData> => {
   try {
     const transactionId = uuidv4();
 
     const response = await fetch(
-      `${BASE_URL_CHARACTER}/api/guilds/${guildId}`,
+      `${BASE_URL}/api/guilds/${guildId}?server_id=${serverId}`,
       {
         method: "GET",
         headers: {
@@ -74,25 +79,36 @@ export const getGuild = async (guildId: string): Promise<GuildData> => {
 };
 
 export const attach = async (
-  guildId: string,
-  accountId: string,
-  characterId: string,
+  serverId: number,
+  guildId: number,
+  accountId: number,
+  characterId: number,
   token: string
 ): Promise<void> => {
   try {
     const transactionId = uuidv4();
 
-    const response = await fetch(
-      `${BASE_URL_CHARACTER}/api/guilds/${guildId}/attach?account_id=${accountId}&character_id=${characterId}`,
-      {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          transaction_id: transactionId,
-          Authorization: "Bearer " + token,
-        },
-      }
-    );
+    const requestBody: {
+      server_id: number;
+      account_id: number;
+      character_id: number;
+      guild_id: number;
+    } = {
+      server_id: serverId,
+      account_id: accountId,
+      character_id: characterId,
+      guild_id: guildId,
+    };
+
+    const response = await fetch(`${BASE_URL}/api/guilds/attach`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        transaction_id: transactionId,
+        Authorization: "Bearer " + token,
+      },
+      body: JSON.stringify(requestBody),
+    });
 
     if (response.ok && response.status === 204) {
       return;

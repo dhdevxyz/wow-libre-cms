@@ -1,5 +1,5 @@
 "use client";
-import { getAccounts } from "@/api/account";
+import { getAccountAndServerId, getAccounts } from "@/api/account";
 import { getCharacters } from "@/api/account/character";
 import { attach } from "@/api/guilds";
 import { AccountsModel, Character } from "@/model/model";
@@ -9,14 +9,16 @@ import Swal from "sweetalert2";
 interface GuildCharacterProps {
   isOpen: boolean;
   token: string;
-  guild_id: string;
+  guildId: number;
+  serverId: number;
   onClose: () => void;
 }
 
 const GuildCharacter: React.FC<GuildCharacterProps> = ({
   isOpen,
   token,
-  guild_id,
+  guildId,
+  serverId,
   onClose,
 }) => {
   const [accounts, setAccounts] = useState<AccountsModel[]>([]);
@@ -32,8 +34,8 @@ const GuildCharacter: React.FC<GuildCharacterProps> = ({
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const fetchedAccounts = await getAccounts(token);
-        setAccounts(fetchedAccounts);
+        const fetchedAccounts = await getAccountAndServerId(token, serverId);
+        setAccounts(fetchedAccounts.accounts);
       } catch (error: any) {
         Swal.fire({
           icon: "error",
@@ -56,7 +58,7 @@ const GuildCharacter: React.FC<GuildCharacterProps> = ({
     setSelectedCharacterId(null);
 
     try {
-      const fetchedCharacters = await getCharacters(token, accountId);
+      const fetchedCharacters = await getCharacters(token, accountId, serverId);
       setCharacters(fetchedCharacters.characters);
     } catch (error: any) {
       Swal.fire({
@@ -83,9 +85,10 @@ const GuildCharacter: React.FC<GuildCharacterProps> = ({
 
     try {
       await attach(
-        guild_id,
-        selectedAccountId.toString(),
-        selectedCharacterId.toString(),
+        serverId,
+        guildId,
+        selectedAccountId,
+        selectedCharacterId,
         token
       );
       Swal.fire({
@@ -128,13 +131,17 @@ const GuildCharacter: React.FC<GuildCharacterProps> = ({
         <select
           onChange={(e) => handleAccountChange(Number(e.target.value))}
           value={selectedAccountId || ""}
-          className="mt-4 px-4 py-2  bg-transparent text-gray-300 rounded"
+          className="mt-4 px-4 py-2 bg-gray-800 text-gray-300 rounded focus:outline-none focus:ring focus:border-blue-300"
         >
           <option value="" disabled>
             Selecciona una cuenta
           </option>
           {accounts.map((account) => (
-            <option key={account.id} value={account.id}>
+            <option
+              className="bg-gray-800 text-gray-300"
+              key={account.id}
+              value={account.account_id}
+            >
               {account.username}
             </option>
           ))}
@@ -145,14 +152,14 @@ const GuildCharacter: React.FC<GuildCharacterProps> = ({
           <select
             onChange={(e) => handleCharacterChange(Number(e.target.value))}
             value={selectedCharacterId || ""}
-            className="mt-4 px-4 py-2  rounded bg-transparent text-gray-300"
+            className="mt-4 px-4 py-2 bg-gray-800 text-gray-300 rounded focus:outline-none focus:ring focus:border-blue-300"
           >
             <option value="" disabled>
               Selecciona un personaje
             </option>
             {characters.map((character) => (
               <option
-                className="text-black"
+                className="bg-gray-800 text-gray-500"
                 key={character.id}
                 value={character.id}
               >

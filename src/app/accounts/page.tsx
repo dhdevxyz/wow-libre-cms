@@ -16,21 +16,22 @@ import { useTranslation } from "react-i18next";
 import ReactPaginate from "react-paginate";
 
 const LimitAccountRegister = 10;
+const accountsPerPage = 5;
 
 const Page = () => {
   const router = useRouter();
   const { clearUserData } = useUserContext();
   const token = Cookies.get("token");
   const { t } = useTranslation();
-  const [filteredAccounts, setFilteredAccounts] = useState<AccountsModel[]>([]);
 
+  const [loading, setLoading] = useState<boolean>(true);
+
+  const [filteredAccounts, setFilteredAccounts] = useState<AccountsModel[]>([]);
   const [totalPages, setTotalPages] = useState(0);
-  const accountsPerPage = 5;
   const [currentPage, setCurrentPage] = useState<number>(0);
   const [hasAccount, setHasAccount] = useState<boolean>(false);
 
   const [accounts, setAccounts] = useState<AccountsModel[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
   const [searchUsername, setUsername] = useState<string>("");
   const [searchServer, setSearchServer] = useState<string>("");
 
@@ -122,13 +123,13 @@ const Page = () => {
   if (loading) {
     return (
       <div className="contenedor mx-auto  h-screen-md">
+        <NavbarAuthenticated />
         <div className="flex items-center justify-center mt-10">
           <div className="empty-table-message mb-4 select-none">
             <div className="content mb-30 mt-16">
               <img
                 src="/img/profile/create-account.webp"
-                alt="World of Warcraft Logo"
-                className="logo"
+                alt="Magician Casting A Power"
               />
               <p className="mb-5 font-serif">
                 {t("account.service-unavailable.message")}

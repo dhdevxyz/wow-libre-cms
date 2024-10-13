@@ -22,7 +22,7 @@ const AccountIngame = () => {
   const [selectedServer, setSelectedServer] = useState<{
     name: string;
     expansion: string;
-  } | null>(null); // Cambiar a objeto para almacenar ambos
+  } | null>(null);
   const router = useRouter();
   const { t } = useTranslation();
   const token = Cookies.get("token");
@@ -30,12 +30,9 @@ const AccountIngame = () => {
   useAuth(t("errors.message.expiration-session"));
 
   useEffect(() => {
-    if (token == null) {
-      return;
-    }
     const fetchServers = async () => {
       try {
-        const serversData = await getServers(token);
+        const serversData = await getServers();
         setServers(serversData);
       } catch (error) {
         Swal.fire({
@@ -50,7 +47,7 @@ const AccountIngame = () => {
     };
 
     fetchServers();
-  }, [token]);
+  }, []);
 
   const handleServerChange = (event: ChangeEvent<HTMLSelectElement>) => {
     const selectedServerName = event.target.value;

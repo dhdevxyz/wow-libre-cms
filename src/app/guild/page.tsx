@@ -1,7 +1,9 @@
 "use client";
+
+import { getServers } from "@/api/account/servers";
 import { getGuilds } from "@/api/guilds";
 import NavbarAuthenticated from "@/components/navbar-authenticated";
-import { GuildDto, GuildsDto } from "@/model/model";
+import { GuildDto, GuildsDto, ServerModel } from "@/model/model";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
@@ -14,15 +16,18 @@ const Guild = () => {
   const [hasGuilds, setHasGuilds] = useState<boolean>(false);
   const accountsPerPage = 5;
   const [totalGuilds, setTotalGuilds] = useState<number>(0);
+  const [servers, setServers] = useState<ServerModel[]>([]);
+  const [selectedServer, setSelectedServer] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response: GuildsDto = await getGuilds(
-          currentPage,
-          accountsPerPage,
-          searchTerm
-        );
+        const [serversData, guildsResponse] = await Promise.all([
+          getServers(),
+          getGuilds(currentPage, accountsPerPage, searchTerm, selectedServer),
+        ]);
+        setServers(serversData);
+        const response: GuildsDto = guildsResponse;
         setGuilds(response.guilds);
         setHasGuilds(response.size > 0);
         setTotalGuilds(response.size);
@@ -34,7 +39,11 @@ const Guild = () => {
     };
 
     fetchData();
-  }, [currentPage, searchTerm]);
+  }, [currentPage, searchTerm, selectedServer]);
+
+  const handleServerChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setSelectedServer(event.target.value);
+  };
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
@@ -71,223 +80,208 @@ const Guild = () => {
         <>
           <div className=" dark h-screen-md w-full min-h-[50vh]">
             <div className="relative overflow-x-auto  sm:rounded-lg pt-20">
-              <div className="flex items-center justify-between flex-column flex-wrap md:flex-row space-y-4 md:space-y-0 pb-4 bg-white dark:bg-midnight">
-                <div className="relative inline-block text-left ml-2">
-                  <button
-                    id="dropdownActionButton"
-                    data-dropdown-toggle="dropdownAction"
-                    className="inline-flex items-center text-gray-500 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-3 py-1.5 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
-                    type="button"
-                  >
-                    <span className="sr-only text-lg">Action button</span>
-                    Action
-                    <svg
-                      className="w-2.5 h-2.5 ml-2.5"
-                      aria-hidden="true"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 10 6"
-                    >
-                      <path
+              <div className="flex items-center justify-between flex-wrap md:flex-nowrap space-y-4 md:space-y-0 pb-4 bg-white dark:bg-midnight">
+                {/* Buscador de servidor */}
+                <div className="flex items-center space-x-2">
+                  <div className="relative">
+                    <div className="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none">
+                      <svg
+                        className="w-4 h-4 text-gray-500 dark:text-gray-400"
+                        aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
                         stroke="currentColor"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="m1 1 4 4 4-4"
-                      />
-                    </svg>
-                  </button>
-                  <div
-                    id="dropdownAction"
-                    className={`${
-                      false ? "block" : "hidden"
-                    } absolute left-1 mt-2 z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600`}
-                  >
-                    {!false && (
-                      <ul
-                        className="py-1 text-sm text-gray-700 dark:text-gray-200"
-                        aria-labelledby="dropdownActionButton"
                       >
-                        <li>
-                          <Link
-                            href="/register/username"
-                            className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                          >
-                            Crear cuenta
-                          </Link>
-                        </li>
-                      </ul>
-                    )}
-                    <div className="py-1">
-                      <a
-                        href="#"
-                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
-                      >
-                        Eliminar usuario
-                      </a>
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M19 9l-7 7-7-7"
+                        />
+                      </svg>
                     </div>
-                  </div>
-                </div>
-
-                <label htmlFor="table-search" className="sr-only">
-                  Search
-                </label>
-                <div className="relative pr-2">
-                  <div className="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none ">
-                    <svg
-                      className="w-4 h-4 text-gray-500 dark:text-gray-400"
-                      aria-hidden="true"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 20 20"
+                    <select
+                      id="table-search-server"
+                      className="block p-2 ps-10 text-lg text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      value={selectedServer}
+                      onChange={handleServerChange}
                     >
-                      <path
-                        stroke="currentColor"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
-                      />
-                    </svg>
+                      <option value="">Seleccionar servidor</option>
+                      {servers.map((server) => (
+                        <option key={server.id} value={server.name}>
+                          {server.name}
+                        </option>
+                      ))}
+                    </select>
                   </div>
-                  <input
-                    type="text"
-                    id="table-search"
-                    className="block p-2 ps-10 text-lg text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    placeholder="Buscar por nombre"
-                    value={searchTerm}
-                    onChange={handleSearchChange}
-                  />
+
+                  {/* Buscador de usuario */}
+                  {selectedServer && (
+                    <div className="relative">
+                      <div className="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none ">
+                        <svg
+                          className="w-4 h-4 text-gray-500 dark:text-gray-400"
+                          aria-hidden="true"
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 20 20"
+                        >
+                          <path
+                            stroke="currentColor"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
+                            d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
+                          />
+                        </svg>
+                      </div>
+                      <input
+                        type="text"
+                        id="table-search"
+                        className="block p-2 ps-10 text-lg text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        placeholder="Buscar por nombre"
+                        value={searchTerm}
+                        onChange={handleSearchChange}
+                      />
+                    </div>
+                  )}
                 </div>
               </div>
-
-              <table className="w-full text-lg text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                <thead className="text-lg text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                  <tr>
-                    <th scope="col" className="p-4">
-                      <div className="flex items-center"></div>
-                    </th>
-                    <th scope="col" className="px-6 py-3">
-                      Id
-                    </th>
-                    <th scope="col" className="px-6 py-3">
-                      Nombre
-                    </th>
-                    <th scope="col" className="px-6 py-3">
-                      Guild Master
-                    </th>
-                    <th scope="col" className="px-6 py-3">
-                      Fecha de creacion
-                    </th>
-                    <th scope="col" className="px-6 py-3">
-                      Miembros
-                    </th>
-                    <th scope="col" className="px-6 py-3">
-                      Dinero
-                    </th>
-                    <th scope="col" className="px-6 py-3">
-                      Redes
-                    </th>
-                    <th scope="col" className="px-6 py-3">
-                      Action
-                    </th>
-                  </tr>
-                </thead>
-
-                <tbody>
-                  {filteredAccounts.map((row) => (
-                    <tr
-                      key={row.id}
-                      className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
-                    >
-                      <td className="w-4 p-4">
-                        <div className="flex items-center">
-                          <input
-                            id={`checkbox-table-search-${row.id}`}
-                            type="checkbox"
-                            className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                          />
-                          <label
-                            htmlFor={`checkbox-table-search-${row.id}`}
-                            className="sr-only"
-                          >
-                            checkbox
-                          </label>
-                        </div>
-                      </td>
-                      <td className="px-6 py-4">{row.id}</td>
-                      <td className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
-                        <img
-                          className="w-12 h-12 p-1 rounded-full select-none"
-                          src={
-                            row.avatar != null
-                              ? row.avatar
-                              : "/img/guilds/guild-icon-default.png"
-                          }
-                          alt="https://icons8.com"
-                        />
-                        <div className="ps-3">
-                          <div className="text-base font-semibold">
-                            {row.name}
-                          </div>
-                          <div className="font-normal text-gray-500">
-                            Hermandad
-                          </div>
-                        </div>
-                      </td>
-                      <td className="px-6 py-4 ">{row.leader_name}</td>
-                      <td className="px-6 py-4 ">{row.create_date}</td>
-                      <td className="px-6 py-4">{row.members}</td>
-                      <td className="px-6 py-4">{row.bank_money}</td>
-                      <td className="px-6 py-4">
-                        <a className="font-medium text-blue-600 dark:text-blue-500 hover:underline cursor-pointer">
-                          Discord
-                        </a>
-                      </td>
-                      <td className="px-6 py-4">
-                        <Link
-                          className="font-medium text-blue-600 dark:text-blue-500 hover:underline cursor-pointer"
-                          href={{
-                            pathname: `/guild/${row.id}`,
-                          }}
-                        >
-                          Ir a detalle de guild
-                        </Link>
-                      </td>
+              <div className="max-h-[400px] overflow-y-auto min-h-[400px] flex flex-col justify-between select-none">
+                <table className=" text-lg text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                  <thead className="text-lg text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                    <tr>
+                      <th scope="col" className="p-4">
+                        <div className="flex items-center"></div>
+                      </th>
+                      <th scope="col" className="px-6 py-3">
+                        Id
+                      </th>
+                      <th scope="col" className="px-6 py-3">
+                        Nombre
+                      </th>
+                      <th scope="col" className="px-6 py-3">
+                        Guild Master
+                      </th>
+                      <th scope="col" className="px-6 py-3">
+                        Server
+                      </th>
+                      <th scope="col" className="px-6 py-3">
+                        Fecha de creacion
+                      </th>
+                      <th scope="col" className="px-6 py-3">
+                        Miembros
+                      </th>
+                      <th scope="col" className="px-6 py-3">
+                        Dinero
+                      </th>
+                      <th scope="col" className="px-6 py-3">
+                        Redes
+                      </th>
+                      <th scope="col" className="px-6 py-3">
+                        Action
+                      </th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
+                  </thead>
 
-              <div className="flex justify-center items-center mt-10 ">
-                <ReactPaginate
-                  previousLabel={"Anterior"}
-                  nextLabel={"Siguiente"}
-                  breakLabel={""}
-                  pageCount={Math.ceil(totalGuilds / accountsPerPage)}
-                  marginPagesDisplayed={1}
-                  pageRangeDisplayed={1}
-                  onPageChange={handlePageClick}
-                  containerClassName={"pagination flex space-x-2"}
-                  pageClassName={"page-item"}
-                  pageLinkClassName={
-                    "text-white py-2 px-3 rounded-lg hover:bg-gray-600"
-                  }
-                  previousClassName={"page-item"}
-                  previousLinkClassName={
-                    "page-link text-white py-2 px-3 rounded-lg hover:bg-gray-600"
-                  }
-                  nextClassName={"page-item"}
-                  nextLinkClassName={
-                    "page-link text-white py-2 px-3 rounded-lg hover:bg-gray-600"
-                  }
-                  breakClassName={"page-item"}
-                  breakLinkClassName={
-                    "page-link text-white py-2 px-3 rounded-lg hover:bg-gray-600"
-                  }
-                  activeClassName={"active"}
-                  activeLinkClassName={"bg-blue-900"} // Establecer el color de fondo y texto del número de página activo
-                />
+                  <tbody>
+                    {filteredAccounts.map((row) => (
+                      <tr
+                        key={row.id}
+                        className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+                      >
+                        <td className="w-4 p-4">
+                          <div className="flex items-center">
+                            <input
+                              id={`checkbox-table-search-${row.id}`}
+                              type="checkbox"
+                              className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                            />
+                            <label
+                              htmlFor={`checkbox-table-search-${row.id}`}
+                              className="sr-only"
+                            >
+                              checkbox
+                            </label>
+                          </div>
+                        </td>
+                        <td className="px-6 py-4">{row.id}</td>
+                        <td className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
+                          <img
+                            className="w-12 h-12 p-1 rounded-full select-none"
+                            src={
+                              row.avatar != null
+                                ? row.avatar
+                                : "/img/guilds/guild-icon-default.png"
+                            }
+                            alt="https://icons8.com"
+                          />
+                          <div className="ps-3">
+                            <div className="text-base font-semibold">
+                              {row.name}
+                            </div>
+                            <div className="font-normal text-gray-500">
+                              Hermandad
+                            </div>
+                          </div>
+                        </td>
+                        <td className="px-6 py-4 ">{row.leader_name}</td>
+                        <td className="px-6 py-4">{row.server_name}</td>
+                        <td className="px-6 py-4 ">{row.create_date}</td>
+                        <td className="px-6 py-4">{row.members}</td>
+                        <td className="px-6 py-4">{row.bank_money}</td>
+                        <td className="px-6 py-4">
+                          <a className="font-medium text-blue-600 dark:text-blue-500 hover:underline cursor-pointer">
+                            Discord
+                          </a>
+                        </td>
+                        <td className="px-6 py-4">
+                          <Link
+                            className="font-medium text-blue-600 dark:text-blue-500 hover:underline cursor-pointer"
+                            href={{
+                              pathname: `/guild/${row.id}`,
+                              query: { server: row.server_id },
+                            }}
+                          >
+                            Ir a detalle de guild
+                          </Link>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+
+                <div className="flex justify-center items-center mt-10 ">
+                  <ReactPaginate
+                    previousLabel={"Anterior"}
+                    nextLabel={"Siguiente"}
+                    breakLabel={""}
+                    pageCount={Math.ceil(totalGuilds / accountsPerPage)}
+                    marginPagesDisplayed={2}
+                    pageRangeDisplayed={1}
+                    onPageChange={handlePageClick}
+                    containerClassName={"pagination flex space-x-2"}
+                    pageClassName={"page-item"}
+                    pageLinkClassName={
+                      "text-white py-2 px-3 rounded-lg hover:bg-gray-600"
+                    }
+                    previousClassName={"page-item"}
+                    previousLinkClassName={
+                      "page-link text-white py-2 px-3 rounded-lg hover:bg-gray-600"
+                    }
+                    nextClassName={"page-item"}
+                    nextLinkClassName={
+                      "page-link text-white py-2 px-3 rounded-lg hover:bg-gray-600"
+                    }
+                    breakClassName={"page-item"}
+                    breakLinkClassName={
+                      "page-link text-white py-2 px-3 rounded-lg hover:bg-gray-600"
+                    }
+                    activeClassName={"active"}
+                    activeLinkClassName={"bg-blue-900"} // Establecer el color de fondo y texto del número de página activo
+                  />
+                </div>
               </div>
             </div>
           </div>

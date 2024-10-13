@@ -42,11 +42,62 @@ export const getAccounts = async (
         transactionId
       );
     } else {
-      const badRequestError: GenericResponseDto<void> = await response.json();
+      const genericResponse: GenericResponseDto<void> = await response.json();
       throw new InternalServerError(
-        `${badRequestError.message}`,
-        badRequestError.code,
-        badRequestError.transaction_id
+        `${genericResponse.message}`,
+        genericResponse.code,
+        genericResponse.transaction_id
+      );
+    }
+  } catch (error: any) {
+    if (error instanceof TypeError && error.message === "Failed to fetch") {
+      throw new Error(`Please try again later, services are not available.`);
+    } else if (error instanceof InternalServerError) {
+      throw error;
+    } else if (error instanceof Error) {
+      throw error;
+    } else {
+      throw new Error(
+        `Unknown error occurred - TransactionId: ${transactionId}`
+      );
+    }
+  }
+};
+
+export const getAccountAndServerId = async (
+  jwt: string,
+  serverId: number
+): Promise<AccountsDto> => {
+  const transactionId = uuidv4();
+
+  try {
+    const response = await fetch(
+      `${BASE_URL}/api/account/game?server_id=${serverId}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + jwt,
+          transaction_id: transactionId,
+        },
+      }
+    );
+
+    if (response.ok && response.status === 200) {
+      const responseData = await response.json();
+      return responseData.data;
+    } else if (response.status === 401 || response.status === 403) {
+      throw new InternalServerError(
+        `Token expiration`,
+        response.status,
+        transactionId
+      );
+    } else {
+      const genericResponse: GenericResponseDto<void> = await response.json();
+      throw new InternalServerError(
+        `${genericResponse.message}`,
+        genericResponse.code,
+        genericResponse.transaction_id
       );
     }
   } catch (error: any) {

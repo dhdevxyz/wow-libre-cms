@@ -81,7 +81,6 @@ const AccountDetail = () => {
           router.push("/accounts");
         }
       } catch (error) {
-        console.error("Ha ocurrido un error al obtener los datos", error);
         Swal.fire({
           icon: "error",
           title: "Oops...",
@@ -102,9 +101,7 @@ const AccountDetail = () => {
     setSelectedCharacter(character);
     setAvatar(character.race_logo || "https://via.placeholder.com/150");
   };
-  const handleBack = () => {
-    router.back();
-  };
+
   if (isLoading) {
     return (
       <div className="flex items-center justify-center min-h-screen min-w-full">
@@ -123,7 +120,7 @@ const AccountDetail = () => {
       <div className="flex flex-col items-center justify-center py-20 relative mt-20">
         <img
           src={avatar}
-          alt="Avatar del usuario"
+          alt="Default Avatar Image"
           className="w-36 h-36 rounded-full mb-4 box-shadow-primary"
         />
         <div className="text-center w-full max-w-md pt-2">

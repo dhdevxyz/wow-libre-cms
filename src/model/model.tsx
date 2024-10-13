@@ -181,6 +181,8 @@ export interface GuildDto {
   motd: string;
   create_date: string;
   bank_money: number;
+  server_name: string;
+  server_id: number;
   members: number;
 }
 
