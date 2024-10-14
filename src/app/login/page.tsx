@@ -56,13 +56,13 @@ const Login = () => {
 
       Cookies.set("token", jwt, {
         expires: new Date(expirationDateUTC),
-        secure: false,
+        secure: true,
         sameSite: "Strict",
       });
 
       Cookies.set("refresh_token", refresh_token, {
         expires: new Date(expirationDateUTC),
-        secure: false,
+        secure: true,
         sameSite: "Strict",
       });
 
@@ -95,7 +95,7 @@ const Login = () => {
       <div className="login-banner">
         <img
           src="https://bnetcmsus-a.akamaihd.net/cms/blog_header/7k/7KGWCRHVH4GW1572627335155.jpg"
-          alt="Img Login Wow"
+          alt="Login WowLibre Img"
         />
       </div>
       <div className="login-form">
@@ -127,7 +127,7 @@ const Login = () => {
               className="mb-4 px-4 py-2 border rounded-md text-black"
               type="password"
               id="password"
-              autoComplete="password"
+              autoComplete="current-password"
               placeholder="Password"
               onChange={handlePasswordChange}
             />

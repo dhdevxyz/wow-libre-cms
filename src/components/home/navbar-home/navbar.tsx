@@ -60,8 +60,8 @@ const Navbar = () => {
         <Link className="logo-home flex items-center" href="/">
           <img
             className="nav-small-image"
-            src="./img/logos/logo.png"
-            alt="Logo Primary World Of Warcraft"
+            src="https://i.ibb.co/grsYmyj/logo.webp"
+            alt="Logo WowLibre"
           />
           <p className="title-server title-home ml-2 text-xl font-bold">
             Wow Libre

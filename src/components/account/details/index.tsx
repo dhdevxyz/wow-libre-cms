@@ -316,9 +316,10 @@ const AccountDetail = () => {
               <TabPanel>
                 {selectedCharacter && token && accountId ? (
                   <AccountGuild
-                    character_id={selectedCharacter.id}
+                    serverId={serverId}
+                    characterId={selectedCharacter.id}
                     token={token}
-                    account_id={accountId}
+                    accountId={accountId}
                   />
                 ) : (
                   <div className=" p-6 bg-gradient-to-r from-gray-800 via-black to-gray-900 text-neon_green rounded-lg shadow-lg text-center">

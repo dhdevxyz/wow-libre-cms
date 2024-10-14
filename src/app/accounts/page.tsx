@@ -141,6 +141,7 @@ const Page = () => {
       </div>
     );
   }
+
   const accountMaximus = accounts && accounts.length > LimitAccountRegister;
 
   return (
@@ -278,7 +279,7 @@ const Page = () => {
           </div>
 
           <div className="max-h-[400px] overflow-y-auto min-h-[400px] flex flex-col justify-between">
-            <table className="w-full text-lg text-left rtl:text-right text-gray-500 dark:text-gray-400">
+            <table className=" text-lg text-left rtl:text-right text-gray-500 dark:text-gray-400">
               <thead className="text-lg text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
                   <th scope="col" className="p-4">

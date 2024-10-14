@@ -123,6 +123,7 @@ export const attach = async (
 };
 
 export const getMemberDetailGuild = async (
+  serverId: number,
   accountId: number,
   characterId: number,
   token: string
@@ -131,7 +132,7 @@ export const getMemberDetailGuild = async (
     const transactionId = uuidv4();
 
     const response = await fetch(
-      `${BASE_URL_CHARACTER}/api/guilds/member/${characterId}?account_id=${accountId}`,
+      `${BASE_URL}/api/guilds/member?server_id=${serverId}&character_id=${characterId}&account_id=${accountId}`,
       {
         method: "GET",
         headers: {
@@ -161,6 +162,7 @@ export const getMemberDetailGuild = async (
 };
 
 export const unlinkGuild = async (
+  serverId: number,
   accountId: number,
   characterId: number,
   token: string
@@ -168,17 +170,25 @@ export const unlinkGuild = async (
   try {
     const transactionId = uuidv4();
 
-    const response = await fetch(
-      `${BASE_URL_CHARACTER}/api/guilds/member/${characterId}?account_id=${accountId}`,
-      {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-          transaction_id: transactionId,
-          Authorization: "Bearer " + token,
-        },
-      }
-    );
+    const requestBody: {
+      server_id: number;
+      account_id: number;
+      character_id: number;
+    } = {
+      server_id: serverId,
+      account_id: accountId,
+      character_id: characterId,
+    };
+
+    const response = await fetch(`${BASE_URL}/api/guilds/attach`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        transaction_id: transactionId,
+        Authorization: "Bearer " + token,
+      },
+      body: JSON.stringify(requestBody),
+    });
 
     if (response.ok && response.status === 200) {
       const responseData: GenericResponseDto<void> = await response.json();

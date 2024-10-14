@@ -32,6 +32,7 @@ const NavbarAuthenticated = () => {
   const toggleUserMenu = () => {
     setIsUserMenuOpen(!isUserMenuOpen);
   };
+
   const handleLogout = () => {
     clearUserData();
     router.push("/");
@@ -88,8 +89,8 @@ const NavbarAuthenticated = () => {
             >
               <img
                 className="w-16 h-16 mt-2"
-                src="/img/logos/logo.png"
-                alt="WowLibreLogo"
+                src="https://i.ibb.co/grsYmyj/logo.webp"
+                alt="Logo WowLibre"
               />
               <p className="text-gray-300 ml-5  title-server mt-9 text-4xl">
                 Wow Libre

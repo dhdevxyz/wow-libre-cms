@@ -6,15 +6,17 @@ import Swal from "sweetalert2";
 import Link from "next/link";
 
 interface AccountGuildProps {
-  character_id: number;
+  serverId: number;
+  characterId: number;
   token: string;
-  account_id: number;
+  accountId: number;
 }
 
 const AccountGuild: React.FC<AccountGuildProps> = ({
-  character_id,
+  serverId,
+  characterId,
+  accountId,
   token,
-  account_id,
 }) => {
   const [guildData, setGuildData] = useState<GuildData | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
@@ -24,8 +26,9 @@ const AccountGuild: React.FC<AccountGuildProps> = ({
     const fetchGuildData = async () => {
       try {
         const data = await getMemberDetailGuild(
-          account_id,
-          character_id,
+          serverId,
+          accountId,
+          characterId,
           token
         );
         setGuildData(data);
@@ -37,11 +40,11 @@ const AccountGuild: React.FC<AccountGuildProps> = ({
     };
 
     fetchGuildData();
-  }, [account_id, character_id, token, refresh]);
+  }, [accountId, characterId, token, refresh]);
 
   const handleUnlinkGuild = async () => {
     try {
-      await unlinkGuild(account_id, character_id, token);
+      await unlinkGuild(serverId, accountId, characterId, token);
       setGuildData(null);
       Swal.fire({
         icon: "success",
@@ -65,7 +68,7 @@ const AccountGuild: React.FC<AccountGuildProps> = ({
 
   const handleBenefitsGuild = async () => {
     try {
-      await claimBenefits(account_id, character_id, token);
+      await claimBenefits(accountId, characterId, token);
       setRefresh(true);
       Swal.fire({
         icon: "success",
@@ -128,10 +131,10 @@ const AccountGuild: React.FC<AccountGuildProps> = ({
                     ></div>
                   </p>
                   <p className="text-lg lg:text-2xl mb-4 break-words max-w-full overflow-wrap">
-                    Beneficios Disponibles: {guildData.benefits.length}
+                    Beneficios Disponibles: {0}
                   </p>
                   <p className="text-lg lg:text-2xl mb-10 break-words max-w-full overflow-wrap">
-                    Beneficios Consumidos: {guildData.claimed_benefits}
+                    Beneficios Consumidos: {0}
                   </p>
                 </div>
               </div>
@@ -140,15 +143,14 @@ const AccountGuild: React.FC<AccountGuildProps> = ({
                 <button className="px-6 py-3 bg-blue-400 hover:bg-blue-600 rounded-lg text-white font-semibold mb-4 mr-2">
                   Editar
                 </button>
-                {guildData.benefits.length > 0 &&
-                  guildData.claimed_benefits <= 0 && (
-                    <button
-                      className="px-6 py-3 bg-green-400 hover:bg-green-600 rounded-lg text-white font-semibold mb-4 mr-2"
-                      onClick={handleBenefitsGuild}
-                    >
-                      Reclamar beneficios
-                    </button>
-                  )}
+                {0 > 0 && guildData.claimed_benefits <= 0 && (
+                  <button
+                    className="px-6 py-3 bg-green-400 hover:bg-green-600 rounded-lg text-white font-semibold mb-4 mr-2"
+                    onClick={handleBenefitsGuild}
+                  >
+                    Reclamar beneficios
+                  </button>
+                )}
 
                 <button
                   className="px-6 py-3 bg-red-400 hover:bg-red-600 rounded-lg text-white font-semibold mb-4  "
