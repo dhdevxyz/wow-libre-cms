@@ -16,7 +16,7 @@ export interface UserModel {
   logged_in: boolean;
   avatar: string;
   server: string | null;
-  expansion: string;
+  expansion: string | null;
 }
 
 const initialUserData: UserModel = {
@@ -32,7 +32,7 @@ const initialUserData: UserModel = {
   logged_in: false,
   avatar: "",
   server: null,
-  expansion: "",
+  expansion: null,
 };
 
 interface UserContextProps {

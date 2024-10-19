@@ -1,4 +1,4 @@
-import { BASE_URL_AUTH } from "@/configs/configs";
+import { BASE_URL, BASE_URL_AUTH } from "@/configs/configs";
 import { GenericResponseDto } from "@/dto/generic";
 import { LoginData } from "@/model/model";
 import { v4 as uuidv4 } from "uuid";
@@ -52,27 +52,20 @@ export const recoverPassword = async (
   }
 };
 
-export const validateOtp = async (
-  email: string,
-  otp: string
+export const validateMail = async (
+  jwt: string,
+  code: string
 ): Promise<GenericResponseDto<void>> => {
-  const requestBody: {
-    email: string;
-    otp: string;
-  } = {
-    email: email,
-    otp: otp,
-  };
   try {
     const response = await fetch(
-      `${BASE_URL_AUTH}/api/account/web/validate/otp`,
+      `${BASE_URL}/api/account/confirm-email?code=${code}`,
       {
-        method: "POST",
+        method: "PUT",
         headers: {
           "Content-Type": "application/json",
           transaction_id: uuidv4(),
+          Authorization: "Bearer " + jwt,
         },
-        body: JSON.stringify(requestBody),
       }
     );
 

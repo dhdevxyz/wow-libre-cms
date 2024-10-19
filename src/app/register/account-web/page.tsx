@@ -97,7 +97,7 @@ const AccountWeb = () => {
         language: language,
       };
 
-      const response = await registerAccountWeb(requestBody);
+      const response = await registerAccountWeb(requestBody, language);
       const { jwt, refresh_token, expiration_date, avatar_url } = response;
       const expirationDateUTC = new Date(expiration_date).toUTCString();
 
@@ -113,6 +113,8 @@ const AccountWeb = () => {
         email: "",
         logged_in: true,
         avatar: avatar_url,
+        expansion: null,
+        server: null,
       });
 
       Cookies.set("token", jwt, {

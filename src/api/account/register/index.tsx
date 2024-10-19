@@ -55,7 +55,8 @@ export const registerAccountGame = async (
 };
 
 export const registerAccountWeb = async (
-  userData: AccountWebRequestDto
+  userData: AccountWebRequestDto,
+  language: string
 ): Promise<LoginData> => {
   const transactionId = uuidv4();
   try {
@@ -64,6 +65,7 @@ export const registerAccountWeb = async (
       headers: {
         "Content-Type": "application/json",
         transaction_id: transactionId,
+        "Accept-Language": language,
       },
       body: JSON.stringify(userData),
     });

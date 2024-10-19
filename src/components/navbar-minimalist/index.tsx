@@ -17,7 +17,7 @@ const NavbarMinimalist = () => {
         >
           <img
             className="max-w-[10%] md:max-w-[6%]"
-            src="/img/logos/logo.png"
+            src="https://i.ibb.co/grsYmyj/logo.webp"
             alt="WowLibre Logo"
           />
           <p className="text-white text-4xl md:text-4xl pl-4 pt-6  md:mt-6 md:pt-0 title-server text-center md:text-left">
