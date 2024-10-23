@@ -181,7 +181,15 @@
         "create-account-question": "Não tem uma conta?"
     },
     "account": {
-        "search-placeholder": "Pesquisar por usuário",
+        "paginate": {
+            "btn-primary": "Anterior",
+            "btn-secondary": "Seguinte"
+        },
+        "errors": {
+            "special-characters": "Por favor, evite inserir caracteres especiais na busca."
+        },
+        "search-placeholder": "Buscar por usuário",
+        "search-server-placeholder": "Buscar por servidor",
         "service-unavailable": {
             "message": "Não é possível obter os detalhes das suas contas no momento, por favor aguarde."
         },

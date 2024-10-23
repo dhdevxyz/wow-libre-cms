@@ -181,7 +181,15 @@
         "create-account-question": "Don't have an account?"
     },
     "account": {
-        "search-placeholder": "Search by user",
+        "paginate": {
+            "btn-primary": "Previous",
+            "btn-secondary": "Next"
+        },
+        "errors": {
+            "special-characters": "Please avoid entering special characters in the search."
+        },
+        "search-placeholder": "Search by username",
+        "search-server-placeholder": "Search by server",
         "service-unavailable": {
             "message": "It is not possible to obtain the details of your accounts at this time, please wait."
         },
@@ -294,7 +302,7 @@
         },
         "bank_characters": {
             "title": "Character Selection",
-            "description":  "Choose the character to request the loan. If some characters don't appear, it's because they don't meet the loan requirements.",
+            "description": "Choose the character to request the loan. If some characters don't appear, it's because they don't meet the loan requirements.",
             "select-account": "Select an account",
             "select-character": "Select a character",
             "success-loan": "Haha, you've got your gold! But remember, my friend, this deal fills my pockets too. Don't forget your payments, or the interest will make me smile even more!",

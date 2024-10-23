@@ -105,11 +105,39 @@ const Page = () => {
   }, [searchUsername, searchServer, accounts]);
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setUsername(event.target.value);
+    const value = event.target.value;
+    const regex = /^[a-zA-Z0-9\s]*$/;
+
+    if (regex.test(value)) {
+      setUsername(value);
+    } else {
+      Swal.fire({
+        icon: "warning",
+        title: "Oops...",
+        text: t("account.errors.special-characters"),
+        color: "white",
+        background: "#0B1218",
+        timer: 4500,
+      });
+    }
   };
 
   const handleServerChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchServer(event.target.value);
+    const value = event.target.value;
+    const regex = /^[a-zA-Z0-9\s]*$/;
+
+    if (regex.test(value)) {
+      setSearchServer(value);
+    } else {
+      Swal.fire({
+        icon: "warning",
+        title: "Oops...",
+        text: t("account.errors.special-characters"),
+        color: "white",
+        background: "#0B1218",
+        timer: 4500,
+      });
+    }
   };
 
   const toggleDropdown = () => {
@@ -145,10 +173,10 @@ const Page = () => {
   const accountMaximus = accounts && accounts.length > LimitAccountRegister;
 
   return (
-    <div className="contenedor dark h-screen-md select-none">
+    <div className="contenedor dark h-screen-md select-none ">
       <NavbarAuthenticated />
 
-      <div className="text-center pt-40">
+      <div className="text-center pt-32">
         <h1 className="text-4xl font-bold text-white">
           {t("account.service-available.title-txt-message")}
         </h1>
@@ -157,7 +185,7 @@ const Page = () => {
         </p>
       </div>
       {hasAccount ? (
-        <div className="relative shadow-md sm:rounded-lg pt-5">
+        <div className="relative shadow-md sm:rounded-lg pt-16">
           <div className="flex items-center justify-between flex-wrap md:flex-nowrap space-y-4 md:space-y-0 pb-4 bg-white dark:bg-midnight">
             {/* Botón de acción alineado a la izquierda */}
             <div className="relative inline-block text-left ml-2">
@@ -168,7 +196,6 @@ const Page = () => {
                 type="button"
                 onClick={toggleDropdown}
               >
-                <span className="sr-only text-lg">Action button</span>
                 Action
                 <svg
                   className="w-2.5 h-2.5 ml-2.5"
@@ -242,7 +269,7 @@ const Page = () => {
                   type="text"
                   id="table-search-server"
                   className="block p-2 ps-10 text-lg text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder="Buscar por servidor"
+                  placeholder={t("account.search-server-placeholder")}
                   value={searchServer}
                   onChange={handleServerChange}
                 />
@@ -390,8 +417,8 @@ const Page = () => {
             </table>
             <div className="flex justify-center items-center mt-10 ">
               <ReactPaginate
-                previousLabel={"Anterior"}
-                nextLabel={"Siguiente"}
+                previousLabel={t("account.paginate.btn-primary")}
+                nextLabel={t("account.paginate.btn-secondary")}
                 breakLabel={""}
                 pageCount={Math.ceil(totalPages / accountsPerPage)}
                 marginPagesDisplayed={2}

@@ -181,7 +181,15 @@
         "create-account-question": "¿No tienes una cuenta? "
     },
     "account": {
+        "paginate": {
+            "btn-primary": "Anterior",
+            "btn-secondary": "Siguiente"
+        },
+        "errors": {
+            "special-characters": "Por favor, evita ingresar caracteres especiales en la búsqueda."
+        },
         "search-placeholder": "Buscar por usuario",
+        "search-server-placeholder": "Buscar por servidor",
         "service-unavailable": {
             "message": "No es posible obtener el detalle de tus cuentas en este momento, por favor espera."
         },
