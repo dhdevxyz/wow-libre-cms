@@ -94,10 +94,9 @@ const AccountIngame = () => {
       Swal.fire({
         icon: "error",
         title: "Oops...",
-        text: error.message,
+        text: `${error.message}`,
         color: "white",
         background: "#0B1218",
-        timer: 4500,
       });
     } finally {
       setIsSubmitting(false);

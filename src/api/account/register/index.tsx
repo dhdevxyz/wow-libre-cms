@@ -9,6 +9,7 @@ import {
   AccountWebRequestDto,
   LoginData,
 } from "@/model/model";
+import { error } from "console";
 import { v4 as uuidv4 } from "uuid";
 
 export const registerAccountGame = async (
@@ -27,14 +28,15 @@ export const registerAccountGame = async (
       body: JSON.stringify(userData),
     });
 
-    const responseData = await response.json();
     if (response.ok && response.status === 201) {
+      const responseData = await response.json();
       return responseData;
     } else if (response.status == 409) {
-      const badRequestError: GenericResponseDto<void> = responseData;
+      const badRequestError: GenericResponseDto<void> = await response.json();
       throw new Error(`${badRequestError.message}`);
     } else {
       const errorGeneric: GenericResponseDto<void> = await response.json();
+      console.log(errorGeneric);
       throw new Error(
         `${errorGeneric.message} - TransactionId: ${transactionId}`
       );

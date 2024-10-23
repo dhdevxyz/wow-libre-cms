@@ -1,13 +1,15 @@
 "use client";
 
-import { useRouter, useSearchParams } from "next/navigation";
-import React, { useEffect, useState } from "react";
 import "./style.css";
+
 import NavbarAuthenticated from "@/components/navbar-authenticated";
 import Footer from "@/components/footer";
-import { useTranslation } from "react-i18next";
 import Link from "next/link";
 import LoadingSpinner from "../utilities/loading-spinner";
+
+import { useRouter, useSearchParams } from "next/navigation";
+import React, { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 const Congrats = () => {
   const searchParams = useSearchParams();
@@ -16,7 +18,6 @@ const Congrats = () => {
   const phone = searchParams.get("phone");
   const router = useRouter();
   const { t, ready } = useTranslation();
-
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -41,7 +42,7 @@ const Congrats = () => {
     <div className="contenedor">
       <NavbarAuthenticated />
       <div className="congrats md:mt-0 mt-5">
-        <div className="congrats-container">
+        <div className="congrats-container select-none">
           <img
             src="/img/congrats/pngegg.png"
             alt="Congratulations warrior"
@@ -49,7 +50,7 @@ const Congrats = () => {
           />
           <div className="congrats-content">
             <img
-              src="/img/logos/logo.png"
+              src="/img/logos/logo.webp"
               alt="WowLibre Logo"
               className="congrats-img select-none"
             />
