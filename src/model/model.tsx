@@ -277,3 +277,50 @@ export interface ServerAvailableBank {
   id: number;
   name: string;
 }
+
+export interface CategoryDetail {
+  id: number;
+  name: string;
+  description: string;
+  disclaimer: string;
+  products: Product[];
+}
+
+export interface Product {
+  id: number;
+  name: string;
+  disclaimer: string;
+  category: string;
+  price: number;
+  discount: number;
+  gambling_money: boolean;
+  gold_price: number;
+  description: string;
+  img_url: string;
+  partner: string;
+  reference_number: string;
+}
+
+export interface ProductDetail {
+  id: number;
+  name: string;
+  disclaimer: string;
+  category: string;
+  price: number;
+  discount: number;
+  gambling_money: boolean;
+  gold_price: number;
+  description: string;
+  img_url: string;
+  partner: string;
+  reference_number: string;
+  details: ProductDetailsModel[];
+}
+
+interface ProductDetailsModel {
+  id: number;
+  product_id: number;
+  title: string;
+  description: string;
+  img_url: string;
+}

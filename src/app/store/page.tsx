@@ -1,125 +1,46 @@
 "use client";
 
+import { getProducts } from "@/api/store";
 import NavbarAuthenticated from "@/components/navbar-authenticated";
 import AdvertisingStore from "@/components/store/banners";
+import { CategoryDetail } from "@/model/model";
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
-
-// Define las categorías y sus respectivas tarjetas
-const categories = [
-  {
-    id: "section1",
-    title: "Categoría 1",
-    category: "Excelente para nuevos jugadores",
-    description: "¿Acabas de llegar a World of Warcraft? Empieza por aquí.",
-    cards: [
-      {
-        id: 1,
-        image:
-          "https://blz-contentstack-images.akamaized.net/v3/assets/bltf408a0557f4e4998/blt8251b00af5c9b40a/66bfcb5b7e3fe282ad56f73c/WOW_11.0_TWW_LaunchBanners-Destruction_Launcher_FranchisePhoenix_1920x1080_JL01b.png?imwidth=854&imdensity=1",
-        title: "Mensajero encantador",
-        description:
-          "¡Ya disponible! Llévate una subida hasta el nivel 70 en todas las ediciones y vuelve a la lucha.",
-        type: "Monturas",
-        price: "$ 2 usd",
-      },
-      {
-        id: 2,
-        image:
-          "https://blz-contentstack-images.akamaized.net/v3/assets/bltf408a0557f4e4998/bltc11eb8267b854b16/668432688ec4a48f0c373586/WoW_OwlMountEvergreen_BnetShop_ProductAssetGallery_1920x1080.png?imwidth=1088&imdensity=1",
-        title: "Vermis arborea aspuciosa",
-        description: "¡Juega gratis hasta el nivel 20!",
-        type: "Monturas",
-        price: "$ 50 usd",
-      },
-      {
-        id: 3,
-        title: "Cuervo aterrador",
-        image:
-          "https://blz-contentstack-images.akamaized.net/v3/assets/bltf408a0557f4e4998/bltbb5a731e240dc6a8/659737a6d08684df44bc0c06/WoW_LNY-Shop_Bnet_ProductAsset_1920x1080_B01.png?imwidth=1088&imdensity=1",
-        description:
-          "¡Incluye acceso a World of Warcraft, Cataclysm Classic, la Temporada del Descubrimiento de Classic y los reinos del modo Hardcore! ",
-        type: "Monturas",
-        price: "$ 41 usd",
-      },
-      {
-        id: 4,
-        title: "Pack Logdo",
-        image:
-          "https://blz-contentstack-images.akamaized.net/v3/assets/bltf408a0557f4e4998/blt159934687683127b/63505f8da1e3093bbef752c4/ensorcelled-everwyrm-thumbnail-960x540.png?imwidth=1088&imdensity=1",
-        description: "Descripción de la imagen 4",
-        type: "Monturas",
-        price: "$ 21 usd",
-      },
-    ],
-  },
-  {
-    id: "section2",
-    title: "Categoría 2",
-    category: "Excelente para nuevos jugadores",
-    description: "Contenido de la categoría 2...",
-
-    cards: [
-      {
-        id: 5,
-        title: "xxxxxxxxxx",
-
-        image: "https://via.placeholder.com/150",
-        description: "Descripción de la imagen 5",
-        type: "Monturas",
-        price: "$ 20 usd",
-      },
-      {
-        id: 6,
-        title: "xxxxxxxxxx",
-
-        image: "https://via.placeholder.com/150",
-        description: "Descripción de la imagen 6",
-        type: "Monturas",
-        price: "$ 20 usd",
-      },
-    ],
-  },
-  {
-    id: "section3",
-    title: "Categoría 3",
-    category: "Excelente para nuevos jugadores",
-    description: "Contenido de la categoría 3...",
-    cards: [
-      {
-        id: 7,
-        title: "xxxxxxxxxx",
-
-        image: "https://via.placeholder.com/450",
-        description: "Descripción de la imagen 7",
-        type: "Monturas",
-        price: "$2  usd",
-      },
-      {
-        id: 8,
-        title: "xxxxxxxxxx",
-        image: "https://via.placeholder.com/450",
-        description: "Descripción de la imagen 8",
-        type: "Monturas",
-        price: "$20 usd",
-      },
-      {
-        id: 9,
-        title: "xxxxxxxxxx",
-        image: "https://via.placeholder.com/450",
-        description: "Descripción de la imagen 9",
-        type: "Monturas",
-        price: "COP 124.600,00 ",
-      },
-    ],
-  },
-];
+import React, { useState, useEffect } from "react";
 
 const Store = () => {
   const router = useRouter();
-  const handleSelectItem = (id: number) => {
+  const [categories, setCategories] = useState<{
+    [key: string]: CategoryDetail[];
+  }>({});
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const productsData = await getProducts();
+        setCategories(productsData);
+      } catch (err: any) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
+  const handleSelectItem = (id: string) => {
     router.push(`/store/${id}`);
   };
+
+  if (loading) {
+    return <p className="text-white">Cargando productos...</p>;
+  }
+
+  if (error) {
+    return <p className="text-red-500">Error: {error}</p>;
+  }
 
   return (
     <div className="contenedor">
@@ -127,56 +48,110 @@ const Store = () => {
       <div className="mt-14">
         <AdvertisingStore />
       </div>
-      <nav className="w-full h-20 flex items-center justify-start bg-gray-900 text-white mt-10 mb-10">
-        {categories.map((category) => (
+      <nav className="w-full h-20 flex items-center justify-start bg-gray-800 text-white mt-10 mb-10 ">
+        {Object.keys(categories).map((category) => (
           <a
-            key={category.id}
-            href={`#${category.id}`}
+            key={category}
+            href={`#${category}`}
             className="hover:text-gray-400 px-4 py-2 hover:bg-gray-700"
           >
-            {category.title}
+            {category}
           </a>
         ))}
       </nav>
-      {categories.map((category) => (
-        <div key={category.id} id={category.id} className="pt-20 bg-gray-800">
+
+      {Object.entries(categories).map(([categoryName, categoryDetails]) => (
+        <div
+          key={categoryName}
+          id={categoryName}
+          className="pt-20 bg-gray-800  "
+        >
           <div className="container mx-auto px-4">
             <div className="flex flex-col md:flex-row gap-8">
-              {/* Column 1: Title and Description */}
               <div className="flex-shrink-0 md:w-1/3 flex flex-col justify-center text-center max-w-md mx-auto space-y-4">
                 <div>
                   <h2 className="text-4xl font-bold text-white mb-4">
-                    {category.category}
+                    {categoryName}
                   </h2>
-                  <p className="text-gray-400 text-lg">
-                    {category.description}
+                  <p className="text-gray-400 text-xl font-semibold">
+                    {categoryDetails[0]?.disclaimer}
                   </p>
                 </div>
               </div>
 
-              {/* Column 2: Image Cards */}
               <div className="flex flex-wrap md:w-2/3 gap-4 mb-10 cursor-pointer">
-                {category.cards.map((card) => (
+                {categoryDetails[0]?.products.map((product) => (
                   <div
-                    key={card.id}
-                    className="bg-gray-700 hover:bg-gray-600 p-4 rounded-lg shadow-lg w-full sm:w-1/2 lg:w-1/3 xl:w-1/4 flex flex-col"
-                    style={{ minHeight: "400px" }}
-                    onClick={() => handleSelectItem(card.id)}
+                    key={product.id}
+                    className="bg-gray-800 hover:bg-gray-700 relative p-4 rounded-lg shadow-lg w-full sm:w-1/2 lg:w-1/3 xl:w-1/3 flex flex-col transform transition-all duration-300 hover:scale-105 hover:shadow-2xl"
+                    style={{ height: "450px" }}
+                    onClick={() => handleSelectItem(product.reference_number)}
                   >
+                    {product.discount > 0 && (
+                      <span className="absolute top-4 right-4 bg-orange-500 text-white text-lg font-semibold px-2 py-1 rounded-full animate-pulse shadow-lg">
+                        ¡{product.discount}% de descuento!
+                      </span>
+                    )}
+
                     <img
-                      src={card.image}
-                      alt={`Image ${card.id}`}
-                      className="w-full h-60 object-cover rounded-md mb-4"
+                      src={product.img_url}
+                      alt={`Image ${product.id}`}
+                      className="w-full h-1/2 object-cover rounded-md mb-4 transition-transform duration-300 "
                     />
+
                     <div className="flex flex-col flex-grow">
-                      <p className="text-white mb-4 ">{card.title}</p>
-                      <p className="text-yellow-500 mb-4 text-lg">
-                        {card.description}
+                      <p className="text-white mb-2 text-3xl leading-tight font-bold hover:text-orange-300 transition-colors duration-300">
+                        {product.name}
                       </p>
-                      <p className="text-gray-300 mb-4 text-lg">{card.type}</p>
-                      <p className="text-gray-100 mt-auto font-bold">
-                        {card.price}
+                      <p className="text-gray-400 mb-2 text-xl leading-tight">
+                        {product.disclaimer}
                       </p>
+                      <p className="text-orange-300 mb-2 text-2xl mt-3">
+                        {product.category}
+                      </p>
+                      <p className="text-gray-400 mb-2 text-lg">
+                        {product.partner}
+                      </p>
+                      <div className="mt-auto">
+                        {product.discount > 0 ? (
+                          <>
+                            {product.gambling_money === false ? (
+                              <>
+                                <p
+                                  className="text-orange-300 font-bold"
+                                  style={{ fontSize: "1.5rem" }}
+                                >
+                                  ${product.price} USD
+                                </p>
+                                <p className="line-through text-gray-500">
+                                  ${product.price} USD
+                                </p>
+                              </>
+                            ) : (
+                              <>
+                                <p
+                                  className="text-orange-300 font-bold"
+                                  style={{ fontSize: "1.5rem" }}
+                                >
+                                  ${product.gold_price} Gold
+                                </p>
+                                <p className="line-through text-gray-500">
+                                  ${product.gold_price} Gold
+                                </p>
+                              </>
+                            )}
+                          </>
+                        ) : (
+                          <p
+                            className="text-gray-300 font-bold"
+                            style={{ fontSize: "1.5rem" }}
+                          >
+                            {product.gambling_money === false
+                              ? `$${product.price} USD`
+                              : `$${product.gold_price} Gold`}
+                          </p>
+                        )}
+                      </div>
                     </div>
                   </div>
                 ))}
