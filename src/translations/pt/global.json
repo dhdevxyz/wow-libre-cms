@@ -48,6 +48,9 @@
     },
     "register": {
         "error": {
+            "servers-fetch-empty": "Não há servidores disponíveis para registro no momento. Por favor, tente novamente mais tarde.",
+            "server-is-empty": "Por favor, selecione um servidor para completar o registro.",
+            "special-characters": "Por favor, evite inserir caracteres especiais.",
             "birth-date-future": "A data de nascimento não pode ser uma data futura.",
             "age-restriction": "Você deve ter pelo menos 13 anos para se registrar.",
             "country-empty": "Por favor, selecione um país válido.",
@@ -77,16 +80,17 @@
                 "password-placeholder": "Digite sua senha",
                 "confirm-password-placeholder": "Reinsira a Senha",
                 "confirm-password-txt": "Confirmar Senha",
-                "loading-sniper-txt": "Criando a conta.......",
+                "loading-sniper-txt": "Estamos criando sua conta, por favor aguarde um momento.",
                 "button": {
                     "btn-primary": "Continuar",
                     "btn-secondary": "Voltar"
                 }
             },
             "account-game": {
+                "select-server": "Escolha seu servidor",
                 "username-txt": "Nome de Usuário",
                 "username-placeholder": "Digite o nome de usuário",
-                "title-server-message": "Este nome será sua identidade pública. Você pode alterá-lo uma vez gratuitamente.",
+                "title-server-message": "Escolha um nome de usuário que te represente e brilhe na nossa comunidade! Este será seu selo pessoal no jogo.",
                 "button": {
                     "btn-primary": "Continuar",
                     "btn-secondary": "Voltar"

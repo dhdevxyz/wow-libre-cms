@@ -48,6 +48,9 @@
     },
     "register": {
         "error": {
+            "servers-fetch-empty": "There are no servers available for registration at the moment. Please try again later.",
+            "server-is-empty": "Please select a server to complete the registration.",
+            "special-characters": "Please avoid entering special characters.",
             "birth-date-future": "The birth date cannot be a future date.",
             "age-restriction": "You must be at least 13 years old to register.",
             "country-empty": "Please select a valid country.",
@@ -77,16 +80,17 @@
                 "password-placeholder": "Enter your password",
                 "confirm-password-placeholder": "Re-enter the Password",
                 "confirm-password-txt": "Confirm Password",
-                "loading-sniper-txt": "Creating the account.......",
+                "loading-sniper-txt": "We are creating your account, please hold on for a moment",
                 "button": {
                     "btn-primary": "Continue",
                     "btn-secondary": "Back"
                 }
             },
             "account-game": {
+                "select-server": "Choose your server",
                 "username-txt": "Username",
                 "username-placeholder": "Enter the username",
-                "title-server-message": "This name will be your public identity. You can change it once for free.",
+                "title-server-message": "Choose a username that represents you and shines in our community! This will be your personal mark in the game.",
                 "button": {
                     "btn-primary": "Continue",
                     "btn-secondary": "Back"

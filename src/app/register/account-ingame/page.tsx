@@ -1,18 +1,21 @@
 "use client";
 
+import "../style.css";
+
 import PageCounter from "@/components/register/counter";
 import TitleWow from "@/components/utilities/serverTitle";
-import { useUserContext } from "@/context/UserContext";
-import { useRouter } from "next/navigation";
 import React, { ChangeEvent, useState } from "react";
 import Swal from "sweetalert2";
-import { registerAccountGame } from "@/api/account/register";
 import LoadingSpinner from "@/components/utilities/loading-spinner";
 import Cookies from "js-cookie";
 import NavbarAuthenticated from "@/components/navbar-authenticated";
 import Footer from "@/components/footer";
-import { useTranslation } from "react-i18next";
 import useAuth from "@/hook/useAuth";
+
+import { registerAccountGame } from "@/api/account/register";
+import { useTranslation } from "react-i18next";
+import { useUserContext } from "@/context/UserContext";
+import { useRouter } from "next/navigation";
 
 const AccountIngame = () => {
   const { user } = useUserContext();
@@ -22,6 +25,8 @@ const AccountIngame = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const jwt = Cookies.get("token");
   const { t } = useTranslation();
+
+  useAuth(t("errors.message.expiration-session"));
 
   const handlePasswordChange = (event: ChangeEvent<HTMLInputElement>) => {
     setPassword(event.target.value);
@@ -33,8 +38,6 @@ const AccountIngame = () => {
     setConfirmPassword(event.target.value);
   };
 
-  useAuth(t("errors.message.expiration-session"));
-
   const handleFormSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
@@ -42,7 +45,7 @@ const AccountIngame = () => {
       Swal.fire({
         icon: "error",
         title: "Oops...",
-        text: t("register.errors.password-game-no-matches"),
+        text: t("register.error.password-game-no-matches"),
         color: "white",
         background: "#0B1218",
         timer: 43500,
@@ -54,7 +57,7 @@ const AccountIngame = () => {
       Swal.fire({
         icon: "error",
         title: "Oops...",
-        text: t("register.errors.password-game-empty"),
+        text: t("register.error.password-game-empty"),
         color: "white",
         background: "#0B1218",
         timer: 43500,
@@ -81,7 +84,7 @@ const AccountIngame = () => {
           username: user.username,
           password: password,
           server_name: user.server || "",
-          expansion: user.expansion,
+          expansion: user.expansion || "",
         },
         jwt || ""
       );
@@ -112,7 +115,7 @@ const AccountIngame = () => {
         <TitleWow
           title={t("register.title-server-sub-title")}
           description={t(
-            "register.section-page.finaly-create-account-gam.title-server-message"
+            "register.section-page.finaly-create-account-game.title-server-message"
           )}
         />
         <form
@@ -121,7 +124,7 @@ const AccountIngame = () => {
         >
           <div className="form-group">
             <label
-              htmlFor="countrySelect"
+              htmlFor="input-password"
               className="mb-2 register-container-form-label"
             >
               {t(
@@ -130,6 +133,7 @@ const AccountIngame = () => {
             </label>
 
             <input
+              id="input-password"
               className="mb-3 px-4 py-2 border rounded-md text-black register-input"
               type="password"
               placeholder={t(
@@ -142,7 +146,7 @@ const AccountIngame = () => {
 
           <div className="form-group">
             <label
-              htmlFor="firstNameInput"
+              htmlFor="input-confirm-password"
               className="mb-2 register-container-form-label"
             >
               {t(
@@ -150,6 +154,7 @@ const AccountIngame = () => {
               )}
             </label>
             <input
+              id="input-confirm-password"
               className="mb-3 px-4 py-2 border rounded-md text-black register-input"
               type="password"
               placeholder={t(
@@ -160,8 +165,8 @@ const AccountIngame = () => {
             />
           </div>
           {isSubmitting && (
-            <div className="mb-4 text-center">
-              <LoadingSpinner />{" "}
+            <div className="flex flex-col items-center justify-center mb-4">
+              <LoadingSpinner />
               <p className="mt-4 text-gray-600 text-lg">
                 {t(
                   "register.section-page.finaly-create-account-game.loading-sniper-txt"
@@ -171,7 +176,7 @@ const AccountIngame = () => {
           )}
           <PageCounter currentSection={2} totalSections={2} />
           <button
-            className=" text-white px-5 py-5 rounded-md mt-8 button-register"
+            className=" text-white px-5 py-5 rounded-md mt-8 button-register text-base md:text-lg lg:text-xl"
             type="submit"
             disabled={isSubmitting}
           >
@@ -180,7 +185,7 @@ const AccountIngame = () => {
             )}
           </button>
           <button
-            className="text-white px-5 py-5 rounded-md mt-8 button-register"
+            className="text-white px-5 py-5 rounded-md mt-8 button-register text-base md:text-lg lg:text-xl"
             type="button"
             disabled={isSubmitting}
             onClick={handleVolverClick}

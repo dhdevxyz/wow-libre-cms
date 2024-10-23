@@ -20,7 +20,7 @@ const PageCounter = ({ currentSection, totalSections }: PageCounterProps) => {
   };
 
   return (
-    <div className="flex justify-center w-full pt-4">
+    <div className="flex justify-center w-full pt-4 select-none">
       {renderSections(totalSections)}
     </div>
   );

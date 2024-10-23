@@ -1,19 +1,20 @@
 "use client";
 
+import "./style.css";
+
 import PageCounter from "@/components/register/counter";
 import TitleWow from "@/components/utilities/serverTitle";
-import { useUserContext } from "@/context/UserContext";
-import { useRouter } from "next/navigation";
 import React, { ChangeEvent, useState, useEffect } from "react";
 import Swal from "sweetalert2";
-import "../style.css";
 import useAuth from "@/hook/useAuth";
 import NavbarAuthenticated from "@/components/navbar-authenticated";
 import Footer from "@/components/footer";
+
 import { useTranslation } from "react-i18next";
 import { ServerModel } from "@/model/model";
 import { getServers } from "@/api/account/servers";
-import Cookies from "js-cookie";
+import { useUserContext } from "@/context/UserContext";
+import { useRouter } from "next/navigation";
 
 const AccountIngame = () => {
   const { user, setUser } = useUserContext();
@@ -25,7 +26,6 @@ const AccountIngame = () => {
   } | null>(null);
   const router = useRouter();
   const { t } = useTranslation();
-  const token = Cookies.get("token");
 
   useAuth(t("errors.message.expiration-session"));
 
@@ -38,7 +38,7 @@ const AccountIngame = () => {
         Swal.fire({
           icon: "error",
           title: "Error",
-          text: "No se pudieron cargar los servidores.",
+          text: t("register.error.servers-fetch-empty"),
           color: "white",
           background: "#0B1218",
           timer: 4500,
@@ -51,7 +51,7 @@ const AccountIngame = () => {
 
   const handleServerChange = (event: ChangeEvent<HTMLSelectElement>) => {
     const selectedServerName = event.target.value;
-    const server = servers.find((server) => server.name === selectedServerName); // Filtrar solo por server.name
+    const server = servers.find((server) => server.name === selectedServerName);
     if (server) {
       setSelectedServer({ name: server.name, expansion: server.expansion });
     }
@@ -63,12 +63,13 @@ const AccountIngame = () => {
 
   const handleFormSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    const regex = /^[a-zA-Z0-9\s]*$/;
 
     if (!selectedServer) {
       Swal.fire({
         icon: "error",
         title: "Oops...",
-        text: "No ha seleccionado ningún servidor.",
+        text: t("register.error.server-is-empty"),
         color: "white",
         background: "#0B1218",
         timer: 4500,
@@ -81,6 +82,18 @@ const AccountIngame = () => {
         icon: "error",
         title: "Oops...",
         text: t("register.error.username-empty"),
+        color: "white",
+        background: "#0B1218",
+        timer: 4500,
+      });
+      return;
+    }
+
+    if (!regex.test(userName)) {
+      Swal.fire({
+        icon: "warning",
+        title: "Oops...",
+        text: t("register.error.special-characters"),
         color: "white",
         background: "#0B1218",
         timer: 4500,
@@ -116,9 +129,9 @@ const AccountIngame = () => {
   };
 
   return (
-    <div className="contenedor ">
+    <div className="contenedor">
       <NavbarAuthenticated />
-      <div className="register register-container">
+      <div className="registration registration-container container">
         <TitleWow
           title={t("register.title-server-sub-title")}
           description={t(
@@ -126,25 +139,25 @@ const AccountIngame = () => {
           )}
         />
         <form
-          className="register-container-form pt-5"
+          className="registration-container-form"
           onSubmit={handleFormSubmit}
         >
           <div className="form-group">
             {/* Select para elegir expansión */}
             <label
               htmlFor="expansionSelect"
-              className="mb-2 register-container-form-label"
+              className="mb-2 registration-container-form-label text-lg md:text-xl lg:text-2xl"
             >
               Servidor
             </label>
             <select
               id="expansionSelect"
-              className="mb-3 px-4 py-2 border rounded-md text-black register-input"
-              value={selectedServer?.name || ""} // Mostrar solo el nombre del servidor
+              className="mb-3 px-4 py-2 border rounded-md text-black registration-input text-base md:text-lg lg:text-xl"
+              value={selectedServer?.name || ""}
               onChange={handleServerChange}
             >
               <option value="" disabled>
-                {t("bank.bank_characters.select-account")}
+                {t("register.section-page.account-game.select-server")}
               </option>
               {servers.map((server) => (
                 <option key={server.id} value={server.name}>
@@ -158,15 +171,17 @@ const AccountIngame = () => {
           {/* Campo de nombre de usuario */}
           <div className="form-group">
             <label
-              htmlFor="countrySelect"
-              className="mb-2 register-container-form-label"
+              htmlFor="usernameForm"
+              className="mb-2 registration-container-form-label text-lg md:text-xl lg:text-2xl"
             >
               {t("register.section-page.account-game.username-txt")}
             </label>
 
             <input
-              className="mb-3 px-4 py-2 border rounded-md text-black register-input"
+              id="usernameForm"
+              className="mb-3 px-4 py-2 border rounded-md text-black registration-input text-base md:text-lg lg:text-xl"
               type="text"
+              maxLength={20}
               placeholder={t(
                 "register.section-page.account-game.username-placeholder"
               )}
@@ -177,13 +192,13 @@ const AccountIngame = () => {
 
           <PageCounter currentSection={1} totalSections={2} />
           <button
-            className="text-white px-5 py-5 rounded-md mt-8 button-register"
+            className="text-white px-5 py-5 rounded-md mt-8 button-registration text-base md:text-lg lg:text-xl"
             type="submit"
           >
             {t("register.section-page.account-game.button.btn-primary")}
           </button>
           <button
-            className="text-white px-5 py-5 rounded-md mt-8 button-register"
+            className="text-white px-5 py-5 rounded-md mt-8 button-registration text-base md:text-lg lg:text-xl"
             type="button"
             onClick={handleVolverClick}
           >
@@ -191,7 +206,6 @@ const AccountIngame = () => {
           </button>
         </form>
       </div>
-
       <Footer />
     </div>
   );

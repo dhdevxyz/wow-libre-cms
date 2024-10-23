@@ -4,7 +4,8 @@ import type { NextRequest } from "next/server";
 
 export default function myMiddleware(request: NextRequest) {
    
-    const protectedPaths = ["/confirm-email","/accounts", "/dashboard", "/settings","/character",""]; // Definir las rutas que requieren autenticación
+    const protectedPaths = ["/confirm-email","/accounts","/register/username",
+         "/dashboard", "/settings","/character",""]; 
 
     if (protectedPaths.includes(request.nextUrl.pathname)) {
         const cookie = request.cookies.get('token')
