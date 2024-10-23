@@ -5,7 +5,7 @@ import type { NextRequest } from "next/server";
 export default function myMiddleware(request: NextRequest) {
    
     const protectedPaths = ["/confirm-email","/accounts","/register/username",
-         "/dashboard", "/settings","/character",""]; 
+         "/dashboard", "/settings","/character","/register/account-ingame"]; 
 
     if (protectedPaths.includes(request.nextUrl.pathname)) {
         const cookie = request.cookies.get('token')

@@ -1,5 +1,5 @@
 "use client";
-import PageCounter from "@/components/register/counter";
+import PageCounter from "@/components/utilities/counter";
 import NavbarMinimalist from "@/components/navbar-minimalist";
 import TitleWow from "@/components/utilities/serverTitle";
 import { useUserContext } from "@/context/UserContext";

@@ -4,7 +4,7 @@ import React, { ChangeEvent, useEffect, useState } from "react";
 import "./style.css";
 import TitleWow from "@/components/utilities/serverTitle";
 import Select from "react-select";
-import PageCounter from "@/components/register/counter";
+import PageCounter from "@/components/utilities/counter";
 import { useUserContext } from "@/context/UserContext";
 import { useRouter } from "next/navigation";
 import Swal from "sweetalert2";
