@@ -12,6 +12,7 @@ import { existEmail, existPhone } from "@/api/account/exist-email";
 import { useTranslation } from "react-i18next";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
+import Footer from "@/components/footer";
 
 const ContactMeans = () => {
   const { user, setUser } = useUserContext();
@@ -182,6 +183,7 @@ const ContactMeans = () => {
                 width: "100%",
                 paddingLeft: "58px",
               }}
+              inputProps={{ id: "phoneInput" }}
               dropdownClass="custom-dropdown"
             />
           </div>
@@ -202,6 +204,7 @@ const ContactMeans = () => {
           </button>
         </form>
       </div>
+      <Footer />
     </div>
   );
 };

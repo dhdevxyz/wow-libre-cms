@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 import Swal from "sweetalert2";
 import NavbarMinimalist from "@/components/navbar-minimalist";
 import { useTranslation } from "react-i18next";
+import Footer from "@/components/footer";
 
 const TermsAndConditions = () => {
   const { t } = useTranslation();
@@ -54,7 +55,6 @@ const TermsAndConditions = () => {
   return (
     <div className="contenedor register">
       <NavbarMinimalist />
-
       <div className="register-container">
         <TitleWow
           title={t("register.title-server-sub-title")}
@@ -133,6 +133,7 @@ const TermsAndConditions = () => {
           </button>
         </form>
       </div>
+      <Footer />
     </div>
   );
 };

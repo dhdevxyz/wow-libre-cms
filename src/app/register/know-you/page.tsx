@@ -8,6 +8,7 @@ import React, { ChangeEvent, useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import "../style.css";
 import { useTranslation } from "react-i18next";
+import Footer from "@/components/footer";
 
 const MAX_NAME_LENGTH = 50;
 const MIN_NAME_LENGTH = 5;
@@ -155,6 +156,7 @@ const KnowYou = () => {
           </button>
         </form>
       </div>
+      <Footer />
     </div>
   );
 };

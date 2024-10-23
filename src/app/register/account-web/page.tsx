@@ -14,6 +14,7 @@ import Cookies from "js-cookie";
 import { useTranslation } from "react-i18next";
 import LoadingSpinner from "@/components/utilities/loading-spinner";
 import AlertComponent from "@/components/utilities/show-alert";
+import Footer from "@/components/footer";
 
 const AccountWeb = () => {
   const { user, setUser } = useUserContext();
@@ -247,6 +248,7 @@ const AccountWeb = () => {
           </button>
         </form>
       </div>
+      <Footer />
     </div>
   );
 };

@@ -74,9 +74,8 @@ export const registerAccountWeb = async (
     if (response.ok && response.status === 201) {
       return responseData.data;
     } else if (response.status == 400) {
-      const badRequestError: GenericResponseDto<BadRequestDto> = responseData;
       throw new Error(
-        `${badRequestError.message} - TransactionId: ${transactionId}`
+        `Please contact support, it seems the fields are invalid - TransactionId: ${transactionId}`
       );
     } else {
       const badRequestError: GenericResponseDto<void> = await response.json();

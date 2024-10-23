@@ -13,6 +13,7 @@ import { getAvailableCountries } from "@/api/country";
 import { useTranslation } from "react-i18next";
 import NavbarMinimalist from "@/components/navbar-minimalist";
 import Cookies from "js-cookie";
+import Footer from "@/components/footer";
 
 const defaultCountryOptions: CountryModel[] = [
   { value: "Otro", label: "Otro", language: "pt" },
@@ -196,6 +197,7 @@ const Register = () => {
           </button>
         </form>
       </div>
+      <Footer />
     </div>
   );
 };
