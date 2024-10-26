@@ -41,7 +41,6 @@ const BankCharacter: React.FC<GuildCharacterProps> = ({
       try {
         const servers = await getServersBanks(token);
         setServers(servers);
-        // const availableaccounts = await getAccounts(token);
       } catch (error: any) {
         Swal.fire({
           icon: "error",
@@ -180,7 +179,7 @@ const BankCharacter: React.FC<GuildCharacterProps> = ({
             className="mt-4 px-4 py-2 bg-gray-800 text-gray-300 rounded focus:outline-none focus:ring focus:border-blue-300"
           >
             <option value="" disabled>
-              Seleccione un servidor
+              {t("bank.bank_characters.select-server")}
             </option>
             {serverAvailables.map((server) => (
               <option

@@ -4,6 +4,7 @@ import { getCharacters } from "@/api/account/character";
 import { attach } from "@/api/guilds";
 import { AccountsModel, Character } from "@/model/model";
 import React, { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import Swal from "sweetalert2";
 
 interface GuildCharacterProps {
@@ -29,7 +30,8 @@ const GuildCharacter: React.FC<GuildCharacterProps> = ({
   const [selectedCharacterId, setSelectedCharacterId] = useState<number | null>(
     null
   );
-  const [loading, setLoading] = useState<boolean>(false); // Añade un estado para el estado de carga si es necesario
+  const [loading, setLoading] = useState<boolean>(false);
+  const { t } = useTranslation();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -40,7 +42,7 @@ const GuildCharacter: React.FC<GuildCharacterProps> = ({
         Swal.fire({
           icon: "error",
           title: "Oops...",
-          text: "Por favor intente más tarde, el servicio no se encuentra disponible.",
+          text: `${error.message}`,
           color: "white",
           background: "#0B1218",
           timer: 4500,
@@ -64,11 +66,12 @@ const GuildCharacter: React.FC<GuildCharacterProps> = ({
       Swal.fire({
         icon: "error",
         title: "Oops...",
-        text: "No se pudieron obtener los personajes de la cuenta seleccionada.",
+        text: t("guild-detail.errors.failed-characters-fetch"),
         color: "white",
         background: "#0B1218",
         timer: 4500,
       });
+      onClose();
     }
   };
 
@@ -94,7 +97,7 @@ const GuildCharacter: React.FC<GuildCharacterProps> = ({
       Swal.fire({
         icon: "success",
         title: "Guild Success",
-        text: "Vinculacion exitosa",
+        text: t("guild-characters.message-success-guild-attach"),
         color: "white",
         background: "#0B1218",
         timer: 4500,
@@ -122,11 +125,9 @@ const GuildCharacter: React.FC<GuildCharacterProps> = ({
     <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
       <div className="bg-midnight rounded-lg p-8">
         <h2 className="text-2xl font-bold mb-4 text-gray-200">
-          Seleccion de personajes
+          {t("guild-characters.title")}
         </h2>
-        <p className=" text-gray-400">
-          Seleciona el personaje al cual deseas vincular
-        </p>
+        <p className=" text-gray-400">{t("guild-characters.description")}</p>
 
         <select
           onChange={(e) => handleAccountChange(Number(e.target.value))}
@@ -134,7 +135,7 @@ const GuildCharacter: React.FC<GuildCharacterProps> = ({
           className="mt-4 px-4 py-2 bg-gray-800 text-gray-300 rounded focus:outline-none focus:ring focus:border-blue-300"
         >
           <option value="" disabled>
-            Selecciona una cuenta
+            {t("guild-characters.select-account-txt")}
           </option>
           {accounts.map((account) => (
             <option
@@ -155,7 +156,7 @@ const GuildCharacter: React.FC<GuildCharacterProps> = ({
             className="mt-4 px-4 py-2 bg-gray-800 text-gray-300 rounded focus:outline-none focus:ring focus:border-blue-300"
           >
             <option value="" disabled>
-              Selecciona un personaje
+              {t("guild-characters.select-characters-txt")}
             </option>
             {characters.map((character) => (
               <option
@@ -175,7 +176,7 @@ const GuildCharacter: React.FC<GuildCharacterProps> = ({
             onClick={handleClose}
             className="flex-1 px-4 py-2 bg-red-900 text-white rounded mr-2"
           >
-            Cancelar
+            {t("guild-characters.btn.cancel")}
           </button>
           <button
             onClick={handleJoinGuild}
@@ -184,7 +185,9 @@ const GuildCharacter: React.FC<GuildCharacterProps> = ({
               loading ? "bg-gray-400 cursor-not-allowed" : "bg-blue-800"
             } text-white rounded ml-2`}
           >
-            {loading ? "Uniendo..." : "Unirme"}
+            {loading
+              ? t("guild-characters.btn.loading")
+              : t("guild-characters.btn.primary")}
           </button>
         </div>
       </div>

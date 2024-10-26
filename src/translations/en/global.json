@@ -309,6 +309,7 @@
             "description": "Choose the character to request the loan. If some characters don't appear, it's because they don't meet the loan requirements.",
             "select-account": "Select an account",
             "select-character": "Select a character",
+            "select-server": "Select a server",
             "success-loan": "Haha, you've got your gold! But remember, my friend, this deal fills my pockets too. Don't forget your payments, or the interest will make me smile even more!",
             "btn": {
                 "primary": "Accept",
@@ -319,6 +320,89 @@
         "errors": {
             "fails_to_obtain_accounts": "Oops! We're having trouble fetching your accounts. Please try again later!",
             "fails_to_obtain_characters": "Oops! We're having trouble fetching your characters. Please try again later!"
+        }
+    },
+    "guild": {
+        "table": {
+            "position-one": "Id",
+            "position-two": "Name",
+            "position-three": "Owner",
+            "position-four": "Server",
+            "position-five": "Creation Date",
+            "position-six": "Members",
+            "position-seven": "Money",
+            "position-eight": "Social Networks",
+            "position-nine": "Action"
+        },
+        "guild-txt": "Guild",
+        "btn": {
+            "primary": "Next",
+            "secondary": "Back"
+        },
+        "availability": {
+            "title": "Forge Your Legend: Explore the Guilds of Azeroth",
+            "description": "Discover a world of camaraderie and epic adventures. Find your perfect community among the legendary guilds of World of Warcraft, where friendship and strategy unite to challenge the boundaries of Azeroth.",
+            "select-server": "Select a server",
+            "search-name": "Search by name"
+        },
+        "no-availability": {
+            "title": "No guilds found!",
+            "description": "Be part of the adventure and leave your mark in Azeroth! Create your own guild and gather other heroes to face epic challenges and conquer new horizons. Don’t wait any longer, your legacy is waiting for you!"
+        }
+    },
+    "guild-detail": {
+        "welcome-txt": "Welcome to",
+        "btn-authenticated": "Link Me",
+        "btn-unauthenticated": "Sign Up",
+        "statistics": {
+            "member-txt": "Subscribed Members",
+            "benefits-txt": "Benefits",
+            "gold-guild-txt": "Guild Money"
+        },
+        "incentive": {
+            "title": "Benefits of Belonging to a Guild",
+            "description": "Joining a community of players in an MMORPG offers a unique and enriching experience. It allows you to connect with other passionate players, collaborate on exciting challenges, and access exclusive resources that will enhance your gaming experience."
+        },
+        "competition": {
+            "title": "Compete with Other Guilds",
+            "description": "Participate in competitions so your guild can earn exclusive benefits for its members.",
+            "event-txt": "Challenge updates, every 6 months"
+        },
+        "events": {
+            "title": "Events of the ",
+            "duration": "6 months",
+            "description": "Prizes obtained will be awarded to all guild members during the event. After this period, the challenges will be updated and must be completed again to acquire the benefits."
+        },
+        "benefits": {
+            "title": "Benefits ",
+            "subtitle": "Obtained",
+            "disclaimer": "By joining this guild, you can obtain the following benefits:",
+            "no-benefits": "This guild has no benefits yet"
+        },
+        "event": {
+            "primary": {
+                "title": "Global Event: Resilience in the Capitalist Era",
+                "description": "Guild leaders hold the power to transform the wealth of their members into unique prizes and exclusive benefits. Join the resistance and help your guild conquer new horizons in this global challenge."
+            },
+            "secondary": {
+                "title": "Guild Rewards",
+                "description": "Every reward earned by the guild opens the door to exclusive benefits for all its members. Participate and make sure each victory is yours too!"
+            }
+        }
+    },
+    "guild-characters": {
+        "errors": {
+            "failed-characters-fetch": "Unable to retrieve characters from the selected account."
+        },
+        "message-success-guild-attach": "Link successful",
+        "title": "Character Selection",
+        "description": "Choose the character you want to link to the guild",
+        "select-characters-txt": "Choose a character",
+        "select-account-txt": "Choose an account",
+        "btn": {
+            "cancel": "Cancel",
+            "loading": "Joining...",
+            "primary": "Join"
         }
     }
 }

@@ -1,12 +1,14 @@
 "use client";
 
+import NavbarAuthenticated from "@/components/navbar-authenticated";
+import Link from "next/link";
+import ReactPaginate from "react-paginate";
+
+import React, { useEffect, useState } from "react";
+import { GuildDto, GuildsDto, ServerModel } from "@/model/model";
 import { getServers } from "@/api/account/servers";
 import { getGuilds } from "@/api/guilds";
-import NavbarAuthenticated from "@/components/navbar-authenticated";
-import { GuildDto, GuildsDto, ServerModel } from "@/model/model";
-import Link from "next/link";
-import React, { useEffect, useState } from "react";
-import ReactPaginate from "react-paginate";
+import { useTranslation } from "react-i18next";
 
 const Guild = () => {
   const [guilds, setGuilds] = useState<GuildDto[]>([]);
@@ -18,6 +20,7 @@ const Guild = () => {
   const [totalGuilds, setTotalGuilds] = useState<number>(0);
   const [servers, setServers] = useState<ServerModel[]>([]);
   const [selectedServer, setSelectedServer] = useState("");
+  const { t } = useTranslation();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -66,13 +69,10 @@ const Guild = () => {
 
       <div className="text-center pt-20">
         <h1 className="text-4xl font-bold text-white">
-          Forja tu Leyenda: Explora las Hermandades de Azeroth
+          {t("guild.availability.title")}
         </h1>
         <p className="mt-4 text-xl text-gray-300 max-w-3xl mx-auto">
-          Descubre un mundo de camaradería y aventuras épicas. Encuentra tu
-          comunidad perfecta entre las legendarias hermandades de World of
-          Warcraft, donde la amistad y la estrategia se unen para desafiar los
-          límites de Azeroth.
+          {t("guild.availability.description")}
         </p>
       </div>
 
@@ -107,7 +107,10 @@ const Guild = () => {
                       value={selectedServer}
                       onChange={handleServerChange}
                     >
-                      <option value="">Seleccionar servidor</option>
+                      <option value="">
+                        {" "}
+                        {t("guild.availability.select-server")}
+                      </option>
                       {servers.map((server) => (
                         <option key={server.id} value={server.name}>
                           {server.name}
@@ -156,31 +159,31 @@ const Guild = () => {
                         <div className="flex items-center"></div>
                       </th>
                       <th scope="col" className="px-6 py-3">
-                        Id
+                        {t("guild.table.position-one")}
                       </th>
                       <th scope="col" className="px-6 py-3">
-                        Nombre
+                        {t("guild.table.position-two")}
                       </th>
                       <th scope="col" className="px-6 py-3">
-                        Guild Master
+                        {t("guild.table.position-three")}
                       </th>
                       <th scope="col" className="px-6 py-3">
-                        Server
+                        {t("guild.table.position-four")}
                       </th>
                       <th scope="col" className="px-6 py-3">
-                        Fecha de creacion
+                        {t("guild.table.position-five")}
                       </th>
                       <th scope="col" className="px-6 py-3">
-                        Miembros
+                        {t("guild.table.position-six")}
                       </th>
                       <th scope="col" className="px-6 py-3">
-                        Dinero
+                        {t("guild.table.position-seven")}
                       </th>
                       <th scope="col" className="px-6 py-3">
-                        Redes
+                        {t("guild.table.position-eight")}
                       </th>
                       <th scope="col" className="px-6 py-3">
-                        Action
+                        {t("guild.table.position-nine")}
                       </th>
                     </tr>
                   </thead>
@@ -222,7 +225,7 @@ const Guild = () => {
                               {row.name}
                             </div>
                             <div className="font-normal text-gray-500">
-                              Hermandad
+                              {t("guild.guild-txt")}
                             </div>
                           </div>
                         </td>
@@ -254,8 +257,8 @@ const Guild = () => {
 
                 <div className="flex justify-center items-center mt-10 ">
                   <ReactPaginate
-                    previousLabel={"Anterior"}
-                    nextLabel={"Siguiente"}
+                    previousLabel={t("guild.btn.secondary")}
+                    nextLabel={t("guild.btn.primary")}
                     breakLabel={""}
                     pageCount={Math.ceil(totalGuilds / accountsPerPage)}
                     marginPagesDisplayed={2}
@@ -279,7 +282,7 @@ const Guild = () => {
                       "page-link text-white py-2 px-3 rounded-lg hover:bg-gray-600"
                     }
                     activeClassName={"active"}
-                    activeLinkClassName={"bg-blue-900"} // Establecer el color de fondo y texto del número de página activo
+                    activeLinkClassName={"bg-blue-900"}
                   />
                 </div>
               </div>
@@ -298,13 +301,10 @@ const Guild = () => {
 
             <div className="absolute inset-0 flex flex-col items-center justify-center text-white p-4">
               <h2 className="text-3xl font-bold mb-4">
-                ¡No se encontraron hermandades!
+                {t("guild.no-availability.title")}
               </h2>
               <p className="text-xl mx-auto max-w-2xl">
-                ¡Sé parte de la aventura y deja tu huella en Azeroth! Crea tu
-                propia hermandad y reúne a otros héroes para enfrentar desafíos
-                épicos y conquistar nuevos horizontes. ¡No esperes más, tu
-                legado te está esperando!
+                {t("guild.no-availability.description")}
               </p>
             </div>
           </div>

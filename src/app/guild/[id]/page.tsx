@@ -1,23 +1,29 @@
 "use client";
-import { getGuild } from "@/api/guilds";
+
 import GuildCharacter from "@/components/guild_character";
 import LoadingSpinner from "@/components/utilities/loading-spinner";
 import NavbarAuthenticated from "@/components/navbar-authenticated";
-import { GuildData } from "@/model/model";
 import Link from "next/link";
-import { useParams, useRouter, useSearchParams } from "next/navigation";
-import React, { useEffect, useState } from "react";
 import Cookies from "js-cookie";
-import { BenefitsModel } from "@/model/benefit-model";
-import { benefitsActive } from "@/api/benefit";
 import Swal from "sweetalert2";
 import DisplayMoney from "@/components/money";
+
+import { getGuild } from "@/api/guilds";
+import { GuildData } from "@/model/model";
+import { useParams, useRouter, useSearchParams } from "next/navigation";
+import React, { useEffect, useState } from "react";
+import { BenefitsModel } from "@/model/benefit-model";
+import { benefitsActive } from "@/api/benefit";
 import { useUserContext } from "@/context/UserContext";
+import { useTranslation } from "react-i18next";
 
 const GuildDetail = () => {
   const searchParams = useSearchParams();
 
+  const { user } = useUserContext();
   const { id } = useParams<{ id: string }>();
+  const { t } = useTranslation();
+
   const guildId = Number(id);
   const [guild, setGuild] = useState<GuildData>();
   const token = Cookies.get("token");
@@ -26,7 +32,6 @@ const GuildDetail = () => {
   const [loggin, setLoggin] = useState(false);
   const [benefits, setBenefits] = useState<BenefitsModel[]>([]);
   const router = useRouter();
-  const { user } = useUserContext();
   const serverId = Number(searchParams.get("server"));
 
   useEffect(() => {
@@ -96,7 +101,7 @@ const GuildDetail = () => {
             <div className="flex flex-col justify-between max-w-2xl w-full">
               <div>
                 <h2 className="text-3xl lg:text-4xl font-bold mb-10">
-                  Hermandad: {guild?.name}
+                  {t("guild-detail.welcome-txt")}: {guild?.name}
                 </h2>
                 <p className="text-lg lg:text-2xl mb-4 break-words">
                   {guild?.info}
@@ -109,7 +114,7 @@ const GuildDetail = () => {
                       onClick={openModal}
                       className="px-6 py-3 bg-blue-500 hover:bg-blue-600 rounded-lg text-white font-semibold mb-4"
                     >
-                      Vincularme
+                      {t("guild-detail.btn-authenticated")}
                     </button>
                   </>
                 ) : (
@@ -117,7 +122,7 @@ const GuildDetail = () => {
                     href="/register"
                     className="px-6 py-3 bg-blue-500 hover:bg-blue-600 rounded-lg text-white font-semibold mb-4"
                   >
-                    Registrarme
+                    {t("guild-detail.btn-unauthenticated")}
                   </Link>
                 )}
                 <p className="text-lg pt-4 break-words">{guild?.motd}</p>
@@ -148,21 +153,23 @@ const GuildDetail = () => {
           <dl className="grid grid-cols-1 gap-x-8 gap-y-16 text-center lg:grid-cols-3">
             <div className="mx-auto flex max-w-xs flex-col gap-y-4">
               <dt className="text-lg leading-7 text-white">
-                Miembros suscritos
+                {t("guild-detail.statistics.member-txt")}
               </dt>
               <dd className="order-first text-3xl font-semibold tracking-tight text-white sm:text-5xl">
                 {guild?.members}
               </dd>
             </div>
             <div className="mx-auto flex max-w-xs flex-col gap-y-4">
-              <dt className="text-lg leading-7 text-white">Beneficios</dt>
+              <dt className="text-lg leading-7 text-white">
+                {t("guild-detail.statistics.benefits-txt")}
+              </dt>
               <dd className="order-first text-3xl font-semibold tracking-tight text-white sm:text-5xl">
                 {0}
               </dd>
             </div>
             <div className="mx-auto flex max-w-xs flex-col gap-y-4">
               <dt className="text-lg leading-7 text-white">
-                Dinero de la guild
+                {t("guild-detail.statistics.gold-guild-txt")}
               </dt>
               <dd className="order-first text-4xl font-semibold tracking-tight text-white sm:text-4xl">
                 <DisplayMoney money={guild?.bank_money || 0} />
@@ -177,15 +184,11 @@ const GuildDetail = () => {
           <div className="xl:flex xl:items-center xL:-mx-4">
             <div className="xl:w-1/2 xl:mx-4">
               <h1 className="text-2xl font-semibold   lg:text-3xl text-white">
-                Beneficios de pertenecer a una hermandad
+                {t("guild-detail.incentive.title")}
               </h1>
 
               <p className="max-w-2xl mt-4 text-gray-400 ">
-                Unirte a una comunidad de jugadores en un MMORPG ofrece una
-                experiencia única y enriquecedora. Te permite conectarte con
-                otros jugadores apasionados, colaborar en desafíos emocionantes
-                y acceder a recursos exclusivos que mejorarán tu experiencia de
-                juego.
+                {t("guild-detail.incentive.description")}
               </p>
             </div>
 
@@ -198,12 +201,11 @@ const GuildDetail = () => {
                 />
 
                 <h1 className="mt-4 text-2xl font-semibold  capitalize text-white">
-                  Evento Global: Sobreviviendo al capitalismo
+                  {t("guild-detail.event.primary.title")}
                 </h1>
 
                 <p className="mt-2   text-gray-300 text-lg">
-                  Al pertenecer a una guild, el pago diario de oro es unico por
-                  toda la guild.
+                  {t("guild-detail.event.primary.description")}
                 </p>
               </div>
 
@@ -215,12 +217,11 @@ const GuildDetail = () => {
                 />
 
                 <h1 className="mt-4 text-2xl font-semibold  capitalize text-white">
-                  Premios
+                  {t("guild-detail.event.secondary.title")}
                 </h1>
 
                 <p className="mt-2   text-gray-300 text-lg">
-                  Cada premio obtenido por la guild también otorga el derecho a
-                  sus miembros de recibirlo.
+                  {t("guild-detail.event.secondary.description")}
                 </p>
               </div>
             </div>
@@ -241,19 +242,18 @@ const GuildDetail = () => {
               <p className="text-5xl font-semibold text-blue-500 ">“</p>
 
               <h1 className="text-2xl font-semibold text-gray-800 dark:text-white lg:text-3xl lg:w-96">
-                Compite con otras guilds
+                {t("guild-detail.competition.title")}
               </h1>
 
               <p className="max-w-lg mt-6 text-gray-500 dark:text-gray-400 ">
-                Participa en competencias para que tu hermandad obtenga
-                beneficios exclusivos para sus miembros.
+                {t("guild-detail.competition.description")}
               </p>
 
               <h3 className="mt-6 text-lg font-medium text-blue-500">
-                Wow Libre
+                {guild?.server_name}
               </h3>
               <p className="text-gray-600 dark:text-gray-300 text-lg">
-                Actualizacion de retos, cada 6 meses
+                {t("guild-detail.competition.event-txt")}
               </p>
 
               <div className="flex items-center justify-between mt-12 lg:justify-start">
@@ -306,13 +306,13 @@ const GuildDetail = () => {
         <section className="dark">
           <div className="container px-6 py-10 mx-auto">
             <h1 className="text-2xl font-semibold text-center text-gray-800 capitalize lg:text-3xl dark:text-white">
-              Eventos de los <span className="text-blue-500">6 meses</span>
+              {t("guild-detail.events.title")}
+              <span className="text-blue-500">
+                {t("guild-detail.events.duration")}
+              </span>
             </h1>
             <p className="text-xl text-center text-gray-800 dark:text-white mt-2 max-w-xl mx-auto">
-              Los premios obtenidos serán entregados a todos los miembros de la
-              hermandad durante el evento. Pasado ese tiempo, los retos se
-              actualizarán y deberán cumplirse nuevamente para adquirir los
-              beneficios.
+              {t("guild-detail.events.description")}
             </p>
 
             <div className="grid grid-cols-1 gap-8 mt-8 xl:mt-12 xl:gap-16 md:grid-cols-2 xl:grid-cols-3">
@@ -369,11 +369,14 @@ const GuildDetail = () => {
       <section className="dark contenedor">
         <div className="container px-6 py-10 mx-auto">
           <h1 className="text-2xl font-semibold text-center text-gray-800 capitalize lg:text-3xl dark:text-white">
-            Beneficios <span className="text-blue-500">obtenidos</span>
+            {t("guild-detail.benefits.title")}
+            <span className="text-blue-500">
+              {t("guild-detail.benefits.subtitle")}
+            </span>
           </h1>
 
           <p className="max-w-2xl mx-auto my-6 text-center text-gray-500 dark:text-gray-300">
-            Al unirte a esta hermandad podrás obtener los siguientes beneficios:
+            {t("guild-detail.benefits.disclaimer")}
           </p>
 
           <div className="grid grid-cols-1 gap-8 mt-8 xl:mt-16 md:grid-cols-2 xl:grid-cols-2">
@@ -405,7 +408,7 @@ const GuildDetail = () => {
             ) : (
               <div className="col-span-full flex justify-center items-center">
                 <p className="text-center text-yellow-500 text-2xl">
-                  Esta hermandad no cuenta con beneficios aún
+                  {t("guild-detail.benefits.no-benefits")}
                 </p>
               </div>
             )}

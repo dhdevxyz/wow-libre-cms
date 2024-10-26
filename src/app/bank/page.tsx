@@ -52,7 +52,6 @@ const Bank = () => {
     return (
       <div className="contenedor flex items-center justify-center mt-20">
         <NavbarAuthenticated />
-
         <LoadingSpinner />
       </div>
     );

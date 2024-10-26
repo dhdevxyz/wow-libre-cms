@@ -309,6 +309,7 @@
             "description": "Escolha o personagem para solicitar o empréstimo. Se alguns personagens não aparecerem, é porque não atendem aos requisitos do empréstimo.",
             "select-account": "Selecione uma conta",
             "select-character": "Selecione um personagem",
+            "select-server": "Seleciona um servidor",
             "success-loan": "Haha, você conseguiu seu ouro! Mas lembre-se, amigo, esse negócio também enche meus bolsos. Não se esqueça dos seus pagamentos ou os juros me farão sorrir ainda mais!",
             "btn": {
                 "primary": "Aceitar",
@@ -319,6 +320,89 @@
         "errors": {
             "fails_to_obtain_accounts": "Oops! Estamos enfrentando dificuldades para obter suas contas. Por favor, tente novamente mais tarde!",
             "fails_to_obtain_characters": "Ops! Estamos tendo problemas para obter seus personagens. Por favor, tente novamente mais tarde!"
+        }
+    },
+    "guild": {
+        "table": {
+            "position-one": "Id",
+            "position-two": "Nome",
+            "position-three": "Dono",
+            "position-four": "Servidor",
+            "position-five": "Data de Criação",
+            "position-six": "Membros",
+            "position-seven": "Dinheiro",
+            "position-eight": "Redes Sociais",
+            "position-nine": "Ação"
+        },
+        "guild-txt": "Guilda",
+        "btn": {
+            "primary": "Próximo",
+            "secondary": "Voltar"
+        },
+        "availability": {
+            "title": "Forje Sua Lenda: Explore as Guildas de Azeroth",
+            "description": "Descubra um mundo de camaradagem e aventuras épicas. Encontre sua comunidade perfeita entre as lendárias guildas de World of Warcraft, onde amizade e estratégia se unem para desafiar os limites de Azeroth.",
+            "select-server": "Selecione um servidor",
+            "search-name": "Buscar por nome"
+        },
+        "no-availability": {
+            "title": "Nenhuma guilda encontrada!",
+            "description": "Faça parte da aventura e deixe sua marca em Azeroth! Crie sua própria guilda e reúna outros heróis para enfrentar desafios épicos e conquistar novos horizontes. Não espere mais, seu legado está esperando por você!"
+        }
+    },
+    "guild-detail": {
+        "welcome-txt": "Bem-vindo a",
+        "btn-authenticated": "Vincular-me",
+        "btn-unauthenticated": "Cadastrar-me",
+        "statistics": {
+            "member-txt": "Membros inscritos",
+            "benefits-txt": "Benefícios",
+            "gold-guild-txt": "Dinheiro da guilda"
+        },
+        "incentive": {
+            "title": "Benefícios de Pertencer a uma Guilda",
+            "description": "Ingressar em uma comunidade de jogadores em um MMORPG oferece uma experiência única e enriquecedora. Permite que você se conecte com outros jogadores apaixonados, colabore em desafios emocionantes e acesse recursos exclusivos que melhorarão sua experiência de jogo."
+        },
+        "competition": {
+            "title": "Compita com Outras Guildas",
+            "description": "Participe em competições para que sua guilda obtenha benefícios exclusivos para seus membros.",
+            "event-txt": "Atualização de desafios, a cada 6 meses"
+        },
+        "events": {
+            "title": "Eventos da ",
+            "duration": "6 meses",
+            "description": "Os prêmios obtidos serão entregues a todos os membros da guilda durante o evento. Após esse período, os desafios serão atualizados e deverão ser cumpridos novamente para adquirir os benefícios."
+        },
+        "benefits": {
+            "title": "Benefícios",
+            "subtitle": "Obtidos",
+            "disclaimer": "Ao ingressar nesta guilda, você poderá obter os seguintes benefícios:",
+            "no-benefits": "Esta guilda ainda não possui benefícios"
+        },
+        "event": {
+            "primary": {
+                "title": "Evento Global: Resistência na Era do Capitalismo",
+                "description": "Os líderes de cada guilda têm o poder de transformar a riqueza de seus membros em prêmios únicos e benefícios exclusivos. Junte-se à resistência e ajude sua guilda a conquistar novos horizontes neste desafio global."
+            },
+            "secondary": {
+                "title": "Recompensas da Guilda",
+                "description": "Cada recompensa conquistada pela guilda abre a porta para benefícios exclusivos para todos os seus membros. Participe e garanta que cada vitória também seja sua!"
+            }
+        }
+    },
+    "guild-characters": {
+        "errors": {
+            "failed-characters-fetch": "Não foi possível obter os personagens da conta selecionada."
+        },
+        "message-success-guild-attach": "Vinculação bem-sucedida",
+        "title": "Seleção de Personagens",
+        "description": "Escolha o personagem que deseja vincular à guilda",
+        "select-characters-txt": "Escolha um personagem",
+        "select-account-txt": "Escolha uma conta",
+        "btn": {
+            "cancel": "Cancelar",
+            "loading": "Conectando...",
+            "primary": "Entrar"
         }
     }
 }

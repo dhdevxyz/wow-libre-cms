@@ -87,7 +87,7 @@
                 }
             },
             "account-game": {
-                "select-server":"Seleccione un servidor",
+                "select-server": "Seleccione un servidor",
                 "username-txt": "Usuario",
                 "username-placeholder": "Ingrese el nombre de usuario",
                 "title-server-message": "¡Elige un nombre de usuario que te represente y brille en nuestra comunidad! Este será tu sello personal en el juego.",
@@ -308,6 +308,7 @@
             "title": "Seleccion de personajes",
             "description": "Elige el personaje para solicitar el préstamo. Si algunos personajes no aparecen, es porque no cumplen con los requisitos del préstamo.",
             "select-account": "Selecciona una cuenta",
+            "select-server": "Selecciona un servidor",
             "select-character": "Selecciona un personaje",
             "success-loan": "¡Hehe, has conseguido tu oro! Pero recuerda, amigo, este trato me llena los bolsillos también. ¡No olvides tus pagos o el interés me hará sonreír aún más!",
             "btn": {
@@ -319,6 +320,89 @@
         "errors": {
             "fails_to_obtain_accounts": "¡Ups! Estamos teniendo problemas para obtener tus cuentas. ¡Por favor, intenta de nuevo más tarde!",
             "fails_to_obtain_characters": "¡Ups! Estamos teniendo problemas para obtener tus personajes. ¡Por favor, intenta de nuevo más tarde!"
+        }
+    },
+    "guild": {
+        "table": {
+            "position-one": "Id",
+            "position-two": "Nombre",
+            "position-three": "Dueño",
+            "position-four": "Servidor",
+            "position-five": "Fecha de creacion",
+            "position-six": "Miembros",
+            "position-seven": "Dinero",
+            "position-eight": "Redes",
+            "position-nine": "Accion"
+        },
+        "guild-txt": "Hermandad",
+        "btn": {
+            "primary": "Siguiente",
+            "secondary": "Volver"
+        },
+        "availability": {
+            "title": "Forja tu Leyenda: Explora las Hermandades de Azeroth",
+            "description": "Descubre un mundo de camaradería y aventuras épicas. Encuentra tu comunidad perfecta entre las legendarias hermandades de World of Warcraft, donde la amistad y la estrategia se unen para desafiar los límites de Azeroth.",
+            "select-server": "Seleccione un servidor",
+            "search-name": "Buscar por nombre"
+        },
+        "no-availability": {
+            "title": "¡No se encontraron hermandades!",
+            "description": "¡Sé parte de la aventura y deja tu huella en Azeroth! Crea tu propia hermandad y reúne a otros héroes para enfrentar desafíos épicos y conquistar nuevos horizontes. ¡No esperes más, tu legado te está esperando!"
+        }
+    },
+    "guild-detail": {
+        "welcome-txt": "Bienvenido a",
+        "btn-authenticated": "Vincularme",
+        "btn-unauthenticated": "Registrarme",
+        "statistics": {
+            "member-txt": "Miembros suscritos",
+            "benefits-txt": "Beneficios",
+            "gold-guild-txt": "Dinero de la guild"
+        },
+        "incentive": {
+            "title": "Beneficios de pertenecer a una hermandad",
+            "description": "Unirte a una comunidad de jugadores en un MMORPG ofrece una experiencia única y enriquecedora. Te permite conectarte con otros jugadores apasionados, colaborar en desafíos emocionantes y acceder a recursos exclusivos que mejorarán tu experiencia de juego."
+        },
+        "competition": {
+            "title": "Compite con otras guilds",
+            "description": "Participa en competencias para que tu hermandad obtenga beneficios exclusivos para sus miembros.",
+            "event-txt": "Actualizacion de retos, cada 6 meses"
+        },
+        "events": {
+            "title": "Eventos de los ",
+            "duration": "6 meses",
+            "description": "Los premios obtenidos serán entregados a todos los miembros de la hermandad durante el evento. Pasado ese tiempo, los retos se actualizarán y deberán cumplirse nuevamente para adquirir los beneficios."
+        },
+        "benefits": {
+            "title": "Beneficios ",
+            "subtitle": "Obtenidos",
+            "disclaimer": "Al unirte a esta hermandad podrás obtener los siguientes beneficios:",
+            "no-benefits": "Esta hermandad no cuenta con beneficios aún"
+        },
+        "event": {
+            "primary": {
+                "title": "Evento Global: Resistencia en la Era del Capitalismo",
+                "description": "Los líderes de cada hermandad tienen en sus manos el poder de transformar la riqueza de sus miembros en premios únicos y beneficios exclusivos. Únete a la resistencia y ayuda a tu guild a conquistar nuevos horizontes en este desafío global."
+            },
+            "secondary": {
+                "title": "Recompensas de la Hermandad",
+                "description": "Cada recompensa ganada por la hermandad abre la puerta a beneficios exclusivos para todos sus miembros. ¡Participa y asegura que cada victoria también sea tuya!"
+            }
+        }
+    },
+    "guild-characters": {
+        "errors": {
+            "failed-characters-fetch": "No fue posible obtener los personajes de la cuenta seleccionada."
+        },
+        "message-success-guild-attach": "Vinculación completada con éxito",
+        "title": "Selección de Personajes",
+        "description": "Elige el personaje que deseas vincular a la hermandad",
+        "select-characters-txt": "Elige un personaje",
+        "select-account-txt": "Elige una cuenta",
+        "btn": {
+            "cancel": "Cancelar",
+            "loading": "Uniendo...",
+            "primary": "Unirme"
         }
     }
 }

@@ -208,6 +208,7 @@ export interface GuildData {
   members: number;
   benefits: Benefit[];
   claimed_benefits: number;
+  server_name: string;
 }
 
 interface Benefit {
