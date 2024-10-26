@@ -399,10 +399,15 @@
         "description": "Escolha o personagem que deseja vincular à guilda",
         "select-characters-txt": "Escolha um personagem",
         "select-account-txt": "Escolha uma conta",
-        "btn": {
+        "btns": {
             "cancel": "Cancelar",
             "loading": "Conectando...",
             "primary": "Entrar"
         }
+    },
+    "home-servers": {
+        "title": "Servidores Aliados",
+        "description": "Busca uma experiência de jogo incomparável? Junte-se aos nossos servidores parceiros de WoW e mergulhe em mundos únicos e aventuras épicas, tudo totalmente grátis!",
+        "btn-information": "Saiba Mais!"
     }
 }

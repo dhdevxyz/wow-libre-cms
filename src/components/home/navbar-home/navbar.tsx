@@ -75,7 +75,7 @@ const Navbar = () => {
         ></Searcher>
       </div>
       <div className="promotion">
-        <a href="nav-promotion">
+        <a href="/subscriptions">
           <img
             className="image-promotion"
             src="./img/homes/promotion.png"

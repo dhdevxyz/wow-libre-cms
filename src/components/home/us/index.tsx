@@ -31,7 +31,7 @@ const Us = () => {
               colectiva!
             </p>
             <button className="buttom text-white py-3 px-7 rounded-lg hover:bg-blue-600 mt-5">
-              Integrar mi servidor
+              Integrarme
             </button>
           </div>
         </div>

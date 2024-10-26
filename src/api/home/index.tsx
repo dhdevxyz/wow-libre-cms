@@ -1,27 +1,24 @@
-import { BASE_URL_CHARACTER } from "@/configs/configs";
+import { BASE_URL } from "@/configs/configs";
 import { GenericResponseDto } from "@/dto/generic";
-import { GuildData, GuildsDto, ProfesionsServices } from "@/model/model";
+import { ServersPromos } from "@/model/model";
 import { v4 as uuidv4 } from "uuid";
 
-export const ProfessionsServicesApi = async (
-  page: number = 0,
-  size: number = 10
-): Promise<ProfesionsServices[]> => {
+export const serversPromotions = async (
+  language: string
+): Promise<ServersPromos[]> => {
   try {
     const transactionId = uuidv4();
+    console.log(language);
+    const response = await fetch(`${BASE_URL}/api/resources/server-promos`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        transaction_id: transactionId,
+        "Accept-Language": language,
+      },
+    });
 
-    const response = await fetch(
-      `${BASE_URL_CHARACTER}/api/characters/services?page=${page}&size=${size}`,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          transaction_id: transactionId,
-        },
-      }
-    );
-
-    const responseData: GenericResponseDto<ProfesionsServices[]> =
+    const responseData: GenericResponseDto<ServersPromos[]> =
       await response.json();
 
     if (response.ok && response.status === 200) {

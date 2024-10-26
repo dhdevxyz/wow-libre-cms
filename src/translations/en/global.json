@@ -404,5 +404,10 @@
             "loading": "Joining...",
             "primary": "Join"
         }
+    },
+    "home-servers": {
+        "title": "Our Partner Servers",
+        "description": "Looking for an unparalleled gaming experience? Join our WoW partner servers and dive into unique worlds and epic adventures, all completely free!",
+        "btn-information": "Learn More!"
     }
 }

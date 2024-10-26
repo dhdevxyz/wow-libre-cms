@@ -241,16 +241,13 @@ interface Service {
   is_public: boolean;
 }
 
-export interface ProfesionsServices {
+export interface ServersPromos {
   id: number;
-  character_name: string;
-  character_id: number;
-  logo: string;
-  skill_id: number;
   name: string;
+  sub_title: string;
   description: string;
-  score: number;
-  is_public: boolean;
+  logo: string;
+  link: string;
 }
 
 export interface BankPlans {

@@ -404,5 +404,10 @@
             "loading": "Uniendo...",
             "primary": "Unirme"
         }
+    },
+    "home-servers": {
+        "title": "Servidores Aliados",
+        "description": "¿Buscas una experiencia de juego sin igual? Únete a nuestros servidores de WoW asociados y sumérgete en mundos únicos y aventuras épicas, ¡totalmente gratis!",
+        "btn-information": "¡Descubre más!"
     }
 }
