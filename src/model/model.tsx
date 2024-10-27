@@ -322,3 +322,19 @@ interface ProductDetailsModel {
   description: string;
   img_url: string;
 }
+
+export interface Transaction {
+  id: number;
+  price: number;
+  currency: string;
+  status: string;
+  progress: number;
+  date: string;
+  reference_number: string;
+  product_name: string;
+  logo: string;
+}
+export interface TransactionDto {
+  transactions: Transaction[];
+  size: number;
+}

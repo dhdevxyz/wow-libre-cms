@@ -43,7 +43,10 @@ const NavbarAuth = () => {
 
       {isLoggedIn && (
         <>
-          <Link className="nav-auth-category font-serif" href="/purchases">
+          <Link
+            className="nav-auth-category font-serif"
+            href="/profile/purchases"
+          >
             {t("navbar.sections.position-eight")}
           </Link>
           <Link className="nav-auth-category font-serif" href="/purchases">

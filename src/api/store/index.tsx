@@ -1,4 +1,3 @@
-import { BASE_URL } from "@/configs/configs";
 import { GenericResponseDto } from "@/dto/generic";
 import { CategoryDetail, ProductDetail } from "@/model/model";
 import { v4 as uuidv4 } from "uuid";
