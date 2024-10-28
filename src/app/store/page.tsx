@@ -34,26 +34,26 @@ const Store = () => {
     router.push(`/store/${id}`);
   };
 
-  if (loading) {
-    return <p className="text-white">Cargando productos...</p>;
-  }
-
-  if (error) {
-    return <p className="text-red-500">Error: {error}</p>;
-  }
-
   return (
     <div className="contenedor">
       <NavbarAuthenticated />
       <div className="mt-14">
         <AdvertisingStore />
       </div>
-      <nav className="w-full h-20 flex items-center justify-start bg-gray-800 text-white mt-10 mb-10 ">
+
+      {/* Loading Indicator */}
+      {loading && (
+        <div className="text-center mt-4">
+          <p className="text-white">Cargando productos...</p>
+        </div>
+      )}
+
+      <nav className="w-full  flex items-center justify-start bg-gray-800 text-white mt-10 mb-10">
         {Object.keys(categories).map((category) => (
           <a
             key={category}
             href={`#${category}`}
-            className="hover:text-gray-400 px-4 py-2 hover:bg-gray-700"
+            className="hover:text-gray-300 px-4 py-5 hover:bg-gray-700 transition duration-200 ease-in-out font-serif  text-3xl text-yellow-500"
           >
             {category}
           </a>

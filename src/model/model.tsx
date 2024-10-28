@@ -311,6 +311,7 @@ export interface ProductDetail {
   description: string;
   img_url: string;
   partner: string;
+  server_id: number;
   reference_number: string;
   details: ProductDetailsModel[];
 }
@@ -337,4 +338,9 @@ export interface Transaction {
 export interface TransactionDto {
   transactions: Transaction[];
   size: number;
+}
+export interface BuyRedirectDto {
+  redirect: string;
+  success_url: string;
+  back_url: string;
 }
