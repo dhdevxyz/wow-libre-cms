@@ -409,5 +409,37 @@
         "title": "Servidores Aliados",
         "description": "¿Buscas una experiencia de juego sin igual? Únete a nuestros servidores de WoW asociados y sumérgete en mundos únicos y aventuras épicas, ¡totalmente gratis!",
         "btn-information": "¡Descubre más!"
+    },
+    "account-detail": {
+        "character-no-select": {
+            "friend": {
+                "title": "⚔️ ¡Elige a tu héroe! ⚔️",
+                "subtitle": "En Azeroth, la verdadera fortaleza está en los amigos. ¡Agrega a tus aliados y comparte grandes aventuras!",
+                "text": "Juntos podrán enfrentar desafíos y celebrar victorias. ¡La amistad es la magia más poderosa de todas!"
+            }
+        },
+        "errors": {
+            "fetch-invalid-character": "No se pudo obtener la información del personaje. Por favor, inténtalo de nuevo más tarde."
+        },
+        "loading-txt": "Cargando...",
+        "hidden-menu": "Ocultar detalles",
+        "visible-menu": "Mostrar detalles",
+        "character": {
+            "title": "Información del personaje",
+            "name": "Nombre: ",
+            "email": "Correo electrónico: ",
+            "country": "País: ",
+            "username": "Usuario: "
+        },
+        "no-characters": "No hay personajes disponibles.",
+        "tabs": {
+            "var1": "Amigos",
+            "var2": "Mensajes",
+            "var3": "Cuenta",
+            "var4": "Profesiones",
+            "var5": "Hermandad",
+            "var6": "Premium",
+            "var7": "Cuentas"
+        }
     }
 }

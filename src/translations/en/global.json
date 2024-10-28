@@ -409,5 +409,37 @@
         "title": "Our Partner Servers",
         "description": "Looking for an unparalleled gaming experience? Join our WoW partner servers and dive into unique worlds and epic adventures, all completely free!",
         "btn-information": "Learn More!"
+    },
+    "account-detail": {
+        "character-no-select": {
+            "friend": {
+                "title": "⚔️ Choose Your Hero! ⚔️",
+                "subtitle": "In Azeroth, true strength lies in friendship. Add your allies and embark on epic adventures!",
+                "text": "Together, you’ll face challenges and celebrate victories. Friendship is the most powerful magic of all!"
+            }
+        },
+        "errors": {
+            "fetch-invalid-character": "Character information couldn't be retrieved. Please try again later."
+        },
+        "loading-txt": "Loading...",
+        "hidden-menu": "Hide details",
+        "visible-menu": "Show details",
+        "character": {
+            "title": "Character Information",
+            "name": "Name: ",
+            "email": "Email: ",
+            "country": "Country: ",
+            "username": "Username: "
+        },
+        "no-characters": "No characters available.",
+        "tabs": {
+            "var1": "Friends",
+            "var2": "Messages",
+            "var3": "Account",
+            "var4": "Professions",
+            "var5": "Guild",
+            "var6": "Premium",
+            "var7": "Accounts"
+        }
     }
 }

@@ -82,8 +82,12 @@ const FriendDetail: React.FC<FriendsDetailProps> = ({
     setIsMoneyIsOpen(false);
   };
 
-  const handleGiftLevelsChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setGiftLevels(Number(event.target.value));
+  const handleGiftLevelsChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const value = Number(event.target.value);
+
+    setGiftLevels(value);
   };
 
   const handleGiftMoneyChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -91,6 +95,25 @@ const FriendDetail: React.FC<FriendsDetailProps> = ({
   };
 
   const handleGiftLevelsSubmit = async () => {
+    if (giftLevels > 80) {
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: "El nivel no puede ser superior a 80",
+        confirmButtonColor: "#3085d6",
+        confirmButtonText: "Entendido",
+      });
+      return;
+    } else if (giftLevels <= 0) {
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: "El nivel debe ser superior a 0",
+        confirmButtonColor: "#3085d6",
+        confirmButtonText: "Entendido",
+      });
+      return;
+    }
     try {
       await sendLevelByFriend(
         jwt,
@@ -116,7 +139,6 @@ const FriendDetail: React.FC<FriendsDetailProps> = ({
         text: `${error.message}`,
         color: "white",
         background: "#0B1218",
-        timer: 4500,
       });
     }
     closeGiftLevelsModal();
@@ -220,18 +242,27 @@ const FriendDetail: React.FC<FriendsDetailProps> = ({
           <div className="bg-gray-800 text-white p-8 rounded-lg shadow-lg">
             <label
               htmlFor="giftLevels"
-              className="text-lg font-semibold block mb-4"
+              className="text-xl font-semibold block mb-2 text-gray-200"
             >
-              Costo: 5k Gold por nivel <br />
-              Recuerda que el nivel maximo es 80 si en dado caso envias mas de
-              lo permitido se te cobrara igualmente.
-              <br />
-              Cantidad de Niveles:
+              Costo: <span className="text-orange-300 font-bold">5k Gold </span>
+              por nivel
             </label>
+            <p className="text-lg text-gray-400 mb-4">
+              Recuerda: el nivel máximo es
+              <span className="font-semibold text-white"> 80</span>.
+              <br />
+              Si envías una cantidad mayor a la permitida,
+              <span className="font-semibold text-red-500">
+                <br /> se te cobrará igualmente.
+              </span>
+            </p>
+            <p className="text-lg font-medium mb-2">Cantidad de Niveles:</p>
+
             <input
               type="number"
               id="giftLevels"
               value={giftLevels}
+              min="1"
               onChange={handleGiftLevelsChange}
               className="w-full p-2 mb-4 bg-gray-900 text-white border border-gray-700 rounded-lg"
             />

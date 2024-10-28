@@ -56,7 +56,7 @@ const AccountDetail = () => {
   const [characters, setCharacters] = useState<Character[]>([]);
   const [selectedCharacter, setSelectedCharacter] = useState<Character>();
   const [avatar, setAvatar] = useState("https://via.placeholder.com/150");
-  const { t } = useTranslation();
+  const { t, ready } = useTranslation();
 
   useAuth(t("errors.message.expiration-session"));
 
@@ -79,11 +79,11 @@ const AccountDetail = () => {
         } else {
           router.push("/accounts");
         }
-      } catch (error) {
+      } catch (error: any) {
         Swal.fire({
           icon: "error",
           title: "Oops...",
-          text: "No se ha podido obtener los detalles",
+          text: `${error.message}`,
           color: "white",
           background: "#0B1218",
           timer: 4500,
@@ -101,12 +101,11 @@ const AccountDetail = () => {
     setAvatar(character.race_logo || "https://via.placeholder.com/150");
   };
 
-  if (isLoading) {
+  if (isLoading || !ready) {
     return (
       <div className="flex items-center justify-center min-h-screen min-w-full">
         <div className="flex flex-col items-center">
           <LoadingSpinner />
-          <p className="mt-4 text-white text-lg">Cargando...</p>
         </div>
       </div>
     );
@@ -137,7 +136,9 @@ const AccountDetail = () => {
             } text-white transition-colors duration-300`}
           >
             <span className="text-lg font-semibold">
-              {isPanelOpen ? "Ocultar detalles" : "Mostrar detalles"}
+              {isPanelOpen
+                ? t("account-detail.hidden-menu")
+                : t("account-detail.visible-menu")}
             </span>
             <FontAwesomeIcon
               icon={isPanelOpen ? faChevronUp : faChevronDown}
@@ -147,20 +148,24 @@ const AccountDetail = () => {
           {isPanelOpen && userDetail && (
             <div className="mt-4  p-4 rounded-lg shadow-lg">
               <h2 className="text-white text-2xl font-bold">
-                Detalles del personaje
+                {t("account-detail.character.title")}
               </h2>
               <p className="text-white text-lg mt-2">
-                <strong>Nombre:</strong> {userDetail?.first_name}
+                <strong> {t("account-detail.character.name")}</strong>
+                {userDetail?.first_name}
                 {userDetail?.last_name}
               </p>
               <p className="text-white text-lg mt-2">
-                <strong>Email:</strong> {userDetail?.email}
+                <strong>{t("account-detail.character.email")}</strong>
+                {userDetail?.email}
               </p>
               <p className="text-white text-lg mt-2">
-                <strong>País:</strong> {userDetail?.country}
+                <strong>{t("account-detail.character.country")}</strong>
+                {userDetail?.country}
               </p>
               <p className="text-white text-lg mt-2">
-                <strong>Username:</strong> {accountDetail?.username}
+                <strong>{t("account-detail.character.username")}</strong>
+                {accountDetail?.username}
               </p>
             </div>
           )}
@@ -172,7 +177,9 @@ const AccountDetail = () => {
               />
             ) : (
               <div>
-                <p className="text-white">No hay personajes disponibles</p>
+                <p className="text-white">
+                  {t("account-detail.no-characters")}
+                </p>
               </div>
             )}
           </div>
@@ -187,37 +194,37 @@ const AccountDetail = () => {
             <TabList className=" flex flex-col border-b">
               <Tab className="py-6 px-6 text-white  bg-tablist cursor-pointer text-lg font-semibold flex items-center">
                 <FontAwesomeIcon icon={faComment} className="mr-2 text-2xl" />
-                Amigos
+                {t("account-detail.tabs.var1")}
               </Tab>
               <Tab className="py-6 px-6 text-white bg-tablist  cursor-pointer text-lg font-semibold flex items-center">
                 <FontAwesomeIcon icon={faEnvelope} className="mr-2 text-2xl" />{" "}
-                Mensajes
+                {t("account-detail.tabs.var2")}
               </Tab>
               <Tab className="py-6 px-6 text-white bg-tablist  cursor-pointer text-lg font-semibold flex items-center">
                 <FontAwesomeIcon icon={faUser} className="mr-2 text-2xl" />{" "}
-                Cuenta
+                {t("account-detail.tabs.var3")}
               </Tab>
               <Tab className="py-6 px-5 text-white  bg-tablist cursor-pointer text-lg font-semibold flex items-center">
                 <FontAwesomeIcon
                   icon={faShieldHeart}
                   className="mr-2 text-2xl"
                 />
-                Profesiones
+                {t("account-detail.tabs.var4")}
               </Tab>
               <Tab className="py-6 px-5 text-white  bg-tablist cursor-pointer text-lg font-semibold flex items-center">
                 <FontAwesomeIcon icon={faFlag} className="mr-2 text-2xl" />
-                Hermandad
+                {t("account-detail.tabs.var5")}
               </Tab>
               <Tab className="py-6 px-5 text-white bg-tablist  cursor-pointer text-lg font-semibold flex items-center">
                 <FontAwesomeIcon icon={faCrown} className="mr-2 text-2xl" />{" "}
-                Premium
+                {t("account-detail.tabs.var6")}
               </Tab>
               <Tab className="py-6 px-6 text-white  bg-tablist cursor-pointer text-lg font-semibold flex items-center">
                 <FontAwesomeIcon
                   icon={faRotateLeft}
                   className="mr-2 text-2xl"
                 />
-                Cuentas
+                {t("account-detail.tabs.var7")}
               </Tab>
             </TabList>
 
@@ -238,15 +245,13 @@ const AccountDetail = () => {
                 ) : (
                   <div className=" p-6 bg-gradient-to-r from-gray-800 via-black to-gray-900 text-neon_green rounded-lg shadow-lg text-center">
                     <h2 className="text-2xl font-bold mb-2 text-gray-200">
-                      ⚔️ ¡Selecciona tu héroe! ⚔️
+                      {t("account-detail.character-no-select.friend.title")}
                     </h2>
                     <p className="text-xl text-gray-200 mb-4">
-                      En Azeroth, la verdadera fuerza proviene de los amigos.
-                      ¡Agrega a tus aliados y comparte aventuras!
+                      {t("account-detail.character-no-select.friend.subtitle")}
                     </p>
                     <p className="text-lg italic text-gray-200">
-                      Juntos, podrán enfrentar desafíos y celebrar victorias.
-                      ¡La amistad es la mayor magia de todas!
+                      {t("account-detail.character-no-select.friend.text")}
                     </p>
                   </div>
                 )}
