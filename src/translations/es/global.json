@@ -408,7 +408,11 @@
     "home-servers": {
         "title": "Servidores Aliados",
         "description": "¿Buscas una experiencia de juego sin igual? Únete a nuestros servidores de WoW asociados y sumérgete en mundos únicos y aventuras épicas, ¡totalmente gratis!",
-        "btn-information": "¡Descubre más!"
+        "btn-information": "¡Descubre más!",
+        "empty-server-list-title": "¡Nuestros expertos están en acción!",
+        "empty-server-list-subtitle": "Actualmente no hay servicios disponibles, pero nuestros valientes profesionales están perfeccionando sus habilidades para ofrecerte las mejores experiencias. ",
+        "btn-register-txt": "Registrarme",
+        "btn-register-discover": "Descubrir"
     },
     "account-detail": {
         "character-no-select": {
@@ -477,6 +481,18 @@
             },
             "title-success": "Revisa tu Correo Electrónico",
             "success-message": "Te hemos enviado una contraseña temporal a tu correo electrónico. Úsala para acceder a tu cuenta y asegúrate de cambiarla a una contraseña segura una vez que ingreses."
+        }
+    },
+    "home-products": {
+        "title": "Ofertas Increíbles",
+        "subtitle": "¡No dejes pasar las promociones más irresistibles solo para ti! ¡Aprovecha ahora!",
+        "offer-day": {
+            "title": "¡Oferta Exclusiva del Día!",
+            "disclaimer": "¡Descubre las promociones más increíbles solo por hoy!",
+            "btn": {
+                "primary": "Adquirir",
+                "alternative": "Tienda"
+            }
         }
     }
 }

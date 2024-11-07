@@ -52,11 +52,13 @@ const MultiCarousel = () => {
     <div className="rounded-2xl p-4 ">
       <div>
         <h3 className="text-start pl-4 text-2xl text-white lg:text-3xl mt-3">
-          Productos con descuentos
+          ¡Ofertas Imperdibles en Productos con Descuento!
         </h3>
       </div>
       {error ? (
-        <p className="text-red-500">{error}</p>
+        <div className="flex items-center justify-center h-full mt-20">
+          <LoadingSpinner />
+        </div>
       ) : products.length === 0 ? (
         <div className="flex items-center justify-center h-full">
           <LoadingSpinner />
@@ -85,16 +87,24 @@ const MultiCarousel = () => {
                 />
               </div>
               <div className="mt-2">
-                <p className="text-lg text-yellow-500 mt-2 lg:text-4xl mb-4 pt-4">
+                <p className="text-lg text-[#f6a001] mt-2 lg:text-4xl mb-4 pt-4">
                   {product.name}
                 </p>
-                <p className="text-lg text-gray-400 lg:text-2xl">
+                <p className="text-lg text-gray-200  md:text-xl lg:text-2xl xl:text-xl">
                   {product.category}
                 </p>
-                <p className="text-lg text-blue-600 pt-9 lg:text-3xl">
-                  {product.discounted_price}g
-                </p>
-                <p className="text-lg text-green-400 pt-2 lg:text-2xl">
+
+                {product.gambling_money ? (
+                  <p className="text-lg text-[#6396f3] pt-9 lg:text-3xl">
+                    {product.discounted_gold_price}g
+                  </p>
+                ) : (
+                  <p className="text-lg text-[#6396f3]  pt-9 lg:text-2xl">
+                    ${product.discounted_price} USD
+                  </p>
+                )}
+
+                <p className="text-lg text-[#7fff00] pt-2 lg:text-2xl">
                   {product.disclaimer.length > 30
                     ? `${product.disclaimer.slice(0, 30)}...`
                     : product.disclaimer}

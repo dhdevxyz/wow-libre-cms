@@ -72,16 +72,16 @@ const SliderHome = () => {
 
   return (
     <div className="contenedor py-10 px-4">
-      <div className="slider-introduction text-center mb-10">
-        <h2 className="text-4xl font-bold text-yellow-400">
+      <div className="slider-introduction mt-5  mb-10">
+        <h2 className="text-4xl font-bold text-[#f6a001] title-server">
           {t("home-servers.title")}
         </h2>
-        <p className="text-lg text-gray-300 mt-4">
+        <p className="text-xl text-gray-300 mt-4">
           {t("home-servers.description")}
         </p>
         <a
           href="/comunity/servers"
-          className="text-lg text-yellow-300 mt-2 hover:text-yellow-200 underline"
+          className="text-lg text-yellow-500 mt-2 hover:text-yellow-400 underline"
         >
           {t("home-servers.btn-information")}
         </a>
@@ -100,15 +100,13 @@ const SliderHome = () => {
           />
           <p className="text-2xl font-serif">
             ⚔️{" "}
-            <span className="text-green-400">
-              ¡Nuestros expertos están en acción!
-            </span>{" "}
+            <span className="text-indigo-400">
+              {t("home-servers.empty-server-list-title")}🛡️
+            </span>
             ⚔️
           </p>
           <p className="text-lg mt-4">
-            Actualmente no hay servicios disponibles, pero nuestros valientes
-            profesionales están perfeccionando sus habilidades para ofrecerte
-            las mejores experiencias. 🛡️
+            {t("home-servers.empty-server-list-subtitle")}🛡️
           </p>
         </div>
       ) : (
@@ -120,7 +118,7 @@ const SliderHome = () => {
                   <p className="text-2xl font-semibold text-gray-100 mb-2">
                     {service.name}
                   </p>
-                  <p className="text-lg text-yellow-300 italic">
+                  <p className="text-lg text-orange-300 italic">
                     {service.sub_title}
                   </p>
                 </div>
@@ -133,7 +131,7 @@ const SliderHome = () => {
                   />
                 </div>
                 <div className="slider-text mb-4 text-center">
-                  <p className="text-gray-300 text-md leading-relaxed">
+                  <p className="text-gray-300 text-md leading-relaxed font-bold">
                     {service.description.length > 50
                       ? `${service.description.substring(0, 50)}...`
                       : service.description}
@@ -155,13 +153,13 @@ const SliderHome = () => {
                   {user.logged_in ? (
                     <Link href="/register/username" target="_blank" passHref>
                       <button className="contract-button bg-gradient-to-r from-blue-600 to-blue-400 text-white py-2 px-6 rounded-full shadow-lg hover:from-blue-500 hover:to-blue-300 transition duration-300">
-                        Crear cuenta
+                        {t("home-servers.btn-register-discover")}
                       </button>
                     </Link>
                   ) : (
                     <Link href="/register" passHref>
                       <button className="contract-button bg-gradient-to-r from-blue-600 to-blue-400 text-white py-2 px-6 rounded-full shadow-lg hover:from-blue-500 hover:to-blue-300 transition duration-300">
-                        Registrarme
+                        {t("home-servers.btn-register-txt")}
                       </button>
                     </Link>
                   )}

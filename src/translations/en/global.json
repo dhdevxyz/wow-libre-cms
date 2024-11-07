@@ -406,9 +406,13 @@
         }
     },
     "home-servers": {
-        "title": "Our Partner Servers",
-        "description": "Looking for an unparalleled gaming experience? Join our WoW partner servers and dive into unique worlds and epic adventures, all completely free!",
-        "btn-information": "Learn More!"
+        "title": "Allied Servers",
+        "description": "Looking for a unique gaming experience? Join our partnered WoW servers and immerse yourself in fascinating worlds and epic adventures, completely free!",
+        "btn-information": "Discover more!",
+        "empty-server-list-title": "Our experts are at work!",
+        "empty-server-list-subtitle": "Currently, there are no services available, but our brave professionals are perfecting their skills to offer you the best experiences.",
+        "btn-register-txt": "Register",
+        "btn-register-discover": "Discover"
     },
     "account-detail": {
         "character-no-select": {
@@ -477,6 +481,18 @@
             },
             "title-success": "Check Your Email",
             "success-message": "We have sent a temporary password to your email. Use it to access your account and be sure to update it to a secure password once you're logged in."
+        }
+    },
+    "home-products": {
+        "title": "Incredible Offers",
+        "subtitle": "Don’t miss out on the most irresistible promotions just for you! Take advantage now!",
+        "offer-day": {
+            "title": "Exclusive Offer of the Day!",
+            "disclaimer": "Discover the most amazing promotions only for today!",
+            "btn": {
+                "primary": "Get Now",
+                "alternative": "Store"
+            }
         }
     }
 }
