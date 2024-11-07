@@ -441,5 +441,42 @@
             "var6": "Premium",
             "var7": "Cuentas"
         }
+    },
+    "support": {
+        "title": "Servicio de Soporte",
+        "subtitle": "Explora nuestra dedicación a ofrecer un soporte de calidad excepcional.",
+        "faqs": {
+            "title": "Preguntas frecuentes"
+        },
+        "team": {
+            "title": "Un equipo experimentado y apasionado al servicio",
+            "subtitle": "Los mejores en su campo, preparados para cada desafío."
+        }
+    },
+    "reset-password": {
+        "section-one": {
+            "title": "Restablece tu Contraseña",
+            "sub-title": "Recupera el acceso a tu cuenta y vuelve a vivir la épica aventura en Azeroth. Completa el formulario a continuación para restablecer tu contraseña y retoma tu rol heroico en el mundo de World of Warcraft.",
+            "var-mail": "Correo Electrónico",
+            "var-mail-placeholder": "Escribe tu dirección de correo",
+            "success-message": "Correo enviado. Por favor, revisa tu bandeja de entrada y utiliza el código dentro de los próximos 3 minutos.",
+            "error-send-message": "Error al enviar el correo. Por favor, intenta de nuevo.",
+            "btn": {
+                "send": "Enviando...",
+                "txt": "Restablecer Contraseña"
+            }
+        },
+        "section-two": {
+            "title": "Verifica tu Código de Seguridad",
+            "sub-title": "Introduce el código de seguridad que hemos enviado a tu correo electrónico para confirmar tu identidad.",
+            "disclaimer": "Recuerda: el código de seguridad es válido solo por 3 minutos.",
+            "btn": {
+                "send": "Validando...",
+                "txt": "Confirmar Código",
+                "return": "Regresar"
+            },
+            "title-success": "Revisa tu Correo Electrónico",
+            "success-message": "Te hemos enviado una contraseña temporal a tu correo electrónico. Úsala para acceder a tu cuenta y asegúrate de cambiarla a una contraseña segura una vez que ingreses."
+        }
     }
 }

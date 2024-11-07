@@ -1,55 +1,29 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import "./style.css";
 import { useRouter } from "next/navigation";
+import { Product } from "@/model/model";
+import { getProductsDiscount } from "@/api/store";
+import LoadingSpinner from "@/components/utilities/loading-spinner";
 
 const MultiCarousel = () => {
   const router = useRouter();
 
-  const items = [
-    {
-      id: 1,
-      image: "https://i.ibb.co/QnVTf01/1082103-raptor-fosilizado.jpg",
-      title: "Dinosaurio Durotar",
-      description: "Montura",
-      price: "200g",
-      disclaimer: "Oferta esclusiva",
-    },
-    {
-      id: 2,
-      image: "https://i.ibb.co/HrdwNS5/Okan01.jpg",
-      title: "Komodo",
-      description: "Montura",
-      price: "200g",
-      disclaimer: "Oferta esclusiva",
-    },
-    {
-      id: 3,
-      image: "https://i.ibb.co/GkZyPNH/1125458-montura-espectral-de-eve.jpg",
-      title: "Escoba",
-      description: "Montura",
-      price: "200g",
-      disclaimer: "Oferta esclusiva",
-    },
-    {
-      id: 4,
-      image: "https://i.ibb.co/sVNbt0v/images.jpg",
-      title: "Perro Inframundo",
-      description: "Montura",
-      price: "200g",
-      disclaimer: "Oferta esclusiva",
-    },
-    {
-      id: 5,
-      image: "https://i.ibb.co/MSH1gsz/7-UDK5-QF3-RP1-O1690524396550.jpg",
-      title: "Ropa Gm",
-      description: "Item",
-      price: "200g",
-      disclaimer: "Oferta esclusiva",
-    },
-  ];
+  const [products, setProducts] = useState<Product[]>([]);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const productsWithDiscount = await getProductsDiscount();
+        setProducts(productsWithDiscount);
+      } catch (err: any) {
+        setError(err.message);
+      }
+    };
+    fetchProducts();
+  }, []);
 
   const responsive = {
     superLargeDesktop: {
@@ -70,52 +44,71 @@ const MultiCarousel = () => {
     },
   };
 
-  const handleSelectItem = (id: number) => {
+  const handleSelectItem = (id: string) => {
     router.push(`/store/${id}`);
   };
 
   return (
-    <div className="carrousel-offert">
+    <div className="rounded-2xl p-4 ">
       <div>
-        <h3 className="carrousel-offert-title text-lg md:text-x2 lg:text-3xl xl:text-3xl mt-3 ml-7">
-          Inspirado en lo último que viste
+        <h3 className="text-start pl-4 text-2xl text-white lg:text-3xl mt-3">
+          Productos con descuentos
         </h3>
       </div>
-      <Carousel className="carrousel-offert-content" responsive={responsive}>
-        {items.map((item) => (
-          <div
-            className="carrousel-offert-content-product"
-            key={item.id}
-            onClick={() => handleSelectItem(item.id)}
-          >
-            <div className="relative">
-              <img
-                src={item.image}
-                alt={item.title}
-                className="w-full transition duration-300 hover:opacity-75"
-              />
+      {error ? (
+        <p className="text-red-500">{error}</p>
+      ) : products.length === 0 ? (
+        <div className="flex items-center justify-center h-full">
+          <LoadingSpinner />
+        </div>
+      ) : (
+        <Carousel
+          className="max-h-[50rem] max-w-[80rem]"
+          responsive={responsive}
+          autoPlay={false}
+          autoPlaySpeed={3000}
+          infinite={true}
+          slidesToSlide={1}
+          transitionDuration={500}
+        >
+          {products.map((product) => (
+            <div
+              className="flex flex-col m-4 rounded-lg overflow-hidden p-4 hover:bg-gray-600 transition-all"
+              key={product.id}
+              onClick={() => handleSelectItem(product.reference_number)}
+            >
+              <div className="relative">
+                <img
+                  src={product.img_url}
+                  alt={product.name}
+                  className="w-full h-[20rem] object-cover transition duration-300 hover:opacity-75"
+                />
+              </div>
+              <div className="mt-2">
+                <p className="text-lg text-yellow-500 mt-2 lg:text-4xl mb-4 pt-4">
+                  {product.name}
+                </p>
+                <p className="text-lg text-gray-400 lg:text-2xl">
+                  {product.category}
+                </p>
+                <p className="text-lg text-blue-600 pt-9 lg:text-3xl">
+                  {product.discounted_price}g
+                </p>
+                <p className="text-lg text-green-400 pt-2 lg:text-2xl">
+                  {product.disclaimer.length > 30
+                    ? `${product.disclaimer.slice(0, 30)}...`
+                    : product.disclaimer}
+                </p>
+                <button className="w-full mt-8 bg-blue-900 text-white py-2 px-4 rounded hover:bg-blue-600 transition-all text-lg">
+                  Comprar
+                </button>
+              </div>
             </div>
-            <div className="carrousel-offert-content-product-detail">
-              <p className="carrousel-offert-content-product-detail-title text-lg md:text-x4 lg:text-4xl xl:text-4xl mb-4 pt-4">
-                {item.title}
-              </p>
-              <p className="carrousel-offert-content-product-detail-description text-lg md:text-x2 lg:text-2xl xl:text-2xl">
-                {item.description}
-              </p>
-              <p className="carrousel-offert-content-product-detail-price text-lg md:text-xl lg:text-3xl xl:text-3xl pt-9">
-                {item.price}
-              </p>
-              <p className="carrousel-offert-content-product-detail-disclaimer text-lg md:text-xl lg:text-3xl xl:text-2xl pt-2">
-                {item.disclaimer}
-              </p>
-              <button className="carrousel-offert-content-product-detail-button text-lg md:text-xl lg:text-1xl xl:text-2xl ">
-                Comprar
-              </button>
-            </div>
-          </div>
-        ))}
-      </Carousel>
+          ))}
+        </Carousel>
+      )}
     </div>
   );
 };
+
 export default MultiCarousel;

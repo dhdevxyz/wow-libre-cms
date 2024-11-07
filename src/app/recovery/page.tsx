@@ -1,8 +1,12 @@
 "use client";
-import { recoverPassword, validateOtp } from "@/api/account/security";
+import {
+  recoverPassword,
+  validateRecoverPassword,
+} from "@/api/account/security";
 import NavbarMinimalist from "@/components/navbar-minimalist";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import Swal from "sweetalert2";
 
 const ChangePassword = () => {
@@ -13,6 +17,7 @@ const ChangePassword = () => {
   const [loading, setLoading] = useState(false);
   const [otp, setOtp] = useState<string[]>(["", "", "", "", ""]);
   const router = useRouter();
+  const { t } = useTranslation();
 
   const handleFormChange = (formType: string) => {
     setCurrentForm(formType);
@@ -26,10 +31,10 @@ const ChangePassword = () => {
 
     try {
       await recoverPassword(email);
-      setSuccessMessage("Correo enviado. Revisa tu bandeja de entrada.");
+      setSuccessMessage(t("reset-password.section-one.success-message"));
       handleFormChange("additional");
     } catch (err: any) {
-      setError(err.message || "Error al enviar el correo.");
+      setError(err.message);
     } finally {
       setLoading(false);
     }
@@ -37,7 +42,7 @@ const ChangePassword = () => {
 
   const handleOtpChange = (index: number, value: string) => {
     const newOtp = [...otp];
-    newOtp[index] = value;
+    newOtp[index] = value.toLocaleUpperCase();
     setOtp(newOtp);
   };
 
@@ -49,12 +54,12 @@ const ChangePassword = () => {
     const otpCode = otp.join("");
 
     try {
-      await validateOtp(email, otpCode);
-      setSuccessMessage("OTP verificado correctamente.");
+      await validateRecoverPassword(email, otpCode);
+      setSuccessMessage("Success");
       Swal.fire({
         icon: "success",
-        title: "Contraseña restablecida",
-        text: `Se te envió una contraseña temporal al correo electrónico.`,
+        title: t("reset-password.section-two.title-success"),
+        text: t("reset-password.section-two.success-message"),
         color: "white",
         background: "#0B1218",
         willClose: () => {
@@ -66,7 +71,7 @@ const ChangePassword = () => {
         }
       });
     } catch (err: any) {
-      setError(err.message || "Error al verificar el OTP.");
+      setError(err.message);
     } finally {
       setLoading(false);
     }
@@ -89,20 +94,17 @@ const ChangePassword = () => {
             {currentForm === "reset" ? (
               <>
                 <h1 className="text-3xl md:text-4xl font-medium text-white">
-                  Restablece tu Contraseña
+                  {t("reset-password.section-one.title")}
                 </h1>
                 <p className="text-slate-400 text-xl">
-                  Recupera el poder de tu cuenta y sigue tu épica aventura en
-                  Azeroth. Completa el formulario a continuación para
-                  restablecer tu contraseña y retoma tu estatus heroico en World
-                  of Warcraft.
+                  {t("reset-password.section-one.sub-title")}
                 </p>
 
                 <form onSubmit={handleSubmit} className="my-10">
                   <div className="flex flex-col space-y-5 mt-20">
                     <label htmlFor="email">
                       <p className="font-medium text-white pb-2">
-                        Dirección de correo electrónico
+                        {t("reset-password.section-one.var-mail")}
                       </p>
                       <input
                         id="email"
@@ -111,7 +113,9 @@ const ChangePassword = () => {
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         className="w-full py-3 border border-slate-200 rounded-lg px-3 focus:outline-none focus:border-slate-500 hover:shadow"
-                        placeholder="Introduce tu correo electrónico"
+                        placeholder={t(
+                          "reset-password.section-one.var-mail-placeholder"
+                        )}
                         required
                       />
                     </label>
@@ -126,7 +130,9 @@ const ChangePassword = () => {
                       className="w-full py-3 font-medium text-white bg-indigo-600 hover:bg-indigo-500 rounded-lg border-indigo-500 hover:shadow inline-flex space-x-2 items-center justify-center"
                       disabled={loading}
                     >
-                      {loading ? "Enviando..." : "Restablecer"}
+                      {loading
+                        ? t("reset-password.section-one.btn.send")
+                        : t("reset-password.section-one.btn.txt")}
                     </button>
                   </div>
                 </form>
@@ -134,17 +140,16 @@ const ChangePassword = () => {
             ) : (
               <>
                 <h1 className="text-3xl md:text-4xl font-medium text-white">
-                  Verifica tu Código
+                  {t("reset-password.section-two.title")}
                 </h1>
                 <p className="text-slate-400 text-xl">
-                  Ingresa el código de seguridad que acabamos de enviar a tu
-                  correo electrónico.
+                  {t("reset-password.section-two.sub-title")}
                 </p>
 
                 <form onSubmit={handleOtpSubmit} className="my-10">
                   <div className="flex flex-col space-y-5 mt-10">
                     <p className="font-medium text-white pb-6">
-                      Código de seguridad
+                      {t("reset-password.section-two.disclaimer")}
                     </p>
 
                     <div className="flex justify-center space-x-2">
@@ -171,7 +176,9 @@ const ChangePassword = () => {
                       type="submit"
                       className="w-full py-3 font-medium text-white bg-indigo-600 hover:bg-indigo-500 rounded-lg border-indigo-500 hover:shadow inline-flex space-x-2 items-center justify-center"
                     >
-                      {loading ? "Enviando..." : "Validar OTP"}
+                      {loading
+                        ? t("reset-password.section-two.btn.send")
+                        : t("reset-password.section-two.btn.txt")}
                     </button>
 
                     <button
@@ -182,7 +189,7 @@ const ChangePassword = () => {
                       }}
                       className="w-full py-3 font-medium text-white bg-indigo-600 hover:bg-indigo-500 rounded-lg border-indigo-500 hover:shadow inline-flex space-x-2 items-center justify-center mt-4"
                     >
-                      <span>Volver</span>
+                      <span>{t("reset-password.section-two.btn.return")}</span>
                     </button>
                   </div>
                 </form>
@@ -191,11 +198,11 @@ const ChangePassword = () => {
           </div>
 
           {/* Image Section */}
-          <div className="w-full md:w-2/3 flex items-center justify-center mt-8 md:mt-0 select-none">
+          <div className="w-full md:w-2/3 flex items-center justify-center mt-8 md:mt-0 select-none aspect-[19/9]">
             <img
-              src="https://i.postimg.cc/Jnfb0TWJ/businessman-designing-a-website-by-coding-on-a-desktop-computer-images-for-web-banners-free-vector-r.png"
+              src="https://turtle-wow.org/build/assets/turtlewow_unreal_barrens-BkxjrNvE.webp"
               alt="Ilustración de Restablecer Contraseña"
-              className="rounded-lg w-full md:w-auto"
+              className="rounded-lg w-full h-full object-cover"
             />
           </div>
         </div>

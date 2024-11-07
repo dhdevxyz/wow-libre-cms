@@ -5,7 +5,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 const banners = [
   {
-    image: "/img/homes/banner/banner_one.webp",
+    image: "/img/homes/banner/banner_five.webp",
     alt: "Advertising banner for the game, showing arthas",
   },
   {

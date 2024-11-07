@@ -1,18 +1,17 @@
 "use client";
 
-import "./style.css";
-import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import "slick-carousel/slick/slick.css";
 
-import { ServersPromos } from "@/model/model";
 import { serversPromotions } from "@/api/home";
+import { ServersPromos } from "@/model/model";
 import { useTranslation } from "react-i18next";
 
-import React, { useEffect, useState } from "react";
-import Slider from "react-slick";
 import LoadingSpinner from "@/components/utilities/loading-spinner";
 import { useUserContext } from "@/context/UserContext";
 import Link from "next/link";
+import { useEffect, useState } from "react";
+import Slider from "react-slick";
 
 const SliderHome = () => {
   const [services, setPartners] = useState<ServersPromos[]>([]);
@@ -38,146 +37,134 @@ const SliderHome = () => {
 
   const settings = {
     dots: false,
-    infinite: false,
-    arrows: false,
+    infinite: services.length > 4, // Allow infinite scroll only if there are enough items
+    arrows: true,
     speed: 500,
-    slidesToShow: 4,
-    slidesToScroll: 1,
+    slidesToShow: Math.min(4, services.length), // Show fewer slides if there are fewer items
+    slidesToScroll: Math.min(4, services.length), // Scroll fewer slides if there are fewer items
     autoplay: false,
     autoplaySpeed: 2000,
     responsive: [
       {
         breakpoint: 1024,
         settings: {
-          slidesToShow: services.length < 1 ? services.length : 2,
-          slidesToScroll: 1,
-          infinite: false,
-          dots: true,
+          slidesToShow: Math.min(4, services.length),
+          slidesToScroll: Math.min(1, services.length),
         },
       },
       {
         breakpoint: 600,
         settings: {
-          slidesToShow: services.length < 2 ? services.length : 2,
-          slidesToScroll: 1,
-          infinite: false,
+          slidesToShow: Math.min(2, services.length),
+          slidesToScroll: Math.min(1, services.length),
           initialSlide: 2,
         },
       },
       {
         breakpoint: 480,
         settings: {
-          slidesToShow: services.length < 1 ? services.length : 1,
-          slidesToScroll: 1,
-          infinite: false,
+          slidesToShow: Math.min(1, services.length),
+          slidesToScroll: Math.min(1, services.length),
         },
       },
     ],
   };
 
   return (
-    <div className="contenedor pt-5 pb-15">
-      <div className="slider-introduction">
-        <h2 className="slider-introduction-title title-server">
+    <div className="contenedor py-10 px-4">
+      <div className="slider-introduction text-center mb-10">
+        <h2 className="text-4xl font-bold text-yellow-400">
           {t("home-servers.title")}
         </h2>
-        <p className="slider-introduction-description text-lg md:text-xl lg:text-1xl xl:text-2xl">
+        <p className="text-lg text-gray-300 mt-4">
           {t("home-servers.description")}
         </p>
         <a
-          className="slider-introduction-other text-lg md:text-xl lg:text-1xl xl:text-2xl hover:text-gray-300"
           href="/comunity/servers"
+          className="text-lg text-yellow-300 mt-2 hover:text-yellow-200 underline"
         >
           {t("home-servers.btn-information")}
         </a>
       </div>
-      {isLoading && (
-        <div className="contenedor flex items-center justify-center mt-20">
+
+      {isLoading ? (
+        <div className="flex justify-center mt-20">
           <LoadingSpinner />
         </div>
-      )}
-      {services.length === 0 && !isLoading ? (
-        <div className="text-lg md:text-xl lg:text-2xl xl:text-2xl text-white mb-20 flex flex-col items-center">
+      ) : services.length === 0 ? (
+        <div className="flex flex-col items-center text-white text-center mt-20">
           <img
             src="https://bnetcmsus-a.akamaihd.net/cms/blog_header/sd/SDKC28FNI82S1696978734260.png"
             alt="Espada épica"
-            className="w-40 h-40 md:w-80 md:h-80 mb-6 select-none rounded-full transition-transform duration-500 ease-in-out transform hover:rotate-180"
+            className="w-32 h-32 md:w-60 md:h-60 mb-6 select-none rounded-full transition-transform duration-500 ease-in-out transform hover:rotate-180"
           />
-
-          <div className="text-center text-2xl font-serif">
-            ⚔️
-            <span className="text-neon_green">
+          <p className="text-2xl font-serif">
+            ⚔️{" "}
+            <span className="text-green-400">
               ¡Nuestros expertos están en acción!
-            </span>
+            </span>{" "}
             ⚔️
-            <br />
-            Actualmente no hay servicios disponibles. <br />
-            Pero no te preocupes, nuestros valientes profesionales están
-            perfeccionando
-            <br /> sus habilidades para ofrecerte las mejores experiencias. 🛡️
-            <br />
-          </div>
+          </p>
+          <p className="text-lg mt-4">
+            Actualmente no hay servicios disponibles, pero nuestros valientes
+            profesionales están perfeccionando sus habilidades para ofrecerte
+            las mejores experiencias. 🛡️
+          </p>
         </div>
       ) : (
         <Slider {...settings}>
           {services.map((service) => (
-            <div key={service.id} className="slider cursor-pointer ">
-              <div className="cards-slider ">
-                <div className="slider-content ">
-                  <p className="slider-title text-lg md:text-xl lg:text-2xl xl:text-3xl">
+            <div key={service.id} className="slider cursor-pointer">
+              <div className="cards-slider bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 shadow-xl rounded-xl border border-gray-700 p-6 transition-transform transform hover:scale-105 hover:shadow-2xl">
+                <div className="slider-content text-center">
+                  <p className="text-2xl font-semibold text-gray-100 mb-2">
                     {service.name}
                   </p>
-                  <p className="slider-subtitle text-lg md:text-xl lg:text-1xl xl:text-2xl">
+                  <p className="text-lg text-yellow-300 italic">
                     {service.sub_title}
                   </p>
                 </div>
-                <div className="slider-image">
+                <div className="slider-image flex justify-center items-center my-6">
                   <img
                     src={service.logo}
+                    alt="Logo"
                     draggable="false"
-                    className="w-full h-full object-cover"
-                    style={{
-                      borderRadius: "10%",
-                      width: "80%",
-                      height: "90%",
-                      objectFit: "cover",
-                    }}
+                    className="w-40 h-40 md:w-52 md:h-52 object-cover rounded-full border-4 border-gray-600 shadow-md transition-transform transform hover:scale-110"
                   />
                 </div>
-                <div className="slider-text mb-2">
-                  <p className="slider-description font-bold text-3xl md:text-xl lg:text-2xl xl:text-2xl">
-                    PROMOCIONES
-                  </p>
-                  <p className="slider-description text-xl md:text-xl lg:text-xl xl:text-xl">
+                <div className="slider-text mb-4 text-center">
+                  <p className="text-gray-300 text-md leading-relaxed">
                     {service.description.length > 50
                       ? `${service.description.substring(0, 50)}...`
                       : service.description}
                   </p>
-                  <div className="slider-rating">
-                    {Array.from({ length: Math.floor(3) }, (_, index) => (
-                      <span key={index} className="star-icon">
+                  <div className="flex justify-center mt-4 text-yellow-400">
+                    {Array.from({ length: 3 }, (_, index) => (
+                      <span key={index} className="text-2xl">
                         &#9733;
                       </span>
                     ))}
                     {Array.from({ length: 1 - Math.floor(-1) }, (_, index) => (
-                      <span key={index} className="star-icon">
+                      <span key={index} className="text-2xl">
                         &#9734;
                       </span>
                     ))}
                   </div>
-                  <div className="slider-contract">
-                    {user.logged_in ? (
-                      <Link href="/register/username" target="_blank" passHref>
-                        <button className="contract-button">
-                          Crear cuenta
-                        </button>
-                      </Link>
-                    ) : (
-                      <Link href="/register" passHref>
-                        <button className="contract-button">Registrarme</button>
-                      </Link>
-                    )}
-                  </div>
+                </div>
+                <div className="text-center mt-6">
+                  {user.logged_in ? (
+                    <Link href="/register/username" target="_blank" passHref>
+                      <button className="contract-button bg-gradient-to-r from-blue-600 to-blue-400 text-white py-2 px-6 rounded-full shadow-lg hover:from-blue-500 hover:to-blue-300 transition duration-300">
+                        Crear cuenta
+                      </button>
+                    </Link>
+                  ) : (
+                    <Link href="/register" passHref>
+                      <button className="contract-button bg-gradient-to-r from-blue-600 to-blue-400 text-white py-2 px-6 rounded-full shadow-lg hover:from-blue-500 hover:to-blue-300 transition duration-300">
+                        Registrarme
+                      </button>
+                    </Link>
+                  )}
                 </div>
               </div>
             </div>

@@ -441,5 +441,42 @@
             "var6": "Premium",
             "var7": "Accounts"
         }
+    },
+    "support": {
+        "title": "Support Service",
+        "subtitle": "Explore our commitment to delivering exceptional quality support.",
+        "faqs": {
+            "title": "Frequently Asked Questions"
+        },
+        "team": {
+            "title": "An Experienced and Passionate Team at Your Service",
+            "subtitle": "Top experts in their field, ready for every challenge."
+        }
+    },
+    "reset-password": {
+        "section-one": {
+            "title": "Reset Your Password",
+            "sub-title": "Regain access to your account and continue your epic adventure in Azeroth. Complete the form below to reset your password and reclaim your heroic status in World of Warcraft.",
+            "var-mail": "Email Address",
+            "var-mail-placeholder": "Enter your email address",
+            "success-message": "Email sent. Please check your inbox and use the code within the next 3 minutes.",
+            "error-send-message": "Error sending the email. Please try again.",
+            "btn": {
+                "send": "Sending...",
+                "txt": "Reset Password"
+            }
+        },
+        "section-two": {
+            "title": "Verify Your Security Code",
+            "sub-title": "Enter the security code we’ve just sent to your email to verify your identity.",
+            "disclaimer": "Reminder: The security code is only valid for 3 minutes.",
+            "btn": {
+                "send": "Validating...",
+                "txt": "Confirm Code",
+                "return": "Go Back"
+            },
+            "title-success": "Check Your Email",
+            "success-message": "We have sent a temporary password to your email. Use it to access your account and be sure to update it to a secure password once you're logged in."
+        }
     }
 }

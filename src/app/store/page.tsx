@@ -121,10 +121,10 @@ const Store = () => {
                                   className="text-orange-300 font-bold"
                                   style={{ fontSize: "1.5rem" }}
                                 >
-                                  ${product.price} USD
+                                  ${product.discounted_price} USD
                                 </p>
                                 <p className="line-through text-gray-500">
-                                  ${product.price} USD
+                                  ${product.price.toLocaleString()} USD
                                 </p>
                               </>
                             ) : (
@@ -133,22 +133,22 @@ const Store = () => {
                                   className="text-orange-300 font-bold"
                                   style={{ fontSize: "1.5rem" }}
                                 >
-                                  ${product.gold_price} Gold
+                                  {`$${product.discounted_gold_price.toLocaleString()} Gold`}
                                 </p>
                                 <p className="line-through text-gray-500">
-                                  ${product.gold_price} Gold
+                                  {`$${product.gold_price.toLocaleString()} Gold`}
                                 </p>
                               </>
                             )}
                           </>
                         ) : (
                           <p
-                            className="text-gray-300 font-bold"
+                            className="text-orange-300 font-bold"
                             style={{ fontSize: "1.5rem" }}
                           >
                             {product.gambling_money === false
-                              ? `$${product.price} USD`
-                              : `$${product.gold_price} Gold`}
+                              ? `$${product.price.toLocaleString()} USD`
+                              : `$${product.gold_price.toLocaleString()} Gold`}
                           </p>
                         )}
                       </div>

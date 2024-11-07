@@ -64,7 +64,7 @@ const Guild = () => {
   };
 
   return (
-    <div className="contenedor dark h-screen-md">
+    <div className="contenedor  h-screen-md">
       <NavbarAuthenticated />
 
       <div className="text-center pt-20">
@@ -78,15 +78,15 @@ const Guild = () => {
 
       {hasGuilds ? (
         <>
-          <div className=" dark h-screen-md w-full min-h-[50vh]">
+          <div className=" dark w-full min-h-[50vh]">
             <div className="relative overflow-x-auto  sm:rounded-lg pt-20">
-              <div className="flex items-center justify-between flex-wrap md:flex-nowrap space-y-4 md:space-y-0 pb-4 bg-white dark:bg-midnight">
+              <div className="flex items-center justify-between flex-wrap md:flex-nowrap space-y-4 md:space-y-0 pb-4 bg-midnight">
                 {/* Buscador de servidor */}
                 <div className="flex items-center space-x-2">
                   <div className="relative">
                     <div className="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none">
                       <svg
-                        className="w-4 h-4 text-gray-500 dark:text-gray-400"
+                        className="w-4 h-4 text-gray-400"
                         aria-hidden="true"
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
@@ -151,8 +151,8 @@ const Guild = () => {
                   )}
                 </div>
               </div>
-              <div className="max-h-[400px] overflow-y-auto min-h-[400px] flex flex-col justify-between select-none">
-                <table className=" text-lg text-left rtl:text-right text-gray-500 dark:text-gray-400">
+              <div className="max-h-[300px] overflow-y-auto min-h-[300px] flex flex-col justify-between select-none">
+                <table className=" text-lg text-left rtl:text-right text-gray-400">
                   <thead className="text-lg text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
                       <th scope="col" className="p-4">
@@ -255,7 +255,7 @@ const Guild = () => {
                   </tbody>
                 </table>
 
-                <div className="flex justify-center items-center mt-10 ">
+                <div className="flex justify-center items-center ">
                   <ReactPaginate
                     previousLabel={t("guild.btn.secondary")}
                     nextLabel={t("guild.btn.primary")}

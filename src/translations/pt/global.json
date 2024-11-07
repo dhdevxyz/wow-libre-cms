@@ -441,5 +441,42 @@
             "var6": "Premium",
             "var7": "Contas"
         }
+    },
+    "support": {
+        "title": "Serviço de Suporte",
+        "subtitle": "Explore nosso compromisso em oferecer um suporte de qualidade excepcional.",
+        "faqs": {
+            "title": "Perguntas Frequentes"
+        },
+        "team": {
+            "title": "Uma equipe experiente e apaixonada ao seu serviço",
+            "subtitle": "Os melhores em sua área, prontos para qualquer desafio."
+        }
+    },
+    "reset-password": {
+        "section-one": {
+            "title": "Redefinir Sua Senha",
+            "sub-title": "Recupere o acesso à sua conta e continue sua aventura épica em Azeroth. Complete o formulário abaixo para redefinir sua senha e retomar seu status heroico no World of Warcraft.",
+            "var-mail": "Endereço de Email",
+            "var-mail-placeholder": "Digite seu endereço de email",
+            "success-message": "Email enviado. Verifique sua caixa de entrada e use o código nos próximos 3 minutos.",
+            "error-send-message": "Erro ao enviar o email. Tente novamente.",
+            "btn": {
+                "send": "Enviando...",
+                "txt": "Redefinir Senha"
+            }
+        },
+        "section-two": {
+            "title": "Verifique Seu Código de Segurança",
+            "sub-title": "Insira o código de segurança que acabamos de enviar para seu email para verificar sua identidade.",
+            "disclaimer": "Lembre-se: O código de segurança é válido por apenas 3 minutos.",
+            "btn": {
+                "send": "Validando...",
+                "txt": "Confirmar Código",
+                "return": "Voltar"
+            },
+            "title-success": "Verifique Seu Email",
+            "success-message": "Enviamos uma senha temporária para seu email. Use-a para acessar sua conta e lembre-se de atualizá-la para uma senha segura assim que fizer login."
+        }
     }
 }

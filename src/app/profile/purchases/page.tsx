@@ -6,7 +6,7 @@ import Cookies from "js-cookie";
 import { Transaction } from "@/model/model";
 import ReactPaginate from "react-paginate";
 
-const ITEMS_PER_PAGE = 5;
+const ITEMS_PER_PAGE = 4;
 
 const Purchases = () => {
   const [transactions, setTransactions] = useState<Transaction[]>([]);
@@ -71,7 +71,7 @@ const Purchases = () => {
                     Cargando transacciones...
                   </p>
                 ) : (
-                  <div className="flex flex-col h-screen-md w-full min-h-[30vh] max-h-[50rem]">
+                  <div className="flex flex-col h-screen-md w-full min-h-[40vh] max-h-[40rem]">
                     <div className="flex-grow overflow-auto min-h-[340px] ">
                       <table className="w-full align-middle text-white border-neutral-700">
                         <thead className="border-b border-gray-700">
@@ -193,7 +193,7 @@ const Purchases = () => {
                         nextLinkClassName={
                           "page-link text-white py-2 px-3 rounded-lg hover:bg-gray-600"
                         }
-                        forcePage={currentPage} // Sincroniza el estado de la página
+                        forcePage={currentPage}
                       />
                     </div>
                   </div>

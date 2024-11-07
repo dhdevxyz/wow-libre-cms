@@ -76,72 +76,71 @@ const StoreDetail = () => {
             </p>
 
             <div className="text-white font-bold pt-20 pb-10">
-              {product && product.discount > 0 ? (
-                <>
-                  {product?.gambling_money === false ? (
-                    <div className="flex items-center space-x-4">
-                      <p
-                        className=" font-extrabold text-4xl"
-                        style={{ color: "#65d208" }}
-                      >
-                        ${product?.price} USD
-                      </p>
-                      <p className="line-through text-gray-400 text-4xl">
-                        ${product?.price} USD
-                      </p>
-                      <span
-                        className="bg-green-500 text-black font-bold px-3 py-1 rounded-full"
-                        style={{ background: "#65d208" }}
-                      >
-                        {product.discount}% OFF
-                      </span>
-                    </div>
-                  ) : (
-                    <div className="flex items-center space-x-4">
-                      <p
-                        className=" font-extrabold text-4xl"
-                        style={{ color: "#65d208" }}
-                      >
-                        ${product?.gold_price} Gold
-                      </p>
-                      <p className="line-through text-gray-400 text-4xl">
-                        ${product?.gold_price} Gold
-                      </p>
-                      {/* Pill al final */}
-                      <span
-                        className="bg-green-500 text-black font-bold px-3 py-1 rounded-full"
-                        style={{ background: "#65d208" }}
-                      >
-                        {product.discount}% OFF
-                      </span>
-                    </div>
-                  )}
-                </>
-              ) : (
+              {product ? (
                 <div className="flex items-center space-x-4">
-                  <p
-                    className="text-gray-300 font-bold text-xl"
-                    style={{ fontSize: "1.5rem" }}
-                  >
-                    {product?.gambling_money === false
-                      ? `$${product.price} USD`
-                      : `$${product?.gold_price} Gold`}
-                  </p>
-                  {product && product?.discount > 0 && (
-                    <span className="bg-yellow-600 text-black font-semibold px-3 py-1 rounded-full">
-                      {product.discount}% OFF
-                    </span>
+                  {/* Precio con descuento */}
+                  {product.discount > 0 ? (
+                    <>
+                      <p
+                        className="font-extrabold text-4xl"
+                        style={{ color: "#65d208" }}
+                      >
+                        {product.gambling_money === false
+                          ? `$${(
+                              product.price *
+                              (1 - product.discount / 100)
+                            ).toLocaleString()} USD`
+                          : `${(
+                              product.gold_price *
+                              (1 - product.discount / 100)
+                            ).toLocaleString()} Gold`}
+                      </p>
+                      <p className="line-through text-gray-400 text-4xl">
+                        {product.gambling_money === false
+                          ? `$${product.price.toLocaleString()} USD`
+                          : `${product.gold_price.toLocaleString()} Gold`}
+                      </p>
+                      <span
+                        className="bg-green-500 text-black font-bold px-3 py-1 rounded-full"
+                        style={{ background: "#65d208" }}
+                      >
+                        {product.discount}% OFF
+                      </span>
+                    </>
+                  ) : (
+                    // Sin descuento, solo mostrar el precio normal
+                    <>
+                      <p
+                        className="font-extrabold text-4xl"
+                        style={{ color: "#65d208" }}
+                      >
+                        {product.gambling_money === false
+                          ? `$${product.price.toLocaleString()} USD`
+                          : `$${product.gold_price.toLocaleString()} Gold`}
+                      </p>
+                      {/* No se muestra precio tachado ni tooltip de descuento */}
+                    </>
                   )}
                 </div>
+              ) : (
+                <p className="text-gray-300">Cargando producto...</p>
               )}
             </div>
-
-            <button
-              className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-5 rounded transition duration-300"
-              onClick={openModal}
-            >
-              Donar
-            </button>
+            {loggin ? (
+              <button
+                className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-5 rounded transition duration-300"
+                onClick={openModal}
+              >
+                Donar
+              </button>
+            ) : (
+              <button
+                className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-5 rounded transition duration-300"
+                onClick={openModal}
+              >
+                Registrarme
+              </button>
+            )}
             <button
               className="bg-gray-800 text-white font-bold py-4 px-5 rounded border border-transparent hover:border-gray-500 hover:border-x-2 transition duration-300"
               onClick={() => alert("Regalar clickeado")}

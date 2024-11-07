@@ -290,6 +290,8 @@ export interface Product {
   disclaimer: string;
   category: string;
   price: number;
+  discounted_price: number;
+  discounted_gold_price: number;
   discount: number;
   gambling_money: boolean;
   gold_price: number;

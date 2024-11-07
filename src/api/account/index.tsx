@@ -1,7 +1,7 @@
-import { BASE_URL, BASE_URL_AUTH } from "@/configs/configs";
+import { BASE_URL } from "@/configs/configs";
 import { UserModel } from "@/context/UserContext";
 import { GenericResponseDto, InternalServerError } from "@/dto/generic";
-import { AccountDetailDto, AccountsDto, AccountsModel } from "@/model/model";
+import { AccountDetailDto, AccountsDto } from "@/model/model";
 import { v4 as uuidv4 } from "uuid";
 
 /**

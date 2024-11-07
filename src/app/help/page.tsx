@@ -3,8 +3,10 @@
 import { getFaqs } from "@/api/faqs";
 import NavbarMinimalist from "@/components/navbar-minimalist";
 import MeetTheTeam from "@/components/team";
+import { useUserContext } from "@/context/UserContext";
 import { FaqsModel } from "@/model/model";
 import React, { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 const faqsDefault: FaqsModel[] = [
   {
@@ -26,12 +28,13 @@ const faqsDefault: FaqsModel[] = [
 
 const Help: React.FC = () => {
   const [faqs, setFaqs] = useState<FaqsModel[]>([]);
+  const { user } = useUserContext();
+  const { t } = useTranslation();
 
-  /* Api Obtener  los detalles del cliente*/
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response: FaqsModel[] = await getFaqs();
+        const response: FaqsModel[] = await getFaqs(user.language);
         setFaqs(response);
       } catch (error) {
         setFaqs(faqsDefault);
@@ -66,28 +69,27 @@ const Help: React.FC = () => {
         >
           <div className="mx-auto flex max-w-[58rem] flex-col items-center space-y-4 text-center">
             <h2 className="font-bold text-3xl leading-[1.1] sm:text-3xl md:text-6xl text-white">
-              Servicio de Soporte
+              {t("support.title")}
             </h2>
             <p className="max-w-[80%] leading-normal text-muted-foreground sm:text-xl sm:leading-9 text-gray-300">
-              Explora nuestra dedicación a ofrecer un soporte de calidad
-              excepcional.
+              {t("support.subtitle")}
             </p>
           </div>
         </section>
       </div>
-      <section className="bg-midnight text-white contenedor mt-10">
-        <div className="container max-w-9xl px-6 py-10 mx-auto">
-          <div className="flex flex-col lg:flex-row">
-            <div className=" lg:w-1/2 mb-6 lg:mb-0 rounded-2xl select-none">
+      <section className="bg-midnight text-white contenedor mt-1">
+        <div className="container max-w-9xl px-10 py-10 mx-auto">
+          <div className="flex flex-col">
+            <div className="w-full mb-6 rounded-2xl select-none">
               <img
-                src="https://i.ytimg.com/vi/6N3kjHebBKA/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLANEhPve2j69u5A_Iaoxz0n_VWLzw"
+                src="https://bnetcmsus-a.akamaihd.net/cms/blog_header/h9/H9LLMU20DQFJ1725400142786.png"
                 alt="FAQ tailwind section"
-                className="rounded-2xl  hover:shadow hover:shadow-teal-800"
+                className="rounded-2xl hover:shadow hover:shadow-teal-800 w-full"
               />
             </div>
-            <div className="w-full lg:w-1/2 lg:pl-8">
-              <h1 className="text-2xl font-semibold text-center lg:text-left lg:text-3xl ">
-                Preguntas frecuentes
+            <div className="w-full">
+              <h1 className="text-2xl font-semibold text-center lg:text-3xl mb-6">
+                {t("support.faqs.title")}
               </h1>
 
               <div className="mt-1 grid grid-cols-1 gap-4">
@@ -101,7 +103,7 @@ const Help: React.FC = () => {
                       onClick={() => toggleAnswer(index)}
                     >
                       <h1 className="font-semibold text-2xl">{faq.question}</h1>
-                      <span className="text-gray-400 bg-gray-700 rounded-full ">
+                      <span className="text-gray-400 bg-gray-700 rounded-full">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           className="w-6 h-6"
@@ -132,8 +134,9 @@ const Help: React.FC = () => {
             </div>
           </div>
         </div>
+
+        <MeetTheTeam />
       </section>
-      <MeetTheTeam />
     </div>
   );
 };
