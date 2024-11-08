@@ -1,9 +1,15 @@
 import React, { useEffect, useState } from "react";
 import DisplayMoney from "@/components/money";
 import { GuildData } from "@/model/model";
-import { claimBenefits, getMemberDetailGuild, unlinkGuild } from "@/api/guilds";
+import {
+  claimBenefits,
+  getMemberDetailGuild,
+  unlinkGuild,
+  update,
+} from "@/api/guilds";
 import Swal from "sweetalert2";
 import Link from "next/link";
+import EditGuildModal from "@/components/guild_edit";
 
 interface AccountGuildProps {
   serverId: number;
@@ -90,6 +96,33 @@ const AccountGuild: React.FC<AccountGuildProps> = ({
     }
   };
 
+  const handleEditSave = async (newSettings: {
+    isPublic: boolean;
+    isMultifactorEnabled: boolean;
+    discordLink: string;
+  }) => {
+    setGuildData((prev) =>
+      prev ? { ...prev, public_access: newSettings.isPublic } : prev
+    );
+    await update(
+      serverId,
+      accountId,
+      characterId,
+      newSettings.discordLink,
+      newSettings.isMultifactorEnabled,
+      newSettings.isPublic,
+      token
+    );
+    Swal.fire({
+      icon: "success",
+      title: "Configuración guardada",
+      text: "Los cambios han sido guardados exitosamente",
+      color: "white",
+      background: "#0B1218",
+      timer: 3000,
+    });
+  };
+
   if (loading) return <p className="text-center text-lg">Loading...</p>;
 
   return (
@@ -140,9 +173,14 @@ const AccountGuild: React.FC<AccountGuildProps> = ({
               </div>
 
               <div className="flex flex-row text-center">
-                <button className="px-6 py-3 bg-blue-400 hover:bg-blue-600 rounded-lg text-white font-semibold mb-4 mr-2">
-                  Editar
-                </button>
+                {guildData.is_leader ? (
+                  <EditGuildModal
+                    isPublic={guildData.public_access}
+                    isMultifactorEnabled={guildData.multi_faction}
+                    discordLink={guildData.discord}
+                    onSave={handleEditSave}
+                  />
+                ) : null}
                 {0 > 0 && guildData.claimed_benefits <= 0 && (
                   <button
                     className="px-6 py-3 bg-green-400 hover:bg-green-600 rounded-lg text-white font-semibold mb-4 mr-2"

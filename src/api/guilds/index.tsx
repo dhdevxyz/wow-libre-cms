@@ -241,3 +241,57 @@ export const claimBenefits = async (
     );
   }
 };
+
+export const update = async (
+  serverId: number,
+  accountId: number,
+  characterId: number,
+  discord: string,
+  multiFaction: boolean,
+  isPublic: boolean,
+  token: string
+): Promise<GenericResponseDto<void>> => {
+  try {
+    const transactionId = uuidv4();
+
+    const requestBody: {
+      server_id: number;
+      account_id: number;
+      character_id: number;
+      discord: string;
+      multi_faction: boolean;
+      is_public: boolean;
+    } = {
+      server_id: serverId,
+      account_id: accountId,
+      character_id: characterId,
+      discord: discord,
+      multi_faction: multiFaction,
+      is_public: isPublic,
+    };
+
+    const response = await fetch(`${BASE_URL}/api/guilds/edit`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        transaction_id: transactionId,
+        Authorization: "Bearer " + token,
+      },
+      body: JSON.stringify(requestBody),
+    });
+
+    if (response.ok && response.status === 200) {
+      const responseData: GenericResponseDto<void> = await response.json();
+      return responseData;
+    } else {
+      const errorGeneric: GenericResponseDto<void> = await response.json();
+      throw new Error(
+        `${errorGeneric.message} - Transaction Id: ${transactionId}`
+      );
+    }
+  } catch (error: any) {
+    throw new Error(
+      `It was not possible to separate from the brotherhood: ${error.message}`
+    );
+  }
+};

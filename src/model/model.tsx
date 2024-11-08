@@ -183,6 +183,7 @@ export interface GuildDto {
   bank_money: number;
   server_name: string;
   server_id: number;
+  discord: string;
   members: number;
 }
 
@@ -208,6 +209,9 @@ export interface GuildData {
   members: number;
   benefits: Benefit[];
   claimed_benefits: number;
+  is_leader: boolean;
+  discord: string;
+  multi_faction: boolean;
   server_name: string;
 }
 

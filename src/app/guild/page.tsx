@@ -177,9 +177,6 @@ const Guild = () => {
                         {t("guild.table.position-six")}
                       </th>
                       <th scope="col" className="px-6 py-3">
-                        {t("guild.table.position-seven")}
-                      </th>
-                      <th scope="col" className="px-6 py-3">
                         {t("guild.table.position-eight")}
                       </th>
                       <th scope="col" className="px-6 py-3">
@@ -233,9 +230,13 @@ const Guild = () => {
                         <td className="px-6 py-4">{row.server_name}</td>
                         <td className="px-6 py-4 ">{row.create_date}</td>
                         <td className="px-6 py-4">{row.members}</td>
-                        <td className="px-6 py-4">{row.bank_money}</td>
                         <td className="px-6 py-4">
-                          <a className="font-medium text-blue-600 dark:text-blue-500 hover:underline cursor-pointer">
+                          <a
+                            href={row.discord}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="font-medium text-blue-600 dark:text-blue-500 hover:underline cursor-pointer"
+                          >
                             Discord
                           </a>
                         </td>
