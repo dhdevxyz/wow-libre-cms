@@ -350,3 +350,34 @@ export interface BuyRedirectDto {
   success_url: string;
   back_url: string;
 }
+
+/* Modelo para obtener las imagenes de la home */
+export interface BannersHome {
+  url: string;
+  alt: string;
+}
+/* Modelo para obtener el widget de la home*/
+interface Benefit {
+  img: string;
+  alt: string;
+  title: string;
+}
+export interface PassAzerothData {
+  title: string;
+  benefits: Benefit[];
+  description: string;
+  btn: string;
+}
+/* Modelo para obtener el widget Pill de la home*/
+export interface WidgetPillHome {
+  img: string;
+  url: string;
+}
+/* Modelo para obtener el plan disponible para subscripciones*/
+export interface PlanModel {
+  name: string;
+  price: number;
+  discount: number;
+  discounted_price: number;
+  status: boolean;
+}

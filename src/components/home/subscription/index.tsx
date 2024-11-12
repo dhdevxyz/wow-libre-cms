@@ -1,70 +1,82 @@
 "use client";
-import React from "react";
+import { widgetSubscription } from "@/api/home";
+import LoadingSpinner from "@/components/utilities/loading-spinner";
+import { useUserContext } from "@/context/UserContext";
+import { PassAzerothData } from "@/model/model";
+import Link from "next/link";
+import React, { useEffect, useState } from "react";
 
 const Subscription = () => {
+  const [subscriptionData, setSubscriptionData] = useState<PassAzerothData>();
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
+  const { user } = useUserContext();
+
+  useEffect(() => {
+    const fetchBenefits = async () => {
+      try {
+        const response = await widgetSubscription(user.language);
+        setSubscriptionData(response);
+      } catch (err: any) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchBenefits();
+  }, [user.language]);
+
+  if (loading) {
+    return (
+      <>
+        <LoadingSpinner />
+      </>
+    );
+  }
+
+  if (error) {
+    return null;
+  }
+
   return (
     <div className="contenedor rounded-lg overflow-hidden mt-10 mb-20">
-      <div className="max-w-52xl mx-auto">
+      <div className="max-w-9xl mx-auto">
         <div className="relative">
-          <div className="bg-gradient-to-br from-pink-600 to-indigo-900 rounded-t-lg">
-            <h2 className="text-3xl font-bold  p-6 text-white">
-              Suscríbete al pase azeroth
+          <div className="bg-gradient-to-br pl-5 from-pink-600 to-indigo-900 rounded-t-lg py-6">
+            <h2 className="text-3xl font-bold text-white text-left">
+              {subscriptionData?.title}
             </h2>
           </div>
         </div>
 
-        <div className=" bg-white rounded-b-md">
-          <p className=" font-bold text-gray-700 p-4">
-            Consigue los mejores beneficios
+        <div className="bg-white rounded-b-md p-6">
+          <p className="text-lg text-gray-800 font-semibold text-left mb-6">
+            {subscriptionData?.description}
           </p>
-          <div className="grid grid-cols-3 gap-4 mb-4">
-            <div className="text-center">
-              <div className="rounded-full h-32 w-32 overflow-hidden mx-auto mb-2">
-                {" "}
-                {/* Aumentamos el tamaño de los contenedores */}
-                <img
-                  className="rounded-full h-full w-full object-cover"
-                  src="https://i.ibb.co/txq9mB8/migraciones.jpg"
-                  alt="Avatar"
-                />
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mb-6">
+            {subscriptionData?.benefits.map((benefit, index) => (
+              <div key={index} className="text-center">
+                <div className="rounded-full h-36 w-36 overflow-hidden mx-auto mb-4">
+                  <img
+                    className="rounded-full h-full w-full object-cover"
+                    src={benefit.img}
+                    alt={benefit.alt}
+                  />
+                </div>
+                <p className="font-semibold text-gray-600 text-xl">
+                  {benefit.title}
+                </p>
               </div>
-              <p className=" font-bold text-gray-600">
-                Migracion de tus personajes a otros servidores
-              </p>
-            </div>
-            <div className="text-center">
-              <div className="rounded-full  h-32 w-32 overflow-hidden mx-auto mb-2">
-                {" "}
-                {/* Aumentamos el tamaño de los contenedores */}
-                <img
-                  className="rounded-full h-full w-full object-cover"
-                  src="https://i.ibb.co/RY9s1k6/281-mobile-background.jpg"
-                  alt="Avatar"
-                />
-              </div>
-              <p className="font-bold text-gray-600">
-                Servicios de juego - Ilimitados
-              </p>
-            </div>
-            <div className="text-center">
-              <div className="rounded-full h-32 w-32 overflow-hidden mx-auto mb-2">
-                {" "}
-                {/* Aumentamos el tamaño de los contenedores */}
-                <img
-                  className="rounded-full h-full w-full object-cover"
-                  src="https://i.ibb.co/Bc0z2Bw/regalos-navidad.png"
-                  alt="Avatar"
-                />
-              </div>
-              <p className="font-bold text-gray-600">Regalos y beneficios</p>
-            </div>
+            ))}
           </div>
-          <div className="flex justify-end pr-4 pb-4">
-            {" "}
-            {/* Se agregó pr-4 para dar margen derecho al botón */}
-            <button className="bg-pink-600 text-white py-3 px-7 rounded-lg hover:bg-pink-700">
-              Suscribirse
-            </button>
+          <div className="flex justify-end mt-6">
+            <Link
+              href="/subscriptions"
+              className="bg-pink-600 text-white py-3 px-8 rounded-lg text-lg font-medium hover:bg-pink-700 transition-colors duration-300"
+            >
+              {subscriptionData?.btn || "Suscribirse"}
+            </Link>
           </div>
         </div>
       </div>

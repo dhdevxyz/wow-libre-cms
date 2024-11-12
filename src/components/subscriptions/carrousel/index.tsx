@@ -12,7 +12,7 @@ const MultiCarouselSubs = () => {
       id: 1,
       image:
         "https://lh3.googleusercontent.com/p/AF1QipMQDfZnkDpTRVfIZybnD_P_LYKOZXddp05JVEU=s680-w680-h510",
-      title: "Dinosaurio Durotar",
+      title: "Wow Libre",
     },
     {
       id: 2,

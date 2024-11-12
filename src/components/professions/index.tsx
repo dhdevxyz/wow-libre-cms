@@ -120,11 +120,6 @@ const Professions: React.FC<ProfessionsProps> = ({
         <p className="text-gray-300 text-lg mb-4">
           <strong>¿Qué hacen los botones?</strong>
         </p>
-        <p className="text-gray-300 text-lg mb-2">
-          <strong>Publicar:</strong> Al hacer clic en este botón, podrás
-          <strong> publicar tu profesión en la web.</strong> Esto permitirá que
-          otros jugadores vean y conozcan tus habilidades y servicios.
-        </p>
         <p className="text-gray-300 text-lg">
           <strong>Anunciarme:</strong> Al hacer clic en este botón, se enviará
           un mensaje dentro del servidor. Esto es útil para alertar a otros
@@ -195,21 +190,24 @@ const Professions: React.FC<ProfessionsProps> = ({
                     <p className="text-gray-300 text-lg mb-4">
                       Administrar servicios
                     </p>
-                    {profession.service == null ? (
-                      <button
-                        className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 focus:outline-none mb-2 md:mb-0"
-                        onClick={() => openModal(profession)}
-                      >
-                        Publicar en la web
-                      </button>
-                    ) : (
-                      <button
-                        onClick={() => openModal(profession)}
-                        className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 focus:outline-none"
-                      >
-                        Editar
-                      </button>
-                    )}
+                    {/*
+                  profession.service == null ? (
+                    <button
+                      className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 focus:outline-none mb-2 md:mb-0"
+                      onClick={() => openModal(profession)}
+                    >
+                      Publicar en la web
+                    </button>
+                  ) : (
+                    <button
+                      onClick={() => openModal(profession)}
+                      className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 focus:outline-none"
+                    >
+                      Editar
+                    </button>
+                  )
+                */}
+
                     <button
                       onClick={() => handleAnnounce(profession)}
                       className="bg-orange-400 text-white px-4 py-2 rounded-lg hover:bg-orange-600 mt-3 focus:outline-none"
@@ -226,6 +224,7 @@ const Professions: React.FC<ProfessionsProps> = ({
       {showConfirmDialog && selectedProfession && (
         <Announcement
           cost={1000}
+          serverId={serverId}
           characterId={character.id}
           skillId={selectedProfession.id}
           accountId={accountId}

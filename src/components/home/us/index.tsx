@@ -1,5 +1,5 @@
 import React from "react";
-import "./style.css"; // Asegúrate de tener tus estilos CSS configurados correctamente
+import "./style.css";
 
 const Us = () => {
   return (
@@ -19,7 +19,7 @@ const Us = () => {
               <br />
               Empoderando a la Comunidad de Jugadores
             </h2>
-            <p className="text-gray-200 leading-relaxed mt-5 text-justify">
+            <p className="text-gray-200 leading-relaxed mt-5 ">
               En el mundo digital de World of Warcraft, los datos generados por
               la comunidad son un tesoro invaluable. En WoW Libre, transformamos
               esta riqueza en un recurso accesible, permitiendo que otros

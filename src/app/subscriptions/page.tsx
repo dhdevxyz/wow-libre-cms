@@ -1,86 +1,23 @@
 "use client";
-import MultiCarousel from "@/components/home/carrousel-multiple";
+import { getPlanAvailable } from "@/api/plan";
 import NavbarAuthenticated from "@/components/navbar-authenticated";
 import MultiCarouselSubs from "@/components/subscriptions/carrousel";
+import { PlanModel } from "@/model/model";
 import Link from "next/link";
-import React, { useState } from "react";
-import { FaCreditCard, FaMoneyCheckAlt, FaCashRegister } from "react-icons/fa"; // Asegúrate de tener react-icons instalado
-import Carousel from "react-multi-carousel";
-import Slider from "react-slick";
+import { useEffect, useState } from "react";
+import { FaCashRegister, FaCreditCard, FaMoneyCheckAlt } from "react-icons/fa"; // Asegúrate de tener react-icons instalado
 
 const Subscriptions = () => {
-  const responsive = {
-    superLargeDesktop: {
-      breakpoint: { max: 4000, min: 3000 },
-      items: 4,
-    },
-    desktop: {
-      breakpoint: { max: 3000, min: 1024 },
-      items: 2,
-    },
-    tablet: {
-      breakpoint: { max: 1024, min: 464 },
-      items: 2,
-    },
-    mobile: {
-      breakpoint: { max: 464, min: 0 },
-      items: 1,
-    },
-  };
-  const items = [
-    {
-      id: 1,
-      image: "https://i.ibb.co/QnVTf01/1082103-raptor-fosilizado.jpg",
-      title: "Dinosaurio Durotar",
-      description: "Montura",
-      price: "200g",
-      disclaimer: "Oferta esclusiva",
-    },
-    {
-      id: 2,
-      image: "https://i.ibb.co/HrdwNS5/Okan01.jpg",
-      title: "Komodo",
-      description: "Montura",
-      price: "200g",
-      disclaimer: "Oferta esclusiva",
-    },
-    {
-      id: 3,
-      image: "https://i.ibb.co/GkZyPNH/1125458-montura-espectral-de-eve.jpg",
-      title: "Escoba",
-      description: "Montura",
-      price: "200g",
-      disclaimer: "Oferta esclusiva",
-    },
-    {
-      id: 4,
-      image: "https://i.ibb.co/sVNbt0v/images.jpg",
-      title: "Perro Inframundo",
-      description: "Montura",
-      price: "200g",
-      disclaimer: "Oferta esclusiva",
-    },
-    {
-      id: 5,
-      image: "https://i.ibb.co/MSH1gsz/7-UDK5-QF3-RP1-O1690524396550.jpg",
-      title: "Ropa Gm",
-      description: "Item",
-      price: "200g",
-      disclaimer: "Oferta esclusiva",
-    },
-  ];
-
-  // Definición de las preguntas y respuestas
   const faqs = [
     {
       question: "¿Cuál es el horario de atención?",
       answer:
-        "Nuestro horario de atención es de lunes a viernes de 9:00 AM a 6:00 PM.",
+        "Nuestro horario de atención es de lunes a sabados de 9:00 AM a 6:00 PM.",
     },
     {
-      question: "¿Cómo puedo realizar un pedido?",
+      question: "¿Que beneficios obtengo con una subscripcion?",
       answer:
-        "Puedes realizar un pedido a través de nuestra página web o llamándonos directamente.",
+        "Al realizar una subscripcion  obtendras servicios de juego totalmente  gratis a todas las cuentas vinculadas en wow libre y adicionalmente tendras un beneficio del 50% de descuento en todas los elementos de la tienda y semanal mente recibiras eventos especiales y regalos adicionales por tu contribuicion.",
     },
     {
       question: "¿Cuál es la política de devolución?",
@@ -90,11 +27,26 @@ const Subscriptions = () => {
     {
       question: "¿Ofrecen soporte técnico?",
       answer:
-        "Sí, ofrecemos soporte técnico a nuestros clientes durante el horario de atención.",
+        "Sí, ofrecemos soporte técnico priorizado a nuestros clientes durante el horario de atención.",
     },
   ];
-
+  const [loading, setLoading] = useState<boolean>(true);
+  const [planModel, setPlan] = useState<PlanModel>();
   const [activeIndex, setActiveIndex] = useState(null);
+
+  useEffect(() => {
+    const fetchPlan = async () => {
+      try {
+        const plan = await getPlanAvailable();
+        setPlan(plan);
+      } catch (err: any) {
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchPlan();
+  }, []);
 
   const toggleAnswer = (index: any) => {
     setActiveIndex(activeIndex === index ? null : index);
@@ -126,14 +78,14 @@ const Subscriptions = () => {
                 <div className="mb-4">
                   <div className="flex items-center space-x-4">
                     <p className="text-lg lg:text-3xl line-through">
-                      $ 39.990/mes
+                      ${planModel?.price} /mes
                     </p>
                     <span className="bg-green-500 text-white text-lg font-semibold px-3 py-1 rounded-full">
-                      50% OFF
+                      {planModel?.discount}% OFF
                     </span>
                   </div>
                   <p className="text-lg lg:text-4xl pt-2 font-semibold">
-                    $ 29.990/mes
+                    $ {planModel?.discounted_price} /mes
                   </p>
                 </div>
               </div>
@@ -196,11 +148,12 @@ const Subscriptions = () => {
                 }}
               >
                 <h3 className="text-2xl font-bold mb-4 text-white">
-                  Servicios gratis
+                  Servicios Gratuitos
                 </h3>
                 <div className="grid grid-cols-1 sm:grid-cols-1 gap-6">
                   <div className="p-4 text-gray-300 rounded-lg">
-                    Cambia de faccion, renombra tus persoanjes totalmente gratis
+                    Cambia de facción o renombra a tus personajes, ¡todo
+                    completamente gratis!
                   </div>
                 </div>
               </div>
@@ -213,11 +166,12 @@ const Subscriptions = () => {
                 }}
               >
                 <h3 className="text-2xl font-bold mb-4 text-white">
-                  40% OFF en las donaciones
+                  50% de Descuento en la tienda
                 </h3>
                 <div className="grid grid-cols-1 sm:grid-cols-1 gap-6">
                   <div className="p-4 text-gray-300 rounded-lg">
-                    En millones de productos de menos de $ 60.000
+                    ¡Disfruta comprando con estos increíbles descuentos y lleva
+                    más por menos!
                   </div>
                 </div>
               </div>
@@ -228,13 +182,16 @@ const Subscriptions = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <div className="flex items-center justify-start mb-4">
             <span className="bg-green-500 text-white text-xl font-semibold px-3 py-1 rounded-full mr-4">
-              100% OFF
+              {planModel?.discount} OFF
             </span>
             <div className="flex flex-col">
               <h2 className="text-3xl lg:text-4xl font-bold text-white mr-4 mb-1">
-                Plan promocional
+                ¡Plan Promocional Irresistible!
               </h2>
-              <h3 className="text-xl text-gray-300">No pierdas tus datos</h3>
+              <h3 className="text-xl text-gray-300">
+                ¡No dejes pasar esta oportunidad y disfruta todos los beneficios
+                de una suscripción premium!
+              </h3>
             </div>
           </div>
 
@@ -262,13 +219,15 @@ const Subscriptions = () => {
             <div className="flex flex-col items-center">
               <div className="flex items-center mb-2">
                 <span className="line-through text-gray-400 text-3xl mr-2">
-                  $100.000
+                  ${planModel?.price} /mes
                 </span>
                 <span className="bg-green-500 text-white text-2xl font-semibold px-3 py-1 rounded-full">
-                  20% OFF
+                  {planModel?.discount}% OFF
                 </span>
               </div>
-              <span className="text-4xl font-bold text-white">$80.000</span>
+              <span className="text-4xl font-bold text-white">
+                ${Math.round(planModel?.discounted_price || 15)} /mes
+              </span>
             </div>
           </div>
 

@@ -20,7 +20,6 @@ const Purchases = () => {
       setLoading(true);
 
       try {
-        // Carga de transacciones usando currentPage
         const data = await getTransactions(token, currentPage, ITEMS_PER_PAGE);
         setTransactions(data.transactions);
         setTotalTransactions(data.size);
@@ -39,11 +38,11 @@ const Purchases = () => {
   };
 
   return (
-    <div className="contenedor h-screen-md">
+    <div className="contenedor  overflow-hidden">
       <div className="mb-20">
         <NavbarAuthenticated />
       </div>
-      <div className="flex flex-wrap -mx-3 dark:bg-gray-900 w-full  max-h-[50rem]">
+      <div className="flex flex-wrap -mx-3 dark:bg-gray-900 w-full max-h-full overflow-hidden">
         <div className="w-full max-w-full px-3 mb-6 mx-auto">
           <div className="relative flex-1 flex flex-col break-words min-w-0 bg-clip-border rounded-[.95rem] bg-gray-800 m-5 dark:bg-gray-900">
             <div className="relative flex flex-col min-w-0 break-words border border-dashed bg-clip-border rounded-2xl border-gray-700 bg-gray-800 dark:bg-gray-900">
@@ -58,43 +57,45 @@ const Purchases = () => {
                 </h3>
                 <div className="relative flex flex-wrap items-center my-2">
                   <button
-                    onClick={() => setCurrentPage(0)} // Reinicia a la primera página
+                    onClick={() => setCurrentPage(0)}
                     className="inline-block text-[.925rem] font-medium text-center cursor-pointer rounded-2xl transition-colors duration-150 ease-in-out text-white bg-gray-700 border-0 py-2 px-5 hover:bg-gray-600"
                   >
                     Actualizar
                   </button>
                 </div>
               </div>
-              <div className="flex-auto block py-8 pt-6 px-9">
+              <div className="flex-auto block py-8 pt-6 px-9 overflow-hidden">
                 {loading ? (
-                  <p className="text-center text-gray-400">
-                    Cargando transacciones...
-                  </p>
+                  <div className="flex items-center justify-center min-h-[340px]">
+                    <p className="text-center text-lg font-medium text-gray-400">
+                      Cargando transacciones...
+                    </p>
+                  </div>
                 ) : (
-                  <div className="flex flex-col h-screen-md w-full min-h-[40vh] max-h-[40rem]">
-                    <div className="flex-grow overflow-auto min-h-[340px] ">
+                  <div className="flex flex-col h-full w-full min-h-[40vh] max-h-[40rem] overflow-hidden">
+                    <div className="flex-grow overflow-auto min-h-[340px]">
                       <table className="w-full align-middle text-white border-neutral-700">
                         <thead className="border-b border-gray-700">
                           <tr className="font-semibold text-[0.95rem] text-gray-400">
-                            <th className="pb-3 text-start min-w-[175px]">
+                            <th className="pb-3 text-start min-w-[175px] text-xl">
                               ITEM
                             </th>
-                            <th className="pb-3 text-end min-w-[100px]">
+                            <th className="pb-3 text-end min-w-[100px] text-xl">
                               Precio
                             </th>
-                            <th className="pb-3 text-end min-w-[100px]">
+                            <th className="pb-3 text-end min-w-[100px] text-xl">
                               Moneda
                             </th>
-                            <th className="pb-3 text-end min-w-[100px]">
+                            <th className="pb-3 text-end min-w-[100px] text-xl">
                               PROGRESS
                             </th>
-                            <th className="pb-3 pr-12 text-end min-w-[175px]">
+                            <th className="pb-3 pr-12 text-end min-w-[175px] text-xl">
                               STATUS
                             </th>
-                            <th className="pb-3 pr-12 text-end min-w-[100px]">
+                            <th className="pb-3 pr-12 text-end min-w-[100px] text-xl">
                               DATE
                             </th>
-                            <th className="pb-3 text-end min-w-[50px]">
+                            <th className="pb-3 text-end min-w-[50px] text-xl">
                               DETAILS
                             </th>
                           </tr>
@@ -126,23 +127,23 @@ const Purchases = () => {
                                   </div>
                                 </div>
                               </td>
-                              <td className="p-3 pr-0 text-end text-gray-300">
+                              <td className="p-3 pr-0 text-end text-xl text-gray-300 ">
                                 {transaction.price}
                               </td>
-                              <td className="p-3 pr-0 text-end text-gray-300">
+                              <td className="p-3 pr-0 text-end text-sm text-gray-300">
                                 {transaction.currency}
                               </td>
                               <td className="p-3 pr-0 text-end">
-                                <span className="text-center inline-flex px-2 py-1 font-semibold text-base text-green-400 bg-green-900 rounded-lg">
+                                <span className="text-center text-sm inline-flex px-2 py-1 font-semibold  text-green-400 bg-green-900 rounded-lg">
                                   {transaction.progress}%
                                 </span>
                               </td>
                               <td className="p-3 pr-12 text-end">
-                                <span className="text-center inline-flex px-4 py-3 font-semibold text-[.95rem] text-blue-400 bg-blue-900 rounded-lg">
+                                <span className="text-sm text-center inline-flex px-4 py-3 font-semibold text-[.95rem] text-blue-400 bg-blue-900 rounded-lg">
                                   {transaction.status}
                                 </span>
                               </td>
-                              <td className="pr-0 text-end text-gray-300 text-xl">
+                              <td className="pr-0 text-end text-sm text-gray-300 ">
                                 {transaction.date}
                               </td>
                               <td className="p-3 pr-0 text-end">
@@ -173,7 +174,6 @@ const Purchases = () => {
                       <ReactPaginate
                         previousLabel="Anterior"
                         nextLabel="Siguiente"
-                        breakLabel={""}
                         pageCount={Math.ceil(
                           totalTransactions / ITEMS_PER_PAGE
                         )}
@@ -181,17 +181,14 @@ const Purchases = () => {
                         pageRangeDisplayed={1}
                         onPageChange={handlePageClick}
                         containerClassName={"pagination flex space-x-2"}
-                        pageClassName={"page-item"}
                         pageLinkClassName={
                           "text-white py-2 px-3 rounded-lg hover:bg-gray-600"
                         }
-                        previousClassName={"page-item"}
                         previousLinkClassName={
-                          "page-link text-white py-2 px-3 rounded-lg hover:bg-gray-600"
+                          "text-white py-2 px-3 rounded-lg hover:bg-gray-600"
                         }
-                        nextClassName={"page-item"}
                         nextLinkClassName={
-                          "page-link text-white py-2 px-3 rounded-lg hover:bg-gray-600"
+                          "text-white py-2 px-3 rounded-lg hover:bg-gray-600"
                         }
                         forcePage={currentPage}
                       />

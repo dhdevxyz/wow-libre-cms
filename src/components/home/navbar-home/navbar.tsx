@@ -9,6 +9,9 @@ import { useTranslation } from "react-i18next";
 import { getAvailableCountries } from "@/api/country";
 import LoadingSpinner from "../../utilities/loading-spinner";
 import { useUserContext } from "@/context/UserContext";
+import { widgetPillSubscription, widgetSubscription } from "@/api/home";
+import { WidgetPillHome } from "@/model/model";
+import Cookies from "js-cookie";
 
 const Navbar = () => {
   const { t } = useTranslation();
@@ -16,16 +19,22 @@ const Navbar = () => {
   const [languages, setLanguages] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
   const { user, setUser } = useUserContext();
+  const [pillHome, setPillHome] = useState<WidgetPillHome>();
+  const jwt = Cookies.get("token");
 
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const apiResponse = await getAvailableCountries();
+        const [apiResponse, widgetResponse] = await Promise.all([
+          getAvailableCountries(),
+          widgetPillSubscription(user.language, jwt || null),
+        ]);
         const uniqueLanguages = Array.from(
           new Set(apiResponse.map((country) => country.language))
         );
         setLanguages(uniqueLanguages);
+        setPillHome(widgetResponse);
       } catch (error) {
         setLoading(false);
       } finally {
@@ -34,7 +43,7 @@ const Navbar = () => {
     };
 
     fetchData();
-  }, []);
+  }, [user]);
 
   const handleSearch = (query: string) => {
     console.log("Buscar:", query);
@@ -74,15 +83,28 @@ const Navbar = () => {
           placeHolder={t("navbar.search.place-holder")}
         ></Searcher>
       </div>
-      <div className="promotion">
-        <a href="/subscriptions">
-          <img
-            className="image-promotion"
-            src="./img/homes/promotion.png"
-            alt="Promotion"
-          />
-        </a>
-      </div>
+      {loading ? (
+        <div className="promotion">
+          <a href="/subscriptions">
+            <img
+              className="image-promotion"
+              src="./img/homes/pill-default.png"
+              alt="Pill Subscription"
+            />
+          </a>
+        </div>
+      ) : (
+        <div className="promotion">
+          <a href={pillHome?.url}>
+            <img
+              className="image-promotion"
+              src={pillHome?.img}
+              alt="Pill Subscription"
+            />
+          </a>
+        </div>
+      )}
+
       {loading ? (
         <div className="nav-ubication relative">
           <LoadingSpinner />

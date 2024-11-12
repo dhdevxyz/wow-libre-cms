@@ -4,6 +4,7 @@ import Swal from "sweetalert2";
 
 interface ConfirmationDialogProps {
   cost: number;
+  serverId: number;
   characterId: number;
   skillId: number;
   accountId: number;
@@ -14,6 +15,7 @@ interface ConfirmationDialogProps {
 
 const Announcement: React.FC<ConfirmationDialogProps> = ({
   cost,
+  serverId,
   characterId,
   skillId,
   accountId,
@@ -35,7 +37,13 @@ const Announcement: React.FC<ConfirmationDialogProps> = ({
 
     if (result.isConfirmed) {
       try {
-        await getAnnoucementProfession(characterId, skillId, accountId, token);
+        await getAnnoucementProfession(
+          characterId,
+          skillId,
+          accountId,
+          token,
+          serverId
+        );
         onConfirm();
       } catch (error: any) {
         Swal.fire({

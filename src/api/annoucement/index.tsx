@@ -1,4 +1,4 @@
-import { BASE_URL_CHARACTER } from "@/configs/configs";
+import { BASE_URL } from "@/configs/configs";
 import { GenericResponseDto } from "@/dto/generic";
 import { v4 as uuidv4 } from "uuid";
 
@@ -6,13 +6,14 @@ export const getAnnoucementProfession = async (
   characterId: number,
   skillId: number,
   accountId: number,
-  token: string
+  token: string,
+  serverId: number
 ): Promise<GenericResponseDto<void>> => {
   try {
     const transactionId = uuidv4();
 
     const response = await fetch(
-      `${BASE_URL_CHARACTER}/api/professions/announcement`,
+      `${BASE_URL}/api/characters/profession/announcement`,
       {
         method: "POST",
         headers: {
@@ -24,6 +25,7 @@ export const getAnnoucementProfession = async (
           character_id: characterId,
           skill_id: skillId,
           account_id: accountId,
+          server_id: serverId,
         }),
       }
     );

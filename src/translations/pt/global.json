@@ -374,7 +374,7 @@
             "description": "Os prêmios obtidos serão entregues a todos os membros da guilda durante o evento. Após esse período, os desafios serão atualizados e deverão ser cumpridos novamente para adquirir os benefícios."
         },
         "benefits": {
-            "title": "Benefícios",
+            "title": "Benefícios ",
             "subtitle": "Obtidos",
             "disclaimer": "Ao ingressar nesta guilda, você poderá obter os seguintes benefícios:",
             "no-benefits": "Esta guilda ainda não possui benefícios"
