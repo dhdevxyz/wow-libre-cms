@@ -1,10 +1,10 @@
 "use client";
 
 import { validateMail } from "@/api/account/security";
+import NavbarAuthenticated from "@/components/navbar-authenticated";
+import Cookies from "js-cookie";
 import { useSearchParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
-import Cookies from "js-cookie";
-import NavbarAuthenticated from "@/components/navbar-authenticated";
 
 interface ValidationResult {
   success: boolean;
@@ -16,24 +16,22 @@ const ConfirmOtpAccount: React.FC = () => {
     useState<ValidationResult | null>(null);
   const [isMail, setMail] = useState<string | null>("");
 
-  // Obtener los parámetros de la URL
-  const searchParams = useSearchParams();
-
-  const codeParam = searchParams.get("code");
-  const codeEmail = searchParams.get("email");
-  const token = Cookies.get("token");
-
   useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const codeParam = urlParams.get("code");
+    const codeEmail = urlParams.get("email");
+    const token = Cookies.get("token");
+
     setMail(codeEmail);
 
     if (codeParam && token) {
       const validateOtp = async () => {
         try {
           await validateMail(token, codeParam);
-          return {
+          setValidationResult({
             success: true,
             message: "OTP validado con éxito",
-          };
+          });
         } catch (error) {
           setValidationResult({
             success: false,
@@ -44,7 +42,7 @@ const ConfirmOtpAccount: React.FC = () => {
 
       validateOtp();
     }
-  }, [searchParams]);
+  }, []);
 
   return (
     <div className="contenedor">
