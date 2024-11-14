@@ -1,4 +1,4 @@
-import { BASE_URL, BASE_URL_AUTH } from "@/configs/configs";
+import { BASE_URL } from "@/configs/configs";
 import { GenericResponseDto } from "@/dto/generic";
 import { ExistEmailModel } from "@/model/model";
 import { v4 as uuidv4 } from "uuid";
