@@ -2,6 +2,7 @@
 import { getPlanAvailable } from "@/api/plan";
 import NavbarAuthenticated from "@/components/navbar-authenticated";
 import MultiCarouselSubs from "@/components/subscriptions/carrousel";
+import { useUserContext } from "@/context/UserContext";
 import { PlanModel } from "@/model/model";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -33,6 +34,7 @@ const Subscriptions = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [planModel, setPlan] = useState<PlanModel>();
   const [activeIndex, setActiveIndex] = useState(null);
+  const { user } = useUserContext();
 
   useEffect(() => {
     const fetchPlan = async () => {
@@ -46,7 +48,7 @@ const Subscriptions = () => {
     };
 
     fetchPlan();
-  }, []);
+  }, [user]);
 
   const toggleAnswer = (index: any) => {
     setActiveIndex(activeIndex === index ? null : index);
@@ -90,9 +92,9 @@ const Subscriptions = () => {
                 </div>
               </div>
               <div className="mt-10">
-                {true ? (
+                {!loading && user.logged_in ? (
                   <Link
-                    href="#plans"
+                    href={planModel?.subscribe_url || "#"}
                     className="px-6 py-5 bg-blue-500 hover:bg-blue-600 rounded-lg text-white font-semibold mb-4"
                   >
                     Quiero suscribirme

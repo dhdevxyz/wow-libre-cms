@@ -380,4 +380,5 @@ export interface PlanModel {
   discount: number;
   discounted_price: number;
   status: boolean;
+  subscribe_url: string;
 }
