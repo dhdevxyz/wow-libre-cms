@@ -19,7 +19,18 @@ const Store = () => {
     const fetchProducts = async () => {
       try {
         const productsData = await getProducts();
-        setCategories(productsData);
+
+        let categoriesObject: { [key: string]: CategoryDetail[] } = {};
+
+        if (productsData instanceof Map) {
+          categoriesObject = Object.fromEntries(productsData);
+        } else if (typeof productsData === "object" && productsData !== null) {
+          categoriesObject = productsData as {
+            [key: string]: CategoryDetail[];
+          };
+        }
+
+        setCategories(categoriesObject);
       } catch (err: any) {
         setError(err.message);
       } finally {
