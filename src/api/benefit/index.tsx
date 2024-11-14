@@ -1,4 +1,4 @@
-import { BASE_URL, BASE_URL_CHARACTER } from "@/configs/configs";
+import { BASE_URL } from "@/configs/configs";
 import { GenericResponseDto } from "@/dto/generic";
 import { BenefitsModel } from "@/model/benefit-model";
 import { v4 as uuidv4 } from "uuid";

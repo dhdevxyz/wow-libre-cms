@@ -1,4 +1,4 @@
-import { BASE_URL, BASE_URL_CHARACTER } from "@/configs/configs";
+import { BASE_URL } from "@/configs/configs";
 import { GenericResponseDto } from "@/dto/generic";
 import { GuildData, GuildsDto } from "@/model/model";
 import { v4 as uuidv4 } from "uuid";
@@ -215,7 +215,7 @@ export const claimBenefits = async (
     const transactionId = uuidv4();
 
     const response = await fetch(
-      `${BASE_URL_CHARACTER}/api/guilds/claim-benefits/${characterId}?account_id=${accountId}`,
+      `${BASE_URL}/api/guilds/claim-benefits/${characterId}?account_id=${accountId}`,
       {
         method: "PUT",
         headers: {
