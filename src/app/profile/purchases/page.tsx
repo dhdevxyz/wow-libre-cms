@@ -20,7 +20,11 @@ const Purchases = () => {
       setLoading(true);
 
       try {
-        const data = await getTransactions(token, currentPage, ITEMS_PER_PAGE);
+        const data = await getTransactions(
+          token || "",
+          currentPage,
+          ITEMS_PER_PAGE
+        );
         setTransactions(data.transactions);
         setTotalTransactions(data.size);
       } catch (error) {
