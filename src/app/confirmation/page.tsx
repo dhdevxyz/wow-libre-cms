@@ -3,7 +3,6 @@
 import { validateMail } from "@/api/account/security";
 import NavbarAuthenticated from "@/components/navbar-authenticated";
 import Cookies from "js-cookie";
-import { useSearchParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
 interface ValidationResult {
