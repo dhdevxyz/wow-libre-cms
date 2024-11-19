@@ -107,14 +107,17 @@ export const widgetPillSubscription = async (
 
     // Verificar si el token es nulo y llamar a una URL alternativa
     if (token === null) {
-      response = await fetch(`${BASE_URL_TRANSACTION}/api/public/pill-home`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          transaction_id: transactionId,
-          "Accept-Language": language,
-        },
-      });
+      response = await fetch(
+        `${BASE_URL_TRANSACTION}/api/subscription/pill-home`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            transaction_id: transactionId,
+            "Accept-Language": language,
+          },
+        }
+      );
     } else {
       response = await fetch(
         `${BASE_URL_TRANSACTION}/api/subscription/pill-user`,

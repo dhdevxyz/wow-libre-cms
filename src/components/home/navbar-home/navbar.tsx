@@ -1,17 +1,17 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import "./style.css";
-import Searcher from "./search/searcher";
-import Link from "next/link";
-import NavbarAuth from "./auth";
-import { useTranslation } from "react-i18next";
 import { getAvailableCountries } from "@/api/country";
-import LoadingSpinner from "../../utilities/loading-spinner";
+import { widgetPillSubscription } from "@/api/home";
 import { useUserContext } from "@/context/UserContext";
-import { widgetPillSubscription, widgetSubscription } from "@/api/home";
 import { WidgetPillHome } from "@/model/model";
 import Cookies from "js-cookie";
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
+import LoadingSpinner from "../../utilities/loading-spinner";
+import NavbarAuth from "./auth";
+import Searcher from "./search/searcher";
+import "./style.css";
 
 const Navbar = () => {
   const { t } = useTranslation();
@@ -22,27 +22,45 @@ const Navbar = () => {
   const [pillHome, setPillHome] = useState<WidgetPillHome>();
   const jwt = Cookies.get("token");
 
+  // useEffect para obtener los países disponibles
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchAvailableCountries = async () => {
       setLoading(true);
       try {
-        const [apiResponse, widgetResponse] = await Promise.all([
-          getAvailableCountries(),
-          widgetPillSubscription(user.language, jwt || null),
-        ]);
+        const apiResponse = await getAvailableCountries();
         const uniqueLanguages = Array.from(
           new Set(apiResponse.map((country) => country.language))
         );
         setLanguages(uniqueLanguages);
-        setPillHome(widgetResponse);
       } catch (error) {
-        setLoading(false);
+        console.error("Error fetching available countries:", error);
       } finally {
         setLoading(false);
       }
     };
 
-    fetchData();
+    fetchAvailableCountries();
+  }, []);
+
+  useEffect(() => {
+    const fetchWidgetPillSubscription = async () => {
+      setLoading(true);
+      try {
+        const widgetResponse = await widgetPillSubscription(
+          user.language,
+          jwt || null
+        );
+        setPillHome(widgetResponse);
+      } catch (error) {
+        console.error("Error fetching widget pill subscription:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (user) {
+      fetchWidgetPillSubscription();
+    }
   }, [user]);
 
   const handleSearch = (query: string) => {
@@ -81,9 +99,9 @@ const Navbar = () => {
         <Searcher
           onSearch={handleSearch}
           placeHolder={t("navbar.search.place-holder")}
-        ></Searcher>
+        />
       </div>
-      {loading ? (
+      {loading || !pillHome ? (
         <div className="promotion">
           <a href="/subscriptions">
             <img
@@ -160,7 +178,8 @@ const Navbar = () => {
           </Link>
           <Link
             className="category-link hover:text-gray-400 font-serif"
-            href="/comunity"
+            target="_blank"
+            href="https://t.me/+jOZFCLD5TXAxOWRh"
           >
             {t("navbar.sections.position-two")}
           </Link>

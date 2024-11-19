@@ -1,11 +1,11 @@
-import Link from "next/link";
-import React, { useEffect, useState } from "react";
-import "../style.css";
-import { useUserContext } from "@/context/UserContext";
-import DropDown from "../dropdown";
 import LoadingSpinner from "@/components/utilities/loading-spinner";
+import { useUserContext } from "@/context/UserContext";
 import Cookies from "js-cookie";
+import Link from "next/link";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import DropDown from "../dropdown";
+import "../style.css";
 
 const NavbarAuth = () => {
   const { t } = useTranslation();
@@ -49,7 +49,10 @@ const NavbarAuth = () => {
           >
             {t("navbar.sections.position-eight")}
           </Link>
-          <Link className="nav-auth-category font-serif" href="/purchases">
+          <Link
+            className="nav-auth-category font-serif"
+            href="https://t.me/wowlibreservers/129"
+          >
             {t("navbar.sections.position-nine")}
           </Link>
 
@@ -57,7 +60,7 @@ const NavbarAuth = () => {
             <div className="w-10 h-10 rounded-full overflow-hidden ">
               <img
                 src={user.avatar}
-                alt="Perfil"
+                alt="Profile-Img"
                 className="w-full h-full object-cover"
               />
             </div>

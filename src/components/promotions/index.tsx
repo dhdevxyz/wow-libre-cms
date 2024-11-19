@@ -1,19 +1,24 @@
 import { claimBenefitsPremium, getBenefitsPremium } from "@/api/subscriptions";
-import { SubscriptionBenefits, SubscriptionsBenefit } from "@/model/model";
+import {
+  PromotionsModel,
+  SubscriptionBenefits,
+  SubscriptionsBenefit,
+} from "@/model/model";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import LoadingSpinner from "../utilities/loading-spinner";
 import Swal from "sweetalert2";
+import { claimPromotion, getPromotions } from "@/api/promotions";
 
 interface PremiumProps {
-  language: string;
-  token: string;
   serverId: number;
   accountId: number;
   characterId: number;
+  language: string;
+  token: string;
 }
 
-const Premium: React.FC<PremiumProps> = ({
+const Promotions: React.FC<PremiumProps> = ({
   serverId,
   accountId,
   characterId,
@@ -25,7 +30,7 @@ const Premium: React.FC<PremiumProps> = ({
   const [refresh, setRefresh] = useState(false);
 
   const [subscriptionBenefits, setSubscriptionBenefits] = useState<
-    SubscriptionsBenefit[]
+    PromotionsModel[]
   >([]);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 3;
@@ -33,9 +38,15 @@ const Premium: React.FC<PremiumProps> = ({
   useEffect(() => {
     const fetchBanners = async () => {
       try {
-        const subscriptionData = await getBenefitsPremium(language, token);
-        setSubscriptionBenefits(subscriptionData.benefits);
-        setSubscription(subscriptionData.benefits.length > 0);
+        const subscriptionData = await getPromotions(
+          language,
+          token,
+          serverId,
+          accountId,
+          characterId
+        );
+        setSubscriptionBenefits(subscriptionData.promotions);
+        setSubscription(subscriptionData.size > 0);
       } catch (error) {
         console.error("Error fetching subscription benefits:", error);
       } finally {
@@ -47,13 +58,13 @@ const Premium: React.FC<PremiumProps> = ({
     fetchBanners();
   }, [language, token, refresh, characterId]);
 
-  const handleButtonClick = async (benefitId: number): Promise<void> => {
+  const handleButtonClick = async (promotionId: number): Promise<void> => {
     try {
-      const response = await claimBenefitsPremium(
+      const response = await claimPromotion(
         serverId,
         accountId,
         characterId,
-        benefitId,
+        promotionId,
         language,
         token
       );
@@ -118,7 +129,7 @@ const Premium: React.FC<PremiumProps> = ({
 
   return (
     <div className="bg-gradient-to-r from-gray-800 via-black to-gray-900 text-neon_green p-8 rounded-lg shadow-lg">
-      {subscription && subscriptionBenefits.length > 0 ? (
+      {subscriptionBenefits.length > 0 ? (
         <div>
           <div className="grid grid-cols-3 gap-4">
             {currentItems.map((card, index) => (
@@ -168,7 +179,7 @@ const Premium: React.FC<PremiumProps> = ({
         <div>
           <div className="text-center mb-6">
             <h2 className="text-4xl font-bold mb-4 text-yellow-500">
-              ¡Adquiere un plan mensual!
+              Actualmente no existen promociones disponibles
             </h2>
             <p className="text-lg text-gray-300 mb-2">
               Adquiere una suscripción mensual y desbloquea increíbles
@@ -222,4 +233,4 @@ const Premium: React.FC<PremiumProps> = ({
   );
 };
 
-export default Premium;
+export default Promotions;

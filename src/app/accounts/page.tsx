@@ -1,19 +1,19 @@
 "use client";
-import React, { useEffect, useState } from "react";
-import Swal from "sweetalert2";
-import Cookies from "js-cookie";
-import { AccountsModel } from "@/model/model";
 import { getAccounts } from "@/api/account";
-import Link from "next/link";
-import { useUserContext } from "@/context/UserContext";
-import "./style.css";
-import LoadingSpinner from "@/components/utilities/loading-spinner";
 import NavbarAuthenticated from "@/components/navbar-authenticated";
+import LoadingSpinner from "@/components/utilities/loading-spinner";
+import { useUserContext } from "@/context/UserContext";
 import { InternalServerError } from "@/dto/generic";
-import { useRouter } from "next/navigation";
 import useAuth from "@/hook/useAuth";
+import { AccountsModel } from "@/model/model";
+import Cookies from "js-cookie";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import ReactPaginate from "react-paginate";
+import Swal from "sweetalert2";
+import "./style.css";
 
 const LimitAccountRegister = 10;
 const accountsPerPage = 5;

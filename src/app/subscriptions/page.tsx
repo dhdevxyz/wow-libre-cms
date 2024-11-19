@@ -1,12 +1,16 @@
 "use client";
 import { getPlanAvailable } from "@/api/plan";
+import { buyProduct } from "@/api/store";
 import NavbarAuthenticated from "@/components/navbar-authenticated";
 import MultiCarouselSubs from "@/components/subscriptions/carrousel";
 import { useUserContext } from "@/context/UserContext";
-import { PlanModel } from "@/model/model";
+import { BuyRedirectDto, PlanModel } from "@/model/model";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { FaCashRegister, FaCreditCard, FaMoneyCheckAlt } from "react-icons/fa"; // Asegúrate de tener react-icons instalado
+import Cookies from "js-cookie";
+import { useRouter } from "next/navigation";
+import Swal from "sweetalert2";
 
 const Subscriptions = () => {
   const faqs = [
@@ -35,6 +39,9 @@ const Subscriptions = () => {
   const [planModel, setPlan] = useState<PlanModel>();
   const [activeIndex, setActiveIndex] = useState(null);
   const { user } = useUserContext();
+  const [product, setProduct] = useState<BuyRedirectDto>();
+  const token = Cookies.get("token");
+  const router = useRouter();
 
   useEffect(() => {
     const fetchPlan = async () => {
@@ -49,6 +56,33 @@ const Subscriptions = () => {
 
     fetchPlan();
   }, [user]);
+
+  const handleBuy = async () => {
+    try {
+      if (!token) {
+        return;
+      }
+
+      const response: BuyRedirectDto = await buyProduct(
+        null,
+        null,
+        null,
+        token,
+        true
+      );
+      router.push(response.redirect);
+    } catch (error: any) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: `${error.message}`,
+        color: "white",
+        background: "#0B1218",
+        timer: 4500,
+      });
+    } finally {
+    }
+  };
 
   const toggleAnswer = (index: any) => {
     setActiveIndex(activeIndex === index ? null : index);
@@ -93,12 +127,12 @@ const Subscriptions = () => {
               </div>
               <div className="mt-10">
                 {!loading && user.logged_in ? (
-                  <Link
-                    href={planModel?.subscribe_url || "#"}
+                  <button
+                    onClick={handleBuy}
                     className="px-6 py-5 bg-blue-500 hover:bg-blue-600 rounded-lg text-white font-semibold mb-4"
                   >
                     Quiero suscribirme
-                  </Link>
+                  </button>
                 ) : (
                   <Link
                     href="/register"

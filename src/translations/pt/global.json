@@ -14,6 +14,11 @@
             "position-seven": "Crie sua Conta",
             "position-eight": "Minhas Compras",
             "position-nine": "Vender"
+        },
+        "drop_down": {
+            "profile": "Perfil",
+            "account": "Contas",
+            "close": "Sair"
         }
     },
     "navbar_authenticated": {

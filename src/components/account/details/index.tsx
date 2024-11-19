@@ -1,45 +1,47 @@
 "use client";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faUser,
   faComment,
-  faEnvelope,
-  faShieldHeart,
   faCrown,
+  faEnvelope,
   faFlag,
   faRotateLeft,
+  faShieldHeart,
+  faMedal,
+  faUser,
 } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import React, { useEffect, useState } from "react";
-import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
-import "react-tabs/style/react-tabs.css";
 import LoadingSpinner from "@/components/utilities/loading-spinner";
 import { useRouter, useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
+import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
+import "react-tabs/style/react-tabs.css";
 import Swal from "sweetalert2";
 import "./style.css";
 
+import { getAccount, getUser } from "@/api/account";
 import { getCharacters } from "@/api/account/character";
-import { AccountDetailDto, Character } from "@/model/model";
-import Cookies from "js-cookie";
+import DetailAccount from "@/components/account";
+import AccountGuild from "@/components/account/guild";
+import Mails from "@/components/account/mails";
 import CharacterSelection from "@/components/character_selection";
 import Friend from "@/components/friends/friend";
-import { getAccount, getUser } from "@/api/account";
 import NavbarAuthenticated from "@/components/navbar-authenticated";
-import DetailAccount from "@/components/account";
-import Mails from "@/components/account/mails";
-import useAuth from "@/hook/useAuth";
-import Professions from "@/components/professions";
-import AccountGuild from "@/components/account/guild";
-import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
-import { useTranslation } from "react-i18next";
 import Premium from "@/components/premium";
-import { UserModel } from "@/context/UserContext";
+import Professions from "@/components/professions";
 import ReturnToView from "@/components/utilities/returnToView";
+import { UserModel, useUserContext } from "@/context/UserContext";
+import useAuth from "@/hook/useAuth";
+import { AccountDetailDto, Character } from "@/model/model";
+import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
+import Cookies from "js-cookie";
+import { useTranslation } from "react-i18next";
+import Promotions from "@/components/promotions";
 
 const AccountDetail = () => {
   const searchParams = useSearchParams();
 
-  const token = Cookies.get("token");
+  const token = Cookies.get("token")?.toString();
   const accountId = Number(searchParams.get("id"));
   const serverId = Number(searchParams.get("server_id"));
 
@@ -57,6 +59,7 @@ const AccountDetail = () => {
   const [selectedCharacter, setSelectedCharacter] = useState<Character>();
   const [avatar, setAvatar] = useState("https://via.placeholder.com/150");
   const { t, ready } = useTranslation();
+  const { user } = useUserContext();
 
   useAuth(t("errors.message.expiration-session"));
 
@@ -100,6 +103,10 @@ const AccountDetail = () => {
     setSelectedCharacter(character);
     setAvatar(character.race_logo || "https://via.placeholder.com/150");
   };
+
+  if (token == null) {
+    router.push("/accounts");
+  }
 
   if (isLoading || !ready) {
     return (
@@ -219,7 +226,11 @@ const AccountDetail = () => {
                 <FontAwesomeIcon icon={faCrown} className="mr-2 text-2xl" />{" "}
                 {t("account-detail.tabs.var6")}
               </Tab>
-              <Tab className="py-6 px-6 text-white  bg-tablist cursor-pointer text-lg font-semibold flex items-center">
+              <Tab className="py-6 px-5 text-white  bg-tablist cursor-pointer text-lg font-semibold flex items-center">
+                <FontAwesomeIcon icon={faMedal} className="mr-2 text-2xl" />
+                Promociones
+              </Tab>
+              <Tab className="py-6 px-5 text-white  bg-tablist cursor-pointer text-lg font-semibold flex items-center">
                 <FontAwesomeIcon
                   icon={faRotateLeft}
                   className="mr-2 text-2xl"
@@ -342,7 +353,26 @@ const AccountDetail = () => {
                 )}
               </TabPanel>
               <TabPanel>
-                <Premium />
+                {token && selectedCharacter && serverId && accountId && (
+                  <Premium
+                    serverId={serverId}
+                    accountId={accountId}
+                    characterId={selectedCharacter.id}
+                    language={user.language}
+                    token={token}
+                  />
+                )}
+              </TabPanel>
+              <TabPanel>
+                {token && selectedCharacter && serverId && accountId && (
+                  <Promotions
+                    serverId={serverId}
+                    accountId={accountId}
+                    characterId={selectedCharacter.id}
+                    language={user.language}
+                    token={token}
+                  />
+                )}
               </TabPanel>
               <TabPanel>
                 <ReturnToView />

@@ -382,3 +382,35 @@ export interface PlanModel {
   status: boolean;
   subscribe_url: string;
 }
+/* Modelo para obtener los beneficios premium de las  subscripciones*/
+export interface SubscriptionBenefits {
+  benefits: SubscriptionsBenefit[];
+  size: number;
+}
+export interface SubscriptionsBenefit {
+  id: number;
+  img: string;
+  name: string;
+  description: string;
+  reactivable: boolean;
+  command: string;
+  btn_txt: string;
+}
+
+/* Modelo para obtener las promociones disponibles*/
+export interface PromotionsDto {
+  promotions: PromotionsModel[];
+  size: number;
+}
+
+export interface PromotionsModel {
+  id: number;
+  img: string;
+  name: string;
+  description: string;
+  type: string;
+  amount: number;
+  btn_txt: string;
+  min_lvl: number;
+  max_lvl: number;
+}

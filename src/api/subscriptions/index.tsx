@@ -1,0 +1,90 @@
+import { BASE_URL_TRANSACTION } from "@/configs/configs";
+import { GenericResponseDto } from "@/dto/generic";
+import { SubscriptionBenefits } from "@/model/model";
+import { v4 as uuidv4 } from "uuid";
+
+export const getBenefitsPremium = async (
+  language: string,
+  token: string
+): Promise<SubscriptionBenefits> => {
+  try {
+    const transactionId = uuidv4();
+
+    const response = await fetch(
+      `${BASE_URL_TRANSACTION}/api/subscription/benefits`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          transaction_id: transactionId,
+          "Accept-Language": language,
+          Authorization: "Bearer " + token,
+        },
+      }
+    );
+
+    if (response.ok && response.status === 200) {
+      const responseData: GenericResponseDto<SubscriptionBenefits> =
+        await response.json();
+
+      return responseData.data;
+    } else {
+      const errorGeneric: GenericResponseDto<void> = await response.json();
+
+      throw new Error(
+        `${errorGeneric.message} - Transaction Id: ${transactionId}`
+      );
+    }
+  } catch (error: any) {
+    throw new Error(
+      `It was not possible to obtain the professions: ${error.message}`
+    );
+  }
+};
+
+export const claimBenefitsPremium = async (
+  serverId: number,
+  accountId: number,
+  characterId: number,
+  benefitId: number,
+  language: string,
+  token: string
+): Promise<GenericResponseDto<void>> => {
+  try {
+    const transactionId = uuidv4();
+
+    const response = await fetch(
+      `${BASE_URL_TRANSACTION}/api/subscription/claim-benefits`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          transaction_id: transactionId,
+          "Accept-Language": language,
+          Authorization: "Bearer " + token,
+        },
+        body: JSON.stringify({
+          character_id: characterId,
+          benefit_id: benefitId,
+          account_id: accountId,
+          server_id: serverId,
+        }),
+      }
+    );
+
+    if (response.ok && response.status === 200) {
+      const responseData: GenericResponseDto<void> = await response.json();
+      return responseData;
+    } else {
+      const errorGeneric: GenericResponseDto<void> = await response.json();
+
+      throw new Error(
+        `${errorGeneric.message} - Transaction Id: ${transactionId}`
+      );
+    }
+  } catch (error: any) {
+    throw new Error(
+      `It was not possible to obtain the professions: ${error.message}`
+    );
+  }
+};

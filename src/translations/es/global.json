@@ -14,6 +14,11 @@
             "position-seven": "Crea tu cuenta",
             "position-eight": "Mis Compras",
             "position-nine": "Vender"
+        },
+        "drop_down": {
+            "profile": "Perfil",
+            "account": "Cuentas",
+            "close": "Salir"
         }
     },
     "navbar_authenticated": {

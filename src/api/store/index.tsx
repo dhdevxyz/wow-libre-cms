@@ -133,9 +133,9 @@ export const getProduct = async (reference: string): Promise<ProductDetail> => {
 };
 
 export const buyProduct = async (
-  referenceNumber: string,
-  accountId: number,
-  serverId: number,
+  referenceNumber: string | null,
+  accountId: number | null,
+  serverId: number | null,
   token: string,
   isSubscription: boolean
 ): Promise<BuyRedirectDto> => {
@@ -143,9 +143,9 @@ export const buyProduct = async (
     const transactionId = uuidv4();
     const requestBody: {
       is_subscription: boolean;
-      server_id: number;
-      account_id: number;
-      reference_number: string;
+      server_id: number | null;
+      account_id: number | null;
+      reference_number: string | null;
     } = {
       is_subscription: isSubscription,
       server_id: serverId,
