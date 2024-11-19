@@ -18,11 +18,12 @@ const Navbar = () => {
   const [languageDropdown, setLanguageDropdown] = useState(false);
   const [languages, setLanguages] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
+  const [loadingSub, setLoadingSub] = useState(true);
+
   const { user, setUser } = useUserContext();
   const [pillHome, setPillHome] = useState<WidgetPillHome>();
   const jwt = Cookies.get("token");
 
-  // useEffect para obtener los países disponibles
   useEffect(() => {
     const fetchAvailableCountries = async () => {
       setLoading(true);
@@ -33,7 +34,7 @@ const Navbar = () => {
         );
         setLanguages(uniqueLanguages);
       } catch (error) {
-        console.error("Error fetching available countries:", error);
+        setLoading(false);
       } finally {
         setLoading(false);
       }
@@ -44,7 +45,7 @@ const Navbar = () => {
 
   useEffect(() => {
     const fetchWidgetPillSubscription = async () => {
-      setLoading(true);
+      setLoadingSub(true);
       try {
         const widgetResponse = await widgetPillSubscription(
           user.language,
@@ -52,13 +53,13 @@ const Navbar = () => {
         );
         setPillHome(widgetResponse);
       } catch (error) {
-        console.error("Error fetching widget pill subscription:", error);
+        setLoadingSub(true);
       } finally {
-        setLoading(false);
+        setLoadingSub(false);
       }
     };
 
-    if (user) {
+    if (user && jwt) {
       fetchWidgetPillSubscription();
     }
   }, [user]);
@@ -101,7 +102,7 @@ const Navbar = () => {
           placeHolder={t("navbar.search.place-holder")}
         />
       </div>
-      {loading || !pillHome ? (
+      {loadingSub || !pillHome ? (
         <div className="promotion">
           <a href="/subscriptions">
             <img

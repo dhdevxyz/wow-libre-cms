@@ -105,7 +105,6 @@ export const widgetPillSubscription = async (
     const transactionId = uuidv4();
     let response;
 
-    // Verificar si el token es nulo y llamar a una URL alternativa
     if (token === null) {
       response = await fetch(
         `${BASE_URL_TRANSACTION}/api/subscription/pill-home`,
