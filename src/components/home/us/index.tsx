@@ -1,4 +1,3 @@
-import React from "react";
 import "./style.css";
 
 const Us = () => {
@@ -30,9 +29,11 @@ const Us = () => {
               conocimiento. ¡Únete a nosotros y sé parte de esta aventura
               colectiva!
             </p>
-            <button className="buttom text-white py-3 px-7 rounded-lg hover:bg-blue-600 mt-5">
-              Integrarme
-            </button>
+            <a href="https://discord.gg/gPgNaXF87p">
+              <button className="buttom text-white py-3 px-7 rounded-lg hover:bg-blue-600 mt-5">
+                Integrarme
+              </button>
+            </a>
           </div>
         </div>
       </div>

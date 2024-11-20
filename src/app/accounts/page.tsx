@@ -1,5 +1,5 @@
 "use client";
-import { getAccounts } from "@/api/account";
+import { getAccounts, sendMail } from "@/api/account";
 import NavbarAuthenticated from "@/components/navbar-authenticated";
 import LoadingSpinner from "@/components/utilities/loading-spinner";
 import { useUserContext } from "@/context/UserContext";
@@ -20,7 +20,7 @@ const accountsPerPage = 5;
 
 const Page = () => {
   const router = useRouter();
-  const { clearUserData } = useUserContext();
+  const { user, clearUserData } = useUserContext();
   const token = Cookies.get("token");
   const { t } = useTranslation();
 
@@ -102,7 +102,31 @@ const Page = () => {
     });
 
     setFilteredAccounts(filtered);
-  }, [searchUsername, searchServer, accounts]);
+  }, [searchUsername, searchServer, accounts, user]);
+
+  const handleConfirmEmail = async () => {
+    if (!token) {
+      router.push("/");
+      return;
+    }
+
+    try {
+      sendMail(token);
+      Swal.fire({
+        title: "¡Correo enviado!",
+        text: "Te hemos enviado un correo para validar tu cuenta. Por favor, revisa tu bandeja de entrada o la carpeta de spam.",
+        icon: "success",
+        confirmButtonText: "Aceptar",
+      });
+    } catch (error) {
+      Swal.fire({
+        title: "Error",
+        text: "Ocurrió un error inesperado. Por favor, inténtalo más tarde.",
+        icon: "error",
+        confirmButtonText: "Aceptar",
+      });
+    }
+  };
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
@@ -455,14 +479,32 @@ const Page = () => {
               alt="wow-account-create"
               className="logo pb-10 pt-10 "
             />
-            <p className="mb-10">
-              {t("account.without-accounts.title-message")}
-              <br />
-              {t("account.without-accounts.sub-title-message")}
-            </p>
-            {accounts && accounts.length <= 10 && (
-              <Link
+
+            {user.pending_validation ? (
+              <p className="mb-5 text-lg">
+                {t("account.without-accounts.confirm-mail.title")}
+                <br />
+                {t("account.without-accounts.confirm-mail.description")}
+              </p>
+            ) : (
+              <p className="mb-5 text-lg">
+                {t("account.without-accounts.title-message")}
+                <br />
+                {t("account.without-accounts.sub-title-message")}
+              </p>
+            )}
+
+            {user.pending_validation && (
+              <button
                 className="create-account-btn mb-2"
+                onClick={handleConfirmEmail}
+              >
+                {t("account.without-accounts.confirm-mail.btn-txt")}
+              </button>
+            )}
+            {!user.pending_validation && accounts && accounts.length <= 10 && (
+              <Link
+                className="create-account-btn text-xl"
                 href="/register/username"
               >
                 {t("account.without-accounts.btn-text")}

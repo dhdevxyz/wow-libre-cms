@@ -83,8 +83,7 @@ export const validateMail = async (
         },
       }
     );
-
-    if (response.ok && response.status === 200) {
+    if (response.status === 200 || response.status === 204) {
       const responseData: GenericResponseDto<void> = await response.json();
       return responseData;
     } else {

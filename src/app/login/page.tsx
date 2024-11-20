@@ -72,10 +72,11 @@ const Login = () => {
           logged_in: true,
           avatar: avatar_url,
           language: language,
+          pending_validation: response.pending_validation,
         });
       }
 
-      router.push("/account");
+      router.push("/accounts");
     } catch (error: any) {
       setError(error);
     } finally {

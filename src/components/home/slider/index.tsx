@@ -14,7 +14,7 @@ import { useEffect, useState } from "react";
 import Slider from "react-slick";
 
 const SliderHome = () => {
-  const [services, setPartners] = useState<ServersPromos[]>([]);
+  const [partners, setPartners] = useState<ServersPromos[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const { t } = useTranslation();
   const { user } = useUserContext();
@@ -26,7 +26,6 @@ const SliderHome = () => {
         const data = await serversPromotions(user.language);
         setPartners(data);
       } catch (error) {
-        console.error("Error fetching partners:", error);
       } finally {
         setIsLoading(false);
       }
@@ -37,34 +36,34 @@ const SliderHome = () => {
 
   const settings = {
     dots: false,
-    infinite: services.length > 4, // Allow infinite scroll only if there are enough items
+    infinite: partners.length > 4,
     arrows: true,
     speed: 500,
-    slidesToShow: Math.min(4, services.length), // Show fewer slides if there are fewer items
-    slidesToScroll: Math.min(4, services.length), // Scroll fewer slides if there are fewer items
+    slidesToShow: Math.min(4, partners.length),
+    slidesToScroll: Math.min(4, partners.length),
     autoplay: false,
     autoplaySpeed: 2000,
     responsive: [
       {
         breakpoint: 1024,
         settings: {
-          slidesToShow: Math.min(4, services.length),
-          slidesToScroll: Math.min(1, services.length),
+          slidesToShow: Math.min(4, partners.length),
+          slidesToScroll: Math.min(1, partners.length),
         },
       },
       {
         breakpoint: 600,
         settings: {
-          slidesToShow: Math.min(2, services.length),
-          slidesToScroll: Math.min(1, services.length),
+          slidesToShow: Math.min(2, partners.length),
+          slidesToScroll: Math.min(1, partners.length),
           initialSlide: 2,
         },
       },
       {
         breakpoint: 480,
         settings: {
-          slidesToShow: Math.min(1, services.length),
-          slidesToScroll: Math.min(1, services.length),
+          slidesToShow: Math.min(1, partners.length),
+          slidesToScroll: Math.min(1, partners.length),
         },
       },
     ],
@@ -80,7 +79,8 @@ const SliderHome = () => {
           {t("home-servers.description")}
         </p>
         <a
-          href="/comunity/servers"
+          href="https://t.me/wowlibreservers/122"
+          target="_blank"
           className="text-lg text-yellow-500 mt-2 hover:text-yellow-400 underline"
         >
           {t("home-servers.btn-information")}
@@ -91,15 +91,15 @@ const SliderHome = () => {
         <div className="flex justify-center mt-20">
           <LoadingSpinner />
         </div>
-      ) : services.length === 0 ? (
+      ) : partners.length === 0 ? (
         <div className="flex flex-col items-center text-white text-center mt-20">
           <img
             src="https://bnetcmsus-a.akamaihd.net/cms/blog_header/sd/SDKC28FNI82S1696978734260.png"
-            alt="Espada épica"
+            alt="partners-not-found"
             className="w-32 h-32 md:w-60 md:h-60 mb-6 select-none rounded-full transition-transform duration-500 ease-in-out transform hover:rotate-180"
           />
           <p className="text-2xl font-serif">
-            ⚔️{" "}
+            ⚔️
             <span className="text-indigo-400">
               {t("home-servers.empty-server-list-title")}🛡️
             </span>
@@ -111,20 +111,20 @@ const SliderHome = () => {
         </div>
       ) : (
         <Slider {...settings}>
-          {services.map((service) => (
-            <div key={service.id} className="slider cursor-pointer">
+          {partners.map((partner) => (
+            <div key={partner.id} className="slider cursor-pointer">
               <div className="cards-slider bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 shadow-xl rounded-xl border border-gray-700 p-6 transition-transform transform hover:scale-105 hover:shadow-2xl">
                 <div className="slider-content text-center">
                   <p className="text-2xl font-semibold text-gray-100 mb-2">
-                    {service.name}
+                    {partner.name}
                   </p>
                   <p className="text-lg text-orange-300 italic">
-                    {service.sub_title}
+                    {partner.sub_title}
                   </p>
                 </div>
                 <div className="slider-image flex justify-center items-center my-6">
                   <img
-                    src={service.logo}
+                    src={partner.logo}
                     alt="Logo"
                     draggable="false"
                     className="w-40 h-40 md:w-52 md:h-52 object-cover rounded-full border-4 border-gray-600 shadow-md transition-transform transform hover:scale-110"
@@ -132,9 +132,9 @@ const SliderHome = () => {
                 </div>
                 <div className="slider-text mb-4 text-center">
                   <p className="text-gray-300 text-md leading-relaxed font-bold">
-                    {service.description.length > 50
-                      ? `${service.description.substring(0, 50)}...`
-                      : service.description}
+                    {partner.description.length > 50
+                      ? `${partner.description.substring(0, 50)}...`
+                      : partner.description}
                   </p>
                   <div className="flex justify-center mt-4 text-yellow-400">
                     {Array.from({ length: 3 }, (_, index) => (

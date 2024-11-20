@@ -32,7 +32,6 @@ export const serversPromotions = async (
       throw new Error(`Error [${response.status}]: ${errorMessage}`);
     }
   } catch (error: any) {
-    console.error(`Error: ${error.message}`, error);
     throw new Error(
       `Could not get promotions from partner servers: ${error.message}`
     );

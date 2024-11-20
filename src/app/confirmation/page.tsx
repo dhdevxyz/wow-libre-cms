@@ -2,7 +2,9 @@
 
 import { validateMail } from "@/api/account/security";
 import NavbarAuthenticated from "@/components/navbar-authenticated";
+import { useUserContext } from "@/context/UserContext";
 import Cookies from "js-cookie";
+import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
 interface ValidationResult {
@@ -14,16 +16,21 @@ const ConfirmOtpAccount: React.FC = () => {
   const [validationResult, setValidationResult] =
     useState<ValidationResult | null>(null);
   const [isMail, setMail] = useState<string | null>("");
+  const { user, setUser } = useUserContext();
+  const router = useRouter();
+  const token = Cookies.get("token");
 
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
     const codeParam = urlParams.get("code");
     const codeEmail = urlParams.get("email");
-    const token = Cookies.get("token");
 
     setMail(codeEmail);
+    if (!user.pending_validation) {
+      router.push("/accounts");
+    }
 
-    if (codeParam && token) {
+    if (codeParam && token && user.pending_validation) {
       const validateOtp = async () => {
         try {
           await validateMail(token, codeParam);
@@ -31,6 +38,12 @@ const ConfirmOtpAccount: React.FC = () => {
             success: true,
             message: "OTP validado con éxito",
           });
+          if (user) {
+            setUser({
+              ...user,
+              pending_validation: false,
+            });
+          }
         } catch (error) {
           setValidationResult({
             success: false,
@@ -76,21 +89,30 @@ const ConfirmOtpAccount: React.FC = () => {
                   ></div>
                 </div>
               </div>
-              <p className="block font-sans text-xl antialiased font-normal leading-normal text-gray-700 opacity-75">
-                ¡Atención! 🔐 Tu código de seguridad tiene una validez de solo
-                30 minutos y ha sido enviado a tu correo electrónico registrado.
-                Si no lo ves en tu bandeja de entrada, te recomendamos revisar
-                la carpeta de spam. ¡No pierdas tiempo, el reloj está corriendo!
-                ⏳
-              </p>
+              {validationResult?.success ? (
+                <p className="block font-sans text-xl antialiased font-normal leading-normal text-gray-700 opacity-75">
+                  ¡Genial! Tu cuenta ya está validada y lista para usar.
+                  ¡Empieza a disfrutar de todos nuestros servicios ahora mismo!
+                </p>
+              ) : (
+                <p className="block font-sans text-xl antialiased font-normal leading-normal text-gray-700 opacity-75">
+                  ¡Atención! 🔐 Tu código de seguridad tiene una validez de solo
+                  30 minutos y ha sido enviado a tu correo electrónico
+                  registrado. Si no lo ves en tu bandeja de entrada, te
+                  recomendamos revisar la carpeta de spam. ¡No pierdas tiempo,
+                  el reloj está corriendo! ⏳
+                </p>
+              )}
             </div>
             <div className="p-6 pt-0">
-              <button
-                className="align-middle select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 rounded-lg shadow-md hover:shadow-lg focus:opacity-[0.85] active:opacity-[0.85] active:shadow-none block w-full bg-blue-500 text-white shadow-md hover:bg-blue-600 hover:scale-105 focus:scale-105 active:scale-100"
-                type="button"
-              >
-                Aceptar
-              </button>
+              <a href="/accounts">
+                <button
+                  className="align-middle select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 rounded-lg shadow-md hover:shadow-lg focus:opacity-[0.85] active:opacity-[0.85] active:shadow-none block w-full bg-blue-500 text-white shadow-md hover:bg-blue-600 hover:scale-105 focus:scale-105 active:scale-100"
+                  type="button"
+                >
+                  Aceptar
+                </button>
+              </a>
             </div>
           </div>
         </div>

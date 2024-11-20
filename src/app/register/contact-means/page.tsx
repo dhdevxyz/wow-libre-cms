@@ -91,7 +91,7 @@ const ContactMeans = () => {
         Swal.fire({
           icon: "error",
           title: "Oops...",
-          text: t("register.error.email-exist"),
+          text: t("register.error.phone-exist"),
           color: "white",
           background: "#0B1218",
           timer: 43500,

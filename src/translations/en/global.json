@@ -209,7 +209,12 @@
         "without-accounts": {
             "title-message": "No registered accounts.",
             "sub-title-message": "Create a game account now!",
-            "btn-text": "Create an account"
+            "btn-text": "Create an account",
+            "confirm-mail": {
+                "title": "Please confirm your email address.",
+                "description": "We haven't received confirmation of your email. Check your inbox, and if you can't find the message, you can resend it using the Validate Email button.",
+                "btn-txt": "Confirm Email"
+            }
         },
         "with-accounts": {
             "txt-create-account": "Create account",

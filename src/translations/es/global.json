@@ -209,7 +209,12 @@
         "without-accounts": {
             "title-message": "No hay cuentas registradas.",
             "sub-title-message": "¡Crea una cuenta de juego ahora!",
-            "btn-text": " Crear una cuenta"
+            "btn-text": " Crear una cuenta",
+            "confirm-mail": {
+                "title": "Por favor, confirma tu correo electrónico.",
+                "description": " No hemos recibido la confirmación de tu correo. Revisa tu bandeja de entrada y, si no encuentras el mensaje, puedes reenviarlo utilizando el botón Validar correo.",
+                "btn-txt": "Confirmar Correo"
+            }
         },
         "with-accounts": {
             "txt-create-account": "Crear cuenta",

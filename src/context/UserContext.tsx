@@ -17,6 +17,7 @@ export interface UserModel {
   avatar: string;
   server: string | null;
   expansion: string | null;
+  pending_validation: boolean;
 }
 
 const initialUserData: UserModel = {
@@ -33,6 +34,7 @@ const initialUserData: UserModel = {
   avatar: "",
   server: null,
   expansion: null,
+  pending_validation: true,
 };
 
 interface UserContextProps {

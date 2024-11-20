@@ -4,9 +4,9 @@ import {
   faCrown,
   faEnvelope,
   faFlag,
+  faMedal,
   faRotateLeft,
   faShieldHeart,
-  faMedal,
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -29,6 +29,7 @@ import Friend from "@/components/friends/friend";
 import NavbarAuthenticated from "@/components/navbar-authenticated";
 import Premium from "@/components/premium";
 import Professions from "@/components/professions";
+import Promotions from "@/components/promotions";
 import ReturnToView from "@/components/utilities/returnToView";
 import { UserModel, useUserContext } from "@/context/UserContext";
 import useAuth from "@/hook/useAuth";
@@ -36,7 +37,6 @@ import { AccountDetailDto, Character } from "@/model/model";
 import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
 import Cookies from "js-cookie";
 import { useTranslation } from "react-i18next";
-import Promotions from "@/components/promotions";
 
 const AccountDetail = () => {
   const searchParams = useSearchParams();
@@ -54,6 +54,7 @@ const AccountDetail = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [accountDetail, setAccountDetail] = useState<AccountDetailDto>();
   const [userDetail, setUserDetail] = useState<UserModel>();
+  const [redirect, setRedirect] = useState(false);
 
   const [characters, setCharacters] = useState<Character[]>([]);
   const [selectedCharacter, setSelectedCharacter] = useState<Character>();
@@ -64,6 +65,10 @@ const AccountDetail = () => {
   useAuth(t("errors.message.expiration-session"));
 
   useEffect(() => {
+    if (!token) {
+      setRedirect(true);
+    }
+
     const fetchData = async () => {
       try {
         if (accountId && token) {
@@ -80,7 +85,7 @@ const AccountDetail = () => {
           setAccountDetail(accountDetailResponse);
           setUserDetail(userModel);
         } else {
-          router.push("/accounts");
+          setRedirect(true);
         }
       } catch (error: any) {
         Swal.fire({
@@ -91,22 +96,21 @@ const AccountDetail = () => {
           background: "#0B1218",
           timer: 4500,
         });
-        router.push("/accounts");
+        setRedirect(true);
       } finally {
         setIsLoading(false);
       }
     };
     fetchData();
-  }, [accountId, token]);
+  }, [accountId, token, serverId]);
 
+  if (redirect) {
+    router.push("/accounts");
+  }
   const handleSelectCharacter = (character: Character) => {
     setSelectedCharacter(character);
     setAvatar(character.race_logo || "https://via.placeholder.com/150");
   };
-
-  if (token == null) {
-    router.push("/accounts");
-  }
 
   if (isLoading || !ready) {
     return (

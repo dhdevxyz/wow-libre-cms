@@ -171,3 +171,30 @@ export const getUser = async (jwt: string): Promise<UserModel> => {
     );
   }
 };
+
+export const sendMail = async (
+  jwt: string
+): Promise<GenericResponseDto<void>> => {
+  const response = await fetch(`${BASE_URL}/api/account/send-mail`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + jwt,
+      transaction_id: uuidv4(),
+    },
+  });
+
+  const responseData = await response.json();
+
+  if (response.ok && response.status === 200) {
+    return responseData;
+  } else if (response.status == 404 || response.status == 409) {
+    const badRequestError: GenericResponseDto<void> = responseData;
+    throw new Error(`Error: ${badRequestError.message}`);
+  } else {
+    const errorMessage = await response.text();
+    throw new Error(
+      `An error occurred while trying to register data: ${errorMessage}`
+    );
+  }
+};
