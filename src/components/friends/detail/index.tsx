@@ -1,18 +1,19 @@
-import React, { ChangeEvent, useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faTrashAlt,
-  faSortUp,
   faCoins,
+  faSortUp,
+  faTrashAlt,
 } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React, { ChangeEvent, useState } from "react";
 
-import Swal from "sweetalert2";
-import { Character } from "@/model/model";
 import {
   deleteFriend,
   sendLevelByFriend,
   sendMoneyByFriend,
 } from "@/api/account/character";
+import { Character } from "@/model/model";
+import Swal from "sweetalert2";
+import { InternalServerError } from "@/dto/generic";
 
 interface FriendsDetailProps {
   jwt: String;
@@ -22,6 +23,7 @@ interface FriendsDetailProps {
   serverId: number;
   onCloseModal: () => void;
   onFriendDeleted: (friendId: number) => void;
+  t: (key: string, options?: any) => string;
 }
 
 const FriendDetail: React.FC<FriendsDetailProps> = ({
@@ -32,11 +34,8 @@ const FriendDetail: React.FC<FriendsDetailProps> = ({
   serverId,
   onCloseModal,
   onFriendDeleted,
+  t,
 }) => {
-  if (friend == null) {
-    return <p>Selecciona un personaje para mostrar detalles.</p>;
-  }
-
   const [giftLevels, setGiftLevels] = useState(0);
   const [giftMoney, setGiftMoney] = useState(0);
 
@@ -60,20 +59,20 @@ const FriendDetail: React.FC<FriendsDetailProps> = ({
       await deleteFriend(jwt, character.id, friend.id, accountId, serverId);
       Swal.fire({
         icon: "success",
-        title: "Amigo Eliminado",
-        text: "Tu amigo ha sido eliminado con éxito.",
+        title: t("friend-detail-modal.messages-erros.delete-friend.title"),
+        text: t("friend-detail-modal.messages-erros.delete-friend.success"),
         confirmButtonColor: "#3085d6",
-        confirmButtonText: "Entendido",
+        confirmButtonText: "Ok",
       });
       onFriendDeleted(friend.id);
       onCloseModal();
     } catch (error: any) {
       Swal.fire({
         icon: "error",
-        title: "Error al Eliminar Amigo",
+        title: t("friend-detail-modal.messages-erros.delete-friend.error"),
         text: `${error.message}`,
         confirmButtonColor: "#3085d6",
-        confirmButtonText: "Entendido",
+        confirmButtonText: "Ok",
       });
     }
   };
@@ -98,19 +97,19 @@ const FriendDetail: React.FC<FriendsDetailProps> = ({
     if (giftLevels > 80) {
       Swal.fire({
         icon: "error",
-        title: "Error",
-        text: "El nivel no puede ser superior a 80",
+        title: "Opss!",
+        text: t("friend-detail-modal.messages-erros.lvl-max"),
         confirmButtonColor: "#3085d6",
-        confirmButtonText: "Entendido",
+        confirmButtonText: "Ok",
       });
       return;
     } else if (giftLevels <= 0) {
       Swal.fire({
         icon: "error",
-        title: "Error",
-        text: "El nivel debe ser superior a 0",
+        title: "Opss!",
+        text: t("friend-detail-modal.messages-erros.lvl-min"),
         confirmButtonColor: "#3085d6",
-        confirmButtonText: "Entendido",
+        confirmButtonText: "Ok",
       });
       return;
     }
@@ -125,14 +124,28 @@ const FriendDetail: React.FC<FriendsDetailProps> = ({
       );
       Swal.fire({
         icon: "success",
-        title: "Nivel Regalado con exito",
-        text: "",
+        title: t("friend-detail-modal.messages-erros.send-level.title"),
+        text: t("friend-detail-modal.messages-erros.send-level.success"),
         color: "white",
         background: "#0B1218",
         timer: 4500,
       });
       onCloseModal();
     } catch (error: any) {
+      if (error instanceof InternalServerError) {
+        Swal.fire({
+          icon: "error",
+          title: "Opss!",
+          html: `
+          <p><strong>Message:</strong> ${error.message}</p>
+          <hr style="border-color: #444; margin: 8px 0;">
+          <p><strong>Transaction ID:</strong> ${error.transactionId}</p>
+        `,
+          color: "white",
+          background: "#0B1218",
+        });
+        return;
+      }
       Swal.fire({
         icon: "error",
         title: "Error",
@@ -148,8 +161,8 @@ const FriendDetail: React.FC<FriendsDetailProps> = ({
     if (giftMoney <= 0) {
       Swal.fire({
         icon: "error",
-        title: "Error",
-        text: "El dinero a enviar debe ser superior a 1 de oro",
+        title: "Opss!",
+        text: t("friend-detail-modal.messages-erros.money-empty"),
         color: "white",
         background: "#0B1218",
         timer: 4500,
@@ -167,14 +180,28 @@ const FriendDetail: React.FC<FriendsDetailProps> = ({
       );
       Swal.fire({
         icon: "success",
-        title: "Dinero enviado",
-        text: "",
+        title: t("friend-detail-modal.messages-erros.send-money.title"),
+        text: t("friend-detail-modal.messages-erros.send-money.success"),
         color: "white",
         background: "#0B1218",
         timer: 4500,
       });
       onCloseModal();
     } catch (error: any) {
+      if (error instanceof InternalServerError) {
+        Swal.fire({
+          icon: "error",
+          title: "Opss!",
+          html: `
+            <p><strong>Message:</strong> ${error.message}</p>
+            <hr style="border-color: #444; margin: 8px 0;">
+            <p><strong>Transaction ID:</strong> ${error.transactionId}</p>
+          `,
+          color: "white",
+          background: "#0B1218",
+        });
+        return;
+      }
       Swal.fire({
         icon: "error",
         title: "Error",
@@ -201,10 +228,18 @@ const FriendDetail: React.FC<FriendsDetailProps> = ({
         />
         <h2 className="text-2xl font-bold mb-2">{friend.name}</h2>
         <div className="text-gray-400 mb-4 flex flex-col items-center">
-          <p>Nivel: {friend.level}</p>
-          <p>Clase: {friend.class}</p>
-          <p>Raza: {friend.race}</p>
-          <p>Status: {friend.flags}</p>
+          <p>
+            {t("friend-detail-modal.nivel")} {friend.level}
+          </p>
+          <p>
+            {t("friend-detail-modal.clase")} {friend.class}
+          </p>
+          <p>
+            {t("friend-detail-modal.raza")} {friend.race}
+          </p>
+          <p>
+            {t("friend-detail-modal.estado")} {friend.flags}
+          </p>
           {friend.note && (
             <p className="text-gray-400 italic mb-1 overflow-hidden max-h-24">
               {friend.note}
@@ -219,21 +254,21 @@ const FriendDetail: React.FC<FriendsDetailProps> = ({
           onClick={openGiftLevelsModal}
         >
           <FontAwesomeIcon icon={faSortUp} className="mr-2" />
-          Regalar Niveles
+          {t("friend-detail-modal.send-levels.btn-txt")}
         </button>
         <button
           className="w-full action-button bg-gradient-to-r from-yellow-400 to-yellow-600 hover:from-yellow-500 hover:to-yellow-700 text-white py-2 px-4 rounded-lg transition-all duration-300"
           onClick={openGiftMoneyOpenModal}
         >
           <FontAwesomeIcon icon={faCoins} className="mr-2" />
-          Enviar Oro
+          {t("friend-detail-modal.send-gold.btn-txt")}
         </button>
         <button
           className="w-full action-button bg-gradient-to-r from-red-500 to-red-700 hover:from-red-600 hover:to-red-800 text-white py-2 px-4 rounded-lg transition-all duration-300"
           onClick={deleteFriendInput}
         >
           <FontAwesomeIcon icon={faTrashAlt} className="mr-2" />
-          Eliminar Amigo
+          {t("friend-detail-modal.delete-friend.btn-txt")}
         </button>
       </div>
 
@@ -244,19 +279,23 @@ const FriendDetail: React.FC<FriendsDetailProps> = ({
               htmlFor="giftLevels"
               className="text-xl font-semibold block mb-2 text-gray-200"
             >
-              Costo: <span className="text-orange-300 font-bold">5k Gold </span>
-              por nivel
+              {t("friend-detail-modal.send-levels.cost.title")}
+              <span className="text-orange-300 font-bold">5k Gold </span>
+              {t("friend-detail-modal.send-levels.cost.sub-title")}
             </label>
             <p className="text-lg text-gray-400 mb-4">
-              Recuerda: el nivel máximo es
+              {t("friend-detail-modal.send-levels.cost.note")}
               <span className="font-semibold text-white"> 80</span>.
               <br />
-              Si envías una cantidad mayor a la permitida,
+              {t("friend-detail-modal.send-levels.cost.note-overcharge")}
               <span className="font-semibold text-red-500">
-                <br /> se te cobrará igualmente.
+                <br />
+                {t("friend-detail-modal.send-levels.cost.note-overcharge-v2")}
               </span>
             </p>
-            <p className="text-lg font-medium mb-2">Cantidad de Niveles:</p>
+            <p className="text-lg font-medium mb-2">
+              {t("friend-detail-modal.send-levels.cost.question")}
+            </p>
 
             <input
               type="number"
@@ -271,13 +310,13 @@ const FriendDetail: React.FC<FriendsDetailProps> = ({
                 className="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded-lg transition duration-300 mr-2"
                 onClick={handleGiftLevelsSubmit}
               >
-                Confirmar
+                {t("friend-detail-modal.send-levels.cost.btn.success")}
               </button>
               <button
                 className="bg-gray-600 hover:bg-gray-700 text-white py-2 px-4 rounded-lg transition duration-300"
                 onClick={closeGiftLevelsModal}
               >
-                Cancelar
+                {t("friend-detail-modal.send-levels.cost.btn.back")}
               </button>
             </div>
           </div>
@@ -291,8 +330,8 @@ const FriendDetail: React.FC<FriendsDetailProps> = ({
               htmlFor="giftMoney"
               className="text-lg font-semibold block mb-4"
             >
-              Costo: 1 Gold <br />
-              Cantidad de Oro:
+              {t("friend-detail-modal.send-gold.gif-gold.title")} 1 Gold <br />
+              {t("friend-detail-modal.send-gold.gif-gold.sub-title")}
             </label>
             <input
               type="number"
@@ -306,13 +345,13 @@ const FriendDetail: React.FC<FriendsDetailProps> = ({
                 className="bg-yellow-500 hover:bg-yellow-600 text-white py-2 px-4 rounded-lg transition duration-300 mr-2"
                 onClick={handleGiftMoneySubmit}
               >
-                Confirmar
+                {t("friend-detail-modal.send-gold.gif-gold.btn.success")}
               </button>
               <button
                 className="bg-gray-600 hover:bg-gray-700 text-white py-2 px-4 rounded-lg transition duration-300"
                 onClick={closeGiftMoneyModal}
               >
-                Cancelar
+                {t("friend-detail-modal.send-gold.gif-gold.btn.back")}
               </button>
             </div>
           </div>

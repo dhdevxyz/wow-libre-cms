@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from "react";
-import DisplayMoney from "@/components/money";
-import { GuildData } from "@/model/model";
 import {
   claimBenefits,
   getMemberDetailGuild,
   unlinkGuild,
   update,
 } from "@/api/guilds";
-import Swal from "sweetalert2";
-import Link from "next/link";
 import EditGuildModal from "@/components/guild_edit";
+import DisplayMoney from "@/components/money";
+import { GuildMemberDto } from "@/model/model";
+import Link from "next/link";
+import React, { useEffect, useState } from "react";
+import Swal from "sweetalert2";
 
 interface AccountGuildProps {
   serverId: number;
@@ -24,7 +24,7 @@ const AccountGuild: React.FC<AccountGuildProps> = ({
   accountId,
   token,
 }) => {
-  const [guildData, setGuildData] = useState<GuildData | null>(null);
+  const [guildData, setGuildData] = useState<GuildMemberDto | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [refresh, setRefresh] = useState<boolean>(false);
 
@@ -138,36 +138,61 @@ const AccountGuild: React.FC<AccountGuildProps> = ({
                 <p className="text-lg max-w-full text-gray-300 overflow-wrap break-word">
                   {guildData.info}
                 </p>
-                <p className="text-2xl mb-4 text-white sm:text-1xl">
+                <div className="text-2xl mb-4 text-white sm:text-1xl">
                   <div className="flex justify-center">
                     <DisplayMoney money={guildData.bank_money} />
                   </div>
-                </p>
+                </div>
                 <div className="text-left w-full">
                   <p className="text-lg lg:text-2xl mb-10 text-center text-yellow-300  pt-4 break-words max-w-full overflow-wrap">
                     {guildData.motd}
                   </p>
                   <p className="text-lg lg:text-2xl mb-4 break-words max-w-full overflow-wrap">
-                    Rango: {1}
+                    Leader: {guildData.leader_name}
                   </p>
 
                   <p className="text-lg lg:text-2xl mb-4 break-words max-w-full overflow-wrap">
                     Creada:{" "}
                     {new Date(guildData.create_date).toLocaleDateString()}
                   </p>
-                  <p className="text-lg lg:text-2xl mb-4 break-words flex items-center max-w-full overflow-wrap">
-                    Público:
-                    <div
-                      className={`ml-4 h-5 w-5 rounded-full ${
-                        guildData.public_access ? "bg-green-500" : "bg-red-500"
-                      } me-5`}
-                    ></div>
-                  </p>
                   <p className="text-lg lg:text-2xl mb-4 break-words max-w-full overflow-wrap">
-                    Beneficios Disponibles: {0}
+                    <a
+                      href={`https://${guildData.discord}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center text-white hover:text-blue-400 transition duration-300"
+                    >
+                      <i className="fab fa-discord text-lg"></i>
+                      Unirse al servidor de Discord
+                    </a>
                   </p>
+
+                  <div className="text-lg lg:text-2xl mb-4 break-words flex items-center max-w-full overflow-wrap">
+                    <span>Estado de Acceso:</span>{" "}
+                    <div className="ml-4 flex items-center">
+                      <div
+                        className={`h-5 w-5 rounded-full ${
+                          guildData.public_access
+                            ? "bg-green-500"
+                            : "bg-red-500"
+                        }`}
+                      ></div>
+                      <span
+                        className={`ml-2 ${
+                          guildData.public_access
+                            ? "text-green-500"
+                            : "text-red-500"
+                        }`}
+                      >
+                        {guildData.public_access
+                          ? "Acceso Público"
+                          : "Acceso Privado"}
+                      </span>
+                    </div>
+                  </div>
+
                   <p className="text-lg lg:text-2xl mb-10 break-words max-w-full overflow-wrap">
-                    Beneficios Consumidos: {0}
+                    Beneficios Disponibles: {guildData.available_benefits}
                   </p>
                 </div>
               </div>
@@ -181,7 +206,7 @@ const AccountGuild: React.FC<AccountGuildProps> = ({
                     onSave={handleEditSave}
                   />
                 ) : null}
-                {0 > 0 && guildData.claimed_benefits <= 0 && (
+                {guildData.available_benefits > 0 && (
                   <button
                     className="px-6 py-3 bg-green-400 hover:bg-green-600 rounded-lg text-white font-semibold mb-4 mr-2"
                     onClick={handleBenefitsGuild}

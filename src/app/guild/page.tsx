@@ -4,10 +4,10 @@ import NavbarAuthenticated from "@/components/navbar-authenticated";
 import Link from "next/link";
 import ReactPaginate from "react-paginate";
 
-import React, { useEffect, useState } from "react";
-import { GuildDto, GuildsDto, ServerModel } from "@/model/model";
 import { getServers } from "@/api/account/servers";
 import { getGuilds } from "@/api/guilds";
+import { GuildDto, GuildsDto, ServerModel } from "@/model/model";
+import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 const Guild = () => {
@@ -35,7 +35,6 @@ const Guild = () => {
         setHasGuilds(response.size > 0);
         setTotalGuilds(response.size);
       } catch (error) {
-        console.error("Ha ocurrido un error al obtener los personajes", error);
         setGuilds([]);
         setHasGuilds(false);
       }
@@ -242,13 +241,13 @@ const Guild = () => {
                         </td>
                         <td className="px-6 py-4">
                           <Link
-                            className="font-medium text-blue-600 dark:text-blue-500 hover:underline cursor-pointer"
+                            className="font-medium text-blue-800 dark:text-blue-600 hover:underline cursor-pointer text-4xl pl-4"
                             href={{
                               pathname: `/guild/${row.id}`,
                               query: { server: row.server_id },
                             }}
                           >
-                            Ir a detalle de guild
+                            →
                           </Link>
                         </td>
                       </tr>

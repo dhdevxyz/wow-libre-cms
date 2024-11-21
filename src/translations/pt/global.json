@@ -504,5 +504,102 @@
                 "alternative": "Loja"
             }
         }
+    },
+    "home-information-beta": {
+        "title": "Bem-vindo ao Wow Livre!",
+        "sub-title": "Versão Beta",
+        "description": "Nossa plataforma está atualmente em fase beta. Isso significa que você pode encontrar alguns recursos ou detalhes ainda em desenvolvimento. Agradecemos sua compreensão e apoio enquanto continuamos a melhorar.",
+        "push-deploy": {
+            "title": "Push to deploy.",
+            "description": "Você pode perceber mudanças na plataforma devido às atualizações em andamento que estamos desenvolvendo."
+        },
+        "certificates": {
+            "title": "Certificados SSL.",
+            "description": "Contamos com certificados de segurança SSL para garantir a proteção das suas informações."
+        },
+        "database": {
+            "title": "Backup de banco de dados.",
+            "description": "Todas as informações fornecidas estarão seguras com backups regulares, e as contas não serão excluídas."
+        },
+        "congrats": "Agradecemos imensamente qualquer relatório de erro que você encontrar em nossa plataforma. Sua ajuda nos permite melhorar para que você aproveite ao máximo o conteúdo do jogo!",
+        "notice": {
+            "title": "Meus personagens serão excluídos? Não se preocupe!",
+            "description": "Durante a fase beta, seus dados estarão seguros. Nenhuma conta ou personagem será excluído!"
+        }
+    },
+    "home-us": {
+        "title": "Comunidade WoW Livre",
+        "sub-title": "Empoderando a Comunidade de Jogadores",
+        "description": "No mundo digital de World of Warcraft, os dados gerados pela comunidade são um recurso inestimável. No WoW Livre, transformamos essa riqueza em um recurso acessível, permitindo que outros servidores se integrem e compartilhem informações. Atuamos como uma ponte aberta para a troca de dados, promovendo a colaboração e melhorando a experiência de jogo. Em Azeroth, o verdadeiro poder está na comunidade e em sua capacidade de compartilhar e expandir o conhecimento. Junte-se a nós e seja parte dessa aventura coletiva!",
+        "btn-txt": "Saiba Mais"
+    },
+    "friend-detail": {
+        "errors": {
+            "character-is-null": "Por favor, selecione um personagem para exibir os detalhes.",
+            "friend-is-empty": "Oh não! Você não tem amigos.",
+            "friend-is-empty-description": "Parece que você ainda não adicionou amigos à sua lista. Conecte-se com outros aventureiros para começar a construir sua rede social no jogo."
+        },
+        "title": "Lista de Amigos",
+        "nivel": "Nível:",
+        "clase": "Classe:",
+        "raza": "Raça:",
+        "estado": "Estado:",
+        "btn": {
+            "previous_label": "Anterior",
+            "next_label": "Próximo"
+        }
+    },
+    "friend-detail-modal": {
+        "nivel": "Nível:",
+        "clase": "Classe:",
+        "raza": "Raça:",
+        "estado": "Estado:",
+        "send-levels": {
+            "btn-txt": "Presentear Níveis",
+            "cost": {
+                "title": "Custo: ",
+                "sub-title": "por nível",
+                "note": "Lembre-se: o nível máximo é ",
+                "note-overcharge": "Se você enviar uma quantidade maior do que o permitido,",
+                "note-overcharge-v2": " ainda assim será cobrado.",
+                "question": "Quantidade de Níveis:",
+                "btn": {
+                    "success": "Confirmar",
+                    "back": "Cancelar"
+                }
+            }
+        },
+        "send-gold": {
+            "btn-txt": "Enviar Ouro",
+            "gif-gold": {
+                "title": "Custo: ",
+                "sub-title": "Quantidade de Ouro:",
+                "btn": {
+                    "success": "Confirmar",
+                    "back": "Cancelar"
+                }
+            }
+        },
+        "delete-friend": {
+            "btn-txt": "Remover Amigo"
+        },
+        "messages-erros": {
+            "delete-friend": {
+                "title": "Amigo Removido",
+                "success": "Seu amigo foi removido com sucesso.",
+                "error": "Erro ao remover amigo."
+            },
+            "send-level": {
+                "title": "Nível Presenteado com Sucesso",
+                "success": "O nível foi entregue com sucesso ao seu amigo."
+            },
+            "send-money": {
+                "title": "Ouro Enviado com Sucesso",
+                "success": "O ouro foi entregue com sucesso ao seu amigo."
+            },
+            "lvl-max": "O nível não pode ser superior a 80.",
+            "lvl-min": "O nível deve ser maior que 0.",
+            "money-empty": "A quantidade de ouro a ser enviada deve ser superior a 1."
+        }
     }
 }

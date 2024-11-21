@@ -79,14 +79,14 @@ const GuildDetail = () => {
 
   if (isLoading) {
     return (
-      <div className="flex justify-center mt-20 items-center">
-        <LoadingSpinner />;
+      <div className="flex justify-center items-center min-h-screen ">
+        <LoadingSpinner />
       </div>
     );
   }
 
   return (
-    <div>
+    <div className="min-h-screen">
       <div className="contenedor">
         <NavbarAuthenticated />
       </div>
@@ -329,12 +329,12 @@ const GuildDetail = () => {
                     />
                   </span>
 
-                  <p className="flex flex-col  font-semibold  capitalize text-white">
-                    <div className="text-3xl"> {benefit.title}</div>
+                  <div className="flex flex-col font-semibold capitalize text-white">
+                    <div className="text-3xl">{benefit.title}</div>
                     <div className="text-lg text-yellow-500 pt-1">
                       {benefit.sub_title}
                     </div>
-                  </p>
+                  </div>
                   <p className="text-gray-400  text-2xl">
                     {benefit.description}
                   </p>

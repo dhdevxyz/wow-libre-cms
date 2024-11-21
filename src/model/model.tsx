@@ -415,3 +415,27 @@ export interface PromotionsModel {
   min_lvl: number;
   max_lvl: number;
 }
+
+export interface GuildMemberDto {
+  id: number;
+  name: string;
+  leader_name: string;
+  emblem_style: number;
+  emblem_color: number;
+  border_style: number;
+  public_access: boolean;
+  border_color: number;
+  info: string;
+  motd: string;
+  create_date: string;
+  bank_money: number;
+  formatted_bank_money: string;
+  members: number;
+  benefits: Benefit[];
+  claimed_benefits: number;
+  is_leader: boolean;
+  discord: string;
+  multi_faction: boolean;
+  server_name: string;
+  available_benefits: number;
+}

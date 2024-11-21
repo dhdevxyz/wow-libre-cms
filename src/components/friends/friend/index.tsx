@@ -10,6 +10,7 @@ interface CharacterProps {
   token: string;
   accountId: number;
   serverId: number;
+  t: (key: string, options?: any) => string;
 }
 
 const Friend: React.FC<CharacterProps> = ({
@@ -17,6 +18,7 @@ const Friend: React.FC<CharacterProps> = ({
   token,
   accountId,
   serverId,
+  t,
 }) => {
   const [friendsModel, setFriends] = useState<Friends | null>(null);
   const [currentPage, setCurrentPage] = useState(0);
@@ -45,7 +47,6 @@ const Friend: React.FC<CharacterProps> = ({
           setFriends(response);
         }
       } catch (error) {
-        console.error("Error al obtener amigos:", error);
         setFriends(null);
       }
     };
@@ -54,26 +55,23 @@ const Friend: React.FC<CharacterProps> = ({
   }, [character, selectedFriendId]);
 
   if (!character || character == null) {
-    return <p>Selecciona un personaje para mostrar detalles.</p>;
+    return <p> {t("friend-detail.errors.character-is-null")}</p>;
   }
 
   if (!friendsModel || friendsModel.friends.length === 0) {
     return (
       <div className="flex flex-col items-center justify-center p-8">
         <p className="text-white text-3x1 font-semibold mb-2">
-          ¡Oh no! No tienes amigos.
+          {t("friend-detail.errors.friend-is-empty")}
         </p>
         <p className="text-white text-xl">
-          Parece que aún no has agregado amigos a tu lista. Conéctate con otros
-          aventureros para comenzar a construir tu red social en el juego.
+          {t("friend-detail.errors.friend-is-empty-description")}
         </p>
       </div>
     );
   }
 
-  // Número de elementos por página
   const itemsPerPage = 3;
-
   const indexOfLastFriend = (currentPage + 1) * itemsPerPage;
   const indexOfFirstFriend = indexOfLastFriend - itemsPerPage;
   const currentFriends = friendsModel.friends.slice(
@@ -98,7 +96,7 @@ const Friend: React.FC<CharacterProps> = ({
     <div className="p-4 ">
       <div className="text-center mx-auto mt-8 max-w-2xl">
         <h2 className="text-3xl font-semibold mt-4 mb-5 ml-2 text-orange-200">
-          Listado de Amigos
+          {t("friend-detail.title")}
         </h2>
       </div>
 
@@ -126,16 +124,20 @@ const Friend: React.FC<CharacterProps> = ({
               </h3>
             </div>
             <p className="text-orange-200  overflow-hidden overflow-ellipsis whitespace-nowrap">
-              Nivel: <span className="text-white">{friend.level}</span>
+              {t("friend-detail.nivel")}
+              <span className="text-white">{friend.level}</span>
             </p>
             <p className="text-orange-200  overflow-hidden overflow-ellipsis whitespace-nowrap">
-              Clase: <span className="text-white">{friend.class}</span>
+              {t("friend-detail.clase")}
+              <span className="text-white">{friend.class}</span>
             </p>
             <p className="text-orange-200  overflow-hidden overflow-ellipsis whitespace-nowrap">
-              Raza: <span className="text-white">{friend.race}</span>
+              {t("friend-detail.raza")}
+              <span className="text-white">{friend.race}</span>
             </p>
             <p className="text-orange-200   overflow-hidden overflow-ellipsis whitespace-nowrap">
-              Estado: <span className="text-white">{friend.flags} </span>
+              {t("friend-detail.estado")}
+              <span className="text-white">{friend.flags} </span>
             </p>
           </div>
         ))}
@@ -159,6 +161,7 @@ const Friend: React.FC<CharacterProps> = ({
                 friend={selectedFriendId}
                 onCloseModal={closeModal}
                 onFriendDeleted={onFriendDeleted}
+                t={t}
               />
             </div>
           </div>
@@ -167,8 +170,8 @@ const Friend: React.FC<CharacterProps> = ({
 
       <ReactPaginate
         forcePage={currentPage}
-        previousLabel={"Anterior"}
-        nextLabel={"Siguiente"}
+        previousLabel={t("friend-detail.btn.previous_label")}
+        nextLabel={t("friend-detail.btn.next_label")}
         breakLabel={"..."}
         pageCount={Math.ceil(friendsModel.friends.length / itemsPerPage)}
         marginPagesDisplayed={2}

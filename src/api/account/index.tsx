@@ -5,10 +5,14 @@ import { AccountDetailDto, AccountsDto } from "@/model/model";
 import { v4 as uuidv4 } from "uuid";
 
 /**
- * ES:Obtiene todas las cuentas asociadas con el cliente.
+ * ES: Obtiene todas las cuentas asociadas con el cliente, paginadas y filtradas por servidor y nombre de usuario.
  * @param jwt - El token JWT para autorización.
- * @returns Una promesa que resuelve con un array de modelos de cuentas.
- * @throws Error - Lanza un error si la solicitud falla o si los datos son inválidos.
+ * @param page - Página actual para paginación (por defecto 0).
+ * @param size - Número de elementos por página (por defecto 10).
+ * @param server - Filtro opcional por servidor.
+ * @param username - Filtro opcional por nombre de usuario.
+ * @returns Promesa que resuelve con los datos de cuentas (`AccountsDto`).
+ * @throws Error - Lanza errores específicos según la respuesta del servidor o si ocurre algún problema en la solicitud.
  */
 export const getAccounts = async (
   jwt: string,
@@ -46,7 +50,7 @@ export const getAccounts = async (
       throw new InternalServerError(
         `${genericResponse.message}`,
         genericResponse.code,
-        genericResponse.transaction_id
+        transactionId
       );
     }
   } catch (error: any) {
@@ -64,6 +68,13 @@ export const getAccounts = async (
   }
 };
 
+/**
+ * ES: Obtiene las cuentas asociadas a un servidor específico.
+ * @param jwt - El token JWT para autorización.
+ * @param serverId - Identificador del servidor.
+ * @returns Promesa que resuelve con los datos de cuentas (`AccountsDto`).
+ * @throws Error - Lanza errores específicos según la respuesta del servidor o si ocurre algún problema en la solicitud.
+ */
 export const getAccountAndServerId = async (
   jwt: string,
   serverId: number
@@ -97,7 +108,7 @@ export const getAccountAndServerId = async (
       throw new InternalServerError(
         `${genericResponse.message}`,
         genericResponse.code,
-        genericResponse.transaction_id
+        transactionId
       );
     }
   } catch (error: any) {
@@ -115,6 +126,14 @@ export const getAccountAndServerId = async (
   }
 };
 
+/**
+ * ES: Obtiene los detalles de una cuenta específica utilizando su ID y el ID del servidor.
+ * @param jwt - El token JWT para autorización.
+ * @param account_id - Identificador de la cuenta.
+ * @param server_id - Identificador del servidor.
+ * @returns Promesa que resuelve con los detalles de la cuenta (`AccountDetailDto`).
+ * @throws Error - Lanza errores específicos según la respuesta del servidor o si ocurre algún problema en la solicitud.
+ */
 export const getAccount = async (
   jwt: string,
   account_id: number,
@@ -147,6 +166,12 @@ export const getAccount = async (
   }
 };
 
+/**
+ * ES: Obtiene los datos del usuario asociado con el JWT.
+ * @param jwt - El token JWT para autorización.
+ * @returns Promesa que resuelve con el modelo del usuario (`UserModel`).
+ * @throws Error - Lanza errores específicos según la respuesta del servidor o si ocurre algún problema en la solicitud.
+ */
 export const getUser = async (jwt: string): Promise<UserModel> => {
   const response = await fetch(`${BASE_URL}/api/account`, {
     method: "GET",
@@ -172,6 +197,12 @@ export const getUser = async (jwt: string): Promise<UserModel> => {
   }
 };
 
+/**
+ * ES: Envía un correo al usuario asociado con el JWT.
+ * @param jwt - El token JWT para autorización.
+ * @returns Promesa que resuelve con una respuesta genérica (`GenericResponseDto<void>`).
+ * @throws Error - Lanza errores específicos según la respuesta del servidor o si ocurre algún problema en la solicitud.
+ */
 export const sendMail = async (
   jwt: string
 ): Promise<GenericResponseDto<void>> => {

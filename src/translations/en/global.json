@@ -504,5 +504,102 @@
                 "alternative": "Store"
             }
         }
+    },
+    "home-information-beta": {
+        "title": "Welcome to Wow Libre!",
+        "sub-title": "Beta Version",
+        "description": "Our platform is currently in its beta phase. This means you might come across some features or details still under development. We appreciate your understanding and support as we continue to improve.",
+        "push-deploy": {
+            "title": "Push to deploy.",
+            "description": "You may notice changes on the platform due to ongoing updates we are developing."
+        },
+        "certificates": {
+            "title": "SSL certificates.",
+            "description": "We have SSL security certificates to ensure the protection of your information."
+        },
+        "database": {
+            "title": "Database backups.",
+            "description": "All information provided will be safe with regular backups, and accounts will not be deleted."
+        },
+        "congrats": "We greatly appreciate any bug reports you may find on our platform. Your help allows us to improve so you can fully enjoy the game content!",
+        "notice": {
+            "title": "Will my characters be deleted? Don't worry!",
+            "description": "During the beta phase, your data will be safe. No account or character will be deleted!"
+        }
+    },
+    "home-us": {
+        "title": "WoW Libre Community",
+        "sub-title": "Empowering the Player Community",
+        "description": "In the digital world of World of Warcraft, community-generated data is an invaluable resource. At WoW Libre, we transform this wealth into an accessible resource, enabling other servers to integrate and share information. We act as an open bridge for data exchange, fostering collaboration and enhancing the gaming experience. In Azeroth, true power lies in the community and its ability to share and expand knowledge. Join us and be part of this collective adventure!",
+        "btn-txt": "Learn More"
+    },
+    "friend-detail": {
+        "errors": {
+            "character-is-null": "Please select a character to display the details.",
+            "friend-is-empty": "Oh no! You have no friends.",
+            "friend-is-empty-description": "It seems you haven't added any friends to your list yet. Connect with other adventurers to start building your in-game social network."
+        },
+        "title": "Friend List",
+        "nivel": "Level:",
+        "clase": "Class:",
+        "raza": "Race:",
+        "estado": "Status:",
+        "btn": {
+            "previous_label": "Previous",
+            "next_label": "Next"
+        }
+    },
+    "friend-detail-modal": {
+        "nivel": "Level: ",
+        "clase": "Class: ",
+        "raza": "Race: ",
+        "estado": "Status: ",
+        "send-levels": {
+            "btn-txt": "Gift Levels",
+            "cost": {
+                "title": "Cost: ",
+                "sub-title": "per level",
+                "note": "Remember: the maximum level is ",
+                "note-overcharge": "If you send a higher amount than allowed,",
+                "note-overcharge-v2": " you will still be charged.",
+                "question": "Number of Levels:",
+                "btn": {
+                    "success": "Confirm",
+                    "back": "Cancel"
+                }
+            }
+        },
+        "send-gold": {
+            "btn-txt": "Send Gold",
+            "gif-gold": {
+                "title": "Cost: ",
+                "sub-title": "Amount of Gold:",
+                "btn": {
+                    "success": "Confirm",
+                    "back": "Cancel"
+                }
+            }
+        },
+        "delete-friend": {
+            "btn-txt": "Remove Friend"
+        },
+        "messages-erros": {
+            "delete-friend": {
+                "title": "Friend Removed",
+                "success": "Your friend has been successfully removed.",
+                "error": "Error removing friend."
+            },
+            "send-level": {
+                "title": "Level Successfully Gifted",
+                "success": "The level has been successfully delivered to your friend."
+            },
+            "send-money": {
+                "title": "Gold Successfully Sent",
+                "success": "The gold has been successfully delivered to your friend."
+            },
+            "lvl-max": "The level cannot exceed 80.",
+            "lvl-min": "The level must be higher than 0.",
+            "money-empty": "The amount of gold to send must exceed 1."
+        }
     }
 }

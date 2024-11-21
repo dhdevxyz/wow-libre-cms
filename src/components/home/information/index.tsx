@@ -1,6 +1,15 @@
+"use client";
+import LoadingSpinner from "@/components/utilities/loading-spinner";
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 const Information = () => {
+  const { t, ready } = useTranslation();
+  if (ready) {
+    <div className="contenedor bg-midnight relative isolate overflow-hidden px-6 py-24 sm:py-32 lg:overflow-visible lg:px-0">
+      <LoadingSpinner />
+    </div>;
+  }
   return (
     <div className="contenedor bg-midnight relative isolate overflow-hidden px-6 py-24 sm:py-32 lg:overflow-visible lg:px-0">
       <div className="absolute inset-0 -z-10 overflow-hidden">
@@ -39,16 +48,13 @@ const Information = () => {
           <div className="lg:pr-4">
             <div className="lg:max-w-lg">
               <p className="text-base/7 font-semibold text-indigo-400">
-                ¡Bienvenido a Wow Libre!
+                {t("home-information-beta.title")}
               </p>
               <h1 className="mt-2 text-4xl font-semibold tracking-tight text-white sm:text-5xl">
-                Versión Beta
+                {t("home-information-beta.sub-title")}
               </h1>
               <p className="mt-6 text-xl/8 text-gray-300">
-                Actualmente, nuestra plataforma está en su fase beta. Esto
-                significa que podrías encontrar algunos detalles o
-                características en desarrollo. Apreciamos tu comprensión y apoyo
-                mientras seguimos mejorando.
+                {t("home-information-beta.description")}
               </p>
             </div>
           </div>
@@ -56,8 +62,8 @@ const Information = () => {
         <div className="-ml-12 -mt-12 p-12 lg:sticky lg:top-4 lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:overflow-hidden">
           <img
             className="w-[48rem] max-w-none rounded-xl bg-gray-800 shadow-xl ring-1 ring-gray-600/10 sm:w-[57rem]"
-            src="http://imgfz.com/i/vaGf8zM.png"
-            alt=""
+            src="https://static.wixstatic.com/media/5dd8a0_cc65edad0cce497c924b91d4d298ac33~mv2.png"
+            alt="img-beta-server"
           />
         </div>
         <div className="lg:col-span-2 lg:col-start-1 lg:row-start-2 lg:mx-auto lg:grid lg:w-full lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
@@ -80,10 +86,9 @@ const Information = () => {
                   </svg>
                   <span>
                     <strong className="font-semibold text-white">
-                      Push to deploy.
+                      {t("home-information-beta.push-deploy.title")}
                     </strong>{" "}
-                    Podrías notar cambios en la plataforma debido a las
-                    actualizaciones en curso que estamos desarrollando.
+                    {t("home-information-beta.push-deploy.description")}
                   </span>
                 </li>
                 <li className="flex gap-x-3">
@@ -102,10 +107,9 @@ const Information = () => {
                   </svg>
                   <span>
                     <strong className="font-semibold text-white">
-                      SSL certificates.
+                      {t("home-information-beta.certificates.title")}
                     </strong>{" "}
-                    Contamos con certificados de seguridad SSL para garantizar
-                    la protección de tu información.
+                    {t("home-information-beta.certificates.description")}
                   </span>
                 </li>
                 <li className="flex gap-x-3">
@@ -125,24 +129,18 @@ const Information = () => {
                   </svg>
                   <span>
                     <strong className="font-semibold text-white">
-                      Database backups.
+                      {t("home-information-beta.database.title")}
                     </strong>{" "}
-                    Toda la información proporcionada estará segura con
-                    respaldos regulares, y las cuentas no serán eliminadas.
+                    {t("home-information-beta.database.description")}
                   </span>
                 </li>
               </ul>
-              <p className="mt-8">
-                Agradecemos enormemente cualquier reporte sobre errores que
-                puedas encontrar en nuestra plataforma. ¡Tu ayuda nos permite
-                mejorar para que disfrutes al máximo del contenido de juego!
-              </p>
+              <p className="mt-8">{t("home-information-beta.congrats")}</p>
               <h2 className="mt-16 text-2xl font-bold tracking-tight text-white">
-                ¿Se eliminarán mis personajes? ¡No te preocupes!
+                {t("home-information-beta.notice.title")}
               </h2>
               <p className="mt-6">
-                Durante la fase beta, tus datos estarán a salvo. ¡No se
-                eliminará ninguna cuenta ni personaje!
+                {t("home-information-beta.notice.description")}
               </p>
             </div>
           </div>

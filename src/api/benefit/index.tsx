@@ -24,7 +24,6 @@ export const benefitsActive = async (): Promise<BenefitsModel[]> => {
       throw new Error(`${responseData.message}`);
     }
   } catch (error: any) {
-    console.error(`Error: ${error.message}`, error);
     throw new Error(` ${error.message}`);
   }
 };

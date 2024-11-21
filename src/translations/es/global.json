@@ -453,7 +453,8 @@
             "var4": "Profesiones",
             "var5": "Hermandad",
             "var6": "Premium",
-            "var7": "Cuentas"
+            "var7": "Promociones",
+            "var8": "Cuentas"
         }
     },
     "support": {
@@ -503,6 +504,103 @@
                 "primary": "Adquirir",
                 "alternative": "Tienda"
             }
+        }
+    },
+    "home-information-beta": {
+        "title": "¡Bienvenido a Wow Libre!",
+        "sub-title": "Versión Beta",
+        "description": "Actualmente, nuestra plataforma está en su fase beta. Esto significa que podrías encontrar algunos detalles o características en desarrollo. Apreciamos tu comprensión y apoyo  mientras seguimos mejorando.",
+        "push-deploy": {
+            "title": "Push to deploy.",
+            "description": "Podrías notar cambios en la plataforma debido a las actualizaciones en curso que estamos desarrollando."
+        },
+        "certificates": {
+            "title": "SSL certificates.",
+            "description": " Contamos con certificados de seguridad SSL para garantizar la protección de tu información."
+        },
+        "database": {
+            "title": "Database backups.",
+            "description": "Toda la información proporcionada estará segura con respaldos regulares, y las cuentas no serán eliminadas."
+        },
+        "congrats": "Agradecemos enormemente cualquier reporte sobre errores que puedas encontrar en nuestra plataforma. ¡Tu ayuda nos permite mejorar para que disfrutes al máximo del contenido de juego!",
+        "notice": {
+            "title": "¿Se eliminarán mis personajes? ¡No te preocupes!",
+            "description": "Durante la fase beta, tus datos estarán a salvo. ¡No se eliminará ninguna cuenta ni personaje!"
+        }
+    },
+    "home-us": {
+        "title": "Comunidad de WoW Libre",
+        "sub-title": "Empoderando a la Comunidad de Jugadores",
+        "description": "En el mundo digital de World of Warcraft, los datos generados por la comunidad son un recurso invaluable. En WoW Libre, transformamos esta riqueza en un recurso accesible, permitiendo que otros servidores se integren y compartan información. Actuamos como un puente abierto para el intercambio de datos, impulsando la colaboración y mejorando la experiencia de juego. En Azeroth, el verdadero poder reside en la comunidad y su capacidad para compartir y expandir el conocimiento. ¡Únete a nosotros y sé parte de esta aventura colectiva!",
+        "btn-txt": "Conocer más"
+    },
+    "friend-detail": {
+        "errors": {
+            "character-is-null": "Por favor, selecciona un personaje para mostrar los detalles.",
+            "friend-is-empty": "¡Oh no! No tienes amigos.",
+            "friend-is-empty-description": "Parece que aún no has agregado amigos a tu lista. Conéctate con otros aventureros para comenzar a construir tu red social dentro del juego."
+        },
+        "title": "Lista de Amigos",
+        "nivel": "Nivel:",
+        "clase": "Clase:",
+        "raza": "Raza:",
+        "estado": "Estado:",
+        "btn": {
+            "previous_label": "Anterior",
+            "next_label": "Siguiente"
+        }
+    },
+    "friend-detail-modal": {
+        "nivel": "Nivel:",
+        "clase": "Clase:",
+        "raza": "Raza:",
+        "estado": "Estado:",
+        "send-levels": {
+            "btn-txt": "Regalar Niveles",
+            "cost": {
+                "title": "Costo: ",
+                "sub-title": "por nivel",
+                "note": "Recuerda: el nivel máximo es ",
+                "note-overcharge": "Si envías una cantidad mayor a la permitida,",
+                "note-overcharge-v2": " se te cobrará igualmente.",
+                "question": "Cantidad de Niveles:",
+                "btn": {
+                    "success": "Confirmar",
+                    "back": "Cancelar"
+                }
+            }
+        },
+        "send-gold": {
+            "btn-txt": "Enviar Oro",
+            "gif-gold": {
+                "title": "Costo: ",
+                "sub-title": "Cantidad de Oro:",
+                "btn": {
+                    "success": "Confirmar",
+                    "back": "Cancelar"
+                }
+            }
+        },
+        "delete-friend": {
+            "btn-txt": "Eliminar Amigo"
+        },
+        "messages-erros": {
+            "delete-friend": {
+                "title": "Amigo Eliminado",
+                "success": "Tu amigo ha sido eliminado con éxito.",
+                "error": "Error al eliminar amigo"
+            },
+            "send-level": {
+                "title": "Nivel regalado con éxito",
+                "success": "El nivel a tu amigo ha llegado con éxito."
+            },
+            "send-money": {
+                "title": "Oro enviado con éxito",
+                "success": "El oro a tu amigo ha llegado con éxito."
+            },
+            "lvl-max": "El nivel no puede ser superior a 80.",
+            "lvl-min": "El nivel debe ser superior a 0.",
+            "money-empty": "La cantidad de oro a enviar debe ser superior a 1."
         }
     }
 }

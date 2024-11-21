@@ -1,5 +1,5 @@
 import { BASE_URL } from "@/configs/configs";
-import { GenericResponseDto } from "@/dto/generic";
+import { GenericResponseDto, InternalServerError } from "@/dto/generic";
 import { Characters, Friends } from "@/model/model";
 import { v4 as uuidv4 } from "uuid";
 
@@ -25,11 +25,10 @@ export const getCharacters = async (
     if (response.ok && response.status === 200) {
       return responseData.data;
     }
-    throw new Error("Ha ocurrido un error al obtener los personajes");
+    throw new Error("It was not possible to obtain your characters");
   } catch (error: any) {
-    console.error("Error:", error);
     throw new Error(
-      `Ha ocurrido un error al obtener los personajes : ${error.message}`
+      `It was not possible to obtain your characters : ${error.message}`
     );
   }
 };
@@ -58,12 +57,9 @@ export const getFriends = async (
     if (response.ok && response.status === 200) {
       return responseData.data;
     }
-    throw new Error("Ha ocurrido un error al actualizar los datos");
+    throw new Error("Getfriends Not success");
   } catch (error: any) {
-    console.error("Error:", error);
-    throw new Error(
-      `Ha ocurrido un error al actualizar los datos : ${error.message}`
-    );
+    throw new Error(`${error.message}`);
   }
 };
 
@@ -74,6 +70,8 @@ export const deleteFriend = async (
   accountId: number,
   serverId: number
 ): Promise<void> => {
+  const transactionId = uuidv4();
+
   try {
     const requestBody: {
       character_id: number;
@@ -92,24 +90,33 @@ export const deleteFriend = async (
       headers: {
         "Content-Type": "application/json",
         Authorization: "Bearer " + jwt,
-        transaction_id: uuidv4(),
+        transaction_id: transactionId,
       },
       body: JSON.stringify(requestBody),
     });
 
-    if (response.ok && response.status >= 200 && response.status < 300) {
+    if (response.ok && response.status == 200) {
       return;
-    } else if (response.status >= 400) {
-      throw new Error("Error al Obtener los datos");
+    } else {
+      const genericResponse: GenericResponseDto<void> = await response.json();
+      throw new InternalServerError(
+        `${genericResponse.message}`,
+        response.status,
+        transactionId
+      );
     }
-
-    // Agregar un retorno por defecto en caso de otros casos no contemplados
-    throw new Error("Error desconocido al obtener los datos");
   } catch (error: any) {
-    console.error("Error:", error);
-    throw new Error(
-      `Ocurrió un error al intentar registrar los datos: ${error.message}`
-    );
+    if (error instanceof TypeError && error.message === "Failed to fetch") {
+      throw new Error(`Please try again later, services are not available.`);
+    } else if (error instanceof InternalServerError) {
+      throw error;
+    } else if (error instanceof Error) {
+      throw error;
+    } else {
+      throw new Error(
+        `Unknown error occurred - TransactionId: ${transactionId}`
+      );
+    }
   }
 };
 
@@ -154,15 +161,18 @@ export const sendMoneyByFriend = async (
     if (response.ok && response.status == 200) {
       return;
     } else {
-      const responseData = await response.json();
-      const badRequestError: GenericResponseDto<void> = responseData;
-      throw new Error(
-        `${badRequestError.message} - TransactionId: ${transactionId}`
+      const genericResponse: GenericResponseDto<void> = await response.json();
+      throw new InternalServerError(
+        `${genericResponse.message}`,
+        response.status,
+        transactionId
       );
     }
   } catch (error: any) {
     if (error instanceof TypeError && error.message === "Failed to fetch") {
       throw new Error(`Please try again later, services are not available.`);
+    } else if (error instanceof InternalServerError) {
+      throw error;
     } else if (error instanceof Error) {
       throw error;
     } else {
@@ -214,15 +224,18 @@ export const sendLevelByFriend = async (
     if (response.ok && response.status == 200) {
       return;
     } else {
-      const responseData = await response.json();
-      const badRequestError: GenericResponseDto<void> = responseData;
-      throw new Error(
-        `${badRequestError.message} - TransactionId: ${transactionId}`
+      const genericResponse: GenericResponseDto<void> = await response.json();
+      throw new InternalServerError(
+        `${genericResponse.message}`,
+        response.status,
+        transactionId
       );
     }
   } catch (error: any) {
     if (error instanceof TypeError && error.message === "Failed to fetch") {
       throw new Error(`Please try again later, services are not available.`);
+    } else if (error instanceof InternalServerError) {
+      throw error;
     } else if (error instanceof Error) {
       throw error;
     } else {

@@ -1,7 +1,8 @@
 "use client";
-import { getAccountAndServerId, getAccounts } from "@/api/account";
+import { getAccountAndServerId } from "@/api/account";
 import { getCharacters } from "@/api/account/character";
 import { attach } from "@/api/guilds";
+import { InternalServerError } from "@/dto/generic";
 import { AccountsModel, Character } from "@/model/model";
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -39,13 +40,26 @@ const GuildCharacter: React.FC<GuildCharacterProps> = ({
         const fetchedAccounts = await getAccountAndServerId(token, serverId);
         setAccounts(fetchedAccounts.accounts);
       } catch (error: any) {
+        if (error instanceof InternalServerError) {
+          Swal.fire({
+            icon: "error",
+            title: "Opss!",
+            html: `
+              <p><strong>Message:</strong> ${error.message}</p>
+              <hr style="border-color: #444; margin: 8px 0;">
+              <p><strong>Transaction ID:</strong> ${error.transactionId}</p>
+            `,
+            color: "white",
+            background: "#0B1218",
+          });
+          return;
+        }
         Swal.fire({
           icon: "error",
           title: "Oops...",
           text: `${error.message}`,
           color: "white",
           background: "#0B1218",
-          timer: 4500,
         });
       }
     };
@@ -103,13 +117,26 @@ const GuildCharacter: React.FC<GuildCharacterProps> = ({
         timer: 4500,
       });
     } catch (error: any) {
+      if (error instanceof InternalServerError) {
+        Swal.fire({
+          icon: "error",
+          title: "Opss!",
+          html: `
+            <p><strong>Message:</strong> ${error.message}</p>
+            <hr style="border-color: #444; margin: 8px 0;">
+            <p><strong>Transaction ID:</strong> ${error.transactionId}</p>
+          `,
+          color: "white",
+          background: "#0B1218",
+        });
+        return;
+      }
       Swal.fire({
         icon: "error",
         title: "Oops...",
         text: `${error.message}`,
         color: "white",
         background: "#0B1218",
-        timer: 4500,
       });
     } finally {
       setLoading(false);

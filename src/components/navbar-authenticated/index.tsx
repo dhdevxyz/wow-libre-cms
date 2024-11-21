@@ -117,7 +117,8 @@ const NavbarAuthenticated = () => {
                 </Link>
                 <Link
                   className="rounded-md  px-4 py-3 text-x2 font-medium text-gray-300 hover:bg-gray-700 hover:text-white font-serif"
-                  href="/comunity"
+                  target="_blank"
+                  href="https://t.me/+jOZFCLD5TXAxOWRh"
                 >
                   {t("navbar_authenticated.sections.position-three")}
                 </Link>

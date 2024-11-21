@@ -1,6 +1,6 @@
 import { BASE_URL } from "@/configs/configs";
-import { GenericResponseDto } from "@/dto/generic";
-import { GuildData, GuildsDto } from "@/model/model";
+import { GenericResponseDto, InternalServerError } from "@/dto/generic";
+import { GuildData, GuildMemberDto, GuildsDto } from "@/model/model";
 import { v4 as uuidv4 } from "uuid";
 
 export const getGuilds = async (
@@ -85,9 +85,9 @@ export const attach = async (
   characterId: number,
   token: string
 ): Promise<void> => {
-  try {
-    const transactionId = uuidv4();
+  const transactionId = uuidv4();
 
+  try {
     const requestBody: {
       server_id: number;
       account_id: number;
@@ -113,12 +113,25 @@ export const attach = async (
     if (response.ok && response.status === 204) {
       return;
     } else {
-      const responseData: GenericResponseDto<void> = await response.json();
-      throw new Error(`${responseData.message}`);
+      const genericResponse: GenericResponseDto<void> = await response.json();
+      throw new InternalServerError(
+        `${genericResponse.message}`,
+        response.status,
+        transactionId
+      );
     }
   } catch (error: any) {
-    console.error(`Error: ${error.message}`, error);
-    throw new Error(` ${error.message}`);
+    if (error instanceof TypeError && error.message === "Failed to fetch") {
+      throw new Error(`Please try again later, services are not available.`);
+    } else if (error instanceof InternalServerError) {
+      throw error;
+    } else if (error instanceof Error) {
+      throw error;
+    } else {
+      throw new Error(
+        `Unknown error occurred - TransactionId: ${transactionId}`
+      );
+    }
   }
 };
 
@@ -127,7 +140,7 @@ export const getMemberDetailGuild = async (
   accountId: number,
   characterId: number,
   token: string
-): Promise<GuildData> => {
+): Promise<GuildMemberDto> => {
   try {
     const transactionId = uuidv4();
 
@@ -144,7 +157,8 @@ export const getMemberDetailGuild = async (
     );
 
     if (response.ok && response.status === 200) {
-      const responseData: GenericResponseDto<GuildData> = await response.json();
+      const responseData: GenericResponseDto<GuildMemberDto> =
+        await response.json();
 
       return responseData.data;
     } else {

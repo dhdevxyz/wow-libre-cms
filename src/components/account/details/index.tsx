@@ -232,14 +232,14 @@ const AccountDetail = () => {
               </Tab>
               <Tab className="py-6 px-5 text-white  bg-tablist cursor-pointer text-lg font-semibold flex items-center">
                 <FontAwesomeIcon icon={faMedal} className="mr-2 text-2xl" />
-                Promociones
+                {t("account-detail.tabs.var7")}
               </Tab>
               <Tab className="py-6 px-5 text-white  bg-tablist cursor-pointer text-lg font-semibold flex items-center">
                 <FontAwesomeIcon
                   icon={faRotateLeft}
                   className="mr-2 text-2xl"
                 />
-                {t("account-detail.tabs.var7")}
+                {t("account-detail.tabs.var8")}
               </Tab>
             </TabList>
 
@@ -256,6 +256,7 @@ const AccountDetail = () => {
                     token={token}
                     accountId={accountId}
                     serverId={serverId}
+                    t={t}
                   />
                 ) : (
                   <div className=" p-6 bg-gradient-to-r from-gray-800 via-black to-gray-900 text-neon_green rounded-lg shadow-lg text-center">
@@ -273,7 +274,7 @@ const AccountDetail = () => {
               </TabPanel>
               <TabPanel>
                 {/* Contenido de la pestaña Notificaciones */}
-                {selectedCharacter && token ? (
+                {selectedCharacter && token && accountId ? (
                   <Mails
                     token={token}
                     characterId={selectedCharacter.id}
