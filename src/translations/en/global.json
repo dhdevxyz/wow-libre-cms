@@ -430,6 +430,31 @@
                 "title": "⚔️ Choose Your Hero! ⚔️",
                 "subtitle": "In Azeroth, true strength lies in friendship. Add your allies and embark on epic adventures!",
                 "text": "Together, you’ll face challenges and celebrate victories. Friendship is the most powerful magic of all!"
+            },
+            "mails": {
+                "title": "⚔️ Choose Your Hero! ⚔️",
+                "subtitle": "Communication is key in the world of Warcraft. Send letters and messages to your friends and allies!",
+                "text": "Share your adventures, strategies, and secrets. Every word matters in the battle for Azeroth's destiny!"
+            },
+            "professions": {
+                "title": "⚔️ Choose Your Hero! ⚔️",
+                "subtitle": "Become a master blacksmith, alchemist, or even an enchanting sage! The possibilities are endless... choose your path within the game!",
+                "text": "The key to power is in your hands. Professions will take you to the next level!"
+            },
+            "guilds": {
+                "title": "⚔️ Choose Your Hero! ⚔️",
+                "subtitle": "Azeroth's strength lies in unity. Join a powerful guild and fight alongside your friends!",
+                "text": "Together, you can conquer great challenges and forge an eternal legacy. The adventure starts here!"
+            },
+            "premium": {
+                "title": "⚔️ Choose Your Champion! ⚔️",
+                "subtitle": "Make the most of your subscription privileges",
+                "text": "Unlock your hero's full potential with exclusive benefits. Make every battle count!"
+            },
+            "promotions": {
+                "title": "⚔️ Forge Your Destiny! ⚔️",
+                "subtitle": "Take advantage of legendary offers",
+                "text": "Unlock epic promotions and enhance your adventure. Don't miss this opportunity!"
             }
         },
         "errors": {
@@ -453,7 +478,8 @@
             "var4": "Professions",
             "var5": "Guild",
             "var6": "Premium",
-            "var7": "Accounts"
+            "var7": "Promotions",
+            "var8": "Accounts"
         }
     },
     "support": {
@@ -550,10 +576,10 @@
         }
     },
     "friend-detail-modal": {
-        "nivel": "Level: ",
-        "clase": "Class: ",
-        "raza": "Race: ",
-        "estado": "Status: ",
+        "nivel": "Level:",
+        "clase": "Class:",
+        "raza": "Race:",
+        "estado": "Status:",
         "send-levels": {
             "btn-txt": "Gift Levels",
             "cost": {
@@ -600,6 +626,50 @@
             "lvl-max": "The level cannot exceed 80.",
             "lvl-min": "The level must be higher than 0.",
             "money-empty": "The amount of gold to send must exceed 1."
+        }
+    },
+    "mails-items": {
+        "title": "Item Details",
+        "item-empty": "No items available.",
+        "btn-close": "Close"
+    },
+    "mails": {
+        "title": "Messages",
+        "detail-item": "Item Details",
+        "submitted-by": "Sent by: ",
+        "expires": "Expires: ",
+        "mail-empty": "You have no mail.",
+        "btn": {
+            "next": "Next",
+            "back": "Back"
+        },
+        "error": "Unable to retrieve messages associated with the character."
+    },
+    "professions": {
+        "description": "Manage Services",
+        "messages": {
+            "announcement-title": "Message Sent!",
+            "announcement-description": "Your message will be published shortly."
+        },
+        "empty": {
+            "title": "Explore New Skills!",
+            "subtitle": "You haven't learned any professions yet. Dive into the world of World of Warcraft and discover countless professions to enhance your gaming experience! Become a master artisan, an expert herbalist, or an innovative engineer. The possibilities are endless!"
+        },
+        "question": {
+            "title": "What do the buttons do?",
+            "subtitle": "Announce me: ",
+            "description": "Clicking this button will send a message within the server. This is useful for alerting other players about your skills or services in the game."
+        },
+        "btn": {
+            "send-announcement": "Announce"
+        }
+    },
+    "send-announcement": {
+        "title": "Confirm",
+        "subtitle": "The cost is {{cost}} g. Do you wish to proceed?",
+        "btn": {
+            "next": "Accept",
+            "back": "Cancel"
         }
     }
 }

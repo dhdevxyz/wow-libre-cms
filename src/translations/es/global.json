@@ -430,6 +430,31 @@
                 "title": "⚔️ ¡Elige a tu héroe! ⚔️",
                 "subtitle": "En Azeroth, la verdadera fortaleza está en los amigos. ¡Agrega a tus aliados y comparte grandes aventuras!",
                 "text": "Juntos podrán enfrentar desafíos y celebrar victorias. ¡La amistad es la magia más poderosa de todas!"
+            },
+            "mails": {
+                "title": "⚔️ ¡Selecciona tu héroe! ⚔️",
+                "subtitle": "La comunicación es clave en el mundo de Warcraft. ¡Envía cartas y mensajes a tus amigos y aliados!",
+                "text": "Comparte tus aventuras, estrategias y secretos. ¡Cada palabra cuenta en la batalla por el destino de Azeroth!"
+            },
+            "professions": {
+                "title": "⚔️ ¡Selecciona tu héroe! ⚔️",
+                "subtitle": "¡Conviértete en un maestro herrero, alquimista, o incluso en un sabio encantador! Las oportunidades son infinitas... ¡elige tu camino dentro del juego!",
+                "text": "La clave del poder está en tus manos. ¡Las profesiones te llevarán más allá!"
+            },
+            "guilds": {
+                "title": "⚔️ ¡Selecciona tu héroe! ⚔️",
+                "subtitle": "La fuerza de Azeroth radica en la unidad. ¡Forma parte de una guild poderosa y lucha junto a tus amigos!",
+                "text": "Juntos, podrán conquistar grandes desafíos y forjar un legado eterno. ¡La aventura comienza aquí!"
+            },
+            "premium": {
+                "title": "⚔️ ¡Elige a tu campeón! ⚔️",
+                "subtitle": "Disfruta al máximo los privilegios de tu suscripción",
+                "text": "Libera todo el potencial de tu héroe con beneficios exclusivos. ¡Haz que cada batalla cuente!"
+            },
+            "promotions": {
+                "title": "⚔️ ¡Forja tu destino! ⚔️",
+                "subtitle": "Aprovecha las ofertas legendarias",
+                "text": "Desbloquea promociones épicas y potencia tu aventura. ¡No dejes pasar esta oportunidad!"
             }
         },
         "errors": {
@@ -601,6 +626,50 @@
             "lvl-max": "El nivel no puede ser superior a 80.",
             "lvl-min": "El nivel debe ser superior a 0.",
             "money-empty": "La cantidad de oro a enviar debe ser superior a 1."
+        }
+    },
+    "mails-items": {
+        "title": "Detalles de Objetos",
+        "item-empty": "No hay objetos.",
+        "btn-close": "Cerrar"
+    },
+    "mails": {
+        "title": "Mensajes",
+        "detail-item": "Detalles de objetos",
+        "submitted-by": "Enviado por: ",
+        "expires": "Expira: ",
+        "mail-empty": "No tienes correspondencia.",
+        "btn": {
+            "next": "Siguiente",
+            "back": "Anterior"
+        },
+        "error": "No se pudieron obtener los mensajes del personaje."
+    },
+    "professions": {
+        "description": "Administrar servicios",
+        "messages": {
+            "announcement-title": "¡Mensaje Enviado!",
+            "announcement-description": "Su mensaje será publicado en breve."
+        },
+        "empty": {
+            "title": "¡Explora nuevas habilidades!",
+            "subtitle": "Aún no has aprendido ninguna profesión. ¡Sumérgete en el mundo de World of Warcraft y descubre un sinfín de profesiones que te ayudarán a mejorar tu experiencia de juego! Conviértete en un maestro artesano, un herborista experto o un ingeniero innovador. ¡Las posibilidades son  infinitas!"
+        },
+        "question": {
+            "title": "¿Qué hacen los botones?",
+            "subtitle": "Anunciarme: ",
+            "description": "Al hacer clic en este botón, se enviará un mensaje dentro del servidor. Esto es útil para alertar a otros jugadores sobre tus habilidades o servicios en el juego."
+        },
+        "btn": {
+            "send-announcement": "Enviar anuncio"
+        }
+    },
+    "send-announcement": {
+        "title": "Confirmar",
+        "subtitle": "El costo es de {{cost}} g. ¿Desea proceder?",
+        "btn": {
+            "next": "Aceptar",
+            "back": "Cancelar"
         }
     }
 }

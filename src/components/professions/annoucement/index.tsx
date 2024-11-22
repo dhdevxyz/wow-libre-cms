@@ -1,4 +1,5 @@
 import { getAnnoucementProfession } from "@/api/annoucement";
+import { InternalServerError } from "@/dto/generic";
 import React from "react";
 import Swal from "sweetalert2";
 
@@ -11,6 +12,7 @@ interface ConfirmationDialogProps {
   token: string;
   onConfirm: () => void;
   onCancel: () => void;
+  t: (key: string, options?: any) => string;
 }
 
 const Announcement: React.FC<ConfirmationDialogProps> = ({
@@ -22,17 +24,18 @@ const Announcement: React.FC<ConfirmationDialogProps> = ({
   token,
   onConfirm,
   onCancel,
+  t,
 }) => {
   const handleConfirm = async () => {
     const result = await Swal.fire({
       icon: "question",
-      title: "Confirmar",
+      title: t("send-announcement.title"),
       color: "white",
       background: "#0B1218",
-      text: `El costo es de ${cost} g. ¿Desea proceder?`,
+      text: t("send-announcement.subtitle", { cost }),
       showCancelButton: true,
-      confirmButtonText: "Aceptar",
-      cancelButtonText: "Cancelar",
+      confirmButtonText: t("send-announcement.btn.next"),
+      cancelButtonText: t("send-announcement.btn.back"),
     });
 
     if (result.isConfirmed) {
@@ -46,13 +49,26 @@ const Announcement: React.FC<ConfirmationDialogProps> = ({
         );
         onConfirm();
       } catch (error: any) {
+        if (error instanceof InternalServerError) {
+          Swal.fire({
+            icon: "error",
+            title: "Opss!",
+            html: `
+              <p><strong>Message:</strong> ${error.message}</p>
+              <hr style="border-color: #444; margin: 8px 0;">
+              <p><strong>Transaction ID:</strong> ${error.transactionId}</p>
+            `,
+            color: "white",
+            background: "#0B1218",
+          });
+          return;
+        }
         Swal.fire({
           icon: "error",
+          title: "Oops...",
+          text: `${error.message}`,
           color: "white",
           background: "#0B1218",
-          title: "Error",
-          text: `${error.message}`,
-          confirmButtonText: "Aceptar",
         });
       }
     } else {

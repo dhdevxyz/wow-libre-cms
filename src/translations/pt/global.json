@@ -430,6 +430,31 @@
                 "title": "⚔️ Escolha seu Herói! ⚔️",
                 "subtitle": "Em Azeroth, a verdadeira força está na amizade. Adicione seus aliados e compartilhe aventuras épicas!",
                 "text": "Juntos, vocês enfrentarão desafios e celebrarão vitórias. A amizade é a magia mais poderosa de todas!"
+            },
+            "mails": {
+                "title": "⚔️ Escolha Seu Herói! ⚔️",
+                "subtitle": "A comunicação é essencial no mundo de Warcraft. Envie cartas e mensagens para seus amigos e aliados!",
+                "text": "Compartilhe suas aventuras, estratégias e segredos. Cada palavra conta na batalha pelo destino de Azeroth!"
+            },
+            "professions": {
+                "title": "⚔️ Escolha Seu Herói! ⚔️",
+                "subtitle": "Torne-se um mestre ferreiro, alquimista ou até mesmo um sábio encantador! As possibilidades são infinitas... escolha seu caminho dentro do jogo!",
+                "text": "A chave para o poder está em suas mãos. As profissões levarão você além!"
+            },
+            "guilds": {
+                "title": "⚔️ Escolha Seu Herói! ⚔️",
+                "subtitle": "A força de Azeroth está na união. Junte-se a uma guilda poderosa e lute ao lado de seus amigos!",
+                "text": "Juntos, vocês podem conquistar grandes desafios e forjar um legado eterno. A aventura começa aqui!"
+            },
+            "premium": {
+                "title": "⚔️ Escolha Seu Campeão! ⚔️",
+                "subtitle": "Aproveite ao máximo os privilégios da sua assinatura",
+                "text": "Liberte todo o potencial do seu herói com benefícios exclusivos. Faça cada batalha valer a pena!"
+            },
+            "promotions": {
+                "title": "⚔️ Forje Seu Destino! ⚔️",
+                "subtitle": "Aproveite ofertas lendárias",
+                "text": "Desbloqueie promoções épicas e amplifique sua aventura. Não perca essa oportunidade!"
             }
         },
         "errors": {
@@ -453,7 +478,8 @@
             "var4": "Profissões",
             "var5": "Guilda",
             "var6": "Premium",
-            "var7": "Contas"
+            "var7": "Promoções",
+            "var8": "Contas"
         }
     },
     "support": {
@@ -600,6 +626,50 @@
             "lvl-max": "O nível não pode ser superior a 80.",
             "lvl-min": "O nível deve ser maior que 0.",
             "money-empty": "A quantidade de ouro a ser enviada deve ser superior a 1."
+        }
+    },
+    "mails-items": {
+        "title": "Detalhes dos Itens",
+        "item-empty": "Não há itens.",
+        "btn-close": "Fechar"
+    },
+    "mails": {
+        "title": "Mensagens",
+        "detail-item": "Detalhes dos itens",
+        "submitted-by": "Enviado por: ",
+        "expires": "Expira: ",
+        "mail-empty": "Você não tem correspondência.",
+        "btn": {
+            "next": "Próximo",
+            "back": "Voltar"
+        },
+        "error": "Não foi possível obter as mensagens associadas ao personagem."
+    },
+    "professions": {
+        "description": "Gerenciar serviços",
+        "messages": {
+            "announcement-title": "Mensagem enviada!",
+            "announcement-description": "Sua mensagem será publicada em breve."
+        },
+        "empty": {
+            "title": "Explore novas habilidades!",
+            "subtitle": "Você ainda não aprendeu nenhuma profissão. Mergulhe no mundo de World of Warcraft e descubra inúmeras profissões para melhorar sua experiência no jogo! Torne-se um mestre artesão, um herborista experiente ou um engenheiro inovador. As possibilidades são infinitas!"
+        },
+        "question": {
+            "title": "O que fazem os botões?",
+            "subtitle": "Anunciar-me: ",
+            "description": "Ao clicar neste botão, você enviará uma mensagem dentro do servidor. Isso é útil para alertar outros jogadores sobre suas habilidades ou serviços no jogo."
+        },
+        "btn": {
+            "send-announcement": "Enviar anúncio"
+        }
+    },
+    "send-announcement": {
+        "title": "Confirmar",
+        "subtitle": "O custo é {{cost}} g. Deseja continuar?",
+        "btn": {
+            "next": "Aceitar",
+            "back": "Cancelar"
         }
     }
 }

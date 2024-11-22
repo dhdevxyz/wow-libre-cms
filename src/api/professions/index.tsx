@@ -1,5 +1,5 @@
 import { BASE_URL } from "@/configs/configs";
-import { GenericResponseDto } from "@/dto/generic";
+import { GenericResponseDto, InternalServerError } from "@/dto/generic";
 import { Profession } from "@/model/model";
 import { v4 as uuidv4 } from "uuid";
 
@@ -9,9 +9,9 @@ export const getProfessions = async (
   serverId: number,
   token: string
 ): Promise<Profession[]> => {
-  try {
-    const transactionId = uuidv4();
+  const transactionId = uuidv4();
 
+  try {
     const response = await fetch(
       `${BASE_URL}/api/characters/professions?character_id=${characterId}&account_id=${accountId}&server_id=${serverId}`,
       {
@@ -31,16 +31,25 @@ export const getProfessions = async (
 
       return responseData.data;
     } else {
-      const errorGeneric: GenericResponseDto<void> = await response.json();
-
-      throw new Error(
-        `${errorGeneric.message} - Transaction Id: ${transactionId}`
+      const genericResponse: GenericResponseDto<void> = await response.json();
+      throw new InternalServerError(
+        `${genericResponse.message}`,
+        response.status,
+        transactionId
       );
     }
   } catch (error: any) {
-    throw new Error(
-      `It was not possible to obtain the professions: ${error.message}`
-    );
+    if (error instanceof TypeError && error.message === "Failed to fetch") {
+      throw new Error(`Please try again later, services are not available.`);
+    } else if (error instanceof InternalServerError) {
+      throw error;
+    } else if (error instanceof Error) {
+      throw error;
+    } else {
+      throw new Error(
+        `Unknown error occurred - TransactionId: ${transactionId}`
+      );
+    }
   }
 };
 

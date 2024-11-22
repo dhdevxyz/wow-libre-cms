@@ -280,19 +280,18 @@ const AccountDetail = () => {
                     characterId={selectedCharacter.id}
                     accountId={accountId}
                     serverId={serverId}
+                    t={t}
                   />
                 ) : (
                   <div className=" p-6 bg-gradient-to-r from-gray-800 via-black to-gray-900 text-neon_green rounded-lg shadow-lg text-center">
                     <h2 className="text-2xl font-bold mb-2 text-gray-200">
-                      ⚔️ ¡Selecciona tu héroe! ⚔️
+                      {t("account-detail.character-no-select.mails.title")}
                     </h2>
                     <p className="text-xl text-gray-200 mb-4">
-                      La comunicación es clave en el mundo de Warcraft. ¡Envía
-                      cartas y mensajes a tus amigos y aliados!
+                      {t("account-detail.character-no-select.mails.subtitle")}
                     </p>
                     <p className="text-lg italic text-gray-200">
-                      Comparte tus aventuras, estrategias y secretos. ¡Cada
-                      palabra cuenta en la batalla por el destino de Azeroth!
+                      {t("account-detail.character-no-select.mails.text")}
                     </p>
                   </div>
                 )}
@@ -315,20 +314,22 @@ const AccountDetail = () => {
                     token={token}
                     accountId={accountId}
                     serverId={serverId}
+                    t={t}
                   />
                 ) : (
                   <div className=" p-6 bg-gradient-to-r from-gray-800 via-black to-gray-900 text-neon_green rounded-lg shadow-lg text-center">
                     <h2 className="text-2xl font-bold mb-2 text-gray-200">
-                      ⚔️ ¡Selecciona tu héroe! ⚔️
+                      {t(
+                        "account-detail.character-no-select.professions.title"
+                      )}
                     </h2>
                     <p className="text-xl text-gray-200 mb-4">
-                      ¡Conviértete en un maestro herrero, alquimista, o incluso
-                      en un sabio encantador! Las oportunidades son infinitas...
-                      ¡elige tu camino dentro del juego!
+                      {t(
+                        "account-detail.character-no-select.professions.subtitle"
+                      )}
                     </p>
                     <p className="text-lg italic text-gray-200">
-                      La clave del poder está en tus manos. ¡Las profesiones te
-                      llevarán más allá!
+                      {t("account-detail.character-no-select.professions.text")}
                     </p>
                   </div>
                 )}
@@ -344,21 +345,19 @@ const AccountDetail = () => {
                 ) : (
                   <div className=" p-6 bg-gradient-to-r from-gray-800 via-black to-gray-900 text-neon_green rounded-lg shadow-lg text-center">
                     <h2 className="text-2xl font-bold mb-2 text-gray-200">
-                      ⚔️ ¡Selecciona tu héroe! ⚔️
+                      {t("account-detail.character-no-select.guilds.title")}
                     </h2>
                     <p className="text-xl text-gray-200 mb-4">
-                      La fuerza de Azeroth radica en la unidad. ¡Forma parte de
-                      una guild poderosa y lucha junto a tus amigos!
+                      {t("account-detail.character-no-select.guilds.subtitle")}
                     </p>
                     <p className="text-lg italic text-gray-200">
-                      Juntos, podrán conquistar grandes desafíos y forjar un
-                      legado eterno. ¡La aventura comienza aquí!
+                      {t("account-detail.character-no-select.guilds.text")}
                     </p>
                   </div>
                 )}
               </TabPanel>
               <TabPanel>
-                {token && selectedCharacter && serverId && accountId && (
+                {token && selectedCharacter && serverId && accountId ? (
                   <Premium
                     serverId={serverId}
                     accountId={accountId}
@@ -366,10 +365,22 @@ const AccountDetail = () => {
                     language={user.language}
                     token={token}
                   />
+                ) : (
+                  <div className=" p-6 bg-gradient-to-r from-gray-800 via-black to-gray-900 text-neon_green rounded-lg shadow-lg text-center">
+                    <h2 className="text-2xl font-bold mb-2 text-gray-200">
+                      {t("account-detail.character-no-select.premium.title")}
+                    </h2>
+                    <p className="text-xl text-gray-200 mb-4">
+                      {t("account-detail.character-no-select.premium.subtitle")}
+                    </p>
+                    <p className="text-lg italic text-gray-200">
+                      {t("account-detail.character-no-select.premium.text")}
+                    </p>
+                  </div>
                 )}
               </TabPanel>
               <TabPanel>
-                {token && selectedCharacter && serverId && accountId && (
+                {token && selectedCharacter && serverId && accountId ? (
                   <Promotions
                     serverId={serverId}
                     accountId={accountId}
@@ -377,6 +388,20 @@ const AccountDetail = () => {
                     language={user.language}
                     token={token}
                   />
+                ) : (
+                  <div className=" p-6 bg-gradient-to-r from-gray-800 via-black to-gray-900 text-neon_green rounded-lg shadow-lg text-center">
+                    <h2 className="text-2xl font-bold mb-2 text-gray-200">
+                      {t("account-detail.character-no-select.promotions.title")}
+                    </h2>
+                    <p className="text-xl text-gray-200 mb-4">
+                      {t(
+                        "account-detail.character-no-select.promotions.subtitle"
+                      )}
+                    </p>
+                    <p className="text-lg italic text-gray-200">
+                      {t("account-detail.character-no-select.promotions.text")}
+                    </p>
+                  </div>
                 )}
               </TabPanel>
               <TabPanel>

@@ -1,5 +1,5 @@
 import { BASE_URL } from "@/configs/configs";
-import { GenericResponseDto } from "@/dto/generic";
+import { GenericResponseDto, InternalServerError } from "@/dto/generic";
 import { v4 as uuidv4 } from "uuid";
 
 export const getAnnoucementProfession = async (
@@ -9,9 +9,9 @@ export const getAnnoucementProfession = async (
   token: string,
   serverId: number
 ): Promise<GenericResponseDto<void>> => {
-  try {
-    const transactionId = uuidv4();
+  const transactionId = uuidv4();
 
+  try {
     const response = await fetch(
       `${BASE_URL}/api/characters/profession/announcement`,
       {
@@ -34,15 +34,24 @@ export const getAnnoucementProfession = async (
       const responseData: GenericResponseDto<void> = await response.json();
       return responseData;
     } else {
-      const responseData: GenericResponseDto<void> = await response.json();
-      throw new Error(
-        `${responseData.message} - Id ${responseData.transaction_id}`
+      const genericResponse: GenericResponseDto<void> = await response.json();
+      throw new InternalServerError(
+        `${genericResponse.message}`,
+        response.status,
+        transactionId
       );
     }
   } catch (error: any) {
-    console.error(`Error: ${error.message}`, error);
-    throw new Error(
-      `It was not possible to obtain the guilds: ${error.message}`
-    );
+    if (error instanceof TypeError && error.message === "Failed to fetch") {
+      throw new Error(`Please try again later, services are not available.`);
+    } else if (error instanceof InternalServerError) {
+      throw error;
+    } else if (error instanceof Error) {
+      throw error;
+    } else {
+      throw new Error(
+        `Unknown error occurred - TransactionId: ${transactionId}`
+      );
+    }
   }
 };

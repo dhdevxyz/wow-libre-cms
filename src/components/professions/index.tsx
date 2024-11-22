@@ -1,18 +1,20 @@
+import { getProfessions } from "@/api/professions";
+import { Character, Profession } from "@/model/model";
 import React, { MouseEventHandler, useEffect, useState } from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import "./style.css";
-import { getProfessions } from "@/api/professions";
-import ProfesionService from "./service";
-import { Character, Profession } from "@/model/model";
 import Swal from "sweetalert2";
 import Announcement from "./annoucement";
+import ProfesionService from "./service";
+import "./style.css";
+import { InternalServerError } from "@/dto/generic";
 
 interface ProfessionsProps {
   character: Character;
   token: string;
   accountId: number;
   serverId: number;
+  t: (key: string, options?: any) => string;
 }
 interface ArrowProps {
   onClick?: MouseEventHandler<HTMLButtonElement>;
@@ -22,6 +24,7 @@ const Professions: React.FC<ProfessionsProps> = ({
   token,
   accountId,
   serverId,
+  t,
 }) => {
   const [professions, setPartners] = useState<Profession[]>([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -48,8 +51,8 @@ const Professions: React.FC<ProfessionsProps> = ({
       icon: "info",
       color: "white",
       background: "#0B1218",
-      title: "¡Mensaje Enviado!",
-      text: "Su mensaje será publicado en breve.",
+      title: t("professions.messages.announcement-title"),
+      text: t("professions.messages.announcement-description"),
       confirmButtonText: "Aceptar",
     }).then(() => {
       setShowConfirmDialog(false);
@@ -60,7 +63,6 @@ const Professions: React.FC<ProfessionsProps> = ({
     setShowConfirmDialog(false);
   };
 
-  // Función para actualizar la lista de profesiones
   const refreshProfessions = async () => {
     try {
       const professions = await getProfessions(
@@ -70,8 +72,28 @@ const Professions: React.FC<ProfessionsProps> = ({
         token
       );
       setPartners(professions);
-    } catch (error) {
-      console.error("Error fetching professions:", error);
+    } catch (error: any) {
+      if (error instanceof InternalServerError) {
+        Swal.fire({
+          icon: "error",
+          title: "Opss!",
+          html: `
+            <p><strong>Message:</strong> ${error.message}</p>
+            <hr style="border-color: #444; margin: 8px 0;">
+            <p><strong>Transaction ID:</strong> ${error.transactionId}</p>
+          `,
+          color: "white",
+          background: "#0B1218",
+        });
+        return;
+      }
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: `${error.message}`,
+        color: "white",
+        background: "#0B1218",
+      });
     }
   };
 
@@ -83,17 +105,17 @@ const Professions: React.FC<ProfessionsProps> = ({
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
       items: 2,
-      slidesToSlide: 2, // Número de slides a deslizar
+      slidesToSlide: 2,
     },
     tablet: {
       breakpoint: { max: 1024, min: 464 },
       items: 2,
-      slidesToSlide: 2, // Número de slides a deslizar
+      slidesToSlide: 2,
     },
     mobile: {
       breakpoint: { max: 464, min: 0 },
       items: 1,
-      slidesToSlide: 1, // Número de slides a deslizar
+      slidesToSlide: 1,
     },
   };
 
@@ -101,15 +123,9 @@ const Professions: React.FC<ProfessionsProps> = ({
     return (
       <div className="flex flex-col items-center justify-center p-8">
         <p className="text-white text-3xl font-bold mb-4">
-          ¡Explora nuevas habilidades!
+          {t("professions.empty.title")}
         </p>
-        <p className="text-white text-xl">
-          Aún no has aprendido ninguna profesión. ¡Sumérgete en el mundo de
-          World of Warcraft y descubre un sinfín de profesiones que te ayudarán
-          a mejorar tu experiencia de juego! Conviértete en un maestro artesano,
-          un herborista experto o un ingeniero innovador. ¡Las posibilidades son
-          infinitas!
-        </p>
+        <p className="text-white text-xl">{t("professions.empty.subtitle")}</p>
       </div>
     );
   }
@@ -118,12 +134,11 @@ const Professions: React.FC<ProfessionsProps> = ({
     <div className="professions-carousel-container">
       <div className="info-section mb-8 p-4 rounded-lg">
         <p className="text-gray-300 text-lg mb-4">
-          <strong>¿Qué hacen los botones?</strong>
+          <strong>{t("professions.question.title")}</strong>
         </p>
         <p className="text-gray-300 text-lg">
-          <strong>Anunciarme:</strong> Al hacer clic en este botón, se enviará
-          un mensaje dentro del servidor. Esto es útil para alertar a otros
-          jugadores sobre tus habilidades o servicios en el juego.
+          <strong>{t("professions.question.subtitle")}</strong>{" "}
+          {t("professions.question.description")}
         </p>
       </div>
       <Carousel
@@ -188,7 +203,7 @@ const Professions: React.FC<ProfessionsProps> = ({
                   </div>
                   <div className="flex flex-col">
                     <p className="text-gray-300 text-lg mb-4">
-                      Administrar servicios
+                      {t("professions.description")}
                     </p>
                     {/*
                   profession.service == null ? (
@@ -212,7 +227,7 @@ const Professions: React.FC<ProfessionsProps> = ({
                       onClick={() => handleAnnounce(profession)}
                       className="bg-orange-400 text-white px-4 py-2 rounded-lg hover:bg-orange-600 mt-3 focus:outline-none"
                     >
-                      Enviar anuncio
+                      {t("professions.btn.send-announcement")}
                     </button>
                   </div>
                 </div>
@@ -231,6 +246,7 @@ const Professions: React.FC<ProfessionsProps> = ({
           token={token}
           onConfirm={handleConfirmAnnounce}
           onCancel={handleCancelAnnounce}
+          t={t}
         />
       )}
       {selectedProfession && (
