@@ -107,7 +107,7 @@ const Mails: React.FC<MailsProps> = ({
 
   if (loading) {
     return (
-      <div className="container mx-auto py-8">
+      <div className="flex items-center justify-center">
         <LoadingSpinner />
       </div>
     );
@@ -189,7 +189,7 @@ const Mails: React.FC<MailsProps> = ({
                     </div>
                   )}
                 </div>
-                <div className="mt-4">
+                <div className="mt-2">
                   <span className="text-gray-200 text-xl">
                     {t("mails.submitted-by")}
                     {mail.sender_name}
@@ -201,7 +201,7 @@ const Mails: React.FC<MailsProps> = ({
                     {new Date(mail.expire_time).toLocaleDateString()}
                   </span>
                 </div>
-                <div className="flex justify-end mt-4 space-x-4"></div>
+                <div className="flex justify-end mt-2 space-x-4"></div>
               </div>
             ))
           ) : (
@@ -214,7 +214,7 @@ const Mails: React.FC<MailsProps> = ({
 
       {/* Paginación */}
       {mails && mails?.mails.length > mailsPerPage && (
-        <div className="flex justify-between mt-4 mx-2">
+        <div className="flex justify-between mt-2 mx-2">
           <button
             className={`mx-1 px-3 py-1 rounded-md ${
               currentPage === 1

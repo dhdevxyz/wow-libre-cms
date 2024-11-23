@@ -6,6 +6,8 @@ import {
 } from "@/api/guilds";
 import EditGuildModal from "@/components/guild_edit";
 import DisplayMoney from "@/components/money";
+import LoadingSpinner from "@/components/utilities/loading-spinner";
+import { InternalServerError } from "@/dto/generic";
 import { GuildMemberDto } from "@/model/model";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
@@ -16,6 +18,8 @@ interface AccountGuildProps {
   characterId: number;
   token: string;
   accountId: number;
+  t: (key: string, options?: any) => string;
+  language: string;
 }
 
 const AccountGuild: React.FC<AccountGuildProps> = ({
@@ -23,6 +27,8 @@ const AccountGuild: React.FC<AccountGuildProps> = ({
   characterId,
   accountId,
   token,
+  t,
+  language,
 }) => {
   const [guildData, setGuildData] = useState<GuildMemberDto | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
@@ -74,7 +80,7 @@ const AccountGuild: React.FC<AccountGuildProps> = ({
 
   const handleBenefitsGuild = async () => {
     try {
-      await claimBenefits(accountId, characterId, token);
+      await claimBenefits(serverId, accountId, characterId, token, language);
       setRefresh(true);
       Swal.fire({
         icon: "success",
@@ -85,13 +91,26 @@ const AccountGuild: React.FC<AccountGuildProps> = ({
         timer: 4000,
       });
     } catch (error: any) {
+      if (error instanceof InternalServerError) {
+        Swal.fire({
+          icon: "error",
+          title: "Opss!",
+          html: `
+            <p><strong>Message:</strong> ${error.message}</p>
+            <hr style="border-color: #444; margin: 8px 0;">
+            <p><strong>Transaction ID:</strong> ${error.transactionId}</p>
+          `,
+          color: "white",
+          background: "#0B1218",
+        });
+        return;
+      }
       Swal.fire({
         icon: "error",
         title: "Oops...",
         text: `${error.message}`,
         color: "white",
         background: "#0B1218",
-        timer: 4000,
       });
     }
   };
@@ -123,7 +142,12 @@ const AccountGuild: React.FC<AccountGuildProps> = ({
     });
   };
 
-  if (loading) return <p className="text-center text-lg">Loading...</p>;
+  if (loading)
+    return (
+      <div className="flex items-center justify-center">
+        <LoadingSpinner />
+      </div>
+    );
 
   return (
     <div className="text-white">

@@ -1,14 +1,9 @@
-import { claimBenefitsPremium, getBenefitsPremium } from "@/api/subscriptions";
-import {
-  PromotionsModel,
-  SubscriptionBenefits,
-  SubscriptionsBenefit,
-} from "@/model/model";
+import { claimPromotion, getPromotions } from "@/api/promotions";
+import { PromotionsModel } from "@/model/model";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import LoadingSpinner from "../utilities/loading-spinner";
 import Swal from "sweetalert2";
-import { claimPromotion, getPromotions } from "@/api/promotions";
+import LoadingSpinner from "../utilities/loading-spinner";
 
 interface PremiumProps {
   serverId: number;
@@ -25,7 +20,6 @@ const Promotions: React.FC<PremiumProps> = ({
   language,
   token,
 }) => {
-  const [subscription, setSubscription] = useState(false);
   const [loading, setLoading] = useState(true);
   const [refresh, setRefresh] = useState(false);
 
@@ -46,7 +40,6 @@ const Promotions: React.FC<PremiumProps> = ({
           characterId
         );
         setSubscriptionBenefits(subscriptionData.promotions);
-        setSubscription(subscriptionData.size > 0);
       } catch (error) {
         console.error("Error fetching subscription benefits:", error);
       } finally {
@@ -60,7 +53,7 @@ const Promotions: React.FC<PremiumProps> = ({
 
   const handleButtonClick = async (promotionId: number): Promise<void> => {
     try {
-      const response = await claimPromotion(
+      await claimPromotion(
         serverId,
         accountId,
         characterId,
@@ -130,28 +123,30 @@ const Promotions: React.FC<PremiumProps> = ({
   return (
     <div className="bg-gradient-to-r from-gray-800 via-black to-gray-900 text-neon_green p-8 rounded-lg shadow-lg">
       {subscriptionBenefits.length > 0 ? (
-        <div>
-          <div className="grid grid-cols-3 gap-4">
+        <div className="max-w-full mx-auto p-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
             {currentItems.map((card, index) => (
               <div key={index} className="p-4">
-                <div className="bg-gray-800 p-10 rounded-lg shadow-lg">
+                <div className="bg-gray-800 p-6 rounded-lg shadow-lg h-full flex flex-col justify-between">
                   <img
                     src={card.img}
                     alt={card.name}
                     className="w-full h-48 object-cover rounded-t-lg mb-4"
                   />
-                  <h3 className="text-2xl font-semibold mb-2 text-yellow-500">
-                    {card.name}
-                  </h3>
-                  <p className="text-gray-200 mb-4 text-lg">
-                    {card.description}
-                  </p>
-                  <button
-                    onClick={() => handleButtonClick(card.id)}
-                    className="w-full font-bold action-button bg-gradient-to-r from-yellow-500 to-yellow-700 hover:from-yellow-600 hover:to-yellow-800 text-white py-1 px-2 rounded-lg transition-all duration-300 shadow-lg"
-                  >
-                    {card.btn_txt}
-                  </button>
+                  <div className="flex flex-col flex-grow">
+                    <h3 className="text-2xl font-semibold mb-2 text-yellow-500">
+                      {card.name}
+                    </h3>
+                    <p className="text-gray-200 mb-4 text-lg flex-grow">
+                      {card.description}
+                    </p>
+                    <button
+                      onClick={() => handleButtonClick(card.id)}
+                      className="w-full font-bold action-button bg-gradient-to-r from-yellow-500 to-yellow-700 hover:from-yellow-600 hover:to-yellow-800 text-white py-1 px-2 rounded-lg transition-all duration-300 shadow-lg"
+                    >
+                      {card.btn_txt}
+                    </button>
+                  </div>
                 </div>
               </div>
             ))}
@@ -176,55 +171,51 @@ const Promotions: React.FC<PremiumProps> = ({
           </div>
         </div>
       ) : (
-        <div>
+        <div className="min-w-[300px] min-h-[340px]">
+          {/* Título y mensaje principal */}
           <div className="text-center mb-6">
             <h2 className="text-4xl font-bold mb-4 text-yellow-500">
-              Actualmente no existen promociones disponibles
+              Actualmente no tenemos promociones disponibles
             </h2>
             <p className="text-lg text-gray-300 mb-2">
-              Adquiere una suscripción mensual y desbloquea increíbles
-              beneficios.
+              ¡No te preocupes! Únete a nuestros canales de comunicación y
+              mantente informado sobre futuras promociones.
             </p>
             <p className="text-xl font-semibold">Solo por {`$9.99`} al mes</p>
           </div>
 
+          {/* Beneficios y Soporte */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="bg-gray-800 p-4 rounded-lg">
+            {/* Promociones Exclusivas */}
+            <div className="bg-gray-800 p-4 rounded-lg ">
               <h3 className="text-2xl font-semibold mb-2 text-yellow-500">
-                Beneficios Exclusivos
+                Promociones Exclusivas
               </h3>
-              <ul className="list-disc list-inside text-gray-200">
-                <li>Acceso a eventos especiales</li>
-                <li>Descuentos en productos</li>
-                <li>Migraciones rápidas y seguras a otros servidores</li>
-                <li>
-                  Protección garantizada: tus personajes migrados sin pérdida de
-                  datos
-                </li>
-                <li>
-                  Copias de seguridad automáticas de tus personajes en
-                  servidores asociados
-                </li>
+              <ul className="list-disc list-inside text-gray-200 text-xl">
+                <li>Acceso a regalos y beneficios especiales</li>
               </ul>
             </div>
 
+            {/* Soporte Prioritario */}
             <div className="bg-gray-800 p-4 rounded-lg">
               <h3 className="text-2xl font-semibold mb-2 text-yellow-500">
                 Soporte Prioritario
               </h3>
-              <p className="text-gray-200">
-                Obtén asistencia rápida y prioritaria para cualquier duda o
-                problema que tengas.
+              <p className="text-gray-200 text-xl">
+                Si tienes algún inconveniente con una promoción, dirígete a
+                nuestro canal de soporte y explica tu caso para recibir ayuda
+                rápida.
               </p>
             </div>
           </div>
 
-          <div className="mt-6">
+          {/* Botón de enlace */}
+          <div className="mt-10">
             <Link
-              href="/subscriptions"
+              href="https://t.me/+jOZFCLD5TXAxOWRh"
               className="block w-full text-center font-bold action-button bg-gradient-to-r from-yellow-500 to-yellow-700 hover:from-yellow-600 hover:to-yellow-800 text-white py-1 px-2 rounded-lg transition-all duration-300 shadow-lg"
             >
-              ¡Adquiere tu Suscripción!
+              Mantente al tanto de nuestras novedades en los canales
             </Link>
           </div>
         </div>
