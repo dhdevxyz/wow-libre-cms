@@ -116,6 +116,7 @@ const AccountWeb = () => {
         avatar: avatar_url,
         expansion: null,
         server: null,
+        pending_validation: false,
       });
 
       Cookies.set("token", jwt, {
