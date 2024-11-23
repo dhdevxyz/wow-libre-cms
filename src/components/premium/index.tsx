@@ -120,53 +120,60 @@ const Premium: React.FC<PremiumProps> = ({
     <div className="bg-gradient-to-r from-gray-800 via-black to-gray-900 text-neon_green p-8 rounded-lg shadow-lg">
       {subscription && subscriptionBenefits.length > 0 ? (
         <div>
-          <div className="grid grid-cols-3 gap-4">
-            {currentItems.map((card, index) => (
-              <div key={index} className="p-4">
-                <div className="bg-gray-800 p-10 rounded-lg shadow-lg">
-                  <img
-                    src={card.img}
-                    alt={card.name}
-                    className="w-full h-48 object-cover rounded-t-lg mb-4"
-                  />
-                  <h3 className="text-2xl font-semibold mb-2 text-yellow-500">
-                    {card.name}
-                  </h3>
-                  <p className="text-gray-200 mb-4 text-lg">
-                    {card.description}
-                  </p>
-                  <button
-                    onClick={() => handleButtonClick(card.id)}
-                    className="w-full font-bold action-button bg-gradient-to-r from-yellow-500 to-yellow-700 hover:from-yellow-600 hover:to-yellow-800 text-white py-1 px-2 rounded-lg transition-all duration-300 shadow-lg"
-                  >
-                    {card.btn_txt}
-                  </button>
+          {/* Contenedor general de las tarjetas */}
+          <div className="max-w-full mx-auto p-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+              {currentItems.map((card, index) => (
+                <div key={index} className="p-4">
+                  <div className="bg-gray-800 p-6 rounded-lg shadow-lg flex flex-col h-full">
+                    {/* Imagen de la tarjeta */}
+                    <img
+                      src={card.img}
+                      alt={card.name}
+                      className="w-full h-48 object-cover rounded-t-lg mb-4"
+                    />
+                    {/* Contenido de la tarjeta */}
+                    <div className="flex flex-col flex-grow">
+                      <h3 className="text-2xl font-semibold mb-2 text-yellow-500">
+                        {card.name}
+                      </h3>
+                      <p className="text-gray-200 mb-4 text-lg flex-grow">
+                        {card.description}
+                      </p>
+                      <button
+                        onClick={() => handleButtonClick(card.id)}
+                        className="w-full font-bold action-button bg-gradient-to-r from-yellow-500 to-yellow-700 hover:from-yellow-600 hover:to-yellow-800 text-white py-1 px-2 rounded-lg transition-all duration-300 shadow-lg"
+                      >
+                        {card.btn_txt}
+                      </button>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
 
-          {/* Controles de paginación */}
-          <div className="flex justify-center mt-6 space-x-4">
-            <button
-              onClick={prevPage}
-              disabled={currentPage === 1}
-              className="px-4 py-2 bg-gray-700 text-white rounded-lg disabled:opacity-50"
-            >
-              Anterior
-            </button>
-            <button
-              onClick={nextPage}
-              disabled={currentPage === totalPages}
-              className="px-4 py-2 bg-gray-700 text-white rounded-lg disabled:opacity-50"
-            >
-              Siguiente
-            </button>
+            {/* Controles de paginación */}
+            <div className="flex justify-center mt-6 space-x-4">
+              <button
+                onClick={prevPage}
+                disabled={currentPage === 1}
+                className="px-4 py-2 bg-gray-700 text-white rounded-lg disabled:opacity-50"
+              >
+                Anterior
+              </button>
+              <button
+                onClick={nextPage}
+                disabled={currentPage === totalPages}
+                className="px-4 py-2 bg-gray-700 text-white rounded-lg disabled:opacity-50"
+              >
+                Siguiente
+              </button>
+            </div>
           </div>
         </div>
       ) : (
-        <div>
-          <div className="text-center mb-6">
+        <div className="min-h-[390px] max-h-[800px] p-6 flex flex-col justify-between">
+          <div className="text-center mb-2">
             <h2 className="text-4xl font-bold mb-4 text-yellow-500">
               ¡Adquiere un plan mensual!
             </h2>
@@ -174,7 +181,9 @@ const Premium: React.FC<PremiumProps> = ({
               Adquiere una suscripción mensual y desbloquea increíbles
               beneficios.
             </p>
-            <p className="text-xl font-semibold">Solo por {`$9.99`} al mes</p>
+            <p className="text-xl  text-gray-300 font-semibold">
+              Solo por {`$9.99`} al mes
+            </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -182,7 +191,7 @@ const Premium: React.FC<PremiumProps> = ({
               <h3 className="text-2xl font-semibold mb-2 text-yellow-500">
                 Beneficios Exclusivos
               </h3>
-              <ul className="list-disc list-inside text-gray-200">
+              <ul className="list-disc list-inside text-gray-200 text-xl">
                 <li>Acceso a eventos especiales</li>
                 <li>Descuentos en productos</li>
                 <li>Migraciones rápidas y seguras a otros servidores</li>
@@ -201,14 +210,14 @@ const Premium: React.FC<PremiumProps> = ({
               <h3 className="text-2xl font-semibold mb-2 text-yellow-500">
                 Soporte Prioritario
               </h3>
-              <p className="text-gray-200">
+              <p className="text-gray-200 text-xl">
                 Obtén asistencia rápida y prioritaria para cualquier duda o
                 problema que tengas.
               </p>
             </div>
           </div>
 
-          <div className="mt-6">
+          <div className="mt-1">
             <Link
               href="/subscriptions"
               className="block w-full text-center font-bold action-button bg-gradient-to-r from-yellow-500 to-yellow-700 hover:from-yellow-600 hover:to-yellow-800 text-white py-1 px-2 rounded-lg transition-all duration-300 shadow-lg"
