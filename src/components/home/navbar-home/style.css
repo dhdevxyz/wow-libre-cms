@@ -64,10 +64,11 @@
 
 /**  Auth **/
 .auth {
+  display: flex; /* Make the auth section a flex container */
   width: 32rem;
   padding-left: 0.1rem;
-  align-self: flex-start;
-  justify-content: center;
+  justify-content: center; /* Centers the content horizontally */
+  align-items: center; /* Centers the content vertically */
 }
 
 .nav-auth {
@@ -124,10 +125,10 @@
   }
 
   .auth {
-    width: 100%; /* Aumenta el ancho al 100% en móviles */
-    padding-left: 0;
-    align-self: center;
-    justify-content: center;
+    width: 100%; /* Full width for mobile */
+    justify-content: center; /* Centers horizontally */
+    align-items: center; /* Centers vertically */
+    padding-left: 0; /* Removes unnecessary padding */
   }
 
   .nav-auth {
@@ -136,5 +137,15 @@
 
   .nav-auth-category {
     font-size: 1.2rem; /* Reduce el tamaño de la fuente en móviles */
+  }
+
+  .image-promotion {
+    max-width: 60%; /* Reduce el ancho máximo de la imagen */
+    margin: 0 auto; /* Centra la imagen horizontalmente */
+    display: block; /* Asegura que sea un bloque */
+  }
+
+  .promotion {
+    text-align: center; /* Centra el contenedor */
   }
 }
