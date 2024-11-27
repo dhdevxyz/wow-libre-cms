@@ -131,15 +131,15 @@ const GuildDetail = () => {
             <div className="grid grid-cols-2 gap-4 lg:gap-8 select-none">
               <div className="relative h-80 lg:h-auto">
                 <img
-                  src="https://pbs.twimg.com/media/F6U741xWgAAfvX2.jpg"
-                  alt="Envíos"
+                  src="https://static.wixstatic.com/media/5dd8a0_d3843acf700e43b3a5aac5bf19f145b6~mv2.webp"
+                  alt="guild-img-one"
                   className="object-cover rounded-xl w-full h-full transition duration-300 hover:opacity-75"
                 />
               </div>
               <div className="relative h-80 lg:h-auto">
                 <img
-                  src="https://preview.redd.it/bi7i6h79gzz81.jpg?auto=webp&s=ea927f5299719218b6af8d3d4b1d446140d0571d"
-                  alt="Disney"
+                  src="https://static.wixstatic.com/media/5dd8a0_aa7097f05b69423fb6e4da3c7f2a79e9~mv2.jpg"
+                  alt="guild-img-two"
                   className="object-cover rounded-xl w-full h-full transition duration-300 hover:opacity-75"
                 />
               </div>

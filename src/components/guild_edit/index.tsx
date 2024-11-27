@@ -9,6 +9,7 @@ interface EditGuildModalProps {
     isMultifactorEnabled: boolean;
     discordLink: string;
   }) => void;
+  t: (key: string, options?: any) => string;
 }
 
 const EditGuildModal: React.FC<EditGuildModalProps> = ({
@@ -16,6 +17,7 @@ const EditGuildModal: React.FC<EditGuildModalProps> = ({
   isMultifactorEnabled,
   discordLink,
   onSave,
+  t,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [publicAccess, setPublicAccess] = useState(isPublic);
@@ -38,7 +40,7 @@ const EditGuildModal: React.FC<EditGuildModalProps> = ({
         className="px-6 py-3 bg-blue-400 hover:bg-blue-600 rounded-lg text-white font-semibold mb-4 mr-2"
         onClick={() => setIsOpen(true)}
       >
-        Editar
+        {t("guild-model-edit.btn.edit")}
       </button>
 
       {/* Modal */}
@@ -46,7 +48,7 @@ const EditGuildModal: React.FC<EditGuildModalProps> = ({
         <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
           <div className="bg-gray-800 text-white p-6 rounded-lg w-11/12 max-w-md">
             <h2 className="text-2xl font-bold mb-4">
-              Editar Configuración de la Guild
+              {t("guild-model-edit.title")}
             </h2>
 
             {/* Selector Público o Privado */}
@@ -54,7 +56,7 @@ const EditGuildModal: React.FC<EditGuildModalProps> = ({
               <span className="text-lg font-semibold">Visibilidad</span>
               <div className="flex items-center space-x-2">
                 <span className="text-sm font-semibold text-gray-400">
-                  Privado
+                  {t("guild-model-edit.private-txt")}
                 </span>
                 <label className="relative inline-flex items-center cursor-pointer">
                   <input
@@ -75,7 +77,7 @@ const EditGuildModal: React.FC<EditGuildModalProps> = ({
                   ></span>
                 </label>
                 <span className="text-sm font-semibold text-gray-400">
-                  Público
+                  {t("guild-model-edit.public-txt")}
                 </span>
               </div>
             </div>
@@ -83,7 +85,7 @@ const EditGuildModal: React.FC<EditGuildModalProps> = ({
             {/* Selector de Multifactor */}
             <div className="flex items-center justify-between mb-4">
               <span className="text-lg font-semibold">
-                Habilitar multifaccion
+                {t("guild-model-edit.multifacction")}
               </span>
               <label className="relative inline-flex items-center cursor-pointer">
                 <input
@@ -108,7 +110,7 @@ const EditGuildModal: React.FC<EditGuildModalProps> = ({
             {/* Campo de texto para Discord */}
             <div className="mb-4">
               <label className="text-lg font-semibold mb-2 block">
-                Enlace de Discord
+                {t("guild-model-edit.discord")}
               </label>
               <input
                 type="text"
@@ -125,13 +127,13 @@ const EditGuildModal: React.FC<EditGuildModalProps> = ({
                 className="bg-gray-500 hover:bg-gray-600 text-white font-semibold px-4 py-2 rounded-lg mr-2"
                 onClick={() => setIsOpen(false)}
               >
-                Cancelar
+                {t("guild-model-edit.btn.cancel")}
               </button>
               <button
                 className="bg-blue-500 hover:bg-blue-600 text-white font-semibold px-4 py-2 rounded-lg"
                 onClick={handleSave}
               >
-                Guardar
+                {t("guild-model-edit.btn.save")}
               </button>
             </div>
           </div>

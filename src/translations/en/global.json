@@ -661,7 +661,7 @@
             "description": "Clicking this button will send a message within the server. This is useful for alerting other players about your skills or services in the game."
         },
         "btn": {
-            "send-announcement": "Announce"
+            "send-announcement": "send announcement"
         }
     },
     "send-announcement": {
@@ -671,5 +671,44 @@
             "next": "Accept",
             "back": "Cancel"
         }
+    },
+    "guild-character": {
+        "character-empty-guild": {
+            "title": "You are not linked to any guild",
+            "description": "It seems you are not a member of any guild yet. Join one to start enjoying the benefits!",
+            "btn-txt": "Search"
+        },
+        "guild-section": {
+            "leader": "Leader",
+            "create-date": "Creation Date",
+            "discord": "Join the Discord Server",
+            "status-privacity": "Access Status: ",
+            "benefits-available": "Available Benefits: ",
+            "private-access": "Private Access",
+            "public-access": "Public Access",
+            "btn-claim-benefit": "Claim Benefits",
+            "btn-unvite-guild": "Leave"
+        },
+        "messages": {
+            "character-guild-failed": "Unable to retrieve the associated guild. Please try again later.",
+            "title-vinculation-success": "Linking",
+            "text-vinculation-success": "You have successfully linked to the guild.",
+            "title-benefit-success": "Benefits",
+            "text-benefit-success": "Benefits successfully claimed.",
+            "title-update-guild-success": "Update",
+            "text-update-guild-success": "You have successfully updated the settings."
+        }
+    },
+    "guild-model-edit": {
+        "btn": {
+            "edit": "Edit",
+            "cancel": "Cancel",
+            "save": "Save"
+        },
+        "title": "Edit Guild Settings",
+        "private-txt": "Private",
+        "public-txt": "Public",
+        "multifacction": "Enable multifaction",
+        "discord": "Discord Link"
     }
 }
