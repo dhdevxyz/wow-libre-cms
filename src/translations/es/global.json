@@ -671,5 +671,44 @@
             "next": "Aceptar",
             "back": "Cancelar"
         }
+    },
+    "guild-character": {
+        "character-empty-guild": {
+            "title": "No estás vinculado a ninguna guild",
+            "description": "Parece que aún no eres miembro de ninguna guild. ¡Únete a una para empezar a disfrutar de los beneficios!",
+            "btn-txt": "Buscar"
+        },
+        "guild-section": {
+            "leader": "Líder",
+            "create-date": "Fecha de creación",
+            "discord": "Unirse al servidor de Discord",
+            "status-privacity": "Estado de acceso: ",
+            "benefits-available": "Beneficios disponibles: ",
+            "private-access": "Acceso privado",
+            "public-access": "Acceso público",
+            "btn-claim-benefit": "Reclamar beneficios",
+            "btn-unvite-guild": "Abandonar"
+        },
+        "messages": {
+            "character-guild-failed": "No fue posible obtener la guild asociada. Por favor, inténtelo más tarde.",
+            "title-vinculation-success": "Vinculación",
+            "text-vinculation-success": "Te has vinculado exitosamente a la guild.",
+            "title-benefit-success": "Beneficios",
+            "text-benefit-success": "Beneficios reclamados exitosamente.",
+            "title-update-guild-success": "Actualización",
+            "text-update-guild-success": "Has actualizado exitosamente las configuraciones."
+        }
+    },
+    "guild-model-edit": {
+        "btn": {
+            "edit": "Editar",
+            "cancel": "Cancelar",
+            "save": "Guardar"
+        },
+        "title": "Editar configuración de la guild",
+        "private-txt": "Privado",
+        "public-txt": "Público",
+        "multifacction": "Habilitar multifacción",
+        "discord": "Enlace de Discord"
     }
 }

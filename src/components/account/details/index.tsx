@@ -37,7 +37,6 @@ import { AccountDetailDto, Character } from "@/model/model";
 import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
 import Cookies from "js-cookie";
 import { useTranslation } from "react-i18next";
-import SlotMachine from "@/components/machine/page";
 
 const AccountDetail = () => {
   const searchParams = useSearchParams();
@@ -236,10 +235,6 @@ const AccountDetail = () => {
                 {t("account-detail.tabs.var7")}
               </Tab>
               <Tab className="py-6 px-5 text-white  bg-tablist cursor-pointer text-lg font-semibold flex items-center">
-                <FontAwesomeIcon icon={faMedal} className="mr-2 text-2xl" />
-                Premios
-              </Tab>
-              <Tab className="py-6 px-5 text-white  bg-tablist cursor-pointer text-lg font-semibold flex items-center">
                 <FontAwesomeIcon
                   icon={faRotateLeft}
                   className="mr-2 text-2xl"
@@ -410,9 +405,6 @@ const AccountDetail = () => {
                     </p>
                   </div>
                 )}
-              </TabPanel>
-              <TabPanel>
-                <SlotMachine />
               </TabPanel>
               <TabPanel>
                 <ReturnToView />

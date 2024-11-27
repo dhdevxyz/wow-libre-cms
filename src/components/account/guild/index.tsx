@@ -60,13 +60,27 @@ const AccountGuild: React.FC<AccountGuildProps> = ({
       setGuildData(null);
       Swal.fire({
         icon: "success",
-        title: "Desvinculacion",
-        text: "Ha sido desvinculado exitosamente",
+        title: t("guild-character.messages.title-vinculation-success"),
+        text: t("guild-character.messages.text-vinculation-success"),
         color: "white",
         background: "#0B1218",
         timer: 4000,
       });
     } catch (error: any) {
+      if (error instanceof InternalServerError) {
+        Swal.fire({
+          icon: "error",
+          title: "Opss!",
+          html: `
+            <p><strong>Message:</strong> ${error.message}</p>
+            <hr style="border-color: #444; margin: 8px 0;">
+            <p><strong>Transaction ID:</strong> ${error.transactionId}</p>
+          `,
+          color: "white",
+          background: "#0B1218",
+        });
+        return;
+      }
       Swal.fire({
         icon: "error",
         title: "Oops...",
@@ -84,8 +98,8 @@ const AccountGuild: React.FC<AccountGuildProps> = ({
       setRefresh(true);
       Swal.fire({
         icon: "success",
-        title: "Beneficios",
-        text: "Reclamado los beneficios",
+        title: t("guild-character.messages.title-benefit-success"),
+        text: t("guild-character.messages.text-benefit-success"),
         color: "white",
         background: "#0B1218",
         timer: 4000,
@@ -134,8 +148,8 @@ const AccountGuild: React.FC<AccountGuildProps> = ({
     );
     Swal.fire({
       icon: "success",
-      title: "Configuración guardada",
-      text: "Los cambios han sido guardados exitosamente",
+      title: t("guild-character.messages.title-update-guild-success"),
+      text: t("guild-character.messages.text-update-guild-success"),
       color: "white",
       background: "#0B1218",
       timer: 3000,
@@ -172,11 +186,12 @@ const AccountGuild: React.FC<AccountGuildProps> = ({
                     {guildData.motd}
                   </p>
                   <p className="text-lg lg:text-2xl mb-4 break-words max-w-full overflow-wrap">
-                    Leader: {guildData.leader_name}
+                    {t("guild-character.guild-section.leader")}{" "}
+                    {guildData.leader_name}
                   </p>
 
                   <p className="text-lg lg:text-2xl mb-4 break-words max-w-full overflow-wrap">
-                    Creada:{" "}
+                    {t("guild-character.guild-section.create-date")}{" "}
                     {new Date(guildData.create_date).toLocaleDateString()}
                   </p>
                   <p className="text-lg lg:text-2xl mb-4 break-words max-w-full overflow-wrap">
@@ -187,12 +202,14 @@ const AccountGuild: React.FC<AccountGuildProps> = ({
                       className="flex items-center text-white hover:text-blue-400 transition duration-300"
                     >
                       <i className="fab fa-discord text-lg"></i>
-                      Unirse al servidor de Discord
+                      {t("guild-character.guild-section.discord")}
                     </a>
                   </p>
 
                   <div className="text-lg lg:text-2xl mb-4 break-words flex items-center max-w-full overflow-wrap">
-                    <span>Estado de Acceso:</span>{" "}
+                    <span>
+                      {t("guild-character.guild-section.status-privacity")}
+                    </span>{" "}
                     <div className="ml-4 flex items-center">
                       <div
                         className={`h-5 w-5 rounded-full ${
@@ -209,14 +226,15 @@ const AccountGuild: React.FC<AccountGuildProps> = ({
                         }`}
                       >
                         {guildData.public_access
-                          ? "Acceso Público"
-                          : "Acceso Privado"}
+                          ? t("guild-character.guild-section.public-access")
+                          : t("guild-character.guild-section.private-access")}
                       </span>
                     </div>
                   </div>
 
                   <p className="text-lg lg:text-2xl mb-10 break-words max-w-full overflow-wrap">
-                    Beneficios Disponibles: {guildData.available_benefits}
+                    {t("guild-character.guild-section.benefits-available")}
+                    {guildData.available_benefits}
                   </p>
                 </div>
               </div>
@@ -228,6 +246,7 @@ const AccountGuild: React.FC<AccountGuildProps> = ({
                     isMultifactorEnabled={guildData.multi_faction}
                     discordLink={guildData.discord}
                     onSave={handleEditSave}
+                    t={t}
                   />
                 ) : null}
                 {guildData.available_benefits > 0 && (
@@ -235,7 +254,7 @@ const AccountGuild: React.FC<AccountGuildProps> = ({
                     className="px-6 py-3 bg-green-400 hover:bg-green-600 rounded-lg text-white font-semibold mb-4 mr-2"
                     onClick={handleBenefitsGuild}
                   >
-                    Reclamar beneficios
+                    {t("guild-character.guild-section.btn-claim-benefit")}
                   </button>
                 )}
 
@@ -243,25 +262,24 @@ const AccountGuild: React.FC<AccountGuildProps> = ({
                   className="px-6 py-3 bg-red-400 hover:bg-red-600 rounded-lg text-white font-semibold mb-4  "
                   onClick={handleUnlinkGuild}
                 >
-                  Abandonar
+                  {t("guild-character.guild-section.btn-unvite-guild")}
                 </button>
               </div>
             </div>
           ) : (
             <div className="flex flex-col items-center justify-center h-80 lg:h-auto">
               <h2 className="text-2xl lg:text-3xl font-bold mb-4 text-center">
-                No estás vinculado a ninguna guild
+                {t("guild-character.character-empty-guild.title")}
               </h2>
               <p className="text-lg mb-6 text-center">
-                Parece que aún no eres miembro de ninguna guild. ¡Únete a una
-                para empezar a disfrutar de los beneficios!
+                {t("guild-character.character-empty-guild.description")}
               </p>
               <div>
                 <Link
                   href="/guild"
                   className="px-6 py-3 bg-blue-400 hover:bg-blue-600 rounded-lg text-white font-semibold mb-4"
                 >
-                  Buscar
+                  {t("guild-character.character-empty-guild.btn-txt")}
                 </Link>
               </div>
             </div>
@@ -269,15 +287,15 @@ const AccountGuild: React.FC<AccountGuildProps> = ({
           <div className="grid grid-cols-2 gap-4 lg:gap-8">
             <div className="relative h-80 lg:h-auto select-none">
               <img
-                src="https://cdn.mos.cms.futurecdn.net/PRaST9aV37L6oNFWzRtPi9-1200-80.jpg"
-                alt="Envíos"
+                src="https://static.wixstatic.com/media/5dd8a0_d3843acf700e43b3a5aac5bf19f145b6~mv2.webp"
+                alt="guild-img-one"
                 className="object-cover rounded-xl w-full h-full transition duration-300 hover:opacity-75 "
               />
             </div>
             <div className="relative h-80 lg:h-auto select-none">
               <img
-                src="https://preview.redd.it/bi7i6h79gzz81.jpg?auto=webp&s=ea927f5299719218b6af8d3d4b1d446140d0571d"
-                alt="Disney"
+                src="https://static.wixstatic.com/media/5dd8a0_aa7097f05b69423fb6e4da3c7f2a79e9~mv2.jpg"
+                alt="guild-img-two"
                 className="object-cover rounded-xl w-full h-full transition duration-300 hover:opacity-75"
               />
             </div>

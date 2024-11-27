@@ -173,16 +173,16 @@ const Premium: React.FC<PremiumProps> = ({
         </div>
       ) : (
         <div className="min-h-[390px] max-h-[800px] p-6 flex flex-col justify-between">
-          <div className="text-center mb-2">
-            <h2 className="text-4xl font-bold mb-4 text-yellow-500">
-              ¡Adquiere un plan mensual!
+          <div className="text-center mb-6">
+            <h2 className="text-4xl font-extrabold mb-4 text-yellow-500">
+              ¡Suscríbete y desbloquea un mundo de posibilidades!
             </h2>
-            <p className="text-lg text-gray-300 mb-2">
-              Adquiere una suscripción mensual y desbloquea increíbles
-              beneficios.
+            <p className="text-lg text-gray-300 mb-3">
+              Accede a beneficios exclusivos que transformarán tu experiencia.
             </p>
-            <p className="text-xl  text-gray-300 font-semibold">
-              Solo por {`$9.99`} al mes
+            <p className="text-xl text-gray-100 font-semibold">
+              Da el paso hoy y descubre todas las ventajas que hemos preparado
+              para ti.{" "}
             </p>
           </div>
 

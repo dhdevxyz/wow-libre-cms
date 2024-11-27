@@ -181,9 +181,9 @@ export const unlinkGuild = async (
   characterId: number,
   token: string
 ): Promise<GenericResponseDto<void>> => {
-  try {
-    const transactionId = uuidv4();
+  const transactionId = uuidv4();
 
+  try {
     const requestBody: {
       server_id: number;
       account_id: number;
@@ -208,15 +208,25 @@ export const unlinkGuild = async (
       const responseData: GenericResponseDto<void> = await response.json();
       return responseData;
     } else {
-      const errorGeneric: GenericResponseDto<void> = await response.json();
-      throw new Error(
-        `${errorGeneric.message} - Transaction Id: ${transactionId}`
+      const genericResponse: GenericResponseDto<void> = await response.json();
+      throw new InternalServerError(
+        `${genericResponse.message}`,
+        response.status,
+        transactionId
       );
     }
   } catch (error: any) {
-    throw new Error(
-      `It was not possible to separate from the brotherhood: ${error.message}`
-    );
+    if (error instanceof TypeError && error.message === "Failed to fetch") {
+      throw new Error(`Please try again later, services are not available.`);
+    } else if (error instanceof InternalServerError) {
+      throw error;
+    } else if (error instanceof Error) {
+      throw error;
+    } else {
+      throw new Error(
+        `Unknown error occurred - TransactionId: ${transactionId}`
+      );
+    }
   }
 };
 

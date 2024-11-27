@@ -128,6 +128,7 @@ const Subscriptions = () => {
               <div className="mt-10">
                 {!loading && user.logged_in ? (
                   <button
+                    disabled={true}
                     onClick={handleBuy}
                     className="px-6 py-5 bg-blue-500 hover:bg-blue-600 rounded-lg text-white font-semibold mb-4"
                   >
