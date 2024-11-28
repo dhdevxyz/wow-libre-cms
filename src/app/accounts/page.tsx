@@ -60,7 +60,7 @@ const Page = () => {
         setLoading(false);
       } catch (error: any) {
         if (error instanceof InternalServerError) {
-          if (error.statusCode === 401 || error.statusCode === 403) {
+          if (error.statusCode === 401) {
             Swal.fire({
               icon: "error",
               title: "Oops...",

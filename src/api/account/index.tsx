@@ -39,7 +39,7 @@ export const getAccounts = async (
     if (response.ok && response.status === 200) {
       const responseData = await response.json();
       return responseData.data;
-    } else if (response.status === 401 || response.status === 403) {
+    } else if (response.status === 401) {
       throw new InternalServerError(
         `Token expiration`,
         response.status,
