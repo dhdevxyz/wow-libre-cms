@@ -172,6 +172,10 @@ const Page = () => {
     setCurrentPage(data.selected);
   };
 
+  const handleCopy = (textToCopy: string) => {
+    navigator.clipboard.writeText(textToCopy);
+  };
+
   if (loading) {
     return (
       <div className="contenedor mx-auto  h-screen-md">
@@ -352,6 +356,9 @@ const Page = () => {
                     {t("account.column-table.position-five")}
                   </th>
                   <th scope="col" className="px-6 py-3">
+                    Realmlist
+                  </th>
+                  <th scope="col" className="px-6 py-3">
                     {t("account.column-table.position-six")}
                   </th>
                   <th scope="col" className="px-6 py-3">
@@ -409,6 +416,12 @@ const Page = () => {
                       </div>
                     </td>
                     <td className="px-6 py-4 items-center"> {row.server}</td>
+                    <td
+                      className="px-6 py-4 font-medium text-blue-500 text-xl dark:text-blue-500 hover:underline cursor-pointer"
+                      onClick={() => handleCopy(row.realmlist || "")}
+                    >
+                      Copiar
+                    </td>{" "}
                     <td className="px-6 py-4">
                       <a
                         href={
