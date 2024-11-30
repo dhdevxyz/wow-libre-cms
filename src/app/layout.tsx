@@ -29,10 +29,10 @@ export default function RootLayout({
             <WowheadTooltip />
             {children}
             <ClientFooter />
+            <Analytics />
           </body>
         </I18Next>
       </UserProvider>
-      <Analytics />
     </html>
   );
 }
