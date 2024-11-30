@@ -3,17 +3,16 @@ import { getProduct } from "@/api/store";
 import NavbarAuthenticated from "@/components/navbar-authenticated";
 import Buy from "@/components/store/purchase";
 import { ProductDetail } from "@/model/model";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import Cookies from "js-cookie";
-import { useRouter } from "next/router";
 
 const StoreDetail = () => {
   const { id } = useParams();
   const reference = String(id);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const token = Cookies.get("token");
-  const [isError, setError] = useState(true);
+  const [isError, setError] = useState(false);
   const [loggin, setLoggin] = useState(false);
   const router = useRouter();
 
