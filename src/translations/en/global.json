@@ -228,7 +228,15 @@
             "position-five": "Server",
             "position-six": "Web",
             "position-action": "Action",
-            "position-btn-admin": "Administer"
+            "position-btn-admin": "Administer",
+            "position-btn-visit": "Visit",
+            "position-btn-copy": "Copy"
+        },
+        "validation-mail": {
+            "title-success": "Email Sent!",
+            "message-success": "We have sent you an email to validate your account. Please check your inbox or spam folder.",
+            "title-error": "An unexpected error occurred.",
+            "message-error": "Please try again later or contact support."
         }
     },
     "errors": {
@@ -710,5 +718,18 @@
         "public-txt": "Public",
         "multifacction": "Enable multifaction",
         "discord": "Discord Link"
+    },
+    "profile": {
+        "input-date-birthdate": "Date of Birth",
+        "input-country": "Country",
+        "label-accounts": "Accounts",
+        "label-character": "Characters",
+        "label-servers": "Servers",
+        "bio": "We are in a beta version. You may find some details or features that are not yet fully optimized. We offer the minimum features while we continue working and growing to provide you with a better experience. 🌟",
+        "title": "Change Password",
+        "input-change-password": "Current Password",
+        "input-new-change-password": "New Password",
+        "input-new-confirm-change-password": "Confirm Password",
+        "btn-update-password": "Update Password"
     }
 }

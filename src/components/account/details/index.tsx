@@ -31,9 +31,9 @@ import Premium from "@/components/premium";
 import Professions from "@/components/professions";
 import Promotions from "@/components/promotions";
 import ReturnToView from "@/components/utilities/returnToView";
-import { UserModel, useUserContext } from "@/context/UserContext";
+import { useUserContext } from "@/context/UserContext";
 import useAuth from "@/hook/useAuth";
-import { AccountDetailDto, Character } from "@/model/model";
+import { AccountDetailDto, Character, UserDetailDto } from "@/model/model";
 import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
 import Cookies from "js-cookie";
 import { useTranslation } from "react-i18next";
@@ -53,7 +53,7 @@ const AccountDetail = () => {
   };
   const [isLoading, setIsLoading] = useState(true);
   const [accountDetail, setAccountDetail] = useState<AccountDetailDto>();
-  const [userDetail, setUserDetail] = useState<UserModel>();
+  const [userDetail, setUserDetail] = useState<UserDetailDto>();
   const [redirect, setRedirect] = useState(false);
 
   const [characters, setCharacters] = useState<Character[]>([]);

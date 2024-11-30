@@ -1,7 +1,7 @@
 import { BASE_URL } from "@/configs/configs";
 import { UserModel } from "@/context/UserContext";
 import { GenericResponseDto, InternalServerError } from "@/dto/generic";
-import { AccountDetailDto, AccountsDto } from "@/model/model";
+import { AccountDetailDto, AccountsDto, UserDetailDto } from "@/model/model";
 import { v4 as uuidv4 } from "uuid";
 
 /**
@@ -172,7 +172,7 @@ export const getAccount = async (
  * @returns Promesa que resuelve con el modelo del usuario (`UserModel`).
  * @throws Error - Lanza errores específicos según la respuesta del servidor o si ocurre algún problema en la solicitud.
  */
-export const getUser = async (jwt: string): Promise<UserModel> => {
+export const getUser = async (jwt: string): Promise<UserDetailDto> => {
   const response = await fetch(`${BASE_URL}/api/account`, {
     method: "GET",
     headers: {
