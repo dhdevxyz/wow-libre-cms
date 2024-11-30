@@ -6,14 +6,16 @@ import { ProductDetail } from "@/model/model";
 import { useParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import Cookies from "js-cookie";
+import { useRouter } from "next/router";
 
 const StoreDetail = () => {
   const { id } = useParams();
   const reference = String(id);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const token = Cookies.get("token");
-  const [isLoading, setIsLoading] = useState(true);
+  const [isError, setError] = useState(true);
   const [loggin, setLoggin] = useState(false);
+  const router = useRouter();
 
   const [product, selectedProduct] = useState<ProductDetail>();
   useEffect(() => {
@@ -21,9 +23,9 @@ const StoreDetail = () => {
       try {
         const productFetch = await getProduct(reference);
         selectedProduct(productFetch);
-        setIsLoading(false);
+        setError(false);
       } catch (err: any) {
-        setIsLoading(true);
+        setError(true);
       }
     };
 
@@ -38,6 +40,11 @@ const StoreDetail = () => {
   const closeModal = () => {
     setIsModalOpen(false);
   };
+
+  if (isError) {
+    router.push("/store");
+  }
+
   return (
     <div className="contenedor">
       <NavbarAuthenticated />
@@ -143,6 +150,7 @@ const StoreDetail = () => {
             )}
             <button
               className="bg-gray-800 text-white font-bold py-4 px-5 rounded border border-transparent hover:border-gray-500 hover:border-x-2 transition duration-300"
+              disabled={true}
               onClick={() => alert("Regalar clickeado")}
             >
               Regalar
