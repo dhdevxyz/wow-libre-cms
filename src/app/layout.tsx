@@ -8,6 +8,7 @@ import I18Next from "@/context/I8nProviders";
 import WowheadTooltip from "@/utils/wowhead";
 import React from "react";
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -29,10 +30,11 @@ export default function RootLayout({
             <WowheadTooltip />
             {children}
             <ClientFooter />
+            <Analytics />
+            <SpeedInsights />
           </body>
         </I18Next>
       </UserProvider>
-      <Analytics />
     </html>
   );
 }
