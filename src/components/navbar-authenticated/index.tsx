@@ -87,6 +87,56 @@ const NavbarAuthenticated = () => {
               </svg>
             </button>
           </div>
+          {isMobileMenuOpen && (
+            <div
+              id="mobile-menu"
+              className="absolute top-20 left-0 w-full bg-gray-800 text-white z-50"
+            >
+              <ul className="space-y-2 py-4 px-6">
+                <li>
+                  <Link
+                    href="/"
+                    className="block rounded-md px-4 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
+                  >
+                    {t("navbar_authenticated.sections.position-one")}
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/guild"
+                    className="block rounded-md px-4 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
+                  >
+                    {t("navbar_authenticated.sections.position-two")}
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="https://t.me/+jOZFCLD5TXAxOWRh"
+                    target="_blank"
+                    className="block rounded-md px-4 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
+                  >
+                    {t("navbar_authenticated.sections.position-three")}
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/bank"
+                    className="block rounded-md px-4 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
+                  >
+                    {t("navbar_authenticated.sections.position-four")}
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/store"
+                    className="block rounded-md px-4 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
+                  >
+                    {t("navbar_authenticated.sections.position-five")}
+                  </Link>
+                </li>
+              </ul>
+            </div>
+          )}
           <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start select-none">
             <a
               className="flex flex-shrink-0 items-center cursor-pointer"

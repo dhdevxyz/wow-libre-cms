@@ -35,10 +35,8 @@ const Profile = () => {
 
     try {
       setIsSubmitting(true);
-      // Llamar a la API para cambiar la contraseña
       await changePasswordUser(oldPassword, newPassword, token);
 
-      // Si todo sale bien, puedes limpiar los campos o dar un mensaje de éxito
       setOldPassword("");
       setNewPassword("");
       setConfirmPassword("");
@@ -72,7 +70,7 @@ const Profile = () => {
           className="relative w-full h-96 bg-cover bg-center"
           style={{
             backgroundImage:
-              "url('https://bnetcmsus-a.akamaihd.net/cms/gallery/LO0AO02BH7931533575177140.jpg')",
+              "url('https://images8.alphacoders.com/126/1269084.jpg')",
           }}
         >
           {/* Profile Picture */}
