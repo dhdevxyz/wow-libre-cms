@@ -71,6 +71,18 @@ const Footer = () => {
                     alt="WhatsApp Icon"
                   />
                 </a>
+                <a
+                  target="_blank"
+                  className="text-gray-400 hover:text-gray-300 transition duration-150 ease-in-out"
+                  href="https://t.me/wowlibreservers"
+                >
+                  <span className="sr-only">Telegram</span>
+                  <img
+                    className="h-8 w-8"
+                    src="../img/footer/telegram.webp"
+                    alt="Telegram Icon"
+                  />
+                </a>
               </div>
             </div>
           </div>

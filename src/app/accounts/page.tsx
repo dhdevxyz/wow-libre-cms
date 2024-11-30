@@ -23,25 +23,22 @@ const Page = () => {
   const { user, clearUserData } = useUserContext();
   const token = Cookies.get("token");
   const { t } = useTranslation();
-
   const [loading, setLoading] = useState<boolean>(true);
-
+  const [redirect, setRedirect] = useState<boolean>(false);
   const [filteredAccounts, setFilteredAccounts] = useState<AccountsModel[]>([]);
   const [totalPages, setTotalPages] = useState(0);
   const [currentPage, setCurrentPage] = useState<number>(0);
   const [hasAccount, setHasAccount] = useState<boolean>(false);
-
   const [accounts, setAccounts] = useState<AccountsModel[]>([]);
   const [searchUsername, setUsername] = useState<string>("");
   const [searchServer, setSearchServer] = useState<string>("");
-
   const [dropdownVisible, setDropdownVisible] = useState<boolean>(false);
 
   useAuth(t("errors.message.expiration-session"));
 
   useEffect(() => {
     if (!token) {
-      router.push("/");
+      setRedirect(true);
       return;
     }
 
@@ -70,7 +67,7 @@ const Page = () => {
               timer: 4000,
               willClose: () => {
                 clearUserData();
-                router.push("/");
+                setRedirect(true);
               },
             });
             return;
@@ -89,6 +86,10 @@ const Page = () => {
     };
     fetchData();
   }, [currentPage, searchUsername, searchServer]);
+
+  if (redirect) {
+    router.push("/");
+  }
 
   useEffect(() => {
     const filtered = accounts.filter((account) => {
@@ -113,16 +114,16 @@ const Page = () => {
     try {
       sendMail(token);
       Swal.fire({
-        title: "¡Correo enviado!",
-        text: "Te hemos enviado un correo para validar tu cuenta. Por favor, revisa tu bandeja de entrada o la carpeta de spam.",
+        title: t("account.validation-mail.title-success"),
+        text: t("account.validation-mail.message-success"),
         icon: "success",
         confirmButtonText: "Aceptar",
       });
     } catch (error) {
       Swal.fire({
-        title: "Error",
-        text: "Ocurrió un error inesperado. Por favor, inténtalo más tarde.",
         icon: "error",
+        title: t("account.validation-mail.title-error"),
+        text: t("account.validation-mail.message-error"),
         confirmButtonText: "Aceptar",
       });
     }
@@ -337,36 +338,35 @@ const Page = () => {
             <table className=" text-lg text-left rtl:text-right text-gray-500 dark:text-gray-400">
               <thead className="text-lg text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
-                  <th scope="col" className="p-4">
+                  <td scope="col" className="p-4">
                     <div className="flex items-center"></div>
-                  </th>
-                  <th scope="col" className="px-6 py-3">
+                  </td>
+                  <td scope="col" className="px-6 py-3">
                     {t("account.column-table.position-one")}
-                  </th>
-                  <th scope="col" className="px-6 py-3">
+                  </td>
+                  <td scope="col" className="px-6 py-3">
                     {t("account.column-table.position-two")}
-                  </th>
-                  <th scope="col" className="px-6 py-3">
+                  </td>
+                  <td scope="col" className="px-6 py-3">
                     {t("account.column-table.position-three")}
-                  </th>
-                  <th scope="col" className="px-6 py-3">
+                  </td>
+                  <td scope="col" className="px-6 py-3">
                     {t("account.column-table.position-four")}
-                  </th>
-                  <th scope="col" className="px-6 py-3">
+                  </td>
+                  <td scope="col" className="px-6 py-3">
                     {t("account.column-table.position-five")}
-                  </th>
-                  <th scope="col" className="px-6 py-3">
+                  </td>
+                  <td scope="col" className="px-6 py-3">
                     Realmlist
-                  </th>
-                  <th scope="col" className="px-6 py-3">
+                  </td>
+                  <td scope="col" className="px-6 py-3">
                     {t("account.column-table.position-six")}
-                  </th>
-                  <th scope="col" className="px-6 py-3">
+                  </td>
+                  <td scope="col" className="px-6 py-3">
                     {t("account.column-table.position-action")}
-                  </th>
+                  </td>
                 </tr>
               </thead>
-
               <tbody>
                 {filteredAccounts.map((row) => (
                   <tr
@@ -420,20 +420,20 @@ const Page = () => {
                       className="px-6 py-4 font-medium text-blue-500 text-xl dark:text-blue-500 hover:underline cursor-pointer"
                       onClick={() => handleCopy(row.realmlist || "")}
                     >
-                      Copiar
-                    </td>{" "}
+                      {t("account.column-table.position-btn-copy")}
+                    </td>
                     <td className="px-6 py-4">
                       <a
                         href={
-                          row.web_site.startsWith("http")
+                          row.web_site.startsWith("https")
                             ? row.web_site
-                            : `http://${row.web_site}`
+                            : `https://${row.web_site}`
                         }
                         target="_blank"
                         rel="noopener noreferrer"
                         className="font-medium text-blue-500 text-xl dark:text-blue-500 hover:underline cursor-pointer"
                       >
-                        Visitar
+                        {t("account.column-table.position-btn-visit")}
                       </a>
                     </td>
                     <td className="px-6 py-4">

@@ -134,6 +134,7 @@ const AccountIngame = () => {
             <input
               id="input-password"
               className="mb-3 px-4 py-2 border rounded-md text-black register-input"
+              maxLength={20}
               type="password"
               placeholder={t(
                 "register.section-page.finaly-create-account-game.password-placeholder"
@@ -156,6 +157,7 @@ const AccountIngame = () => {
               id="input-confirm-password"
               className="mb-3 px-4 py-2 border rounded-md text-black register-input"
               type="password"
+              maxLength={20}
               placeholder={t(
                 "register.section-page.finaly-create-account-game.confirm-password-placeholder"
               )}

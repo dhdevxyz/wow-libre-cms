@@ -439,3 +439,18 @@ export interface GuildMemberDto {
   server_name: string;
   available_benefits: number;
 }
+
+export interface UserDetailDto {
+  id: number | null;
+  username: string;
+  country: string;
+  language: string;
+  date_of_birth: Date | null;
+  first_name: string;
+  last_name: string;
+  cell_phone: string;
+  email: string;
+  status: boolean;
+  avatar: string;
+  pending_validation: boolean;
+}
