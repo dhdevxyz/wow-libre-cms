@@ -72,7 +72,7 @@ const Login = () => {
           logged_in: true,
           avatar: avatar_url,
           language: language,
-          pending_validation: response.pending_validation,
+          pending_validation: false,
         });
       }
 
