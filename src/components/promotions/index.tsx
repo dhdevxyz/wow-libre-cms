@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import LoadingSpinner from "../utilities/loading-spinner";
+import { InternalServerError } from "@/dto/generic";
 
 interface PremiumProps {
   serverId: number;
@@ -79,6 +80,20 @@ const Promotions: React.FC<PremiumProps> = ({
         },
       });
     } catch (error: any) {
+      if (error instanceof InternalServerError) {
+        Swal.fire({
+          icon: "error",
+          title: "Opss!",
+          html: `
+            <p><strong>Message:</strong> ${error.message}</p>
+            <hr style="border-color: #444; margin: 8px 0;">
+            <p><strong>Transaction ID:</strong> ${error.transactionId}</p>
+          `,
+          color: "white",
+          background: "#0B1218",
+        });
+        return;
+      }
       Swal.fire({
         icon: "error",
         title: "Oops...",
@@ -140,6 +155,41 @@ const Promotions: React.FC<PremiumProps> = ({
                     <p className="text-gray-200 mb-4 text-lg flex-grow">
                       {card.description}
                     </p>
+                    <div className="flex items-center justify-between text-gray-200 mb-4 text-lg">
+                      {/* Nivel Mínimo */}
+                      <span className="flex-grow text-center font-semibold">
+                        <span className="text-white">Lvl Minimo </span>
+                        {card?.min_lvl
+                          .toString()
+                          .split("")
+                          .map((letter, index) => (
+                            <span
+                              key={index}
+                              className="text-white animate-color-cycle"
+                            >
+                              {letter}
+                            </span>
+                          ))}
+                      </span>
+                      <span className="mx-1 text-gray-400">-</span>{" "}
+                      {/* Separador */}
+                      {/* Nivel Máximo */}
+                      <span className="flex-grow text-center font-semibold">
+                        <span className="text-white">Lvl Maximo </span>
+                        {card?.max_lvl
+                          .toString()
+                          .split("")
+                          .map((letter, index) => (
+                            <span
+                              key={index}
+                              className="text-white animate-color-cycle"
+                            >
+                              {letter}
+                            </span>
+                          ))}
+                      </span>
+                    </div>
+
                     <button
                       onClick={() => handleButtonClick(card.id)}
                       className="w-full font-bold action-button bg-gradient-to-r from-yellow-500 to-yellow-700 hover:from-yellow-600 hover:to-yellow-800 text-white py-1 px-2 rounded-lg transition-all duration-300 shadow-lg"
