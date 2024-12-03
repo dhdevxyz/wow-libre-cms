@@ -137,6 +137,11 @@ const SlotMachine: React.FC<MachineProps> = ({
 
   return (
     <div className="w-full h-full p-6 text-white flex flex-col justify-center items-center">
+      <h2>
+        Por favor antes de jugar en la ruleta por favor dentro del juego
+        ejecuten el comando .save para guardar los niveles actuales de su
+        personaje.
+      </h2>
       <p className="text-3xl font-semibold mb-8">Saldo: ${balance}</p>
 
       <div className="grid grid-cols-3 gap-4 mb-6 text-8xl w-full max-w-sm">
