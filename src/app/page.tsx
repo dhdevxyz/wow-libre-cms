@@ -5,6 +5,7 @@ import Subscription from "@/components/home/subscription";
 import Us from "@/components/home/us";
 import Navbar from "@/components/home/navbar-home/navbar";
 import Information from "@/components/home/information";
+import AdIframe from "@/components/adversing";
 
 const Home = () => {
   return (

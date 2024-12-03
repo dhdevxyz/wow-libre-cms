@@ -9,6 +9,7 @@ import WowheadTooltip from "@/utils/wowhead";
 import React from "react";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import AdIframe from "@/components/adversing";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -30,6 +31,7 @@ export default function RootLayout({
             <WowheadTooltip />
             {children}
             <ClientFooter />
+            <AdIframe />
             <Analytics />
             <SpeedInsights />
           </body>
