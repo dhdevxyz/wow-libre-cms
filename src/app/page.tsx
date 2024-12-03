@@ -12,6 +12,8 @@ const Home = () => {
     <>
       <Navbar />
       <Advertising />
+      <AdIframe />
+
       <Information />
       <SliderHome />
 

@@ -30,8 +30,8 @@ export default function RootLayout({
           <body className={inter.className}>
             <WowheadTooltip />
             {children}
+
             <ClientFooter />
-            <AdIframe />
             <Analytics />
             <SpeedInsights />
           </body>
