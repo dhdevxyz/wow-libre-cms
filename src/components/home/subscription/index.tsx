@@ -29,9 +29,9 @@ const Subscription = () => {
 
   if (loading) {
     return (
-      <>
+      <div className="flex justify-center items-center  mt-5">
         <LoadingSpinner />
-      </>
+      </div>
     );
   }
 

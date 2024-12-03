@@ -1,5 +1,6 @@
 "use client";
 import {
+  faCircleNotch,
   faComment,
   faCrown,
   faEnvelope,
@@ -37,6 +38,7 @@ import { AccountDetailDto, Character, UserDetailDto } from "@/model/model";
 import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
 import Cookies from "js-cookie";
 import { useTranslation } from "react-i18next";
+import SlotMachine from "@/components/machine/page";
 
 const AccountDetail = () => {
   const searchParams = useSearchParams();
@@ -236,6 +238,13 @@ const AccountDetail = () => {
               </Tab>
               <Tab className="py-6 px-5 text-white  bg-tablist cursor-pointer text-lg font-semibold flex items-center">
                 <FontAwesomeIcon
+                  icon={faCircleNotch}
+                  className="mr-2 text-2xl"
+                />
+                Ruleta
+              </Tab>
+              <Tab className="py-6 px-5 text-white  bg-tablist cursor-pointer text-lg font-semibold flex items-center">
+                <FontAwesomeIcon
                   icon={faRotateLeft}
                   className="mr-2 text-2xl"
                 />
@@ -389,6 +398,32 @@ const AccountDetail = () => {
                     characterId={selectedCharacter.id}
                     language={user.language}
                     token={token}
+                  />
+                ) : (
+                  <div className=" p-6 bg-gradient-to-r from-gray-800 via-black to-gray-900 text-neon_green rounded-lg shadow-lg text-center">
+                    <h2 className="text-2xl font-bold mb-2 text-gray-200">
+                      {t("account-detail.character-no-select.promotions.title")}
+                    </h2>
+                    <p className="text-xl text-gray-200 mb-4">
+                      {t(
+                        "account-detail.character-no-select.promotions.subtitle"
+                      )}
+                    </p>
+                    <p className="text-lg italic text-gray-200">
+                      {t("account-detail.character-no-select.promotions.text")}
+                    </p>
+                  </div>
+                )}
+              </TabPanel>
+              <TabPanel>
+                {token && selectedCharacter && serverId && accountId ? (
+                  <SlotMachine
+                    serverId={serverId}
+                    accountId={accountId}
+                    characterId={selectedCharacter.id}
+                    language={user.language}
+                    token={token}
+                    t={t}
                   />
                 ) : (
                   <div className=" p-6 bg-gradient-to-r from-gray-800 via-black to-gray-900 text-neon_green rounded-lg shadow-lg text-center">

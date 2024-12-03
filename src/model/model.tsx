@@ -454,3 +454,18 @@ export interface UserDetailDto {
   avatar: string;
   pending_validation: boolean;
 }
+
+/* Modelo para obtener los datos de la machine lotery*/
+
+export interface MachineDto {
+  logo: string;
+  name: string;
+  type: string;
+  message: string;
+  winner: boolean;
+}
+/* Modelo para obtener los datos de los coints lotery*/
+
+export interface MachineCoinsDto {
+  coins: number;
+}
