@@ -32,8 +32,7 @@ export default function Banner(): JSX.Element {
       className="contenedor mx-2 my-5 border border-gray-200 justify-center items-center text-white text-center"
       ref={banner}
       style={{
-        maxWidth: "100%",
-        overflow: "hidden", // Evita desbordamientos
+        overflow: "hidden",
       }}
     ></div>
   );
