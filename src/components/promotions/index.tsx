@@ -142,61 +142,44 @@ const Promotions: React.FC<PremiumProps> = ({
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
             {currentItems.map((card, index) => (
               <div key={index} className="p-4">
-                <div className="bg-gray-800 p-6 rounded-lg shadow-lg h-full flex flex-col justify-between">
+                <div className="bg-gray-800 p-6 rounded-lg shadow-lg flex flex-col justify-between h-[330px]">
+                  {/* Imagen */}
                   <img
                     src={card.img}
                     alt={card.name}
                     className="w-full h-48 object-cover rounded-t-lg mb-4"
                   />
+
+                  {/* Contenido */}
                   <div className="flex flex-col flex-grow">
                     <h3 className="text-2xl font-semibold mb-2 text-yellow-500">
                       {card.name}
                     </h3>
-                    <p className="text-gray-200 mb-4 text-lg flex-grow">
+                    <p className="text-gray-200 mb-4 text-lg overflow-hidden text-ellipsis">
                       {card.description}
                     </p>
+
+                    {/* Niveles */}
                     <div className="flex items-center justify-between text-gray-200 mb-4 text-lg">
-                      {/* Nivel Mínimo */}
                       <span className="flex-grow text-center font-semibold">
                         <span className="text-white">Lvl Minimo </span>
-                        {card?.min_lvl
-                          .toString()
-                          .split("")
-                          .map((letter, index) => (
-                            <span
-                              key={index}
-                              className="text-white animate-color-cycle"
-                            >
-                              {letter}
-                            </span>
-                          ))}
+                        {card?.min_lvl}
                       </span>
-                      <span className="mx-1 text-gray-400">-</span>{" "}
-                      {/* Separador */}
-                      {/* Nivel Máximo */}
+                      <span className="mx-1 text-gray-400">-</span>
                       <span className="flex-grow text-center font-semibold">
                         <span className="text-white">Lvl Maximo </span>
-                        {card?.max_lvl
-                          .toString()
-                          .split("")
-                          .map((letter, index) => (
-                            <span
-                              key={index}
-                              className="text-white animate-color-cycle"
-                            >
-                              {letter}
-                            </span>
-                          ))}
+                        {card?.max_lvl}
                       </span>
                     </div>
-
-                    <button
-                      onClick={() => handleButtonClick(card.id)}
-                      className="w-full font-bold action-button bg-gradient-to-r from-yellow-500 to-yellow-700 hover:from-yellow-600 hover:to-yellow-800 text-white py-1 px-2 rounded-lg transition-all duration-300 shadow-lg"
-                    >
-                      {card.btn_txt}
-                    </button>
                   </div>
+
+                  {/* Botón */}
+                  <button
+                    onClick={() => handleButtonClick(card.id)}
+                    className="w-full font-bold action-button bg-gradient-to-r from-yellow-500 to-yellow-700 hover:from-yellow-600 hover:to-yellow-800 text-white py-1 px-2 rounded-lg transition-all duration-300 shadow-lg mt-auto"
+                  >
+                    {card.btn_txt}
+                  </button>
                 </div>
               </div>
             ))}
