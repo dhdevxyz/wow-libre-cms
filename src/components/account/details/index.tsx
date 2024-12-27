@@ -61,7 +61,7 @@ const AccountDetail = () => {
   const [characters, setCharacters] = useState<Character[]>([]);
   const [selectedCharacter, setSelectedCharacter] = useState<Character>();
   const [avatar, setAvatar] = useState("https://via.placeholder.com/150");
-  const { t, ready } = useTranslation();
+  const { t } = useTranslation();
   const { user } = useUserContext();
 
   useAuth(t("errors.message.expiration-session"));
@@ -114,7 +114,7 @@ const AccountDetail = () => {
     setAvatar(character.race_logo || "https://via.placeholder.com/150");
   };
 
-  if (isLoading || !ready) {
+  if (isLoading) {
     return (
       <div className="flex items-center justify-center min-h-screen min-w-full">
         <div className="flex flex-col items-center">
@@ -241,14 +241,14 @@ const AccountDetail = () => {
                   icon={faCircleNotch}
                   className="mr-2 text-2xl"
                 />
-                Ruleta
+                {t("account-detail.tabs.var8")}
               </Tab>
               <Tab className="py-6 px-5 text-white  bg-tablist cursor-pointer text-lg font-semibold flex items-center">
                 <FontAwesomeIcon
                   icon={faRotateLeft}
                   className="mr-2 text-2xl"
                 />
-                {t("account-detail.tabs.var8")}
+                {t("account-detail.tabs.var9")}
               </Tab>
             </TabList>
 
@@ -307,17 +307,18 @@ const AccountDetail = () => {
               </TabPanel>
               <TabPanel>
                 {/* Contenido de la pestaña Perfil Detallado */}
-                {accountDetail && token ? (
+                {accountDetail && token && serverId ? (
                   <DetailAccount
                     account={accountDetail}
                     token={token}
                     serverId={serverId}
+                    t={t}
                   />
                 ) : null}
               </TabPanel>
               <TabPanel>
                 {/* Contenido de la pestaña Profesiones */}
-                {selectedCharacter && token && accountId ? (
+                {selectedCharacter && token && accountId && serverId ? (
                   <Professions
                     character={selectedCharacter}
                     token={token}
@@ -398,6 +399,8 @@ const AccountDetail = () => {
                     characterId={selectedCharacter.id}
                     language={user.language}
                     token={token}
+                    classId={selectedCharacter.class_id}
+                    t={t}
                   />
                 ) : (
                   <div className=" p-6 bg-gradient-to-r from-gray-800 via-black to-gray-900 text-neon_green rounded-lg shadow-lg text-center">
@@ -428,15 +431,15 @@ const AccountDetail = () => {
                 ) : (
                   <div className=" p-6 bg-gradient-to-r from-gray-800 via-black to-gray-900 text-neon_green rounded-lg shadow-lg text-center">
                     <h2 className="text-2xl font-bold mb-2 text-gray-200">
-                      {t("account-detail.character-no-select.promotions.title")}
+                      {t("account-detail.character-no-select.roulette.title")}
                     </h2>
                     <p className="text-xl text-gray-200 mb-4">
                       {t(
-                        "account-detail.character-no-select.promotions.subtitle"
+                        "account-detail.character-no-select.roulette.subtitle"
                       )}
                     </p>
                     <p className="text-lg italic text-gray-200">
-                      {t("account-detail.character-no-select.promotions.text")}
+                      {t("account-detail.character-no-select.roulette.text")}
                     </p>
                   </div>
                 )}

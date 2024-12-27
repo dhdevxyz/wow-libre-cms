@@ -7,19 +7,23 @@ import LoadingSpinner from "../utilities/loading-spinner";
 import { InternalServerError } from "@/dto/generic";
 
 interface PremiumProps {
+  classId: number;
   serverId: number;
   accountId: number;
   characterId: number;
   language: string;
   token: string;
+  t: (key: string, options?: any) => string;
 }
 
 const Promotions: React.FC<PremiumProps> = ({
+  classId,
   serverId,
   accountId,
   characterId,
   language,
   token,
+  t,
 }) => {
   const [loading, setLoading] = useState(true);
   const [refresh, setRefresh] = useState(false);
@@ -31,25 +35,27 @@ const Promotions: React.FC<PremiumProps> = ({
   const itemsPerPage = 3;
 
   useEffect(() => {
-    const fetchBanners = async () => {
+    const fetchPromos = async () => {
       try {
-        const subscriptionData = await getPromotions(
+        const promotionsData = await getPromotions(
           language,
           token,
           serverId,
           accountId,
-          characterId
+          characterId,
+          classId
         );
-        setSubscriptionBenefits(subscriptionData.promotions);
+        setSubscriptionBenefits(promotionsData.promotions);
       } catch (error) {
-        console.error("Error fetching subscription benefits:", error);
+        setLoading(false);
+        setRefresh(false);
       } finally {
         setLoading(false);
         setRefresh(false);
       }
     };
 
-    fetchBanners();
+    fetchPromos();
   }, [language, token, refresh, characterId]);
 
   const handleButtonClick = async (promotionId: number): Promise<void> => {
@@ -66,12 +72,12 @@ const Promotions: React.FC<PremiumProps> = ({
       setCurrentPage(1);
       Swal.fire({
         icon: "success",
-        title: "¡Beneficio reclamado con éxito! 🎉",
-        text: "Tu recompensa ahora está disponible. ¡Disfrútala!",
+        title: t("promotions-character.messages.title-success-claim-promo"),
+        text: t("promotions-character.messages.text-success-claim-promo"),
         color: "white",
         background: "#0B1218",
         confirmButtonText: "¡Genial!",
-        confirmButtonColor: "#1DB954", // Un verde vibrante para destacar
+        confirmButtonColor: "#1DB954",
         showClass: {
           popup: "animate__animated animate__fadeInDown",
         },
@@ -142,12 +148,13 @@ const Promotions: React.FC<PremiumProps> = ({
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
             {currentItems.map((card, index) => (
               <div key={index} className="p-4">
-                <div className="bg-gray-800 p-6 rounded-lg shadow-lg flex flex-col justify-between h-[330px]">
+                <div className="bg-gray-800 p-6 rounded-lg shadow-lg flex flex-col justify-between h-[330px] transition-transform duration-300 transform hover:scale-105 hover:shadow-2xl hover:bg-gradient-to-r hover:from-gray-800 hover:via-black hover:to-gray-900">
+
                   {/* Imagen */}
                   <img
                     src={card.img}
                     alt={card.name}
-                    className="w-full h-48 object-cover rounded-t-lg mb-4"
+                    className="w-full h-48 object-cover rounded-t-lg mb-4 "
                   />
 
                   {/* Contenido */}
@@ -162,12 +169,18 @@ const Promotions: React.FC<PremiumProps> = ({
                     {/* Niveles */}
                     <div className="flex items-center justify-between text-gray-200 mb-4 text-lg">
                       <span className="flex-grow text-center font-semibold">
-                        <span className="text-white">Lvl Minimo </span>
+                        <span className="text-white">
+                          {t("promotions-character.lvl-min")}
+                        </span>{" "}
+
                         {card?.min_lvl}
                       </span>
                       <span className="mx-1 text-gray-400">-</span>
                       <span className="flex-grow text-center font-semibold">
-                        <span className="text-white">Lvl Maximo </span>
+                        <span className="text-white">
+                          {t("promotions-character.lvl-max")}
+                        </span>{" "}
+
                         {card?.max_lvl}
                       </span>
                     </div>
@@ -176,7 +189,8 @@ const Promotions: React.FC<PremiumProps> = ({
                   {/* Botón */}
                   <button
                     onClick={() => handleButtonClick(card.id)}
-                    className="w-full font-bold action-button bg-gradient-to-r from-yellow-500 to-yellow-700 hover:from-yellow-600 hover:to-yellow-800 text-white py-1 px-2 rounded-lg transition-all duration-300 shadow-lg mt-auto"
+                    className="w-full font-bold action-button bg-gradient-to-r from-yellow-500 to-yellow-700 hover:from-yellow-600 hover:to-yellow-800 text-white py-1 px-2 rounded-lg transition-all duration-300 shadow-lg"
+
                   >
                     {card.btn_txt}
                   </button>
@@ -192,29 +206,30 @@ const Promotions: React.FC<PremiumProps> = ({
               disabled={currentPage === 1}
               className="px-4 py-2 bg-gray-700 text-white rounded-lg disabled:opacity-50"
             >
-              Anterior
+              {t("promotions-character.btns.pagination-return")}
             </button>
             <button
               onClick={nextPage}
               disabled={currentPage === totalPages}
               className="px-4 py-2 bg-gray-700 text-white rounded-lg disabled:opacity-50"
             >
-              Siguiente
+              {t("promotions-character.btns.pagination-next")}
             </button>
           </div>
         </div>
       ) : (
-        <div className="min-w-[300px] min-h-[340px]">
+        <div className="min-w-[300px] min-h-[390px]">
           {/* Título y mensaje principal */}
           <div className="text-center mb-6">
             <h2 className="text-4xl font-bold mb-4 text-yellow-500">
-              Actualmente no tenemos promociones disponibles
+              {t("promotions-character.promotion-empty.title")}
             </h2>
             <p className="text-lg text-gray-300 mb-2">
-              ¡No te preocupes! Únete a nuestros canales de comunicación y
-              mantente informado sobre futuras promociones.
+              {t("promotions-character.promotion-empty.subtitle")}
             </p>
-            <p className="text-xl font-semibold">Solo por {`$9.99`} al mes</p>
+            <p className="text-xl text-gray-300 font-semibold">
+              {t("promotions-character.promotion-empty.description")}
+            </p>
           </div>
 
           {/* Beneficios y Soporte */}
@@ -222,22 +237,26 @@ const Promotions: React.FC<PremiumProps> = ({
             {/* Promociones Exclusivas */}
             <div className="bg-gray-800 p-4 rounded-lg ">
               <h3 className="text-2xl font-semibold mb-2 text-yellow-500">
-                Promociones Exclusivas
+                {t("promotions-character.promotion-empty.benefit-promo.title")}
               </h3>
               <ul className="list-disc list-inside text-gray-200 text-xl">
-                <li>Acceso a regalos y beneficios especiales</li>
+                <li>
+                  {t(
+                    "promotions-character.promotion-empty.benefit-promo.benefits.primary"
+                  )}
+                </li>
               </ul>
             </div>
 
             {/* Soporte Prioritario */}
             <div className="bg-gray-800 p-4 rounded-lg">
               <h3 className="text-2xl font-semibold mb-2 text-yellow-500">
-                Soporte Prioritario
+                {t("promotions-character.promotion-empty.support-promo.title")}
               </h3>
               <p className="text-gray-200 text-xl">
-                Si tienes algún inconveniente con una promoción, dirígete a
-                nuestro canal de soporte y explica tu caso para recibir ayuda
-                rápida.
+                {t(
+                  "promotions-character.promotion-empty.support-promo.description"
+                )}
               </p>
             </div>
           </div>
@@ -248,7 +267,7 @@ const Promotions: React.FC<PremiumProps> = ({
               href="https://t.me/+jOZFCLD5TXAxOWRh"
               className="block w-full text-center font-bold action-button bg-gradient-to-r from-yellow-500 to-yellow-700 hover:from-yellow-600 hover:to-yellow-800 text-white py-1 px-2 rounded-lg transition-all duration-300 shadow-lg"
             >
-              Mantente al tanto de nuestras novedades en los canales
+              {t("promotions-character.promotion-empty.btn-invitation")}
             </Link>
           </div>
         </div>

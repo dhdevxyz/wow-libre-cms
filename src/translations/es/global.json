@@ -213,7 +213,7 @@
             "confirm-mail": {
                 "title": "Por favor, confirma tu correo electrónico.",
                 "description": " No hemos recibido la confirmación de tu correo. Revisa tu bandeja de entrada y, si no encuentras el mensaje, puedes reenviarlo utilizando el botón Validar correo.",
-                "btn-txt": "Confirmar Correo"
+                "btn-txt": "Enviar codigo al correo"
             }
         },
         "with-accounts": {
@@ -463,6 +463,11 @@
                 "title": "⚔️ ¡Forja tu destino! ⚔️",
                 "subtitle": "Aprovecha las ofertas legendarias",
                 "text": "Desbloquea promociones épicas y potencia tu aventura. ¡No dejes pasar esta oportunidad!"
+            },
+            "roulette": {
+                "title": "⚔️ ¡Elige a tu campeón! ⚔️",
+                "subtitle": "Aprovecha las ofertas legendarias",
+                "text": "¡Prueba tu suerte y potencia tu aventura con promociones épicas! ¡No dejes pasar esta oportunidad!"
             }
         },
         "errors": {
@@ -487,7 +492,8 @@
             "var5": "Hermandad",
             "var6": "Premium",
             "var7": "Promociones",
-            "var8": "Cuentas"
+            "var8": "Ruleta",
+            "var9": "Cuentas"
         }
     },
     "support": {
@@ -731,5 +737,130 @@
         "input-new-change-password": "Nueva contraseña",
         "input-new-confirm-change-password": "Confirmar contraseña",
         "btn-update-password": "Actualizar contraseña"
+    },
+    "server-accounts": {
+        "title": "Administración avanzada para tus servidores vinculados",
+        "subtitle": "Simplifica la gestión de tus servidores y mantén el control con herramientas seguras y eficientes.",
+        "btn": {
+            "create-server": "Vincular Servidor",
+            "delete-server": "Desvincular Servidor",
+            "paginate-btn-primary": "Siguiente",
+            "paginate-btn-secondary": "Volver"
+        },
+        "table": {
+            "column-id": "Id",
+            "column-name": "Nombre",
+            "column-expansion": "Expansión",
+            "column-status": "Estado",
+            "column-date": "Fecha",
+            "column-apikey": "Api key",
+            "column-web": "Web"
+        }
+    },
+    "server-register": {
+        "title": "Configura tu servidor y llévalo al siguiente nivel en solo unos clics.",
+        "character-text": "Caracteres restantes:",
+        "default-txt-select": "Seleccione una opción",
+        "selection-mobile": {
+            "title": "Seleccionar sección",
+            "information": "Información General",
+            "details": "Detalles de Acceso",
+            "security": "Seguridad",
+            "integration": "Integración"
+        },
+        "selection-desktop": {
+            "information": "Información General",
+            "details": "Detalles de Acceso",
+            "security": "Seguridad",
+            "integration": "Integración"
+        },
+        "form": {
+            "name-server": "Nombre del servidor",
+            "name-server-placeholder": "Ingresa el nombre del servidor",
+            "web": "Web",
+            "web-placeholder": "Ingresa la web del servidor",
+            "expansion": "Expansión",
+            "host": "Host",
+            "realmlist": "Realmlist",
+            "realmlist-placeholder": "Ingresa el realmlist del servidor",
+            "type-server": "Tipo de servidor",
+            "password": "Contraseña",
+            "password-placeholder": "Ingresa una contraseña para tu cuenta",
+            "password-confirm": "Confirmar Contraseña",
+            "password-confirm-placeholder": "Confirma tu contraseña",
+            "username-external": "Usuario",
+            "username-external-placeholder": "Ingresa un usuario de integración",
+            "password-external": "Contraseña",
+            "password-external-placeholder": "Ingresa una contraseña de integración",
+            "emulator": "Emulador"
+        },
+        "btn": {
+            "link-txt": "Vincular",
+            "return-txt": "Anterior"
+        }
+    },
+    "promotions-character": {
+        "messages": {
+            "title-success-claim-promo": "¡Beneficio reclamado con éxito! 🎉",
+            "text-success-claim-promo": "Tu recompensa ya está disponible. ¡Disfrútala!"
+        },
+        "lvl-min": "Nivel mínimo",
+        "lvl-max": "Nivel máximo",
+        "btns": {
+            "pagination-next": "Siguiente",
+            "pagination-return": "Volver"
+        },
+        "promotion-empty": {
+            "title": "Actualmente no tenemos promociones disponibles",
+            "subtitle": "¡No te preocupes! Únete a nuestros canales de comunicación y mantente informado sobre futuras promociones.",
+            "description": "¡No te pierdas nuestras increíbles promociones! 🚀",
+            "benefit-promo": {
+                "title": "Promociones Exclusivas",
+                "benefits": {
+                    "primary": "Acceso a regalos y beneficios especiales"
+                }
+            },
+            "support-promo": {
+                "title": "Soporte Prioritario",
+                "description": "Si tienes algún inconveniente con una promoción, dirígete a nuestro canal de soporte y explica tu caso para recibir ayuda rápida."
+            },
+            "btn-invitation": "Unirme al canal"
+        }
+    },
+    "account-character": {
+        "title": "Estado Actual de la Cuenta",
+        "description": "Fortalece las defensas de tu reino digital con una contraseña sólida y segura. Sé el protagonista de tu epopeya en World of Warcraft, resguardando tus tesoros virtuales con una clave impenetrable.",
+        "account-banned": {
+            "blocking-date": "Fecha de bloqueo: ",
+            "unlock-date": "Fecha de desbloqueo: ",
+            "banned-by": "Baneado por el GM: ",
+            "silenced-by": "Silenciado por el GM: "
+        },
+        "btn": {
+            "edit": "Editar",
+            "update": "Actualizar",
+            "cancel": "Cancelar"
+        },
+        "form": {
+            "new-password-account": "Nueva Contraseña",
+            "new-password-account-placeholder": "Ingresa tu nueva contraseña",
+            "new-password-account-confirm": "Confirmar Contraseña",
+            "new-password-account-confirm-placeholder": "Confirma tu nueva contraseña",
+            "password-web-txt": "Contraseña Web",
+            "password-web-placeholder": "Ingresa tu contraseña web",
+            "password-web-disclaimer": "Introduce la contraseña de tu cuenta web para confirmar los cambios."
+        },
+        "messages": {
+            "password-not-match": "Las contraseñas no coinciden",
+            "password-not-match-txt": "Por favor, verifica que las contraseñas coincidan.",
+            "password-is-empty": "La contraseña está vacía",
+            "password-is-empty-txt": "Por favor, asegúrate de que la contraseña no esté vacía.",
+            "password-length-invalid": "Contraseña inválida",
+            "password-length-invalid-txt": "Por favor, verifica que la contraseña tenga más de 5 caracteres y menos de 30.",
+            "password-change-password-success": "Contraseña actualizada",
+            "password-change-password-success-txt": "La contraseña se ha actualizado con éxito.",
+            "password-change-password-success-btn": "Entendido",
+            "error-change-password": "Ha ocurrido un error inesperado. No fue posible cambiar la contraseña."
+        }
     }
 }

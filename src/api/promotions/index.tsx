@@ -8,13 +8,14 @@ export const getPromotions = async (
   token: string,
   serverId: number,
   accountId: number,
-  characterId: number
+  characterId: number,
+  classId: number
 ): Promise<PromotionsDto> => {
   try {
     const transactionId = uuidv4();
 
     const response = await fetch(
-      `${BASE_URL}/api/transaction/promotions?server_id=${serverId}&character_id=${characterId}&account_id=${accountId}`,
+      `${BASE_URL}/api/transaction/promotions?server_id=${serverId}&character_id=${characterId}&account_id=${accountId}&class_id=${classId}`,
       {
         method: "GET",
         headers: {

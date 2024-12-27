@@ -1,5 +1,4 @@
 import { BASE_URL } from "@/configs/configs";
-import { UserModel } from "@/context/UserContext";
 import { GenericResponseDto, InternalServerError } from "@/dto/generic";
 import { AccountDetailDto, AccountsDto, UserDetailDto } from "@/model/model";
 import { v4 as uuidv4 } from "uuid";

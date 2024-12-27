@@ -10,8 +10,9 @@ const MultiCarouselSubs = () => {
   const items = [
     {
       id: 1,
-      image: "http://imgfz.com/i/ol6RNZi.png",
-      title: "Wow Replica",
+      image:
+        "https://static.wixstatic.com/media/5dd8a0_f0c3204f2346419695468d1ec3ac5bb0~mv2.webp",
+      title: "Wow Elysium",
     },
   ];
 

@@ -152,15 +152,15 @@ const Subscriptions = () => {
             <div className="grid grid-cols-2 gap-4 lg:gap-8">
               <div className="relative h-[450px] w-[280px] select-none">
                 <img
-                  src="https://e0.pxfuel.com/wallpapers/121/817/desktop-wallpaper-deathwing-htc-one-warcraft-art-fantasy-dragon-dragon-thumbnail.jpg"
-                  alt="Globin-loan"
+                  src="https://static.wixstatic.com/media/5dd8a0_9d9020e8c72f431988e33d61613a6b99~mv2.webp"
+                  alt="Premium-Sub"
                   className="object-cover rounded-xl w-full h-full transition duration-300 hover:opacity-75"
                 />
               </div>
               <div className="relative h-[450px] w-[280px] select-none">
                 <img
-                  src="https://mfiles.alphacoders.com/908/908747.jpg"
-                  alt="Globin-loan-bank"
+                  src="https://static.wixstatic.com/media/5dd8a0_1e5bee5c825341efa1102d83a2003832~mv2.webp"
+                  alt="premium"
                   className="object-cover rounded-xl w-full h-full transition duration-300 hover:opacity-75"
                 />
               </div>

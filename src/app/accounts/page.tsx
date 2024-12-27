@@ -437,16 +437,22 @@ const Page = () => {
                       </a>
                     </td>
                     <td className="px-6 py-4">
-                      <a
-                        className="font-medium text-blue-600 text-xl dark:text-blue-500 hover:underline cursor-pointer"
-                        onClick={() =>
-                          router.push(
-                            `/accounts/detail?id=${row.account_id}&server_id=${row.server_id}`
-                          )
-                        }
-                      >
-                        {t("account.column-table.position-btn-admin")}
-                      </a>
+                      {row.status ? (
+                        <a
+                          className="font-medium text-blue-600 text-xl dark:text-blue-500 hover:underline cursor-pointer"
+                          onClick={() =>
+                            router.push(
+                              `/accounts/detail?id=${row.account_id}&server_id=${row.server_id}`
+                            )
+                          }
+                        >
+                          {t("account.column-table.position-btn-admin")}
+                        </a>
+                      ) : (
+                        <span className="font-medium text-gray-500 text-xl cursor-not-allowed">
+                          {t("account.column-table.position-btn-admin")}
+                        </span>
+                      )}
                     </td>
                   </tr>
                 ))}
@@ -486,7 +492,7 @@ const Page = () => {
         </div>
       ) : (
         <div className="empty-table-message items-center justify-center">
-          <div className="content shadow-md sm:rounded-lg select-none">
+          <div className="content  sm:rounded-lg select-none">
             <img
               src="/img/profile/create-account.webp"
               alt="wow-account-create"
@@ -494,22 +500,21 @@ const Page = () => {
             />
 
             {user.pending_validation ? (
-              <p className="mb-5 text-lg">
+              <p className="mb-5 text-xl">
                 {t("account.without-accounts.confirm-mail.title")}
                 <br />
                 {t("account.without-accounts.confirm-mail.description")}
               </p>
             ) : (
-              <p className="mb-5 text-lg">
+              <p className="mb-5 text-2xl">
                 {t("account.without-accounts.title-message")}
                 <br />
                 {t("account.without-accounts.sub-title-message")}
               </p>
             )}
-
             {user.pending_validation && (
               <button
-                className="create-account-btn mb-2"
+                className="w-full sm:w-1/2 border border-blue-600 text-blue-600 px-5 py-3 rounded-md hover:bg-blue-600 hover:text-white transition "
                 onClick={handleConfirmEmail}
               >
                 {t("account.without-accounts.confirm-mail.btn-txt")}
@@ -517,7 +522,7 @@ const Page = () => {
             )}
             {!user.pending_validation && accounts && accounts.length <= 10 && (
               <Link
-                className="create-account-btn text-xl"
+                className="w-full sm:w-1/2 border border-blue-600 text-blue-600 px-5 py-3 rounded-md hover:bg-blue-600 hover:text-white transition "
                 href="/register/username"
               >
                 {t("account.without-accounts.btn-text")}

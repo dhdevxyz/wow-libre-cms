@@ -1,3 +1,5 @@
+import exp from "constants";
+
 export interface CountryModel {
   value: string;
   label: string;
@@ -29,6 +31,7 @@ export interface AccountWebRequestDto {
   email: string;
   password: string;
   language: string;
+  token: string;
 }
 
 export interface LoginData {
@@ -266,16 +269,6 @@ export interface BankPlans {
   button: string;
 }
 
-export interface ServerModel {
-  id: number;
-  name: string;
-  status: boolean;
-  emulator: string;
-  avatar: string;
-  expansion: string;
-  exp_name: string;
-  web_site: string;
-}
 export interface ServerAvailableBank {
   id: number;
   name: string;
@@ -468,4 +461,88 @@ export interface MachineDto {
 
 export interface MachineCoinsDto {
   coins: number;
+}
+
+/* SERVERS MODELOS USADOS PARA LAS API DEL CONTROLADOR SERVERS */
+
+export interface ServerModel {
+  id: number;
+  name: string;
+  status: boolean;
+  emulator: string;
+  avatar: string;
+  expansion: string;
+  exp_name: string;
+  web_site: string;
+}
+
+export interface ServerModel {
+  id: number;
+  name: string;
+  status: boolean;
+  emulator: string;
+  avatar: string;
+  expansion: string;
+  creation_date: string;
+  web_site: string;
+  exp_name: string;
+  api_key: string;
+}
+
+export interface AssociatedServers {
+  servers: ServerModel[];
+  size: number;
+}
+
+/*  MODELOS USADOS PARA LA DASHBOARD */
+
+export interface CreditLoansServer {
+  loans: number;
+  users: CreditLoansUser[];
+}
+
+export interface CreditLoansUser {
+  id: number;
+  name: string;
+  application_date: string; // Usamos string por si es una fecha ISO en formato string
+  debtor: boolean;
+  payment_date: string; // También puede ser un string, como la fecha ISO
+  amount: number;
+}
+
+/** Modelo  Bancario para la dash Linechar */
+export interface CreditLoansServerData {
+  [year: string]: {
+    [month: string]: {
+      [day: string]: {
+        loans: number;
+        payments: number;
+      };
+    };
+  };
+}
+
+/** Modelo  Usado para las cuentas de los clientes del servidor */
+
+export interface ServerAllAccounts {
+  accounts: AccountsServer[];
+  size: number;
+}
+export interface AccountsServer {
+  id: number;
+  username: string;
+  email: string;
+  expansion: string;
+  online: boolean;
+  failed_logins: string;
+  last_ip: string;
+  os: string;
+}
+/** Modelo  Usado para mostrar los datos recopilados del servidor  */
+export interface DashboardMetrics {
+  total_users: number;
+  online_users: number;
+  total_guilds: number;
+  external_registrations: number;
+  character_count: number;
 }

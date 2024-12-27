@@ -4,16 +4,18 @@ import { v4 as uuidv4 } from "uuid";
 
 export const validateRecoverPassword = async (
   email: string,
-  code: string
+  code: string,
+  language: string
 ): Promise<GenericResponseDto<void>> => {
   try {
     const response = await fetch(
-      `${BASE_URL}/api/account/recovery-password?email=${email}&code=${code}`,
+      `${BASE_URL}/api/account/password-recovery/confirm?email=${email}&code=${code}`,
       {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
           transaction_id: uuidv4(),
+          "Accept-Language": language,
         },
       }
     );
@@ -40,7 +42,7 @@ export const recoverPassword = async (
 ): Promise<GenericResponseDto<void>> => {
   try {
     const response = await fetch(
-      `${BASE_URL}/api/account/recovery-password?email=${email}`,
+      `${BASE_URL}/api/account/password-recovery/request?email=${email}`,
       {
         method: "GET",
         headers: {
@@ -73,7 +75,7 @@ export const validateMail = async (
 ): Promise<GenericResponseDto<void>> => {
   try {
     const response = await fetch(
-      `${BASE_URL}/api/account/confirm-email?code=${code}`,
+      `${BASE_URL}/api/account/email/confirmation?code=${code}`,
       {
         method: "PUT",
         headers: {

@@ -92,7 +92,7 @@ const Congrats = () => {
                 {t("register.section-page.congrats.btn-txt-action-primary")}
               </button>
               <Link
-                href="https://drive.usercontent.google.com/download?id=1FzfsxSPvn0so_HOl532KtjPB7VhcVpvo&export=download&authuser=0"
+                href="https://drive.usercontent.google.com/download?id=1jH5dirVKluY_L1kJwNicCd2A0ccjSvec&export=download&authuser=0"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="download-button text-white text-lg md:text-xl lg:text-2xl xl:text-2xl"

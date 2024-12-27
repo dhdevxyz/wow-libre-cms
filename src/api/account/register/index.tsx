@@ -72,8 +72,9 @@ export const registerAccountWeb = async (
       body: JSON.stringify(userData),
     });
 
-    const responseData = await response.json();
     if (response.ok && response.status === 201) {
+      const responseData = await response.json();
+
       return responseData.data;
     } else if (response.status == 400) {
       throw new Error(

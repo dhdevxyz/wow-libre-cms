@@ -82,8 +82,8 @@ const Help: React.FC = () => {
           <div className="flex flex-col">
             <div className="w-full mb-6 rounded-2xl select-none">
               <img
-                src="https://bnetcmsus-a.akamaihd.net/cms/blog_header/h9/H9LLMU20DQFJ1725400142786.png"
-                alt="FAQ tailwind section"
+                src="https://static.wixstatic.com/media/5dd8a0_ebe9448aef0f42dca6116185583ed2e3~mv2.webp"
+                alt="Faqs"
                 className="rounded-2xl hover:shadow hover:shadow-teal-800 w-full"
               />
             </div>

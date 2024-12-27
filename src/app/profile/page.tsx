@@ -3,6 +3,8 @@ import { getUser } from "@/api/account";
 import { changePasswordUser } from "@/api/account/change-password";
 import NavbarAuthenticated from "@/components/navbar-authenticated";
 import LoadingSpinner from "@/components/utilities/loading-spinner";
+import { useUserContext } from "@/context/UserContext";
+import { InternalServerError } from "@/dto/generic";
 import { UserDetailDto } from "@/model/model";
 import Cookies from "js-cookie";
 import React, { useEffect, useState } from "react";
@@ -18,6 +20,7 @@ const Profile = () => {
   const [userDetail, setUserDetail] = useState<UserDetailDto>();
   const [redirect, setRedirect] = useState(false);
   const { t } = useTranslation();
+  const { clearUserData } = useUserContext();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -81,15 +84,50 @@ const Profile = () => {
         text: "Your password has been updated successfully!",
       });
     } catch (error: any) {
-      Swal.fire({
-        icon: "error",
-        title: "Update Failed",
-        text: error.message || "An error occurred while updating the password.",
-      });
+      if (error instanceof InternalServerError) {
+        if (error.statusCode === 401) {
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: t("errors.message.expiration-session"),
+            color: "white",
+            background: "#0B1218",
+            timer: 4000,
+            willClose: () => {
+              clearUserData();
+              setRedirect(true);
+            },
+          });
+          return;
+        } else {
+          Swal.fire({
+            icon: "error",
+            title: "Opss!",
+            html: `
+                      <p><strong>Message:</strong> ${error.message}</p>
+                      <hr style="border-color: #444; margin: 8px 0;">
+                      <p><strong>Transaction ID:</strong> ${error.transactionId}</p>
+                    `,
+            color: "white",
+            background: "#0B1218",
+          });
+          return;
+        }
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: `${error.message}`,
+          color: "white",
+          background: "#0B1218",
+        });
+      }
     }
   };
 
-  const isFormValid = oldPassword && newPassword && confirmPassword;
+  const isFormValid =
+    oldPassword && newPassword && confirmPassword && oldPassword;
+
   if (isLoading) {
     return (
       <div className="flex items-center justify-center min-h-screen min-w-full">

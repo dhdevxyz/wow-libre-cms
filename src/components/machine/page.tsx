@@ -42,19 +42,19 @@ const SlotMachine: React.FC<MachineProps> = ({
   const [slots, setSlots] = useState<SlotItem[]>(["⚔️", "⚔️", "⚔️"]);
   const [isSpinning, setIsSpinning] = useState(false);
   const [result, setResult] = useState<string | null>(null);
-  const [balance, setBalance] = useState<number>(0); // Saldo inicial como 0
+  const [balance, setBalance] = useState<number>(0);
   const [showModal, setShowModal] = useState(false);
-  const [audio] = useState(new Audio("/sound/slot.mp3")); // Ruta al archivo de sonido de giro
-  const [winAudio] = useState(new Audio("/sound/slot_win.mp3")); // Ruta al archivo de sonido de victoria
-  const [lossAudio] = useState(new Audio("/sound/slot_loss.mp3")); // Ruta al archivo de sonido de pérdida
+  const [audio] = useState(new Audio("/sound/slot.mp3"));
+  const [winAudio] = useState(new Audio("/sound/slot_win.mp3"));
+  const [lossAudio] = useState(new Audio("/sound/slot_loss.mp3"));
   const [modalData, setModalData] = useState<MachineDto | null>(null);
+  const [isToggled, setIsToggled] = useState(false); // Estado del toggle
 
-  // Cargar el saldo inicial al montar el componente
   useEffect(() => {
     const fetchBalance = async () => {
       try {
         const coins = await getCoints(token, serverId);
-        setBalance(coins.coins); // Asumiendo que la propiedad que contiene el saldo es `coins`
+        setBalance(coins.coins);
         console.log("Saldo inicial:", coins.coins);
       } catch (error) {
         console.error("Error al obtener el saldo:", error);
@@ -62,42 +62,36 @@ const SlotMachine: React.FC<MachineProps> = ({
     };
 
     fetchBalance();
-  }, [token, serverId]); // Se ejecuta cuando `token` o `serverId` cambian
+  }, [token, serverId]);
 
-  // Función para obtener un símbolo aleatorio de los rodillos
   const getRandomSlot = () =>
     slotOptions[Math.floor(Math.random() * slotOptions.length)];
 
-  // Función para manejar el giro de la tragamonedas
   const spin = async () => {
     if (isSpinning || balance < spinCost) return;
 
     setIsSpinning(true);
     setResult(null);
-    setBalance((prev) => prev - spinCost); // Reducir saldo por giro
+    setBalance((prev) => prev - spinCost);
+    audio.play();
 
-    audio.play(); // Reproducir el sonido de slots
-
-    const spinDuration = 3000; // Duración del giro
+    const spinDuration = 3000;
     const interval = 100;
 
     let spins = 0;
     const spinInterval = setInterval(async () => {
-      // Marca el `setInterval` como `async` para permitir el uso de `await`
       setSlots([getRandomSlot(), getRandomSlot(), getRandomSlot()]);
       spins += interval;
       if (spins >= spinDuration) {
         clearInterval(spinInterval);
         setIsSpinning(false);
-        await calculateResult(); // Llamada a `calculateResult` que es asíncrona
+        await calculateResult();
       }
     }, interval);
   };
 
-  // Calcular el resultado del giro
   const calculateResult = async () => {
     try {
-      // Llamada a la API para determinar si el jugador ha ganado
       const result: MachineDto = await claimMachine(
         serverId,
         accountId,
@@ -107,72 +101,166 @@ const SlotMachine: React.FC<MachineProps> = ({
       );
 
       if (result.winner) {
-        // Si la respuesta indica que el jugador ha ganado, configura los slots y el modal
         const winningSymbol =
           winningSymbols[Math.floor(Math.random() * winningSymbols.length)];
-        setSlots([winningSymbol, winningSymbol, winningSymbol]); // Mostrar tres símbolos iguales
+
+        setSlots([winningSymbol, winningSymbol, winningSymbol]);
         setResult("🎉 ¡Has ganado! 🎉");
         setModalData(result);
         setShowModal(true);
-        winAudio.play(); // Reproducir sonido de victoria
+        winAudio.play();
       } else {
-        // Si el jugador no ha ganado, muestra los símbolos al azar y el mensaje de pérdida
-        setSlots([getRandomSlot(), getRandomSlot(), getRandomSlot()]);
+        let slot1 = getRandomSlot();
+        let slot2 = getRandomSlot();
+        let slot3 = getRandomSlot();
+
+        while (slot1 === slot2 && slot2 === slot3) {
+          slot3 = getRandomSlot();
+        }
+
+        setSlots([slot1, slot2, slot3]);
         setResult("😢 ¡Mejor suerte la próxima vez!");
-        setShowModal(false); // Cerrar modal si no se ganó
-        lossAudio.play(); // Reproducir sonido de pérdida
+        setShowModal(false);
+        lossAudio.play();
       }
     } catch (error) {
       console.error("Error al calcular el resultado:", error);
       setResult(
         "⚠️ Hubo un error al determinar el resultado. Intenta de nuevo más tarde."
       );
+    } finally {
+      setIsToggled(false); // Restablece el toggle a 'false' después de cada ejecución
     }
   };
 
-  // Cerrar el modal
   const closeModal = () => {
     setShowModal(false);
   };
 
-  return (
-    <div className="w-full h-full p-6 text-white flex flex-col justify-center items-center">
-      <h2 className="text-3xl font-semibold mb-2">
-        Por favor antes de jugar en la ruleta por favor dentro del juego
-        ejecuten el comando .save para guardar los niveles actuales de su
-        personaje.
-      </h2>
-      <p className="text-3xl font-semibold mb-8">Saldo: ${balance}</p>
+  const handleToggleChange = () => {
+    if (!isSpinning && balance >= spinCost) {
+      setIsToggled(!isToggled);
+      if (!isToggled) {
+        spin(); // Ejecuta el slot si se activa
+      }
+    }
+  };
 
-      <div className="grid grid-cols-3 gap-4 mb-6 text-8xl w-full max-w-sm">
-        {slots.map((slot, index) => (
-          <div
-            key={index}
-            className="w-32 h-32 flex items-center justify-center bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 border-4 border-white rounded-lg shadow-lg transform transition-transform duration-300 hover:scale-105"
-          >
-            {slot}
+  return (
+    <div className="w-full h-full p-4 text-white flex flex-col justify-center items-center">
+      <div className="grid grid-rows-[auto,1fr] grid-cols-1 md:grid-cols-2 md:grid-rows-[auto] gap-6 w-full max-w-9xl">
+        {/* Máquina tragamonedas: ocupa toda la fila superior */}
+        <div className="flex flex-col items-center justify-center bg-gradient-to-r from-purple-500 to-indigo-600 p-4 rounded-xl shadow-lg col-span-1 md:col-span-2">
+          <p className="text-3xl font-semibold text-yellow-300 mb-8">
+            Saldo: ${balance}
+          </p>
+
+          <div className="flex items-center justify-center w-full mb-6">
+            <div className="grid grid-cols-3 gap-4 text-8xl w-full max-w-sm">
+              {slots.map((slot, index) => (
+                <div
+                  key={index}
+                  className="w-32 h-32 flex items-center justify-center bg-gradient-to-r from-teal-400 to-teal-600 border-4 border-yellow-300 rounded-lg shadow-lg transition-all duration-300 transform hover:scale-105"
+                >
+                  {slot}
+                </div>
+              ))}
+            </div>
+            <div className="ml-6 flex justify-center items-center">
+              <label className="inline-flex items-center cursor-pointer">
+                <input
+                  type="checkbox"
+                  value=""
+                  className="sr-only peer"
+                  onChange={handleToggleChange}
+                  checked={isToggled} // Asegura que el toggle refleje el estado
+                />
+                <div className="relative w-12 h-24 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-y-full rtl:peer-checked:after:-translate-y-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-10 after:w-10 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+              </label>
+            </div>
           </div>
-        ))}
+
+          {result && (
+            <p className="mt-6 text-2xl font-semibold text-lime-400">
+              {result}
+            </p>
+          )}
+        </div>
+
+        {/* Tarjetas de información o promociones */}
+        <div className="flex flex-col items-center justify-center bg-gradient-to-r from-indigo-700 to-purple-800 p-8 rounded-xl shadow-2xl transform transition-transform duration-300 hover:scale-105 hover:shadow-2xl">
+          <h1 className="text-4xl font-extrabold text-yellow-300 mb-6 text-center">
+            ¡Envía tu comprobante y recibe tus créditos!
+          </h1>
+          <p className="text-lg text-white mb-8 text-center">
+            Envía el comprobante de tu pago y recibirás créditos adicionales
+            para seguir disfrutando de la máquina tragamonedas. ¡No pierdas la
+            oportunidad de obtener más recompensas y mejorar tu experiencia de
+            juego!
+          </p>
+
+          {/* Información de costo */}
+          <p className="text-xl text-white font-semibold mb-6 text-center">
+            ¡Solo 5 dólares por 300 tiradas! Obtén más créditos y aumenta tus
+            probabilidades de ganar.
+          </p>
+
+          <div className="flex flex-col items-center space-y-4 w-full max-w-md">
+            <a
+              target="_blank"
+              href="https://www.paypal.com/paypalme/wowlibre/5"
+              className="w-full"
+            >
+              <button className="w-full px-6 py-3 text-lg font-semibold bg-gradient-to-r from-orange-400 to-yellow-500 hover:from-orange-500 hover:to-yellow-600 text-white rounded-lg shadow-lg transform transition-transform duration-300 hover:scale-105">
+                Comprar Créditos
+              </button>
+            </a>
+
+            <a target="_blank" href="https://wa.link/8v1hol" className="w-full">
+              <button className="w-full px-6 py-3 text-lg font-semibold bg-gradient-to-r from-teal-400 to-teal-600 hover:from-teal-500 hover:to-teal-700 text-white rounded-lg shadow-lg transform transition-transform duration-300 hover:scale-105">
+                Enviar Comprobante
+              </button>
+            </a>
+          </div>
+        </div>
+
+        <div className="flex flex-col items-center justify-center bg-gradient-to-r from-pink-500 to-purple-600 p-6 rounded-xl shadow-lg transform transition-transform duration-300 hover:scale-105 hover:shadow-2xl">
+          <h1 className="text-4xl font-bold text-white mb-4">
+            Probabilidades de Ganar
+          </h1>
+          <ul className="text-lg text-white mb-6 text-left w-full">
+            <li className="flex justify-between py-2 border-b border-gray-300">
+              <span className="font-semibold">Items:</span>
+              <span className="font-bold">9%</span>
+            </li>
+            <li className="flex justify-between py-2 border-b border-gray-300">
+              <span className="font-semibold">Niveles:</span>
+              <span className="font-bold">1%</span>
+            </li>
+            <li className="flex justify-between py-2 border-b border-gray-300">
+              <span className="font-semibold">Monturas:</span>
+              <span className="font-bold">8%</span>
+            </li>
+            <li className="flex justify-between py-2">
+              <span className="font-semibold">Oro:</span>
+              <span className="font-bold">4%</span>
+            </li>
+          </ul>
+          <a
+            target="_blank"
+            href="https://t.me/wowlibreservers"
+            className="w-full"
+          >
+            <button className="w-full px-6 py-3 text-lg font-bold bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 text-white rounded-lg shadow-lg transition-transform duration-300 transform hover:scale-105">
+              Mas información
+            </button>
+          </a>
+        </div>
       </div>
 
-      <button
-        onClick={spin}
-        disabled={isSpinning || balance < spinCost}
-        className={`px-6 py-3 text-2xl rounded-lg font-bold transition-all ${
-          isSpinning || balance < spinCost
-            ? "bg-gray-500 cursor-not-allowed"
-            : "bg-gradient-to-r from-yellow-500 to-yellow-700 hover:from-yellow-600 hover:to-yellow-800"
-        }`}
-      >
-        {isSpinning ? "Girando..." : "¡Girar!"}
-      </button>
-
-      {result && <p className="mt-6 text-2xl font-semibold">{result}</p>}
-
-      {/* Modal de Ganador */}
       {showModal && modalData && (
         <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center">
-          <div className="bg-gradient-to-r from-purple-800 to-blue-900 p-10 rounded-2xl shadow-2xl text-center relative w-full max-w-lg">
+          <div className="bg-gradient-to-r from-purple-700 to-blue-800 p-10 rounded-2xl shadow-2xl text-center relative w-full max-w-lg">
             <h2 className="text-4xl font-bold text-yellow-400 mb-4 shadow-lg rounded-md bg-opacity-20 px-4 py-2 inline-block">
               ¡Felicidades, Campeón de Azeroth!
             </h2>

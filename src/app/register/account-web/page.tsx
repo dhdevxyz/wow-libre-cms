@@ -5,7 +5,7 @@ import NavbarMinimalist from "@/components/navbar-minimalist";
 import TitleWow from "@/components/utilities/serverTitle";
 import { useUserContext } from "@/context/UserContext";
 import { useRouter } from "next/navigation";
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import "../style.css";
 import { registerAccountWeb } from "@/api/account/register";
@@ -22,11 +22,33 @@ const AccountWeb = () => {
   const country = user.country;
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<Error | null>(null);
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
 
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const router = useRouter();
   const { t } = useTranslation();
+
+  const siteKey = "6LcbSqcqAAAAAEQ0ODkqHr7WT1OJ9RwQfA1D9U1x";
+
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.src = "https://www.google.com/recaptcha/api.js";
+    script.async = true;
+    script.defer = true;
+    document.body.appendChild(script);
+
+    (window as any).onCaptchaResolved = (token: string) => {
+      setCaptchaToken(token);
+    };
+
+    return () => {
+      document.body.removeChild(script);
+
+      // Limpia la función global para evitar fugas de memoria
+      delete (window as any).onCaptchaResolved;
+    };
+  }, []);
 
   const handlePasswordChange = (event: ChangeEvent<HTMLInputElement>) => {
     setPassword(event.target.value);
@@ -40,7 +62,17 @@ const AccountWeb = () => {
 
   const handleFormSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-
+    if (!captchaToken) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Capcha invalid",
+        color: "white",
+        background: "#0B1218",
+        timer: 43500,
+      });
+      return;
+    }
     if (password !== confirmPassword) {
       Swal.fire({
         icon: "error",
@@ -96,6 +128,7 @@ const AccountWeb = () => {
         email: user.email,
         password: password,
         language: language,
+        token: captchaToken,
       };
 
       const response = await registerAccountWeb(requestBody, language);
@@ -227,6 +260,22 @@ const AccountWeb = () => {
               value={confirmPassword}
               onChange={handleConfirmPasswordChange}
             />
+          </div>
+          <div
+            className="form-group"
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <div
+              className="g-recaptcha"
+              id="recaptcha"
+              data-sitekey={siteKey}
+              data-callback="onCaptchaResolved"
+            ></div>
+            <br />
           </div>
           {isSubmitting && (
             <div className="mb-4 text-center">

@@ -8,8 +8,9 @@ const MeetTheTeam = () => {
   const teamMembers = [
     {
       name: "Manuel Chitiva",
-      title: "Founder & Specialist",
-      image: "https://i.ibb.co/qMqFH2j/ddd.png",
+      title: "Development",
+      image:
+        "https://static.wixstatic.com/media/5dd8a0_95e131956e584ebb9ebaa0e8728d4e30~mv2.webp",
       social: {
         linkedin: "https://www.linkedin.com/in/manuelchitiva/",
         twitter: "https://www.facebook.com/WowLibre/",
@@ -24,14 +25,14 @@ const MeetTheTeam = () => {
       social: {},
     },
     {
-      name: "Greengo",
+      name: "Cami",
       title: "Game Master",
       image:
         "https://images.unsplash.com/photo-1634193295627-1cdddf751ebf?fit=clamp&w=400&h=400&q=80",
       social: {},
     },
     {
-      name: "Doesn't matter",
+      name: "Sebas",
       title: "Game Master",
       image:
         "https://images.unsplash.com/photo-1634193295627-1cdddf751ebf?fit=clamp&w=400&h=400&q=80",
@@ -67,7 +68,8 @@ const MeetTheTeam = () => {
                 >
                   <div className="flex flex-col">
                     <a
-                      href="#"
+                      target="_blank"
+                      href="https://www.facebook.com/WowLibre"
                       className="mx-auto aspect-square w-full overflow-hidden rounded-2xl"
                     >
                       <img

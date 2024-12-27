@@ -1,22 +1,28 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { ChangeEvent, useState } from "react";
+import { changePasswordGame } from "@/api/account/change-password";
+import { AccountDetailDto } from "@/model/model";
 import {
-  faSave,
-  faTimes,
   faEdit,
   faInfoCircle,
+  faSave,
+  faTimes,
 } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { ChangeEvent, useState } from "react";
 import Swal from "sweetalert2";
-import { AccountDetailDto } from "@/model/model";
-import { changePasswordGame } from "@/api/account/change-password";
 
 interface ProfileSecurityProps {
   account: AccountDetailDto;
   token: string;
   serverId: number;
+  t: (key: string, options?: any) => string;
 }
 
-const DetailAccount = ({ account, token, serverId }: ProfileSecurityProps) => {
+const DetailAccount = ({
+  account,
+  token,
+  serverId,
+  t,
+}: ProfileSecurityProps) => {
   const [isEditing, setIsEditing] = useState(false);
   const [passwordWeb, setPasswordWeb] = useState("");
   const [password, setPassword] = useState("");
@@ -41,8 +47,8 @@ const DetailAccount = ({ account, token, serverId }: ProfileSecurityProps) => {
     if (password !== confirmPassword) {
       Swal.fire({
         icon: "warning",
-        title: "Las contraseñas no coinciden",
-        text: "Por favor, verifique que las contraseñas coincidan.",
+        title: t("account-character.messages.password-not-match"),
+        text: t("account-character.messages.password-not-match-txt"),
         confirmButtonColor: "#3085d6",
         confirmButtonText: "Entendido",
       });
@@ -52,8 +58,8 @@ const DetailAccount = ({ account, token, serverId }: ProfileSecurityProps) => {
     if (!password.trim()) {
       Swal.fire({
         icon: "warning",
-        title: "La contraseña es vacia",
-        text: "Por favor, verifique  que la contraseña no este vacia.",
+        title: t("account-character.messages.password-is-empty"),
+        text: t("account-character.messages.password-is-empty-txt"),
         confirmButtonColor: "#3085d6",
         confirmButtonText: "Entendido",
       });
@@ -63,8 +69,8 @@ const DetailAccount = ({ account, token, serverId }: ProfileSecurityProps) => {
     if (password.trim().length < 5 || password.trim().length > 30) {
       Swal.fire({
         icon: "warning",
-        title: "Contraseña invalida",
-        text: "Por favor, verifique que la contraseña sea mayor a 5 caracteres e inferior a 30 caracteres.",
+        title: t("account-character.messages.password-length-invalid"),
+        text: t("account-character.messages.password-length-invalid-txt"),
         confirmButtonColor: "#3085d6",
         confirmButtonText: "Entendido",
       });
@@ -83,18 +89,24 @@ const DetailAccount = ({ account, token, serverId }: ProfileSecurityProps) => {
 
       Swal.fire({
         icon: "success",
-        title: "Contraseña actualizada",
-        text: "La contraseña ha sido actualizada con exito.",
+        title: t("account-character.messages.password-change-password-success"),
+        text: t(
+          "account-character.messages.password-change-password-success-txt"
+        ),
         confirmButtonColor: "#3085d6",
-        confirmButtonText: "Entendido",
+        confirmButtonText: t(
+          "account-character.messages.password-change-password-success-btn"
+        ),
       });
     } catch (error: any) {
       Swal.fire({
         icon: "error",
         title: "Oops...",
-        text: "Ha ocurrido un error inesperado",
+        text: t("account-character.messages.error-change-password"),
         confirmButtonColor: "#3085d6",
-        confirmButtonText: "Entendido",
+        confirmButtonText: t(
+          "account-character.messages.password-change-password-success-btn"
+        ),
       });
     }
     setIsEditing(false);
@@ -108,7 +120,7 @@ const DetailAccount = ({ account, token, serverId }: ProfileSecurityProps) => {
     <div className="mx-auto mt-8 text-white">
       <div className="text-center mx-auto mt-8 max-w-2xl">
         <div className="text-center">
-          <h2 className="font-bold text-2xl">Estado actual de la cuenta</h2>
+          <h2 className="font-bold text-2xl">{t("account-character.title")}</h2>
           <h3
             className={`text-xl font-semibold m-2 ${
               account.account_banned && account.account_banned.active
@@ -122,14 +134,14 @@ const DetailAccount = ({ account, token, serverId }: ProfileSecurityProps) => {
           {account.account_banned && account.account_banned.active && (
             <div className="grid grid-cols-2 gap-8 text-2xl">
               <p className="text-gray-400 m-2 font-semibold">
-                Fecha del bloqueo:
+                {t("account-character.account-banned.blocking-date")}
                 <br />
                 <span className="text-lg ml-2">
                   {account.account_banned.bandate}
                 </span>
               </p>
               <p className="text-gray-400 m-2 font-semibold text-md">
-                Fecha de desbloqueo:
+                {t("account-character.account-banned.unlock-date")}
                 <br />
                 <span className="ml-2 text-lg">
                   {account.account_banned.unbandate}
@@ -137,7 +149,7 @@ const DetailAccount = ({ account, token, serverId }: ProfileSecurityProps) => {
               </p>
               <div className="col-span-2">
                 <p className="text-gray-400 m-2 font-semibold text-2xl">
-                  Ha sido baneado por el GM : <br />
+                  {t("account-character.account-banned.banned-by")} <br />
                   <span className="text-red-500 ml-2 text-2xl ">
                     {account.account_banned.banned_by}
                   </span>
@@ -162,7 +174,7 @@ const DetailAccount = ({ account, token, serverId }: ProfileSecurityProps) => {
           {account.mute && (
             <div className="grid grid-cols-2 gap-8">
               <p className="text-gray-400 m-4 font-semibold text-xl">
-                Ha sido silenciado por el GM : <br />
+                {t("account-character.account-banned.silenced-by")} <br />
                 <span className="text-red-500 ml-2 text-2xl">
                   {account.mute_by}
                 </span>
@@ -181,16 +193,14 @@ const DetailAccount = ({ account, token, serverId }: ProfileSecurityProps) => {
       <hr className="border-t-1 border-gray-300 my-4 mx-8" />
       <div className="text-center mx-auto mt-8 max-w-2xl">
         <h2 className="mb-5 font-bold text-xl text-gray-400">
-          Fortalece las defensas de tu reino digital con una contraseña sólida y
-          segura. Sé el protagonista de tu epopeya en World of Warcraft,
-          resguardando tus tesoros virtuales con una llave impenetrable.
+          {t("account-character.description")}
         </h2>
       </div>
       <div className="px-8 pt-6 pb-8 mb-9 ">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-5">
           <div className="mb-4">
             <label className="block text-xl font-bold mb-2">
-              Contraseña web
+              {t("account-character.form.password-web-txt")}
               <span className="text-blue-500 ml-2">
                 <FontAwesomeIcon icon={faInfoCircle} />
               </span>
@@ -203,22 +213,23 @@ const DetailAccount = ({ account, token, serverId }: ProfileSecurityProps) => {
                   className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring focus:border-blue-300"
                 >
                   <FontAwesomeIcon icon={faEdit} className="mr-2" />
-                  Editar
+                  {t("account-character.btn.edit")}
                 </button>
               </div>
             ) : (
               <div>
                 <div className="flex items-center">
                   <input
-                    type="text"
-                    placeholder="Ingrese su contraseña web"
+                    type="password"
+                    placeholder={t(
+                      "account-character.form.password-web-placeholder"
+                    )}
                     onChange={handleEditOtp}
-                    className="border rounded py-2 px-3  text-gray-700 text-2xl focus:outline-none focus:ring focus:border-blue-500"
+                    className="border rounded py-2 px-2  text-gray-700 text-xl focus:outline-none focus:ring focus:border-blue-500"
                   />
                 </div>
                 <p className="text-white text-lg mt-2">
-                  Ingresa la contraseña de tu cuenta web para <br /> confirmar
-                  los cambios.
+                  {t("account-character.form.password-web-disclaimer")}
                 </p>
               </div>
             )}
@@ -226,7 +237,7 @@ const DetailAccount = ({ account, token, serverId }: ProfileSecurityProps) => {
 
           <div className="mb-4">
             <label className="block x text-xl font-bold mb-2">
-              Nueva Contraseña
+              {t("account-character.form.new-password-account")}
             </label>
             {!isEditing ? (
               <div className="flex items-center">
@@ -235,10 +246,12 @@ const DetailAccount = ({ account, token, serverId }: ProfileSecurityProps) => {
             ) : (
               <div className="flex items-center">
                 <input
-                  type="text"
-                  placeholder="Ingrese su nueva contraseña"
+                  type="password"
+                  placeholder={t(
+                    "account-character.form.new-password-account-placeholder"
+                  )}
                   onChange={handleEditPasswordInGame}
-                  className="border rounded py-2 px-3 text-2xl text-gray-700 focus:outline-none focus:ring focus:border-blue-500"
+                  className="border rounded py-2 px-2 text-xl text-gray-700 focus:outline-none focus:ring focus:border-blue-500"
                 />
               </div>
             )}
@@ -246,7 +259,7 @@ const DetailAccount = ({ account, token, serverId }: ProfileSecurityProps) => {
 
           <div className="mb-4">
             <label className="block  text-xl font-bold mb-2">
-              Confirmar Contraseña
+              {t("account-character.form.new-password-account-confirm")}
             </label>
             {!isEditing ? (
               <div className="flex items-center">
@@ -255,10 +268,12 @@ const DetailAccount = ({ account, token, serverId }: ProfileSecurityProps) => {
             ) : (
               <div className="flex items-center">
                 <input
-                  type="text"
-                  placeholder="Confirme su nueva contraseña"
+                  type="password"
+                  placeholder={t(
+                    "account-character.form.new-password-account-confirm-placeholder"
+                  )}
                   onChange={handleConfirmPassword}
-                  className="border rounded py-2 px-3 text-2xl text-gray-700 focus:outline-none focus:ring focus:border-blue-500"
+                  className="border rounded py-2 px-2 text-xl text-gray-700 focus:outline-none focus:ring focus:border-blue-500"
                 />
               </div>
             )}
@@ -272,14 +287,14 @@ const DetailAccount = ({ account, token, serverId }: ProfileSecurityProps) => {
               className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mr-2 focus:outline-none focus:ring focus:border-blue-300"
             >
               <FontAwesomeIcon icon={faSave} className="mr-2" />
-              Actualizar
+              {t("account-character.btn.update")}
             </button>
             <button
               onClick={handleCancelClick}
               className="bg-gray-600 hover:bg-gray-500 font-bold py-2 px-4 rounded focus:outline-none focus:ring focus:border-gray-600 "
             >
               <FontAwesomeIcon icon={faTimes} className="mr-2" />
-              Cancelar
+              {t("account-character.btn.cancel")}
             </button>
           </div>
         )}

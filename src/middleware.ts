@@ -1,22 +1,28 @@
-
-import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
+import { NextResponse } from "next/server";
 
 export default function myMiddleware(request: NextRequest) {
-   
-    const protectedPaths = ["/accounts","/register/username",
-         "/dashboard", "/settings","/character","/register/account-ingame"]; 
+  const protectedPaths = [
+    "/accounts",
+    "/register/username",
+    "/dashboard",
+    "/settings",
+    "/character",
+    "/register/account-ingame",
+    "/servers",
+  ];
 
-    if (protectedPaths.includes(request.nextUrl.pathname)) {
-        const cookie = request.cookies.get('token')
+  const isProtectedPath = protectedPaths.some((path) => request.nextUrl.pathname.startsWith(path));
 
-        if (!cookie) {
-            return NextResponse.redirect(new URL("/login", request.url));
-        }
+  if (isProtectedPath) {
+    const cookie = request.cookies.get("token");
 
-        return NextResponse.next(); 
+    if (!cookie) {
+      return NextResponse.redirect(new URL("/login", request.url));
     }
-    
-    return NextResponse.next(); 
-}
 
+    return NextResponse.next();
+  }
+
+  return NextResponse.next();
+}

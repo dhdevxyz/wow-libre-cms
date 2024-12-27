@@ -463,6 +463,11 @@
                 "title": "⚔️ Forge Your Destiny! ⚔️",
                 "subtitle": "Take advantage of legendary offers",
                 "text": "Unlock epic promotions and enhance your adventure. Don't miss this opportunity!"
+            },
+            "roulette": {
+                "title": "⚔️ Choose Your Champion! ⚔️",
+                "subtitle": "Take advantage of legendary offers",
+                "text": "Test your luck and power up your adventure with epic promotions! Don't miss this opportunity!"
             }
         },
         "errors": {
@@ -487,7 +492,8 @@
             "var5": "Guild",
             "var6": "Premium",
             "var7": "Promotions",
-            "var8": "Accounts"
+            "var8": "Roulette",
+            "var9": "Accounts"
         }
     },
     "support": {
@@ -731,5 +737,130 @@
         "input-new-change-password": "New Password",
         "input-new-confirm-change-password": "Confirm Password",
         "btn-update-password": "Update Password"
+    },
+    "server-accounts": {
+        "title": "Advanced management for your linked servers",
+        "subtitle": "Simplify the management of your servers and stay in control with secure and efficient tools.",
+        "btn": {
+            "create-server": "Link Server",
+            "delete-server": "Unlink Server",
+            "paginate-btn-primary": "Next",
+            "paginate-btn-secondary": "Back"
+        },
+        "table": {
+            "column-id": "Id",
+            "column-name": "Name",
+            "column-expansion": "Expansion",
+            "column-status": "Status",
+            "column-date": "Date",
+            "column-apikey": "Api key",
+            "column-web": "Web"
+        }
+    },
+    "server-register": {
+        "title": "Set up your server and take it to the next level in just a few clicks.",
+        "character-text": "Characters remaining:",
+        "default-txt-select": "Select an option",
+        "selection-mobile": {
+            "title": "Select section",
+            "information": "General Information",
+            "details": "Access Details",
+            "security": "Security",
+            "integration": "Integration"
+        },
+        "selection-desktop": {
+            "information": "General Information",
+            "details": "Access Details",
+            "security": "Security",
+            "integration": "Integration"
+        },
+        "form": {
+            "name-server": "Server Name",
+            "name-server-placeholder": "Enter the server name",
+            "web": "Web",
+            "web-placeholder": "Enter the server website",
+            "expansion": "Expansion",
+            "host": "Host",
+            "realmlist": "Realmlist",
+            "realmlist-placeholder": "Enter the server realmlist",
+            "type-server": "Server Type",
+            "password": "Password",
+            "password-placeholder": "Enter a password for your account",
+            "password-confirm": "Confirm Password",
+            "password-confirm-placeholder": "Confirm your password",
+            "username-external": "User",
+            "username-external-placeholder": "Enter an integration user",
+            "password-external": "Password",
+            "password-external-placeholder": "Enter an integration password",
+            "emulator": "Emulator"
+        },
+        "btn": {
+            "link-txt": "Link",
+            "return-txt": "Back"
+        }
+    },
+    "promotions-character": {
+        "messages": {
+            "title-success-claim-promo": "Benefit claimed successfully! 🎉",
+            "text-success-claim-promo": "Your reward is now available. Enjoy!"
+        },
+        "lvl-min": "Minimum Level",
+        "lvl-max": "Maximum Level",
+        "btns": {
+            "pagination-next": "Next",
+            "pagination-return": "Back"
+        },
+        "promotion-empty": {
+            "title": "Currently, no promotions are available",
+            "subtitle": "Don't worry! Join our communication channels and stay informed about future promotions.",
+            "description": "Don't miss out on our amazing promotions! 🚀",
+            "benefit-promo": {
+                "title": "Exclusive Promotions",
+                "benefits": {
+                    "primary": "Access to special gifts and benefits"
+                }
+            },
+            "support-promo": {
+                "title": "Priority Support",
+                "description": "If you encounter any issues with a promotion, go to our support channel and explain your case to get quick help."
+            },
+            "btn-invitation": "Join the channel"
+        }
+    },
+    "account-character": {
+        "title": "Current Account Status",
+        "description": "Fortify your digital realm's defenses with a strong and secure password. Be the hero of your World of Warcraft epic by safeguarding your virtual treasures with an impenetrable key.",
+        "account-banned": {
+            "blocking-date": "Blocking Date: ",
+            "unlock-date": "Unlock Date: ",
+            "banned-by": "Banned by GM: ",
+            "silenced-by": "Silenced by GM: "
+        },
+        "btn": {
+            "edit": "Edit",
+            "update": "Update",
+            "cancel": "Cancel"
+        },
+        "form": {
+            "new-password-account": "New Password",
+            "new-password-account-placeholder": "Enter your new password",
+            "new-password-account-confirm": "Confirm Password",
+            "new-password-account-confirm-placeholder": "Confirm your new password",
+            "password-web-txt": "Web Password",
+            "password-web-placeholder": "Enter your web password",
+            "password-web-disclaimer": "Enter your web account password to confirm the changes."
+        },
+        "messages": {
+            "password-not-match": "Passwords do not match",
+            "password-not-match-txt": "Please ensure that the passwords match.",
+            "password-is-empty": "Password is empty",
+            "password-is-empty-txt": "Please ensure that the password is not empty.",
+            "password-length-invalid": "Invalid password",
+            "password-length-invalid-txt": "Please ensure the password is longer than 5 characters and shorter than 30.",
+            "password-change-password-success": "Password updated",
+            "password-change-password-success-txt": "The password has been successfully updated.",
+            "password-change-password-success-btn": "Got it",
+            "error-change-password": "An unexpected error occurred. It was not possible to change the password."
+        }
     }
 }

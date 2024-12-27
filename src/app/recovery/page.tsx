@@ -4,6 +4,7 @@ import {
   validateRecoverPassword,
 } from "@/api/account/security";
 import NavbarMinimalist from "@/components/navbar-minimalist";
+import { useUserContext } from "@/context/UserContext";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -18,6 +19,8 @@ const ChangePassword = () => {
   const [otp, setOtp] = useState<string[]>(["", "", "", "", ""]);
   const router = useRouter();
   const { t } = useTranslation();
+  const { user } = useUserContext();
+  const language = user.language;
 
   const handleFormChange = (formType: string) => {
     setCurrentForm(formType);
@@ -54,7 +57,7 @@ const ChangePassword = () => {
     const otpCode = otp.join("");
 
     try {
-      await validateRecoverPassword(email, otpCode);
+      await validateRecoverPassword(email, otpCode, language);
       setSuccessMessage("Success");
       Swal.fire({
         icon: "success",

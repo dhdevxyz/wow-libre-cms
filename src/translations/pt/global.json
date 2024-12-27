@@ -463,6 +463,11 @@
                 "title": "⚔️ Forje Seu Destino! ⚔️",
                 "subtitle": "Aproveite ofertas lendárias",
                 "text": "Desbloqueie promoções épicas e amplifique sua aventura. Não perca essa oportunidade!"
+            },
+            "roulette": {
+                "title": "⚔️ Escolha o seu campeão! ⚔️",
+                "subtitle": "Aproveite as ofertas lendárias",
+                "text": "Teste sua sorte e fortaleça sua aventura com promoções épicas! Não perca esta oportunidade!"
             }
         },
         "errors": {
@@ -487,7 +492,8 @@
             "var5": "Guilda",
             "var6": "Premium",
             "var7": "Promoções",
-            "var8": "Contas"
+            "var8": "Roleta",
+            "var9": "Contas"
         }
     },
     "support": {
@@ -731,5 +737,130 @@
         "input-new-change-password": "Nova Senha",
         "input-new-confirm-change-password": "Confirmar Senha",
         "btn-update-password": "Atualizar Senha"
+    },
+    "server-accounts": {
+        "title": "Gerenciamento avançado para seus servidores vinculados",
+        "subtitle": "Simplifique o gerenciamento de seus servidores e mantenha o controle com ferramentas seguras e eficientes.",
+        "btn": {
+            "create-server": "Vincular Servidor",
+            "delete-server": "Desvincular Servidor",
+            "paginate-btn-primary": "Próximo",
+            "paginate-btn-secondary": "Voltar"
+        },
+        "table": {
+            "column-id": "Id",
+            "column-name": "Nome",
+            "column-expansion": "Expansão",
+            "column-status": "Status",
+            "column-date": "Data",
+            "column-apikey": "Chave Api",
+            "column-web": "Web"
+        }
+    },
+    "server-register": {
+        "title": "Configure seu servidor e leve-o ao próximo nível em apenas alguns cliques.",
+        "character-text": "Caracteres restantes:",
+        "default-txt-select": "Selecione uma opção",
+        "selection-mobile": {
+            "title": "Selecionar seção",
+            "information": "Informações Gerais",
+            "details": "Detalhes de Acesso",
+            "security": "Segurança",
+            "integration": "Integração"
+        },
+        "selection-desktop": {
+            "information": "Informações Gerais",
+            "details": "Detalhes de Acesso",
+            "security": "Segurança",
+            "integration": "Integração"
+        },
+        "form": {
+            "name-server": "Nome do servidor",
+            "name-server-placeholder": "Digite o nome do servidor",
+            "web": "Web",
+            "web-placeholder": "Digite o site do servidor",
+            "expansion": "Expansão",
+            "host": "Host",
+            "realmlist": "Realmlist",
+            "realmlist-placeholder": "Digite o realmlist do servidor",
+            "type-server": "Tipo de servidor",
+            "password": "Senha",
+            "password-placeholder": "Digite uma senha para sua conta",
+            "password-confirm": "Confirmar Senha",
+            "password-confirm-placeholder": "Confirme sua senha",
+            "username-external": "Usuário",
+            "username-external-placeholder": "Digite um usuário de integração",
+            "password-external": "Senha",
+            "password-external-placeholder": "Digite uma senha de integração",
+            "emulator": "Emulador"
+        },
+        "btn": {
+            "link-txt": "Vincular",
+            "return-txt": "Voltar"
+        }
+    },
+    "promotions-character": {
+        "messages": {
+            "title-success-claim-promo": "Benefício resgatado com sucesso! 🎉",
+            "text-success-claim-promo": "Sua recompensa já está disponível. Aproveite!"
+        },
+        "lvl-min": "Nível mínimo",
+        "lvl-max": "Nível máximo",
+        "btns": {
+            "pagination-next": "Próximo",
+            "pagination-return": "Voltar"
+        },
+        "promotion-empty": {
+            "title": "Atualmente, não temos promoções disponíveis",
+            "subtitle": "Não se preocupe! Junte-se aos nossos canais de comunicação e fique informado sobre futuras promoções.",
+            "description": "Não perca nossas promoções incríveis! 🚀",
+            "benefit-promo": {
+                "title": "Promoções Exclusivas",
+                "benefits": {
+                    "primary": "Acesso a presentes e benefícios especiais"
+                }
+            },
+            "support-promo": {
+                "title": "Suporte Prioritário",
+                "description": "Se tiver algum problema com uma promoção, vá até o nosso canal de suporte e explique seu caso para receber ajuda rápida."
+            },
+            "btn-invitation": "Juntar-se ao canal"
+        }
+    },
+    "account-character": {
+        "title": "Estado Atual da Conta",
+        "description": "Fortaleça as defesas do seu reino digital com uma senha forte e segura. Seja o protagonista da sua saga em World of Warcraft, protegendo seus tesouros virtuais com uma chave impenetrável.",
+        "account-banned": {
+            "blocking-date": "Data do Bloqueio: ",
+            "unlock-date": "Data de Desbloqueio: ",
+            "banned-by": "Banido pelo GM: ",
+            "silenced-by": "Silenciado pelo GM: "
+        },
+        "btn": {
+            "edit": "Editar",
+            "update": "Atualizar",
+            "cancel": "Cancelar"
+        },
+        "form": {
+            "new-password-account": "Nova Senha",
+            "new-password-account-placeholder": "Digite sua nova senha",
+            "new-password-account-confirm": "Confirmar Senha",
+            "new-password-account-confirm-placeholder": "Confirme sua nova senha",
+            "password-web-txt": "Senha da Web",
+            "password-web-placeholder": "Digite sua senha da web",
+            "password-web-disclaimer": "Digite a senha da sua conta web para confirmar as alterações."
+        },
+        "messages": {
+            "password-not-match": "As senhas não coincidem",
+            "password-not-match-txt": "Por favor, certifique-se de que as senhas coincidem.",
+            "password-is-empty": "A senha está vazia",
+            "password-is-empty-txt": "Por favor, certifique-se de que a senha não está vazia.",
+            "password-length-invalid": "Senha inválida",
+            "password-length-invalid-txt": "Por favor, certifique-se de que a senha tenha mais de 5 caracteres e menos de 30.",
+            "password-change-password-success": "Senha atualizada",
+            "password-change-password-success-txt": "A senha foi atualizada com sucesso.",
+            "password-change-password-success-btn": "Entendido",
+            "error-change-password": "Ocorreu um erro inesperado. Não foi possível alterar a senha."
+        }
     }
 }
