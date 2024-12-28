@@ -547,7 +547,7 @@
     },
     "home-information-beta": {
         "title": "Bem-vindo ao Wow Livre!",
-        "sub-title": "Versão Beta",
+        "sub-title": "Versão Web Beta",
         "description": "Nossa plataforma está atualmente em fase beta. Isso significa que você pode encontrar alguns recursos ou detalhes ainda em desenvolvimento. Agradecemos sua compreensão e apoio enquanto continuamos a melhorar.",
         "push-deploy": {
             "title": "Push to deploy.",
