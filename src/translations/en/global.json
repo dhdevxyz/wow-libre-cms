@@ -547,7 +547,7 @@
     },
     "home-information-beta": {
         "title": "Welcome to Wow Libre!",
-        "sub-title": "Beta Version",
+        "sub-title": "Beta Web Version",
         "description": "Our platform is currently in its beta phase. This means you might come across some features or details still under development. We appreciate your understanding and support as we continue to improve.",
         "push-deploy": {
             "title": "Push to deploy.",
