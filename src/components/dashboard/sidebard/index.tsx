@@ -22,9 +22,11 @@ const Sidebar: React.FC<{ onOptionChange: (option: string) => void }> = ({
   const handleMenuClick = (menu: string) => {
     onOptionChange(menu);
   };
+
   const handleReturnPage = () => {
     router.push("/servers");
   };
+
   const handleSubMenuClick = (menu: string) => {
     if (menu === "users") {
       setUsersOpen(!isUsersOpen);
@@ -134,7 +136,7 @@ const Sidebar: React.FC<{ onOptionChange: (option: string) => void }> = ({
             </li>
             <li
               className="p-2 rounded-md hover:bg-gray-600 transition duration-200 cursor-pointer"
-              onClick={() => handleMenuClick("return")}
+              onClick={() => handleMenuClick("promotions")}
             >
               Promociones
             </li>

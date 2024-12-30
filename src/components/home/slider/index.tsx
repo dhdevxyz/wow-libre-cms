@@ -137,16 +137,16 @@ const SliderHome = () => {
                       : partner.description}
                   </p>
                   <div className="flex justify-center mt-4 text-yellow-400">
-                    {Array.from({ length: 3 }, (_, index) => (
-                      <span key={index} className="text-2xl">
-                        &#9733;
-                      </span>
-                    ))}
-                    {Array.from({ length: 1 - Math.floor(-1) }, (_, index) => (
-                      <span key={index} className="text-2xl">
-                        &#9734;
-                      </span>
-                    ))}
+                    <p className="text-3xl  font-bold">
+                      {partner?.realmlist.split("").map((letter, index) => (
+                        <span
+                          key={index}
+                          className="text-white animate-color-cycle "
+                        >
+                          {letter}
+                        </span>
+                      ))}
+                    </p>
                   </div>
                 </div>
                 <div className="text-center mt-6">
