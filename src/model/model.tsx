@@ -254,6 +254,7 @@ export interface ServersPromos {
   name: string;
   sub_title: string;
   description: string;
+  realmlist: string;
   logo: string;
   link: string;
 }

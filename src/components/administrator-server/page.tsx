@@ -9,6 +9,7 @@ import Cookies from "js-cookie";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { FaChartBar, FaCog, FaSpinner, FaUser } from "react-icons/fa";
+import PromotionsDashboard from "../dashboard/promotions";
 
 const AdministratorServer = () => {
   const [activeOption, setActiveOption] = useState("dashboard");
@@ -61,6 +62,7 @@ const AdministratorServer = () => {
 
       {/* Contenido principal */}
       <div className="flex-1 bg-gradient-to-b from-gray-800 to-gray-900 ml-72 mt-16 p-10 pt-20">
+        {/* HOME DASHBOARD */}
         {activeOption === "dashboard" && token && serverId && (
           <HomeDashboard token={token} serverId={serverId} />
         )}
@@ -79,6 +81,9 @@ const AdministratorServer = () => {
         )}
         {activeOption === "userList" && token && serverId && (
           <UsersDashboard token={token} serverId={serverId} />
+        )}
+        {activeOption === "promotions" && token && serverId && (
+          <PromotionsDashboard />
         )}
         {activeOption === "support" && (
           <div>

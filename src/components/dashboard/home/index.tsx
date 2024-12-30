@@ -1,3 +1,6 @@
+import { getMetricsServer } from "@/api/dashboard/home";
+import { DashboardMetrics } from "@/model/model";
+import { useEffect, useState } from "react";
 import {
   FaClipboardList,
   FaGamepad,
@@ -11,9 +14,6 @@ import BarChart from "../barchart";
 import Card from "../card";
 import PieChart from "../pastel";
 import PolarAreaChart from "../polarareachart";
-import { useEffect, useState } from "react";
-import { DashboardMetrics } from "@/model/model";
-import { getMetricsServer } from "@/api/dashboard/home";
 
 interface HomeDashboardProps {
   token: string;
