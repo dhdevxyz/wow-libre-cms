@@ -60,7 +60,7 @@ const Footer = () => {
                   />
                 </a>
                 <a
-                  href="https://chat.whatsapp.com/KSfPkvHWgP66dFx8DvrVDx"
+                  href="https://chat.whatsapp.com/BDELJKhuJkWIMKxF8ExIdN"
                   target="_blank"
                   className="text-gray-400 hover:text-gray-300 transition duration-150 ease-in-out"
                 >
