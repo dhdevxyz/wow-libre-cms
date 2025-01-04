@@ -13,7 +13,12 @@ import { useUserContext } from "@/context/UserContext";
 import { useRouter, useSearchParams } from "next/navigation";
 import Swal from "sweetalert2";
 
-const BankDashboard: React.FC = () => {
+interface BankDasboardProps {
+  token: string;
+  serverId: number;
+}
+
+const BankDashboard: React.FC<BankDasboardProps> = ({ token, serverId }) => {
   const [users, setUsers] = useState<CreditLoansUser[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [page, setPage] = useState<number>(0);
@@ -22,10 +27,7 @@ const BankDashboard: React.FC = () => {
   const [remainingLoans, setRemainingLoans] = useState<number>(0);
   const { user } = useUserContext();
   const [bankPlans, setBankPlans] = useState<BankPlans[]>([]);
-  const searchParams = useSearchParams();
-  const serverId = Number(searchParams.get("id"));
   const [sortOrder, setSortOrder] = useState<string>("desc");
-  const token = Cookies.get("token");
   const router = useRouter();
 
   const [filteredData, setFilteredData] = useState<any>(null);
@@ -98,6 +100,25 @@ const BankDashboard: React.FC = () => {
       searchParams.set("activeOption", "bank");
       router.push(`${window.location.pathname}?${searchParams.toString()}`);
       setRemainingLoans(Number(loanApproval));
+
+      Swal.fire({
+        icon: "success",
+        title: "¡Créditos Actualizados!",
+        html: `
+          <p style="font-size: 16px; margin-bottom: 10px;">
+            La cantidad de créditos ha sido aprobada y actualizada con éxito.
+          </p>
+        `,
+        confirmButtonColor: "#2563eb",
+        confirmButtonText: "Entendido",
+        timer: 4500,
+        showClass: {
+          popup: "animate__animated animate__fadeInDown",
+        },
+        hideClass: {
+          popup: "animate__animated animate__fadeOutUp",
+        },
+      });
     } catch (error: any) {
       Swal.fire({
         icon: "error",

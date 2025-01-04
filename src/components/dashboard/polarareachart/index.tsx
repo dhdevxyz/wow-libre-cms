@@ -10,19 +10,33 @@ import {
 
 ChartJS.register(ArcElement, Tooltip, Legend, RadialLinearScale);
 
-const PolarAreaChart = () => {
+interface PolarAreaChartProps {
+  labels: string[];
+  dataValues: number[];
+  backgroundColors: string[];
+  legendPosition?: "top" | "left" | "bottom" | "right";
+  title?: string;
+  legendColor?: string;
+  width?: number;
+  height?: number;
+}
+
+const PolarAreaChart: React.FC<PolarAreaChartProps> = ({
+  labels,
+  dataValues,
+  backgroundColors,
+  legendPosition = "top",
+  title = "",
+  legendColor = "#ffffff",
+  width = 600,
+  height = 600,
+}) => {
   const data = {
-    labels: ["USA", "Canada", "Mexico", "UK", "Germany"],
+    labels,
     datasets: [
       {
-        data: [60, 15, 10, 10, 5],
-        backgroundColor: [
-          "#2563eb",
-          "#f59e0b",
-          "#10b981",
-          "#ef4444",
-          "#3b82f6",
-        ],
+        data: dataValues,
+        backgroundColor: backgroundColors,
       },
     ],
   };
@@ -31,18 +45,26 @@ const PolarAreaChart = () => {
     responsive: true,
     plugins: {
       legend: {
-        position: "top" as const,
+        position: legendPosition,
         labels: {
-          color: "#ffffff",
+          color: legendColor,
         },
       },
     },
   };
 
   return (
-    <div className="bg-gray-800 p-6 rounded-lg shadow">
-      <h2 className="text-white text-xl font-semibold mb-4">
-        Distribución por Países
+    <div
+      className="bg-gray-800 p-6 rounded-lg shadow"
+      style={{
+        width: "100%",
+        maxWidth: `${width}px`,
+        height: `${height}px`,
+        margin: "0 auto",
+      }}
+    >
+      <h2 className="text-white text-xl font-semibold mb-4 text-center">
+        {title || "Distribución por Categoría"}
       </h2>
       <PolarArea data={data} options={options} />
     </div>

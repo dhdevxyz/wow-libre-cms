@@ -359,11 +359,16 @@ const Server = () => {
                       placeholder={t(
                         "server-register.form.name-server-placeholder"
                       )}
-                      className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-xl"
+                      className={`w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 text-xl ${
+                        serverName.length < 5
+                          ? "border-red-500 focus:ring-red-500"
+                          : "border-gray-300 focus:ring-blue-500"
+                      }`}
                     />
                     <p className="text-sm text-gray-300 mt-1">
-                      {`${t("server-register.character-text")}  
-                    ${30 - serverName.length}.`}
+                      {`${t("server-register.character-text")} ${
+                        30 - serverName.length
+                      }.`}
                     </p>
                   </div>
 
@@ -383,11 +388,16 @@ const Server = () => {
                       value={web}
                       onChange={handleWebSite}
                       placeholder={t("server-register.form.web-placeholder")}
-                      className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-xl"
+                      className={`w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 text-xl ${
+                        web.length < 5
+                          ? "border-red-500 focus:ring-red-500"
+                          : "border-gray-300 focus:ring-blue-500"
+                      }`}
                     />
                     <p className="text-sm text-gray-300 mt-1">
-                      {`${t("server-register.character-text")}  
-                    ${50 - web.length}.`}
+                      {`${t("server-register.character-text")} ${
+                        50 - web.length
+                      }.`}
                     </p>
                   </div>
 
@@ -403,7 +413,11 @@ const Server = () => {
                       id="expansion"
                       value={expansion}
                       onChange={handleSetExpansion}
-                      className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-xl"
+                      className={`w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 text-xl ${
+                        expansion === ""
+                          ? "border-red-500 focus:ring-red-500"
+                          : "border-gray-300 focus:ring-blue-500"
+                      }`}
                     >
                       <option value="" disabled>
                         {t("server-register.default-txt-select")}
@@ -483,11 +497,16 @@ const Server = () => {
                       value={host}
                       onChange={handleSetHost}
                       placeholder={"https://tuserver:8090"}
-                      className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-xl"
+                      className={`w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 text-xl ${
+                        host.length < 5
+                          ? "border-red-500 focus:ring-red-500"
+                          : "border-gray-300 focus:ring-blue-500"
+                      }`}
                     />
                     <p className="text-sm text-gray-300 mt-1">
-                      {`${t("server-register.character-text")}  
-                    ${50 - host.length}.`}
+                      {`${t("server-register.character-text")} ${
+                        50 - host.length
+                      }.`}
                     </p>
                   </div>
 
@@ -511,11 +530,15 @@ const Server = () => {
                       placeholder={t(
                         "server-register.form.realmlist-placeholder"
                       )}
-                      className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-xl"
+                      className={`w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 text-xl ${
+                        realmlist.length < 5
+                          ? "border-red-500 focus:ring-red-500"
+                          : "border-gray-300 focus:ring-blue-500"
+                      }`}
                     />
                     <p className="text-sm text-gray-300 mt-1">
                       {`${t("server-register.character-text")}  
-                    ${40 - realmlist.length}.`}
+    ${40 - realmlist.length}.`}
                     </p>
                   </div>
 
@@ -531,7 +554,11 @@ const Server = () => {
                       id="serverType"
                       value={typeServer}
                       onChange={handleSetTypeServer}
-                      className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-xl"
+                      className={`w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 text-xl ${
+                        typeServer === ""
+                          ? "border-red-500 focus:ring-red-500"
+                          : "border-gray-300 focus:ring-blue-500"
+                      }`}
                     >
                       <option value="" disabled>
                         {t("server-register.default-txt-select")}
@@ -617,7 +644,11 @@ const Server = () => {
                       placeholder={t(
                         "server-register.form.password-placeholder"
                       )}
-                      className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-xl"
+                      className={`w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 text-xl ${
+                        passwordServer.length < 5
+                          ? "border-red-500 focus:ring-red-500"
+                          : "border-gray-300 focus:ring-blue-500"
+                      }`}
                     />
                     <p className="text-sm text-gray-300 mt-1">
                       {`${t("server-register.character-text")}  
@@ -644,11 +675,16 @@ const Server = () => {
                       placeholder={t(
                         "server-register.form.password-confirm-placeholder"
                       )}
-                      className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-xl"
+                      className={`w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 text-xl ${
+                        passwordConfirmServer !== passwordServer ||
+                        passwordConfirmServer.length < 5
+                          ? "border-red-500 focus:ring-red-500"
+                          : "border-gray-300 focus:ring-blue-500"
+                      }`}
                     />
                     <p className="text-sm text-gray-300 mt-1">
                       {`${t("server-register.character-text")}  
-                    ${30 - passwordConfirmServer.length}.`}
+                      ${30 - passwordConfirmServer.length}.`}
                     </p>
                   </div>
                 </div>
@@ -736,11 +772,16 @@ const Server = () => {
                       placeholder={t(
                         "server-register.form.username-external-placeholder"
                       )}
-                      className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-xl"
+                      className={`w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 text-xl ${
+                        usernameExternal.length < 5 ||
+                        usernameExternal.length > 20
+                          ? "border-red-500 focus:ring-red-500"
+                          : "border-gray-300 focus:ring-blue-500"
+                      }`}
                     />
                     <p className="text-sm text-gray-300 mt-1">
                       {`${t("server-register.character-text")}  
-                    ${20 - usernameExternal.length}.`}
+    ${20 - usernameExternal.length}.`}
                     </p>
                   </div>
 
@@ -764,13 +805,19 @@ const Server = () => {
                       minLength={5}
                       maxLength={20}
                       placeholder={t("Ingrese la contraseña de integración")}
-                      className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-xl"
+                      className={`w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 text-xl ${
+                        passwordExternal.length < 5 ||
+                        passwordExternal.length > 20
+                          ? "border-red-500 focus:ring-red-500"
+                          : "border-gray-300 focus:ring-blue-500"
+                      }`}
                     />
                     <p className="text-sm text-gray-300 mt-1">
                       {`${t("server-register.character-text")}  
-                    ${20 - passwordExternal.length}.`}
+    ${20 - passwordExternal.length}.`}
                     </p>
                   </div>
+                  {/* Campo 11 */}
                   <div className="col-span-1">
                     <label
                       htmlFor="serverType"
@@ -780,7 +827,11 @@ const Server = () => {
                     </label>
                     <select
                       id="serverType"
-                      className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-xl"
+                      className={`w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 text-xl ${
+                        emulator === ""
+                          ? "border-red-500 focus:ring-red-500"
+                          : "border-gray-300 focus:ring-blue-500"
+                      }`}
                       value={emulator}
                       onChange={handleSetEmulator}
                     >

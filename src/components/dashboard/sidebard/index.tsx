@@ -16,15 +16,18 @@ const Sidebar: React.FC<{ onOptionChange: (option: string) => void }> = ({
   const [isSupportOpen, setSupportOpen] = useState(false);
   const [isOthersOpen, setOthersOpen] = useState(false);
   const [isMigrationsOpen, setMigrationsOpen] = useState(false);
+  const [selectedOption, setSelectedOption] = useState<string>(""); // Estado para la opción seleccionada
 
   const router = useRouter();
 
   const handleMenuClick = (menu: string) => {
+    setSelectedOption(menu); // Actualizar la opción seleccionada
     onOptionChange(menu);
   };
 
   const handleReturnPage = () => {
     router.push("/servers");
+    setSelectedOption(""); // Restablecer la opción seleccionada
   };
 
   const handleSubMenuClick = (menu: string) => {
@@ -45,7 +48,9 @@ const Sidebar: React.FC<{ onOptionChange: (option: string) => void }> = ({
       <ul>
         {/* Opción de Dashboard */}
         <li
-          className="flex items-center justify-between p-2 rounded-md hover:bg-gray-700 transition duration-200 cursor-pointer"
+          className={`flex items-center justify-between p-2 rounded-md hover:bg-gray-700 transition duration-200 cursor-pointer ${
+            selectedOption === "dashboard" ? "bg-gray-600" : ""
+          }`}
           onClick={() => handleMenuClick("dashboard")}
         >
           <div className="flex items-center">
@@ -56,7 +61,9 @@ const Sidebar: React.FC<{ onOptionChange: (option: string) => void }> = ({
 
         {/* Opción de Usuarios */}
         <li
-          className="flex items-center justify-between p-2 rounded-md hover:bg-gray-700 transition duration-200 cursor-pointer"
+          className={`flex items-center justify-between p-2 rounded-md hover:bg-gray-700 transition duration-200 cursor-pointer ${
+            selectedOption === "users" ? "bg-gray-600" : ""
+          }`}
           onClick={() => handleSubMenuClick("users")}
         >
           <div className="flex items-center">
@@ -68,7 +75,9 @@ const Sidebar: React.FC<{ onOptionChange: (option: string) => void }> = ({
         {isUsersOpen && (
           <ul className="ml-5 mt-2">
             <li
-              className="p-2 rounded-md hover:bg-gray-600 transition duration-200 cursor-pointer"
+              className={`p-2 rounded-md hover:bg-gray-600 transition duration-200 cursor-pointer ${
+                selectedOption === "userList" ? "bg-gray-600" : ""
+              }`}
               onClick={() => handleMenuClick("userList")}
             >
               Lista de Usuarios
@@ -78,7 +87,9 @@ const Sidebar: React.FC<{ onOptionChange: (option: string) => void }> = ({
 
         {/* Opción de Ajustes */}
         <li
-          className="flex items-center justify-between p-2 rounded-md hover:bg-gray-700 transition duration-200 cursor-pointer"
+          className={`flex items-center justify-between p-2 rounded-md hover:bg-gray-700 transition duration-200 cursor-pointer ${
+            selectedOption === "settings" ? "bg-gray-600" : ""
+          }`}
           onClick={() => handleMenuClick("settings")}
         >
           <div className="flex items-center">
@@ -89,7 +100,9 @@ const Sidebar: React.FC<{ onOptionChange: (option: string) => void }> = ({
 
         {/* Opción de Soporte */}
         <li
-          className="flex items-center justify-between p-2 rounded-md hover:bg-gray-700 transition duration-200 cursor-pointer"
+          className={`flex items-center justify-between p-2 rounded-md hover:bg-gray-700 transition duration-200 cursor-pointer ${
+            selectedOption === "support" ? "bg-gray-600" : ""
+          }`}
           onClick={() => handleSubMenuClick("support")}
         >
           <div className="flex items-center">
@@ -101,7 +114,9 @@ const Sidebar: React.FC<{ onOptionChange: (option: string) => void }> = ({
         {isSupportOpen && (
           <ul className="ml-5 mt-2">
             <li
-              className="p-2 rounded-md hover:bg-gray-600 transition duration-200 cursor-pointer"
+              className={`p-2 rounded-md hover:bg-gray-600 transition duration-200 cursor-pointer ${
+                selectedOption === "contactSupport" ? "bg-gray-600" : ""
+              }`}
               onClick={() => handleMenuClick("contactSupport")}
             >
               Contactar Soporte
@@ -111,7 +126,9 @@ const Sidebar: React.FC<{ onOptionChange: (option: string) => void }> = ({
 
         {/* Opción de Otros */}
         <li
-          className="flex items-center justify-between p-2 rounded-md hover:bg-gray-700 transition duration-200 cursor-pointer"
+          className={`flex items-center justify-between p-2 rounded-md hover:bg-gray-700 transition duration-200 cursor-pointer ${
+            selectedOption === "others" ? "bg-gray-600" : ""
+          }`}
           onClick={() => handleSubMenuClick("others")}
         >
           <div className="flex items-center">
@@ -123,25 +140,33 @@ const Sidebar: React.FC<{ onOptionChange: (option: string) => void }> = ({
         {isOthersOpen && (
           <ul className="ml-5 mt-2">
             <li
-              className="p-2 rounded-md hover:bg-gray-600 transition duration-200 cursor-pointer"
+              className={`p-2 rounded-md hover:bg-gray-600 transition duration-200 cursor-pointer ${
+                selectedOption === "bank" ? "bg-gray-600" : ""
+              }`}
               onClick={() => handleMenuClick("bank")}
             >
               Banco
             </li>
             <li
-              className="p-2 rounded-md hover:bg-gray-600 transition duration-200 cursor-pointer"
-              onClick={() => handleMenuClick("return")}
+              className={`p-2 rounded-md hover:bg-gray-600 transition duration-200 cursor-pointer ${
+                selectedOption === "guilds" ? "bg-gray-600" : ""
+              }`}
+              onClick={() => handleMenuClick("guilds")}
             >
               Hermandades
             </li>
             <li
-              className="p-2 rounded-md hover:bg-gray-600 transition duration-200 cursor-pointer"
+              className={`p-2 rounded-md hover:bg-gray-600 transition duration-200 cursor-pointer ${
+                selectedOption === "promotions" ? "bg-gray-600" : ""
+              }`}
               onClick={() => handleMenuClick("promotions")}
             >
               Promociones
             </li>
             <li
-              className="p-2 rounded-md hover:bg-gray-600 transition duration-200 cursor-pointer"
+              className={`p-2 rounded-md hover:bg-gray-600 transition duration-200 cursor-pointer ${
+                selectedOption === "return" ? "bg-gray-600" : ""
+              }`}
               onClick={() => handleMenuClick("return")}
             >
               Ruleta
@@ -153,7 +178,9 @@ const Sidebar: React.FC<{ onOptionChange: (option: string) => void }> = ({
       {/* Opción de Logout */}
       <ul>
         <li
-          className="flex items-center p-2 rounded-md hover:bg-gray-700 transition duration-200 cursor-pointer"
+          className={`flex items-center p-2 rounded-md hover:bg-gray-700 transition duration-200 cursor-pointer ${
+            selectedOption === "returnPage" ? "bg-gray-600" : ""
+          }`}
           onClick={handleReturnPage}
         >
           <FaSignOutAlt className="mr-2" />

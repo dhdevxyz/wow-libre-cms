@@ -538,6 +538,7 @@ export interface AccountsServer {
   failed_logins: string;
   last_ip: string;
   os: string;
+  mute: boolean;
 }
 /** Modelo  Usado para mostrar los datos recopilados del servidor  */
 export interface DashboardMetrics {
@@ -546,4 +547,13 @@ export interface DashboardMetrics {
   total_guilds: number;
   external_registrations: number;
   character_count: number;
+  alianzas: number;
+  hordas: number;
+  redeemed_promotions: number;
+  range_level: RangeLevelDto[];
+}
+
+export interface RangeLevelDto {
+  level_range: number;
+  user_count: number;
 }
