@@ -58,6 +58,15 @@ const UsersDashboard: React.FC<UsersDashboardProps> = ({ token, serverId }) => {
   };
 
   const handleSaveEmail = async () => {
+    if (!isValidEmail(editedEmail)) {
+      Swal.fire(
+        "Error",
+        "Por favor, ingrese un correo electrónico válido.",
+        "error"
+      );
+      return;
+    }
+
     if (selectedUser) {
       try {
         await updateMail(editedEmail, selectedUser.username, serverId, token);
@@ -123,7 +132,10 @@ const UsersDashboard: React.FC<UsersDashboardProps> = ({ token, serverId }) => {
       </tr>
     ));
   };
-
+  const isValidEmail = (email: string): boolean => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
   return (
     <div className="bg-gray-900 text-gray-300 p-6 rounded-lg shadow-lg">
       <h1 className="text-center text-3xl font-extrabold mb-6 text-blue-400">
@@ -133,7 +145,7 @@ const UsersDashboard: React.FC<UsersDashboardProps> = ({ token, serverId }) => {
       <div className="mb-4">
         <input
           type="text"
-          placeholder="Buscar usuarios..."
+          placeholder="Buscar email..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           className="w-full px-4 py-2 rounded-lg bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-blue-400"
