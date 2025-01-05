@@ -10,6 +10,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { FaChartBar, FaCog, FaSpinner, FaUser } from "react-icons/fa";
 import PromotionsDashboard from "../dashboard/promotions";
+import GuildsDashboard from "../dashboard/guilds";
 
 const AdministratorServer = () => {
   const [activeOption, setActiveOption] = useState("dashboard");
@@ -66,6 +67,10 @@ const AdministratorServer = () => {
         {activeOption === "dashboard" && token && serverId && (
           <HomeDashboard token={token} serverId={serverId} />
         )}
+        {activeOption === "userList" && token && serverId && (
+          <UsersDashboard token={token} serverId={serverId} />
+        )}
+
         {activeOption === "settings" && (
           <>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -79,9 +84,7 @@ const AdministratorServer = () => {
             </div>
           </>
         )}
-        {activeOption === "userList" && token && serverId && (
-          <UsersDashboard token={token} serverId={serverId} />
-        )}
+
         {activeOption === "promotions" && token && serverId && (
           <PromotionsDashboard />
         )}
@@ -91,7 +94,10 @@ const AdministratorServer = () => {
             {/* Agregar contenido de soporte aquí */}
           </div>
         )}
-        {activeOption === "bank" && <BankDashboard />}
+        {activeOption === "bank" && token && serverId && (
+          <BankDashboard token={token} serverId={serverId} />
+        )}
+        {activeOption === "guilds" && <GuildsDashboard />}
       </div>
     </div>
   );

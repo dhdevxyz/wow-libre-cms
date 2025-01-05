@@ -19,14 +19,28 @@ ChartJS.register(
   Legend
 );
 
-const BarChart = () => {
+interface BarChartProps {
+  labels: string[];
+  dataValues: number[];
+  backgroundColors: string[];
+  legendPosition?: "top" | "left" | "bottom" | "right";
+  title?: string;
+}
+
+const BarChart: React.FC<BarChartProps> = ({
+  labels,
+  dataValues,
+  backgroundColors,
+  legendPosition = "top",
+  title,
+}) => {
   const data = {
-    labels: ["Producto A", "Producto B", "Producto C", "Producto D"],
+    labels,
     datasets: [
       {
-        label: "Ventas",
-        data: [400, 300, 500, 700],
-        backgroundColor: ["#1d4ed8", "#9333ea", "#f97316", "#22c55e"],
+        label: title || "Facción",
+        data: dataValues,
+        backgroundColor: backgroundColors,
       },
     ],
   };
@@ -36,7 +50,7 @@ const BarChart = () => {
     plugins: {
       legend: {
         display: true,
-        position: "top" as const,
+        position: legendPosition,
       },
     },
   };
