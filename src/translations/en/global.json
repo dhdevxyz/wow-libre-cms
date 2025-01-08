@@ -568,10 +568,23 @@
         }
     },
     "home-us": {
-        "title": "WoW Libre Community",
-        "sub-title": "Empowering the Player Community",
-        "description": "In the digital world of World of Warcraft, community-generated data is an invaluable resource. At WoW Libre, we transform this wealth into an accessible resource, enabling other servers to integrate and share information. We act as an open bridge for data exchange, fostering collaboration and enhancing the gaming experience. In Azeroth, true power lies in the community and its ability to share and expand knowledge. Join us and be part of this collective adventure!",
-        "btn-txt": "Learn More"
+      "realm": "Realms",
+        "experience": "Experiences",
+        "sub-title": "Wow Libre doesn't just offer a server or servers, but aims to create unforgettable gaming experiences.",
+        "realms": {
+            "primary": {
+                "title": "An Unmatched and Unique Experience!",
+                "sub-title": "Realm x100 - Level 80 Promotion",
+                "description": "Dare to face the Lich King with our innovative auto-balancing system, allowing you to complete dungeons solo or with a small group of adventurers. Enjoy the final content of the expansion without complications or limits.",
+                "btn-txt": "Explore More"
+            },
+            "secondary": {
+                "title": "An Unmatched Experience!",
+                "sub-title": "Progressive Realm",
+                "description": "On February 1st, our community will launch a progressive WoW 3.3.5 realm with a Twink theme. Every week, new levels will be unlocked for you to enjoy a unique experience.",
+                "btn-txt": "Explore More"
+            }
+        }
     },
     "friend-detail": {
         "errors": {

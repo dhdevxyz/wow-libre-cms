@@ -15,10 +15,11 @@ const Home = () => {
       <AdIframe />
 
       <Information />
+      <Us />
       <SliderHome />
 
       <Bidding />
-      <Us />
+
       <Subscription />
     </>
   );

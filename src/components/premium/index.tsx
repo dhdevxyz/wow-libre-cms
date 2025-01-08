@@ -125,14 +125,15 @@ const Premium: React.FC<PremiumProps> = ({
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
               {currentItems.map((card, index) => (
                 <div key={index} className="p-4">
-                  <div className="bg-gray-800 p-6 rounded-lg shadow-lg flex flex-col h-full">
-                    {/* Imagen de la tarjeta */}
+                  <div className="bg-gray-800 p-6 rounded-lg shadow-lg flex flex-col justify-between h-[330px] transition-transform duration-300 transform hover:scale-105 hover:shadow-2xl hover:bg-gradient-to-r hover:from-gray-800 hover:via-black hover:to-gray-900">
+                    {/* Imagen */}
                     <img
                       src={card.img}
                       alt={card.name}
                       className="w-full h-48 object-cover rounded-t-lg mb-4"
                     />
-                    {/* Contenido de la tarjeta */}
+
+                    {/* Contenido */}
                     <div className="flex flex-col flex-grow">
                       <h3 className="text-2xl font-semibold mb-2 text-yellow-500">
                         {card.name}

@@ -5,11 +5,11 @@ import NavbarAuthenticated from "@/components/navbar-authenticated";
 import MultiCarouselSubs from "@/components/subscriptions/carrousel";
 import { useUserContext } from "@/context/UserContext";
 import { BuyRedirectDto, PlanModel } from "@/model/model";
-import Link from "next/link";
-import { useEffect, useState } from "react";
-import { FaCashRegister, FaCreditCard, FaMoneyCheckAlt } from "react-icons/fa"; // Asegúrate de tener react-icons instalado
 import Cookies from "js-cookie";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import { FaCashRegister, FaCreditCard, FaMoneyCheckAlt } from "react-icons/fa";
 import Swal from "sweetalert2";
 
 const Subscriptions = () => {
@@ -17,29 +17,29 @@ const Subscriptions = () => {
     {
       question: "¿Cuál es el horario de atención?",
       answer:
-        "Nuestro horario de atención es de lunes a sabados de 9:00 AM a 6:00 PM.",
+        "Nuestro horario de atención es de lunes a sábado, de 9:00 AM a 6:00 PM.",
     },
     {
-      question: "¿Que beneficios obtengo con una subscripcion?",
+      question: "¿Qué beneficios obtengo con una suscripción?",
       answer:
-        "Al realizar una subscripcion  obtendras servicios de juego totalmente  gratis a todas las cuentas vinculadas en wow libre y adicionalmente tendras un beneficio del 50% de descuento en todas los elementos de la tienda y semanal mente recibiras eventos especiales y regalos adicionales por tu contribuicion.",
+        "Al suscribirte, tendrás acceso a servicios gratuitos para todas tus cuentas vinculadas en World of Warcraft. Además, recibirás regalos mensuales que incluyen monturas y objetos exclusivos para mejorar tu experiencia de juego.",
     },
     {
-      question: "¿Cuál es la política de devolución?",
+      question: "¿Qué debo hacer después de realizar el pago?",
       answer:
-        "Aceptamos devoluciones dentro de los 30 días posteriores a la compra, siempre que el producto esté en su estado original.",
+        "Dado que nuestra plataforma aún está ajustando el sistema de pagos automáticos, te pedimos que, después de realizar el pago, envíes el comprobante de la transacción para confirmar tu suscripción.",
     },
     {
       question: "¿Ofrecen soporte técnico?",
       answer:
-        "Sí, ofrecemos soporte técnico priorizado a nuestros clientes durante el horario de atención.",
+        "Sí, ofrecemos soporte técnico prioritario para nuestros suscriptores durante nuestro horario de atención.",
     },
   ];
+
   const [loading, setLoading] = useState<boolean>(true);
   const [planModel, setPlan] = useState<PlanModel>();
   const [activeIndex, setActiveIndex] = useState(null);
   const { user } = useUserContext();
-  const [product, setProduct] = useState<BuyRedirectDto>();
   const token = Cookies.get("token");
   const router = useRouter();
 
@@ -101,36 +101,37 @@ const Subscriptions = () => {
         }}
       >
         <div className="contenedor mx-auto px-6 py-12 lg:py-24">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-12">
+            {/* Contenido a la izquierda */}
             <div className="flex flex-col justify-between max-w-2xl w-full">
               <div>
-                <h2 className="text-4xl lg:text-5xl font-bold mb-10">
+                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 sm:mb-10">
                   Pase Épico de Azeroth
                 </h2>
-                <p className="text-lg lg:text-3xl mb-6 break-words">
+                <p className="text-lg sm:text-xl lg:text-3xl mb-6 break-words">
                   Suscríbete y disfruta los mejores beneficios a un precio
                   increíble.
                 </p>
                 <div className="mb-4">
                   <div className="flex items-center space-x-4">
-                    <p className="text-lg lg:text-3xl line-through">
-                      ${planModel?.price} /mes
+                    <p className="text-lg sm:text-xl lg:text-3xl line-through">
+                      ${Math.floor(planModel?.price ?? 0)} /mes
                     </p>
-                    <span className="bg-green-500 text-white text-lg font-semibold px-3 py-1 rounded-full">
+                    <span className="bg-green-500 text-white text-sm sm:text-lg font-semibold px-3 py-1 rounded-full">
                       {planModel?.discount}% OFF
                     </span>
                   </div>
-                  <p className="text-lg lg:text-4xl pt-2 font-semibold">
-                    $ {planModel?.discounted_price} /mes
+                  <p className="text-lg sm:text-xl lg:text-4xl pt-2 font-semibold">
+                    ${Math.floor(planModel?.discounted_price ?? 0)} /mes
                   </p>
                 </div>
               </div>
-              <div className="mt-10">
+              <div className="mt-6 sm:mt-10">
                 {!loading && user.logged_in ? (
                   <button
                     disabled={true}
                     onClick={handleBuy}
-                    className="px-6 py-5 bg-blue-500 hover:bg-blue-600 rounded-lg text-white font-semibold mb-4"
+                    className="px-6 py-3 bg-blue-500 hover:bg-blue-600 rounded-lg text-white font-semibold mb-4"
                   >
                     Quiero suscribirme
                   </button>
@@ -145,21 +146,24 @@ const Subscriptions = () => {
 
                 <p className="text-lg pt-4 break-words">
                   Al suscribirte, aceptas los Términos y condiciones de
-                  WowLibre. <br /> Puedes cancelar cuando quieras.
+                  WowLibre. <br />
+                  Puedes cancelar cuando quieras.
                 </p>
               </div>
             </div>
-            <div className="grid grid-cols-2 gap-4 lg:gap-8">
-              <div className="relative h-[450px] w-[280px] select-none">
+
+            {/* Contenido a la derecha (imágenes) */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-16">
+              <div className="relative h-[350px] sm:h-[450px] w-full sm:w-[300px] select-none mx-auto overflow-hidden">
                 <img
                   src="https://static.wixstatic.com/media/5dd8a0_9d9020e8c72f431988e33d61613a6b99~mv2.webp"
                   alt="Premium-Sub"
                   className="object-cover rounded-xl w-full h-full transition duration-300 hover:opacity-75"
                 />
               </div>
-              <div className="relative h-[450px] w-[280px] select-none">
+              <div className="relative h-[350px] sm:h-[450px] w-full sm:w-[300px] select-none mx-auto overflow-hidden">
                 <img
-                  src="https://static.wixstatic.com/media/5dd8a0_1e5bee5c825341efa1102d83a2003832~mv2.webp"
+                  src="https://static.wixstatic.com/media/5dd8a0_438ad2c9ddcf42019912c84800383194~mv2.jpg"
                   alt="premium"
                   className="object-cover rounded-xl w-full h-full transition duration-300 hover:opacity-75"
                 />
@@ -169,7 +173,7 @@ const Subscriptions = () => {
         </div>
       </div>
 
-      <div className="contenedor2">
+      <div className="contenedor-reduce">
         <div className="py-12 rounded-lg">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-3xl lg:text-4xl font-bold text-start text-white mb-8">
@@ -179,7 +183,7 @@ const Subscriptions = () => {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               {/* Grow 1 */}
               <div
-                className="p-8 rounded-lg"
+                className="p-8 rounded-lg transform transition-all duration-300 ease-in-out hover:scale-105 hover:translate-y-[-10px]"
                 style={{
                   background: "linear-gradient(to right, #1e1e2f, #3a3a3f)",
                 }}
@@ -188,7 +192,7 @@ const Subscriptions = () => {
                   Servicios Gratuitos
                 </h3>
                 <div className="grid grid-cols-1 sm:grid-cols-1 gap-6">
-                  <div className="p-4 text-gray-300 rounded-lg">
+                  <div className="text-gray-300 rounded-lg text-xl">
                     Cambia de facción o renombra a tus personajes, ¡todo
                     completamente gratis!
                   </div>
@@ -197,18 +201,19 @@ const Subscriptions = () => {
 
               {/* Grow 2 */}
               <div
-                className="p-8 rounded-lg"
+                className="p-8 rounded-lg transform transition-all duration-300 ease-in-out hover:scale-105 hover:translate-y-[-10px]"
                 style={{
                   background: "linear-gradient(to right, #1e1e2f, #3a3a3f)",
                 }}
               >
                 <h3 className="text-2xl font-bold mb-4 text-white">
-                  50% de Descuento en la tienda
+                  ¡Items y Monturas Gratis al Suscribirte!
                 </h3>
                 <div className="grid grid-cols-1 sm:grid-cols-1 gap-6">
-                  <div className="p-4 text-gray-300 rounded-lg">
-                    ¡Disfruta comprando con estos increíbles descuentos y lleva
-                    más por menos!
+                  <div className="text-gray-300 rounded-lg text-xl">
+                    Obtén exclusivos items y monturas gratis como recompensa por
+                    tu apoyo a la comunidad. ¡Suscríbete y empieza a disfrutar
+                    de estos increíbles beneficios ahora mismo!
                   </div>
                 </div>
               </div>
@@ -236,7 +241,7 @@ const Subscriptions = () => {
             <iframe
               width="800"
               height="350"
-              src="https://www.youtube.com/embed/jSJr3dXZfcg"
+              src="https://www.youtube.com/embed/tyNgbHX9p2U?si=lKHYhhVpbUunp-LP"
               title="World of Warcraft: Battle for Azeroth Cinematic Trailer"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             ></iframe>

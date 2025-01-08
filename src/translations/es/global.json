@@ -568,10 +568,23 @@
         }
     },
     "home-us": {
-        "title": "Comunidad de WoW Libre",
-        "sub-title": "Empoderando a la Comunidad de Jugadores",
-        "description": "En el mundo digital de World of Warcraft, los datos generados por la comunidad son un recurso invaluable. En WoW Libre, transformamos esta riqueza en un recurso accesible, permitiendo que otros servidores se integren y compartan información. Actuamos como un puente abierto para el intercambio de datos, impulsando la colaboración y mejorando la experiencia de juego. En Azeroth, el verdadero poder reside en la comunidad y su capacidad para compartir y expandir el conocimiento. ¡Únete a nosotros y sé parte de esta aventura colectiva!",
-        "btn-txt": "Conocer más"
+        "realm":"Reinos",
+        "experience": "Experiencias",
+        "sub-title":"Wow Libre no solo brinda un servidor o servidores, sino que busca crear experiencias de juego inolvidables.",
+        "realms":{
+            "primary": {
+                    "title": "¡Una Experiencia Única e Inigualable!",
+                    "sub-title": "Reino x100 - Promoción Nivel 80",
+                    "description": "Atrévete a enfrentarte al Rey Exánime con nuestro innovador sistema de auto-balanceo, que te permite completar mazmorras en solitario o con un pequeño grupo de aventureros. Disfruta del contenido final de la expansión sin complicaciones ni límites.",
+                    "btn-txt": "Explora Más"
+                },
+                "secondary":{
+                    "title": "¡Una Experiencia Inigualable!",
+                    "sub-title": "Reino Progresivo ",
+                    "description": "El 1 de febrero, nuestra comunidad dará inicio a un reino progresivo de WoW 3.3.5, con temática de Twinks. Cada semana, desbloquearemos nuevos niveles para que disfrutes de una experiencia única.",
+                    "btn-txt": "Explora Más"
+                }
+        }
     },
     "friend-detail": {
         "errors": {
