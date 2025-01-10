@@ -75,7 +75,7 @@ const Information = () => {
               }
               className="text-xl inline-flex items-center justify-center rounded-lg bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 px-8 py-4 sm:px-20 sm:py-6 font-semibold text-white shadow-sm hover:from-yellow-500 hover:via-orange-600 hover:to-red-600 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"
             >
-              Download Game (Version 1)
+              Download Game (HD)
             </button>
             <button
               onClick={() =>
@@ -86,7 +86,7 @@ const Information = () => {
               }
               className="text-xl inline-flex items-center justify-center rounded-lg bg-gradient-to-r from-blue-400 via-indigo-500 to-purple-600 px-8 py-4 sm:px-20 sm:py-6 font-semibold text-white shadow-sm hover:from-blue-500 hover:via-indigo-600 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
             >
-              Download Game (Version 2)
+              Download Game (Original)
             </button>
           </div>
         </div>

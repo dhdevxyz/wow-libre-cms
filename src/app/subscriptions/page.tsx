@@ -129,8 +129,10 @@ const Subscriptions = () => {
               <div className="mt-6 sm:mt-10">
                 {!loading && user.logged_in ? (
                   <button
-                    disabled={true}
-                    onClick={handleBuy}
+                    onClick={() =>
+                      (window.location.href =
+                        "https://checkout.bold.co/payment/LNK_M4YW8QT2BZ")
+                    }
                     className="px-6 py-3 bg-blue-500 hover:bg-blue-600 rounded-lg text-white font-semibold mb-4"
                   >
                     Quiero suscribirme
@@ -308,7 +310,13 @@ const Subscriptions = () => {
 
           {/* Botón al final */}
           <div className="flex flex-col justify-center mt-8 items-center w-full max-w-md mx-auto">
-            <button className="bg-blue-500 text-white font-bold py-4 px-10 rounded-lg w-full">
+            <button
+              onClick={() =>
+                (window.location.href =
+                  "https://checkout.bold.co/payment/LNK_M4YW8QT2BZ")
+              }
+              className="bg-blue-500 text-white font-bold py-4 px-10 rounded-lg w-full"
+            >
               Realizar Pago
             </button>
             <p className="text-lg pt-4 break-words text-white text-center w-full">
