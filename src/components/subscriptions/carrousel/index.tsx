@@ -1,8 +1,7 @@
 "use client";
-import React from "react";
+import { useRouter } from "next/navigation";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import { useRouter } from "next/navigation";
 
 const MultiCarouselSubs = () => {
   const router = useRouter();
@@ -13,6 +12,12 @@ const MultiCarouselSubs = () => {
       image:
         "https://static.wixstatic.com/media/5dd8a0_f0c3204f2346419695468d1ec3ac5bb0~mv2.webp",
       title: "Wow Elysium",
+    },
+    {
+      id: 2,
+      image:
+        "https://static.wixstatic.com/media/5dd8a0_9c5be89b137a457b94455a71e25cc0d6~mv2.jpg",
+      title: "Wow Progresive",
     },
   ];
 
@@ -33,10 +38,6 @@ const MultiCarouselSubs = () => {
       breakpoint: { max: 464, min: 0 },
       items: 4,
     },
-  };
-
-  const handleSelectItem = (id: number) => {
-    router.push(`/store/${id}`);
   };
 
   return (
@@ -73,8 +74,8 @@ const MultiCarouselSubs = () => {
       </Carousel>
       <div>
         <p className="text-start text-white text-xl md:text-2xl lg:text-3xl xl:text-2xl mt-10 font-light">
-          Migra tus personajes a los diferentes servidores asociados y
-          garantizaremos tus personajes sin perdida.
+          Los beneficios de tu suscripción se aplican automáticamente en todos
+          los reinos y servidores integrados en la comunidad de WoW Libre.
         </p>
       </div>
     </div>

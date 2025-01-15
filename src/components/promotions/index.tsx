@@ -149,7 +149,6 @@ const Promotions: React.FC<PremiumProps> = ({
             {currentItems.map((card, index) => (
               <div key={index} className="p-4">
                 <div className="bg-gray-800 p-6 rounded-lg shadow-lg flex flex-col justify-between h-[330px] transition-transform duration-300 transform hover:scale-105 hover:shadow-2xl hover:bg-gradient-to-r hover:from-gray-800 hover:via-black hover:to-gray-900">
-
                   {/* Imagen */}
                   <img
                     src={card.img}
@@ -172,7 +171,6 @@ const Promotions: React.FC<PremiumProps> = ({
                         <span className="text-white">
                           {t("promotions-character.lvl-min")}
                         </span>{" "}
-
                         {card?.min_lvl}
                       </span>
                       <span className="mx-1 text-gray-400">-</span>
@@ -180,7 +178,6 @@ const Promotions: React.FC<PremiumProps> = ({
                         <span className="text-white">
                           {t("promotions-character.lvl-max")}
                         </span>{" "}
-
                         {card?.max_lvl}
                       </span>
                     </div>
@@ -190,7 +187,6 @@ const Promotions: React.FC<PremiumProps> = ({
                   <button
                     onClick={() => handleButtonClick(card.id)}
                     className="w-full font-bold action-button bg-gradient-to-r from-yellow-500 to-yellow-700 hover:from-yellow-600 hover:to-yellow-800 text-white py-1 px-2 rounded-lg transition-all duration-300 shadow-lg"
-
                   >
                     {card.btn_txt}
                   </button>
@@ -264,7 +260,7 @@ const Promotions: React.FC<PremiumProps> = ({
           {/* Botón de enlace */}
           <div className="mt-10">
             <Link
-              href="https://t.me/+jOZFCLD5TXAxOWRh"
+              href="https://chat.whatsapp.com/KpvQJSOAujI4DlYjweWDxW"
               className="block w-full text-center font-bold action-button bg-gradient-to-r from-yellow-500 to-yellow-700 hover:from-yellow-600 hover:to-yellow-800 text-white py-1 px-2 rounded-lg transition-all duration-300 shadow-lg"
             >
               {t("promotions-character.promotion-empty.btn-invitation")}
