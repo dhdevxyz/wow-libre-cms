@@ -33,7 +33,11 @@ const Premium: React.FC<PremiumProps> = ({
   useEffect(() => {
     const fetchBanners = async () => {
       try {
-        const subscriptionData = await getBenefitsPremium(language, token);
+        const subscriptionData = await getBenefitsPremium(
+          language,
+          token,
+          serverId
+        );
         setSubscriptionBenefits(subscriptionData.benefits);
         setSubscription(subscriptionData.benefits.length > 0);
       } catch (error) {
