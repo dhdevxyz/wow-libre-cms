@@ -5,13 +5,14 @@ import { v4 as uuidv4 } from "uuid";
 
 export const getBenefitsPremium = async (
   language: string,
-  token: string
+  token: string,
+  serverId: number
 ): Promise<SubscriptionBenefits> => {
   try {
     const transactionId = uuidv4();
 
     const response = await fetch(
-      `${BASE_URL_TRANSACTION}/api/subscription/benefits`,
+      `${BASE_URL_TRANSACTION}/api/subscription/benefits?server_id=${serverId}`,
       {
         method: "GET",
         headers: {
