@@ -257,6 +257,8 @@ export interface ServersPromos {
   realmlist: string;
   logo: string;
   link: string;
+  whatsapp: string;
+  facebook: string;
 }
 
 export interface BankPlans {

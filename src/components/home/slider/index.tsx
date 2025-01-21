@@ -12,6 +12,7 @@ import { useUserContext } from "@/context/UserContext";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import Slider from "react-slick";
+import { FaFacebook, FaWhatsapp } from "react-icons/fa";
 
 const SliderHome = () => {
   const [partners, setPartners] = useState<ServersPromos[]>([]);
@@ -39,15 +40,15 @@ const SliderHome = () => {
     infinite: partners.length > 4,
     arrows: true,
     speed: 500,
-    slidesToShow: Math.min(4, partners.length),
-    slidesToScroll: Math.min(4, partners.length),
+    slidesToShow: Math.min(2, partners.length),
+    slidesToScroll: Math.min(2, partners.length),
     autoplay: false,
     autoplaySpeed: 2000,
     responsive: [
       {
         breakpoint: 1024,
         settings: {
-          slidesToShow: Math.min(4, partners.length),
+          slidesToShow: Math.min(2, partners.length),
           slidesToScroll: Math.min(1, partners.length),
         },
       },
@@ -149,16 +150,32 @@ const SliderHome = () => {
                     </p>
                   </div>
                 </div>
+                <div className="flex justify-center mt-4 space-x-4">
+                  <a
+                    href={partner.facebook}
+                    target="_blank"
+                    className="text-blue-500 text-3xl hover:text-blue-400"
+                  >
+                    <FaFacebook />
+                  </a>
+                  <a
+                    href={partner.whatsapp}
+                    target="_blank"
+                    className="text-green-500 text-3xl hover:text-green-400"
+                  >
+                    <FaWhatsapp />
+                  </a>
+                </div>
                 <div className="text-center mt-6">
                   {user.logged_in ? (
                     <Link href="/register/username" target="_blank" passHref>
-                      <button className="contract-button bg-gradient-to-r from-blue-600 to-blue-400 text-white py-2 px-6 rounded-full shadow-lg hover:from-blue-500 hover:to-blue-300 transition duration-300">
+                      <button className="bg-gradient-to-r from-gray-700 via-gray-800 to-gray-900 text-white font-medium py-3 px-8 rounded-full shadow-lg hover:bg-gradient-to-r hover:from-gray-600 hover:via-gray-700 hover:to-gray-800 focus:outline-none focus:ring-4 focus:ring-gray-600 focus:ring-opacity-50 transition duration-300 ease-in-out">
                         {t("home-servers.btn-register-discover")}
                       </button>
                     </Link>
                   ) : (
                     <Link href="/register" passHref>
-                      <button className="contract-button bg-gradient-to-r from-blue-600 to-blue-400 text-white py-2 px-6 rounded-full shadow-lg hover:from-blue-500 hover:to-blue-300 transition duration-300">
+                      <button className="bg-gradient-to-r from-gray-700 via-gray-800 to-gray-900 text-white font-medium py-3 px-8 rounded-full shadow-lg hover:bg-gradient-to-r hover:from-gray-600 hover:via-gray-700 hover:to-gray-800 focus:outline-none focus:ring-4 focus:ring-gray-600 focus:ring-opacity-50 transition duration-300 ease-in-out">
                         {t("home-servers.btn-register-txt")}
                       </button>
                     </Link>
