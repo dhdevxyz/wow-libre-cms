@@ -11,13 +11,19 @@ const MultiCarouselSubs = () => {
       id: 1,
       image:
         "https://static.wixstatic.com/media/5dd8a0_f0c3204f2346419695468d1ec3ac5bb0~mv2.webp",
-      title: "Wow Elysium",
+      title: "Wow Libre - Elysium",
     },
     {
       id: 2,
       image:
-        "https://static.wixstatic.com/media/5dd8a0_9c5be89b137a457b94455a71e25cc0d6~mv2.jpg",
-      title: "Wow Progresive",
+        "https://dotesports.com/wp-content/uploads/2023/11/WoW-Sword-and-Shield-Emerald-Dream.jpg",
+      title: "Wow Libre - Twinks",
+    },
+    {
+      id: 3,
+      image:
+        "https://static.wixstatic.com/media/5dd8a0_8b56bcb73bda451782f0e1afc9f8a0e3~mv2.webp",
+      title: "Wow Frozen - Servidor Integrado",
     },
   ];
 
