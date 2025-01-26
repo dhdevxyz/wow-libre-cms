@@ -201,14 +201,14 @@ const SlotMachine: React.FC<MachineProps> = ({
 
           {/* Información de costo */}
           <p className="text-xl text-white font-semibold mb-6 text-center">
-            ¡Solo 5 dólares por 300 tiradas! Obtén más créditos y aumenta tus
+            ¡Solo 10 dólares por 300 tiradas! Obtén más créditos y aumenta tus
             probabilidades de ganar.
           </p>
 
           <div className="flex flex-col items-center space-y-4 w-full max-w-md">
             <a
               target="_blank"
-              href="https://www.paypal.com/paypalme/wowlibre/5"
+              href="https://checkout.bold.co/payment/LNK_M4YW8QT2BZ"
               className="w-full"
             >
               <button className="w-full px-6 py-3 text-lg font-semibold bg-gradient-to-r from-orange-400 to-yellow-500 hover:from-orange-500 hover:to-yellow-600 text-white rounded-lg shadow-lg transform transition-transform duration-300 hover:scale-105">

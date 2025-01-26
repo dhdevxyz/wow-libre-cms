@@ -875,5 +875,53 @@
             "password-change-password-success-btn": "Entendido",
             "error-change-password": "Ocorreu um erro inesperado. Não foi possível alterar a senha."
         }
+    },
+    "subscription": {
+    "title": "Passe Épico de Azeroth",
+    "description": "Assine e aproveite os melhores benefícios por um preço incrível.",
+    "recurrency": "/mês",
+    "btn-active": {
+        "text": "Quero assinar"
+    },
+    "btn-inactive": {
+        "text": "Registrar-se"
+    },
+    "disclaimer": "Ao assinar, você aceita os Termos e Condições do WowLibre. Você pode cancelar a qualquer momento.",
+    "benefits": {
+        "title": "Benefícios",
+        "primary": {
+            "title": "Serviços Gratuitos",
+            "description": "Mude de facção ou renomeie seus personagens, tudo completamente grátis!"
+        },
+        "secondary": {
+            "title": "Itens e Montarias Grátis ao Assinar!",
+            "description": "Ganhe itens exclusivos e montarias grátis como recompensa por apoiar a comunidade. Assine agora e comece a aproveitar esses incríveis benefícios!"
+        }
+    },
+    "benefits-vip": {
+        "title": "Prêmios!",
+        "description": "Os prêmios variam de acordo com o servidor. Alguns dos prêmios mostrados abaixo são distribuídos especificamente para cada um."
+    },
+    "adversing": {
+        "title": "Plano Promocional Irresistível!",
+        "description": "Não perca esta oportunidade e aproveite todos os benefícios de uma assinatura premium!"
+    },
+    "partners": {
+        "title": "Servidores Parceiros",
+        "description": "Os benefícios da sua assinatura são aplicados automaticamente a todos os reinos e servidores integrados na comunidade WoW Libre."
+    },
+    "payment-methods": {
+        "title": "Preço Especial",
+        "currency": "/mês",
+        "sub-title": "Meios de Pagamento",
+        "payments": {
+            "primary": "Cartão de Crédito",
+            "second": "Transferência Bancária",
+            "three": "Dinheiro"
+        },
+        "btn-payment": "Realizar Pagamento",
+        "disclaimer": "Ao assinar, você aceita os Termos e Condições do WowLibre. Você pode cancelar a qualquer momento."
     }
+    }
+
 }

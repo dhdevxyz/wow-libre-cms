@@ -3,7 +3,11 @@ import { useRouter } from "next/navigation";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 
-const MultiCarouselSubs = () => {
+interface CarrouselSubscriptionProps {
+  t: (key: string, options?: any) => string;
+}
+
+const MultiCarouselSubs: React.FC<CarrouselSubscriptionProps> = ({ t }) => {
   const router = useRouter();
 
   const items = [
@@ -50,7 +54,7 @@ const MultiCarouselSubs = () => {
     <div className="rounded-[1%] mt-8">
       <div>
         <h3 className="text-start title-server text-white text-xl md:text-2xl lg:text-3xl xl:text-4xl mb-2">
-          Servidores asociados
+          {t("subscription.partners.title")}
         </h3>
       </div>
       <Carousel
@@ -80,8 +84,7 @@ const MultiCarouselSubs = () => {
       </Carousel>
       <div>
         <p className="text-start text-white text-xl md:text-2xl lg:text-3xl xl:text-2xl mt-10 font-light">
-          Los beneficios de tu suscripción se aplican automáticamente en todos
-          los reinos y servidores integrados en la comunidad de WoW Libre.
+          {t("subscription.partners.description")}
         </p>
       </div>
     </div>

@@ -559,3 +559,10 @@ export interface RangeLevelDto {
   level_range: number;
   user_count: number;
 }
+
+/// FAQS SUBSCRIPTIOns
+
+export interface FaqsSubscriptionsDto {
+  question: string;
+  answer: string;
+}

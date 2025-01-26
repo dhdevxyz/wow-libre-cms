@@ -568,22 +568,22 @@
         }
     },
     "home-us": {
-        "realm":"Reinos",
+        "realm": "Reinos",
         "experience": "Experiencias",
-        "sub-title":"Wow Libre no solo brinda un servidor o servidores, sino que busca crear experiencias de juego inolvidables.",
-        "realms":{
+        "sub-title": "Wow Libre no solo brinda un servidor o servidores, sino que busca crear experiencias de juego inolvidables.",
+        "realms": {
             "primary": {
-                    "title": "¡Una Experiencia Única e Inigualable!",
-                    "sub-title": "Reino x100 - Promoción Nivel 80",
-                    "description": "Atrévete a enfrentarte al Rey Exánime con nuestro innovador sistema de auto-balanceo, que te permite completar mazmorras en solitario o con un pequeño grupo de aventureros. Disfruta del contenido final de la expansión sin complicaciones ni límites.",
-                    "btn-txt": "Explora Más"
-                },
-                "secondary":{
-                    "title": "¡Una Experiencia Inigualable!",
-                    "sub-title": "Reino Progresivo ",
-                    "description": "El 1 de febrero, nuestra comunidad dará inicio a un reino progresivo de WoW 3.3.5, con temática de Twinks. Cada semana, desbloquearemos nuevos niveles para que disfrutes de una experiencia única.",
-                    "btn-txt": "Explora Más"
-                }
+                "title": "¡Una Experiencia Única e Inigualable!",
+                "sub-title": "Reino x100 - Promoción Nivel 80",
+                "description": "Atrévete a enfrentarte al Rey Exánime con nuestro innovador sistema de auto-balanceo, que te permite completar mazmorras en solitario o con un pequeño grupo de aventureros. Disfruta del contenido final de la expansión sin complicaciones ni límites.",
+                "btn-txt": "Explora Más"
+            },
+            "secondary": {
+                "title": "¡Una Experiencia Inigualable!",
+                "sub-title": "Reino Progresivo ",
+                "description": "El 1 de febrero, nuestra comunidad dará inicio a un reino progresivo de WoW 3.3.5, con temática de Twinks. Cada semana, desbloquearemos nuevos niveles para que disfrutes de una experiencia única.",
+                "btn-txt": "Explora Más"
+            }
         }
     },
     "friend-detail": {
@@ -874,6 +874,53 @@
             "password-change-password-success-txt": "La contraseña se ha actualizado con éxito.",
             "password-change-password-success-btn": "Entendido",
             "error-change-password": "Ha ocurrido un error inesperado. No fue posible cambiar la contraseña."
+        }
+    },
+    "subscription": {
+        "title": "Pase Épico de Azeroth",
+        "description": "Suscríbete y disfruta los mejores beneficios a un precio increíble.",
+        "recurrency": "/mes",
+        "btn-active": {
+            "text": "Quiero suscribirme"
+        },
+        "btn-inactive": {
+            "text": "Registrarme"
+        },
+        "disclaimer": "Al suscribirte, aceptas los Términos y condiciones de WowLibre. Puedes cancelar cuando quieras.",
+        "benefits": {
+            "title": "Beneficios",
+            "primary": {
+                "title": "Servicios Gratuitos",
+                "description": "Cambia de facción o renombra a tus personajes, ¡todo completamente gratis!"
+            },
+            "secondary": {
+                "title": "¡Items y Monturas Gratis al Suscribirte!",
+                "description": "Obtén exclusivos items y monturas gratis como recompensa por tu apoyo a la comunidad. ¡Suscríbete y empieza a disfrutar de estos increíbles beneficios ahora mismo!"
+            }
+        },
+        "benefits-vip": {
+            "title": "¡Premios!",
+            "description": "Los premios varían según el servidor. Algunos de los premios mostrados a continuación están distribuidos de manera específica para cada uno."
+        },
+        "adversing": {
+            "title": "¡Plan Promocional Irresistible!",
+            "description": "¡No dejes pasar esta oportunidad y disfruta todos los beneficios de una suscripción premium!"
+        },
+        "partners": {
+            "title": "Servidores asociados",
+            "description": "Los beneficios de tu suscripción se aplican automáticamente en todos los reinos y servidores integrados en la comunidad de WoW Libre."
+        },
+        "payment-methods": {
+            "title": "Precio Especial",
+            "currency": "/mes",
+            "sub-title": "Medios de Pago",
+            "payments": {
+                "primary": "Tarjeta de Crédito",
+                "second": "Transferencia Bancaria",
+                "three": "Efectivo"
+            },
+            "btn-payment": "Realizar Pago",
+            "disclaimer": "Al suscribirte, aceptas los Términos y condiciones de WowLibre. Puedes cancelar cuando quieras."
         }
     }
 }

@@ -11,10 +11,12 @@ import Cookies from "js-cookie";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { FaCashRegister, FaCreditCard, FaMoneyCheckAlt } from "react-icons/fa";
 import Swal from "sweetalert2";
 
 const Subscriptions = () => {
+  const { t } = useTranslation();
   const [loading, setLoading] = useState<boolean>(true);
   const [planModel, setPlan] = useState<PlanModel>();
   const { user } = useUserContext();
@@ -80,23 +82,24 @@ const Subscriptions = () => {
             <div className="flex flex-col justify-between max-w-2xl w-full">
               <div>
                 <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 sm:mb-10">
-                  Pase Épico de Azeroth
+                  {t("subscription.title")}
                 </h2>
                 <p className="text-lg sm:text-xl lg:text-3xl mb-6 break-words">
-                  Suscríbete y disfruta los mejores beneficios a un precio
-                  increíble.
+                  {t("subscription.description")}
                 </p>
                 <div className="mb-4">
                   <div className="flex items-center space-x-4">
                     <p className="text-lg sm:text-xl lg:text-3xl line-through">
-                      ${Math.floor(planModel?.price ?? 0)} /mes
+                      ${Math.floor(planModel?.price ?? 0)}
+                      {t("subscription.recurrency")}
                     </p>
                     <span className="bg-green-500 text-white text-sm sm:text-lg font-semibold px-3 py-1 rounded-full">
                       {planModel?.discount}% OFF
                     </span>
                   </div>
                   <p className="text-lg sm:text-xl lg:text-4xl pt-2 font-semibold">
-                    ${Math.floor(planModel?.discounted_price ?? 0)} /mes
+                    ${Math.floor(planModel?.discounted_price ?? 0)}
+                    {t("subscription.recurrency")}
                   </p>
                 </div>
               </div>
@@ -109,21 +112,19 @@ const Subscriptions = () => {
                     }
                     className="px-6 py-3 bg-blue-500 hover:bg-blue-600 rounded-lg text-white font-semibold mb-4"
                   >
-                    Quiero suscribirme
+                    {t("subscription.btn-active.text")}
                   </button>
                 ) : (
                   <Link
                     href="/register"
                     className="px-6 py-3 bg-blue-500 hover:bg-blue-600 rounded-lg text-white font-semibold mb-4"
                   >
-                    Registrarme
+                    {t("subscription.btn-inactive.text")}
                   </Link>
                 )}
 
                 <p className="text-lg pt-4 break-words">
-                  Al suscribirte, aceptas los Términos y condiciones de
-                  WowLibre. <br />
-                  Puedes cancelar cuando quieras.
+                  {t("subscription.disclaimer")}
                 </p>
               </div>
             </div>
@@ -133,7 +134,7 @@ const Subscriptions = () => {
               <div className="relative h-[350px] sm:h-[450px] w-full sm:w-[300px] select-none mx-auto overflow-hidden">
                 <img
                   src="https://static.wixstatic.com/media/5dd8a0_9d9020e8c72f431988e33d61613a6b99~mv2.webp"
-                  alt="Premium-Sub"
+                  alt="Premium-subscription"
                   className="object-cover rounded-xl w-full h-full transition duration-300 hover:opacity-75"
                 />
               </div>
@@ -153,7 +154,7 @@ const Subscriptions = () => {
         <div className="py-12 rounded-lg">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-3xl lg:text-4xl font-bold text-start text-white mb-8">
-              Beneficios
+              {t("subscription.benefits.title")}
             </h2>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -165,12 +166,11 @@ const Subscriptions = () => {
                 }}
               >
                 <h3 className="text-2xl font-bold mb-4 text-white">
-                  Servicios Gratuitos
+                  {t("subscription.benefits.primary.title")}
                 </h3>
                 <div className="grid grid-cols-1 sm:grid-cols-1 gap-6">
                   <div className="text-gray-300 rounded-lg text-xl">
-                    Cambia de facción o renombra a tus personajes, ¡todo
-                    completamente gratis!
+                    {t("subscription.benefits.primary.description")}
                   </div>
                 </div>
               </div>
@@ -183,20 +183,19 @@ const Subscriptions = () => {
                 }}
               >
                 <h3 className="text-2xl font-bold mb-4 text-white">
-                  ¡Items y Monturas Gratis al Suscribirte!
+                  {t("subscription.benefits.secondary.title")}
                 </h3>
                 <div className="grid grid-cols-1 sm:grid-cols-1 gap-6">
                   <div className="text-gray-300 rounded-lg text-xl">
-                    Obtén exclusivos items y monturas gratis como recompensa por
-                    tu apoyo a la comunidad. ¡Suscríbete y empieza a disfrutar
-                    de estos increíbles beneficios ahora mismo!
+                    {t("subscription.benefits.secondary.description")}
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <PremiumBenefitsCarrousel />
+
+        <PremiumBenefitsCarrousel t={t} />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <div className="flex items-center justify-start mb-4">
@@ -205,11 +204,10 @@ const Subscriptions = () => {
             </span>
             <div className="flex flex-col">
               <h2 className="text-3xl lg:text-4xl font-bold text-white mr-4 mb-1">
-                ¡Plan Promocional Irresistible!
+                {t("subscription.adversing.title")}
               </h2>
               <h3 className="text-xl text-gray-300">
-                ¡No dejes pasar esta oportunidad y disfruta todos los beneficios
-                de una suscripción premium!
+                {t("subscription.adversing.description")}
               </h3>
             </div>
           </div>
@@ -218,13 +216,13 @@ const Subscriptions = () => {
             <iframe
               width="800"
               height="350"
-              src="https://www.youtube.com/embed/tyNgbHX9p2U?si=lKHYhhVpbUunp-LP"
+              src="https://www.youtube.com/embed/sxPji1VlsU0?si=EPa0DkocLJ-Nurx2"
               title="World of Warcraft: Battle for Azeroth Cinematic Trailer"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             ></iframe>
           </div>
 
-          <MultiCarouselSubs />
+          <MultiCarouselSubs t={t} />
         </div>
       </div>
 
@@ -233,19 +231,21 @@ const Subscriptions = () => {
           {/* Sección de Precio */}
           <div className="flex flex-col items-center mb-8">
             <h2 className="text-4xl lg:text-5xl font-bold text-white mb-2">
-              Precio Especial
+              {t("subscription.payment-methods.title")}
             </h2>
             <div className="flex flex-col items-center">
               <div className="flex items-center mb-2">
                 <span className="line-through text-gray-400 text-3xl mr-2">
-                  ${planModel?.price} /mes
+                  ${planModel?.price}
+                  {t("subscription.payment-methods.currency")}
                 </span>
                 <span className="bg-green-500 text-white text-2xl font-semibold px-3 py-1 rounded-full">
                   {planModel?.discount}% OFF
                 </span>
               </div>
               <span className="text-4xl font-bold text-white">
-                ${Math.round(planModel?.discounted_price || 15)} /mes
+                ${Math.round(planModel?.discounted_price || 15)}
+                {t("subscription.payment-methods.currency")}
               </span>
             </div>
           </div>
@@ -255,7 +255,7 @@ const Subscriptions = () => {
 
           {/* Título de Medios de Pago */}
           <h3 className="text-4xl lg:text-5xl font-bold text-white text-center mb-8">
-            Medios de Pago
+            {t("subscription.payment-methods.sub-title")}
           </h3>
 
           {/* Sección de Medios de Pago en columna */}
@@ -264,7 +264,7 @@ const Subscriptions = () => {
             <div className="border rounded-lg p-3 flex items-center">
               <FaCreditCard className="text-white text-2xl mr-2" />
               <h4 className="text-2xl font-bold text-white mb-0">
-                Tarjeta de Crédito
+                {t("subscription.payment-methods.payments.primary")}
               </h4>
             </div>
 
@@ -272,14 +272,16 @@ const Subscriptions = () => {
             <div className="border rounded-lg p-3 flex items-center">
               <FaMoneyCheckAlt className="text-white text-2xl mr-2" />
               <h4 className="text-2xl font-bold text-white mb-0">
-                Transferencia Bancaria
+                {t("subscription.payment-methods.payments.second")}
               </h4>
             </div>
 
             {/* Componente de Medio de Pago 3 */}
             <div className="border rounded-lg p-3 flex items-center">
               <FaCashRegister className="text-white text-2xl mr-2" />
-              <h4 className="text-2xl font-bold text-white mb-0">Efectivo</h4>
+              <h4 className="text-2xl font-bold text-white mb-0">
+                {t("subscription.payment-methods.payments.three")}
+              </h4>
             </div>
           </div>
 
@@ -292,17 +294,16 @@ const Subscriptions = () => {
               }
               className="bg-blue-500 text-white font-bold py-4 px-10 rounded-lg w-full"
             >
-              Realizar Pago
+              {t("subscription.payment-methods.btn-payment")}
             </button>
             <p className="text-lg pt-4 break-words text-white text-center w-full">
-              Al suscribirte, aceptas los Términos y condiciones de WowLibre.
-              Puedes cancelar cuando quieras.
+              {t("subscription.payment-methods.disclaimer")}
             </p>
           </div>
         </div>
       </div>
 
-      <FaqsSubscriptions />
+      <FaqsSubscriptions language={user.language} />
     </div>
   );
 };

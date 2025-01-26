@@ -26,19 +26,36 @@ const slides = [
       "https://static.wixstatic.com/media/5dd8a0_b6ad01dcad1f470aa35211417a5e272f~mv2.webp",
     text: "Explora Azeroth sin límites. ¡Desbloquea el vuelo sin restricciones hoy mismo!",
   },
+  {
+    image:
+      "https://static.wixstatic.com/media/5dd8a0_99246d3005de4a75ba5bc1b97f47c5a1~mv2.png",
+    text: "Cambia de facción o personaliza tu guerrero tantas veces como quieras. ¡Hazlo a tu manera!",
+  },
+  {
+    image:
+      "https://static.wixstatic.com/media/5dd8a0_ab1ee40cdb204bca87d3a64032436071~mv2.png",
+    text: "Explora Azeroth sin límites. ¡Desbloquea el vuelo sin restricciones hoy mismo!",
+  },
+  {
+    image:
+      "https://static.wixstatic.com/media/5dd8a0_1390e2c11b0a42d69b4b138ca33ffff5~mv2.png",
+    text: "Equípate con el increíble traje de Murloc. ¡Disponible ahora!",
+  },
 ];
 
-const PremiumBenefitsCarrousel = () => {
+interface PremiumBenefitsProps {
+  t: (key: string, options?: any) => string;
+}
+
+const PremiumBenefitsCarrousel: React.FC<PremiumBenefitsProps> = ({ t }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  // Función para ir a la imagen anterior
   const prevSlide = () => {
     setCurrentIndex((prevIndex) =>
       prevIndex === 0 ? slides.length - 1 : prevIndex - 1
     );
   };
 
-  // Función para ir a la siguiente imagen
   const nextSlide = () => {
     setCurrentIndex((prevIndex) =>
       prevIndex === slides.length - 1 ? 0 : prevIndex + 1
@@ -49,24 +66,21 @@ const PremiumBenefitsCarrousel = () => {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       {/* Título y descripción */}
       <h2 className="text-3xl lg:text-4xl font-bold text-white mb-3">
-        ¡Premios!
+        {t("subscription.benefits-vip.title")}
       </h2>
       <div className="text-gray-300 rounded-lg text-xl mb-4">
-        Los premios varían según el servidor. Algunos de los premios mostrados a
-        continuación están distribuidos de manera específica para cada uno.
+        {t("subscription.benefits-vip.description")}
       </div>
 
       {/* Contenedor del carrusel */}
       <div className="relative w-full">
         <div className="relative h-56 sm:h-72 md:h-96 lg:h-[400px] xl:h-[350px] overflow-hidden rounded-lg">
-          {/* Imagen actual */}
           <img
             src={slides[currentIndex].image}
             className="absolute inset-0 w-full h-full object-cover transition-opacity duration-700"
             alt={`Imagen ${currentIndex + 1}`}
           />
 
-          {/* Texto sobre la imagen en la parte inferior izquierda */}
           <div className="absolute bottom-4 left-4 bg-black/60 text-gray-200 text-lg sm:text-2xl font-bold px-4 py-2 rounded-lg">
             {slides[currentIndex].text}
           </div>
