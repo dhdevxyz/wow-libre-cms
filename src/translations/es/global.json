@@ -86,7 +86,7 @@
                 "confirm-password-placeholder": "Ingrese de nuevo la Contraseña",
                 "confirm-password-txt": "Confirmar Contraseña",
                 "loading-sniper-txt": "Estamos creando tu cuenta, un momento por favor",
-                "buttons": {
+                "button": {
                     "btn-primary": "Continuar",
                     "btn-secondary": "Volver"
                 }
