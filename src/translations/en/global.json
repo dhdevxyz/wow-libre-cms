@@ -875,5 +875,52 @@
             "password-change-password-success-btn": "Got it",
             "error-change-password": "An unexpected error occurred. It was not possible to change the password."
         }
+    },
+    "subscription": {
+        "title": "Azeroth Epic Pass",
+        "description": "Subscribe and enjoy the best benefits at an incredible price.",
+        "recurrency": "/month",
+        "btn-active": {
+            "text": "I want to subscribe"
+        },
+        "btn-inactive": {
+            "text": "Sign up"
+        },
+        "disclaimer": "By subscribing, you accept WowLibre's Terms and Conditions. You can cancel anytime.",
+        "benefits": {
+            "title": "Benefits",
+            "primary": {
+                "title": "Free Services",
+                "description": "Change faction or rename your characters, all completely free!"
+            },
+            "secondary": {
+                "title": "Free Items and Mounts Upon Subscription!",
+                "description": "Get exclusive free items and mounts as a reward for supporting the community. Subscribe now and start enjoying these amazing benefits!"
+            }
+        },
+        "benefits-vip": {
+            "title": "Prizes!",
+            "description": "Prizes vary by server. Some of the prizes shown below are specifically distributed for each one."
+        },
+        "adversing": {
+            "title": "Irresistible Promotional Plan!",
+            "description": "Don't miss this opportunity and enjoy all the benefits of a premium subscription!"
+        },
+        "partners": {
+            "title": "Partner Servers",
+            "description": "Your subscription benefits are automatically applied to all integrated realms and servers in the WoW Libre community."
+        },
+        "payment-methods": {
+            "title": "Special Price",
+            "currency": "/month",
+            "sub-title": "Payment Methods",
+            "payments": {
+                "primary": "Credit Card",
+                "second": "Bank Transfer",
+                "three": "Cash"
+            },
+            "btn-payment": "Make Payment",
+            "disclaimer": "By subscribing, you accept WowLibre's Terms and Conditions. You can cancel anytime."
+        }
     }
 }

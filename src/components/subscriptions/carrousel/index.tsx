@@ -3,7 +3,11 @@ import { useRouter } from "next/navigation";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 
-const MultiCarouselSubs = () => {
+interface CarrouselSubscriptionProps {
+  t: (key: string, options?: any) => string;
+}
+
+const MultiCarouselSubs: React.FC<CarrouselSubscriptionProps> = ({ t }) => {
   const router = useRouter();
 
   const items = [
@@ -11,13 +15,19 @@ const MultiCarouselSubs = () => {
       id: 1,
       image:
         "https://static.wixstatic.com/media/5dd8a0_f0c3204f2346419695468d1ec3ac5bb0~mv2.webp",
-      title: "Wow Elysium",
+      title: "Wow Libre - Elysium",
     },
     {
       id: 2,
       image:
-        "https://static.wixstatic.com/media/5dd8a0_9c5be89b137a457b94455a71e25cc0d6~mv2.jpg",
-      title: "Wow Progresive",
+        "https://dotesports.com/wp-content/uploads/2023/11/WoW-Sword-and-Shield-Emerald-Dream.jpg",
+      title: "Wow Libre - Twinks",
+    },
+    {
+      id: 3,
+      image:
+        "https://static.wixstatic.com/media/5dd8a0_8b56bcb73bda451782f0e1afc9f8a0e3~mv2.webp",
+      title: "Wow Frozen - Servidor Integrado",
     },
   ];
 
@@ -44,7 +54,7 @@ const MultiCarouselSubs = () => {
     <div className="rounded-[1%] mt-8">
       <div>
         <h3 className="text-start title-server text-white text-xl md:text-2xl lg:text-3xl xl:text-4xl mb-2">
-          Servidores asociados
+          {t("subscription.partners.title")}
         </h3>
       </div>
       <Carousel
@@ -74,8 +84,7 @@ const MultiCarouselSubs = () => {
       </Carousel>
       <div>
         <p className="text-start text-white text-xl md:text-2xl lg:text-3xl xl:text-2xl mt-10 font-light">
-          Los beneficios de tu suscripción se aplican automáticamente en todos
-          los reinos y servidores integrados en la comunidad de WoW Libre.
+          {t("subscription.partners.description")}
         </p>
       </div>
     </div>
