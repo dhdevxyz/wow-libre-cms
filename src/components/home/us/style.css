@@ -1,24 +1,12 @@
 .bg-paper-image {
-  background-image: url("https://static.wixstatic.com/media/5dd8a0_7c9f1d9542df413b8d161ef38b82a373~mv2.jpg");
-  border-radius: 20px; /* Ajusta el redondeo según prefieras */
-  transition: transform 0.3s ease-in-out; /* Agrega una transición suave */
+  border-radius: 20px;
+  transition: transform 0.3s ease-in-out;
 }
 
-.bg-paper-image-second-realm {
-  background-image: url("https://static.wixstatic.com/media/5dd8a0_21f1bf864e994a4ea6578ec0433629ca~mv2.jpg");
-  border-radius: 20px; /* Ajusta el redondeo según prefieras */
-  transition: transform 0.3s ease-in-out; /* Agrega una transición suave */
+.bg-paper-image:hover {
+  transform: scale(1.2);
 }
 
-/* Agregar el hover effect en el segundo componente */
-.bg-paper-image:hover,
-.bg-paper-image-second-realm:hover {
-  transform: scale(
-    1.2
-  ); /* Escala ligeramente la imagen al pasar el cursor sobre ella */
-}
-
-/* Si deseas un efecto distinto para el botón */
 .buttom {
   background-color: #19368e;
 }

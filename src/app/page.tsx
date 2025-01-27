@@ -2,10 +2,10 @@ import Advertising from "@/components/home/banner";
 import Bidding from "@/components/home/bidding";
 import SliderHome from "@/components/home/slider";
 import Subscription from "@/components/home/subscription";
-import Us from "@/components/home/us";
 import Navbar from "@/components/home/navbar-home/navbar";
 import Information from "@/components/home/information";
 import AdIframe from "@/components/adversing";
+import ServerExperience from "@/components/home/us";
 
 const Home = () => {
   return (
@@ -15,7 +15,7 @@ const Home = () => {
       <AdIframe />
 
       <Information />
-      <Us />
+      <ServerExperience />
       <SliderHome />
 
       <Bidding />
