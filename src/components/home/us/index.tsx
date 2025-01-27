@@ -107,7 +107,7 @@ const ServerExperience = () => {
                 {/* Botón de "Realmlist" */}
                 <div className="flex justify-center md:justify-start space-x-4">
                   <a
-                    href="https://chat.whatsapp.com/KpvQJSOAujI4DlYjweWDxW"
+                    href={realm.redirect}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
