@@ -1,6 +1,6 @@
 import { BASE_URL } from "@/configs/configs";
 import { GenericResponseDto, InternalServerError } from "@/dto/generic";
-import { Characters, Friends } from "@/model/model";
+import { CharacterInventory, Characters, Friends } from "@/model/model";
 import { v4 as uuidv4 } from "uuid";
 
 export const getCharacters = async (
@@ -210,6 +210,104 @@ export const sendLevelByFriend = async (
 
     const response = await fetch(
       `${BASE_URL}/api/characters/social/send/level`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + jwt,
+          transaction_id: transactionId,
+        },
+        body: JSON.stringify(requestBody),
+      }
+    );
+
+    if (response.ok && response.status == 200) {
+      return;
+    } else {
+      const genericResponse: GenericResponseDto<void> = await response.json();
+      throw new InternalServerError(
+        `${genericResponse.message}`,
+        response.status,
+        transactionId
+      );
+    }
+  } catch (error: any) {
+    if (error instanceof TypeError && error.message === "Failed to fetch") {
+      throw new Error(`Please try again later, services are not available.`);
+    } else if (error instanceof InternalServerError) {
+      throw error;
+    } else if (error instanceof Error) {
+      throw error;
+    } else {
+      throw new Error(
+        `Unknown error occurred - TransactionId: ${transactionId}`
+      );
+    }
+  }
+};
+
+export const getInventory = async (
+  jwt: string,
+  accountId: number,
+  serverId: number,
+  characterId: number
+): Promise<CharacterInventory[]> => {
+  try {
+    const response = await fetch(
+      `${BASE_URL}/api/characters/inventory?account_id=${accountId}&server_id=${serverId}&character_id=${characterId}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + jwt,
+          transaction_id: uuidv4(),
+        },
+      }
+    );
+    const responseData: GenericResponseDto<CharacterInventory[]> =
+      await response.json();
+
+    if (response.ok && response.status === 200) {
+      return responseData.data;
+    }
+    throw new Error("It was not possible to obtain your characters");
+  } catch (error: any) {
+    throw new Error(
+      `It was not possible to obtain your characters : ${error.message}`
+    );
+  }
+};
+
+export const sendItems = async (
+  jwt: String,
+  characterId: number,
+  friendId: number,
+  accountId: number,
+  serverId: number,
+  itemId: number,
+  count: number
+): Promise<void> => {
+  const transactionId = uuidv4();
+
+  try {
+    const requestBody: {
+      character_id: number;
+      friend_id: number;
+      item_id: number;
+      count: number;
+      account_id: number;
+      server_id: number;
+    } = {
+      character_id: characterId,
+      friend_id: friendId,
+      count: count,
+      item_id: itemId,
+      account_id: accountId,
+      server_id: serverId,
+    };
+
+    const response = await fetch(
+      `${BASE_URL}/api/characters/inventory/transfer`,
       {
         method: "POST",
         headers: {

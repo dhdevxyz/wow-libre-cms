@@ -582,3 +582,13 @@ export interface ExperiencesHome {
   redirect: string;
   disclaimer: string;
 }
+
+export interface CharacterInventory {
+  character_id: number;
+  bag: number;
+  slot: number;
+  item: number;
+  item_id: number;
+  instance_id: number;
+  name: string;
+}
