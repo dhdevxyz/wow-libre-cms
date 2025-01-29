@@ -1,22 +1,25 @@
 import {
   faCoins,
+  faGift,
   faSortUp,
   faTrashAlt,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 
 import {
   deleteFriend,
+  getInventory,
+  sendItems,
   sendLevelByFriend,
   sendMoneyByFriend,
 } from "@/api/account/character";
-import { Character } from "@/model/model";
+import { Character, CharacterInventory } from "@/model/model";
 import Swal from "sweetalert2";
 import { InternalServerError } from "@/dto/generic";
 
 interface FriendsDetailProps {
-  jwt: String;
+  jwt: string;
   character: Character;
   friend: Character;
   accountId: number;
@@ -41,6 +44,70 @@ const FriendDetail: React.FC<FriendsDetailProps> = ({
 
   const [isGiftLevelsOpen, setIsGiftLevelsOpen] = useState(false);
   const [isGiftOroOpen, setIsMoneyIsOpen] = useState(false);
+  const [isSendItemsOpen, setSendItemsOpen] = useState(false);
+  const [items, setItems] = useState<CharacterInventory[]>([]);
+
+  useEffect(() => {
+    if (isSendItemsOpen) {
+      fetchInventory();
+    }
+  }, [isSendItemsOpen]);
+
+  const fetchInventory = async () => {
+    try {
+      const inventory = await getInventory(
+        jwt,
+        accountId,
+        serverId,
+        character.id
+      );
+      setItems(inventory);
+    } catch (error: any) {
+    } finally {
+    }
+  };
+
+  const handleSendItem = async (itemId: number, count: number) => {
+    try {
+      await sendItems(
+        jwt,
+        character.id,
+        friend.id,
+        accountId,
+        serverId,
+        itemId,
+        count
+      );
+      await fetchInventory();
+      Swal.fire({
+        icon: "success",
+        title: "Item enviado",
+        text: "Por favor indicale al destinatario que use el correo para obtener lo enviado!",
+      });
+    } catch (error: any) {
+      if (error instanceof InternalServerError) {
+        Swal.fire({
+          icon: "error",
+          title: "Opss!",
+          html: `
+          <p><strong>Message:</strong> ${error.message}</p>
+          <hr style="border-color: #444; margin: 8px 0;">
+          <p><strong>Transaction ID:</strong> ${error.transactionId}</p>
+        `,
+          color: "white",
+          background: "#0B1218",
+        });
+        return;
+      }
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: `${error.message}`,
+        color: "white",
+        background: "#0B1218",
+      });
+    }
+  };
 
   const openGiftLevelsModal = () => {
     setIsGiftLevelsOpen(true);
@@ -54,6 +121,12 @@ const FriendDetail: React.FC<FriendsDetailProps> = ({
     setIsMoneyIsOpen(true);
   };
 
+  const openSendItemsOpenModal = () => {
+    setSendItemsOpen(true);
+  };
+  const closeSendItemsModal = () => {
+    setSendItemsOpen(false);
+  };
   const deleteFriendInput = async () => {
     try {
       await deleteFriend(jwt, character.id, friend.id, accountId, serverId);
@@ -264,6 +337,13 @@ const FriendDetail: React.FC<FriendsDetailProps> = ({
           {t("friend-detail-modal.send-gold.btn-txt")}
         </button>
         <button
+          className="w-full action-button bg-gradient-to-r from-green-400 to-green-800 hover:from-green-500 hover:to-green-700 text-white py-2 px-4 rounded-lg transition-all duration-300"
+          onClick={openSendItemsOpenModal}
+        >
+          <FontAwesomeIcon icon={faGift} className="mr-2" />
+          Enviar items
+        </button>
+        <button
           className="w-full action-button bg-gradient-to-r from-red-500 to-red-700 hover:from-red-600 hover:to-red-800 text-white py-2 px-4 rounded-lg transition-all duration-300"
           onClick={deleteFriendInput}
         >
@@ -352,6 +432,84 @@ const FriendDetail: React.FC<FriendsDetailProps> = ({
                 onClick={closeGiftMoneyModal}
               >
                 {t("friend-detail-modal.send-gold.gif-gold.btn.back")}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {isSendItemsOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4">
+          <div className="bg-gray-800 text-white p-8 rounded-lg shadow-lg w-full max-w-4xl max-h-[80vh] overflow-y-auto scrollbar-hide">
+            <h2 className="text-2xl font-bold mb-6 text-center">
+              Envía sin costo objetos vinculados a otros personajes
+            </h2>
+            <p className="text-center text-lg text-gray-300 mb-6">
+              Disponible para miembros Premium
+            </p>
+
+            <h3 className="text-xl font-semibold mb-4 text-center">
+              Para enviar objetos, asegúrate de haber cerrado sesión en tu
+              cuenta.
+            </h3>
+
+            <p className="text-center text-lg text-gray-400 mb-4">
+              La cantidad de objetos a enviar corresponde a la que se muestra en
+              la tabla.
+            </p>
+
+            <div className="overflow-x-auto">
+              <table className="w-full border-collapse border border-gray-700">
+                <thead>
+                  <tr className="bg-gray-700 text-left">
+                    <th className="p-3 border border-gray-600">ID</th>
+                    <th className="p-3 border border-gray-600">Nombre</th>
+                    <th className="p-3 border border-gray-600">Cantidad</th>
+                    <th className="p-3 border border-gray-600 text-center">
+                      Accion
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {items.map((item) => (
+                    <tr key={item.item} className="border border-gray-600">
+                      <td className="p-3 border border-gray-600">
+                        <a
+                          href={`https://www.wowhead.com/item=${item.item_id}`}
+                          className=" q2"
+                          data-game="wow"
+                          data-type="item"
+                          data-wh-icon-added="true"
+                        >
+                          {item.item_id}
+                        </a>
+                      </td>
+                      <td className="p-3 border border-gray-600">
+                        {item.name}
+                      </td>
+
+                      <td className="p-3 border border-gray-600">{item.bag}</td>
+
+                      <td className="p-3 border border-gray-600 text-center">
+                        <button
+                          className="bg-yellow-500 hover:bg-yellow-600 text-white py-2 px-4 rounded-lg transition duration-300"
+                          onClick={() => handleSendItem(item.item, item.bag)}
+                        >
+                          Enviar
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
+            <div className="flex justify-end mt-6">
+              <button
+                className="bg-gray-600 hover:bg-gray-700 text-white py-2 px-4 rounded-lg transition duration-300"
+                onClick={closeSendItemsModal}
+              >
+                Cancelar
               </button>
             </div>
           </div>

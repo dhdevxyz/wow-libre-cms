@@ -23,10 +23,11 @@ import "./style.css";
 import { getAccount, getUser } from "@/api/account";
 import { getCharacters } from "@/api/account/character";
 import DetailAccount from "@/components/account";
+import Friend from "@/components/account/friends/friend";
 import AccountGuild from "@/components/account/guild";
 import Mails from "@/components/account/mails";
 import CharacterSelection from "@/components/character_selection";
-import Friend from "@/components/friends/friend";
+import SlotMachine from "@/components/machine/page";
 import NavbarAuthenticated from "@/components/navbar-authenticated";
 import Premium from "@/components/premium";
 import Professions from "@/components/professions";
@@ -38,7 +39,6 @@ import { AccountDetailDto, Character, UserDetailDto } from "@/model/model";
 import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
 import Cookies from "js-cookie";
 import { useTranslation } from "react-i18next";
-import SlotMachine from "@/components/machine/page";
 
 const AccountDetail = () => {
   const searchParams = useSearchParams();
@@ -60,7 +60,9 @@ const AccountDetail = () => {
 
   const [characters, setCharacters] = useState<Character[]>([]);
   const [selectedCharacter, setSelectedCharacter] = useState<Character>();
-  const [avatar, setAvatar] = useState("https://via.placeholder.com/150");
+  const [avatar, setAvatar] = useState(
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkNjQrGAQKojigg0JcYQaLR06jotFuSP9WAw&s"
+  );
   const { t } = useTranslation();
   const { user } = useUserContext();
 
@@ -111,7 +113,7 @@ const AccountDetail = () => {
   }
   const handleSelectCharacter = (character: Character) => {
     setSelectedCharacter(character);
-    setAvatar(character.race_logo || "https://via.placeholder.com/150");
+    setAvatar(character.race_logo);
   };
 
   if (isLoading) {
