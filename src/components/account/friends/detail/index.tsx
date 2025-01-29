@@ -19,7 +19,7 @@ import Swal from "sweetalert2";
 import { InternalServerError } from "@/dto/generic";
 
 interface FriendsDetailProps {
-  jwt: String;
+  jwt: string;
   character: Character;
   friend: Character;
   accountId: number;
