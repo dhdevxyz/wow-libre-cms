@@ -922,5 +922,14 @@
             "btn-payment": "Make Payment",
             "disclaimer": "By subscribing, you accept WowLibre's Terms and Conditions. You can cancel anytime."
         }
+    },
+    "info-integrate": {
+        "title": "Boost Your WoW Server",
+        "short-description": "Optimize, manage, and grow your World of Warcraft server with our all-in-one platform.",
+        "detailed-description": "Focus on improving your emulator while we handle the management and optimization of your server. We provide advanced tools and specialized support to maximize its performance and success.",
+        "summary": "It's not just about management; it's continuous support to help your server stand out and grow efficiently. We take care of the details, so you can focus on what you love most!",
+        "btn": {
+            "text": "Link your server now!"
+        }
     }
 }

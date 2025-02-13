@@ -922,5 +922,14 @@
             "btn-payment": "Realizar Pago",
             "disclaimer": "Al suscribirte, aceptas los Términos y condiciones de WowLibre. Puedes cancelar cuando quieras."
         }
+    },
+    "info-integrate": {
+        "title": "Impulsa tu Servidor de WoW",
+        "short-description": "Optimiza, administra y haz crecer tu servidor de World of Warcraft con nuestra plataforma integral.",
+        "detailed-description": "Dedica tu tiempo a mejorar tu emulador y deja en nuestras manos la gestión y optimización de tu servidor. Te ofrecemos herramientas avanzadas y soporte especializado para maximizar su rendimiento y éxito.",
+        "summary": "No solo es administración; es un apoyo continuo para que tu servidor se destaque y crezca de manera eficiente. ¡Nosotros nos encargamos de los detalles, tú solo enfócate en lo que más te apasiona!",
+        "btn":{
+            "text":"¡Vincula tu servidor ahora!"
+        }
     }
 }

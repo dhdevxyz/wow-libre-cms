@@ -1,10 +1,12 @@
+import AdIframe from "@/components/adversing";
+import NativeBanners from "@/components/adversing/native_banner";
 import Advertising from "@/components/home/banner";
 import Bidding from "@/components/home/bidding";
+import Information from "@/components/home/information";
+import InfoIntegrate from "@/components/home/integration";
+import Navbar from "@/components/home/navbar-home/navbar";
 import SliderHome from "@/components/home/slider";
 import Subscription from "@/components/home/subscription";
-import Navbar from "@/components/home/navbar-home/navbar";
-import Information from "@/components/home/information";
-import AdIframe from "@/components/adversing";
 import ServerExperience from "@/components/home/us";
 
 const Home = () => {
@@ -19,8 +21,10 @@ const Home = () => {
       <SliderHome />
 
       <Bidding />
-
+      <InfoIntegrate />
       <Subscription />
+
+      <NativeBanners />
     </>
   );
 };

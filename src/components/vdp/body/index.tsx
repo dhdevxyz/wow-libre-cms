@@ -1,100 +1,53 @@
 import React from "react";
 
-const VdpBody = () => {
+const VdpBody = ({ serverData }: { serverData: { [key: string]: string } }) => {
   return (
-    <section className="contenedor relative pt-12 text-white">
+    <section className="contenedor relative pt-12 text-white mb-10">
       <div className="items-center flex flex-wrap">
-        <div className="w-full md:w-6/12 ml-auto mr-auto px-4">
+        <div className="w-full md:w-8/12 ml-auto mr-auto px-4 flex justify-center">
           <img
             alt="Company Growth"
-            className="w-full h-auto max-w-xl rounded-lg shadow-lg"
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3mdXNvsAibDssvMLGp6irHNDB_EDfL2UFGg&s"
+            className="w-full h-auto max-w-8xl rounded-md shadow-lg scale-95 hover:scale-105 blur-sm hover:blur-0 opacity-80 hover:opacity-100 transition-all duration-500 ease-in-out"
+            src="https://static.wixstatic.com/media/5dd8a0_7ea55edcc8c24956b1539606494f8e6a~mv2.jpg"
           />
         </div>
         <div className="w-full md:w-4/12 ml-auto mr-auto px-4">
           <div className="md:pr-12">
-            <div className="text-pink-400 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-pink-600 mt-8">
+            <div className="text-yellow-400 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-yellow-600 mt-8">
               <i className="fas fa-rocket text-xl"></i>
             </div>
-            <h3 className="text-3xl font-semibold">A growing company</h3>
-            <p className="mt-4 text-lg leading-relaxed text-gray-400">
-              The extension comes with three pre-built pages to help you get
-              started faster. You can change the text and images and you're good
-              to go.
+            <h3 className="text-3xl font-semibold text-yellow-400">
+              ¡Explora el Mundo de Azeroth!
+            </h3>
+            <p className="mt-4 text-lg leading-relaxed text-gray-300">
+              ¡Prepárate para una aventura épica! Descubre los secretos,
+              desafíos y tesoros que te esperan en nuestro servidor de World of
+              Warcraft. Forja tu destino, únete a batallas legendarias y
+              demuestra tu poder. ⚔️🔥 ¡El viaje comienza ahora! 🚀
             </p>
+
+            {/* Renderizando dinámicamente los datos del servidor */}
             <ul className="list-none mt-6">
-              <li className="py-2">
-                <div className="flex items-center">
-                  <div>
-                    <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-pink-400 bg-pink-600 mr-3">
-                      <i className="fas fa-fingerprint"></i>
-                    </span>
+              {Object.entries(serverData).map(([key, value], index) => (
+                <li key={index} className="py-2">
+                  <div className="flex items-center">
+                    <div>
+                      <span className="text-xs font-semibold inline-block py-2 px-2 uppercase rounded-full text-yellow-400 bg-yellow-600 mr-3">
+                        <i className="fas fa-check-circle"></i>
+                      </span>
+                    </div>
+                    <div>
+                      <h4 className="text-gray-300 text-lg">
+                        {key}: <span className="text-yellow-400">{value}</span>
+                      </h4>
+                    </div>
                   </div>
-                  <div>
-                    <h4 className="text-gray-300">
-                      Carefully crafted components
-                    </h4>
-                  </div>
-                </div>
-              </li>
-              <li className="py-2">
-                <div className="flex items-center">
-                  <div>
-                    <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-pink-400 bg-pink-600 mr-3">
-                      <i className="fab fa-html5"></i>
-                    </span>
-                  </div>
-                  <div>
-                    <h4 className="text-gray-300">Amazing page examples</h4>
-                  </div>
-                </div>
-              </li>
-              <li className="py-2">
-                <div className="flex items-center">
-                  <div>
-                    <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-pink-400 bg-pink-600 mr-3">
-                      <i className="far fa-paper-plane"></i>
-                    </span>
-                  </div>
-                  <div>
-                    <h4 className="text-gray-300">Dynamic components</h4>
-                  </div>
-                </div>
-              </li>
+                </li>
+              ))}
             </ul>
           </div>
         </div>
       </div>
-      <footer className="relative pt-8 pb-6 mt-8">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-wrap items-center md:justify-between justify-center">
-            <div className="w-full md:w-6/12 px-4 mx-auto text-center">
-              <div className="text-sm text-gray-500 font-semibold py-1">
-                Made with{" "}
-                <a
-                  href="https://www.creative-tim.com/product/notus-js"
-                  className="text-gray-400 hover:text-gray-300"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Notus JS
-                </a>{" "}
-                by
-                <a
-                  href="https://www.creative-tim.com"
-                  className="text-gray-400 hover:text-gray-300"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {" "}
-                  Creative Tim
-                </a>
-                .
-              </div>
-            </div>
-          </div>
-        </div>
-      </footer>
     </section>
   );
 };
