@@ -24,7 +24,7 @@ const VdpBanner: React.FC<vdpBannerProps> = ({
   };
 
   return (
-    <div className="mb-5 bg-gradient-to-br from-midnight via-fuchsia-800 to-indigo-500 text-white py-20">
+    <div className="mb-5 bg-gradient-to-br from-gray-900 via-purple-900 to-black text-white py-20">
       <div className="contenedor mx-auto flex flex-col md:flex-row items-center my-12 md:my-24">
         <div className="flex flex-col w-full lg:w-1/3 justify-center items-start p-8">
           <h1 className="text-3xl md:text-5xl p-2 text-yellow-300 tracking-loose">

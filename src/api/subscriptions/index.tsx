@@ -37,9 +37,7 @@ export const getBenefitsPremium = async (
       );
     }
   } catch (error: any) {
-    throw new Error(
-      `It was not possible to obtain the professions: ${error.message}`
-    );
+    throw new Error(`An unexpected error has occurred: ${error.message}`);
   }
 };
 
@@ -132,5 +130,36 @@ export const getFaqsSubscription = async (
         `Unknown error occurred - TransactionId: ${transactionId}`
       );
     }
+  }
+};
+
+export const getSubscriptionActive = async (
+  token: string
+): Promise<boolean> => {
+  const transactionId = uuidv4();
+
+  try {
+    const response = await fetch(`${BASE_URL_TRANSACTION}/api/subscription`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        transaction_id: transactionId,
+        Authorization: "Bearer " + token,
+      },
+    });
+
+    if (response.ok && response.status === 200) {
+      const responseData: GenericResponseDto<boolean> = await response.json();
+      return responseData.data;
+    } else {
+      const genericResponse: GenericResponseDto<void> = await response.json();
+      throw new InternalServerError(
+        `${genericResponse.message}`,
+        response.status,
+        transactionId
+      );
+    }
+  } catch (error: any) {
+    return false;
   }
 };

@@ -45,7 +45,10 @@ const Bidding = () => {
           </div>
           <div className="bidding-day-image mb-4">
             <img
-              src={products?.img_url || "https://i.ibb.co/k4kZ9Ng/boo-1.png"}
+              src={
+                products?.img_url ||
+                "https://static.wixstatic.com/media/5dd8a0_249402c2d86d4a4fbf7c8452285efbfb~mv2.webp"
+              }
               alt="Product Max Discount"
               className="w-full h-96 object-cover rounded-md transition duration-300 hover:opacity-75"
             />

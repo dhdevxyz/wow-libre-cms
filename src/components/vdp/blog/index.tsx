@@ -86,9 +86,17 @@ const announcements = [
 const ServerBlog = () => {
   return (
     <div className="contenedor max-w-3xl mx-auto p-6 bg-gray-900 rounded-xl border border-gray-800 shadow-lg">
-      <h2 className="text-2xl font-bold text-white mb-4">
-        📢 Últimos Anuncios
+      <h2 className="text-4xl font-bold text-white text-center mb-6">
+        📅 Noticias
       </h2>
+      <p className="text-lg text-white/80 text-center max-w-2xl mx-auto leading-relaxed">
+        Descubre los eventos más emocionantes en el mundo del diseño, desarrollo
+        y fotografía. ¡Conoce a los mejores en la industria!
+      </p>
+
+      <h3 className="text-2xl font-bold text-white mb-4">
+        📢 Últimos Anuncios
+      </h3>
 
       {/* Contenedor con Scroll invisible si hay más de 3 elementos */}
       <div className="max-h-[300px] overflow-hidden hover:overflow-auto space-y-4 overflow-y-auto scrollbar-hide">

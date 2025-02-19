@@ -24,7 +24,7 @@ const InfoIntegrate = () => {
           </p>
           <div className="mt-8">
             <a
-              href="#"
+              href="/integrations"
               className="inline-block px-8 py-3 text-lg font-semibold text-white bg-blue-600 hover:bg-blue-700 rounded-lg shadow-lg transition duration-300"
             >
               {t("info-integrate.btn.text")}

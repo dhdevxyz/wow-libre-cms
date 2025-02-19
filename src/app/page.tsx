@@ -2,6 +2,7 @@ import AdIframe from "@/components/adversing";
 import NativeBanners from "@/components/adversing/native_banner";
 import Advertising from "@/components/home/banner";
 import Bidding from "@/components/home/bidding";
+import ContributionsHome from "@/components/home/contribution";
 import Information from "@/components/home/information";
 import InfoIntegrate from "@/components/home/integration";
 import Navbar from "@/components/home/navbar-home/navbar";
@@ -17,13 +18,14 @@ const Home = () => {
       <AdIframe />
 
       <Information />
+
       <ServerExperience />
       <SliderHome />
 
+      <ContributionsHome />
       <Bidding />
       <InfoIntegrate />
       <Subscription />
-
       <NativeBanners />
     </>
   );

@@ -600,6 +600,7 @@ export interface ServerVdpDto {
   disclaimer: string;
   information: { [key: string]: string };
   cards: CardVdp[];
+  events: EventsVdp[];
 }
 
 export interface CardVdp {
@@ -607,4 +608,11 @@ export interface CardVdp {
   value: string;
   icon: number;
   description: string;
+}
+export interface EventsVdp {
+  id: number;
+  img: string;
+  title: string;
+  description: string;
+  disclaimer: string;
 }
