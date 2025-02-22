@@ -568,9 +568,9 @@
         }
     },
     "home-us": {
-        "realm": "Reinos",
-        "experience": "Experiencias",
-        "sub-title": "Wow Libre no solo brinda un servidor o servidores, sino que busca crear experiencias de juego inolvidables.",
+        "realm": "Servidores",
+        "experience": "Unicos",
+        "sub-title": "Encuentra el servidor perfecto para ti y vive aventuras que recordarás para siempre.",
         "realms": {
             "primary": {
                 "title": "¡Una Experiencia Única e Inigualable!",
@@ -924,12 +924,13 @@
         }
     },
     "info-integrate": {
-        "title": "Impulsa tu Servidor de WoW",
-        "short-description": "Optimiza, administra y haz crecer tu servidor de World of Warcraft con nuestra plataforma integral.",
-        "detailed-description": "Dedica tu tiempo a mejorar tu emulador y deja en nuestras manos la gestión y optimización de tu servidor. Te ofrecemos herramientas avanzadas y soporte especializado para maximizar su rendimiento y éxito.",
-        "summary": "No solo es administración; es un apoyo continuo para que tu servidor se destaque y crezca de manera eficiente. ¡Nosotros nos encargamos de los detalles, tú solo enfócate en lo que más te apasiona!",
-        "btn":{
-            "text":"¡Vincula tu servidor ahora!"
-        }
+        "title": "Haz crecer tu servidor de WoW sin complicaciones",
+        "short-description": "Registra y vincula tu servidor en minutos. Nosotros nos encargamos de la parte técnica para que tú te concentres en lo que realmente importa: tu comunidad.",
+        "detailed-description": "Olvídate de configuraciones tediosas y servidores web complicados. Con nuestra plataforma, conectar tu servidor de WoW es rápido y fácil. Gestionamos el registro de jugadores por ti, optimizamos la infraestructura y te brindamos las herramientas necesarias para que tu comunidad crezca sin límites. Tú creas la experiencia, nosotros hacemos el resto.",
+        "summary": "Más jugadores, menos problemas. Automatiza el registro, simplifica la gestión y enfócate en ofrecer la mejor experiencia de juego. ¡Nosotros nos encargamos de la parte técnica!",
+            "btn": {
+            "text": "Registra tu servidor en minutos"
+            }
     }
+
 }

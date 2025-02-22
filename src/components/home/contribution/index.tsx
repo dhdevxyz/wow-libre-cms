@@ -3,21 +3,21 @@ import React from "react";
 const ContributionsHome = () => {
   return (
     <section
-      className="rounded-xl
+      className="rounded-3xl
  contenedor overflow-hidden bg-gradient-to-br from-[#0b1218] via-[#1b2735] to-[#4a789f] sm:grid sm:grid-cols-2 sm:items-center mt-20 mb-20"
     >
       <div className=" p-8 md:p-12 lg:px-16 lg:py-24">
         <div className="mx-auto max-w-xl text-center ltr:sm:text-left rtl:sm:text-right">
           <h2 className="text-2xl font-bold text-white md:text-3xl">
-            Desarrollos para la Comunidad de World of Warcraft
+            ¿Qué es WowLibre?
           </h2>
 
-          <p className="hidden text-gray-400 md:mt-4 md:block text-2xl">
-            WowLibre es una comunidad dedicada a mejorar la experiencia de World
-            of Warcraft mediante el desarrollo de herramientas innovadoras.
-            Nuestro objetivo es facilitar la gestión de servidores y potenciar
-            la interacción entre jugadores y administradores con soluciones
-            tecnológicas accesibles y eficientes.
+          <p className="hidden text-gray-300 md:mt-4 md:block text-2xl">
+            WowLibre es una comunidad dedicada a optimizar la experiencia en
+            World of Warcraft a través de herramientas innovadoras. Nuestro
+            propósito es simplificar la gestión de servidores y fortalecer la
+            conexión entre jugadores y administradores con soluciones
+            tecnológicas eficientes y accesibles.
           </p>
 
           <div className="mt-4 md:mt-8">

@@ -2,7 +2,7 @@ import React from "react";
 
 const IntegrationsBody = () => {
   return (
-    <section className="bg-mid-900 text-white py-12">
+    <section id="community" className="bg-mid-900 text-white py-12">
       <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 md:gap-12">
           {/* Contenedor de la Imagen (Fija en la parte superior) */}
@@ -358,7 +358,9 @@ const IntegrationsBody = () => {
                       Oracle o adoptium.net:
                     </li>
                     <pre className="bg-gray-800 text-white px-3 py-2 rounded-md">
-                      <code>https://adoptium.net/</code>
+                      <code>
+                        https://www.oracle.com/co/java/technologies/downloads/
+                      </code>
                     </pre>
                     <li>
                       Durante la instalación, asegúrate de agregar Java al PATH
@@ -382,6 +384,7 @@ const IntegrationsBody = () => {
         set GM_PASSWORD=wowlibreclave
         set DB_WOW_LIBRE_USERNAME=acore
         set DB_WOW_LIBRE_PASSWORD=acore
+        set SECRET_JWT=A3F1E6B2D0A728C9F54D8B32C7A59A7D0B9A8F94D1F6C762E7DA56231988C158
 
         cd /d C:\app\
         java -jar wow-libre-client-0.0.1-SNAPSHOT.jar
@@ -473,6 +476,8 @@ Environment="GM_USERNAME=wowlibregm"
 Environment="GM_PASSWORD=wowlibreclave"
 Environment="DB_WOW_LIBRE_USERNAME=acore"
 Environment="DB_WOW_LIBRE_PASSWORD=acore"
+Environment="SECRET_JWT=A3F1E6B2D0A728C9F54D8B32C7A59A7D0B9A8F94D1F6C762E7DA56231988C158"
+
 
 [Install]
 WantedBy=multi-user.target`}
@@ -551,7 +556,7 @@ WantedBy=multi-user.target`}
             y iOS. Nuestra app te ofrece una experiencia intuitiva y eficiente.
           </p>
           <button className="bg-purple-600 text-white px-8 py-4 rounded-full font-semibold shadow-lg hover:bg-purple-700 transition-transform transform hover:scale-105">
-            Muy Pronto
+            Soporte{" "}
           </button>
         </div>
       </div>

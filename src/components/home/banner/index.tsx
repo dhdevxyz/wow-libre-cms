@@ -13,16 +13,8 @@ const Advertising = () => {
 
   const fallbackBanners: BannersHome[] = [
     {
-      url: "/img/homes/banner/fallback_banner_one.webp",
-      alt: "World of Warcraft game advertising banner",
-    },
-    {
-      url: "/img/homes/banner/fallback_banner_two.webp",
-      alt: "World of Warcraft game advertising banner",
-    },
-    {
-      url: "/img/homes/banner/fallback_banner_three.webp",
-      alt: "World of Warcraft game advertising banner",
+      url: "https://static.wixstatic.com/media/5dd8a0_c4ab55bb4b504dbbb56b6005f42095f5~mv2.webp",
+      alt: "wowlibre_banner",
     },
   ];
 

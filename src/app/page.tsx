@@ -21,10 +21,11 @@ const Home = () => {
 
       <ServerExperience />
       <SliderHome />
-
-      <ContributionsHome />
-      <Bidding />
       <InfoIntegrate />
+
+      <Bidding />
+      <ContributionsHome />
+
       <Subscription />
       <NativeBanners />
     </>

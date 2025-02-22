@@ -19,7 +19,7 @@ const IntegrationsHeader = () => {
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <a
               className="block w-full rounded-sm border border-blue-600 bg-blue-600 px-12 py-3 text-lg font-medium text-white hover:bg-transparent hover:text-white focus:ring-3 focus:outline-hidden sm:w-auto"
-              href="#"
+              href="#community"
             >
               Integrarme
             </a>
