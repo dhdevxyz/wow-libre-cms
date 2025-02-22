@@ -225,7 +225,7 @@ const Page = () => {
                 type="button"
                 onClick={toggleDropdown}
               >
-                Action
+                Administration
                 <svg
                   className="w-2.5 h-2.5 ml-2.5"
                   aria-hidden="true"

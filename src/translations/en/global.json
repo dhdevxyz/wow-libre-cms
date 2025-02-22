@@ -931,6 +931,11 @@
         "btn": {
             "text": "Register Your Server in Minutes"
         }
+    },
+    "home-who-we-are": {
+        "title": "What is WowLibre?",
+        "description": "WowLibre is a community dedicated to optimizing the World of Warcraft experience through innovative tools. Our purpose is to simplify server management and strengthen the connection between players and administrators with efficient and accessible technological solutions.",
+        "btn-text": "Discover our tools"
     }
 
 }

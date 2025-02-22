@@ -26,9 +26,9 @@ const IntegrationsHeader = () => {
 
             <a
               className="block w-full rounded-sm border border-blue-600 px-12 py-3 text-lg font-medium text-white hover:bg-blue-600 focus:ring-3 focus:outline-hidden sm:w-auto"
-              href="#"
+              href="https://github.com/ManuChitiva/wow-libre-client"
             >
-              Documentacion
+              Proyecto cliente
             </a>
           </div>
         </div>
