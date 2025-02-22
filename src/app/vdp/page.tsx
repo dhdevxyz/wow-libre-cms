@@ -1,20 +1,11 @@
-"use client";
-
-import NavbarAuthenticated from "@/components/navbar-authenticated";
-import VdpBody from "@/components/vdp/body";
-import VdpNavbar from "@/components/vdp/header";
+import SuspenseBoundary from "@/components/utilities/suspense-boundary";
+import Vdp from "@/components/vdp/home/inde";
 import React from "react";
 
-const Vdp = () => {
-  return (
-    <section>
-      <div className="contenedor">
-        <NavbarAuthenticated />
-      </div>
-      <VdpNavbar />
-      <VdpBody />
-    </section>
-  );
-};
+const VdpPage: React.FC = () => (
+  <SuspenseBoundary>
+    <Vdp />
+  </SuspenseBoundary>
+);
 
-export default Vdp;
+export default VdpPage;

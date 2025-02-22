@@ -62,31 +62,32 @@ const Information = () => {
         <div className="p-4 lg:sticky lg:top-4 lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:overflow-hidden flex flex-col items-center">
           <img
             className="w-full max-w-screen-lg rounded-xl bg-gray-800 shadow-xl ring-1 ring-gray-600/10"
-            src="https://static.wixstatic.com/media/5dd8a0_878828466ac34fb5b9f833d34adf8a29~mv2.webp"
+            src="https://static.wixstatic.com/media/5dd8a0_018a0726e33f418db249ba758cd4be17~mv2.webp"
             alt="download-game"
           />
           <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 mt-8">
             <button
               onClick={() =>
                 window.open(
-                  "https://drive.usercontent.google.com/download?id=1jH5dirVKluY_L1kJwNicCd2A0ccjSvec&export=download&authuser=0",
+                  "https://play.google.com/store/apps/details?id=com.tuapp.android",
                   "_blank"
                 )
               }
-              className="text-xl inline-flex items-center justify-center rounded-lg bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 px-8 py-4 sm:px-20 sm:py-6 font-semibold text-white shadow-sm hover:from-yellow-500 hover:via-orange-600 hover:to-red-600 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"
+              className="text-xl inline-flex items-center justify-center rounded-lg bg-green-500 px-8 py-4 sm:px-20 sm:py-6 font-semibold text-white shadow-sm hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-offset-2"
             >
-              Download Game (HD)
+              Android
             </button>
+
             <button
               onClick={() =>
                 window.open(
-                  "https://www.mediafire.com/file/ucm0pcah89qc6lx/World_of_Warcraft_3.3.5a.rar/file",
+                  "https://apps.apple.com/us/app/tuapp/id123456789",
                   "_blank"
                 )
               }
-              className="text-xl inline-flex items-center justify-center rounded-lg bg-gradient-to-r from-blue-400 via-indigo-500 to-purple-600 px-8 py-4 sm:px-20 sm:py-6 font-semibold text-white shadow-sm hover:from-blue-500 hover:via-indigo-600 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+              className="text-xl inline-flex items-center justify-center rounded-lg bg-black px-8 py-4 sm:px-20 sm:py-6 font-semibold text-white shadow-sm hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-offset-2"
             >
-              Download Game (Original)
+              iOS
             </button>
           </div>
         </div>

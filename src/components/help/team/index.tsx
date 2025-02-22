@@ -8,35 +8,14 @@ const MeetTheTeam = () => {
   const teamMembers = [
     {
       name: "Manuel Chitiva",
-      title: "Development",
+      title: "Wow Libre",
       image:
         "https://static.wixstatic.com/media/5dd8a0_95e131956e584ebb9ebaa0e8728d4e30~mv2.webp",
       social: {
         linkedin: "https://www.linkedin.com/in/manuelchitiva/",
-        twitter: "https://www.facebook.com/WowLibre/",
-        instagram: "https://www.facebook.com/WowLibre/",
+        facebook: "https://www.facebook.com/WowLibre/",
+        tiktok: "https://www.tiktok.com/@wowlibre",
       },
-    },
-    {
-      name: "Greengo",
-      title: "Game Master",
-      image:
-        "https://images.unsplash.com/photo-1634193295627-1cdddf751ebf?fit=clamp&w=400&h=400&q=80",
-      social: {},
-    },
-    {
-      name: "Cami",
-      title: "Game Master",
-      image:
-        "https://images.unsplash.com/photo-1634193295627-1cdddf751ebf?fit=clamp&w=400&h=400&q=80",
-      social: {},
-    },
-    {
-      name: "Sebas",
-      title: "Game Master",
-      image:
-        "https://images.unsplash.com/photo-1634193295627-1cdddf751ebf?fit=clamp&w=400&h=400&q=80",
-      social: {},
     },
   ];
 
@@ -88,21 +67,24 @@ const MeetTheTeam = () => {
                       <div className="flex items-center justify-center space-x-2 opacity-50 hover:opacity-100 transition-opacity duration-300">
                         <a
                           href={member.social.linkedin}
+                          target="_blank"
                           className="flex items-center justify-center rounded-full bg-gray-700 p-2 cursor-pointer hover:bg-indigo-600 transition-colors duration-200"
                         >
                           <i className="fab fa-linkedin text-white"></i>
                         </a>
                         <a
-                          href={member.social.twitter}
+                          target="_blank"
+                          href={member.social.facebook}
                           className="flex items-center justify-center rounded-full bg-gray-700 p-2 cursor-pointer hover:bg-blue-500 transition-colors duration-200"
                         >
-                          <i className="fab fa-twitter text-white"></i>
+                          <i className="fab fa-facebook text-white"></i>
                         </a>
                         <a
-                          href={member.social.instagram}
+                          target="_blank"
+                          href={member.social.tiktok}
                           className="flex items-center justify-center rounded-full bg-gray-700 p-2 cursor-pointer hover:bg-pink-500 transition-colors duration-200"
                         >
-                          <i className="fab fa-instagram text-white"></i>
+                          <i className="fab fa-tiktok text-white"></i>
                         </a>
                       </div>
                     </div>

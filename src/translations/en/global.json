@@ -568,9 +568,9 @@
         }
     },
     "home-us": {
-      "realm": "Realms",
-        "experience": "Experiences",
-        "sub-title": "Wow Libre doesn't just offer a server or servers, but aims to create unforgettable gaming experiences.",
+      "realm": "Servers",
+        "experience": "Unique",
+        "sub-title": "Find the perfect server for you and live adventures you’ll never forget.",
         "realms": {
             "primary": {
                 "title": "An Unmatched and Unique Experience!",
@@ -922,5 +922,15 @@
             "btn-payment": "Make Payment",
             "disclaimer": "By subscribing, you accept WowLibre's Terms and Conditions. You can cancel anytime."
         }
+    },
+    "info-integrate": {
+        "title": "Grow Your WoW Server Without the Hassle",
+        "short-description": "Register and link your server in minutes. We handle the technical side so you can focus on what really matters: your community.",
+        "detailed-description": "Forget tedious configurations and complicated web servers. With our platform, connecting your WoW server is fast and effortless. We manage player registration for you, optimize the infrastructure, and provide the tools you need to grow your community without limits. You create the experience, we take care of the rest.",
+        "summary": "More players, fewer headaches. Automate registration, simplify management, and focus on delivering the best gaming experience. We handle the technical side!",
+        "btn": {
+            "text": "Register Your Server in Minutes"
+        }
     }
+
 }

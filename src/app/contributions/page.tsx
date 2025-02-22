@@ -74,33 +74,34 @@ const Contributions = () => {
           </div>
         </div>
       </div>
-      <AdultsBanner />
+
       <section className="contenedor  pb-10 pt-20 lg:pb-20 lg:pt-[120px]">
         <div className="container">
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             <SingleCard
-              image="https://static.wixstatic.com/media/5dd8a0_1827daecd04e4251a91afb8732ca8778~mv2.webp"
-              CardTitle="Aplicación de Gestión de Jugadores"
-              titleHref="https://github.com/ManuChitiva/server-private-accounts"
-              btnHref="https://github.com/ManuChitiva/server-private-accounts"
-              CardDescription="Administra fácilmente las cuentas de tus jugadores de World of Warcraft"
+              image="https://static.wixstatic.com/media/5dd8a0_ee6badb1babc44caae9116919c469636~mv2.webp"
+              CardTitle="Gestión y Conectividad en un Solo Lugar"
+              titleHref="https://github.com/ManuChitiva/wow-libre-client"
+              btnHref="https://github.com/ManuChitiva/wow-libre-client"
+              CardDescription="Registra jugadores, administra tu servidor y conecta con WowLibre sin complicaciones. ¡Todo lo que necesitas en una sola plataforma!"
               Button="Ver Detalles"
             />
             <SingleCard
-              image="https://static.wixstatic.com/media/5dd8a0_ad3cfa637b6849f19ab5ee8b46acb8ee~mv2.png"
+              image="https://static.wixstatic.com/media/5dd8a0_4cb670015f3d4b61838a98aa22aa6d98~mv2.jpg"
               CardTitle="Aplicación Móvil - Gestión de Jugadores"
               CardDescription="Administra las cuentas y estadísticas de tus jugadores desde cualquier lugar con nuestra intuitiva app móvil."
-              Button="Ver Detalles"
+              Button="En desarrollo"
             />
             <SingleCard
-              image="https://i.ibb.co/dL9fH7N/image-03-1.jpg"
+              image="https://static.wixstatic.com/media/5dd8a0_8c5b7a3a15014ad599ca7a0d6d6dfa35~mv2.jpg"
               CardTitle="Launcher Personalizado"
               CardDescription="Facilita a tus jugadores el acceso al servidor y gestiona actualizaciones con nuestro launcher diseñado para tu juego."
-              Button="Ver Detalles"
+              Button="En desarrollo"
             />
           </div>
         </div>
       </section>
+      <AdultsBanner />
     </div>
   );
 };

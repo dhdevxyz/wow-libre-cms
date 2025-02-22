@@ -91,11 +91,11 @@ const Footer = () => {
       <div className="mt-8 border-t border-gray-700 pt-8 md:flex md:items-center md:justify-between">
         <div className="text-center md:text-left text-base leading-6 text-gray-400">
           <p className="text-2xl mb-10">
-            World of Warcraft® and Blizzard Entertainment® are all trademarks or
-            registered trademarks of Blizzard Entertainment in the United States
-            and/or other countries. These terms and all related materials,
-            logos, and images are copyright © Blizzard Entertainment. This site
-            is in no way associated with or endorsed by Blizzard Entertainment®.
+            @WowLibre somos una plataforma especializada en ofrecer soluciones
+            innovadoras para la comunidad gamer. Apasionados por el desarrollo
+            web, buscamos contribuir al ecosistema de juegos mediante software
+            avanzado que optimiza la experiencia de juego y fomenta la creación
+            de modelos únicos e inmersivos.
           </p>
         </div>
       </div>

@@ -568,9 +568,9 @@
         }
     },
     "home-us": {
-       "realm": "Reinos",
-        "experience": "Experiências",
-        "sub-title": "Wow Libre não oferece apenas um servidor ou servidores, mas busca criar experiências de jogo inesquecíveis.",
+       "realm": "Servidores",
+        "experience": "Únicos",
+        "sub-title": "Encontre o servidor perfeito para você e viva aventuras que nunca vai esquecer.",
         "realms": {
             "primary": {
                 "title": "Uma Experiência Única e Incomparável!",
@@ -922,6 +922,14 @@
         "btn-payment": "Realizar Pagamento",
         "disclaimer": "Ao assinar, você aceita os Termos e Condições do WowLibre. Você pode cancelar a qualquer momento."
     }
+    },
+    "info-integrate": {
+        "title": "Expanda seu servidor de WoW sem complicação",
+        "short-description": "Registre e conecte seu servidor em minutos. Cuidamos da parte técnica para que você se concentre no que realmente importa: sua comunidade.",
+        "detailed-description": "Esqueça configurações complicadas e servidores web difíceis de gerenciar. Com nossa plataforma, conectar seu servidor de WoW é rápido e simples. Gerenciamos o registro de jogadores para você, otimizamos a infraestrutura e fornecemos as ferramentas necessárias para o crescimento ilimitado da sua comunidade. Você cria a experiência, nós cuidamos do resto.",
+        "summary": "Mais jogadores, menos dores de cabeça. Automatize o registro, simplifique a gestão e foque-se em oferecer a melhor experiência de jogo. Nós cuidamos da parte técnica!",
+        "btn": {
+            "text": "Registre seu servidor em minutos"
+        }
     }
-
 }

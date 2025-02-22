@@ -1,48 +1,83 @@
-import React from "react";
+import React, { useState } from "react";
 
-const VdpNavbar = () => {
+interface vdpBannerProps {
+  type: string;
+  name: string;
+  realmlist: string;
+  description: string;
+}
+
+const VdpBanner: React.FC<vdpBannerProps> = ({
+  type,
+  name,
+  realmlist,
+  description,
+}) => {
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = () => {
+    if (realmlist) {
+      navigator.clipboard.writeText(realmlist);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000); // Volver al estado original después de 2 segundos
+    }
+  };
+
   return (
-    <div className="bg-midnight text-white py-20">
+    <div className="mb-5 bg-gradient-to-br from-gray-900 via-purple-900 to-black text-white py-20">
       <div className="contenedor mx-auto flex flex-col md:flex-row items-center my-12 md:my-24">
         <div className="flex flex-col w-full lg:w-1/3 justify-center items-start p-8">
           <h1 className="text-3xl md:text-5xl p-2 text-yellow-300 tracking-loose">
-            FROZEN
+            {type}
           </h1>
           <h2 className="text-3xl md:text-5xl leading-relaxed md:leading-snug mb-2">
-            SERVER : The Timeless Infinity
+            {name}
           </h2>
-          <p className="text-sm md:text-base text-gray-50 mb-4">
-            Explore your favourite events and register now to showcase your
-            talent and win exciting prizes.
-          </p>
-          <a
-            href="#"
-            className="bg-transparent hover:bg-yellow-300 text-yellow-300 hover:text-black rounded shadow hover:shadow-lg py-2 px-4 border border-yellow-300 hover:border-transparent"
-          >
-            Explore Now
-          </a>
+          <p className="text-sm md:text-lg text-gray-200 mb-4">{description}</p>
+
+          {/* Agregamos espacio entre los botones y ambos tienen el mismo diseño cuadrado */}
+          <div className="flex flex-row space-x-4">
+            <a
+              href="#"
+              className="bg-transparent hover:bg-yellow-300 text-yellow-300 hover:text-black rounded-lg shadow hover:shadow-lg py-3 px-6 border border-yellow-300 hover:border-transparent transition duration-300 ease-in-out"
+            >
+              Registrarme
+            </a>
+
+            <button
+              onClick={handleCopy}
+              className="bg-gradient-to-br from-yellow-300 via-yellow-400 to-yellow-500 text-black font-medium py-3 px-6 rounded-lg shadow-lg hover:from-yellow-400 hover:to-yellow-600 focus:outline-none focus:ring-4 focus:ring-yellow-500 focus:ring-opacity-50 transition duration-300 ease-in-out"
+            >
+              {copied ? "¡Copiado!" : "Copiar Realmlist"}
+            </button>
+          </div>
         </div>
-        <div className="p-8 mt-12 mb-6 md:mb-0 md:mt-0 ml-0 md:ml-12 lg:w-2/3 justify-center">
-          <div className="h-48 flex flex-wrap content-center">
-            <div>
+
+        {/* Grid para imágenes verticales con misma proporción */}
+        <div className="p-4 mt-12 mb-6 md:mb-0 md:mt-0 ml-0 md:ml-12 lg:w-2/3">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 justify-center">
+            {/* Contenedor con tamaño fijo */}
+            <div className="w-full h-[500px] overflow-hidden rounded-3xl shadow-lg">
               <img
-                className="inline-block mt-28 hidden xl:block"
-                src="https://user-images.githubusercontent.com/54521023/116969935-c13d5b00-acd4-11eb-82b1-5ad2ff10fb76.png"
-                alt="TechFest Image 1"
+                className="w-full h-full object-cover"
+                src="https://media.steelseriescdn.com/thumbs/filer_public/62/64/6264f4b0-429b-4da0-ae6a-230834dbcb32/wow_key_art_m_tile.png__540x540_crop-scale_optimize_subsampling-2.png"
+                alt="Tech Image 1"
               />
             </div>
-            <div>
+
+            <div className="w-full h-[500px] overflow-hidden rounded-3xl shadow-lg">
               <img
-                className="inline-block mt-24 md:mt-0 p-8 md:p-0"
-                src="https://user-images.githubusercontent.com/54521023/116969931-bedb0100-acd4-11eb-99a9-ff5e0ee9f31f.png"
-                alt="TechFest Image 2"
+                className="w-full h-full object-cover"
+                src="https://4kwallpapers.com/images/wallpapers/world-of-warcraft-1080x2400-18842.jpg"
+                alt="Tech Image 2"
               />
             </div>
-            <div>
+
+            <div className="w-full h-[500px] overflow-hidden rounded-3xl shadow-lg">
               <img
-                className="inline-block mt-28 hidden lg:block"
-                src="https://user-images.githubusercontent.com/54521023/116969939-c1d5f180-acd4-11eb-8ad4-9ab9143bdb50.png"
-                alt="TechFest Image 3"
+                className="w-full h-full object-cover"
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2EIGTeqjRDSEn6ab5W5uegxHuOECy15XEbw&s"
+                alt="Tech Image 3"
               />
             </div>
           </div>
@@ -52,4 +87,4 @@ const VdpNavbar = () => {
   );
 };
 
-export default VdpNavbar;
+export default VdpBanner;

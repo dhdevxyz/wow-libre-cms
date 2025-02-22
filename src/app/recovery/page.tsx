@@ -37,7 +37,15 @@ const ChangePassword = () => {
       setSuccessMessage(t("reset-password.section-one.success-message"));
       handleFormChange("additional");
     } catch (err: any) {
-      setError(err.message);
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: err.message,
+        color: "white",
+        background: "#0B1218",
+        timer: 4000,
+      });
+      return;
     } finally {
       setLoading(false);
     }
@@ -99,7 +107,7 @@ const ChangePassword = () => {
                 <h1 className="text-3xl md:text-4xl font-medium text-white">
                   {t("reset-password.section-one.title")}
                 </h1>
-                <p className="text-slate-400 text-xl">
+                <p className="text-slate-400 text-2xl">
                   {t("reset-password.section-one.sub-title")}
                 </p>
 
@@ -115,11 +123,12 @@ const ChangePassword = () => {
                         type="email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        className="w-full py-3 border border-slate-200 rounded-lg px-3 focus:outline-none focus:border-slate-500 hover:shadow"
+                        className="text-2xl w-full py-3 border border-slate-200 rounded-lg px-3 focus:outline-none focus:border-slate-500 hover:shadow"
                         placeholder={t(
                           "reset-password.section-one.var-mail-placeholder"
                         )}
                         required
+                        autoComplete="email"
                       />
                     </label>
 
@@ -177,7 +186,7 @@ const ChangePassword = () => {
 
                     <button
                       type="submit"
-                      className="w-full py-3 font-medium text-white bg-indigo-600 hover:bg-indigo-500 rounded-lg border-indigo-500 hover:shadow inline-flex space-x-2 items-center justify-center"
+                      className="mt-10 w-full py-3 font-medium text-white bg-indigo-600 hover:bg-indigo-500 rounded-lg border-indigo-500 hover:shadow inline-flex space-x-2 items-center justify-center"
                     >
                       {loading
                         ? t("reset-password.section-two.btn.send")
@@ -203,9 +212,9 @@ const ChangePassword = () => {
           {/* Image Section */}
           <div className="w-full md:w-2/3 flex items-center justify-center mt-8 md:mt-0 select-none aspect-[19/9]">
             <img
-              src="https://turtle-wow.org/build/assets/turtlewow_unreal_barrens-BkxjrNvE.webp"
-              alt="Ilustración de Restablecer Contraseña"
-              className="rounded-lg w-full h-full object-cover"
+              src="https://static.wixstatic.com/media/5dd8a0_b7b213ad566542e1932ce0379385f64e~mv2.webp"
+              alt="recovery-password"
+              className="rounded-sm  w-full h-full object-cover"
             />
           </div>
         </div>

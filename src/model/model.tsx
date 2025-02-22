@@ -592,3 +592,27 @@ export interface CharacterInventory {
   instance_id: number;
   name: string;
 }
+
+export interface ServerVdpDto {
+  type: string;
+  name: string;
+  realmlist: string;
+  disclaimer: string;
+  information: { [key: string]: string };
+  cards: CardVdp[];
+  events: EventsVdp[];
+}
+
+export interface CardVdp {
+  id: number;
+  value: string;
+  icon: number;
+  description: string;
+}
+export interface EventsVdp {
+  id: number;
+  img: string;
+  title: string;
+  description: string;
+  disclaimer: string;
+}
