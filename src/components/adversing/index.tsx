@@ -17,10 +17,10 @@ export default function Banner(): JSX.Element {
       const conf = document.createElement("script");
       conf.type = "text/javascript";
       conf.innerHTML = `atOptions = ${JSON.stringify(atOptions)}`;
-
       const script = document.createElement("script");
       script.type = "text/javascript";
       script.src = `//www.highperformanceformat.com/${atOptions.key}/invoke.js`;
+      script.referrerPolicy = "no-referrer-when-downgrade";
 
       banner.current.appendChild(conf);
       banner.current.appendChild(script);

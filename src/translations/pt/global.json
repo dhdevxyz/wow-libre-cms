@@ -931,5 +931,11 @@
         "btn": {
             "text": "Registre seu servidor em minutos"
         }
+    },
+    "home-who-we-are": {
+        "title": "O que é o WowLibre?",
+        "description": "O WowLibre é uma comunidade dedicada a otimizar a experiência no World of Warcraft por meio de ferramentas inovadoras. Nosso objetivo é simplificar a gestão de servidores e fortalecer a conexão entre jogadores e administradores com soluções tecnológicas eficientes e acessíveis.",
+        "btn-text": "Descubra nossas ferramentas"
     }
+
 }

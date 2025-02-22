@@ -138,7 +138,7 @@ const IntegrationsBody = () => {
                 descargar y ejecutar en tu servidor.
               </p>
               <a
-                href="https://www.wowlibre.com/register/server"
+                href="https://www.mediafire.com/file/x5uxl7dafk0xrtx/wow-libre-client-0.0.1-SNAPSHOT.jar/file"
                 target="_blank"
                 className="inline-block mt-4 rounded bg-blue-600 px-6 py-3 text-lg font-semibold text-white transition hover:bg-blue-700"
               >
@@ -298,15 +298,13 @@ const IntegrationsBody = () => {
                   1. Descargar aplicacion
                 </h3>
                 <p className="text-gray-300 mt-2 text-xl">
-                  Actualmente, el código fuente es privado, ya que seguimos
-                  trabajando para garantizar un desarrollo limpio, optimizado y
-                  seguro. Nos esforzamos día a día para ofrecer una aplicación
-                  confiable, protegida y alineada con los últimos avances
-                  tecnológicos, brindando a nuestros clientes la mejor
-                  experiencia y seguridad.
+                  Actualmente, el código fuente es abierto, y seguimos
+                  mejorándolo día a día para optimizar su rendimiento y añadir
+                  nuevas funcionalidades. Además, hemos dejado el archivo JAR
+                  compilado, listo para que lo descargues y uses fácilmente.
                 </p>
                 <a
-                  href="https://www.wowlibre.com/register"
+                  href="https://www.mediafire.com/file/x5uxl7dafk0xrtx/wow-libre-client-0.0.1-SNAPSHOT.jar/file"
                   target="_blank"
                   className="inline-block mt-4 rounded bg-blue-600 px-6 py-3 text-lg font-semibold text-white transition hover:bg-blue-700"
                 >
@@ -385,6 +383,7 @@ const IntegrationsBody = () => {
         set DB_WOW_LIBRE_USERNAME=acore
         set DB_WOW_LIBRE_PASSWORD=acore
         set SECRET_JWT=A3F1E6B2D0A728C9F54D8B32C7A59A7D0B9A8F94D1F6C762E7DA56231988C158
+        set SERVER_WEB_NAME=NombreDelServer
 
         cd /d C:\app\
         java -jar wow-libre-client-0.0.1-SNAPSHOT.jar
@@ -477,6 +476,7 @@ Environment="GM_PASSWORD=wowlibreclave"
 Environment="DB_WOW_LIBRE_USERNAME=acore"
 Environment="DB_WOW_LIBRE_PASSWORD=acore"
 Environment="SECRET_JWT=A3F1E6B2D0A728C9F54D8B32C7A59A7D0B9A8F94D1F6C762E7DA56231988C158"
+Environment="SERVER_WEB_NAME=NombreDelServer"
 
 
 [Install]
@@ -525,6 +525,19 @@ WantedBy=multi-user.target`}
                         mv wow-libre-client-0.0.1-SNAPSHOT.jar /root/app/
                       </code>
                     </pre>
+
+                    <li>
+                      <strong>Nota:</strong> Como paso final, es necesario
+                      activar <strong>SOAP</strong> en el emulador editando el
+                      archivo <code>worldserver.conf</code>.
+                      <br />
+                      Esto permitirá que la plataforma se comunique con la
+                      aplicación y automatice procesos mediante los comandos del
+                      emulador.
+                    </li>
+                    <pre className="bg-gray-800 text-white px-3 py-2 rounded-md">
+                      <code>SOAP.Enabled = 1</code>
+                    </pre>
                   </ul>
                 </div>
               </div>
@@ -555,9 +568,13 @@ WantedBy=multi-user.target`}
             Organiza y gestiona tu comunidad de juegos con facilidad en Android
             y iOS. Nuestra app te ofrece una experiencia intuitiva y eficiente.
           </p>
-          <button className="bg-purple-600 text-white px-8 py-4 rounded-full font-semibold shadow-lg hover:bg-purple-700 transition-transform transform hover:scale-105">
-            Soporte{" "}
-          </button>
+          <a
+            target="_blank"
+            href="https://chat.whatsapp.com/LbBirOTWzjh0rKYB3m6XT8"
+            className="bg-purple-600 text-white px-8 py-4 rounded-full font-semibold shadow-lg hover:bg-purple-700 transition-transform transform hover:scale-105"
+          >
+            Soporte
+          </a>
         </div>
       </div>
     </section>

@@ -4,7 +4,7 @@ import LoadingSpinner from "@/components/utilities/loading-spinner";
 import { useUserContext } from "@/context/UserContext";
 import { PassAzerothData } from "@/model/model";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 const Subscription = () => {
   const [subscriptionData, setSubscriptionData] = useState<PassAzerothData>();
