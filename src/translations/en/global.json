@@ -885,6 +885,9 @@
         },
         "btn-inactive": {
             "text": "Sign up"
+        }, 
+        "btn-subscription-active":{
+            "text":"Manage Subscription"
         },
         "disclaimer": "By subscribing, you accept WowLibre's Terms and Conditions. You can cancel anytime.",
         "benefits": {
@@ -920,6 +923,7 @@
                 "three": "Cash"
             },
             "btn-payment": "Make Payment",
+            "btn-admin": "Manage Subscription",
             "disclaimer": "By subscribing, you accept WowLibre's Terms and Conditions. You can cancel anytime."
         }
     },

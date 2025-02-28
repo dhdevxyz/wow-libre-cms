@@ -91,11 +91,9 @@ const Footer = () => {
       <div className="mt-8 border-t border-gray-700 pt-8 md:flex md:items-center md:justify-between">
         <div className="text-center md:text-left text-base leading-6 text-gray-400">
           <p className="text-2xl mb-10">
-            @WowLibre somos una plataforma especializada en ofrecer soluciones
-            innovadoras para la comunidad gamer. Apasionados por el desarrollo
-            web, buscamos contribuir al ecosistema de juegos mediante software
-            avanzado que optimiza la experiencia de juego y fomenta la creación
-            de modelos únicos e inmersivos.
+            @WowLibre – Desarrollamos soluciones innovadoras para la comunidad
+            gamer. Potenciamos la experiencia de juego con software avanzado,
+            fomentando la creación de mundos únicos e inmersivos.
           </p>
         </div>
       </div>

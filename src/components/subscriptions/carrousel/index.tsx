@@ -17,18 +17,6 @@ const MultiCarouselSubs: React.FC<CarrouselSubscriptionProps> = ({ t }) => {
         "https://static.wixstatic.com/media/5dd8a0_f0c3204f2346419695468d1ec3ac5bb0~mv2.webp",
       title: "Wow Libre - Elysium",
     },
-    {
-      id: 2,
-      image:
-        "https://dotesports.com/wp-content/uploads/2023/11/WoW-Sword-and-Shield-Emerald-Dream.jpg",
-      title: "Wow Libre - Twinks",
-    },
-    {
-      id: 3,
-      image:
-        "https://static.wixstatic.com/media/5dd8a0_8b56bcb73bda451782f0e1afc9f8a0e3~mv2.webp",
-      title: "Wow Frozen - Servidor Integrado",
-    },
   ];
 
   const responsive = {

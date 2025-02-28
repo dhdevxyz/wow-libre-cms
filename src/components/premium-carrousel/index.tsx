@@ -26,21 +26,6 @@ const slides = [
       "https://static.wixstatic.com/media/5dd8a0_b6ad01dcad1f470aa35211417a5e272f~mv2.webp",
     text: "Explora Azeroth sin límites. ¡Desbloquea el vuelo sin restricciones hoy mismo!",
   },
-  {
-    image:
-      "https://static.wixstatic.com/media/5dd8a0_99246d3005de4a75ba5bc1b97f47c5a1~mv2.png",
-    text: "Cambia de facción o personaliza tu guerrero tantas veces como quieras. ¡Hazlo a tu manera!",
-  },
-  {
-    image:
-      "https://static.wixstatic.com/media/5dd8a0_ab1ee40cdb204bca87d3a64032436071~mv2.png",
-    text: "Explora Azeroth sin límites. ¡Desbloquea el vuelo sin restricciones hoy mismo!",
-  },
-  {
-    image:
-      "https://static.wixstatic.com/media/5dd8a0_1390e2c11b0a42d69b4b138ca33ffff5~mv2.png",
-    text: "Equípate con el increíble traje de Murloc. ¡Disponible ahora!",
-  },
 ];
 
 interface PremiumBenefitsProps {
