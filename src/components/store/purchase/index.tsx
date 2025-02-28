@@ -65,7 +65,6 @@ const Buy: React.FC<BuyProps> = ({
       }
 
       const response: BuyRedirectDto = await buyProduct(
-        reference,
         selectedAccountId,
         serverId,
         token,
