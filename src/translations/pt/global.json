@@ -886,6 +886,9 @@
     "btn-inactive": {
         "text": "Registrar-se"
     },
+    "btn-subscription-active":{
+        "text":"Gerenciar Assinatura"
+    },
     "disclaimer": "Ao assinar, você aceita os Termos e Condições do WowLibre. Você pode cancelar a qualquer momento.",
     "benefits": {
         "title": "Benefícios",
@@ -920,6 +923,7 @@
             "three": "Dinheiro"
         },
         "btn-payment": "Realizar Pagamento",
+        "btn-admin": "Gerenciar Assinatura",
         "disclaimer": "Ao assinar, você aceita os Termos e Condições do WowLibre. Você pode cancelar a qualquer momento."
     }
     },

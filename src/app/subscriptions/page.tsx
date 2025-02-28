@@ -1,11 +1,13 @@
 "use client";
 import { getPlanAvailable } from "@/api/plan";
 import { buyProduct } from "@/api/store";
+import { getSubscriptionActive } from "@/api/subscriptions";
 import NavbarAuthenticated from "@/components/navbar-authenticated";
 import PremiumBenefitsCarrousel from "@/components/premium-carrousel";
 import MultiCarouselSubs from "@/components/subscriptions/carrousel";
 import FaqsSubscriptions from "@/components/subscriptions/faqs";
 import { useUserContext } from "@/context/UserContext";
+import { InternalServerError } from "@/dto/generic";
 import { BuyRedirectDto, PlanModel } from "@/model/model";
 import Cookies from "js-cookie";
 import Link from "next/link";
@@ -19,6 +21,8 @@ const Subscriptions = () => {
   const { t } = useTranslation();
   const [loading, setLoading] = useState<boolean>(true);
   const [planModel, setPlan] = useState<PlanModel>();
+  const [isSubscription, setIsSubscription] = useState<boolean>(false);
+
   const { user } = useUserContext();
   const token = Cookies.get("token");
   const router = useRouter();
@@ -26,9 +30,19 @@ const Subscriptions = () => {
   useEffect(() => {
     const fetchPlan = async () => {
       try {
-        const plan = await getPlanAvailable();
+        const planPromise = getPlanAvailable();
+        const subscriptionPromise = token
+          ? getSubscriptionActive(token)
+          : Promise.resolve(false);
+        const [plan, isSubscription] = await Promise.all([
+          planPromise,
+          subscriptionPromise,
+        ]);
+
         setPlan(plan);
+        setIsSubscription(isSubscription);
       } catch (err: any) {
+        console.error(err);
       } finally {
         setLoading(false);
       }
@@ -37,33 +51,80 @@ const Subscriptions = () => {
     fetchPlan();
   }, [user]);
 
-  const handleBuy = async () => {
+  const handlePayment = async () => {
     try {
       if (!token) {
+        router.push("/login");
         return;
       }
 
       const response: BuyRedirectDto = await buyProduct(
         null,
         null,
-        null,
         token,
         true
       );
-      router.push(response.redirect);
+
+      const paymentData: Record<string, string> = {
+        merchantId: response.merchant_id,
+        accountId: response.account_id,
+        description: response.description,
+        referenceCode: response.reference_code,
+        amount: response.amount,
+        tax: response.tax,
+        taxReturnBase: response.tax_return_base,
+        currency: response.currency,
+        signature: response.signature,
+        test: response.test,
+        buyerEmail: response.buyer_email,
+        responseUrl: response.response_url,
+        confirmationUrl: response.confirmation_url,
+      };
+
+      const form = document.createElement("form");
+      form.method = "POST";
+      form.action = response.redirect;
+
+      Object.keys(paymentData).forEach((key) => {
+        const input = document.createElement("input");
+        input.type = "hidden";
+        input.name = key;
+        input.value = String(paymentData[key]);
+        form.appendChild(input);
+        form.target = "_blank";
+      });
+
+      document.body.appendChild(form);
+
+      form.submit();
     } catch (error: any) {
+      if (error instanceof InternalServerError) {
+        Swal.fire({
+          icon: "error",
+          title: "Opss!",
+          html: `
+                 <p><strong>Message:</strong> ${error.message}</p>
+                 <hr style="border-color: #444; margin: 8px 0;">
+                 <p><strong>Transaction ID:</strong> ${error.transactionId}</p>
+               `,
+          color: "white",
+          background: "#0B1218",
+        });
+        return;
+      }
       Swal.fire({
         icon: "error",
         title: "Oops...",
         text: `${error.message}`,
         color: "white",
         background: "#0B1218",
-        timer: 4500,
       });
-    } finally {
     }
   };
 
+  const handleRedirectAccounts = async () => {
+    router.push("/accounts");
+  };
   return (
     <div>
       <div className="contenedor">
@@ -73,7 +134,7 @@ const Subscriptions = () => {
       <div
         className="text-white mb-20 mt-14"
         style={{
-          background: "linear-gradient(to right, #0b486b, #f56217)",
+          background: "linear-gradient(to right, #000000, #434343, #c0c0c0)",
         }}
       >
         <div className="contenedor mx-auto px-6 py-12 lg:py-24">
@@ -105,15 +166,21 @@ const Subscriptions = () => {
               </div>
               <div className="mt-6 sm:mt-10">
                 {!loading && user.logged_in ? (
-                  <button
-                    onClick={() =>
-                      (window.location.href =
-                        "https://checkout.bold.co/payment/LNK_M4YW8QT2BZ")
-                    }
-                    className="px-6 py-3 bg-blue-500 hover:bg-blue-600 rounded-lg text-white font-semibold mb-4"
-                  >
-                    {t("subscription.btn-active.text")}
-                  </button>
+                  isSubscription ? (
+                    <Link
+                      href="/accounts"
+                      className="px-6 py-3 bg-blue-500 hover:bg-blue-600 rounded-lg text-white font-semibold mb-4"
+                    >
+                      {t("subscription.btn-subscription-active.text")}
+                    </Link>
+                  ) : (
+                    <button
+                      onClick={handlePayment}
+                      className="px-6 py-3 bg-blue-500 hover:bg-blue-600 rounded-lg text-white font-semibold mb-4"
+                    >
+                      {t("subscription.btn-active.text")}
+                    </button>
+                  )
                 ) : (
                   <Link
                     href="/register"
@@ -133,14 +200,14 @@ const Subscriptions = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-16">
               <div className="relative h-[350px] sm:h-[450px] w-full sm:w-[300px] select-none mx-auto overflow-hidden">
                 <img
-                  src="https://static.wixstatic.com/media/5dd8a0_9d9020e8c72f431988e33d61613a6b99~mv2.webp"
+                  src="https://static.wixstatic.com/media/5dd8a0_d98e7e1da6e64240bd0920bd00cb7c95~mv2.webp"
                   alt="Premium-subscription"
                   className="object-cover rounded-xl w-full h-full transition duration-300 hover:opacity-75"
                 />
               </div>
               <div className="relative h-[350px] sm:h-[450px] w-full sm:w-[300px] select-none mx-auto overflow-hidden">
                 <img
-                  src="https://static.wixstatic.com/media/5dd8a0_438ad2c9ddcf42019912c84800383194~mv2.jpg"
+                  src="https://static.wixstatic.com/media/5dd8a0_cbcd4683525e448c8502b031dfce2527~mv2.webp"
                   alt="premium"
                   className="object-cover rounded-xl w-full h-full transition duration-300 hover:opacity-75"
                 />
@@ -288,13 +355,12 @@ const Subscriptions = () => {
           {/* Botón al final */}
           <div className="flex flex-col justify-center mt-8 items-center w-full max-w-md mx-auto">
             <button
-              onClick={() =>
-                (window.location.href =
-                  "https://checkout.bold.co/payment/LNK_M4YW8QT2BZ")
-              }
+              onClick={isSubscription ? handleRedirectAccounts : handlePayment}
               className="bg-blue-500 text-white font-bold py-4 px-10 rounded-lg w-full"
             >
-              {t("subscription.payment-methods.btn-payment")}
+              {isSubscription
+                ? t("subscription.payment-methods.btn-admin")
+                : t("subscription.payment-methods.btn-payment")}
             </button>
             <p className="text-lg pt-4 break-words text-white text-center w-full">
               {t("subscription.payment-methods.disclaimer")}

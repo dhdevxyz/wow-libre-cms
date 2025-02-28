@@ -1,5 +1,5 @@
 import { BASE_URL_TRANSACTION } from "@/configs/configs";
-import { GenericResponseDto } from "@/dto/generic";
+import { GenericResponseDto, InternalServerError } from "@/dto/generic";
 import {
   BuyRedirectDto,
   CategoryDetail,
@@ -133,24 +133,22 @@ export const getProduct = async (reference: string): Promise<ProductDetail> => {
 };
 
 export const buyProduct = async (
-  referenceNumber: string | null,
   accountId: number | null,
   serverId: number | null,
   token: string,
   isSubscription: boolean
 ): Promise<BuyRedirectDto> => {
+  const transactionId = uuidv4();
+
   try {
-    const transactionId = uuidv4();
     const requestBody: {
       is_subscription: boolean;
       server_id: number | null;
       account_id: number | null;
-      reference_number: string | null;
     } = {
       is_subscription: isSubscription,
       server_id: serverId,
       account_id: accountId,
-      reference_number: referenceNumber,
     };
     const response = await fetch(`${BASE_URL_TRANSACTION}/api/payment`, {
       method: "POST",
@@ -167,15 +165,24 @@ export const buyProduct = async (
         await response.json();
       return responseData.data;
     } else {
-      const errorGeneric: GenericResponseDto<void> = await response.json();
-
-      throw new Error(
-        `${errorGeneric.message} - Transaction Id: ${transactionId}`
+      const genericResponse: GenericResponseDto<void> = await response.json();
+      throw new InternalServerError(
+        `${genericResponse.message}`,
+        response.status,
+        transactionId
       );
     }
   } catch (error: any) {
-    throw new Error(
-      `It was not possible to obtain the professions: ${error.message}`
-    );
+    if (error instanceof TypeError && error.message === "Failed to fetch") {
+      throw new Error(`Please try again later, services are not available.`);
+    } else if (error instanceof InternalServerError) {
+      throw error;
+    } else if (error instanceof Error) {
+      throw error;
+    } else {
+      throw new Error(
+        `Unknown error occurred - TransactionId: ${transactionId}`
+      );
+    }
   }
 };

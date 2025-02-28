@@ -344,8 +344,19 @@ export interface TransactionDto {
 }
 export interface BuyRedirectDto {
   redirect: string;
-  success_url: string;
-  back_url: string;
+  confirmation_url: string;
+  response_url: string;
+  buyer_email: string;
+  signature: string;
+  currency: string;
+  tax_return_base: string;
+  tax: string;
+  amount: string;
+  reference_code: string;
+  description: string;
+  account_id: string;
+  merchant_id: string;
+  test: string;
 }
 
 /* Modelo para obtener las imagenes de la home */
