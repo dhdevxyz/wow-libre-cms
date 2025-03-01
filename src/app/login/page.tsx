@@ -95,7 +95,7 @@ const Login = () => {
       )}
       <div className="login-banner">
         <img
-          src="https://bnetcmsus-a.akamaihd.net/cms/blog_header/7k/7KGWCRHVH4GW1572627335155.jpg"
+          src="https://static.wixstatic.com/media/5dd8a0_d58fdd03abfd4f908eb5581fc2426e04~mv2.jpg"
           alt="Login WowLibre Img"
         />
       </div>

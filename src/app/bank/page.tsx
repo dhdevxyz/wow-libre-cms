@@ -111,14 +111,14 @@ const Bank = () => {
             <div className="grid grid-cols-2 gap-4 lg:gap-8">
               <div className="relative h-80 lg:h-auto select-none">
                 <img
-                  src="/img/bank/globlin-gold-bank.webp"
+                  src="https://static.wixstatic.com/media/5dd8a0_e387b25639124394932b6ce314705d18~mv2.webp"
                   alt="Globin-loan"
                   className="object-cover rounded-xl w-full h-full transition duration-300 hover:opacity-75"
                 />
               </div>
               <div className="relative h-80 lg:h-auto select-none">
                 <img
-                  src="/img/bank/globlin-gold-bank-loan.webp"
+                  src="https://static.wixstatic.com/media/5dd8a0_3cbcda29d131473a9e9763813066cd75~mv2.webp"
                   alt="Globin-loan-bank"
                   className="object-cover rounded-xl w-full h-full transition duration-300 hover:opacity-75"
                 />
@@ -402,13 +402,13 @@ const Bank = () => {
             <div className="relative">
               <img
                 className="absolute inset-x-0 bottom-0 -mb-48 -translate-x-1/2 left-1/2"
-                src="/img/bank/blob-shape.svg"
+                src="https://static.wixstatic.com/shapes/5dd8a0_fc26647a4c274a0a93baa31fa4be899a.svg"
                 alt="goblin_ground"
               />
 
               <img
                 className="relative w-full xl:max-w-lg xl:mx-auto 2xl:origin-bottom 2xl:scale-110"
-                src="/img/bank/globin-bamboozled.webp"
+                src="https://static.wixstatic.com/media/5dd8a0_168716ee99374e63aa3dd2f9aa448bf2~mv2.webp"
                 alt="goblin_ground_bamboozled"
               />
             </div>

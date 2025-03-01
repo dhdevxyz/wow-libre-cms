@@ -77,15 +77,17 @@ const Guild = () => {
         <div className="relative w-full h-auto flex flex-col items-center justify-center text-center pt-20 text-lg text-gray-500 max-w-full select-none">
           <div className="relative w-2/3 h-auto transition-transform transform hover:scale-105 hover:shadow-lg hover:shadow-gray-800">
             <img
-              src="/img/guilds/guild-not-found.webp"
+              src="https://static.wixstatic.com/media/5dd8a0_75a869fb73124cc99e65265aa8b08607~mv2.webp"
               alt="Loading..."
               className="w-full h-auto max-w-none rounded-lg"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-black rounded-lg"></div>
             <div className="absolute inset-0 flex flex-col items-center justify-center text-white p-4">
-              <h2 className="text-3xl font-bold mb-4">{t("loading")}</h2>
+              <h2 className="text-3xl font-bold mb-4">
+                {t("guild.loading.title")}
+              </h2>
               <p className="text-xl mx-auto max-w-2xl">
-                {t("loading.message")}
+                {t("guild.loading.description")}
               </p>
             </div>
           </div>

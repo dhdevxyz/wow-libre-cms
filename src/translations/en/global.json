@@ -366,6 +366,10 @@
         "no-availability": {
             "title": "No guilds found!",
             "description": "Be part of the adventure and leave your mark in Azeroth! Create your own guild and gather other heroes to face epic challenges and conquer new horizons. Don’t wait any longer, your legacy is waiting for you!"
+        },
+        "loading": {
+            "title": "Loading guilds, please wait",
+            "description": "We are searching for the available guilds on this server. Please hold on!"
         }
     },
     "guild-detail": {
@@ -940,6 +944,14 @@
         "title": "What is WowLibre?",
         "description": "WowLibre is a community dedicated to optimizing the World of Warcraft experience through innovative tools. Our purpose is to simplify server management and strengthen the connection between players and administrators with efficient and accessible technological solutions.",
         "btn-text": "Discover our tools"
-    }
+    }, 
+    "footer": {
+        "terms-and-conditions": "Terms and Conditions",
+        "terms-of-use": "Terms of Use",
+        "privacy-policy": "Privacy Policy",
+        "about": "@WowLibre We develop innovative solutions for the gaming community. We enhance the gaming experience with advanced software, fostering the creation of unique and immersive worlds."
+   }
+   
+    
 
 }

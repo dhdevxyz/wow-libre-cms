@@ -52,53 +52,46 @@ const AdministratorServer = () => {
   }
 
   return (
-    <div className="flex">
-      {/* Header */}
+    <div className="flex flex-col md:flex-row">
+      {/* Header fijo */}
       <Header />
 
       {/* Sidebar */}
-      <div className="fixed top-16 left-0 w-72 h-full z-10">
+      <div className="fixed top-16 left-0 md:w-72 h-full z-10 md:block">
         <Sidebar onOptionChange={handleOptionChange} />
       </div>
 
       {/* Contenido principal */}
-      <div className="flex-1 bg-gradient-to-b from-gray-800 to-gray-900 ml-72 mt-16 p-10 pt-20">
+      <main className="flex-1 bg-gradient-to-b from-gray-800 to-gray-900 md:ml-72 mt-16 p-4 md:p-10 pt-20">
         {/* HOME DASHBOARD */}
         {activeOption === "dashboard" && token && serverId && (
           <HomeDashboard token={token} serverId={serverId} />
         )}
-        {activeOption === "userList" && token && serverId && (
+        {activeOption === "users" && token && serverId && (
           <UsersDashboard token={token} serverId={serverId} />
         )}
 
         {activeOption === "settings" && (
-          <>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <Card title="Usuarios Activos" value="120" icon={<FaUser />} />
-              <Card
-                title="Ventas Mensuales"
-                value="$4,500"
-                icon={<FaChartBar />}
-              />
-              <Card title="Ajustes" value="12" icon={<FaCog />} />
-            </div>
-          </>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+            <Card title="Usuarios Activos" value="120" icon={<FaUser />} />
+            <Card
+              title="Ventas Mensuales"
+              value="$4,500"
+              icon={<FaChartBar />}
+            />
+            <Card title="Ajustes" value="12" icon={<FaCog />} />
+          </div>
         )}
 
         {activeOption === "promotions" && token && serverId && (
           <PromotionsDashboard />
         )}
-        {activeOption === "support" && (
-          <div>
-            <h2 className="text-white">Soporte</h2>
-            {/* Agregar contenido de soporte aquí */}
-          </div>
-        )}
+        {activeOption === "support" && <h2 className="text-white">Soporte</h2>}
         {activeOption === "bank" && token && serverId && (
           <BankDashboard token={token} serverId={serverId} />
         )}
         {activeOption === "guilds" && <GuildsDashboard />}
-      </div>
+      </main>
     </div>
   );
 };

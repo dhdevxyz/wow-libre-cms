@@ -366,6 +366,10 @@
         "no-availability": {
             "title": "Nenhuma guilda encontrada!",
             "description": "Faça parte da aventura e deixe sua marca em Azeroth! Crie sua própria guilda e reúna outros heróis para enfrentar desafios épicos e conquistar novos horizontes. Não espere mais, seu legado está esperando por você!"
+        },
+        "loading": {
+            "title": "Carregando irmandades, por favor aguarde",
+            "description": "Estamos procurando as irmandades disponíveis neste servidor. Um momento, por favor!"
         }
     },
     "guild-detail": {
@@ -940,6 +944,14 @@
         "title": "O que é o WowLibre?",
         "description": "O WowLibre é uma comunidade dedicada a otimizar a experiência no World of Warcraft por meio de ferramentas inovadoras. Nosso objetivo é simplificar a gestão de servidores e fortalecer a conexão entre jogadores e administradores com soluções tecnológicas eficientes e acessíveis.",
         "btn-text": "Descubra nossas ferramentas"
+    },
+    "footer": {
+        "terms-and-conditions": "Termos e Condições",
+        "terms-of-use": "Termos de Uso",
+        "privacy-policy": "Política de Privacidade",
+        "about": "@WowLibre – Desenvolvemos soluções inovadoras para a comunidade gamer. Potencializamos a experiência de jogo com software avançado, incentivando a criação de mundos únicos e imersivos."
     }
+   
+    
 
 }

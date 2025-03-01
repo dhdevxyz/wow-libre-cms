@@ -96,7 +96,7 @@ const Navbar = () => {
           </p>
         </Link>
       </header>
-      <div className="searcher flex-grow">
+      <div className="searcher flex-grow text-black  text-2xl">
         <Searcher
           onSearch={handleSearch}
           placeHolder={t("navbar.search.place-holder")}
