@@ -15,6 +15,7 @@ const NavbarAuthenticated = () => {
   const [avatar, setAvatar] = useState("");
   const [loggin, setLoggin] = useState(false);
   const { t } = useTranslation();
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     setAvatar(user.avatar);
@@ -188,6 +189,31 @@ const NavbarAuthenticated = () => {
             </div>
           </div>
           <div className="absolute  inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+            <div className="relative z-50">
+              {/* Botón del saldo */}
+              <div
+                className="hidden sm:flex cursor-pointer mr-4 max-w-[80vw] overflow-hidden text-ellipsis whitespace-nowrap items-center bg-gray-800 text-white px-4 py-2 rounded-full transition-all duration-300 hover:bg-gray-700"
+                onClick={() => setIsOpen(!isOpen)}
+              >
+                <span className="text-lg font-semibold truncate">Puntos</span>
+              </div>
+
+              {/* Contenido desplegable */}
+              <div
+                className={`absolute left-0 mt-2 w-48 bg-gray-800 text-white rounded-lg shadow-lg p-4 transition-all duration-300 ${
+                  isOpen
+                    ? "opacity-100 translate-y-0 scale-100"
+                    : "opacity-0 scale-95 pointer-events-none"
+                }`}
+              >
+                <p className="text-sm">Detalle del saldo:</p>
+                <p className="text-lg font-bold">Saldo: $ 0</p>
+                <button className="mt-2 w-full bg-blue-500 hover:bg-blue-600 text-white py-1 px-3 rounded-md">
+                  Recargar
+                </button>
+              </div>
+            </div>
+
             <button
               type="button"
               className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
@@ -260,6 +286,14 @@ const NavbarAuthenticated = () => {
                         id="user-menu-item-0"
                       >
                         {t("navbar_authenticated.menu.logged-in.position-two")}
+                      </Link>
+                      <Link
+                        href="/servers"
+                        className="block px-4 py-3 text-base text-gray-700"
+                        role="menuitem"
+                        id="user-menu-item-0"
+                      >
+                        Server
                       </Link>
                       <a
                         href="#"

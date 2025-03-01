@@ -1,6 +1,10 @@
+"use client";
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 const Footer = () => {
+  const { t } = useTranslation();
+
   return (
     <footer className="contenedor pt-10 sm:pt-16">
       <div className="max-w-9xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -9,7 +13,7 @@ const Footer = () => {
             <div className="md:grid md:grid-cols-2 md:gap-8">
               <div>
                 <h4 className="text-lg leading-5 font-semibold tracking-wider text-gray-400 uppercase">
-                  Términos y condiciones
+                  {t("footer.terms-and-conditions")}
                 </h4>
                 <ul className="mt-4 space-y-4">
                   <li>
@@ -17,7 +21,7 @@ const Footer = () => {
                       href="#"
                       className="text-lg leading-6 text-gray-300 hover:text-gray-100 transition duration-150 ease-in-out"
                     >
-                      Términos de uso
+                      {t("footer.terms-of-use")}
                     </a>
                   </li>
                   <li>
@@ -25,7 +29,7 @@ const Footer = () => {
                       href="#"
                       className="text-lg leading-6 text-gray-300 hover:text-gray-100 transition duration-150 ease-in-out"
                     >
-                      Política de privacidad
+                      {t("footer.privacy-policy")}
                     </a>
                   </li>
                 </ul>
@@ -50,6 +54,7 @@ const Footer = () => {
                 </a>
                 <a
                   href="https://www.tiktok.com/@wowlibre?lang=es"
+                  target="_blank"
                   className="text-gray-400 hover:text-gray-300 transition duration-150 ease-in-out"
                 >
                   <span className="sr-only">Instagram</span>
@@ -90,11 +95,7 @@ const Footer = () => {
       </div>
       <div className="mt-8 border-t border-gray-700 pt-8 md:flex md:items-center md:justify-between">
         <div className="text-center md:text-left text-base leading-6 text-gray-400">
-          <p className="text-2xl mb-10">
-            @WowLibre – Desarrollamos soluciones innovadoras para la comunidad
-            gamer. Potenciamos la experiencia de juego con software avanzado,
-            fomentando la creación de mundos únicos e inmersivos.
-          </p>
+          <p className="text-2xl mb-10">{t("footer.about")}</p>
         </div>
       </div>
     </footer>

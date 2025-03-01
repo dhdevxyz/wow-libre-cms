@@ -366,6 +366,10 @@
         "no-availability": {
             "title": "¡No se encontraron hermandades!",
             "description": "¡Sé parte de la aventura y deja tu huella en Azeroth! Crea tu propia hermandad y reúne a otros héroes para enfrentar desafíos épicos y conquistar nuevos horizontes. ¡No esperes más, tu legado te está esperando!"
+        },
+        "loading":{
+            "title":"Cargando hermandades, por favor espera",
+            "description":"Estamos buscando las hermandades disponibles en este servidor. ¡Un momento por favor!"
         }
     },
     "guild-detail": {
@@ -940,6 +944,12 @@
         "title":"¿Qué es WowLibre?",
         "description":"WowLibre es una comunidad dedicada a optimizar la experiencia en World of Warcraft a través de herramientas innovadoras. Nuestro propósito es simplificar la gestión de servidores y fortalecer la conexión entre jugadores y administradores con soluciones tecnológicas eficientes y accesibles.",
         "btn-text":"Descubre nuestras herramientas"
+    },
+    "footer":{
+        "terms-and-conditions": "Términos y condiciones",
+        "terms-of-use": "Términos de uso",
+        "privacy-policy": "Política de privacidad",
+        "about":"@WowLibre – Desarrollamos soluciones innovadoras para la comunidad gamer. Potenciamos la experiencia de juego con software avanzado, fomentando la creación de mundos únicos e inmersivos."
     }
 
 }

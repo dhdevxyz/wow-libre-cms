@@ -143,7 +143,7 @@ const Profile = () => {
       <div className="mb-10">
         <NavbarAuthenticated />
       </div>
-      <div className="bg-gray-900 text-white flex flex-col items-center rounded-3xl shadow-lg overflow-hidden pb-10 border border-gray-700">
+      <div className="bg-gray-900 text-white flex flex-col items-center rounded-3xl shadow-lg overflow-visible pb-10 border border-gray-700">
         {/* Background Section */}
         <div
           className="relative w-full h-96 bg-cover bg-center"
