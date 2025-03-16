@@ -514,7 +514,7 @@
     "reset-password": {
         "section-one": {
             "title": "Redefinir Sua Senha",
-            "sub-title": "Recupere o acesso à sua conta e continue sua aventura épica em Azeroth. Complete o formulário abaixo para redefinir sua senha e retomar seu status heroico no World of Warcraft.",
+            "sub-title": "Recupere o acesso à sua conta e continue aproveitando nossos serviços sem interrupções. Preencha o formulário abaixo para redefinir sua senha e proteger sua conta.",
             "var-mail": "Endereço de Email",
             "var-mail-placeholder": "Digite seu endereço de email",
             "success-message": "Email enviado. Verifique sua caixa de entrada e use o código nos próximos 3 minutos.",

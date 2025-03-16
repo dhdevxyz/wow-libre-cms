@@ -11,6 +11,7 @@ import { useEffect, useState } from "react";
 import { FaChartBar, FaCog, FaSpinner, FaUser } from "react-icons/fa";
 import PromotionsDashboard from "../dashboard/promotions";
 import GuildsDashboard from "../dashboard/guilds";
+import SettingsServer from "../settings";
 
 const AdministratorServer = () => {
   const [activeOption, setActiveOption] = useState("dashboard");
@@ -70,23 +71,10 @@ const AdministratorServer = () => {
         {activeOption === "users" && token && serverId && (
           <UsersDashboard token={token} serverId={serverId} />
         )}
-
-        {activeOption === "settings" && (
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-            <Card title="Usuarios Activos" value="120" icon={<FaUser />} />
-            <Card
-              title="Ventas Mensuales"
-              value="$4,500"
-              icon={<FaChartBar />}
-            />
-            <Card title="Ajustes" value="12" icon={<FaCog />} />
-          </div>
-        )}
-
         {activeOption === "promotions" && token && serverId && (
           <PromotionsDashboard />
         )}
-        {activeOption === "support" && <h2 className="text-white">Soporte</h2>}
+        {activeOption === "settings" && token && serverId && <SettingsServer />}
         {activeOption === "bank" && token && serverId && (
           <BankDashboard token={token} serverId={serverId} />
         )}

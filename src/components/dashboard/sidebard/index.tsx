@@ -21,7 +21,7 @@ const Sidebar: React.FC<{ onOptionChange: (option: string) => void }> = ({
   };
   const handleReturnPage = () => {
     router.push("/servers");
-    setSelectedOption(""); // Restablecer la opción seleccionada
+    setSelectedOption("");
   };
   return (
     <div

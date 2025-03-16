@@ -514,7 +514,7 @@
     "reset-password": {
         "section-one": {
             "title": "Reset Your Password",
-            "sub-title": "Regain access to your account and continue your epic adventure in Azeroth. Complete the form below to reset your password and reclaim your heroic status in World of Warcraft.",
+            "sub-title": "Regain access to your account and continue enjoying our services without interruption. Complete the form below to reset your password and secure your account.",
             "var-mail": "Email Address",
             "var-mail-placeholder": "Enter your email address",
             "success-message": "Email sent. Please check your inbox and use the code within the next 3 minutes.",

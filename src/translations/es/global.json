@@ -514,7 +514,7 @@
     "reset-password": {
         "section-one": {
             "title": "Restablece tu Contraseña",
-            "sub-title": "Recupera el acceso a tu cuenta y vuelve a vivir la épica aventura en Azeroth. Completa el formulario a continuación para restablecer tu contraseña y retoma tu rol heroico en el mundo de World of Warcraft.",
+            "sub-title": "Recupera el acceso a tu cuenta y vuelve a disfrutar de nuestros servicios sin interrupciones. Completa el formulario a continuación para restablecer tu contraseña y proteger tu cuenta.",
             "var-mail": "Correo Electrónico",
             "var-mail-placeholder": "Escribe tu dirección de correo",
             "success-message": "Correo enviado. Por favor, revisa tu bandeja de entrada y utiliza el código dentro de los próximos 3 minutos.",

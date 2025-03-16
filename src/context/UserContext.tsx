@@ -34,7 +34,7 @@ const initialUserData: UserModel = {
   avatar: "",
   server: null,
   expansion: null,
-  pending_validation: true,
+  pending_validation: false,
 };
 
 interface UserContextProps {

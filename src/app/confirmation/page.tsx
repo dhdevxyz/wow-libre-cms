@@ -1,11 +1,14 @@
 "use client";
 
+import { sendMail } from "@/api/account";
 import { validateMail } from "@/api/account/security";
 import NavbarAuthenticated from "@/components/navbar-authenticated";
 import { useUserContext } from "@/context/UserContext";
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
+import Swal from "sweetalert2";
 
 interface ValidationResult {
   success: boolean;
@@ -19,7 +22,31 @@ const ConfirmOtpAccount: React.FC = () => {
   const { user, setUser } = useUserContext();
   const router = useRouter();
   const token = Cookies.get("token");
+  const { t } = useTranslation();
 
+  const handleConfirmEmail = async () => {
+    if (!token) {
+      router.push("/");
+      return;
+    }
+
+    try {
+      await sendMail(token);
+      Swal.fire({
+        title: t("account.validation-mail.title-success"),
+        text: t("account.validation-mail.message-success"),
+        icon: "success",
+        confirmButtonText: "Aceptar",
+      });
+    } catch (error: any) {
+      Swal.fire({
+        icon: "error",
+        title: t("account.validation-mail.title-error"),
+        text: error.message,
+        confirmButtonText: "Aceptar",
+      });
+    }
+  };
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
     const codeParam = urlParams.get("code");
@@ -36,7 +63,7 @@ const ConfirmOtpAccount: React.FC = () => {
           await validateMail(token, codeParam);
           setValidationResult({
             success: true,
-            message: "OTP validado con éxito",
+            message: "✅ OTP validado con éxito",
           });
           if (user) {
             setUser({
@@ -47,7 +74,7 @@ const ConfirmOtpAccount: React.FC = () => {
         } catch (error) {
           setValidationResult({
             success: false,
-            message: "Error al validar el OTP",
+            message: "❌ Error al validar el OTP",
           });
         }
       };
@@ -57,66 +84,104 @@ const ConfirmOtpAccount: React.FC = () => {
   }, []);
 
   return (
-    <div className="contenedor">
+    <div className="contenedor bg-midnight text-white ">
       <NavbarAuthenticated />
-      <div className="flex flex-col justify-center items-center">
-        <div className="max-w-[720px] mx-auto">
-          <div className="block mb-4 mx-auto border-b border-slate-300 pb-2 max-w-[460px] text-center p-10">
-            <a className="block w-full px-4 py-2 text-center text-white transition-all select-none">
-              ¡Estamos procesando! 🔍 Validando tu correo <b>{isMail}</b>,
-              asegurándonos de que todo esté en orden. 🚀
-            </a>
-          </div>
 
-          <div className="relative flex flex-col items-center text-gray-700 bg-white shadow-md bg-clip-border rounded-xl w-96 pb-10 mx-auto">
-            <div className="relative mx-4 mt-4 overflow-hidden text-gray-700 bg-white bg-clip-border rounded-xl h-96 w-full">
-              <img
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRc8-XMWUUpHfCZYVof-c5wYTeoY_wocnvFHQqo9FMs6cNF97rHPY_PgX1a2xHFpavEJiE&usqp=CAU"
-                alt="card-image"
-                className="object-cover w-full h-full"
-              />
-            </div>
-            <div className="p-6">
-              <div className="flex items-center justify-between mb-2">
-                <p className="block font-sans text-1xl antialiased font-medium leading-relaxed text-blue-gray-900">
-                  {validationResult?.message}
-                </p>
-                <div className="flex items-center">
-                  <div
-                    className={`w-4 h-4 rounded-full ${
-                      validationResult?.success ? "bg-green-500" : "bg-red-500"
-                    }`}
-                  ></div>
-                </div>
-              </div>
-              {validationResult?.success ? (
-                <p className="block font-sans text-xl antialiased font-normal leading-normal text-gray-700 opacity-75">
-                  ¡Genial! Tu cuenta ya está validada y lista para usar.
-                  ¡Empieza a disfrutar de todos nuestros servicios ahora mismo!
+      <section className="flex items-center justify-center my-20 md:my-40 px-4">
+        <div className="bg-gray-800 rounded-xl shadow-xl p-8 max-w-lg w-11/12 sm:w-full text-center">
+          {validationResult ? (
+            <div className="flex flex-col items-center space-y-8">
+              {validationResult.success ? (
+                <svg
+                  className="w-16 h-16 text-green-500 animate-bounce"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                >
+                  <circle cx="12" cy="12" r="10" stroke="currentColor" />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M9 12l2 2 4-4"
+                  />
+                </svg>
+              ) : (
+                <svg
+                  className="w-16 h-16 text-red-500 animate-shake"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                >
+                  <circle cx="12" cy="12" r="10" stroke="currentColor" />
+                  <line
+                    x1="15"
+                    y1="9"
+                    x2="9"
+                    y2="15"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  />
+                  <line
+                    x1="9"
+                    y1="9"
+                    x2="15"
+                    y2="15"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  />
+                </svg>
+              )}
+
+              <h2 className="text-xl sm:text-2xl font-bold">
+                {validationResult.message}
+              </h2>
+
+              {validationResult.success ? (
+                <p className="text-gray-300 text-sm sm:text-base">
+                  🎉 ¡Felicidades! Tu cuenta ya está validada y lista para usar.
+                  Ahora puedes disfrutar de todos nuestros servicios sin
+                  restricciones.
                 </p>
               ) : (
-                <p className="block font-sans text-xl antialiased font-normal leading-normal text-gray-700 opacity-75">
-                  ¡Atención! 🔐 Tu código de seguridad tiene una validez de solo
-                  30 minutos y ha sido enviado a tu correo electrónico
-                  registrado. Si no lo ves en tu bandeja de entrada, te
-                  recomendamos revisar la carpeta de spam. ¡No pierdas tiempo,
-                  el reloj está corriendo! ⏳
+                <p className="text-gray-300 text-sm sm:text-base">
+                  ⚠️ Tu código de seguridad es válido por solo{" "}
+                  <span className="font-semibold text-yellow-400">
+                    30 minutos
+                  </span>
+                  . Asegúrate de ingresar el código correcto enviado a{" "}
+                  <span className="font-semibold text-blue-400">{isMail}</span>.
+                  Si no lo ves en tu bandeja de entrada, revisa la carpeta de
+                  spam.
                 </p>
               )}
-            </div>
-            <div className="p-6 pt-0">
-              <a href="/accounts">
+
+              {validationResult.success ? (
                 <button
-                  className="align-middle select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 rounded-lg shadow-md hover:shadow-lg focus:opacity-[0.85] active:opacity-[0.85] active:shadow-none block w-full bg-blue-500 text-white shadow-md hover:bg-blue-600 hover:scale-105 focus:scale-105 active:scale-100"
-                  type="button"
+                  className="bg-green-500 hover:bg-green-600 transition px-6 py-3 rounded-lg font-medium text-white w-full sm:w-auto"
+                  onClick={() => router.push("/dashboard")}
                 >
-                  Aceptar
+                  Ir al Dashboard 🚀
                 </button>
-              </a>
+              ) : (
+                <button
+                  className="bg-red-500 hover:bg-red-600 transition px-6 py-3 rounded-lg font-medium text-white w-full sm:w-auto"
+                  onClick={handleConfirmEmail}
+                >
+                  Reenviar OTP 🔄
+                </button>
+              )}
             </div>
-          </div>
+          ) : (
+            <div className="flex items-center justify-center my-20 md:my-40 px-4">
+              <div className="w-12 h-12 border-4 border-gray-200 border-t-green-500 rounded-full animate-spin"></div>
+            </div>
+          )}
         </div>
-      </div>
+      </section>
     </div>
   );
 };

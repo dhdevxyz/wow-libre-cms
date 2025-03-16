@@ -112,18 +112,18 @@ const Page = () => {
     }
 
     try {
-      sendMail(token);
+      await sendMail(token);
       Swal.fire({
         title: t("account.validation-mail.title-success"),
         text: t("account.validation-mail.message-success"),
         icon: "success",
         confirmButtonText: "Aceptar",
       });
-    } catch (error) {
+    } catch (error: any) {
       Swal.fire({
         icon: "error",
         title: t("account.validation-mail.title-error"),
-        text: t("account.validation-mail.message-error"),
+        text: error.message,
         confirmButtonText: "Aceptar",
       });
     }

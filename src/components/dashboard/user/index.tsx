@@ -198,12 +198,6 @@ const UsersDashboard: React.FC<UsersDashboardProps> = ({ token, serverId }) => {
               >
                 Banear
               </button>
-              <button
-                onClick={handleMuteUser}
-                className="px-4 py-2 bg-yellow-600 text-white rounded hover:bg-yellow-500 transition"
-              >
-                Silenciar
-              </button>
             </div>
           </div>
         </div>
