@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import CardSettings from "./card";
 
 type ServerSettings = {
   [key: string]: string;
@@ -585,52 +586,106 @@ const SettingsServer = () => {
   };
 
   return (
-    <div className="p-6 bg-gray-900 min-h-screen text-white flex justify-center items-center">
-      <div className="bg-gray-900 p-6 rounded-lg shadow-lg w-full max-w-9xl">
-        <h2 className="text-2xl font-bold mb-4 text-center">Server Settings</h2>
-        <form onSubmit={handleSubmit} className="space-y-4">
-          {Object.keys(formData).map((section) => (
-            <div key={section} className="mb-4">
+    <div className="m-10 rounded-xl p-8 bg-gradient-to-br from-gray-900 via-gray-700 to-gray-900 min-h-screen text-white flex flex-col items-center space-y-6">
+      {/* ✅ Sección Introductoria */}
+      <div className="text-center max-w-4xl">
+        <h1 className="text-4xl font-bold text-indigo-400">
+          Dashboard del Servidor
+        </h1>
+        <p className="text-lg text-gray-300 mt-3">
+          Aquí puedes monitorear el estado de los servicios principales,
+          administrar configuraciones y asegurarte de que todo funcione
+          correctamente.
+        </p>
+      </div>
+
+      {/* ✅ Contenedor de Tarjetas */}
+      <div
+        className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 
+  gap-6 w-full max-w-7xl px-8 justify-center pt-10 pb-20"
+      >
+        <CardSettings
+          title="Servidor"
+          value={1}
+          percentage={100}
+          color="border-blue-500"
+          btnText="Reiniciar"
+        />
+
+        <CardSettings
+          title="AuthServer"
+          value={1}
+          percentage={25}
+          color="border-green-500"
+          btnText="Reiniciar"
+        />
+        <CardSettings
+          title="WorldServer"
+          value={1}
+          percentage={25}
+          color="border-red-500"
+          btnText="Reiniciar"
+        />
+      </div>
+      {/* ✅ Contenedor de Configuración */}
+      <div className="bg-gray-800 p-8 rounded-2xl shadow-xl w-full max-w-7xl max-h-[80vh] overflow-y-auto mt-40">
+        <h2 className="text-3xl font-bold mb-6 text-center text-indigo-400">
+          Configuración del Servidor
+        </h2>
+
+        <p className="text-gray-300 text-center mb-6 text-2xl">
+          Modifica la configuración de los diferentes módulos del servidor. Los
+          cambios serán aplicados en tiempo real.
+        </p>
+
+        {Object.keys(formData).map((section) => (
+          <div key={section} className="mt-6 bg-gray-700 rounded-lg shadow-lg">
+            {/* Botón de despliegue */}
+            <button
+              type="button"
+              onClick={() => toggleSection(section)}
+              className="w-full bg-gray-700 text-white px-4 py-3 rounded-lg hover:bg-gray-600 transition-all flex justify-between items-center shadow-md"
+            >
+              <span className="font-semibold">{section.toUpperCase()}</span>
+              <span className="transition-transform duration-300">
+                {openSection === section ? "▲" : "▼"}
+              </span>
+            </button>
+
+            {/* Campos de Configuración */}
+            {openSection === section && (
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 p-5 bg-gray-700 mt-3 rounded-lg shadow-lg transition-all">
+                {Object.keys(formData[section as "auth" | "worldserver"]).map(
+                  (key) => (
+                    <div key={key} className="flex flex-col">
+                      <label className="font-medium text-gray-300 mb-2 truncate">
+                        {key}
+                      </label>
+                      <input
+                        type="text"
+                        name={key}
+                        defaultValue={
+                          formData[section as "auth" | "worldserver"][key]
+                        }
+                        className="w-full p-3 border border-gray-600 bg-gray-900 text-white rounded-lg focus:ring-2 focus:ring-indigo-400 focus:outline-none transition-all"
+                      />
+                    </div>
+                  )
+                )}
+              </div>
+            )}
+
+            {/* Botón de Guardado */}
+            {openSection === section && (
               <button
                 type="button"
-                onClick={() => toggleSection(section)}
-                className="w-full bg-gray-700 text-white px-4 py-2 rounded-lg hover:bg-gray-600 transition text-left"
+                className="w-full bg-green-500 text-white px-4 py-3 mt-4 rounded-xl hover:bg-green-600 transition-all font-semibold text-lg shadow-lg"
               >
-                {section.toUpperCase()}
+                Guardar {section.toUpperCase()}
               </button>
-              {openSection === section && (
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-4 bg-gray-700 mt-2 rounded-lg">
-                  {Object.keys(formData[section as "auth" | "worldserver"]).map(
-                    (key) => (
-                      <div key={key} className="flex flex-col">
-                        <label className="font-medium text-gray-300 mb-1">
-                          {key}
-                        </label>
-                        <input
-                          type="text"
-                          name={key}
-                          value={
-                            formData[section as "auth" | "worldserver"][key]
-                          }
-                          onChange={(e) =>
-                            handleChange(section as "auth" | "worldserver", e)
-                          }
-                          className="w-full p-2 border border-gray-600 bg-gray-700 text-white rounded focus:ring-2 focus:ring-blue-500 focus:outline-none"
-                        />
-                      </div>
-                    )
-                  )}
-                </div>
-              )}
-            </div>
-          ))}
-          <button
-            type="submit"
-            className="w-full bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition"
-          >
-            Save Settings
-          </button>
-        </form>
+            )}
+          </div>
+        ))}
       </div>
     </div>
   );

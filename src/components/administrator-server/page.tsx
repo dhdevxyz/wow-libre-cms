@@ -1,6 +1,5 @@
 "use client";
 import BankDashboard from "@/components/dashboard/bank";
-import Card from "@/components/dashboard/card";
 import Header from "@/components/dashboard/header";
 import HomeDashboard from "@/components/dashboard/home";
 import Sidebar from "@/components/dashboard/sidebard";
@@ -8,9 +7,9 @@ import UsersDashboard from "@/components/dashboard/user";
 import Cookies from "js-cookie";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import { FaChartBar, FaCog, FaSpinner, FaUser } from "react-icons/fa";
-import PromotionsDashboard from "../dashboard/promotions";
+import { FaSpinner } from "react-icons/fa";
 import GuildsDashboard from "../dashboard/guilds";
+import PromotionsDashboard from "../dashboard/promotions";
 import SettingsServer from "../settings";
 
 const AdministratorServer = () => {
@@ -53,7 +52,7 @@ const AdministratorServer = () => {
   }
 
   return (
-    <div className="flex flex-col md:flex-row">
+    <div className="flex flex-col md:flex-row bg-black text-white min-h-screen ">
       {/* Header fijo */}
       <Header />
 
@@ -63,7 +62,7 @@ const AdministratorServer = () => {
       </div>
 
       {/* Contenido principal */}
-      <main className="flex-1 bg-gradient-to-b from-gray-800 to-gray-900 md:ml-72 mt-16 p-4 md:p-10 pt-20">
+      <main className="flex-1 bg-black md:ml-72 mt-16 p-4 md:p-10 pt-20 ">
         {/* HOME DASHBOARD */}
         {activeOption === "dashboard" && token && serverId && (
           <HomeDashboard token={token} serverId={serverId} />

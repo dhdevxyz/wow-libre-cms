@@ -11,7 +11,7 @@ const Header: React.FC = () => {
   };
 
   return (
-    <div className="bg-gray-800 text-white p-4 pr-10 flex justify-between items-center fixed top-0 left-0 w-full z-20">
+    <div className="bg-black text-white p-4 pr-10 flex justify-between items-center fixed top-0 left-0 w-full z-20">
       <h1 className="text-3xl font-bold">Panel de Control</h1>
       <div className="flex items-center space-x-4">
         {/* Icono de campanita (Notificaciones) */}

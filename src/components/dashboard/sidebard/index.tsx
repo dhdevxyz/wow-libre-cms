@@ -25,7 +25,7 @@ const Sidebar: React.FC<{ onOptionChange: (option: string) => void }> = ({
   };
   return (
     <div
-      className="bg-gray-800 text-white w-72 h-full p-5 pt-20 shadow-xl fixed top-0 left-0 
+      className="bg-black text-white w-72 h-full p-5 pt-20 shadow-xl fixed top-0 left-0 
                  hidden md:block"
     >
       <h3 className="text-lg font-semibold mb-4 text-gray-400">Gestión</h3>

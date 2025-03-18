@@ -552,6 +552,7 @@ export interface AccountsServer {
   last_ip: string;
   os: string;
   mute: boolean;
+  banned: boolean;
 }
 /** Modelo  Usado para mostrar los datos recopilados del servidor  */
 export interface DashboardMetrics {

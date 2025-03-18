@@ -144,48 +144,46 @@ const BankDashboard: React.FC<BankDasboardProps> = ({ token, serverId }) => {
   }, [filter, sortOrder]);
 
   return (
-    <div className="bg-gray-900 text-white p-6 rounded-lg">
-      <h1 className="text-2xl font-bold mb-4">
+    <div className="bg-gray-950 text-white p-6 rounded-lg">
+      <h1 className="text-2xl font-bold mb-4 text-emerald-400">
         Dashboard de Préstamos y Pagos
       </h1>
-      <p className="mb-6 text-2xl">
+      <p className="mb-6 text-1xl text-gray-300">
         Este dashboard muestra la relación entre los préstamos aprobados y los
         pagos realizados en los últimos meses, junto con un listado de usuarios.
       </p>
 
       <div className="flex flex-col lg:flex-row gap-6">
-        {/* Formulario y datos adicionales */}
-        <div className="lg:w-1/3 bg-gray-800 p-4 rounded-lg">
-          <h2 className="text-xl font-semibold mb-4">Aprobar Préstamos</h2>
-          <div className="mb-6">
-            <p className="mb-2">
-              <strong>Préstamos Restantes:</strong> {remainingLoans}
-            </p>
-            <div>
-              <strong>Planes Disponibles:</strong>
-              <div className="space-y-3 mt-2">
-                {bankPlans.map((plan, index) => (
-                  <div
-                    key={index}
-                    className="flex items-center bg-gray-700 p-3 rounded-lg shadow-md"
-                  >
-                    <FaUser className="text-green-500 mr-3" />
-                    <div>
-                      <p className="font-semibold">{plan.name}</p>
-                      <p className="font-semibold text-sm">
-                        {plan.description}
-                      </p>
-                      <p className="text-sm text-gray-300">
-                        {plan.price} - {plan.frecuency}
-                      </p>
-                    </div>
+        {/* Formulario de aprobación */}
+        <div className="lg:w-1/3 bg-gray-800 p-4 rounded-lg shadow-lg">
+          <h2 className="text-xl font-semibold mb-4 text-emerald-400">
+            Aprobar Préstamos
+          </h2>
+          <p className="mb-2 text-gray-300">
+            <strong>Préstamos Restantes:</strong> {remainingLoans}
+          </p>
+          <div>
+            <strong className="text-gray-200">Planes Disponibles:</strong>
+            <div className="space-y-3 mt-2">
+              {bankPlans.map((plan, index) => (
+                <div
+                  key={index}
+                  className="flex items-center bg-gray-700 p-3 rounded-lg shadow-md"
+                >
+                  <FaUser className="text-emerald-400 mr-3" />
+                  <div>
+                    <p className="font-semibold text-gray-200">{plan.name}</p>
+                    <p className="text-sm text-gray-400">{plan.description}</p>
+                    <p className="text-sm text-emerald-300">
+                      {plan.price} - {plan.frecuency}
+                    </p>
                   </div>
-                ))}
-              </div>
+                </div>
+              ))}
             </div>
           </div>
-          <form onSubmit={(e) => updateLoansEnable(e)}>
-            <label htmlFor="loanApproval" className="block mb-2">
+          <form onSubmit={(e) => updateLoansEnable(e)} className="mt-4">
+            <label htmlFor="loanApproval" className="block mb-2 text-gray-300">
               Cantidad de préstamos a disponibilizar:
             </label>
             <input
@@ -193,13 +191,13 @@ const BankDashboard: React.FC<BankDasboardProps> = ({ token, serverId }) => {
               type="number"
               value={loanApproval}
               onChange={(e) => setLoanApproval(e.target.value)}
-              className="w-full px-3 py-2 mb-4 rounded bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-green-500"
+              className="w-full px-3 py-2 mb-4 rounded bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-emerald-500"
               min="0"
               max="200"
             />
             <button
               type="submit"
-              className="w-full bg-green-600 hover:bg-green-500 text-white py-2 rounded-lg"
+              className="w-full bg-emerald-500 hover:bg-emerald-400 text-white py-2 rounded-lg"
             >
               Aprobar
             </button>
@@ -211,24 +209,26 @@ const BankDashboard: React.FC<BankDasboardProps> = ({ token, serverId }) => {
           <LineChart filteredData={filteredData} />
         </div>
 
-        {/* Lista de usuarios con scroll infinito */}
-        <div className="lg:w-1/3 bg-gray-800 p-4 rounded-lg">
-          <h2 className="text-xl font-semibold mb-4">Usuarios</h2>
+        {/* Lista de usuarios */}
+        <div className="lg:w-1/3 bg-gray-800 p-4 rounded-lg shadow-lg">
+          <h2 className="text-xl font-semibold mb-4 text-emerald-400">
+            Usuarios
+          </h2>
 
           {/* Filtros */}
-          <div className="mb-4">
+          <div className="mb-4 flex gap-2">
             <button
               onClick={() => setFilter("all")}
-              className={`mr-2 px-4 py-2 rounded-lg ${
-                filter === "all" ? "bg-green-600" : "bg-gray-700"
+              className={`px-4 py-2 rounded-lg ${
+                filter === "all" ? "bg-emerald-500" : "bg-gray-700"
               }`}
             >
               Todos
             </button>
             <button
               onClick={() => setFilter("DEBTOR")}
-              className={`mr-2 px-4 py-2 rounded-lg ${
-                filter === "DEBTOR" ? "bg-red-600" : "bg-gray-700"
+              className={`px-4 py-2 rounded-lg ${
+                filter === "DEBTOR" ? "bg-rose-500" : "bg-gray-700"
               }`}
             >
               Deudores
@@ -236,7 +236,7 @@ const BankDashboard: React.FC<BankDasboardProps> = ({ token, serverId }) => {
             <button
               onClick={() => setFilter("NON_DEBTOR")}
               className={`px-4 py-2 rounded-lg ${
-                filter === "NON_DEBTOR" ? "bg-blue-600" : "bg-gray-700"
+                filter === "NON_DEBTOR" ? "bg-cyan-500" : "bg-gray-700"
               }`}
             >
               No Deudores
@@ -248,7 +248,7 @@ const BankDashboard: React.FC<BankDasboardProps> = ({ token, serverId }) => {
             <select
               onChange={(e) => setSortOrder(e.target.value)}
               value={sortOrder}
-              className="w-full px-3 py-2 rounded bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-green-500"
+              className="w-full px-3 py-2 rounded bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-emerald-500"
             >
               <option value="desc">Más Reciente</option>
               <option value="asc">Más Viejo</option>
@@ -265,13 +265,13 @@ const BankDashboard: React.FC<BankDasboardProps> = ({ token, serverId }) => {
                 key={index}
                 className="flex items-center bg-gray-700 p-4 mb-4 rounded-lg shadow-md"
               >
-                <FaUser className="text-green-500 mr-4" />
+                <FaUser className="text-emerald-400 mr-4" />
                 <div className="flex-1">
                   <div className="flex justify-between mb-2">
-                    <p className="font-semibold text-xl">
+                    <p className="font-semibold text-lg text-gray-200">
                       {user.id} - {user.name}
                     </p>
-                    <p className="text-sm text-gray-300">
+                    <p className="text-sm text-gray-400">
                       Solicitud: {user.application_date}
                     </p>
                   </div>
@@ -279,7 +279,7 @@ const BankDashboard: React.FC<BankDasboardProps> = ({ token, serverId }) => {
                   {/* Monto Prestado */}
                   <div className="flex justify-between mb-2">
                     <p className="text-sm text-gray-300">Monto Prestado:</p>
-                    <p className="text-sm text-green-500">${user.amount}</p>
+                    <p className="text-sm text-emerald-400">${user.amount}</p>
                   </div>
 
                   {/* Deuda */}
@@ -287,7 +287,7 @@ const BankDashboard: React.FC<BankDasboardProps> = ({ token, serverId }) => {
                     <p className="text-sm text-gray-300">Estado de pago:</p>
                     <p
                       className={`text-sm ${
-                        user.debtor ? "text-red-500" : "text-green-500"
+                        user.debtor ? "text-rose-500" : "text-emerald-400"
                       }`}
                     >
                       {user.debtor ? "Debe" : "No debe"}
@@ -297,7 +297,7 @@ const BankDashboard: React.FC<BankDasboardProps> = ({ token, serverId }) => {
                   {/* Fecha de pago */}
                   <div className="flex justify-between">
                     <p className="text-sm text-gray-300">Fecha de pago:</p>
-                    <p className="text-sm text-gray-300">{user.payment_date}</p>
+                    <p className="text-sm text-gray-400">{user.payment_date}</p>
                   </div>
                 </div>
               </div>
