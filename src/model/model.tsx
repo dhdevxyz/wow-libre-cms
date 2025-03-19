@@ -628,3 +628,7 @@ export interface EventsVdp {
   description: string;
   disclaimer: string;
 }
+
+export interface ConfigsResponse {
+  [key: string]: string;
+}

@@ -144,7 +144,7 @@ const BankDashboard: React.FC<BankDasboardProps> = ({ token, serverId }) => {
   }, [filter, sortOrder]);
 
   return (
-    <div className="bg-gray-950 text-white p-6 rounded-lg">
+    <div className="bg-black text-white p-6 rounded-lg">
       <h1 className="text-2xl font-bold mb-4 text-emerald-400">
         Dashboard de Préstamos y Pagos
       </h1>

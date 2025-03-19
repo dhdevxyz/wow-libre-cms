@@ -52,17 +52,15 @@ const AdministratorServer = () => {
   }
 
   return (
-    <div className="flex flex-col md:flex-row bg-black text-white min-h-screen ">
+    <div className=" text-white min-h-screen bg-black">
       {/* Header fijo */}
       <Header />
 
       {/* Sidebar */}
-      <div className="fixed top-16 left-0 md:w-72 h-full z-10 md:block">
-        <Sidebar onOptionChange={handleOptionChange} />
-      </div>
+      <Sidebar onOptionChange={handleOptionChange} />
 
       {/* Contenido principal */}
-      <main className="flex-1 bg-black md:ml-72 mt-16 p-4 md:p-10 pt-20 ">
+      <main className="ml-auto lg:w-[75%] xl:w-[80%] 2xl:w-[85%] bg-black">
         {/* HOME DASHBOARD */}
         {activeOption === "dashboard" && token && serverId && (
           <HomeDashboard token={token} serverId={serverId} />
@@ -73,7 +71,9 @@ const AdministratorServer = () => {
         {activeOption === "promotions" && token && serverId && (
           <PromotionsDashboard />
         )}
-        {activeOption === "settings" && token && serverId && <SettingsServer />}
+        {activeOption === "settings" && token && serverId && (
+          <SettingsServer token={token} serverId={serverId} />
+        )}
         {activeOption === "bank" && token && serverId && (
           <BankDashboard token={token} serverId={serverId} />
         )}

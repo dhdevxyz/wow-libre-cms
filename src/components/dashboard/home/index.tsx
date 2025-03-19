@@ -77,7 +77,7 @@ const HomeDashboard: React.FC<HomeDashboardProps> = ({ token, serverId }) => {
   }
 
   return (
-    <div className=" bg-black">
+    <div className=" bg-black text-white h-screen overflow-y-auto">
       <div className="grid grid-cols-1 md:grid-cols-4 gap-8 p-6 rounded-lg shadow-md hover:shadow-lg transition-all duration-300">
         <Card
           title="Total de Usuarios"
