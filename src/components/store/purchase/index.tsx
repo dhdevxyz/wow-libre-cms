@@ -1,11 +1,12 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import { getAccountAndServerId } from "@/api/account";
 import { buyProduct } from "@/api/store";
 import { AccountsModel, BuyRedirectDto } from "@/model/model";
+import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
+
 interface BuyProps {
   isOpen: boolean;
   reference: string;
@@ -68,9 +69,45 @@ const Buy: React.FC<BuyProps> = ({
         selectedAccountId,
         serverId,
         token,
-        false
+        false,
+        reference
       );
-      router.push(response.redirect);
+      if (!response.is_payment) {
+        router.push(response.redirect);
+        return;
+      }
+      const paymentData: Record<string, string> = {
+        merchantId: response.merchant_id,
+        accountId: response.account_id,
+        description: response.description,
+        referenceCode: response.reference_code,
+        amount: response.amount,
+        tax: response.tax,
+        taxReturnBase: response.tax_return_base,
+        currency: response.currency,
+        signature: response.signature,
+        test: response.test,
+        buyerEmail: response.buyer_email,
+        responseUrl: response.response_url,
+        confirmationUrl: response.confirmation_url,
+      };
+
+      const form = document.createElement("form");
+      form.method = "POST";
+      form.action = response.redirect;
+
+      Object.keys(paymentData).forEach((key) => {
+        const input = document.createElement("input");
+        input.type = "hidden";
+        input.name = key;
+        input.value = String(paymentData[key]);
+        form.appendChild(input);
+        form.target = "_blank";
+      });
+
+      document.body.appendChild(form);
+
+      form.submit();
     } catch (error: any) {
       Swal.fire({
         icon: "error",

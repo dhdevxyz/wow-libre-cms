@@ -48,13 +48,13 @@ const Information = () => {
           <div className="lg:pr-4">
             <div className="lg:max-w-lg">
               <p className="text-base/7 font-semibold text-indigo-400">
-                {t("home-information-beta.title")}
+                {t("home-information.title")}
               </p>
               <h1 className="mt-2 text-4xl font-semibold tracking-tight text-white sm:text-5xl">
-                {t("home-information-beta.sub-title")}
+                {t("home-information.sub-title")}
               </h1>
               <p className="mt-6 text-xl/8 text-gray-300">
-                {t("home-information-beta.description")}
+                {t("home-information.description")}
               </p>
             </div>
           </div>
@@ -67,27 +67,17 @@ const Information = () => {
           />
           <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 mt-8">
             <button
-              onClick={() =>
-                window.open(
-                  "https://play.google.com/store/apps/details?id=com.tuapp.android",
-                  "_blank"
-                )
-              }
-              className="text-xl inline-flex items-center justify-center rounded-lg bg-green-500 px-8 py-4 sm:px-20 sm:py-6 font-semibold text-white shadow-sm hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-offset-2"
+              onClick={() => window.open("/register", "_blank")}
+              className="text-xl inline-flex items-center justify-center rounded-lg bg-indigo-500 px-8 py-4 sm:px-20 sm:py-6 font-semibold text-white shadow-sm hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
             >
-              Android
+              {t("home-information.btn.primary")}
             </button>
 
             <button
-              onClick={() =>
-                window.open(
-                  "https://apps.apple.com/us/app/tuapp/id123456789",
-                  "_blank"
-                )
-              }
-              className="text-xl inline-flex items-center justify-center rounded-lg bg-black px-8 py-4 sm:px-20 sm:py-6 font-semibold text-white shadow-sm hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-offset-2"
+              onClick={() => window.open("/integrations", "_blank")}
+              className="text-xl inline-flex items-center justify-center rounded-lg bg-gray-800 px-8 py-4 sm:px-20 sm:py-6 font-semibold text-white shadow-sm hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-offset-2"
             >
-              iOS
+              {t("home-information.btn.secondary")}
             </button>
           </div>
         </div>
@@ -112,9 +102,9 @@ const Information = () => {
                   </svg>
                   <span>
                     <strong className="font-semibold text-white">
-                      {t("home-information-beta.push-deploy.title")}
+                      {t("home-information.push-deploy.title")}
                     </strong>{" "}
-                    {t("home-information-beta.push-deploy.description")}
+                    {t("home-information.push-deploy.description")}
                   </span>
                 </li>
                 <li className="flex gap-x-3">
@@ -133,9 +123,9 @@ const Information = () => {
                   </svg>
                   <span>
                     <strong className="font-semibold text-white">
-                      {t("home-information-beta.certificates.title")}
+                      {t("home-information.certificates.title")}
                     </strong>{" "}
-                    {t("home-information-beta.certificates.description")}
+                    {t("home-information.certificates.description")}
                   </span>
                 </li>
                 <li className="flex gap-x-3">
@@ -155,19 +145,17 @@ const Information = () => {
                   </svg>
                   <span>
                     <strong className="font-semibold text-white">
-                      {t("home-information-beta.database.title")}
+                      {t("home-information.database.title")}
                     </strong>{" "}
-                    {t("home-information-beta.database.description")}
+                    {t("home-information.database.description")}
                   </span>
                 </li>
               </ul>
-              <p className="mt-8">{t("home-information-beta.congrats")}</p>
+              <p className="mt-8">{t("home-information.congrats")}</p>
               <h2 className="mt-16 text-2xl font-bold tracking-tight text-white">
-                {t("home-information-beta.notice.title")}
+                {t("home-information.notice.title")}
               </h2>
-              <p className="mt-6">
-                {t("home-information-beta.notice.description")}
-              </p>
+              <p className="mt-6">{t("home-information.notice.description")}</p>
             </div>
           </div>
         </div>

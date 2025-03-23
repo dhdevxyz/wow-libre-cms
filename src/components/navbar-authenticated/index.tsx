@@ -4,6 +4,8 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import LoadingSpinner from "../utilities/loading-spinner";
+import { getAmountWallet } from "@/api/wallet";
+import Cookies from "js-cookie";
 
 const NavbarAuthenticated = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -16,7 +18,9 @@ const NavbarAuthenticated = () => {
   const [loggin, setLoggin] = useState(false);
   const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
-
+  const [walletAmount, setWalletAmount] = useState(0);
+  const token = Cookies.get("token");
+  const [amount, setAmount] = useState("");
   useEffect(() => {
     setAvatar(user.avatar);
     setIsLoading(false);
@@ -30,6 +34,24 @@ const NavbarAuthenticated = () => {
       </div>
     );
   }
+
+  const fetchWalletAmount = async () => {
+    if (user.logged_in && token) {
+      try {
+        const amount = await getAmountWallet(token);
+        setWalletAmount(amount);
+      } catch (error) {
+        setWalletAmount(0);
+      }
+    }
+  };
+
+  const toggleWalletModal = () => {
+    setIsOpen(!isOpen);
+    if (!isOpen) {
+      fetchWalletAmount();
+    }
+  };
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -144,8 +166,8 @@ const NavbarAuthenticated = () => {
               href="/"
             >
               <img
-                className="w-16 h-16 mt-2"
-                src="https://i.ibb.co/grsYmyj/logo.webp"
+                className="w-20 h-20 mt-2"
+                src="https://static.wixstatic.com/media/5dd8a0_4a5bff42a39c47c2ae67d5dde07455f5~mv2.webp"
                 alt="Logo WowLibre"
               />
               <p className="text-gray-300 ml-5  title-server mt-9 text-4xl">
@@ -193,7 +215,7 @@ const NavbarAuthenticated = () => {
               {/* Botón del saldo */}
               <div
                 className="hidden sm:flex cursor-pointer mr-4 max-w-[80vw] overflow-hidden text-ellipsis whitespace-nowrap items-center bg-gray-800 text-white px-4 py-2 rounded-full transition-all duration-300 hover:bg-gray-700"
-                onClick={() => setIsOpen(!isOpen)}
+                onClick={toggleWalletModal}
               >
                 <span className="text-lg font-semibold truncate">Puntos</span>
               </div>
@@ -207,7 +229,7 @@ const NavbarAuthenticated = () => {
                 }`}
               >
                 <p className="text-sm">Detalle del saldo:</p>
-                <p className="text-lg font-bold">Saldo: $ 0</p>
+                <p className="text-lg font-bold">Saldo: $ {walletAmount}</p>
                 <button className="mt-2 w-full bg-blue-500 hover:bg-blue-600 text-white py-1 px-3 rounded-md">
                   Recargar
                 </button>

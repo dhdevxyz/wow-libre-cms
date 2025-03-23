@@ -8,11 +8,13 @@ import "react-multi-carousel/lib/styles.css";
 import MultiCarousel from "../carrousel-multiple";
 import "./style.css";
 import Link from "next/link";
+import { useUserContext } from "@/context/UserContext";
 
 const Bidding = () => {
   const router = useRouter();
   const { t } = useTranslation();
   const [products, setProducts] = useState<Product>();
+  const { user } = useUserContext();
 
   const handleSelectItem = (id: string) => {
     router.push(`/store/${id}`);
@@ -21,16 +23,16 @@ const Bidding = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const productsWithDiscount = await getProductOffert();
+        const productsWithDiscount = await getProductOffert(user.language);
         setProducts(productsWithDiscount);
       } catch (err: any) {}
     };
     fetchProducts();
-  }, []);
+  }, [user]);
 
   return (
-    <div className="contenedor mx-auto mt-10">
-      <div className="text-center md:text-left mb-8">
+    <div className="contenedor mx-auto mt-5 h-full">
+      <div className="text-center md:text-left mb-5">
         <h2 className="text-4xl  font-bold text-[#f6a001] title-server mb-4">
           {t("home-products.title")}
         </h2>
@@ -57,25 +59,28 @@ const Bidding = () => {
             <p className="bidding-day-content-product-title text-lg md:text-xl lg:text-2xl xl:text-3xl mb-4">
               {products?.name}
             </p>
-            <p className="text-lg md:text-xl lg:text-2xl xl:text-xl mb-4 text-gray-200">
+            <p className="text-lg md:text-xl lg:text-2xl xl:text-xl  text-gray-200">
               {products?.category}
             </p>
-            {products && products?.gambling_money ? (
+            <p className="text-lg md:text-xl lg:text-2xl xl:text-xl  text-gray-200">
+              {products?.partner}
+            </p>
+            {products && products?.use_points ? (
               <p className="bidding-day-content-product-price text-lg md:text-xl lg:text-2xl xl:text-2xl pt-4 mb-2">
-                {products?.discounted_gold_price}
+                {products?.discount_price} Points
               </p>
             ) : (
               <p className="bidding-day-content-product-price text-lg md:text-xl lg:text-2xl xl:text-2xl pt-4 mb-2">
-                $ {products?.discounted_price} USD
+                $ {products?.discount_price} Usd
               </p>
             )}
 
             {products ? (
-              <a className="bidding-day-content-product-disclaimer text-lg md:text-xl lg:text-2xl xl:text-xl mb-2 block">
+              <a className="text-gray-300 text-lg md:text-xl lg:text-2xl xl:text-xl mb-2 block">
                 {products?.disclaimer}
               </a>
             ) : (
-              <a className="bidding-day-content-product-disclaimer text-lg md:text-xl lg:text-2xl xl:text-xl mb-2 block">
+              <a className="text-gray-300 text-lg md:text-xl lg:text-2xl xl:text-xl mb-2 block">
                 {t("home-products.offer-day.disclaimer")}
               </a>
             )}
@@ -97,7 +102,7 @@ const Bidding = () => {
           </div>
         </div>
         <div className="bidding-offert bg-gray-800 rounded-lg p-4 mt-6 md:mt-0">
-          <MultiCarousel />
+          <MultiCarousel t={t} />
         </div>
       </div>
     </div>

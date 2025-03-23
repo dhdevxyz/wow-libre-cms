@@ -16,6 +16,7 @@ import { BenefitsModel } from "@/model/benefit-model";
 import { benefitsActive } from "@/api/benefit";
 import { useUserContext } from "@/context/UserContext";
 import { useTranslation } from "react-i18next";
+import WowheadTooltip from "@/utils/wowhead";
 
 const GuildDetail = () => {
   const searchParams = useSearchParams();
@@ -87,6 +88,7 @@ const GuildDetail = () => {
 
   return (
     <div className="min-h-screen">
+      <WowheadTooltip />
       <div className="contenedor">
         <NavbarAuthenticated />
       </div>

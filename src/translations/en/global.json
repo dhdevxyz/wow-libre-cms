@@ -203,8 +203,9 @@
             "message": "It is not possible to obtain the details of your accounts at this time, please wait."
         },
         "service-available": {
-            "title-txt-message": "World of Warcraft Account Management",
-            "txt-message": "Manage and administer World of Warcraft accounts efficiently and securely."
+            "btn-administration":"Manage Game Accounts",
+            "title-txt-message": "Multiple Accounts, One Simple Management",
+            "txt-message": "Add and manage multiple game accounts without the need for new registrations."
         },
         "without-accounts": {
             "title-message": "No registered accounts.",
@@ -547,28 +548,36 @@
                 "primary": "Get Now",
                 "alternative": "Store"
             }
+        },
+       "carrousel-offert": {
+            "title": "Exclusive Deals Just for You",
+            "btn": "Claim Offer"
         }
     },
-    "home-information-beta": {
-        "title": "Welcome to Wow Libre!",
-        "sub-title": "Beta Web Version",
-        "description": "Our platform is currently in its beta phase. This means you might come across some features or details still under development. We appreciate your understanding and support as we continue to improve.",
+    "home-information": {
+        "title": "Join Wow Libre Today!",
+        "sub-title": "The Best Gaming Community",
+        "description": "Discover an innovative platform designed to provide you with advanced tools and an unparalleled gaming experience. Join now and take your community to the next level!",
         "push-deploy": {
-            "title": "Push to deploy.",
-            "description": "You may notice changes on the platform due to ongoing updates we are developing."
+            "title": "Continuous Improvements.",
+            "description": "Our platform is constantly evolving with new features and optimizations to enhance your experience."
         },
         "certificates": {
-            "title": "SSL certificates.",
-            "description": "We have SSL security certificates to ensure the protection of your information."
+            "title": "Guaranteed Security.",
+            "description": "We safeguard your information with SSL security certificates and advanced protocols to ensure a safe and reliable experience."
         },
         "database": {
-            "title": "Database backups.",
-            "description": "All information provided will be safe with regular backups, and accounts will not be deleted."
+            "title": "Your Data is Always Protected.",
+            "description": "We perform regular backups to keep your information secure at all times. Your account and progress are fully protected!"
         },
-        "congrats": "We greatly appreciate any bug reports you may find on our platform. Your help allows us to improve so you can fully enjoy the game content!",
+        "congrats": "Your feedback is essential to us. If you have any suggestions for improvements, feel free to share them. Together, we make this community thrive!",
         "notice": {
-            "title": "Will my characters be deleted? Don't worry!",
-            "description": "During the beta phase, your data will be safe. No account or character will be deleted!"
+            "title": "Your Adventure is Safe!",
+            "description": "We protect your information with the highest security standards. Enjoy your experience worry-free and with complete confidence."
+        },
+        "btn":{
+           "primary": "Join Now",
+           "secondary": "Explore More"
         }
     },
     "home-us": {
@@ -942,7 +951,7 @@
     },
     "home-who-we-are": {
         "title": "What is WowLibre?",
-        "description": "WowLibre is a community dedicated to optimizing the World of Warcraft experience through innovative tools. Our purpose is to simplify server management and strengthen the connection between players and administrators with efficient and accessible technological solutions.",
+        "description": "WowLibre is a community dedicated to enhancing the gaming experience through innovative tools. Our goal is to simplify server management and strengthen the connection between players and administrators with efficient and accessible technological solutions.",
         "btn-text": "Discover our tools"
     }, 
     "footer": {

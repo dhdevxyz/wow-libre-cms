@@ -291,11 +291,9 @@ export interface Product {
   disclaimer: string;
   category: string;
   price: number;
-  discounted_price: number;
-  discounted_gold_price: number;
   discount: number;
-  gambling_money: boolean;
-  gold_price: number;
+  discount_price: number;
+  use_points: boolean;
   description: string;
   img_url: string;
   partner: string;
@@ -309,8 +307,7 @@ export interface ProductDetail {
   category: string;
   price: number;
   discount: number;
-  gambling_money: boolean;
-  gold_price: number;
+  use_points: boolean;
   description: string;
   img_url: string;
   partner: string;
@@ -357,6 +354,7 @@ export interface BuyRedirectDto {
   account_id: string;
   merchant_id: string;
   test: string;
+  is_payment: boolean;
 }
 
 /* Modelo para obtener las imagenes de la home */

@@ -16,11 +16,11 @@ const NavbarMinimalist = () => {
           href="/"
         >
           <img
-            className="max-w-[10%] md:max-w-[6%]"
-            src="https://i.ibb.co/grsYmyj/logo.webp"
+            className="max-w-[20%] md:max-w-[17%]"
+            src="https://static.wixstatic.com/media/5dd8a0_4a5bff42a39c47c2ae67d5dde07455f5~mv2.webp"
             alt="WowLibre Logo"
           />
-          <p className="text-white text-4xl md:text-4xl pl-4 pt-6  md:mt-6 md:pt-0 title-server text-center md:text-left">
+          <p className="text-white text-4xl md:text-4xl  pt-4  md:mt-8 md:pt-0 title-server text-center md:text-left">
             Wow Libre
           </p>
         </Link>
