@@ -56,10 +56,12 @@ const ServerBlog: React.FC<ServerBlogProps> = ({ t }) => {
                 </p>
 
                 <div className="mt-2 flex items-center gap-2 text-gray-400 text-xs">
-                  <span>💬 {post.comments} comentarios</span>
+                  <span>
+                    💬 {post.comments} {t("vdp-server.notice.comments")}
+                  </span>
                   <span>•</span>
                   <span>
-                    Publicado por{" "}
+                    {t("vdp-server.notice.by")}{" "}
                     <a
                       href="#"
                       className="font-medium underline hover:text-gray-200"
@@ -71,11 +73,10 @@ const ServerBlog: React.FC<ServerBlogProps> = ({ t }) => {
               </div>
             </div>
 
-            {/* Indicador de estado (Resuelto o No Resuelto) */}
             {post.solved && (
               <div className="flex justify-end mt-2">
                 <span className="inline-flex items-center gap-1 rounded-ss-xl rounded-ee-xl bg-green-600 px-3 py-1.5 text-white text-xs font-medium">
-                  ✅ Resuelto
+                  ✅ {t("vdp-server.notice.resolved")}
                 </span>
               </div>
             )}

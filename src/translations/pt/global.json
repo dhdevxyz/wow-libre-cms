@@ -39,6 +39,10 @@
                 "position-one": "Entrar",
                 "position-two": "Cadastrar"
             }
+        },
+        "wallet": {
+            "title": "Pontos",
+            "recharge": "Recarregar"
         }
     },
     "navbar-minimalist": {
@@ -994,7 +998,10 @@
         "notice": {
             "title": "Notícias",
             "description": "Descubra as notícias mais recentes do nosso servidor.",
-            "disclaimer": "Últimos Anúncios"
+            "disclaimer": "Últimos Anúncios",
+            "by": "Publicado por",
+            "comments": "Comentários",
+            "resolved": "Resolvido"
         }
     }
 

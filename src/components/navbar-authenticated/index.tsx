@@ -217,7 +217,10 @@ const NavbarAuthenticated = () => {
                 className="hidden sm:flex cursor-pointer mr-4 max-w-[80vw] overflow-hidden text-ellipsis whitespace-nowrap items-center bg-gray-800 text-white px-4 py-2 rounded-full transition-all duration-300 hover:bg-gray-700"
                 onClick={toggleWalletModal}
               >
-                <span className="text-lg font-semibold truncate">Puntos</span>
+                <span className="text-lg font-semibold truncate">
+                  {" "}
+                  {t("navbar_authenticated.wallet.title")}
+                </span>
               </div>
 
               {/* Contenido desplegable */}
@@ -228,11 +231,18 @@ const NavbarAuthenticated = () => {
                     : "opacity-0 scale-95 pointer-events-none"
                 }`}
               >
-                <p className="text-sm">Detalle del saldo:</p>
-                <p className="text-lg font-bold">Saldo: $ {walletAmount}</p>
-                <button className="mt-2 w-full bg-blue-500 hover:bg-blue-600 text-white py-1 px-3 rounded-md">
-                  Recargar
-                </button>
+                <p className="text-sm">
+                  {t("navbar_authenticated.wallet.detail")}
+                </p>
+                <p className="text-lg font-bold">
+                  {t("navbar_authenticated.wallet.available")} {walletAmount}
+                </p>
+                <a
+                  href="/store"
+                  className="mt-2 w-full bg-blue-500 hover:bg-blue-600 text-white py-1 px-3 rounded-md"
+                >
+                  {t("navbar_authenticated.wallet.recharge")}
+                </a>
               </div>
             </div>
 

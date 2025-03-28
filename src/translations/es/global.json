@@ -39,6 +39,12 @@
                 "position-one": "Ingresar",
                 "position-two": "Registrarme"
             }
+        },
+        "wallet":{
+            "title":"Puntos",
+            "recharge":"Recargar",
+            "detail":"Detalle del saldo:",
+            "available":"Saldo: $"
         }
     },
     "navbar-minimalist": {
@@ -994,7 +1000,10 @@
         "notice":{
             "title":"Noticias",
             "description":"Descubre los noticias más recientes de nuestro servidor.",
-            "disclaimer":"Últimos Anuncios"
+            "disclaimer":"Últimos Anuncios",
+            "by":"Publicado por",
+            "comments":"Comentarios",
+            "resolved":"Resuelto"
         }
     }
 }

@@ -39,6 +39,10 @@
                 "position-one": "Log In",
                 "position-two": "Register"
             }
+        },
+        "wallet": {
+            "title": "Points",
+            "recharge": "Recharge"
         }
     },
     "navbar-minimalist": {
@@ -993,7 +997,10 @@
         "notice": {
             "title": "News",
             "description": "Discover the latest news from our server.",
-            "disclaimer": "Latest Announcements"
+            "disclaimer": "Latest Announcements",
+            "by": "Published by",
+            "comments": "Comments",
+            "resolved": "Resolved"
         }
     }
 }
