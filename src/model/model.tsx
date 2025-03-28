@@ -611,6 +611,12 @@ export interface ServerVdpDto {
   information: { [key: string]: string };
   cards: CardVdp[];
   events: EventsVdp[];
+  url: string;
+  logo: string;
+  header_center_img: string;
+  header_right_img: string;
+  header_left_img: string;
+  youtube_url: string;
 }
 
 export interface CardVdp {

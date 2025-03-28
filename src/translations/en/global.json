@@ -941,12 +941,12 @@
         }
     },
     "info-integrate": {
-        "title": "Grow Your WoW Server Without the Hassle",
-        "short-description": "Register and link your server in minutes. We handle the technical side so you can focus on what really matters: your community.",
-        "detailed-description": "Forget tedious configurations and complicated web servers. With our platform, connecting your WoW server is fast and effortless. We manage player registration for you, optimize the infrastructure, and provide the tools you need to grow your community without limits. You create the experience, we take care of the rest.",
-        "summary": "More players, fewer headaches. Automate registration, simplify management, and focus on delivering the best gaming experience. We handle the technical side!",
+        "title": "Grow Your Platform Without Hassle",
+        "short-description": "Connect in minutes and let us handle the technical side.",
+        "detailed-description": "Our team of engineers will take care of all the technical setup, so you don’t have to worry about a thing. From integration to infrastructure optimization, we ensure everything runs perfectly. Relax and focus on growing your community and business while we handle the rest.",
+        "summary": "Automate processes, simplify management, and scale without limits. We take care of the technology so you can focus on growth.",
         "btn": {
-            "text": "Register Your Server in Minutes"
+            "text": "Sign up and get started now"
         }
     },
     "home-who-we-are": {
@@ -959,8 +959,41 @@
         "terms-of-use": "Terms of Use",
         "privacy-policy": "Privacy Policy",
         "about": "@WowLibre We develop innovative solutions for the gaming community. We enhance the gaming experience with advanced software, fostering the creation of unique and immersive worlds."
-   }
-   
-    
-
+   },
+   "plans-and-pricing": {
+        "title": "Plans and Pricing",
+        "description": "Choose a plan and let our team of experts handle the setup. Just enjoy the growth!"
+    },"vdp-server": {
+        "header": {
+            "btn": {
+                "register-text": "Register",
+                "realmlist": "Copy Realmlist",
+                "copy": "Copied!",
+                "website": "Visit Website"
+            }
+        },
+        "body": {
+            "title": "Server Features"
+        },
+        "events": {
+            "title": "Upcoming Events",
+            "description": "Discover the most exciting events on our server. Don't miss out!"
+        },
+        "subscription-active": {
+            "title": "Subscription Active!",
+            "description": "Enjoy all the benefits of your premium subscription. Make the most of your gaming experience!",
+            "disclaimer": "Explore all the advantages available to you and get the most out of your subscription.",
+            "btn-text": "Manage Subscription"
+        },
+        "subscription-inactive": {
+            "title": "Join and Unlock Exclusive Benefits",
+            "description": "Get early access to exclusive content, special discounts, and a limitless experience. Become a member today and take your experience to the next level!",
+            "btn-text": "Subscribe Now"
+        },
+        "notice": {
+            "title": "News",
+            "description": "Discover the latest news from our server.",
+            "disclaimer": "Latest Announcements"
+        }
+    }
 }

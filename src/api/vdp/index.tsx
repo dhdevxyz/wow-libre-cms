@@ -5,7 +5,8 @@ import { v4 as uuidv4 } from "uuid";
 
 export const getServerNameAndExpansion = async (
   name: string,
-  expansion: string
+  expansion: string,
+  language: string = "es"
 ): Promise<ServerVdpDto> => {
   const transactionId = uuidv4();
 
@@ -17,6 +18,7 @@ export const getServerNameAndExpansion = async (
         headers: {
           "Content-Type": "application/json",
           transaction_id: transactionId,
+          "Accept-Language": language,
         },
       }
     );

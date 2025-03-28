@@ -549,7 +549,7 @@ WantedBy=multi-user.target`}
 
       <div
         id="pricing"
-        className="contenedor flex flex-col items-center justify-center  bg-gradient-to-r bg-midnight text-white p-10 "
+        className=" flex flex-col items-center justify-center  bg-gradient-to-r bg-midnight text-white p-10 "
       >
         <PricingPlans />
       </div>

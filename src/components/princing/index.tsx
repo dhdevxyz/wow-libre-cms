@@ -1,3 +1,7 @@
+"use client";
+
+import { useTranslation } from "react-i18next";
+
 const plans = [
   {
     name: "Free",
@@ -15,72 +19,102 @@ const plans = [
   },
   {
     name: "Pro",
-    price: "$50/mo",
-    description: "Perfect for small businesses and startups.",
+    price: "$300/year",
+    description:
+      "Perfect for small businesses and startups. ($25/month billed annually)",
     features: [
       "Vinculaciones ilimitadas",
       "Trafico ilimitado",
       "Lading page",
       "Dashboard",
-      "Soporte prioritario",
-      "Servidor dedicado, 20 GB RAM",
-      "Descargas ilimitadas",
-      "Vinculacion automatica",
-      "Marketing en redes sociales",
-      "Instalacion web (Fusion Cms)",
-      "Modulos Azeroth Core a tu disposicion",
-      "Dominio personalizado",
       "Sin obligación de plan VIP",
       "App Mobile (Proximamente)",
       "Launcher (Proximamente)",
+      "Soporte prioritario",
+      "VPS",
+      "Monitoreo & Alertas",
+      "Descargas de recursos ilimitadas",
+      "Vinculacion automatica",
+      "Marketing en redes sociales",
+      "Instalacion web",
+      "Modulos Azeroth Core",
+      "Dominio personalizado",
     ],
     buttonText: "Get Started",
   },
   {
     name: "Starter",
-    price: "$15/mo",
-    description: "Perfect for small businesses and startups.",
+    price: "$192",
+    description:
+      "Perfect for small businesses and startups. ($30/month billed every 6 months).",
     features: [
       "Vinculaciones ilimitadas",
       "Trafico ilimitado",
       "Lading page",
       "Dashboard",
-      "Soporte prioritario",
-      "Servidor dedicado, 20 GB RAM",
-      "Descargas ilimitadas",
-      "Vinculacion automatica",
-      "Marketing en redes sociales",
-      "Instalacion web",
+      "Sin obligación de plan VIP",
       "App Mobile (Proximamente)",
       "Launcher (Proximamente)",
+      "Soporte prioritario",
+      "VPS",
+      "Monitoreo & Alertas",
+      "Descargas de recursos ilimitadas",
+      "Vinculacion automatica",
+      "Marketing en redes sociales",
+      "Instalacion web ",
+      "Modulos Azeroth Core",
       "Dominio personalizado",
+    ],
+    buttonText: "Get Started",
+  },
+  {
+    name: "Mensual",
+    price: "$35/month",
+    description:
+      "Perfect for small businesses and startups. ($40/month billed every 6 months).",
+    features: [
+      "Vinculaciones ilimitadas",
+      "Trafico ilimitado",
+      "Lading page",
+      "Dashboard",
       "Sin obligación de plan VIP",
+      "App Mobile (Proximamente)",
+      "Launcher (Proximamente)",
+      "Soporte prioritario",
+      "VPS",
+      "Monitoreo & Alertas",
+      "Descargas de recursos ilimitadas",
+      "Vinculacion automatica",
+      "Dominio personalizado",
+      "Instalacion web ",
     ],
     buttonText: "Get Started",
   },
 ];
 
 export default function PricingPlans() {
+  const { t, ready } = useTranslation();
+
   return (
-    <section className="py-12">
+    <section className="py-12 contenedor mx-auto">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <h1 className="bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 bg-clip-text text-5xl font-extrabold text-transparent sm:text-6xl">
-          Planes de precios
+          {t("plans-and-pricing.title")}
         </h1>
         <p className="mt-4 text-2xl text-gray-400">
-          Simple, transparent pricing for your business needs.
+          {t("plans-and-pricing.description")}
         </p>
       </div>
 
       <div
-        className={`grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 mt-12 px-4 ${
+        className={`grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4 mt-12 px-4 ${
           plans.length < 4 ? "justify-center" : ""
         } flex flex-wrap`}
       >
         {plans.map((plan, index) => (
           <div
             key={index}
-            className="bg-gray-800 rounded-lg shadow-lg p-6 transform hover:scale-105 transition duration-300"
+            className="bg-gray-800 rounded-lg shadow-lg p-6 transform hover:scale-105 transition duration-300 flex flex-col h-full"
           >
             <h3 className="text-2xl font-semibold text-white">{plan.name}</h3>
             <p className="mt-4 text-gray-400">{plan.description}</p>
@@ -89,7 +123,7 @@ export default function PricingPlans() {
                 {plan.price}
               </span>
             </div>
-            <ul className="mb-8 space-y-2 text-xl text-gray-400">
+            <ul className="mb-8 space-y-2 text-xl text-gray-400 flex-grow">
               {plan.features.map((feature, i) => (
                 <li key={i} className="flex items-center">
                   <svg
@@ -111,8 +145,10 @@ export default function PricingPlans() {
               ))}
             </ul>
             <a
-              href="#"
-              className="block w-full py-3 px-6 text-center rounded-md text-white font-medium bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600"
+              href="https://wa.link/ab85xk"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block w-full py-3 px-6 text-center rounded-md text-white font-medium bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 mt-auto"
             >
               {plan.buttonText}
             </a>

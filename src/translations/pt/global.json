@@ -941,12 +941,12 @@
     }
     },
     "info-integrate": {
-        "title": "Expanda seu servidor de WoW sem complicação",
-        "short-description": "Registre e conecte seu servidor em minutos. Cuidamos da parte técnica para que você se concentre no que realmente importa: sua comunidade.",
-        "detailed-description": "Esqueça configurações complicadas e servidores web difíceis de gerenciar. Com nossa plataforma, conectar seu servidor de WoW é rápido e simples. Gerenciamos o registro de jogadores para você, otimizamos a infraestrutura e fornecemos as ferramentas necessárias para o crescimento ilimitado da sua comunidade. Você cria a experiência, nós cuidamos do resto.",
-        "summary": "Mais jogadores, menos dores de cabeça. Automatize o registro, simplifique a gestão e foque-se em oferecer a melhor experiência de jogo. Nós cuidamos da parte técnica!",
+        "title": "Expanda sua plataforma sem complicações",
+        "short-description": "Conecte-se em minutos e deixe que cuidemos da parte técnica.",
+        "detailed-description": "Nossa equipe de engenheiros cuidará de toda a configuração técnica para que você não precise se preocupar com nada. Desde a integração até a otimização da infraestrutura, garantimos que tudo funcione perfeitamente. Relaxe e concentre-se no crescimento da sua comunidade e do seu negócio, enquanto cuidamos do resto.",
+        "summary": "Automatize processos, simplifique a gestão e escale sem limites. Cuidamos da tecnologia para que você possa focar no crescimento.",
         "btn": {
-            "text": "Registre seu servidor em minutos"
+            "text": "Cadastre-se e comece agora"
         }
     },
     "home-who-we-are": {
@@ -959,8 +959,43 @@
         "terms-of-use": "Termos de Uso",
         "privacy-policy": "Política de Privacidade",
         "about": "@WowLibre – Desenvolvemos soluções inovadoras para a comunidade gamer. Potencializamos a experiência de jogo com software avançado, incentivando a criação de mundos únicos e imersivos."
+    },
+    "plans-and-pricing": {
+        "title": "Planos e Preços",
+        "description": "Escolha um plano e deixe nossa equipe de especialistas cuidar da configuração. Apenas aproveite o crescimento!"
+    },
+    "vdp-server": {
+        "header": {
+            "btn": {
+            "register-text": "Registrar",
+            "realmlist": "Copiar Realmlist",
+            "copy": "Copiado!",
+            "website": "Visitar Site"
+            }
+        },
+        "body": {
+          "title": "Características do Servidor"
+        },
+        "events": {
+            "title": "Próximos Eventos",
+            "description": "Descubra os eventos mais emocionantes do nosso servidor. Não perca!"
+        },
+        "subscription-active": {
+            "title": "Assinatura Ativa!",
+            "description": "Aproveite todos os benefícios da sua assinatura premium. Tire o máximo proveito da sua experiência de jogo!",
+            "disclaimer": "Explore todas as vantagens disponíveis e aproveite ao máximo sua assinatura.",
+            "btn-text": "Gerenciar Assinatura"
+        },
+        "subscription-inactive": {
+            "title": "Junte-se e Desbloqueie Benefícios Exclusivos",
+            "description": "Tenha acesso antecipado a conteúdos exclusivos, descontos especiais e uma experiência sem limites. Torne-se membro hoje e leve sua experiência para o próximo nível!",
+            "btn-text": "Assinar Agora"
+        },
+        "notice": {
+            "title": "Notícias",
+            "description": "Descubra as notícias mais recentes do nosso servidor.",
+            "disclaimer": "Últimos Anúncios"
+        }
     }
-   
-    
 
 }
