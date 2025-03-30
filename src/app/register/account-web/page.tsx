@@ -149,7 +149,7 @@ const AccountWeb = () => {
         avatar: avatar_url,
         expansion: null,
         server: null,
-        pending_validation: false,
+        pending_validation: true,
       });
 
       Cookies.set("token", jwt, {

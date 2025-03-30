@@ -162,9 +162,9 @@ const ConfirmOtpAccount: React.FC = () => {
               {validationResult.success ? (
                 <button
                   className="bg-green-500 hover:bg-green-600 transition px-6 py-3 rounded-lg font-medium text-white w-full sm:w-auto"
-                  onClick={() => router.push("/dashboard")}
+                  onClick={() => router.push("/accounts")}
                 >
-                  Ir al Dashboard 🚀
+                  Ir a mis cuentas 🚀
                 </button>
               ) : (
                 <button
