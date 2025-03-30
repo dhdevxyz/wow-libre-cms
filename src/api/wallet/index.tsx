@@ -1,40 +1,22 @@
-import { BASE_URL } from "@/configs/configs";
+import { BASE_URL_TRANSACTION } from "@/configs/configs";
 import { GenericResponseDto, InternalServerError } from "@/dto/generic";
 import { v4 as uuidv4 } from "uuid";
 
-export const getAnnoucementProfession = async (
-  characterId: number,
-  skillId: number,
-  accountId: number,
-  token: string,
-  serverId: number,
-  message: string
-): Promise<GenericResponseDto<void>> => {
+export const getAmountWallet = async (token: string): Promise<number> => {
   const transactionId = uuidv4();
-
   try {
-    const response = await fetch(
-      `${BASE_URL}/api/characters/profession/announcement`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          transaction_id: transactionId,
-          Authorization: "Bearer " + token,
-        },
-        body: JSON.stringify({
-          character_id: characterId,
-          skill_id: skillId,
-          account_id: accountId,
-          server_id: serverId,
-          message,
-        }),
-      }
-    );
+    const response = await fetch(`${BASE_URL_TRANSACTION}/api/wallet`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        transaction_id: transactionId,
+        Authorization: "Bearer " + token,
+      },
+    });
 
     if (response.ok && response.status === 200) {
-      const responseData: GenericResponseDto<void> = await response.json();
-      return responseData;
+      const responseData: GenericResponseDto<number> = await response.json();
+      return responseData.data;
     } else {
       const genericResponse: GenericResponseDto<void> = await response.json();
       throw new InternalServerError(

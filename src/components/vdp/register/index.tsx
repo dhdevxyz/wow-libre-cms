@@ -6,7 +6,7 @@ import Swal from "sweetalert2";
 interface ServerRegisterProps {
   serverName: string;
   expansion: string;
-  jwt: string;
+  jwt: string | null;
 }
 
 const ServerRegister: React.FC<ServerRegisterProps> = ({
@@ -99,7 +99,10 @@ const ServerRegister: React.FC<ServerRegisterProps> = ({
   };
 
   return (
-    <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
+    <div
+      id="register"
+      className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8"
+    >
       <div className="mx-auto max-w-lg">
         <h1 className="text-center text-3xl font-bold text-yellow-400 sm:text-4xl">
           Únete a la Batalla

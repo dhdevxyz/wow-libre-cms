@@ -68,7 +68,7 @@ const HomeDashboard: React.FC<HomeDashboardProps> = ({ token, serverId }) => {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center h-screen bg-gray-900">
+      <div className="flex items-center justify-center h-screen ">
         <div className="text-center">
           <FaSpinner className="animate-spin text-4xl text-white mx-auto mb-4" />
         </div>
@@ -77,8 +77,8 @@ const HomeDashboard: React.FC<HomeDashboardProps> = ({ token, serverId }) => {
   }
 
   return (
-    <div>
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+    <div className=" bg-black text-white h-screen overflow-y-auto">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-8 p-6 rounded-lg shadow-md hover:shadow-lg transition-all duration-300">
         <Card
           title="Total de Usuarios"
           value={metrics?.total_users.toString() || "0"}
@@ -110,9 +110,9 @@ const HomeDashboard: React.FC<HomeDashboardProps> = ({ token, serverId }) => {
           icon={<FaUserFriends />}
         />
       </div>
+
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-10">
-        {/* Gráfica 1 */}
-        <div className="bg-gray-800 rounded-lg shadow p-6">
+        <div className="bg-gray-900 rounded-lg shadow m-6 p-6">
           <BarChart
             labels={["Horda", "Alianza"]}
             dataValues={factions}
@@ -121,8 +121,7 @@ const HomeDashboard: React.FC<HomeDashboardProps> = ({ token, serverId }) => {
             title={"Distribución de Facciones"}
           />
         </div>
-        {/* Gráfica 2 */}
-        <div className="bg-gray-800 rounded-lg shadow p-6">
+        <div className="bg-gray-900 rounded-lg shadow m-6 p-6">
           <BarChart
             labels={["Online", "Offline"]}
             dataValues={charactersOnline}
@@ -132,9 +131,9 @@ const HomeDashboard: React.FC<HomeDashboardProps> = ({ token, serverId }) => {
           />
         </div>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-10">
-        {/* Gráfica 1 */}
-        <div className="bg-gray-800 rounded-lg shadow p-6">
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-10 pb-10">
+        <div className="bg-gray-900 rounded-lg shadow m-6">
           <PieChart
             labels={["Promociones", "Pendientes"]}
             dataValues={redeemedPromotions}
@@ -144,8 +143,7 @@ const HomeDashboard: React.FC<HomeDashboardProps> = ({ token, serverId }) => {
             legendColor={"#ffffff"}
           />
         </div>
-        {/* Gráfica 2 */}
-        <div className="bg-gray-800 rounded-lg shadow p-6 ">
+        <div className="bg-gray-900 rounded-lg shadow m-6">
           <PolarAreaChart
             labels={levelChartData.labels}
             dataValues={levelChartData.dataValues}

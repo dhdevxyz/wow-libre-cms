@@ -4,16 +4,16 @@ import "react-responsive-carousel/lib/styles/carousel.min.css"; // Importar los 
 
 interface ServerEventsProps {
   events: EventsVdp[];
+  t: (key: string, options?: any) => string;
 }
-const ServerEvents: React.FC<ServerEventsProps> = ({ events }) => {
+const ServerEvents: React.FC<ServerEventsProps> = ({ events, t }) => {
   return (
     <section className="contenedor py-12 px-4">
       <h1 className="text-4xl font-bold text-white text-center mb-6">
-        📅 Próximos Eventos
+        📅 {t("vdp-server.events.title")}
       </h1>
       <p className="text-lg text-white/80 text-center max-w-2xl mx-auto leading-relaxed">
-        Descubre los eventos más emocionantes en el mundo del diseño, desarrollo
-        y fotografía. ¡Conoce a los mejores en la industria!
+        {t("vdp-server.events.description")}
       </p>
 
       <div className="mt-8 max-w-4xl mx-auto">

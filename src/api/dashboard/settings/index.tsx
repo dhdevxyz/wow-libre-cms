@@ -1,40 +1,33 @@
 import { BASE_URL } from "@/configs/configs";
 import { GenericResponseDto, InternalServerError } from "@/dto/generic";
+import { ConfigsResponse } from "@/model/model";
 import { v4 as uuidv4 } from "uuid";
 
-export const getAnnoucementProfession = async (
-  characterId: number,
-  skillId: number,
-  accountId: number,
-  token: string,
+export const getConfigs = async (
+  url: string,
   serverId: number,
-  message: string
-): Promise<GenericResponseDto<void>> => {
+  token: string
+): Promise<ConfigsResponse> => {
   const transactionId = uuidv4();
 
   try {
-    const response = await fetch(
-      `${BASE_URL}/api/characters/profession/announcement`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          transaction_id: transactionId,
-          Authorization: "Bearer " + token,
-        },
-        body: JSON.stringify({
-          character_id: characterId,
-          skill_id: skillId,
-          account_id: accountId,
-          server_id: serverId,
-          message,
-        }),
-      }
-    );
+    const response = await fetch(`${BASE_URL}/api/dashboard/configs`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        transaction_id: transactionId,
+        Authorization: "Bearer " + token,
+      },
+      body: JSON.stringify({
+        server_id: serverId,
+        route: url,
+      }),
+    });
 
     if (response.ok && response.status === 200) {
-      const responseData: GenericResponseDto<void> = await response.json();
-      return responseData;
+      const responseData: GenericResponseDto<ConfigsResponse> =
+        await response.json();
+      return responseData.data;
     } else {
       const genericResponse: GenericResponseDto<void> = await response.json();
       throw new InternalServerError(

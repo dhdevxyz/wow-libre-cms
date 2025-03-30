@@ -9,18 +9,20 @@ import Navbar from "@/components/home/navbar-home/navbar";
 import SliderHome from "@/components/home/slider";
 import Subscription from "@/components/home/subscription";
 import ServerExperience from "@/components/home/us";
+import PricingPlans from "@/components/princing";
 
 const Home = () => {
   return (
     <>
       <Navbar />
       <Advertising />
+
       <AdIframe />
-
       <Information />
-
+      <PricingPlans />
       <ServerExperience />
       <SliderHome />
+
       <InfoIntegrate />
 
       <Bidding />

@@ -155,7 +155,7 @@ const Profile = () => {
           {/* Profile Picture */}
           <div className="absolute bottom-[-50px] left-1/2 transform -translate-x-1/2">
             <img
-              src="https://via.placeholder.com/150"
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWIyiczDiDAtGKbzINSuyOwN4XhhG-WE9wf2JLTGdqY2vP1hjvbfvJG05Z_Nm0hcVHL00&usqp=CAU"
               alt="Profile"
               className="w-28 h-28 rounded-full border-4 border-gray-800 shadow-lg hover:scale-105 transition-transform"
             />

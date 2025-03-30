@@ -72,7 +72,7 @@ const Login = () => {
           logged_in: true,
           avatar: avatar_url,
           language: language,
-          pending_validation: false,
+          pending_validation: response.pending_validation,
         });
       }
 
@@ -167,12 +167,9 @@ const Login = () => {
           <div className="login-form-section-footer pt-2">
             <div className="mt-28 text-xl md:text-1xl lg:text-2xl xl:text-2xl">
               <p>
-                World of Warcraft® and Blizzard Entertainment® are all
-                trademarks or registered trademarks of Blizzard Entertainment in
-                the United States and/or other countries. These terms and all
-                related materials, logos, and images are copyright © Blizzard
-                Entertainment. This site is in no way associated with or
-                endorsed by Blizzard Entertainment®.
+                @WowLibre We develop innovative solutions for the gaming
+                community. We enhance the gaming experience with advanced
+                software, fostering the creation of unique and immersive worlds.
               </p>
             </div>
           </div>

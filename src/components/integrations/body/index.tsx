@@ -1,3 +1,4 @@
+import PricingPlans from "@/components/princing";
 import React from "react";
 
 const IntegrationsBody = () => {
@@ -463,7 +464,7 @@ After=network.target
 Type=simple
 User=root
 WorkingDirectory=/root/app/
-ExecStart=/usr/bin/java -jar /root/app/wow-libre-client-0.0.1-SNAPSHOT.jar
+ExecStart=/usr/bin/java -jar /root/app/wow-libre-client-0.0.1-SNAPSHOT.jar --spring.profiles.active=prod
 Restart=on-failure
 RestartSec=10s
 
@@ -546,36 +547,11 @@ WantedBy=multi-user.target`}
         </div>
       </div>
 
-      <div className="contenedor flex flex-col items-center justify-center min-h-screen bg-gradient-to-r bg-midnight text-white p-10 ">
-        {/* Título centrado */}
-        <h1 className="bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 bg-clip-text text-5xl font-extrabold text-transparent sm:text-6xl">
-          Próximos Lanzamientos
-        </h1>
-
-        <div className="w-full flex justify-center">
-          <img
-            src="https://static.wixstatic.com/media/5dd8a0_f43e03e1becd42228b26d06e24241b2b~mv2.webp"
-            alt="App preview"
-            className="w-full max-w-none h-auto object-cover rounded-lg shadow-lg"
-          />
-        </div>
-
-        <div className="md:w-3/4 bg-gray-800 bg-opacity-80 p-8 mt-6 rounded-3xl shadow-xl text-center border border-gray-700">
-          <h1 className="text-5xl font-extrabold text-purple-500 mb-6">
-            ¡Tu comunidad, tu espacio!
-          </h1>
-          <p className="text-gray-300 mb-6 text-lg">
-            Organiza y gestiona tu comunidad de juegos con facilidad en Android
-            y iOS. Nuestra app te ofrece una experiencia intuitiva y eficiente.
-          </p>
-          <a
-            target="_blank"
-            href="https://chat.whatsapp.com/LbBirOTWzjh0rKYB3m6XT8"
-            className="bg-purple-600 text-white px-8 py-4 rounded-full font-semibold shadow-lg hover:bg-purple-700 transition-transform transform hover:scale-105"
-          >
-            Soporte
-          </a>
-        </div>
+      <div
+        id="pricing"
+        className=" flex flex-col items-center justify-center  bg-gradient-to-r bg-midnight text-white p-10 "
+      >
+        <PricingPlans />
       </div>
     </section>
   );

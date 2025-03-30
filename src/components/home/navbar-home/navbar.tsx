@@ -87,11 +87,11 @@ const Navbar = () => {
       <header>
         <Link className="logo-home flex items-center" href="/">
           <img
-            className="nav-small-image"
-            src="https://i.ibb.co/grsYmyj/logo.webp"
+            className="w-20 h-20 md:w-28 md:h-28"
+            src="https://static.wixstatic.com/media/5dd8a0_4a5bff42a39c47c2ae67d5dde07455f5~mv2.webp"
             alt="Logo WowLibre"
           />
-          <p className="title-server title-home ml-2 text-xl font-bold">
+          <p className="title-server title-home ml-2 text-xl font-bold md:text-2xl">
             Wow Libre
           </p>
         </Link>

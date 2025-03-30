@@ -2,6 +2,7 @@ import { getUsersAllServer, updateMail } from "@/api/dashboard/users";
 import { AccountsServer } from "@/model/model";
 import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
+import UserActionModal from "./UserManagement";
 
 interface UsersDashboardProps {
   token: string;
@@ -11,7 +12,6 @@ interface UsersDashboardProps {
 const UsersDashboard: React.FC<UsersDashboardProps> = ({ token, serverId }) => {
   const [users, setUsers] = useState<AccountsServer[]>([]);
   const [selectedUser, setSelectedUser] = useState<AccountsServer | null>(null);
-  const [editedEmail, setEditedEmail] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(10);
@@ -54,70 +54,6 @@ const UsersDashboard: React.FC<UsersDashboardProps> = ({ token, serverId }) => {
 
   const handleRowClick = (user: AccountsServer) => {
     setSelectedUser(user);
-    setEditedEmail(user.email);
-  };
-
-  const handleSaveEmail = async () => {
-    if (!isValidEmail(editedEmail)) {
-      Swal.fire(
-        "Error",
-        "Por favor, ingrese un correo electrónico válido.",
-        "error"
-      );
-      return;
-    }
-
-    if (selectedUser) {
-      try {
-        await updateMail(editedEmail, selectedUser.username, serverId, token);
-        Swal.fire(
-          "Éxito",
-          "El correo ha sido actualizado correctamente.",
-          "success"
-        );
-        setSelectedUser(null);
-        setEditedEmail("");
-        fetchData(); // Refrescar datos
-      } catch (error) {
-        Swal.fire(
-          "Error",
-          "No se pudo actualizar el correo. Inténtelo de nuevo.",
-          "error"
-        );
-      }
-    }
-  };
-
-  const handleBanUser = async () => {
-    if (selectedUser) {
-      try {
-        // Aquí deberías llamar a la API correspondiente para banear al usuario.
-        const updatedUsers = users.map((user) =>
-          user.id === selectedUser.id ? { ...user, banned: true } : user
-        );
-        setUsers(updatedUsers);
-        Swal.fire("Éxito", "El usuario ha sido baneado.", "success");
-        setSelectedUser(null);
-      } catch (error) {
-        Swal.fire("Error", "No se pudo banear al usuario.", "error");
-      }
-    }
-  };
-
-  const handleMuteUser = async () => {
-    if (selectedUser) {
-      try {
-        // Aquí deberías llamar a la API correspondiente para silenciar al usuario.
-        const updatedUsers = users.map((user) =>
-          user.id === selectedUser.id ? { ...user, muted: true } : user
-        );
-        setUsers(updatedUsers);
-        Swal.fire("Éxito", "El usuario ha sido silenciado.", "success");
-        setSelectedUser(null);
-      } catch (error) {
-        Swal.fire("Error", "No se pudo silenciar al usuario.", "error");
-      }
-    }
   };
 
   const fillEmptyRows = () => {
@@ -132,101 +68,59 @@ const UsersDashboard: React.FC<UsersDashboardProps> = ({ token, serverId }) => {
       </tr>
     ));
   };
-  const isValidEmail = (email: string): boolean => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-  };
+
   return (
-    <div className="bg-gray-900 text-gray-300 p-6 rounded-lg shadow-lg">
-      <h1 className="text-center text-3xl font-extrabold mb-6 text-blue-400">
+    <div className="bg-black text-gray-300 p-4 sm:p-6 rounded-lg shadow-lg h-full overflow-hidden">
+      <h1 className="text-center text-2xl sm:text-3xl font-extrabold mb-4 sm:mb-6 text-blue-400">
         Usuarios Registrados
       </h1>
 
       <div className="mb-4">
         <input
           type="text"
-          placeholder="Buscar email..."
+          placeholder="Buscar usuario por el email"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="w-full px-4 py-2 rounded-lg bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-blue-400"
+          className="w-full px-3 py-2 text-sm sm:text-lg rounded-lg bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-blue-400"
         />
       </div>
 
-      {selectedUser && (
-        <div className="bg-gray-800 p-4 rounded-lg mb-4 border border-blue-400">
-          <h2 className="text-xl font-bold mb-2 text-blue-400">
-            Editar Usuario
-          </h2>
-          <div className="flex items-center space-x-4 text-gray-400">
-            <span>ID: {selectedUser.id}</span>
-            <span>Username: {selectedUser.username}</span>
-          </div>
-          <div className="mt-2">
-            <label htmlFor="email" className="block text-sm mb-1 text-gray-400">
-              Email:
-            </label>
-            <input
-              type="email"
-              id="email"
-              value={editedEmail}
-              onChange={(e) => setEditedEmail(e.target.value)}
-              className="w-full px-4 py-2 rounded-lg bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-blue-400"
-            />
-          </div>
-          <div className="mt-4 flex justify-between space-x-2">
-            <div className="flex space-x-2">
-              <button
-                onClick={() => {
-                  setSelectedUser(null);
-                  setEditedEmail("");
-                }}
-                className="px-4 py-2 bg-gray-700 text-gray-300 rounded hover:bg-gray-600 transition"
-              >
-                Cancelar
-              </button>
-              <button
-                onClick={handleSaveEmail}
-                className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-500 transition"
-              >
-                Guardar
-              </button>
-            </div>
-            <div className="flex space-x-2">
-              <button
-                onClick={handleBanUser}
-                className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-500 transition"
-              >
-                Banear
-              </button>
-              <button
-                onClick={handleMuteUser}
-                className="px-4 py-2 bg-yellow-600 text-white rounded hover:bg-yellow-500 transition"
-              >
-                Silenciar
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
+      <div className="overflow-x-auto">
+        {selectedUser && (
+          <UserActionModal
+            selectedUser={selectedUser}
+            onClose={() => setSelectedUser(null)}
+            serverId={serverId}
+            token={token}
+            fetchData={fetchData}
+            banned={selectedUser.banned}
+          />
+        )}
 
-      {/* Tabla de usuarios */}
-      <div
-        className="overflow-x-auto"
-        style={{ height: "670px", overflowY: "auto" }}
-      >
         <table className="w-full table-auto border-collapse">
           <thead>
-            <tr className="bg-gray-800 text-gray-400">
-              <th className="px-4 py-2 text-left">ID</th>
-              <th className="px-4 py-2 text-left">Username</th>
-              <th className="px-4 py-2 text-left">Email</th>
-              <th className="px-4 py-2 text-left">Online</th>
-              <th className="px-4 py-2 text-left">Muteado</th>
-              <th className="px-4 py-2 text-left">Última Conexión</th>
-              <th className="px-4 py-2 text-left">Fallos de Login</th>
-              <th className="px-4 py-2 text-left">Última IP</th>
-              <th className="px-4 py-2 text-left">OS</th>
-              <th className="px-4 py-2 text-left">Expansión</th>
+            <tr className="bg-blue-900 text-white">
+              <th className="px-4 py-2 text-left whitespace-nowrap">ID</th>
+              <th className="px-4 py-2 text-left whitespace-nowrap">
+                Username
+              </th>
+              <th className="px-4 py-2 text-left whitespace-nowrap">Email</th>
+              <th className="px-4 py-2 text-left whitespace-nowrap">Online</th>
+              <th className="px-4 py-2 text-left whitespace-nowrap">Muteado</th>
+              <th className="px-4 py-2 text-left whitespace-nowrap">Baneado</th>
+              <th className="px-4 py-2 text-left whitespace-nowrap">
+                Última Conexión
+              </th>
+              <th className="px-4 py-2 text-left whitespace-nowrap">
+                Fallos de Login
+              </th>
+              <th className="px-4 py-2 text-left whitespace-nowrap">
+                Última IP
+              </th>
+              <th className="px-4 py-2 text-left whitespace-nowrap">OS</th>
+              <th className="px-4 py-2 text-left whitespace-nowrap">
+                Expansión
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -235,47 +129,55 @@ const UsersDashboard: React.FC<UsersDashboardProps> = ({ token, serverId }) => {
                 key={user.id}
                 onClick={() => handleRowClick(user)}
                 className={`${
-                  index % 2 === 0 ? "bg-gray-800" : "bg-gray-700"
-                } hover:bg-gray-600 cursor-pointer transition`}
+                  index % 2 === 0 ? "bg-gray-900" : "bg-gray-800"
+                } hover:bg-gray-500 cursor-pointer transition`}
               >
-                <td className="px-4 py-2 border-b border-gray-600">
+                <td className="px-4 py-2 text-left border-b border-gray-700">
                   {user.id}
                 </td>
-                <td className="px-4 py-2 border-b border-gray-600">
+                <td className="px-4 py-2 text-left border-b border-gray-700">
                   {user.username}
                 </td>
-                <td className="px-4 py-2 border-b border-gray-600">
+                <td className="px-4 py-2 text-left border-b border-gray-700">
                   {user.email}
                 </td>
-                <td className="px-4 py-2 border-b pl-10 border-gray-600">
+                <td className="px-4 py-2 text-left border-b border-gray-700">
                   <span
                     className={`inline-block w-6 h-6 rounded-full ${
-                      user.online ? "bg-green-600" : "bg-red-600"
+                      user.online ? "bg-green-500" : "bg-red-500"
                     }`}
                     title={user.online ? "Online" : "Offline"}
                   ></span>
                 </td>
-                <td className="px-4 py-2 border-b pl-10 border-gray-600">
+                <td className="px-4 py-2 text-left border-b border-gray-700">
                   <span
                     className={`inline-block w-6 h-6 rounded-full ${
-                      user.mute ? "bg-red-600" : "bg-green-600"
+                      user.mute ? "bg-green-500" : "bg-red-500"
                     }`}
                     title={user.mute ? "Silenciado" : "Activo"}
                   ></span>
                 </td>
-                <td className="px-4 py-2 border-b border-gray-600">
+                <td className="px-4 py-2 text-left border-b border-gray-700">
+                  <span
+                    className={`inline-block w-6 h-6 rounded-full ${
+                      user.banned ? "bg-green-500" : "bg-red-500"
+                    }`}
+                    title={user.banned ? "Baneado" : "Sin Banear"}
+                  ></span>
+                </td>
+                <td className="px-4 py-2 text-left border-b border-gray-700">
                   {user.last_ip}
                 </td>
-                <td className="px-4 py-2 border-b border-gray-600">
+                <td className="px-4 py-2 text-left border-b border-gray-700">
                   {user.failed_logins}
                 </td>
-                <td className="px-4 py-2 border-b border-gray-600">
+                <td className="px-4 py-2 text-left border-b border-gray-700">
                   {user.last_ip}
                 </td>
-                <td className="px-4 py-2 border-b border-gray-600">
+                <td className="px-4 py-2 text-left border-b border-gray-700">
                   {user.os}
                 </td>
-                <td className="px-4 py-2 border-b border-gray-600">
+                <td className="px-4 py-2 text-left border-b border-gray-700">
                   {user.expansion}
                 </td>
               </tr>
@@ -285,9 +187,8 @@ const UsersDashboard: React.FC<UsersDashboardProps> = ({ token, serverId }) => {
         </table>
       </div>
 
-      {/* Paginación */}
-      <div className="flex justify-between items-center mt-4">
-        <div>
+      <div className="flex flex-col sm:flex-row justify-between items-center sm:mt-4 min-h-[60px]">
+        <div className="mb-2 sm:mb-0">
           <label htmlFor="itemsPerPage" className="mr-2">
             Mostrar:
           </label>
@@ -295,22 +196,22 @@ const UsersDashboard: React.FC<UsersDashboardProps> = ({ token, serverId }) => {
             id="itemsPerPage"
             value={itemsPerPage}
             onChange={(e) => setItemsPerPage(parseInt(e.target.value))}
-            className="px-2 py-1 rounded bg-gray-800 text-gray-400"
+            className="px-2 py-1 sm:py-2 rounded bg-gray-800 text-gray-400"
           >
             <option value={10}>10</option>
             <option value={20}>20</option>
           </select>
         </div>
 
-        <div className="flex items-center space-x-2">
+        <div className="flex items-center space-x-1 sm:space-x-2">
           <button
             onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
             disabled={currentPage === 1 || totalElements === 0}
-            className="px-3 py-1 rounded bg-gray-700 text-gray-400 hover:bg-gray-600 disabled:opacity-50"
+            className="px-2 sm:px-3 py-1 sm:py-2 rounded bg-gray-700 text-gray-400 hover:bg-gray-600 disabled:opacity-50"
           >
             Anterior
           </button>
-          <span>
+          <span className="text-xl sm:text-2xl text-gray-300">
             Página {totalElements > 0 ? currentPage : 0} de{" "}
             {Math.ceil(totalElements / itemsPerPage)}
           </span>
@@ -324,7 +225,7 @@ const UsersDashboard: React.FC<UsersDashboardProps> = ({ token, serverId }) => {
               currentPage === Math.ceil(totalElements / itemsPerPage) ||
               totalElements === 0
             }
-            className="px-3 py-1 rounded bg-gray-700 text-gray-400 hover:bg-gray-600 disabled:opacity-50"
+            className="px-2 sm:px-3 py-1 sm:py-2 rounded bg-gray-700 text-gray-400 hover:bg-gray-600 disabled:opacity-50"
           >
             Siguiente
           </button>

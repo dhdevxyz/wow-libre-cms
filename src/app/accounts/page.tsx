@@ -112,18 +112,18 @@ const Page = () => {
     }
 
     try {
-      sendMail(token);
+      await sendMail(token);
       Swal.fire({
         title: t("account.validation-mail.title-success"),
         text: t("account.validation-mail.message-success"),
         icon: "success",
         confirmButtonText: "Aceptar",
       });
-    } catch (error) {
+    } catch (error: any) {
       Swal.fire({
         icon: "error",
         title: t("account.validation-mail.title-error"),
-        text: t("account.validation-mail.message-error"),
+        text: error.message,
         confirmButtonText: "Aceptar",
       });
     }
@@ -221,11 +221,11 @@ const Page = () => {
               <button
                 id="dropdownActionButton"
                 data-dropdown-toggle="dropdownAction"
-                className="inline-flex items-center text-gray-500 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-3 py-1.5 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
+                className="text-lg inline-flex items-center text-gray-500 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg  px-3 py-1.5 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
                 type="button"
                 onClick={toggleDropdown}
               >
-                Administration
+                {t("account.service-available.btn-administration")}
                 <svg
                   className="w-2.5 h-2.5 ml-2.5"
                   aria-hidden="true"
@@ -250,7 +250,7 @@ const Page = () => {
               >
                 {!accountMaximus && (
                   <ul
-                    className="py-1 text-sm text-gray-700 dark:text-gray-200"
+                    className="py-1 text-lg text-gray-700 dark:text-gray-200 "
                     aria-labelledby="dropdownActionButton"
                   >
                     <li>
@@ -266,7 +266,7 @@ const Page = () => {
                 <div className="py-1">
                   <a
                     href="#"
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                    className="block text-lg px-4 py-2  text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
                   >
                     {t("account.with-accounts.txt-delete-account")}
                   </a>

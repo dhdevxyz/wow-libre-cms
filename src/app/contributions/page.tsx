@@ -2,6 +2,8 @@
 import AdultsBanner from "@/components/adversing/adults";
 import SingleCard from "@/components/contributions/card";
 import NavbarAuthenticated from "@/components/navbar-authenticated";
+import PricingPlans from "@/components/princing";
+import Pricing from "@/components/princing";
 import Link from "next/link";
 
 const Contributions = () => {
@@ -47,16 +49,16 @@ const Contributions = () => {
               <div>
                 <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-7">
                   ¡Explora Aplicaciones Gratis Hechas para tu Servidor y la
-                  Comunidad de WoW!
+                  Comunidad
                 </h2>
                 <p className="text-base sm:text-lg lg:text-2xl mb-4 break-words">
                   Descubre herramientas exclusivas de código abierto, diseñadas
-                  para potenciar tu servidor de World of Warcraft. ¡Todo gratis
-                  y al alcance de tu mano!
+                  para potenciar tu servidor. ¡Todo gratis y al alcance de tu
+                  mano!
                 </p>
                 <div className="pt-6 sm:pt-8">
-                  <p className="text-lg sm:text-2xl lg:text-4xl pt-2 mb-4 font-semibold">
-                    ¡Aplicaciones que Transformarán tu Experiencia WoW!
+                  <p className="text-lg sm:text-2xl lg:text-3xl pt-2 mb-4 font-semibold">
+                    ¡Aplicaciones que Transformarán tu Experiencia!
                   </p>
                   <p className="text-base sm:text-lg lg:text-2xl mb-6 break-words">
                     Desde herramientas para administrar tu servidor hasta
@@ -89,7 +91,7 @@ const Contributions = () => {
               </div>
               <div className="relative h-[450px] w-full select-none">
                 <img
-                  src="https://user-images.githubusercontent.com/75517/109369101-80236780-789b-11eb-900c-bcc17a3cf13c.png"
+                  src="https://static.wixstatic.com/media/5dd8a0_8005afd12f6a43c8bda4ad2ed5a2bf92~mv2.jpg"
                   alt="AzerothCore"
                   className="object-cover rounded-xl w-full h-full transition duration-300 hover:opacity-75"
                 />
@@ -99,7 +101,12 @@ const Contributions = () => {
         </div>
       </div>
 
-      <section className="contenedor  pb-10 pt-20 lg:pb-20 lg:pt-[120px]">
+      <section className="contenedor  pb-10 pt-20 lg:pb-20 lg:pt-[10px]">
+        <div className="mx-auto max-w-2xl text-center">
+          <h1 className="mb-20 bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 bg-clip-text text-3xl font-extrabold text-transparent sm:text-5xl">
+            Proyectos<span className="sm:block"> De la comunidad</span>
+          </h1>
+        </div>
         <div className="container">
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             <SingleCard
@@ -184,7 +191,7 @@ const Contributions = () => {
               </div>
               <div className="mt-10 sm:mt-20 lg:mt-0 flex justify-center">
                 <img
-                  className="max-w-full w-[90%] sm:w-full rounded-xl shadow-2xl ring-1 ring-black ring-opacity-5 mx-auto"
+                  className="max-w-full w-[90%] sm:w-full rounded-xl shadow-2xl ring-1 ring-black ring-opacity-5 mx-auto m-10"
                   src={feature.image}
                   alt={feature.title}
                 />

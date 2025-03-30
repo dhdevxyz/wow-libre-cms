@@ -1,6 +1,5 @@
 "use client";
 import BankDashboard from "@/components/dashboard/bank";
-import Card from "@/components/dashboard/card";
 import Header from "@/components/dashboard/header";
 import HomeDashboard from "@/components/dashboard/home";
 import Sidebar from "@/components/dashboard/sidebard";
@@ -8,9 +7,10 @@ import UsersDashboard from "@/components/dashboard/user";
 import Cookies from "js-cookie";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import { FaChartBar, FaCog, FaSpinner, FaUser } from "react-icons/fa";
-import PromotionsDashboard from "../dashboard/promotions";
+import { FaSpinner } from "react-icons/fa";
 import GuildsDashboard from "../dashboard/guilds";
+import PromotionsDashboard from "../dashboard/promotions";
+import SettingsServer from "../settings";
 
 const AdministratorServer = () => {
   const [activeOption, setActiveOption] = useState("dashboard");
@@ -52,17 +52,15 @@ const AdministratorServer = () => {
   }
 
   return (
-    <div className="flex flex-col md:flex-row">
+    <div className=" text-white min-h-screen bg-black">
       {/* Header fijo */}
       <Header />
 
       {/* Sidebar */}
-      <div className="fixed top-16 left-0 md:w-72 h-full z-10 md:block">
-        <Sidebar onOptionChange={handleOptionChange} />
-      </div>
+      <Sidebar onOptionChange={handleOptionChange} />
 
       {/* Contenido principal */}
-      <main className="flex-1 bg-gradient-to-b from-gray-800 to-gray-900 md:ml-72 mt-16 p-4 md:p-10 pt-20">
+      <main className="ml-auto lg:w-[75%] xl:w-[80%] 2xl:w-[85%] bg-black">
         {/* HOME DASHBOARD */}
         {activeOption === "dashboard" && token && serverId && (
           <HomeDashboard token={token} serverId={serverId} />
@@ -70,23 +68,12 @@ const AdministratorServer = () => {
         {activeOption === "users" && token && serverId && (
           <UsersDashboard token={token} serverId={serverId} />
         )}
-
-        {activeOption === "settings" && (
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-            <Card title="Usuarios Activos" value="120" icon={<FaUser />} />
-            <Card
-              title="Ventas Mensuales"
-              value="$4,500"
-              icon={<FaChartBar />}
-            />
-            <Card title="Ajustes" value="12" icon={<FaCog />} />
-          </div>
-        )}
-
         {activeOption === "promotions" && token && serverId && (
           <PromotionsDashboard />
         )}
-        {activeOption === "support" && <h2 className="text-white">Soporte</h2>}
+        {activeOption === "settings" && token && serverId && (
+          <SettingsServer token={token} serverId={serverId} />
+        )}
         {activeOption === "bank" && token && serverId && (
           <BankDashboard token={token} serverId={serverId} />
         )}

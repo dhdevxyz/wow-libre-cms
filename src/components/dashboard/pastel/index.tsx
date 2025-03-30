@@ -47,7 +47,7 @@ const PieChart: React.FC<PieChartProps> = ({
 
   return (
     <div
-      className="bg-gray-800 p-6 rounded-lg shadow"
+      className="bg-gray-900 p-6 rounded-lg shadow "
       style={{
         width: "100%", // Hacer el gráfico responsivo
         maxWidth: "600px", // Máximo tamaño

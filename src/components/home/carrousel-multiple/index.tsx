@@ -1,29 +1,34 @@
 "use client";
+import { getProductsDiscount } from "@/api/store";
+import LoadingSpinner from "@/components/utilities/loading-spinner";
+import { useUserContext } from "@/context/UserContext";
+import { Product } from "@/model/model";
+import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import { useRouter } from "next/navigation";
-import { Product } from "@/model/model";
-import { getProductsDiscount } from "@/api/store";
-import LoadingSpinner from "@/components/utilities/loading-spinner";
 
-const MultiCarousel = () => {
+interface MultiCarouselProps {
+  t: (key: string, options?: any) => string;
+}
+
+const MultiCarousel: React.FC<MultiCarouselProps> = ({ t }) => {
   const router = useRouter();
-
+  const { user } = useUserContext();
   const [products, setProducts] = useState<Product[]>([]);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const productsWithDiscount = await getProductsDiscount();
+        const productsWithDiscount = await getProductsDiscount(user.language);
         setProducts(productsWithDiscount);
       } catch (err: any) {
         setError(err.message);
       }
     };
     fetchProducts();
-  }, []);
+  }, [user]);
 
   const responsive = {
     superLargeDesktop: {
@@ -52,7 +57,7 @@ const MultiCarousel = () => {
     <div className="rounded-2xl p-4 ">
       <div>
         <h3 className="text-start pl-4 text-2xl text-white lg:text-3xl mt-3">
-          ¡Ofertas Imperdibles en Productos con Descuento!
+          {t("home-products.carrousel-offert.title")}
         </h3>
       </div>
       {error ? (
@@ -93,24 +98,26 @@ const MultiCarousel = () => {
                 <p className="text-lg text-gray-200  md:text-xl lg:text-2xl xl:text-xl">
                   {product.category}
                 </p>
-
-                {product.gambling_money ? (
-                  <p className="text-lg text-[#6396f3] pt-9 lg:text-3xl">
-                    {product.discounted_gold_price}g
+                <p className="text-lg text-gray-200  md:text-xl lg:text-2xl xl:text-xl">
+                  {product.partner}
+                </p>
+                {product.use_points ? (
+                  <p className="text-lg text-[#6396f3] pt-9 lg:text-2xl">
+                    {product.price} Points
                   </p>
                 ) : (
                   <p className="text-lg text-[#6396f3]  pt-9 lg:text-2xl">
-                    ${product.discounted_price} USD
+                    ${product.price} USD
                   </p>
                 )}
 
-                <p className="text-lg text-[#7fff00] pt-2 lg:text-2xl">
+                <p className="text-lg text-gray-300 pt-2 lg:text-xl">
                   {product.disclaimer.length > 30
                     ? `${product.disclaimer.slice(0, 30)}...`
                     : product.disclaimer}
                 </p>
                 <button className="w-full mt-8 bg-blue-900 text-white py-2 px-4 rounded hover:bg-blue-600 transition-all text-lg">
-                  Comprar
+                  {t("home-products.carrousel-offert.btn")}
                 </button>
               </div>
             </div>

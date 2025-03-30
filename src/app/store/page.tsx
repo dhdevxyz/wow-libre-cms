@@ -3,6 +3,7 @@
 import { getProducts } from "@/api/store";
 import NavbarAuthenticated from "@/components/navbar-authenticated";
 import AdvertisingStore from "@/components/store/banners";
+import { useUserContext } from "@/context/UserContext";
 import { CategoryDetail } from "@/model/model";
 import { useRouter } from "next/navigation";
 import React, { useState, useEffect } from "react";
@@ -14,11 +15,12 @@ const Store = () => {
   }>({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const { user } = useUserContext();
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const productsData = await getProducts();
+        const productsData = await getProducts(user.language);
 
         let categoriesObject: { [key: string]: CategoryDetail[] } = {};
 
@@ -39,7 +41,7 @@ const Store = () => {
     };
 
     fetchProducts();
-  }, []);
+  }, [user]);
 
   const handleSelectItem = (id: string) => {
     router.push(`/store/${id}`);
@@ -126,13 +128,13 @@ const Store = () => {
                       <div className="mt-auto">
                         {product.discount > 0 ? (
                           <>
-                            {product.gambling_money === false ? (
+                            {product.use_points === false ? (
                               <>
                                 <p
                                   className="text-orange-300 font-bold"
                                   style={{ fontSize: "1.5rem" }}
                                 >
-                                  ${product.discounted_price} USD
+                                  ${product.discount_price} USD
                                 </p>
                                 <p className="line-through text-gray-500">
                                   ${product.price.toLocaleString()} USD
@@ -144,10 +146,12 @@ const Store = () => {
                                   className="text-orange-300 font-bold"
                                   style={{ fontSize: "1.5rem" }}
                                 >
-                                  {`$${product.discounted_gold_price.toLocaleString()} Gold`}
+                                  {`$${Math.floor(
+                                    product.discount_price
+                                  ).toLocaleString()} Points`}
                                 </p>
                                 <p className="line-through text-gray-500">
-                                  {`$${product.gold_price.toLocaleString()} Gold`}
+                                  {`$${product.price.toLocaleString()} Points`}
                                 </p>
                               </>
                             )}
@@ -157,9 +161,9 @@ const Store = () => {
                             className="text-orange-300 font-bold"
                             style={{ fontSize: "1.5rem" }}
                           >
-                            {product.gambling_money === false
+                            {product.use_points === false
                               ? `$${product.price.toLocaleString()} USD`
-                              : `$${product.gold_price.toLocaleString()} Gold`}
+                              : `$${product.price.toLocaleString()} Points`}
                           </p>
                         )}
                       </div>

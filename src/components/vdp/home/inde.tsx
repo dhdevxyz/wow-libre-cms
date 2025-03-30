@@ -12,15 +12,21 @@ import ServerEvents from "@/components/vdp/events";
 import VdpBanner from "@/components/vdp/header";
 import ServerInformationVdp from "@/components/vdp/information";
 import ServerRegister from "@/components/vdp/register";
+import { useUserContext } from "@/context/UserContext";
 import { ServerVdpDto } from "@/model/model";
 import Cookies from "js-cookie";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 const Vdp = () => {
   const router = useRouter();
   const [redirect, setRedirect] = useState<boolean>(false);
   const [isSubscribed, setIsSubscribed] = useState<boolean>(false);
+  const [isLogged, setIsLogged] = useState<boolean>(false);
+
+  const { t } = useTranslation();
+  const { user } = useUserContext();
 
   const [vdpModel, setServerVdp] = useState<ServerVdpDto>();
   const searchParams = useSearchParams();
@@ -39,7 +45,7 @@ const Vdp = () => {
       try {
         const [subscriptionActive, serverVdp] = await Promise.all([
           token ? getSubscriptionActive(token) : Promise.resolve(false),
-          getServerNameAndExpansion(serverName, expansion),
+          getServerNameAndExpansion(serverName, expansion, user.language),
         ]);
         setServerVdp(serverVdp);
         setIsSubscribed(subscriptionActive);
@@ -48,6 +54,8 @@ const Vdp = () => {
       }
     };
     fetchData();
+    if (!user.logged_in) setIsLogged(false);
+    if (user && user.logged_in && token) setIsLogged(true);
   }, [serverName, expansion]);
 
   useEffect(() => {
@@ -81,11 +89,23 @@ const Vdp = () => {
         name={vdpModel.name}
         realmlist={vdpModel.realmlist}
         description={vdpModel.disclaimer}
+        url={vdpModel.url}
+        isLogged={isLogged}
+        logo={vdpModel.logo}
+        headerImgCenter={vdpModel.header_center_img}
+        headerImgLeft={vdpModel.header_left_img}
+        headerImgRight={vdpModel.header_right_img}
+        t={t}
       />
       <ServerAnalytics cardData={vdpModel.cards} />
-      <VdpBody serverData={vdpModel.information} />;
+      <VdpBody
+        serverData={vdpModel.information}
+        t={t}
+        serverName={serverName}
+        youtubeUrl={vdpModel.youtube_url}
+      />
       <NativeBanners />
-      <ServerInformationVdp isSubscribed={isSubscribed} />
+      <ServerInformationVdp isSubscribed={isSubscribed} t={t} />
       {token && (
         <ServerRegister
           serverName={serverName}
@@ -93,8 +113,8 @@ const Vdp = () => {
           jwt={token}
         />
       )}
-      <ServerEvents events={vdpModel.events} />
-      <ServerBlog />
+      <ServerEvents events={vdpModel.events} t={t} />
+      <ServerBlog t={t} />
     </div>
   );
 };

@@ -1,4 +1,5 @@
 import { getProfessions } from "@/api/professions";
+import { InternalServerError } from "@/dto/generic";
 import { Character, Profession } from "@/model/model";
 import React, { MouseEventHandler, useEffect, useState } from "react";
 import Carousel from "react-multi-carousel";
@@ -7,7 +8,6 @@ import Swal from "sweetalert2";
 import Announcement from "./annoucement";
 import ProfesionService from "./service";
 import "./style.css";
-import { InternalServerError } from "@/dto/generic";
 
 interface ProfessionsProps {
   character: Character;
@@ -31,11 +31,6 @@ const Professions: React.FC<ProfessionsProps> = ({
   const [selectedProfession, setSelectedProfession] =
     useState<Profession | null>(null);
   const [showConfirmDialog, setShowConfirmDialog] = useState(false);
-
-  const openModal = (profession: Profession) => {
-    setSelectedProfession(profession);
-    setIsModalOpen(true);
-  };
 
   const closeModal = () => {
     setIsModalOpen(false);
@@ -205,24 +200,6 @@ const Professions: React.FC<ProfessionsProps> = ({
                     <p className="text-gray-300 text-lg mb-4">
                       {t("professions.description")}
                     </p>
-                    {/*
-                  profession.service == null ? (
-                    <button
-                      className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 focus:outline-none mb-2 md:mb-0"
-                      onClick={() => openModal(profession)}
-                    >
-                      Publicar en la web
-                    </button>
-                  ) : (
-                    <button
-                      onClick={() => openModal(profession)}
-                      className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 focus:outline-none"
-                    >
-                      Editar
-                    </button>
-                  )
-                */}
-
                     <button
                       onClick={() => handleAnnounce(profession)}
                       className="bg-orange-400 text-white px-4 py-2 rounded-lg hover:bg-orange-600 mt-3 focus:outline-none"

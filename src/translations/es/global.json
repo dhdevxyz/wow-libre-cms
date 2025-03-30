@@ -39,6 +39,12 @@
                 "position-one": "Ingresar",
                 "position-two": "Registrarme"
             }
+        },
+        "wallet":{
+            "title":"Puntos",
+            "recharge":"Recargar",
+            "detail":"Detalle del saldo:",
+            "available":"Saldo: $"
         }
     },
     "navbar-minimalist": {
@@ -203,8 +209,9 @@
             "message": "No es posible obtener el detalle de tus cuentas en este momento, por favor espera."
         },
         "service-available": {
-            "title-txt-message": "Administración de Cuentas de World of Warcraft",
-            "txt-message": "Gestiona y administra las cuentas de World of Warcraft de manera eficiente y segura."
+            "btn-administration": "Gestionar Cuentas",
+            "title-txt-message": "Gestión de Cuentas de Juego",
+            "txt-message": "Crea y administra múltiples cuentas de juego desde un solo perfil, de forma fácil y segura."
         },
         "without-accounts": {
             "title-message": "No hay cuentas registradas.",
@@ -367,9 +374,9 @@
             "title": "¡No se encontraron hermandades!",
             "description": "¡Sé parte de la aventura y deja tu huella en Azeroth! Crea tu propia hermandad y reúne a otros héroes para enfrentar desafíos épicos y conquistar nuevos horizontes. ¡No esperes más, tu legado te está esperando!"
         },
-        "loading":{
-            "title":"Cargando hermandades, por favor espera",
-            "description":"Estamos buscando las hermandades disponibles en este servidor. ¡Un momento por favor!"
+        "loading": {
+            "title": "Cargando hermandades, por favor espera",
+            "description": "Estamos buscando las hermandades disponibles en este servidor. ¡Un momento por favor!"
         }
     },
     "guild-detail": {
@@ -514,7 +521,7 @@
     "reset-password": {
         "section-one": {
             "title": "Restablece tu Contraseña",
-            "sub-title": "Recupera el acceso a tu cuenta y vuelve a vivir la épica aventura en Azeroth. Completa el formulario a continuación para restablecer tu contraseña y retoma tu rol heroico en el mundo de World of Warcraft.",
+            "sub-title": "Recupera el acceso a tu cuenta y vuelve a disfrutar de nuestros servicios sin interrupciones. Completa el formulario a continuación para restablecer tu contraseña y proteger tu cuenta.",
             "var-mail": "Correo Electrónico",
             "var-mail-placeholder": "Escribe tu dirección de correo",
             "success-message": "Correo enviado. Por favor, revisa tu bandeja de entrada y utiliza el código dentro de los próximos 3 minutos.",
@@ -547,28 +554,36 @@
                 "primary": "Adquirir",
                 "alternative": "Tienda"
             }
+        },
+        "carrousel-offert": {
+            "title": "Ofertas Exclusivas para Ti",
+            "btn": "Reclamar Oferta"
         }
     },
-    "home-information-beta": {
-        "title": "¡Bienvenido a Wow Libre!",
-        "sub-title": "Versión Web Beta",
-        "description": "Actualmente, nuestra plataforma web está en su fase beta. Esto significa que podrías encontrar algunos detalles o características en desarrollo. Apreciamos tu comprensión y apoyo  mientras seguimos mejorando.",
+    "home-information": {
+        "title": "¡Únete a Wow Libre hoy!",
+        "sub-title": "La mejor comunidad para jugadores",
+        "description": "Descubre una plataforma innovadora diseñada para brindarte herramientas avanzadas y una experiencia de juego sin límites. Únete ahora y lleva tu comunidad al siguiente nivel.",
         "push-deploy": {
-            "title": "Push to deploy.",
-            "description": "Podrías notar cambios en la plataforma debido a las actualizaciones en curso que estamos desarrollando."
+            "title": "Mejoras continuas.",
+            "description": "Nuestra plataforma evoluciona constantemente con nuevas funciones y optimizaciones para ofrecerte la mejor experiencia."
         },
         "certificates": {
-            "title": "SSL certificates.",
-            "description": " Contamos con certificados de seguridad SSL para garantizar la protección de tu información."
+            "title": "Seguridad garantizada.",
+            "description": "Protegemos tu información con certificados de seguridad SSL y protocolos avanzados para una experiencia segura y confiable."
         },
         "database": {
-            "title": "Database backups.",
-            "description": "Toda la información proporcionada estará segura con respaldos regulares, y las cuentas no serán eliminadas."
+            "title": "Tus datos siempre protegidos.",
+            "description": "Realizamos copias de seguridad regulares para que tu información esté segura en todo momento. ¡Tu cuenta y progreso están protegidos!"
         },
-        "congrats": "Agradecemos enormemente cualquier reporte sobre errores que puedas encontrar en nuestra plataforma. ¡Tu ayuda nos permite mejorar para que disfrutes al máximo del contenido de juego!",
+        "congrats": "Tu opinión es clave para nosotros. Si encuentras alguna mejora que podamos implementar, no dudes en compartirla. Juntos, hacemos crecer esta comunidad.",
         "notice": {
-            "title": "¿Se eliminarán mis personajes? ¡No te preocupes!",
-            "description": "Durante la fase beta, tus datos estarán a salvo. ¡No se eliminará ninguna cuenta ni personaje!"
+            "title": "¡Tu aventura está asegurada!",
+            "description": "Protegemos tu información con los más altos estándares de seguridad. Disfruta de tu experiencia sin preocupaciones, con total confianza."
+        },
+        "btn": {
+            "primary": "Unirme ahora",
+            "secondary": "Explorar más"
         }
     },
     "home-us": {
@@ -890,7 +905,7 @@
         "btn-inactive": {
             "text": "Registrarme"
         },
-        "btn-subscription-active":{
+        "btn-subscription-active": {
             "text": "Administrar Suscripción"
         },
         "disclaimer": "Al suscribirte, aceptas los Términos y condiciones de WowLibre. Puedes cancelar cuando quieras.",
@@ -932,24 +947,63 @@
         }
     },
     "info-integrate": {
-        "title": "Haz crecer tu servidor de WoW sin complicaciones",
-        "short-description": "Registra y vincula tu servidor en minutos. Nosotros nos encargamos de la parte técnica para que tú te concentres en lo que realmente importa: tu comunidad.",
-        "detailed-description": "Olvídate de configuraciones tediosas y servidores web complicados. Con nuestra plataforma, conectar tu servidor de WoW es rápido y fácil. Gestionamos el registro de jugadores por ti, optimizamos la infraestructura y te brindamos las herramientas necesarias para que tu comunidad crezca sin límites. Tú creas la experiencia, nosotros hacemos el resto.",
-        "summary": "Más jugadores, menos problemas. Automatiza el registro, simplifica la gestión y enfócate en ofrecer la mejor experiencia de juego. ¡Nosotros nos encargamos de la parte técnica!",
-            "btn": {
-            "text": "Registra tu servidor en minutos"
-            }
+        "title": "Haz crecer tu plataforma sin complicaciones",
+        "short-description": "Conéctate en minutos y deja que nosotros nos encarguemos de la parte técnica.",
+        "detailed-description": "Nuestro equipo de ingenieros se encargará de toda la configuración técnica para que tú no tengas que preocuparte por nada. Desde la integración hasta la optimización de la infraestructura, nos aseguramos de que todo funcione a la perfección. Relájate y concéntrate en hacer crecer tu comunidad y tu negocio, mientras nosotros nos ocupamos del resto.",
+        "summary": "Automatiza procesos, simplifica la gestión y escala sin límites. Nos encargamos de la tecnología para que tú solo te preocupes por crecer.",
+        "btn": {
+            "text": "Regístrate y empieza ahora"
+        }
     },
     "home-who-we-are": {
-        "title":"¿Qué es WowLibre?",
-        "description":"WowLibre es una comunidad dedicada a optimizar la experiencia en World of Warcraft a través de herramientas innovadoras. Nuestro propósito es simplificar la gestión de servidores y fortalecer la conexión entre jugadores y administradores con soluciones tecnológicas eficientes y accesibles.",
-        "btn-text":"Descubre nuestras herramientas"
+        "title": "¿Qué es WowLibre?",
+        "description": "WowLibre es una comunidad dedicada a mejorar la experiencia de juego a través de herramientas innovadoras. Nuestro propósito es simplificar la gestión de servidores y fortalecer la conexión entre jugadores y administradores con soluciones tecnológicas eficientes y accesibles.",
+        "btn-text": "Descubre nuestras herramientas"
     },
-    "footer":{
+    "footer": {
         "terms-and-conditions": "Términos y condiciones",
         "terms-of-use": "Términos de uso",
         "privacy-policy": "Política de privacidad",
-        "about":"@WowLibre – Desarrollamos soluciones innovadoras para la comunidad gamer. Potenciamos la experiencia de juego con software avanzado, fomentando la creación de mundos únicos e inmersivos."
+        "about": "@WowLibre – Desarrollamos soluciones innovadoras para la comunidad gamer. Potenciamos la experiencia de juego con software avanzado, fomentando la creación de mundos únicos e inmersivos."
+    },
+    "plans-and-pricing": {
+        "title": "Planes y Precios",
+        "description": " Elige un plan y deja que nuestro equipo de expertos se encargue de la configuración. ¡Tú solo disfruta el crecimiento!"
+    },
+    "vdp-server":{
+        "header":{
+            "btn":{
+                "register-text":"Registrarme",
+                "realmlist":"Copiar Realmlist",
+                "copy":"¡Copiado!",
+                "website":"Visitar Web"
+            }
+        },
+        "body":{
+            "title":"Características del Servidor"
+        },
+        "events":{
+            "title":" Próximos Eventos",
+            "description":"Descubre los eventos más emocionantes de nuestro servidor. ¡No te los pierdas!"
+        },
+        "subscription-active":{
+            "title":"¡Suscripción Activa!",
+            "description":"Disfruta de todos los beneficios de tu suscripción premium. ¡Aprovecha al máximo tu experiencia de juego!",
+            "disclaimer":"Explora todas las ventajas que tienes disponibles y sácale el máximo provecho a tu suscripción.",
+            "btn-text":"Administrar Suscripción"
+        },
+        "subscription-inactive":{
+            "title":" Únete y desbloquea beneficios exclusivos",
+            "description":"Obtén acceso anticipado a contenido exclusivo, descuentos especiales y una experiencia sin límites. ¡Hazte miembro hoy y lleva tu experiencia al siguiente nivel!",
+            "btn-text":"Suscribirme ahora"
+        },
+        "notice":{
+            "title":"Noticias",
+            "description":"Descubre los noticias más recientes de nuestro servidor.",
+            "disclaimer":"Últimos Anuncios",
+            "by":"Publicado por",
+            "comments":"Comentarios",
+            "resolved":"Resuelto"
+        }
     }
-
 }

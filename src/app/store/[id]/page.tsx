@@ -83,28 +83,28 @@ const StoreDetail = () => {
 
             <div className="text-white font-bold pt-20 pb-10">
               {product ? (
-                <div className="flex items-center space-x-4">
+                <div className="flex items-center space-x-4 text-lg md:text-2xl">
                   {/* Precio con descuento */}
                   {product.discount > 0 ? (
                     <>
                       <p
-                        className="font-extrabold text-4xl"
+                        className="font-extrabold text-3xl"
                         style={{ color: "#65d208" }}
                       >
-                        {product.gambling_money === false
+                        {product.use_points === false
                           ? `$${(
                               product.price *
                               (1 - product.discount / 100)
                             ).toLocaleString()} USD`
                           : `${(
-                              product.gold_price *
+                              product.price *
                               (1 - product.discount / 100)
-                            ).toLocaleString()} Gold`}
+                            ).toLocaleString()} Points`}
                       </p>
                       <p className="line-through text-gray-400 text-4xl">
-                        {product.gambling_money === false
+                        {product.use_points === false
                           ? `$${product.price.toLocaleString()} USD`
-                          : `${product.gold_price.toLocaleString()} Gold`}
+                          : `${product.price.toLocaleString()} Points`}
                       </p>
                       <span
                         className="bg-green-500 text-black font-bold px-3 py-1 rounded-full"
@@ -120,9 +120,9 @@ const StoreDetail = () => {
                         className="font-extrabold text-4xl"
                         style={{ color: "#65d208" }}
                       >
-                        {product.gambling_money === false
+                        {product.use_points === false
                           ? `$${product.price.toLocaleString()} USD`
-                          : `$${product.gold_price.toLocaleString()} Gold`}
+                          : `$${product.price.toLocaleString()} Points`}
                       </p>
                       {/* No se muestra precio tachado ni tooltip de descuento */}
                     </>
@@ -137,7 +137,7 @@ const StoreDetail = () => {
                 className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-5 rounded transition duration-300"
                 onClick={openModal}
               >
-                Donar
+                Comprar
               </button>
             ) : (
               <button

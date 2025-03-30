@@ -291,11 +291,9 @@ export interface Product {
   disclaimer: string;
   category: string;
   price: number;
-  discounted_price: number;
-  discounted_gold_price: number;
   discount: number;
-  gambling_money: boolean;
-  gold_price: number;
+  discount_price: number;
+  use_points: boolean;
   description: string;
   img_url: string;
   partner: string;
@@ -309,8 +307,7 @@ export interface ProductDetail {
   category: string;
   price: number;
   discount: number;
-  gambling_money: boolean;
-  gold_price: number;
+  use_points: boolean;
   description: string;
   img_url: string;
   partner: string;
@@ -357,6 +354,7 @@ export interface BuyRedirectDto {
   account_id: string;
   merchant_id: string;
   test: string;
+  is_payment: boolean;
 }
 
 /* Modelo para obtener las imagenes de la home */
@@ -552,6 +550,7 @@ export interface AccountsServer {
   last_ip: string;
   os: string;
   mute: boolean;
+  banned: boolean;
 }
 /** Modelo  Usado para mostrar los datos recopilados del servidor  */
 export interface DashboardMetrics {
@@ -612,6 +611,12 @@ export interface ServerVdpDto {
   information: { [key: string]: string };
   cards: CardVdp[];
   events: EventsVdp[];
+  url: string;
+  logo: string;
+  header_center_img: string;
+  header_right_img: string;
+  header_left_img: string;
+  youtube_url: string;
 }
 
 export interface CardVdp {
@@ -626,4 +631,8 @@ export interface EventsVdp {
   title: string;
   description: string;
   disclaimer: string;
+}
+
+export interface ConfigsResponse {
+  [key: string]: string;
 }

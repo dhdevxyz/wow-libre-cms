@@ -1,12 +1,5 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import {
-  FaChartBar,
-  FaCogs,
-  FaFolder,
-  FaSignOutAlt,
-  FaUsers,
-} from "react-icons/fa";
 
 const Sidebar: React.FC<{ onOptionChange: (option: string) => void }> = ({
   onOptionChange,
@@ -21,85 +14,235 @@ const Sidebar: React.FC<{ onOptionChange: (option: string) => void }> = ({
   };
   const handleReturnPage = () => {
     router.push("/servers");
-    setSelectedOption(""); // Restablecer la opción seleccionada
+    setSelectedOption("");
   };
   return (
-    <div
-      className="bg-gray-800 text-white w-72 h-full p-5 pt-20 shadow-xl fixed top-0 left-0 
-                 hidden md:block"
-    >
-      <h3 className="text-lg font-semibold mb-4 text-gray-400">Gestión</h3>
-      <ul>
-        <li
-          className={`flex items-center p-3 rounded-md hover:bg-gray-700 cursor-pointer ${
-            selectedOption === "dashboard" ? "bg-gray-600" : ""
-          }`}
-          onClick={() => handleMenuClick("dashboard")}
-        >
-          <FaChartBar className="mr-2" />
-          Dashboard
-        </li>
+    <aside className="ml-[-100%] fixed z-10 top-0 pb-3 px-6 w-full flex flex-col justify-between h-screen border-r bg-black transition duration-300 md:w-4/12 lg:ml-0 lg:w-[25%] xl:w-[20%] 2xl:w-[15%]">
+      <div>
+        <div className="-mx-6 px-6 py-4">
+          <a href="#" title="home">
+            <img
+              src="https://www.pngplay.com/wp-content/uploads/11/World-Of-Warcraft-Logo-PNG-Photo-Image.png"
+              className="w-32"
+              alt="tailus logo"
+            />
+          </a>
+        </div>
 
-        <li
-          className="flex items-center justify-between p-3 rounded-md hover:bg-gray-700 cursor-pointer"
-          onClick={() => setUsersOpen(!isUsersOpen)}
-        >
-          <div className="flex items-center">
-            <FaUsers className="mr-2" />
-            Usuarios
-          </div>
-          <span>{isUsersOpen ? "-" : "+"}</span>
-        </li>
-        {isUsersOpen && (
-          <ul className="ml-6 mt-2">
-            <li
-              className="p-2 rounded-md hover:bg-gray-600 cursor-pointer"
-              onClick={() => handleMenuClick("users")}
+        <div className="mt-8 text-center">
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/WoW_icon.svg/1200px-WoW_icon.svg.png"
+            alt=""
+            className="w-10 h-10 m-auto rounded-full object-cover lg:w-28 lg:h-28"
+          />
+          <h5 className="hidden mt-4 text-xl font-semibold text-gray-200 lg:block">
+            Cynthia J. Watts
+          </h5>
+          <span className="hidden text-gray-400 lg:block">Admin</span>
+        </div>
+
+        <ul className="space-y-2 tracking-wide mt-8">
+          <li>
+            <a
+              href="#"
+              aria-label="dashboard"
+              onClick={(e) => {
+                e.preventDefault(); // Evita que el enlace recargue la página
+                handleMenuClick("dashboard");
+              }}
+              className="relative px-4 py-3 flex items-center space-x-4 rounded-xl text-white 
+               transition-all duration-300 hover:bg-gray-700"
             >
-              Lista de Usuarios
-            </li>
-          </ul>
-        )}
+              <svg className="-ml-1 h-6 w-6" viewBox="0 0 24 24" fill="none">
+                <path
+                  d="M6 8a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V8ZM6 15a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2v-1Z"
+                  className="fill-current text-cyan-400 dark:fill-slate-600"
+                ></path>
+                <path
+                  d="M13 8a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2V8Z"
+                  className="fill-current text-cyan-200 group-hover:text-cyan-300"
+                ></path>
+                <path
+                  d="M13 15a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-1Z"
+                  className="fill-current group-hover:text-sky-300"
+                ></path>
+              </svg>
+              <span className="-mr-1 font-medium text-gray-200">Dashboard</span>
+            </a>
+          </li>
 
-        <li
-          className={`flex items-center p-3 rounded-md hover:bg-gray-700 cursor-pointer ${
-            selectedOption === "bank" ? "bg-gray-600" : ""
-          }`}
-          onClick={() => handleMenuClick("bank")}
-        >
-          <FaFolder className="mr-2" />
-          Banco
-        </li>
-        <li
-          className={`flex items-center p-3 rounded-md hover:bg-gray-700 cursor-pointer ${
-            selectedOption === "promotions" ? "bg-gray-600" : ""
-          }`}
-          onClick={() => handleMenuClick("promotions")}
-        >
-          <FaCogs className="mr-2" />
-          Promociones
-        </li>
-        <li
-          className={`flex items-center p-3 rounded-md hover:bg-gray-700 cursor-pointer ${
-            selectedOption === "settings" ? "bg-gray-600" : ""
-          }`}
-          onClick={() => handleMenuClick("settings")}
-        >
-          <FaCogs className="mr-2" />
-          Ajustes
-        </li>
+          <li>
+            <a
+              href="#"
+              aria-label="users"
+              onClick={(e) => {
+                e.preventDefault();
+                handleMenuClick("users");
+              }}
+              className="relative px-4 py-3 flex items-center space-x-4 rounded-xl text-white 
+              transition-all duration-300 hover:bg-gray-700"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  className="fill-current text-gray-200 group-hover:text-cyan-300"
+                  fill-rule="evenodd"
+                  d="M2 6a2 2 0 012-2h4l2 2h4a2 2 0 012 2v1H8a3 3 0 00-3 3v1.5a1.5 1.5 0 01-3 0V6z"
+                  clip-rule="evenodd"
+                />
+                <path
+                  className="fill-current text-gray-200 group-hover:text-cyan-600"
+                  d="M6 12a2 2 0 012-2h8a2 2 0 012 2v2a2 2 0 01-2 2H2h2a2 2 0 002-2v-2z"
+                />
+              </svg>
+              <span
+                className="group-hover:text-blue-400 text-white"
+                onClick={() => handleMenuClick("users")}
+              >
+                Usuarios
+              </span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              aria-label="promotions"
+              onClick={(e) => {
+                e.preventDefault();
+                handleMenuClick("promotions");
+              }}
+              className="relative px-4 py-3 flex items-center space-x-4 rounded-xl text-white 
+              transition-all duration-300 hover:bg-gray-700"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  className="fill-current text-gray-200 group-hover:text-cyan-300"
+                  fill-rule="evenodd"
+                  d="M2 6a2 2 0 012-2h4l2 2h4a2 2 0 012 2v1H8a3 3 0 00-3 3v1.5a1.5 1.5 0 01-3 0V6z"
+                  clip-rule="evenodd"
+                />
+                <path
+                  className="fill-current text-gray-200 group-hover:text-cyan-600"
+                  d="M6 12a2 2 0 012-2h8a2 2 0 012 2v2a2 2 0 01-2 2H2h2a2 2 0 002-2v-2z"
+                />
+              </svg>
+              <span
+                className="group-hover:text-blue-400 text-white"
+                onClick={() => handleMenuClick("users")}
+              >
+                Promociones
+              </span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              aria-label="bank"
+              onClick={(e) => {
+                e.preventDefault();
+                handleMenuClick("bank");
+              }}
+              className="relative px-4 py-3 flex items-center space-x-4 rounded-xl text-white 
+              transition-all duration-300 hover:bg-gray-700"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  className="fill-current text-gray-200 group-hover:text-cyan-300"
+                  fill-rule="evenodd"
+                  d="M2 6a2 2 0 012-2h4l2 2h4a2 2 0 012 2v1H8a3 3 0 00-3 3v1.5a1.5 1.5 0 01-3 0V6z"
+                  clip-rule="evenodd"
+                />
+                <path
+                  className="fill-current text-gray-200 group-hover:text-cyan-600"
+                  d="M6 12a2 2 0 012-2h8a2 2 0 012 2v2a2 2 0 01-2 2H2h2a2 2 0 002-2v-2z"
+                />
+              </svg>
+              <span
+                className="group-hover:text-blue-400 text-white"
+                onClick={() => handleMenuClick("bank")}
+              >
+                Bank
+              </span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              aria-label="settings"
+              onClick={(e) => {
+                e.preventDefault();
+                handleMenuClick("settings");
+              }}
+              className="relative px-4 py-3 flex items-center space-x-4 rounded-xl text-white 
+              transition-all duration-300 hover:bg-gray-700"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  className="fill-current text-gray-200 group-hover:text-cyan-300"
+                  fill-rule="evenodd"
+                  d="M2 6a2 2 0 012-2h4l2 2h4a2 2 0 012 2v1H8a3 3 0 00-3 3v1.5a1.5 1.5 0 01-3 0V6z"
+                  clip-rule="evenodd"
+                />
+                <path
+                  className="fill-current text-gray-200 group-hover:text-cyan-600"
+                  d="M6 12a2 2 0 012-2h8a2 2 0 012 2v2a2 2 0 01-2 2H2h2a2 2 0 002-2v-2z"
+                />
+              </svg>
+              <span
+                className="group-hover:text-blue-400 text-white"
+                onClick={() => handleMenuClick("settings")}
+              >
+                Settings
+              </span>
+            </a>
+          </li>
+        </ul>
+      </div>
 
-        <li
-          className={`flex items-center p-2 rounded-md hover:bg-gray-700 transition duration-200 cursor-pointer ${
-            selectedOption === "returnPage" ? "bg-gray-600" : ""
-          }`}
-          onClick={handleReturnPage}
-        >
-          <FaSignOutAlt className="mr-2" />
-          Volver
-        </li>
-      </ul>
-    </div>
+      <div className="px-6 -mx-6 pt-4 flex justify-between items-center border-t">
+        <button className="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
+            />
+          </svg>
+          <span
+            className="group-hover:text-gray-400 text-white"
+            onClick={handleReturnPage}
+          >
+            Logout
+          </span>
+        </button>
+      </div>
+    </aside>
   );
 };
 

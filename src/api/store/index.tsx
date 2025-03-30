@@ -8,7 +8,7 @@ import {
 } from "@/model/model";
 import { v4 as uuidv4 } from "uuid";
 
-export const getProductOffert = async (): Promise<Product> => {
+export const getProductOffert = async (language: string): Promise<Product> => {
   try {
     const transactionId = uuidv4();
 
@@ -17,6 +17,7 @@ export const getProductOffert = async (): Promise<Product> => {
       headers: {
         "Content-Type": "application/json",
         transaction_id: transactionId,
+        "Accept-Language": language,
       },
     });
 
@@ -37,7 +38,9 @@ export const getProductOffert = async (): Promise<Product> => {
   }
 };
 
-export const getProductsDiscount = async (): Promise<Product[]> => {
+export const getProductsDiscount = async (
+  language: string
+): Promise<Product[]> => {
   try {
     const transactionId = uuidv4();
 
@@ -48,6 +51,7 @@ export const getProductsDiscount = async (): Promise<Product[]> => {
         headers: {
           "Content-Type": "application/json",
           transaction_id: transactionId,
+          "Accept-Language": language,
         },
       }
     );
@@ -69,7 +73,9 @@ export const getProductsDiscount = async (): Promise<Product[]> => {
   }
 };
 
-export const getProducts = async (): Promise<Map<String, CategoryDetail[]>> => {
+export const getProducts = async (
+  language: string
+): Promise<Map<String, CategoryDetail[]>> => {
   try {
     const transactionId = uuidv4();
 
@@ -78,6 +84,7 @@ export const getProducts = async (): Promise<Map<String, CategoryDetail[]>> => {
       headers: {
         "Content-Type": "application/json",
         transaction_id: transactionId,
+        "Accept-Language": language,
       },
     });
 
@@ -136,7 +143,8 @@ export const buyProduct = async (
   accountId: number | null,
   serverId: number | null,
   token: string,
-  isSubscription: boolean
+  isSubscription: boolean,
+  reference: string | null
 ): Promise<BuyRedirectDto> => {
   const transactionId = uuidv4();
 
@@ -145,10 +153,12 @@ export const buyProduct = async (
       is_subscription: boolean;
       server_id: number | null;
       account_id: number | null;
+      product_reference: string | null;
     } = {
       is_subscription: isSubscription,
       server_id: serverId,
       account_id: accountId,
+      product_reference: reference,
     };
     const response = await fetch(`${BASE_URL_TRANSACTION}/api/payment`, {
       method: "POST",

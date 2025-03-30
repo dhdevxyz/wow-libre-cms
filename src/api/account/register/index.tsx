@@ -1,15 +1,10 @@
 import { BASE_URL } from "@/configs/configs";
-import {
-  BadRequestDto,
-  GenericResponseDto,
-  InternalServerError,
-} from "@/dto/generic";
+import { GenericResponseDto, InternalServerError } from "@/dto/generic";
 import {
   AccountGameRequestDto,
   AccountWebRequestDto,
   LoginData,
 } from "@/model/model";
-import { error } from "console";
 import { v4 as uuidv4 } from "uuid";
 
 export const registerAccountGame = async (

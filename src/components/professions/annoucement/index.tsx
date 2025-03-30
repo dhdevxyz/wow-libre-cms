@@ -10,7 +10,7 @@ interface ConfirmationDialogProps {
   skillId: number;
   accountId: number;
   token: string;
-  onConfirm: () => void;
+  onConfirm: (message: string) => void;
   onCancel: () => void;
   t: (key: string, options?: any) => string;
 }
@@ -32,10 +32,23 @@ const Announcement: React.FC<ConfirmationDialogProps> = ({
       title: t("send-announcement.title"),
       color: "white",
       background: "#0B1218",
-      text: t("send-announcement.subtitle", { cost }),
+      html: `
+        <p>${t("send-announcement.subtitle", { cost })}</p>
+        <textarea id="announcement-message" class="swal2-textarea"></textarea>
+      `,
       showCancelButton: true,
       confirmButtonText: t("send-announcement.btn.next"),
       cancelButtonText: t("send-announcement.btn.back"),
+      preConfirm: () => {
+        const userMessage = (
+          document.getElementById("announcement-message") as HTMLTextAreaElement
+        )?.value;
+        if (!userMessage) {
+          Swal.showValidationMessage(t("send-announcement.error.empty"));
+          return false;
+        }
+        return userMessage;
+      },
     });
 
     if (result.isConfirmed) {
@@ -45,9 +58,10 @@ const Announcement: React.FC<ConfirmationDialogProps> = ({
           skillId,
           accountId,
           token,
-          serverId
+          serverId,
+          result.value // Pasamos el mensaje ingresado
         );
-        onConfirm();
+        onConfirm(result.value); // Enviar el mensaje a `Professions.tsx`
       } catch (error: any) {
         if (error instanceof InternalServerError) {
           Swal.fire({

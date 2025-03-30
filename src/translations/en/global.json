@@ -39,6 +39,10 @@
                 "position-one": "Log In",
                 "position-two": "Register"
             }
+        },
+        "wallet": {
+            "title": "Points",
+            "recharge": "Recharge"
         }
     },
     "navbar-minimalist": {
@@ -203,8 +207,9 @@
             "message": "It is not possible to obtain the details of your accounts at this time, please wait."
         },
         "service-available": {
-            "title-txt-message": "World of Warcraft Account Management",
-            "txt-message": "Manage and administer World of Warcraft accounts efficiently and securely."
+            "btn-administration":"Manage Game Accounts",
+            "title-txt-message": "Multiple Accounts, One Simple Management",
+            "txt-message": "Add and manage multiple game accounts without the need for new registrations."
         },
         "without-accounts": {
             "title-message": "No registered accounts.",
@@ -514,7 +519,7 @@
     "reset-password": {
         "section-one": {
             "title": "Reset Your Password",
-            "sub-title": "Regain access to your account and continue your epic adventure in Azeroth. Complete the form below to reset your password and reclaim your heroic status in World of Warcraft.",
+            "sub-title": "Regain access to your account and continue enjoying our services without interruption. Complete the form below to reset your password and secure your account.",
             "var-mail": "Email Address",
             "var-mail-placeholder": "Enter your email address",
             "success-message": "Email sent. Please check your inbox and use the code within the next 3 minutes.",
@@ -547,28 +552,36 @@
                 "primary": "Get Now",
                 "alternative": "Store"
             }
+        },
+       "carrousel-offert": {
+            "title": "Exclusive Deals Just for You",
+            "btn": "Claim Offer"
         }
     },
-    "home-information-beta": {
-        "title": "Welcome to Wow Libre!",
-        "sub-title": "Beta Web Version",
-        "description": "Our platform is currently in its beta phase. This means you might come across some features or details still under development. We appreciate your understanding and support as we continue to improve.",
+    "home-information": {
+        "title": "Join Wow Libre Today!",
+        "sub-title": "The Best Gaming Community",
+        "description": "Discover an innovative platform designed to provide you with advanced tools and an unparalleled gaming experience. Join now and take your community to the next level!",
         "push-deploy": {
-            "title": "Push to deploy.",
-            "description": "You may notice changes on the platform due to ongoing updates we are developing."
+            "title": "Continuous Improvements.",
+            "description": "Our platform is constantly evolving with new features and optimizations to enhance your experience."
         },
         "certificates": {
-            "title": "SSL certificates.",
-            "description": "We have SSL security certificates to ensure the protection of your information."
+            "title": "Guaranteed Security.",
+            "description": "We safeguard your information with SSL security certificates and advanced protocols to ensure a safe and reliable experience."
         },
         "database": {
-            "title": "Database backups.",
-            "description": "All information provided will be safe with regular backups, and accounts will not be deleted."
+            "title": "Your Data is Always Protected.",
+            "description": "We perform regular backups to keep your information secure at all times. Your account and progress are fully protected!"
         },
-        "congrats": "We greatly appreciate any bug reports you may find on our platform. Your help allows us to improve so you can fully enjoy the game content!",
+        "congrats": "Your feedback is essential to us. If you have any suggestions for improvements, feel free to share them. Together, we make this community thrive!",
         "notice": {
-            "title": "Will my characters be deleted? Don't worry!",
-            "description": "During the beta phase, your data will be safe. No account or character will be deleted!"
+            "title": "Your Adventure is Safe!",
+            "description": "We protect your information with the highest security standards. Enjoy your experience worry-free and with complete confidence."
+        },
+        "btn":{
+           "primary": "Join Now",
+           "secondary": "Explore More"
         }
     },
     "home-us": {
@@ -932,17 +945,17 @@
         }
     },
     "info-integrate": {
-        "title": "Grow Your WoW Server Without the Hassle",
-        "short-description": "Register and link your server in minutes. We handle the technical side so you can focus on what really matters: your community.",
-        "detailed-description": "Forget tedious configurations and complicated web servers. With our platform, connecting your WoW server is fast and effortless. We manage player registration for you, optimize the infrastructure, and provide the tools you need to grow your community without limits. You create the experience, we take care of the rest.",
-        "summary": "More players, fewer headaches. Automate registration, simplify management, and focus on delivering the best gaming experience. We handle the technical side!",
+        "title": "Grow Your Platform Without Hassle",
+        "short-description": "Connect in minutes and let us handle the technical side.",
+        "detailed-description": "Our team of engineers will take care of all the technical setup, so you don’t have to worry about a thing. From integration to infrastructure optimization, we ensure everything runs perfectly. Relax and focus on growing your community and business while we handle the rest.",
+        "summary": "Automate processes, simplify management, and scale without limits. We take care of the technology so you can focus on growth.",
         "btn": {
-            "text": "Register Your Server in Minutes"
+            "text": "Sign up and get started now"
         }
     },
     "home-who-we-are": {
         "title": "What is WowLibre?",
-        "description": "WowLibre is a community dedicated to optimizing the World of Warcraft experience through innovative tools. Our purpose is to simplify server management and strengthen the connection between players and administrators with efficient and accessible technological solutions.",
+        "description": "WowLibre is a community dedicated to enhancing the gaming experience through innovative tools. Our goal is to simplify server management and strengthen the connection between players and administrators with efficient and accessible technological solutions.",
         "btn-text": "Discover our tools"
     }, 
     "footer": {
@@ -950,8 +963,44 @@
         "terms-of-use": "Terms of Use",
         "privacy-policy": "Privacy Policy",
         "about": "@WowLibre We develop innovative solutions for the gaming community. We enhance the gaming experience with advanced software, fostering the creation of unique and immersive worlds."
-   }
-   
-    
-
+   },
+   "plans-and-pricing": {
+        "title": "Plans and Pricing",
+        "description": "Choose a plan and let our team of experts handle the setup. Just enjoy the growth!"
+    },"vdp-server": {
+        "header": {
+            "btn": {
+                "register-text": "Register",
+                "realmlist": "Copy Realmlist",
+                "copy": "Copied!",
+                "website": "Visit Website"
+            }
+        },
+        "body": {
+            "title": "Server Features"
+        },
+        "events": {
+            "title": "Upcoming Events",
+            "description": "Discover the most exciting events on our server. Don't miss out!"
+        },
+        "subscription-active": {
+            "title": "Subscription Active!",
+            "description": "Enjoy all the benefits of your premium subscription. Make the most of your gaming experience!",
+            "disclaimer": "Explore all the advantages available to you and get the most out of your subscription.",
+            "btn-text": "Manage Subscription"
+        },
+        "subscription-inactive": {
+            "title": "Join and Unlock Exclusive Benefits",
+            "description": "Get early access to exclusive content, special discounts, and a limitless experience. Become a member today and take your experience to the next level!",
+            "btn-text": "Subscribe Now"
+        },
+        "notice": {
+            "title": "News",
+            "description": "Discover the latest news from our server.",
+            "disclaimer": "Latest Announcements",
+            "by": "Published by",
+            "comments": "Comments",
+            "resolved": "Resolved"
+        }
+    }
 }
