@@ -4,96 +4,100 @@ import { useTranslation } from "react-i18next";
 
 const plans = [
   {
-    name: "Free",
+    name: "Gratis",
     price: "$0",
-    description: "Get started with our basic features.",
+    description: "Empieza sin costo y accede a nuestras funciones esenciales.",
     features: [
       "Vinculaciones ilimitadas",
-      "Trafico ilimitado",
-      "Lading page",
-      "Dashboard",
-      "Requiere integrar plan VIP",
-      "Launcher (Proximamente)",
+      "Tráfico sin restricciones",
+      "Landing page incluida",
+      "Dashboard para gestionar todo",
+      "Requiere integración con plan VIP",
+      "Launcher (Próximamente)",
     ],
-    buttonText: "Sign Up",
+    buttonText: "¡Regístrate Gratis!",
+    url: "https://www.wowlibre.com/register",
   },
   {
     name: "Pro",
-    price: "$300/year",
+    price: "$300/año",
     description:
-      "Perfect for small businesses and startups. ($25/month billed annually)",
+      "La mejor opción para empresas y startups. Solo $25/mes facturado anualmente.",
     features: [
       "Vinculaciones ilimitadas",
-      "Trafico ilimitado",
-      "Lading page",
-      "Dashboard",
+      "Tráfico sin restricciones",
+      "Landing page personalizada",
+      "Dashboard avanzado",
       "Sin obligación de plan VIP",
-      "App Mobile (Proximamente)",
-      "Launcher (Proximamente)",
+      "App móvil (Próximamente)",
+      "Launcher (Próximamente)",
       "Soporte prioritario",
-      "VPS",
-      "Monitoreo & Alertas",
+      "Servidor VPS incluido",
+      "Monitoreo y alertas 24/7",
       "Descargas de recursos ilimitadas",
-      "Vinculacion automatica",
-      "Marketing en redes sociales",
-      "Instalacion web",
-      "Modulos Azeroth Core",
-      "Dominio personalizado",
+      "Vinculación automática",
+      "Estrategias de marketing en redes",
+      "Instalación web completa",
+      "Módulos Azeroth Core",
+      "Dominio personalizado gratis",
     ],
-    buttonText: "Get Started",
+    buttonText: "¡Adquiere el Plan Pro!",
+    url: "https://wa.link/ab85xk",
   },
   {
     name: "Starter",
-    price: "$192",
+    price: "$192 cada 6 meses",
     description:
-      "Perfect for small businesses and startups. ($30/month billed every 6 months).",
+      "Ideal para pequeñas empresas y emprendedores. Solo $30/mes facturado cada 6 meses.",
     features: [
       "Vinculaciones ilimitadas",
-      "Trafico ilimitado",
-      "Lading page",
-      "Dashboard",
+      "Tráfico sin restricciones",
+      "Landing page personalizada",
+      "Dashboard avanzado",
       "Sin obligación de plan VIP",
-      "App Mobile (Proximamente)",
-      "Launcher (Proximamente)",
+      "App móvil (Próximamente)",
+      "Launcher (Próximamente)",
       "Soporte prioritario",
-      "VPS",
-      "Monitoreo & Alertas",
+      "Servidor VPS incluido",
+      "Monitoreo y alertas 24/7",
       "Descargas de recursos ilimitadas",
-      "Vinculacion automatica",
-      "Marketing en redes sociales",
-      "Instalacion web ",
-      "Modulos Azeroth Core",
-      "Dominio personalizado",
+      "Vinculación automática",
+      "Estrategias de marketing en redes",
+      "Instalación web completa",
+      "Módulos Azeroth Core",
+      "Dominio personalizado gratis",
     ],
-    buttonText: "Get Started",
+    buttonText: "¡Empieza Ahora!",
+    url: "https://wa.link/ab85xk",
   },
   {
     name: "Mensual",
-    price: "$35/month",
+    price: "$35/mes",
     description:
-      "Perfect for small businesses and startups. ($40/month billed every 6 months).",
+      "La flexibilidad que necesitas. Pago mensual de $35, con un pago inicial adicional por el dominio.",
     features: [
       "Vinculaciones ilimitadas",
-      "Trafico ilimitado",
-      "Lading page",
-      "Dashboard",
+      "Tráfico sin restricciones",
+      "Landing page personalizada",
+      "Dashboard avanzado",
       "Sin obligación de plan VIP",
-      "App Mobile (Proximamente)",
-      "Launcher (Proximamente)",
+      "App móvil (Próximamente)",
+      "Launcher (Próximamente)",
       "Soporte prioritario",
-      "VPS",
-      "Monitoreo & Alertas",
+      "Servidor VPS incluido",
+      "Monitoreo y alertas 24/7",
       "Descargas de recursos ilimitadas",
-      "Vinculacion automatica",
-      "Dominio personalizado",
-      "Instalacion web ",
+      "Vinculación automática",
+      "Dominio personalizado (requiere pago inicial)",
+      "Instalación web completa",
     ],
-    buttonText: "Get Started",
+    buttonText: "¡Suscríbete Hoy!",
+    url: "https://wa.link/ab85xk",
   },
 ];
 
 export default function PricingPlans() {
-  const { t, ready } = useTranslation();
+  const { t } = useTranslation();
 
   return (
     <section className="py-12 contenedor mx-auto">
@@ -117,7 +121,7 @@ export default function PricingPlans() {
             className="bg-gray-800 rounded-lg shadow-lg p-6 transform hover:scale-105 transition duration-300 flex flex-col h-full"
           >
             <h3 className="text-2xl font-semibold text-white">{plan.name}</h3>
-            <p className="mt-4 text-gray-400">{plan.description}</p>
+            <p className="mt-4 text-gray-400 text-xl">{plan.description}</p>
             <div className="my-8">
               <span className="text-5xl font-extrabold text-white">
                 {plan.price}
@@ -145,7 +149,7 @@ export default function PricingPlans() {
               ))}
             </ul>
             <a
-              href="https://wa.link/ab85xk"
+              href={plan.url}
               target="_blank"
               rel="noopener noreferrer"
               className="block w-full py-3 px-6 text-center rounded-md text-white font-medium bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 mt-auto"

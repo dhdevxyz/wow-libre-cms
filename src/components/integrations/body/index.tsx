@@ -464,7 +464,7 @@ After=network.target
 Type=simple
 User=root
 WorkingDirectory=/root/app/
-ExecStart=/usr/bin/java -jar /root/app/wow-libre-client-0.0.1-SNAPSHOT.jar
+ExecStart=/usr/bin/java -jar /root/app/wow-libre-client-0.0.1-SNAPSHOT.jar --spring.profiles.active=prod
 Restart=on-failure
 RestartSec=10s
 
