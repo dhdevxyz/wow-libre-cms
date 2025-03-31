@@ -15,7 +15,13 @@ const MultiCarouselSubs: React.FC<CarrouselSubscriptionProps> = ({ t }) => {
       id: 1,
       image:
         "https://static.wixstatic.com/media/5dd8a0_f0c3204f2346419695468d1ec3ac5bb0~mv2.webp",
-      title: "Wow Libre - Elysium",
+      title: "Elysium",
+    },
+    {
+      id: 2,
+      image:
+        "https://static.wixstatic.com/media/5dd8a0_660821f872c74ff0b965625d0ba5d52f~mv2.webp",
+      title: "Wow Hero",
     },
   ];
 

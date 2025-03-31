@@ -156,7 +156,7 @@ const StoreDetail = () => {
             </button>
 
             <p className="text-gray-200 bg-gray-800 border border-slate-600 rounded-md p-2 leading-tight text-md md:text-sm font-serif">
-              Al comprar esta montura, estás haciendo una donación para apoyar
+              Al comprar este articulo, estás haciendo una donación para apoyar
               al servidor. ¡Gracias por tu contribución!
             </p>
           </div>

@@ -3,28 +3,18 @@ import React, { useState } from "react";
 const slides = [
   {
     image:
-      "https://static.wixstatic.com/media/5dd8a0_255a80b9511648818388c77724def160~mv2.webp",
-    text: "¡Consigue tu montura exclusiva hoy en Elysium y destaca en cada batalla!",
-  },
-  {
-    image:
-      "https://static.wixstatic.com/media/5dd8a0_00097b23ccd1480cbf12e013153989f1~mv2.png",
-    text: "Equípate con el increíble traje de Murloc. ¡Disponible ahora!",
-  },
-  {
-    image:
-      "https://static.wixstatic.com/media/5dd8a0_f1f751b265ff46c29d64a9c426d97991~mv2.webp",
+      "https://static.wixstatic.com/media/5dd8a0_3dc87ed818024d4aa533b06fb8da4207~mv2.webp",
     text: "Cambia de facción o personaliza tu guerrero tantas veces como quieras. ¡Hazlo a tu manera!",
   },
   {
     image:
-      "https://static.wixstatic.com/media/5dd8a0_d9b3bd45387547eda1387c414e407614~mv2.webp",
-    text: "Obtén la legendaria montura del Tigre Espectral y recorre Azeroth con estilo.",
+      "https://static.wixstatic.com/media/5dd8a0_6bf5a01df5a8485a947ad6a425aefe50~mv2.webp",
+    text: "Traje Murlock: ¡Conviértete en un Murlock y sorprende a tus amigos!",
   },
   {
     image:
-      "https://static.wixstatic.com/media/5dd8a0_b6ad01dcad1f470aa35211417a5e272f~mv2.webp",
-    text: "Explora Azeroth sin límites. ¡Desbloquea el vuelo sin restricciones hoy mismo!",
+      "https://static.wixstatic.com/media/5dd8a0_2919e1c275c941e0b89bdcde701b15c0~mv2.webp",
+    text: "Tu asistente Vip para tu aventura!",
   },
 ];
 
