@@ -209,7 +209,7 @@ const SlotMachine: React.FC<MachineProps> = ({
           <div className="flex flex-col items-center space-y-4 w-full max-w-md">
             <a
               target="_blank"
-              href="https://checkout.bold.co/payment/LNK_M4YW8QT2BZ"
+              href="https://checkout.bold.co/payment/LNK_9BQUUZNAYD"
               className="w-full"
             >
               <button className="w-full px-6 py-3 text-lg font-semibold bg-gradient-to-r from-orange-400 to-yellow-500 hover:from-orange-500 hover:to-yellow-600 text-white rounded-lg shadow-lg transform transition-transform duration-300 hover:scale-105">
