@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { getCoints } from "@/api/machine";
 import { claimMachine } from "@/api/machine";
 import { MachineDto } from "@/model/model";
+import WowheadTooltip from "@/utils/wowhead";
 
 // Tipos de símbolos
 type SlotItem = string;
@@ -270,9 +271,15 @@ const SlotMachine: React.FC<MachineProps> = ({
                 alt={`Logo de ${modalData.name}`}
                 className="w-48 h-48 rounded-full border-4 border-yellow-400 mb-4 shadow-lg transform scale-105"
               />
-              <p className="text-2xl font-semibold text-white mb-2">
-                {modalData.name}
-              </p>
+              <a
+                className="text-2xl font-semibold text-white mb-2 q2"
+                href={`https://www.wowhead.com/item=${modalData.name}`}
+                data-game="wow"
+                data-type="item"
+                data-wh-icon-added="true"
+              >
+                Detalle del item
+              </a>
               <p className="text-lg text-gray-300 mb-2">{modalData.type}</p>
               <p className="text-lg text-white italic mb-4">
                 {modalData.message}
@@ -285,6 +292,7 @@ const SlotMachine: React.FC<MachineProps> = ({
               Cerrar
             </button>
           </div>
+          <WowheadTooltip />
         </div>
       )}
     </div>
