@@ -1,103 +1,54 @@
 "use client";
 
+import { getPlanAcquisition } from "@/api/home";
+import { useUserContext } from "@/context/UserContext";
+import { PlansAcquisition } from "@/model/model";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-
-const plans = [
-  {
-    name: "Gratis",
-    price: "$0",
-    description: "Empieza sin costo y accede a nuestras funciones esenciales.",
-    features: [
-      "Vinculaciones ilimitadas",
-      "Tráfico sin restricciones",
-      "Landing page incluida",
-      "Dashboard para gestionar todo",
-      "Requiere integración con plan VIP",
-      "Launcher (Próximamente)",
-    ],
-    buttonText: "¡Regístrate Gratis!",
-    url: "https://www.wowlibre.com/register",
-  },
-  {
-    name: "Pro",
-    price: "$300/año",
-    description:
-      "La mejor opción para empresas y startups. Solo $25/mes facturado anualmente.",
-    features: [
-      "Vinculaciones ilimitadas",
-      "Tráfico sin restricciones",
-      "Landing page personalizada",
-      "Dashboard avanzado",
-      "Sin obligación de plan VIP",
-      "App móvil (Próximamente)",
-      "Launcher (Próximamente)",
-      "Soporte prioritario",
-      "Servidor VPS incluido",
-      "Monitoreo y alertas 24/7",
-      "Descargas de recursos ilimitadas",
-      "Vinculación automática",
-      "Estrategias de marketing en redes",
-      "Instalación web completa",
-      "Módulos Azeroth Core",
-      "Dominio personalizado gratis",
-    ],
-    buttonText: "¡Adquiere el Plan Pro!",
-    url: "https://wa.link/ab85xk",
-  },
-  {
-    name: "Starter",
-    price: "$192 cada 6 meses",
-    description:
-      "Ideal para pequeñas empresas y emprendedores. Solo $30/mes facturado cada 6 meses.",
-    features: [
-      "Vinculaciones ilimitadas",
-      "Tráfico sin restricciones",
-      "Landing page personalizada",
-      "Dashboard avanzado",
-      "Sin obligación de plan VIP",
-      "App móvil (Próximamente)",
-      "Launcher (Próximamente)",
-      "Soporte prioritario",
-      "Servidor VPS incluido",
-      "Monitoreo y alertas 24/7",
-      "Descargas de recursos ilimitadas",
-      "Vinculación automática",
-      "Estrategias de marketing en redes",
-      "Instalación web completa",
-      "Módulos Azeroth Core",
-      "Dominio personalizado gratis",
-    ],
-    buttonText: "¡Empieza Ahora!",
-    url: "https://wa.link/ab85xk",
-  },
-  {
-    name: "Mensual",
-    price: "$35/mes",
-    description:
-      "La flexibilidad que necesitas. Pago mensual de $35, con un pago inicial adicional por el dominio.",
-    features: [
-      "Vinculaciones ilimitadas",
-      "Tráfico sin restricciones",
-      "Landing page personalizada",
-      "Dashboard avanzado",
-      "Sin obligación de plan VIP",
-      "App móvil (Próximamente)",
-      "Launcher (Próximamente)",
-      "Soporte prioritario",
-      "Servidor VPS incluido",
-      "Monitoreo y alertas 24/7",
-      "Descargas de recursos ilimitadas",
-      "Vinculación automática",
-      "Dominio personalizado (requiere pago inicial)",
-      "Instalación web completa",
-    ],
-    buttonText: "¡Suscríbete Hoy!",
-    url: "https://wa.link/ab85xk",
-  },
-];
 
 export default function PricingPlans() {
   const { t } = useTranslation();
+  const [plans, setPlans] = useState<PlansAcquisition[]>();
+  const [loading, setLoading] = useState(true);
+  const { user } = useUserContext();
+  const [error, setError] = useState<boolean>(false);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const getPlans = await getPlanAcquisition(user.language);
+        setPlans(getPlans);
+        setLoading(false);
+      } catch (error: any) {
+        setError(true);
+        setLoading(false);
+      }
+    };
+    fetchData();
+  }, [user]);
+
+  if (loading) {
+    return (
+      <section className="py-12 contenedor mx-auto">
+        <div className="flex justify-center items-center h-screen">
+          <svg
+            className="animate-spin h-10 w-10 text-white"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+          >
+            <path
+              fill="currentColor"
+              d="M12 2a10 10 0 1 0 10 10A10.012 10.012 0 0 0 12 2Zm0 18a8 8 0 1 1 8-8A8.009 8.009 0 0 1 12 20Z"
+            />
+          </svg>
+        </div>
+      </section>
+    );
+  }
+
+  if (error || !plans) {
+    return null;
+  }
 
   return (
     <section className="py-12 contenedor mx-auto">
@@ -115,7 +66,7 @@ export default function PricingPlans() {
           plans.length < 4 ? "justify-center" : ""
         } flex flex-wrap`}
       >
-        {plans.map((plan, index) => (
+        {plans?.map((plan, index) => (
           <div
             key={index}
             className="bg-gray-800 rounded-lg shadow-lg p-6 transform hover:scale-105 transition duration-300 flex flex-col h-full"
@@ -154,7 +105,7 @@ export default function PricingPlans() {
               rel="noopener noreferrer"
               className="block w-full py-3 px-6 text-center rounded-md text-white font-medium bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 mt-auto"
             >
-              {plan.buttonText}
+              {plan.button_text}
             </a>
           </div>
         ))}

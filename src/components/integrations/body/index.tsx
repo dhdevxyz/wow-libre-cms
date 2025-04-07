@@ -383,7 +383,8 @@ const IntegrationsBody = () => {
         set GM_PASSWORD=wowlibreclave
         set DB_WOW_LIBRE_USERNAME=acore
         set DB_WOW_LIBRE_PASSWORD=acore
-        set SECRET_JWT=A3F1E6B2D0A728C9F54D8B32C7A59A7D0B9A8F94D1F6C762E7DA56231988C158
+        set SECRET_JWT=A3F1E6B2D0A728C9F54D8B32C7A59A
+        7D0B9A8F94D1F6C762E7DA56231988C158
         set SERVER_WEB_NAME=NombreDelServer
 
         cd /d C:\app\
@@ -454,8 +455,8 @@ const IntegrationsBody = () => {
                       </code>
                     </pre>
                     <li>Agrega el siguiente contenido al archivo:</li>
-                    <pre className="bg-gray-800 text-white px-3 py-2 rounded-md whitespace-pre-wrap">
-                      <code>
+                    <pre className="bg-gray-800 text-white px-3 py-2 rounded-md overflow-x-auto text-sm sm:text-base">
+                      <code className="whitespace-pre">
                         {`[Unit]
 Description=Wow Libre Client
 After=network.target
@@ -476,14 +477,15 @@ Environment="GM_USERNAME=wowlibregm"
 Environment="GM_PASSWORD=wowlibreclave"
 Environment="DB_WOW_LIBRE_USERNAME=acore"
 Environment="DB_WOW_LIBRE_PASSWORD=acore"
-Environment="SECRET_JWT=A3F1E6B2D0A728C9F54D8B32C7A59A7D0B9A8F94D1F6C762E7DA56231988C158"
+Environment="SECRET_JWT=A3F1E6B2D0A728C9F54D8B32C
+7A59A7D0B9A8F94D1F6C762E7DA56231988C158"
 Environment="SERVER_WEB_NAME=NombreDelServer"
-
 
 [Install]
 WantedBy=multi-user.target`}
                       </code>
                     </pre>
+
                     <li>
                       Guarda los cambios y cierra el editor (`CTRL + X`, luego
                       `Y` y `ENTER`).

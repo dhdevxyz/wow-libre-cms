@@ -636,3 +636,12 @@ export interface EventsVdp {
 export interface ConfigsResponse {
   [key: string]: string;
 }
+
+export interface PlansAcquisition {
+  name: string;
+  price: string;
+  description: string;
+  features: string[];
+  button_text: string;
+  url: string;
+}

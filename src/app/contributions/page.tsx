@@ -2,8 +2,6 @@
 import AdultsBanner from "@/components/adversing/adults";
 import SingleCard from "@/components/contributions/card";
 import NavbarAuthenticated from "@/components/navbar-authenticated";
-import PricingPlans from "@/components/princing";
-import Pricing from "@/components/princing";
 import Link from "next/link";
 
 const Contributions = () => {
@@ -40,7 +38,7 @@ const Contributions = () => {
       <div
         className="text-white mb-20 mt-14"
         style={{
-          background: "linear-gradient(to right, #2b2b2b, #4f4f4f, #a6a6a6)",
+          background: "linear-gradient(110deg, #8e44ad, #2980b9)",
         }}
       >
         <div className="contenedor mx-auto px-6 py-12 lg:py-24">
@@ -48,35 +46,37 @@ const Contributions = () => {
             <div className="flex flex-col justify-between max-w-2xl w-full">
               <div>
                 <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-7">
-                  ¡Explora Aplicaciones Gratis Hechas para tu Servidor y la
-                  Comunidad
+                  ¿Listo para tener el mejor servidor privado de WoW?
                 </h2>
                 <p className="text-base sm:text-lg lg:text-2xl mb-4 break-words">
-                  Descubre herramientas exclusivas de código abierto, diseñadas
-                  para potenciar tu servidor. ¡Todo gratis y al alcance de tu
-                  mano!
+                  Lanza tu propio mundo, con total libertad y control. ¡Nos
+                  encargamos de todo!
                 </p>
-                <div className="pt-6 sm:pt-8">
-                  <p className="text-lg sm:text-2xl lg:text-3xl pt-2 mb-4 font-semibold">
-                    ¡Aplicaciones que Transformarán tu Experiencia!
-                  </p>
-                  <p className="text-base sm:text-lg lg:text-2xl mb-6 break-words">
-                    Desde herramientas para administrar tu servidor hasta
-                    soluciones para mejorar la jugabilidad. Encuentra
-                    aplicaciones de la comunidad, creadas con pasión y
-                    dedicación, totalmente gratuitas.
-                  </p>
-                </div>
+
+                <p className="text-base sm:text-lg lg:text-2xl mb-4 break-words">
+                  Servidores optimizados, estables y personalizados al 100% para
+                  tu comunidad.
+                </p>
+
+                <p className="text-base sm:text-lg lg:text-2xl mb-4 break-words">
+                  ¿Quieres algo único? Scripts exclusivos, eventos
+                  personalizados y soporte completo.
+                </p>
+
+                <p className="text-base sm:text-lg lg:text-2xl mb-4 break-words font-semibold text-gray-200">
+                  No más límites. Tu visión, tu reino.
+                </p>
               </div>
               <div className="mt-8 sm:mt-10">
                 <Link
                   href="/register"
                   className="px-6 py-3 bg-blue-500 hover:bg-blue-600 rounded-lg text-white font-semibold block text-center sm:inline-block"
                 >
-                  Comunidad
+                  ¡Crea tu servidor ahora!
                 </Link>
                 <p className="text-lg pt-4 text-center sm:text-left break-words">
-                  ¡Únete a la Revolución del Código Abierto!
+                  ¡Impulsa tu proyecto y conquista Azeroth con un servidor hecho
+                  a tu medida!
                 </p>
               </div>
             </div>

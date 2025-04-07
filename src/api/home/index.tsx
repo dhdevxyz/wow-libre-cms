@@ -4,6 +4,8 @@ import {
   BannersHome,
   ExperiencesHome,
   PassAzerothData,
+  PlansAcquisition,
+  plansAcquisition,
   ServersPromos,
   WidgetPillHome,
 } from "@/model/model";
@@ -165,6 +167,48 @@ export const getExperiences = async (
 
     if (response.ok && response.status === 200) {
       const responseData: GenericResponseDto<ExperiencesHome[]> =
+        await response.json();
+      return responseData.data;
+    } else {
+      const genericResponse: GenericResponseDto<void> = await response.json();
+      throw new InternalServerError(
+        `${genericResponse.message}`,
+        response.status,
+        transactionId
+      );
+    }
+  } catch (error: any) {
+    if (error instanceof TypeError && error.message === "Failed to fetch") {
+      throw new Error(`Please try again later, services are not available.`);
+    } else if (error instanceof InternalServerError) {
+      throw error;
+    } else if (error instanceof Error) {
+      throw error;
+    } else {
+      throw new Error(
+        `Unknown error occurred - TransactionId: ${transactionId}`
+      );
+    }
+  }
+};
+
+export const getPlanAcquisition = async (
+  language: string
+): Promise<PlansAcquisition[]> => {
+  const transactionId = uuidv4();
+
+  try {
+    const response = await fetch(`${BASE_URL}/api/resources/plan-acquisition`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        transaction_id: transactionId,
+        "Accept-Language": language,
+      },
+    });
+
+    if (response.ok && response.status === 200) {
+      const responseData: GenericResponseDto<PlansAcquisition[]> =
         await response.json();
       return responseData.data;
     } else {
