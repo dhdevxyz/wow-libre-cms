@@ -5,7 +5,6 @@ import {
   ExperiencesHome,
   PassAzerothData,
   PlansAcquisition,
-  plansAcquisition,
   ServersPromos,
   WidgetPillHome,
 } from "@/model/model";

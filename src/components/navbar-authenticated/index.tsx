@@ -1,11 +1,11 @@
+import { getAmountWallet } from "@/api/wallet";
 import { useUserContext } from "@/context/UserContext";
+import Cookies from "js-cookie";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import LoadingSpinner from "../utilities/loading-spinner";
-import { getAmountWallet } from "@/api/wallet";
-import Cookies from "js-cookie";
 
 const NavbarAuthenticated = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -20,7 +20,6 @@ const NavbarAuthenticated = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [walletAmount, setWalletAmount] = useState(0);
   const token = Cookies.get("token");
-  const [amount, setAmount] = useState("");
   useEffect(() => {
     setAvatar(user.avatar);
     setIsLoading(false);

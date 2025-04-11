@@ -1,33 +1,35 @@
 import React from "react";
 
-const IntegrationsServices = () => {
+interface IntegrationsServicesProps {
+  t: (key: string, options?: any) => string;
+}
+
+const IntegrationsServices: React.FC<IntegrationsServicesProps> = ({ t }) => {
   return (
     <>
       <section className="contenedor py-10 bg-midnight sm:py-20 lg:py-24">
         <div className="px-4 mx-auto max-w-8xl sm:px-6 lg:px-8">
           <div className="max-w-xl mx-auto text-center">
             <p className="text-4xl tracking-widest text-indigo-500 font-bold uppercase">
-              Lleva tu proyecto al siguiente nivel
+              {t("integrations.services.title")}
             </p>
 
             <p className="mt-6 mx-auto max-w-xl sm:text-xl/relaxed  text-slate-50">
-              Lanzamos tu proyecto en minutos, sin complicaciones. Te ayudamos a
-              configurar tu servidor y a integrar herramientas avanzadas para
-              que puedas enfocarte en lo que realmente importa: tu proyecto.
+              {t("integrations.services.sub-title")}
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-4">
               <a
                 className="block w-full rounded-sm border border-blue-600 bg-blue-600 px-12 py-3 text-lg font-medium text-white hover:bg-transparent hover:text-white focus:ring-3 focus:outline-hidden sm:w-auto"
                 href="#community"
               >
-                Integrarme
+                {t("integrations.services.btn-online")}
               </a>
 
               <a
                 className="block w-full rounded-sm border border-blue-600 px-12 py-3 text-lg font-medium text-white hover:bg-blue-600 focus:ring-3 focus:outline-hidden sm:w-auto"
                 href="#pricing"
               >
-                Planes
+                {t("integrations.services.btn-plans")}
               </a>
             </div>
           </div>
@@ -51,12 +53,10 @@ const IntegrationsServices = () => {
                 </svg>
                 <div className="ml-5">
                   <h3 className="text-xl font-semibold text-slate-50">
-                    New Relic APM
+                    {t("integrations.services.features.new-relic-title")}
                   </h3>
                   <p className="mt-3 text-base text-slate-300">
-                    Monitoreamos el rendimiento de tu aplicación y te ayudamos a
-                    identificar problemas de rendimiento y errores en tiempo
-                    real.
+                    {t("integrations.services.features.new-relic-description")}
                   </p>
                 </div>
               </div>
@@ -78,11 +78,10 @@ const IntegrationsServices = () => {
                 </svg>
                 <div className="ml-5">
                   <h3 className="text-xl font-semibold text-slate-50">
-                    Te configuramos el servidor en minutos
+                    {t("integrations.services.features.terminal-title")}
                   </h3>
                   <p className="mt-3 text-base text-slate-300">
-                    Te ayudamos a configurar tu servidor en minutos, para que
-                    puedas empezar a trabajar en tu proyecto sin perder tiempo.
+                    {t("integrations.services.features.terminal-description")}
                   </p>
                 </div>
               </div>
@@ -104,11 +103,10 @@ const IntegrationsServices = () => {
                 </svg>
                 <div className="ml-5">
                   <h3 className="text-xl font-semibold text-slate-50">
-                    Seguridad avanzada
+                    {t("integrations.services.features.security-title")}
                   </h3>
                   <p className="mt-3 text-base text-slate-300">
-                    Contamos con un sistema de seguridad avanzado que protege tu
-                    servidor y tu aplicación de ataques y amenazas externas.
+                    {t("integrations.services.features.security-description")}
                   </p>
                 </div>
               </div>
@@ -130,12 +128,10 @@ const IntegrationsServices = () => {
                 </svg>
                 <div className="ml-5">
                   <h3 className="text-xl font-semibold text-slate-50">
-                    Web + Dominio
+                    {t("integrations.services.features.website-title")}
                   </h3>
                   <p className="mt-3 text-base text-slate-300">
-                    Te desplegamos tu web en minutos y te brindamos soporte para
-                    que puedas enfocarte en lo que realmente importa: tu
-                    comunidad.
+                    {t("integrations.services.features.website-description")}
                   </p>
                 </div>
               </div>
