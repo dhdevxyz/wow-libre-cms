@@ -33,7 +33,8 @@
             "logged-in": {
                 "position-one": "Perfil",
                 "position-two": "Contas",
-                "position-three": "Sair"
+                "position-three": "Sair",
+                "position-four": "Servidor"
             },
             "logged-out": {
                 "position-one": "Entrar",
@@ -650,6 +651,9 @@
                 }
             }
         },
+        "send-items": {
+            "btn-txt": "Enviar itens"
+        },
         "delete-friend": {
             "btn-txt": "Remover Amigo"
         },
@@ -675,6 +679,7 @@
     "mails-items": {
         "title": "Detalhes dos Itens",
         "item-empty": "Não há itens.",
+        "item-found": "Detalhe do item: ",
         "btn-close": "Fechar"
     },
     "mails": {

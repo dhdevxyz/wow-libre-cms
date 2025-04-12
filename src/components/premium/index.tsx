@@ -1,9 +1,9 @@
 import { claimBenefitsPremium, getBenefitsPremium } from "@/api/subscriptions";
-import { SubscriptionBenefits, SubscriptionsBenefit } from "@/model/model";
+import { SubscriptionsBenefit } from "@/model/model";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import LoadingSpinner from "../utilities/loading-spinner";
 import Swal from "sweetalert2";
+import LoadingSpinner from "../utilities/loading-spinner";
 
 interface PremiumProps {
   language: string;
@@ -11,6 +11,7 @@ interface PremiumProps {
   serverId: number;
   accountId: number;
   characterId: number;
+  t: (key: string, options?: any) => string;
 }
 
 const Premium: React.FC<PremiumProps> = ({
@@ -19,6 +20,7 @@ const Premium: React.FC<PremiumProps> = ({
   characterId,
   language,
   token,
+  t,
 }) => {
   const [subscription, setSubscription] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -53,7 +55,7 @@ const Premium: React.FC<PremiumProps> = ({
 
   const handleButtonClick = async (benefitId: number): Promise<void> => {
     try {
-      const response = await claimBenefitsPremium(
+      await claimBenefitsPremium(
         serverId,
         accountId,
         characterId,
@@ -70,7 +72,7 @@ const Premium: React.FC<PremiumProps> = ({
         color: "white",
         background: "#0B1218",
         confirmButtonText: "¡Genial!",
-        confirmButtonColor: "#1DB954", // Un verde vibrante para destacar
+        confirmButtonColor: "#1DB954",
         showClass: {
           popup: "animate__animated animate__fadeInDown",
         },

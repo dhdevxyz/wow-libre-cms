@@ -34,13 +34,13 @@ const InfoIntegrate = () => {
         <div className="grid grid-cols-2 gap-6 mt-8">
           <img
             className="w-full rounded-lg shadow-lg"
-            src="https://static.wixstatic.com/media/5dd8a0_fcc71d4486a54b318385e1a2c8078b0e~mv2.webp"
-            alt="Contenido de oficina 1"
+            src="https://static.wixstatic.com/media/5dd8a0_282f56c21a6945d698d83a95105bd468~mv2.png"
+            alt="DecorationImg"
           />
           <img
-            className="mt-4 w-full lg:mt-10 rounded-lg shadow-lg"
-            src="https://static.wixstatic.com/media/5dd8a0_41acce655a7c49d5953b2e96cfcaad50~mv2.webp"
-            alt="Contenido de oficina 2"
+            className="mt-4 w-full lg:mt-10 rounded-2xl shadow-lg transition-transform duration-300 ease-in-out transform hover:scale-105"
+            src="https://static.wixstatic.com/media/5dd8a0_e3ce347ac0924809b6b2ac1f58c9519c~mv2.webp"
+            alt="AppWowLibre"
           />
         </div>
       </div>

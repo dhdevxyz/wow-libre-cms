@@ -59,9 +59,9 @@ const Announcement: React.FC<ConfirmationDialogProps> = ({
           accountId,
           token,
           serverId,
-          result.value // Pasamos el mensaje ingresado
+          result.value
         );
-        onConfirm(result.value); // Enviar el mensaje a `Professions.tsx`
+        onConfirm(result.value);
       } catch (error: any) {
         if (error instanceof InternalServerError) {
           Swal.fire({

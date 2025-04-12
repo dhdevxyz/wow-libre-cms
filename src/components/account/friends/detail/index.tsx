@@ -14,9 +14,9 @@ import {
   sendLevelByFriend,
   sendMoneyByFriend,
 } from "@/api/account/character";
+import { InternalServerError } from "@/dto/generic";
 import { Character, CharacterInventory } from "@/model/model";
 import Swal from "sweetalert2";
-import { InternalServerError } from "@/dto/generic";
 
 interface FriendsDetailProps {
   jwt: string;
@@ -63,7 +63,27 @@ const FriendDetail: React.FC<FriendsDetailProps> = ({
       );
       setItems(inventory);
     } catch (error: any) {
-    } finally {
+      if (error instanceof InternalServerError) {
+        Swal.fire({
+          icon: "error",
+          title: "Opss!",
+          html: `
+          <p><strong>Message:</strong> ${error.message}</p>
+          <hr style="border-color: #444; margin: 8px 0;">
+          <p><strong>Transaction ID:</strong> ${error.transactionId}</p>
+        `,
+          color: "white",
+          background: "#0B1218",
+        });
+        return;
+      }
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: `${error.message}`,
+        color: "white",
+        background: "#0B1218",
+      });
     }
   };
 
@@ -341,7 +361,7 @@ const FriendDetail: React.FC<FriendsDetailProps> = ({
           onClick={openSendItemsOpenModal}
         >
           <FontAwesomeIcon icon={faGift} className="mr-2" />
-          Enviar items
+          {t("friend-detail-modal.send-items.btn-txt")}
         </button>
         <button
           className="w-full action-button bg-gradient-to-r from-red-500 to-red-700 hover:from-red-600 hover:to-red-800 text-white py-2 px-4 rounded-lg transition-all duration-300"

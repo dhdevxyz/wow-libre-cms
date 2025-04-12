@@ -378,6 +378,7 @@ const AccountDetail = () => {
                     characterId={selectedCharacter.id}
                     language={user.language}
                     token={token}
+                    t={t}
                   />
                 ) : (
                   <div className=" p-6 bg-gradient-to-r from-gray-800 via-black to-gray-900 text-neon_green rounded-lg shadow-lg text-center">

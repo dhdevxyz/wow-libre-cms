@@ -33,7 +33,8 @@
             "logged-in": {
                 "position-one": "Profile",
                 "position-two": "Accounts",
-                "position-three": "Log Out"
+                "position-three": "Log Out",
+                "position-four": "Server"
             },
             "logged-out": {
                 "position-one": "Log In",
@@ -650,6 +651,9 @@
                 }
             }
         },
+        "send-items": {
+            "btn-txt": "Send items"
+        },
         "delete-friend": {
             "btn-txt": "Remove Friend"
         },
@@ -675,6 +679,7 @@
     "mails-items": {
         "title": "Item Details",
         "item-empty": "No items available.",
+        "item-found": "Item details: ",
         "btn-close": "Close"
     },
     "mails": {

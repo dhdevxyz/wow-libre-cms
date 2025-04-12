@@ -324,7 +324,7 @@ const NavbarAuthenticated = () => {
                         role="menuitem"
                         id="user-menu-item-0"
                       >
-                        Server
+                        {t("navbar_authenticated.menu.logged-in.position-four")}
                       </Link>
                       <a
                         href="#"

@@ -6,7 +6,7 @@ import AdvertisingStore from "@/components/store/banners";
 import { useUserContext } from "@/context/UserContext";
 import { CategoryDetail } from "@/model/model";
 import { useRouter } from "next/navigation";
-import React, { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const Store = () => {
   const router = useRouter();
@@ -14,16 +14,13 @@ const Store = () => {
     [key: string]: CategoryDetail[];
   }>({});
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
   const { user } = useUserContext();
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         const productsData = await getProducts(user.language);
-
         let categoriesObject: { [key: string]: CategoryDetail[] } = {};
-
         if (productsData instanceof Map) {
           categoriesObject = Object.fromEntries(productsData);
         } else if (typeof productsData === "object" && productsData !== null) {
@@ -34,7 +31,6 @@ const Store = () => {
 
         setCategories(categoriesObject);
       } catch (err: any) {
-        setError(err.message);
       } finally {
         setLoading(false);
       }
@@ -56,8 +52,29 @@ const Store = () => {
 
       {/* Loading Indicator */}
       {loading && (
-        <div className="text-center mt-4">
-          <p className="text-white">Cargando productos...</p>
+        <div>
+          <div className="flex justify-center items-center h-screen">
+            <svg
+              className="animate-spin h-10 w-10 text-orange-500"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+            >
+              <circle
+                className="opacity-25"
+                cx="12"
+                cy="12"
+                r="10"
+                fill="none"
+                strokeWidth="4"
+                stroke="currentColor"
+              ></circle>
+              <path
+                className="opacity-75"
+                fill="currentColor"
+                d="M4.29 4.29a1 1 0 011.42 0L12 10.59l6.29-6.3a1 1 0 011.42 1.42l-7 7a1 1 0 01-1.42 0l-7-7a1 1 0 010-1.42z"
+              ></path>
+            </svg>
+          </div>
         </div>
       )}
 

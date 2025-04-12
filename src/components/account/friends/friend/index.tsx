@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
 
-import FriendDetail from "../detail";
-import { Character, Friends } from "@/model/model";
 import { getFriends } from "@/api/account/character";
+import { Character, Friends } from "@/model/model";
+import FriendDetail from "../detail";
 
 interface CharacterProps {
   character: Character;

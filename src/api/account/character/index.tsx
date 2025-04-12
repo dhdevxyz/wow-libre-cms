@@ -252,6 +252,8 @@ export const getInventory = async (
   serverId: number,
   characterId: number
 ): Promise<CharacterInventory[]> => {
+  const transactionId = uuidv4();
+
   try {
     const response = await fetch(
       `${BASE_URL}/api/characters/inventory?account_id=${accountId}&server_id=${serverId}&character_id=${characterId}`,
@@ -260,7 +262,7 @@ export const getInventory = async (
         headers: {
           "Content-Type": "application/json",
           Authorization: "Bearer " + jwt,
-          transaction_id: uuidv4(),
+          transaction_id: transactionId,
         },
       }
     );
@@ -269,12 +271,26 @@ export const getInventory = async (
 
     if (response.ok && response.status === 200) {
       return responseData.data;
+    } else {
+      const genericResponse: GenericResponseDto<void> = await response.json();
+      throw new InternalServerError(
+        `${genericResponse.message}`,
+        response.status,
+        transactionId
+      );
     }
-    throw new Error("It was not possible to obtain your characters");
   } catch (error: any) {
-    throw new Error(
-      `It was not possible to obtain your characters : ${error.message}`
-    );
+    if (error instanceof TypeError && error.message === "Failed to fetch") {
+      throw new Error(`Please try again later, services are not available.`);
+    } else if (error instanceof InternalServerError) {
+      throw error;
+    } else if (error instanceof Error) {
+      throw error;
+    } else {
+      throw new Error(
+        `Unknown error occurred - TransactionId: ${transactionId}`
+      );
+    }
   }
 };
 

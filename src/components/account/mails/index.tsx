@@ -42,10 +42,9 @@ const Modal: React.FC<{
                   className="text-blue-400 hover:text-blue-600 font-semibold flex items-center"
                   target="_blank"
                   rel="noopener noreferrer"
-                  data-wowhead="item=2828"
                 >
                   <i className="fas fa-info-circle mr-2"></i>
-                  {`Ver detalles del ítem ${item.item_id}`}
+                  {t("mails-items.item-found")} {item.item_id}
                 </a>
               </li>
             ))
