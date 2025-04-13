@@ -180,7 +180,7 @@ const Navbar = () => {
           <Link
             className="category-link hover:text-gray-400 font-serif"
             target="_blank"
-            href="https://chat.whatsapp.com/KpvQJSOAujI4DlYjweWDxW"
+            href="https://foro.wowlibre.com/"
           >
             {t("navbar.sections.position-two")}
           </Link>

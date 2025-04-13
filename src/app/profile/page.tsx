@@ -130,10 +130,8 @@ const Profile = () => {
 
   if (isLoading) {
     return (
-      <div className="flex items-center justify-center min-h-screen min-w-full">
-        <div className="flex flex-col items-center">
-          <LoadingSpinner />
-        </div>
+      <div className="flex items-center justify-center h-screen">
+        <LoadingSpinner />
       </div>
     );
   }
