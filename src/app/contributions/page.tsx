@@ -46,7 +46,7 @@ const Contributions = () => {
             <div className="flex flex-col justify-between max-w-2xl w-full">
               <div>
                 <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-7">
-                  ¿Listo para tener el mejor servidor privado de WoW?
+                  ¿Listo para llevar tu experiencia al siguiente nivel?
                 </h2>
                 <p className="text-base sm:text-lg lg:text-2xl mb-4 break-words">
                   Lanza tu propio mundo, con total libertad y control. ¡Nos
@@ -69,7 +69,8 @@ const Contributions = () => {
               </div>
               <div className="mt-8 sm:mt-10">
                 <Link
-                  href="/register"
+                  href="https://chat.whatsapp.com/BDELJKhuJkWIMKxF8ExIdN"
+                  target="_blank"
                   className="px-6 py-3 bg-blue-500 hover:bg-blue-600 rounded-lg text-white font-semibold block text-center sm:inline-block"
                 >
                   ¡Crea tu servidor ahora!
@@ -112,22 +113,26 @@ const Contributions = () => {
             <SingleCard
               image="https://static.wixstatic.com/media/5dd8a0_ee6badb1babc44caae9116919c469636~mv2.webp"
               CardTitle="Gestión y Conectividad en un Solo Lugar"
-              titleHref="https://github.com/ManuChitiva/wow-libre-client"
-              btnHref="https://github.com/ManuChitiva/wow-libre-client"
+              titleHref="https://chat.whatsapp.com/BDELJKhuJkWIMKxF8ExIdN"
+              btnHref="https://chat.whatsapp.com/BDELJKhuJkWIMKxF8ExIdN"
               CardDescription="Registra jugadores, administra tu servidor y conecta con WowLibre sin complicaciones. ¡Todo lo que necesitas en una sola plataforma!"
-              Button="Ver Detalles"
+              Button="Adquirir"
             />
             <SingleCard
               image="https://static.wixstatic.com/media/5dd8a0_4cb670015f3d4b61838a98aa22aa6d98~mv2.jpg"
               CardTitle="Aplicación Móvil - Gestión de Jugadores"
+              titleHref="https://chat.whatsapp.com/BDELJKhuJkWIMKxF8ExIdN"
+              btnHref="https://chat.whatsapp.com/BDELJKhuJkWIMKxF8ExIdN"
               CardDescription="Administra las cuentas y estadísticas de tus jugadores desde cualquier lugar con nuestra intuitiva app móvil."
-              Button="En desarrollo"
+              Button="Adquirir"
             />
             <SingleCard
               image="https://static.wixstatic.com/media/5dd8a0_8c5b7a3a15014ad599ca7a0d6d6dfa35~mv2.jpg"
               CardTitle="Launcher Personalizado"
+              titleHref="https://chat.whatsapp.com/BDELJKhuJkWIMKxF8ExIdN"
+              btnHref="https://chat.whatsapp.com/BDELJKhuJkWIMKxF8ExIdN"
               CardDescription="Facilita a tus jugadores el acceso al servidor y gestiona actualizaciones con nuestro launcher diseñado para tu juego."
-              Button="En desarrollo"
+              Button="Adquirir"
             />
           </div>
         </div>

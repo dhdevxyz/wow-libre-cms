@@ -133,7 +133,7 @@ const NavbarAuthenticated = () => {
                 </li>
                 <li>
                   <Link
-                    href="https://chat.whatsapp.com/KpvQJSOAujI4DlYjweWDxW"
+                    href="https://foro.wowlibre.com/"
                     target="_blank"
                     className="block rounded-md px-4 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
                   >
@@ -190,7 +190,7 @@ const NavbarAuthenticated = () => {
                 <Link
                   className="rounded-md  px-4 py-3 text-x2 font-medium text-gray-300 hover:bg-gray-700 hover:text-white font-serif"
                   target="_blank"
-                  href="https://chat.whatsapp.com/KpvQJSOAujI4DlYjweWDxW"
+                  href="https://foro.wowlibre.com/"
                 >
                   {t("navbar_authenticated.sections.position-three")}
                 </Link>
