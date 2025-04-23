@@ -1,5 +1,3 @@
-import AdIframe from "@/components/adversing";
-import NativeBanners from "@/components/adversing/native_banner";
 import Advertising from "@/components/home/banner";
 import Bidding from "@/components/home/bidding";
 import ContributionsHome from "@/components/home/contribution";
@@ -17,7 +15,6 @@ const Home = () => {
       <Navbar />
       <Advertising />
 
-      <AdIframe />
       <Information />
       <PricingPlans />
       <ServerExperience />
@@ -29,7 +26,6 @@ const Home = () => {
       <ContributionsHome />
 
       <Subscription />
-      <NativeBanners />
     </>
   );
 };

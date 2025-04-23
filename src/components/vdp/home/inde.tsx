@@ -2,7 +2,6 @@
 
 import { getSubscriptionActive } from "@/api/subscriptions";
 import { getServerNameAndExpansion } from "@/api/vdp";
-import NativeBanners from "@/components/adversing/native_banner";
 import NavbarAuthenticated from "@/components/navbar-authenticated";
 import LoadingSpinner from "@/components/utilities/loading-spinner";
 import ServerAnalytics from "@/components/vdp/analytics";
@@ -104,7 +103,6 @@ const Vdp = () => {
         serverName={serverName}
         youtubeUrl={vdpModel.youtube_url}
       />
-      <NativeBanners />
       <ServerInformationVdp isSubscribed={isSubscribed} t={t} />
       {token && (
         <ServerRegister
