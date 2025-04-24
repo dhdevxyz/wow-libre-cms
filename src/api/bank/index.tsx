@@ -106,16 +106,14 @@ export const getPlans = async (language: string): Promise<BankPlans[]> => {
   const transactionId = uuidv4();
 
   try {
-    const response = await fetch(
-      `${BASE_URL}/api/resources/bank/plans?language=${language}`,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          transaction_id: transactionId,
-        },
-      }
-    );
+    const response = await fetch(`${BASE_URL}/api/resources/bank/plans`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        transaction_id: transactionId,
+        "Accept-Language": language,
+      },
+    });
 
     if (response.ok && response.status === 200) {
       const responseData: GenericResponseDto<BankPlans[]> =
