@@ -12,6 +12,7 @@ import LoadingSpinner from "../../utilities/loading-spinner";
 import NavbarAuth from "./auth";
 import Searcher from "./search/searcher";
 import "./style.css";
+import { webProps } from "@/constants/configs";
 
 const Navbar = () => {
   const { t } = useTranslation();
@@ -92,7 +93,7 @@ const Navbar = () => {
             alt="Logo WowLibre"
           />
           <p className="title-server title-home ml-2 text-xl font-bold md:text-2xl">
-            Wow Libre
+            {webProps.serverName}
           </p>
         </Link>
       </header>

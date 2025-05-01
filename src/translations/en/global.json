@@ -586,8 +586,8 @@
         }
     },
     "home-us": {
-        "realm": "Servers",
-        "experience": "Unique",
+        "realm": "Realm",
+        "experience": "Experience",
         "sub-title": "Find the perfect server for you and live adventures you’ll never forget.",
         "realms": {
             "primary": {
@@ -959,9 +959,9 @@
         }
     },
     "home-who-we-are": {
-        "title": "What is WowLibre?",
-        "description": "WowLibre is a community dedicated to enhancing the gaming experience through innovative tools. Our goal is to simplify server management and strengthen the connection between players and administrators with efficient and accessible technological solutions.",
-        "btn-text": "Discover our tools"
+        "title": "Ready to get started?",
+        "description": "If you need to download the game, any addons, or other tools to fully enjoy the experience, you’re in the right place! Here you'll find everything you need to begin your adventure in Azeroth.",
+        "btn-text": "Download Game"
     },
     "footer": {
         "terms-and-conditions": "Terms and Conditions",

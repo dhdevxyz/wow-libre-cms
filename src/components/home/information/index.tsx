@@ -62,8 +62,9 @@ const Information = () => {
         <div className="p-4 lg:sticky lg:top-4 lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:overflow-hidden flex flex-col items-center">
           <img
             className="w-full max-w-screen-lg rounded-xl bg-gray-800 shadow-xl ring-1 ring-gray-600/10"
-            src="https://static.wixstatic.com/media/5dd8a0_018a0726e33f418db249ba758cd4be17~mv2.webp"
-            alt="download-game"
+            src="https://static.wixstatic.com/media/5dd8a0_1bd6251d440e4ec89b851cd17f741d1c~mv2.webp"
+            alt="ServerConnect"
+            width={2432}
           />
           <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 mt-8">
             <button

@@ -16,7 +16,6 @@ const Home = () => {
       <Advertising />
 
       <Information />
-      <PricingPlans />
       <ServerExperience />
       <SliderHome />
 

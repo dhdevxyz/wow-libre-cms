@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import { socialLinks } from "../../constants/socialLinks";
 import { useTranslation } from "react-i18next";
 
 const Footer = () => {
@@ -40,54 +40,18 @@ const Footer = () => {
           <div className="sm:order-1 space-y-8 xl:space-y-0 text-center sm:text-left">
             <div className="flex flex-col items-center sm:items-start">
               <div className="flex justify-center sm:justify-start space-x-6">
-                <a
-                  href="https://www.facebook.com/WowLibre/"
-                  target="_blank"
-                  className="text-gray-400 hover:text-gray-300 transition duration-150 ease-in-out"
-                >
-                  <span className="sr-only">Facebook</span>
-                  <img
-                    className="h-8 w-8"
-                    src="../img/footer/facebook.webp"
-                    alt="Facebook Icon"
-                  />
-                </a>
-                <a
-                  href="https://www.tiktok.com/@wowlibre?lang=es"
-                  target="_blank"
-                  className="text-gray-400 hover:text-gray-300 transition duration-150 ease-in-out"
-                >
-                  <span className="sr-only">Instagram</span>
-                  <img
-                    className="h-8 w-8"
-                    src="../img/footer/instagram.webp"
-                    alt="Instagram Icon"
-                  />
-                </a>
-                <a
-                  href="https://chat.whatsapp.com/BDELJKhuJkWIMKxF8ExIdN"
-                  target="_blank"
-                  className="text-gray-400 hover:text-gray-300 transition duration-150 ease-in-out"
-                >
-                  <span className="sr-only">WhatsApp</span>
-                  <img
-                    className="h-8 w-8"
-                    src="../img/footer/whatsapp.webp"
-                    alt="WhatsApp Icon"
-                  />
-                </a>
-                <a
-                  target="_blank"
-                  className="text-gray-400 hover:text-gray-300 transition duration-150 ease-in-out"
-                  href="https://t.me/wowlibreservers"
-                >
-                  <span className="sr-only">Telegram</span>
-                  <img
-                    className="h-8 w-8"
-                    src="../img/footer/telegram.webp"
-                    alt="Telegram Icon"
-                  />
-                </a>
+                {socialLinks.map((link) => (
+                  <a
+                    key={link.name}
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-400 hover:text-gray-300 transition duration-150 ease-in-out"
+                  >
+                    <span className="sr-only">{link.name}</span>
+                    <img className="h-8 w-8" src={link.icon} alt={link.alt} />
+                  </a>
+                ))}
               </div>
             </div>
           </div>
