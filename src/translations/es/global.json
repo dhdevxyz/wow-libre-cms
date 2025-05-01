@@ -436,13 +436,13 @@
         }
     },
     "home-servers": {
-        "title": "Servidores Aliados",
-        "description": "¿Buscas una experiencia de juego sin igual? Únete a nuestros servidores de WoW asociados y sumérgete en mundos únicos y aventuras épicas, ¡totalmente gratis!",
-        "btn-information": "¡Descubre más!",
+        "title": "Vota por nuestros servidores",
+        "description": "Apoya nuestros servidores y ayúdanos a crecer. Tu voto es importante para nosotros.",
+        "btn-information": "¡Necesito ayuda!",
         "empty-server-list-title": "¡Nuestros expertos están en acción!",
         "empty-server-list-subtitle": "Actualmente no hay servicios disponibles, pero nuestros valientes profesionales están perfeccionando sus habilidades para ofrecerte las mejores experiencias. ",
         "btn-register-txt": "Registrarme",
-        "btn-register-discover": "Descubrir"
+        "btn-register-discover": "Votar por servidor"
     },
     "account-detail": {
         "character-no-select": {
@@ -562,9 +562,9 @@
         }
     },
     "home-information": {
-        "title": "¡Únete a Wow Libre hoy!",
+        "title": "¡Únete hoy!",
         "sub-title": "La mejor comunidad para jugadores",
-        "description": "Descubre una plataforma innovadora diseñada para brindarte herramientas avanzadas y una experiencia de juego sin límites. Únete ahora y lleva tu comunidad al siguiente nivel.",
+        "description": "Descubre una plataforma innovadora diseñada para brindarte herramientas avanzadas y una experiencia de juego sin límites. Únete ahora y lleva tu experiencia al siguiente nivel.",
         "push-deploy": {
             "title": "Mejoras continuas.",
             "description": "Nuestra plataforma evoluciona constantemente con nuevas funciones y optimizaciones para ofrecerte la mejor experiencia."
@@ -584,7 +584,7 @@
         },
         "btn": {
             "primary": "Unirme ahora",
-            "secondary": "Explorar más"
+            "secondary": "Descargar Juego"
         }
     },
     "home-us": {
@@ -951,13 +951,13 @@
             "disclaimer": "Al suscribirte, aceptas los Términos y condiciones de WowLibre. Puedes cancelar cuando quieras."
         }
     },
-    "info-integrate": {
-        "title": "Haz crecer tu plataforma sin complicaciones",
-        "short-description": "Conéctate en minutos y deja que nosotros nos encarguemos de la parte técnica.",
-        "detailed-description": "Nuestro equipo de ingenieros se encargará de toda la configuración técnica para que tú no tengas que preocuparte por nada. Desde la integración hasta la optimización de la infraestructura, nos aseguramos de que todo funcione a la perfección. Relájate y concéntrate en hacer crecer tu comunidad y tu negocio, mientras nosotros nos ocupamos del resto.",
-        "summary": "Automatiza procesos, simplifica la gestión y escala sin límites. Nos encargamos de la tecnología para que tú solo te preocupes por crecer.",
+    "features-server": {
+        "title": "Conoce nuestros cambios",
+        "short-description": "Mantente informado dia a dia sobre los cambios y mejoras que realizamos en nuestros servidores. ¡Siempre estamos trabajando para ofrecerte la mejor experiencia de juego!",
+        "detailed-description": "Nuestro equipo de expertos está comprometido en brindarte la mejor experiencia de juego. Trabajamos constantemente para mejorar nuestros servidores y ofrecerte un entorno de juego óptimo. ¡Siempre estamos aquí para ayudarte!",
+        "summary": "¡Siempre estamos trabajando para ofrecerte la mejor experiencia de juego!",
         "btn": {
-            "text": "Regístrate y empieza ahora"
+            "text": "Conocer Cambios"
         }
     },
     "home-who-we-are": {

@@ -1,23 +1,9 @@
-import React from "react";
+import { teamMembers } from "@/constants/teamMembers";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import { useTranslation } from "react-i18next";
 
 const MeetTheTeam = () => {
   const { t } = useTranslation();
-
-  const teamMembers = [
-    {
-      name: "Manuel Chitiva",
-      title: "Wow Libre",
-      image:
-        "https://static.wixstatic.com/media/5dd8a0_95e131956e584ebb9ebaa0e8728d4e30~mv2.webp",
-      social: {
-        linkedin: "https://www.linkedin.com/in/manuelchitiva/",
-        facebook: "https://www.facebook.com/WowLibre/",
-        tiktok: "https://www.tiktok.com/@wowlibre",
-      },
-    },
-  ];
 
   return (
     <div className="flex items-center justify-center">
@@ -46,11 +32,7 @@ const MeetTheTeam = () => {
                   className="w-full md:w-6/12 lg:w-3/12 mb-6 px-6 sm:px-6 lg:px-4"
                 >
                   <div className="flex flex-col">
-                    <a
-                      target="_blank"
-                      href="https://www.facebook.com/WowLibre"
-                      className="mx-auto aspect-square w-full overflow-hidden rounded-2xl"
-                    >
+                    <a className="mx-auto aspect-square w-full overflow-hidden rounded-2xl">
                       <img
                         className="object-cover w-full h-full drop-shadow-md hover:drop-shadow-xl transition-all duration-200 delay-100"
                         src={member.image}

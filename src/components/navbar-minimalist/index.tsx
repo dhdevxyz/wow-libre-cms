@@ -1,3 +1,4 @@
+import { webProps } from "@/constants/configs";
 import Link from "next/link";
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -21,7 +22,7 @@ const NavbarMinimalist = () => {
             alt="WowLibre Logo"
           />
           <p className="text-white text-4xl md:text-4xl  pt-4  md:mt-8 md:pt-0 title-server text-center md:text-left">
-            Wow Libre
+            {webProps.serverName}
           </p>
         </Link>
       </div>

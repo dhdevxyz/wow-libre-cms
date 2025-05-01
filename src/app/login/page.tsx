@@ -1,17 +1,18 @@
 "use client";
 
-import React, { ChangeEvent, useState } from "react";
-import "./style.css";
-import Link from "next/link";
 import { login } from "@/api/account/login";
-import Cookies from "js-cookie";
-import { useUserContext } from "@/context/UserContext";
-import { useRouter } from "next/navigation";
-import Swal from "sweetalert2";
-import { useTranslation } from "react-i18next";
 import LoadingSpinner from "@/components/utilities/loading-spinner";
-import AlertComponent from "@/components/utilities/show-alert";
 import UseAuthRedirect from "@/components/utilities/logged-in";
+import AlertComponent from "@/components/utilities/show-alert";
+import { useUserContext } from "@/context/UserContext";
+import Cookies from "js-cookie";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import React, { ChangeEvent, useState } from "react";
+import { useTranslation } from "react-i18next";
+import Swal from "sweetalert2";
+import "./style.css";
+import { webProps } from "@/constants/configs";
 
 const Login = () => {
   const { t } = useTranslation();
@@ -94,10 +95,7 @@ const Login = () => {
         />
       )}
       <div className="login-banner">
-        <img
-          src="https://static.wixstatic.com/media/5dd8a0_d58fdd03abfd4f908eb5581fc2426e04~mv2.jpg"
-          alt="Login WowLibre Img"
-        />
+        <img src={webProps.loginBanner} alt="LoginImage" />
       </div>
       <div className="login-form">
         <div className="login-form-btn-back text-xl md:text-4xl lg:text-5xl xl:text-5xl">
@@ -166,11 +164,8 @@ const Login = () => {
           </div>
           <div className="login-form-section-footer pt-2">
             <div className="mt-28 text-xl md:text-1xl lg:text-2xl xl:text-2xl">
-              <p>
-                @WowLibre We develop innovative solutions for the gaming
-                community. We enhance the gaming experience with advanced
-                software, fostering the creation of unique and immersive worlds.
-              </p>
+              © {webProps.serverName} {new Date().getFullYear()} — All rights
+              reserved. Thank you for being part of our community!
             </div>
           </div>
         </div>

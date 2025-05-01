@@ -66,9 +66,9 @@ const Help: React.FC = () => {
           <div className="flex flex-col">
             <div className="w-full mb-6 rounded-2xl select-none">
               <img
-                src="https://static.wixstatic.com/media/5dd8a0_8ad3d49e4b7744cdb7ae1cecfd42f011~mv2.webp"
-                alt="Faqs"
-                className="rounded-2xl hover:shadow hover:shadow-teal-800 w-full"
+                src="https://static.wixstatic.com/media/5dd8a0_49558bb47b38464d88658e647a185e7f~mv2.png"
+                alt="support"
+                className="shadow shadow-teal-800 w-500% h-500 object-cover mx-auto rounded-full"
               />
             </div>
             <div className="w-full">

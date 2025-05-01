@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import LoadingSpinner from "../utilities/loading-spinner";
+import { webProps } from "@/constants/configs";
 
 const NavbarAuthenticated = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -170,7 +171,7 @@ const NavbarAuthenticated = () => {
                 alt="Logo WowLibre"
               />
               <p className="text-gray-300 ml-5  title-server mt-9 text-4xl">
-                Wow Libre
+                {webProps.serverName}
               </p>
             </a>
             <div className="hidden sm:ml-40 sm:block sm:mt-5">

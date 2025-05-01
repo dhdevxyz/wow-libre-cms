@@ -434,13 +434,13 @@
         }
     },
     "home-servers": {
-        "title": "Allied Servers",
-        "description": "Looking for a unique gaming experience? Join our partnered WoW servers and immerse yourself in fascinating worlds and epic adventures, completely free!",
-        "btn-information": "Discover more!",
-        "empty-server-list-title": "Our experts are at work!",
-        "empty-server-list-subtitle": "Currently, there are no services available, but our brave professionals are perfecting their skills to offer you the best experiences.",
+        "title": "Vote for our servers",
+        "description": "Support our servers and help us grow. Your vote matters to us.",
+        "btn-information": "I need help!",
+        "empty-server-list-title": "Our experts are in action!",
+        "empty-server-list-subtitle": "There are currently no services available, but our brave professionals are honing their skills to offer you the best experiences.",
         "btn-register-txt": "Register",
-        "btn-register-discover": "Discover"
+        "btn-register-discover": "Vote for server"
     },
     "account-detail": {
         "character-no-select": {
@@ -560,7 +560,7 @@
         }
     },
     "home-information": {
-        "title": "Join Wow Libre Today!",
+        "title": "Join Today!",
         "sub-title": "The Best Gaming Community",
         "description": "Discover an innovative platform designed to provide you with advanced tools and an unparalleled gaming experience. Join now and take your community to the next level!",
         "push-deploy": {
@@ -582,7 +582,7 @@
         },
         "btn": {
             "primary": "Join Now",
-            "secondary": "Explore More"
+            "secondary": "Download Game"
         }
     },
     "home-us": {
@@ -949,13 +949,13 @@
             "disclaimer": "By subscribing, you accept WowLibre's Terms and Conditions. You can cancel anytime."
         }
     },
-    "info-integrate": {
-        "title": "Grow Your Platform Without Hassle",
-        "short-description": "Connect in minutes and let us handle the technical side.",
-        "detailed-description": "Our team of engineers will take care of all the technical setup, so you don’t have to worry about a thing. From integration to infrastructure optimization, we ensure everything runs perfectly. Relax and focus on growing your community and business while we handle the rest.",
-        "summary": "Automate processes, simplify management, and scale without limits. We take care of the technology so you can focus on growth.",
+    "features-server": {
+        "title": "Discover Our Updates",
+        "short-description": "Stay informed daily about the changes and improvements we make to our servers. We're always working to provide you with the best gaming experience!",
+        "detailed-description": "Our team of experts is committed to delivering the best gaming experience. We constantly work on improving our servers to offer you an optimal gaming environment. We're always here to help!",
+        "summary": "We're always working to provide you with the best gaming experience!",
         "btn": {
-            "text": "Sign up and get started now"
+            "text": "View Updates"
         }
     },
     "home-who-we-are": {
