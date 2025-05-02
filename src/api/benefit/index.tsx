@@ -3,7 +3,9 @@ import { GenericResponseDto } from "@/dto/generic";
 import { BenefitsModel } from "@/model/benefit-model";
 import { v4 as uuidv4 } from "uuid";
 
-export const benefitsActive = async (): Promise<BenefitsModel[]> => {
+export const benefitsActive = async (
+  language: string
+): Promise<BenefitsModel[]> => {
   try {
     const transactionId = uuidv4();
 
@@ -12,6 +14,7 @@ export const benefitsActive = async (): Promise<BenefitsModel[]> => {
       headers: {
         "Content-Type": "application/json",
         transaction_id: transactionId,
+        "Accept-Language": language,
       },
     });
     const responseData: GenericResponseDto<BenefitsModel[]> =

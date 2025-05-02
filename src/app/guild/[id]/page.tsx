@@ -40,7 +40,7 @@ const GuildDetail = () => {
       try {
         const [guildsResponse, benefits] = await Promise.all([
           getGuild(guildId, serverId),
-          benefitsActive(),
+          benefitsActive(user.language),
         ]);
 
         if (!guildsResponse.public_access) {
@@ -68,7 +68,7 @@ const GuildDetail = () => {
     };
     fetchData();
     setLoggin(token != null && user.logged_in);
-  }, [token]);
+  }, [token, user.language, guildId, serverId]);
 
   const openModal = () => {
     setIsModalOpen(true);

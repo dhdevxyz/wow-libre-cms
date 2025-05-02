@@ -18,8 +18,8 @@ const NavbarMinimalist = () => {
         >
           <img
             className="max-w-[20%] md:max-w-[17%]"
-            src="https://static.wixstatic.com/media/5dd8a0_4a5bff42a39c47c2ae67d5dde07455f5~mv2.webp"
-            alt="WowLibre Logo"
+            src={webProps.logo}
+            alt="LogoServer"
           />
           <p className="text-white text-4xl md:text-4xl  pt-4  md:mt-8 md:pt-0 title-server text-center md:text-left">
             {webProps.serverName}

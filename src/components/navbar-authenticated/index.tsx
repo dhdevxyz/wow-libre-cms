@@ -167,8 +167,8 @@ const NavbarAuthenticated = () => {
             >
               <img
                 className="w-20 h-20 mt-2"
-                src="https://static.wixstatic.com/media/5dd8a0_4a5bff42a39c47c2ae67d5dde07455f5~mv2.webp"
-                alt="Logo WowLibre"
+                src={webProps.logo}
+                alt="LogoServer"
               />
               <p className="text-gray-300 ml-5  title-server mt-9 text-4xl">
                 {webProps.serverName}

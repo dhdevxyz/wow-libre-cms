@@ -108,7 +108,7 @@ const Navbar = () => {
           <a href="/subscriptions">
             <img
               className="image-promotion"
-              src="./img/homes/pill-default.png"
+              src="https://static.wixstatic.com/media/5dd8a0_2db1e48e89e340ce97be2820206b9d95~mv2.webp"
               alt="Pill Subscription"
             />
           </a>

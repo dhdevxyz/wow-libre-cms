@@ -2,14 +2,15 @@
 
 import "./style.css";
 
-import NavbarAuthenticated from "@/components/navbar-authenticated";
 import Footer from "@/components/footer";
+import NavbarAuthenticated from "@/components/navbar-authenticated";
 import Link from "next/link";
 import LoadingSpinner from "../utilities/loading-spinner";
 
 import { useRouter, useSearchParams } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { webProps } from "@/constants/configs";
 
 const Congrats = () => {
   const searchParams = useSearchParams();
@@ -44,18 +45,18 @@ const Congrats = () => {
       <div className="congrats md:mt-0 mt-5">
         <div className="congrats-container select-none">
           <img
-            src="/img/congrats/pngegg.png"
+            src="https://static.wixstatic.com/media/5dd8a0_d0aab0c2409d4269b531f1d5841ce456~mv2.png"
             alt="Congratulations warrior"
             className="congrats-img-large select-none"
           />
           <div className="congrats-content">
             <img
-              src="/img/logos/logo.webp"
-              alt="WowLibre Logo"
+              src={webProps.logo}
+              alt="Server Logo"
               className="congrats-img select-none"
             />
 
-            <h2 className="title">
+            <h2 className="title title-server text-white text-3xl md:text-4xl lg:text-5xl xl:text-4xl font-bold pb-5">
               {t("register.section-page.congrats.message-welcome-part-one")}
               <br />
               {t("register.section-page.congrats.message-welcome-part-two")}
@@ -65,7 +66,7 @@ const Congrats = () => {
               <p className="text-2xl md:text-4xl lg:text-3xl xl:text-2xl pb-5">
                 {t("register.section-page.congrats.body-welcome")}
               </p>
-              <p className="mt-2 text-2xl md:text-3xl lg:text-4xl xl:text-3xl pb-3 pt-5 font-bold">
+              <p className="title-server mt-2 text-2xl md:text-3xl lg:text-5xl xl:text-4xl pb-3 pt-5 font-bold">
                 {t("register.section-page.congrats.title-details")}
               </p>
 
@@ -92,7 +93,7 @@ const Congrats = () => {
                 {t("register.section-page.congrats.btn-txt-action-primary")}
               </button>
               <Link
-                href="https://www.mediafire.com/file/ucm0pcah89qc6lx/World_of_Warcraft_3.3.5a.rar/file"
+                href="/contributions#download"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="download-button text-white text-lg md:text-xl lg:text-2xl xl:text-2xl"
