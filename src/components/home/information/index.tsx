@@ -62,7 +62,7 @@ const Information = () => {
         <div className="p-4 lg:sticky lg:top-4 lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:overflow-hidden flex flex-col items-center">
           <img
             className="w-full max-w-screen-lg rounded-xl bg-gray-800 shadow-xl ring-1 ring-gray-600/10"
-            src="https://wallpapers.com/images/featured/fondods-de-world-of-warcraft-h9mxn6c9sb09dmk5.jpg"
+            src="https://static.wixstatic.com/media/5dd8a0_6eba0e3f51f346afaa39a1ef988b1bb2~mv2.webp"
             alt="ServerConnect"
             width={2432}
           />

@@ -3,7 +3,7 @@ import React from "react";
 
 import { useTranslation } from "react-i18next";
 
-const InfoIntegrate = () => {
+const ServerFeatures = () => {
   const { t } = useTranslation();
 
   return (
@@ -43,4 +43,4 @@ const InfoIntegrate = () => {
   );
 };
 
-export default InfoIntegrate;
+export default ServerFeatures;

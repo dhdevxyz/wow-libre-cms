@@ -1,6 +1,6 @@
 import { webProps } from "@/constants/configs";
 import Link from "next/link";
-import React, { useState } from "react";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
 const NavbarMinimalist = () => {
@@ -74,7 +74,7 @@ const NavbarMinimalist = () => {
           className="flex items-center text-white text-2xl md:text-3xl hover:bg-gray-700 px-6 py-3 rounded-lg transition duration-300 font-serif"
           href="/help"
         >
-          <p className="">Support</p>
+          <p className="">{t("navbar-minimalist.sections.position-six")}</p>
         </Link>
       </nav>
     </header>

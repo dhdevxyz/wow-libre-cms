@@ -80,7 +80,7 @@ const SliderHome = () => {
           {t("home-servers.description")}
         </p>
         <a
-          href=""
+          href="/help"
           target="_blank"
           className="text-lg text-yellow-500 mt-2 hover:text-yellow-400 underline"
         >
