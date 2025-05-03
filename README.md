@@ -1,15 +1,13 @@
 # World of Warcraft Community Web Server 
 
 
-Bienvenido a World of Warcraft Community Web Server, una aplicación web diseñada para transformar la experiencia de los jugadores de World of Warcraft. Este sitio web no es solo  sitio web más; está diseñado para ofrecer una variedad de funcionalidades que van más allá de las compras y el registro, haciendo que sea un recurso valioso y atractivo para la comunidad.
+Bienvenido a Wow Libre Web, una aplicación web creada para revolucionar la experiencia de los jugadores de World of Warcraft. Este sitio no es una simple página más: ha sido diseñado para ofrecer mucho más que opciones de compra y registro. Su propósito es convertirse en un recurso útil, dinámico y atractivo para toda la comunidad, aportando funcionalidades innovadoras que enriquecen cada partida.
 
 
-Características Principales
 
-- Registro al emulador "Trinity Core" & "Azeroth Core" : Actualmente permite crear cuentas de juego 
-- Marketplace Dinámico: Compra y vende artículos del juego de manera segura y eficiente.
-- Gestión de Hermandades: Crea, administra y promociona tu hermandad. Conecta con otros jugadores.
-- Perfil Personalizado: Personaliza tu perfil con tus personajes, logros y estadísticas del juego.
+
+Wiki
+https://github.com/ManuChitiva/wow-libre-web/wiki
 
 ## Tecnologías Utilizadas
 
