@@ -54,13 +54,13 @@ const ServerExperience = () => {
   }
 
   return (
-    <section className="p-16 bg-gradient-to-b  rounded-xl shadow-lg mb-12">
+    <section className="p-16 bg-gradient-to-b  rounded-xl  mb-12">
       <div className="container mx-auto px-4 space-y-16">
         {/* Título Centrado */}
         <div className="text-center mb-12">
           <h1 className="text-5xl font-bold text-white">
             {t("home-us.realm")} -{" "}
-            <span className="text-blue-500">{t("home-us.experience")}</span>
+            <span className="text-indigo-500">{t("home-us.experience")}</span>
           </h1>
           <p className="text-xl text-gray-300 mt-4">{t("home-us.sub-title")}</p>
         </div>
@@ -92,7 +92,7 @@ const ServerExperience = () => {
               <div className="w-full md:w-1/2 text-white text-center md:text-left px-4 mb-1">
                 <h2 className="text-4xl lg:text-5xl font-bold mb-6">
                   {t(realm.title)}{" "}
-                  <span className="text-blue-500 pb-2">
+                  <span className="text-indigo-500 pb-2">
                     {t(realm.title_disclaimer)}
                   </span>
                   <br />
@@ -118,7 +118,7 @@ const ServerExperience = () => {
 
                   {/* Botón para copiar el realmlist */}
                   <button
-                    className="bg-gradient-to-r from-blue-600 to-blue-800 text-white font-medium py-3 px-8 rounded-full shadow-lg hover:bg-gradient-to-r hover:from-blue-500 hover:to-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-600 focus:ring-opacity-50 transition duration-300 ease-in-out"
+                    className="bg-gradient-to-r from-indigo-600 to-indigo-800 text-white font-medium py-3 px-8 rounded-full shadow-lg hover:bg-gradient-to-r hover:from-indigo-500 hover:to-indigo-700 focus:outline-none focus:ring-4 focus:ring-indigo-600 focus:ring-opacity-50 transition duration-300 ease-in-out"
                     onClick={() => handleCopy(realm.realmlist, index)}
                   >
                     {copiedIndex === index ? "Copied!" : "Copy Realmlist"}

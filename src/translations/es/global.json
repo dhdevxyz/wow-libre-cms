@@ -109,8 +109,8 @@
                 }
             },
             "congrats": {
-                "message-welcome-part-one": "Bienvenido a la comunidad",
-                "message-welcome-part-two": "Wow libre",
+                "message-welcome-part-one": "Bienvenido a la",
+                "message-welcome-part-two": "comunidad",
                 "body-welcome": "¡Te damos la más cordial bienvenida a nuestra comunidad! Estamos encantados de tenerte aquí. Estás a solo un paso de disfrutar de tus juegos favoritos de forma gratuita. ¡Termina de crear tu cuenta de juego y comienza a jugar ahora!",
                 "title-details": "Detalles de la cuenta creada:",
                 "btn-txt-action-primary": "Crear cuenta de juego",
@@ -118,7 +118,7 @@
                 "disclaimer": "Garantizamos la total seguridad de tus datos, y tú mantienes el control absoluto sobre tu información. Si en algún momento decides darte de baja, eliminaremos por completo todos tus datos de nuestro sistema."
             },
             "register": {
-                "title-server-message": "¡Toda la información que nos compartas en Wow Libre es como el ingrediente especial de tu experiencia alucinante! Cuanto más sepamos, mejor podremos hacerte vivir algo realmente extraordinario. Así que, ¡compártenos esos datos y prepárate para algo fuera de serie!",
+                "title-server-message": "¡Toda la información que nos compartas es como el ingrediente especial de tu experiencia alucinante! Cuanto más sepamos, mejor podremos hacerte vivir algo realmente extraordinario. Así que, ¡compártenos esos datos y prepárate para algo fuera de serie!",
                 "input": {
                     "select-country": "País de residencia",
                     "select-country-place-holder": "Selecciona el país",
@@ -129,7 +129,7 @@
                 }
             },
             "kown-you": {
-                "title-server-message": "Es posible que se utilice tu nombre real en el futuro para verificar tu identidad cuando te pongas en contacto con WowLibre. Por defecto, tu nombre real permanecerá oculto para otros usuarios.",
+                "title-server-message": "Es posible que se utilice tu nombre real en el futuro para verificar tu identidad cuando te pongas en contacto con nosotros. Por defecto, tu nombre real permanecerá oculto para otros usuarios.",
                 "input": {
                     "select-lastname": "Ingrese sus apellidos",
                     "select-lastname-place-holder": "Ingrese sus apellidos",
@@ -155,13 +155,13 @@
                 }
             },
             "terms-and-conditions": {
-                "title-server-message": "¡Bienvenido a Wow Libre! Aceptar nuestras opciones te permite sumergirte en una experiencia personalizada llena de ofertas exclusivas,  noticias emocionantes y mucho más.",
+                "title-server-message": "¡Bienvenido! Al aceptar nuestras opciones te permite sumergirte en una experiencia personalizada llena de ofertas exclusivas,  noticias emocionantes y mucho más.",
                 "button": {
                     "btn-primary": "Continuar",
                     "btn-secondary": "Volver"
                 },
                 "input": {
-                    "email-check-text": "El correo de la cuenta recibirá ofertas especiales, noticias y demás de Wow Libre",
+                    "email-check-text": "El correo de la cuenta recibirá ofertas especiales, noticias y demás de nuestra comunidad.",
                     "term-check-text": "He leído y acepto lo siguiente: Términos y condiciones ",
                     "term-check-link": "Términos y condiciones"
                 }
@@ -396,16 +396,16 @@
         "competition": {
             "title": "Compite con otras guilds",
             "description": "Participa en competencias para que tu hermandad obtenga beneficios exclusivos para sus miembros.",
-            "event-txt": "Actualizacion de retos, cada 6 meses"
+            "event-txt": "Los logros de la hermandad se actualizan por el administrador."
         },
         "events": {
-            "title": "Eventos de los ",
-            "duration": "6 meses",
-            "description": "Los premios obtenidos serán entregados a todos los miembros de la hermandad durante el evento. Pasado ese tiempo, los retos se actualizarán y deberán cumplirse nuevamente para adquirir los beneficios."
+            "title": "Logros de la ",
+            "duration": "hermandad",
+            "description": "Cuando la hermandad desbloquea un logro, todos sus miembros pueden reclamarlo individualmente."
         },
         "benefits": {
             "title": "Beneficios ",
-            "subtitle": "Obtenidos",
+            "subtitle": "Desbloqueados",
             "disclaimer": "Al unirte a esta hermandad podrás obtener los siguientes beneficios:",
             "no-benefits": "Esta hermandad no cuenta con beneficios aún"
         },
@@ -436,13 +436,13 @@
         }
     },
     "home-servers": {
-        "title": "Servidores Aliados",
-        "description": "¿Buscas una experiencia de juego sin igual? Únete a nuestros servidores de WoW asociados y sumérgete en mundos únicos y aventuras épicas, ¡totalmente gratis!",
-        "btn-information": "¡Descubre más!",
+        "title": "Vota por nuestros servidores",
+        "description": "Apoya nuestros servidores y ayúdanos a crecer. Tu voto es importante para nosotros.",
+        "btn-information": "¡Necesito ayuda!",
         "empty-server-list-title": "¡Nuestros expertos están en acción!",
         "empty-server-list-subtitle": "Actualmente no hay servicios disponibles, pero nuestros valientes profesionales están perfeccionando sus habilidades para ofrecerte las mejores experiencias. ",
         "btn-register-txt": "Registrarme",
-        "btn-register-discover": "Descubrir"
+        "btn-register-discover": "Votar por servidor"
     },
     "account-detail": {
         "character-no-select": {
@@ -562,9 +562,9 @@
         }
     },
     "home-information": {
-        "title": "¡Únete a Wow Libre hoy!",
+        "title": "¡Únete hoy!",
         "sub-title": "La mejor comunidad para jugadores",
-        "description": "Descubre una plataforma innovadora diseñada para brindarte herramientas avanzadas y una experiencia de juego sin límites. Únete ahora y lleva tu comunidad al siguiente nivel.",
+        "description": "Descubre una plataforma innovadora diseñada para brindarte herramientas avanzadas y una experiencia de juego sin límites. Únete ahora y lleva tu experiencia al siguiente nivel.",
         "push-deploy": {
             "title": "Mejoras continuas.",
             "description": "Nuestra plataforma evoluciona constantemente con nuevas funciones y optimizaciones para ofrecerte la mejor experiencia."
@@ -584,12 +584,12 @@
         },
         "btn": {
             "primary": "Unirme ahora",
-            "secondary": "Explorar más"
+            "secondary": "Descargar Juego"
         }
     },
     "home-us": {
-        "realm": "Servidores",
-        "experience": "Unicos",
+        "realm": "Reinos",
+        "experience": "Actuales",
         "sub-title": "Encuentra el servidor perfecto para ti y vive aventuras que recordarás para siempre.",
         "realms": {
             "primary": {
@@ -951,19 +951,19 @@
             "disclaimer": "Al suscribirte, aceptas los Términos y condiciones de WowLibre. Puedes cancelar cuando quieras."
         }
     },
-    "info-integrate": {
-        "title": "Haz crecer tu plataforma sin complicaciones",
-        "short-description": "Conéctate en minutos y deja que nosotros nos encarguemos de la parte técnica.",
-        "detailed-description": "Nuestro equipo de ingenieros se encargará de toda la configuración técnica para que tú no tengas que preocuparte por nada. Desde la integración hasta la optimización de la infraestructura, nos aseguramos de que todo funcione a la perfección. Relájate y concéntrate en hacer crecer tu comunidad y tu negocio, mientras nosotros nos ocupamos del resto.",
-        "summary": "Automatiza procesos, simplifica la gestión y escala sin límites. Nos encargamos de la tecnología para que tú solo te preocupes por crecer.",
+    "features-server": {
+        "title": "Conoce nuestros cambios",
+        "short-description": "Mantente informado dia a dia sobre los cambios y mejoras que realizamos en nuestros servidores. ¡Siempre estamos trabajando para ofrecerte la mejor experiencia de juego!",
+        "detailed-description": "Nuestro equipo de expertos está comprometido en brindarte la mejor experiencia de juego. Trabajamos constantemente para mejorar nuestros servidores y ofrecerte un entorno de juego óptimo. ¡Siempre estamos aquí para ayudarte!",
+        "summary": "¡Siempre estamos trabajando para ofrecerte la mejor experiencia de juego!",
         "btn": {
-            "text": "Regístrate y empieza ahora"
+            "text": "Conocer Cambios"
         }
     },
     "home-who-we-are": {
-        "title": "¿Qué es WowLibre?",
-        "description": "WowLibre es una comunidad dedicada a mejorar la experiencia de juego a través de herramientas innovadoras. Nuestro propósito es simplificar la gestión de servidores y fortalecer la conexión entre jugadores y administradores con soluciones tecnológicas eficientes y accesibles.",
-        "btn-text": "Descubre nuestras herramientas"
+        "title": "¿Estás listo para comenzar?",
+        "description": "Si necesitas descargar el juego, algún addon o cualquier otra herramienta para disfrutar de la experiencia completa, ¡estás en el lugar adecuado! Aquí encontrarás todo lo que necesitas para emprender tu aventura en Azeroth.",
+        "btn-text": "Descargar Juego"
     },
     "footer": {
         "terms-and-conditions": "Términos y condiciones",

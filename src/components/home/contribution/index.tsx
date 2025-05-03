@@ -23,7 +23,7 @@ const ContributionsHome = () => {
           <div className="mt-4 md:mt-8">
             <a
               href="/contributions"
-              className="inline-block px-8 py-3 text-lg font-semibold text-white bg-blue-600 hover:bg-blue-700 rounded-lg shadow-lg transition duration-300"
+              className="inline-block px-9 py-6 text-xl font-semibold text-white bg-blue-600 hover:bg-blue-700 rounded-lg shadow-lg transition duration-300"
             >
               {t("home-who-we-are.btn-text")}
             </a>
@@ -32,9 +32,9 @@ const ContributionsHome = () => {
       </div>
 
       <img
-        alt="home-who-we-are"
-        src="https://static.wixstatic.com/media/5dd8a0_8ad3d49e4b7744cdb7ae1cecfd42f011~mv2.webp"
-        className="h-full w-full object-cover sm:h-[calc(100%_-_2rem)] sm:self-end sm:rounded-ss-[30px] md:h-[calc(100%_-_4rem)] md:rounded-ss-[60px]"
+        alt="DownloadGame"
+        src="https://static.wixstatic.com/media/5dd8a0_b992dcaaf7f04578a44fd1aadcc91365~mv2.png"
+        className="h-full w-full object-cover sm:h-[calc(100%_-_2rem)] sm:self-end sm:rounded-ss-[30px] md:h-[calc(100%_-_4rem)] md:rounded-ss-[20px]"
       />
     </section>
   );

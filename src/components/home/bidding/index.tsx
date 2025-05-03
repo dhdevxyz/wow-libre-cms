@@ -49,31 +49,37 @@ const Bidding = () => {
             <img
               src={
                 products?.img_url ||
-                "https://static.wixstatic.com/media/5dd8a0_249402c2d86d4a4fbf7c8452285efbfb~mv2.webp"
+                "https://static.wixstatic.com/media/5dd8a0_94523c2ce6774c99a776afcd8c84d2f9~mv2.png"
               }
               alt="Product Max Discount"
               className="w-full h-96 object-cover rounded-md transition duration-300 hover:opacity-75"
             />
           </div>
+
           <div className="bidding-day-content text-left">
-            <p className="bidding-day-content-product-title text-lg md:text-xl lg:text-2xl xl:text-3xl mb-4">
-              {products?.name}
-            </p>
-            <p className="text-lg md:text-xl lg:text-2xl xl:text-xl  text-gray-200">
-              {products?.category}
-            </p>
-            <p className="text-lg md:text-xl lg:text-2xl xl:text-xl  text-gray-200">
-              {products?.partner}
-            </p>
-            {products && products?.use_points ? (
-              <p className="bidding-day-content-product-price text-lg md:text-xl lg:text-2xl xl:text-2xl pt-4 mb-2">
-                {products?.discount_price} Points
-              </p>
-            ) : (
-              <p className="bidding-day-content-product-price text-lg md:text-xl lg:text-2xl xl:text-2xl pt-4 mb-2">
-                $ {products?.discount_price} Usd
-              </p>
+            {products && (
+              <div>
+                <p className="bidding-day-content-product-title text-lg md:text-xl lg:text-2xl xl:text-3xl mb-4">
+                  {products?.name}
+                </p>
+                <p className="text-lg md:text-xl lg:text-2xl xl:text-xl  text-gray-200">
+                  {products?.category}
+                </p>
+                <p className="text-lg md:text-xl lg:text-2xl xl:text-xl  text-gray-200">
+                  {products?.partner}
+                </p>
+              </div>
             )}
+            {products &&
+              (products.use_points ? (
+                <p className="bidding-day-content-product-price text-lg md:text-xl lg:text-2xl xl:text-2xl pt-4 mb-2">
+                  {products.discount_price} Points
+                </p>
+              ) : (
+                <p className="bidding-day-content-product-price text-lg md:text-xl lg:text-2xl xl:text-2xl pt-4 mb-2">
+                  $ {products.discount_price} Usd
+                </p>
+              ))}
 
             {products ? (
               <a className="text-gray-300 text-lg md:text-xl lg:text-2xl xl:text-xl mb-2 block">

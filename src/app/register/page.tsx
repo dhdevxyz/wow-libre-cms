@@ -1,19 +1,20 @@
 "use client";
 
-import React, { ChangeEvent, useEffect, useState } from "react";
-import "./style.css";
-import TitleWow from "@/components/utilities/serverTitle";
-import Select from "react-select";
-import PageCounter from "@/components/utilities/counter";
-import { useUserContext } from "@/context/UserContext";
-import { useRouter } from "next/navigation";
-import Swal from "sweetalert2";
-import { CountryModel } from "@/model/model";
 import { getAvailableCountries } from "@/api/country";
-import { useTranslation } from "react-i18next";
-import NavbarMinimalist from "@/components/navbar-minimalist";
-import Cookies from "js-cookie";
 import Footer from "@/components/footer";
+import NavbarMinimalist from "@/components/navbar-minimalist";
+import PageCounter from "@/components/utilities/counter";
+import TitleWow from "@/components/utilities/serverTitle";
+import { useUserContext } from "@/context/UserContext";
+import { CountryModel } from "@/model/model";
+import Cookies from "js-cookie";
+import { useRouter } from "next/navigation";
+import React, { ChangeEvent, useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
+import Select from "react-select";
+import Swal from "sweetalert2";
+import "./style.css";
+import { webProps } from "@/constants/configs";
 
 const defaultCountryOptions: CountryModel[] = [
   { value: "Otro", label: "Otro", language: "pt" },

@@ -47,7 +47,7 @@ const Information = () => {
         <div className="lg:col-span-2 lg:col-start-1 lg:row-start-1 lg:mx-auto lg:grid lg:w-full lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
           <div className="lg:pr-4">
             <div className="lg:max-w-lg">
-              <p className="text-base/7 font-semibold text-indigo-400">
+              <p className="text-1x font-semibold text-indigo-400">
                 {t("home-information.title")}
               </p>
               <h1 className="mt-2 text-4xl font-semibold tracking-tight text-white sm:text-5xl">
@@ -62,8 +62,9 @@ const Information = () => {
         <div className="p-4 lg:sticky lg:top-4 lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:overflow-hidden flex flex-col items-center">
           <img
             className="w-full max-w-screen-lg rounded-xl bg-gray-800 shadow-xl ring-1 ring-gray-600/10"
-            src="https://static.wixstatic.com/media/5dd8a0_018a0726e33f418db249ba758cd4be17~mv2.webp"
-            alt="download-game"
+            src="https://static.wixstatic.com/media/5dd8a0_6eba0e3f51f346afaa39a1ef988b1bb2~mv2.webp"
+            alt="ServerConnect"
+            width={2432}
           />
           <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 mt-8">
             <button
@@ -74,7 +75,7 @@ const Information = () => {
             </button>
 
             <button
-              onClick={() => window.open("/integrations", "_blank")}
+              onClick={() => window.open("/contributions#download", "_blank")}
               className="text-xl inline-flex items-center justify-center rounded-lg bg-gray-800 px-8 py-4 sm:px-20 sm:py-6 font-semibold text-white shadow-sm hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-offset-2"
             >
               {t("home-information.btn.secondary")}

@@ -1,5 +1,6 @@
+import { webProps } from "@/constants/configs";
 import Link from "next/link";
-import React, { useState } from "react";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
 const NavbarMinimalist = () => {
@@ -17,11 +18,11 @@ const NavbarMinimalist = () => {
         >
           <img
             className="max-w-[20%] md:max-w-[17%]"
-            src="https://static.wixstatic.com/media/5dd8a0_4a5bff42a39c47c2ae67d5dde07455f5~mv2.webp"
-            alt="WowLibre Logo"
+            src={webProps.logo}
+            alt="LogoServer"
           />
           <p className="text-white text-4xl md:text-4xl  pt-4  md:mt-8 md:pt-0 title-server text-center md:text-left">
-            Wow Libre
+            {webProps.serverName}
           </p>
         </Link>
       </div>
@@ -73,7 +74,7 @@ const NavbarMinimalist = () => {
           className="flex items-center text-white text-2xl md:text-3xl hover:bg-gray-700 px-6 py-3 rounded-lg transition duration-300 font-serif"
           href="/help"
         >
-          <p className="">Support</p>
+          <p className="">{t("navbar-minimalist.sections.position-six")}</p>
         </Link>
       </nav>
     </header>

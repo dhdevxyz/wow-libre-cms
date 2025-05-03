@@ -12,6 +12,7 @@ import LoadingSpinner from "../../utilities/loading-spinner";
 import NavbarAuth from "./auth";
 import Searcher from "./search/searcher";
 import "./style.css";
+import { webProps } from "@/constants/configs";
 
 const Navbar = () => {
   const { t } = useTranslation();
@@ -88,11 +89,11 @@ const Navbar = () => {
         <Link className="logo-home flex items-center" href="/">
           <img
             className="w-20 h-20 md:w-28 md:h-28"
-            src="https://static.wixstatic.com/media/5dd8a0_4a5bff42a39c47c2ae67d5dde07455f5~mv2.webp"
+            src={webProps.logo}
             alt="Logo WowLibre"
           />
           <p className="title-server title-home ml-2 text-xl font-bold md:text-2xl">
-            Wow Libre
+            {webProps.serverName}
           </p>
         </Link>
       </header>
@@ -107,7 +108,7 @@ const Navbar = () => {
           <a href="/subscriptions">
             <img
               className="image-promotion"
-              src="./img/homes/pill-default.png"
+              src="https://static.wixstatic.com/media/5dd8a0_2db1e48e89e340ce97be2820206b9d95~mv2.webp"
               alt="Pill Subscription"
             />
           </a>
@@ -126,7 +127,26 @@ const Navbar = () => {
 
       {loading ? (
         <div className="nav-ubication relative">
-          <LoadingSpinner />
+          <svg
+            className="animate-spin h-10 w-10 text-purple-500"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+          >
+            <circle
+              className="opacity-25"
+              cx="12"
+              cy="12"
+              r="10"
+              fill="none"
+              strokeWidth="4"
+              stroke="currentColor"
+            ></circle>
+            <path
+              className="opacity-75"
+              fill="currentColor"
+              d="M4.29 4.29a1 1 0 011.42 0L12 10.59l6.29-6.3a1 1 0 011.42 1.42l-7 7a1 1 0 01-1.42 0l-7-7a1 1 0 010-1.42z"
+            ></path>
+          </svg>
         </div>
       ) : (
         <div className="nav-ubication relative">

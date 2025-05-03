@@ -13,7 +13,7 @@ const Advertising = () => {
 
   const fallbackBanners: BannersHome[] = [
     {
-      url: "https://static.wixstatic.com/media/5dd8a0_c4ab55bb4b504dbbb56b6005f42095f5~mv2.webp",
+      url: "https://static.wixstatic.com/media/5dd8a0_21a165a3316e459f88b1b47e3ff0c4d0~mv2.webp",
       alt: "wowlibre_banner",
     },
   ];
@@ -34,7 +34,7 @@ const Advertising = () => {
   }, [user]);
 
   return (
-    <div className="mt-4">
+    <div className="mt-10 flex justify-center items-center">
       <Carousel
         showArrows={true}
         infiniteLoop={true}

@@ -1,4 +1,4 @@
-import ClientFooter from "@/components/client_navbar/footer";
+import ClientFooter from "@/components/controllers/footerVisibility";
 import I18Next from "@/context/I8nProviders";
 import UserProvider from "@/context/UserContext";
 import { Analytics } from "@vercel/analytics/react";
@@ -8,15 +8,16 @@ import { Inter } from "next/font/google";
 import React from "react";
 import "./globals.css";
 import "./normalize.css";
+import { webProps } from "@/constants/configs";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Wow Libre",
+  title: webProps.serverName,
   description:
     "Administrative web platform with advanced tools to optimize management and enhance your community's experience.",
   openGraph: {
-    title: "Wow Libre",
+    title: webProps.serverName,
     description:
       "Administrative web platform with advanced tools to optimize management and enhance your community's experience.",
     images: [
@@ -24,13 +25,14 @@ export const metadata: Metadata = {
         url: "https://static.wixstatic.com/media/5dd8a0_cc65edad0cce497c924b91d4d298ac33~mv2.png",
         width: 1200,
         height: 630,
-        alt: "Wow Libre Platform Image",
+        alt: "WowLibre Plataform",
+        type: "image/png",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Wow Libre",
+    title: webProps.serverName,
     description:
       "Administrative web platform with advanced tools to optimize management and enhance your community's experience.",
     images: [
