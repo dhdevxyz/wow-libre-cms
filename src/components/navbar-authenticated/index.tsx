@@ -288,7 +288,7 @@ const NavbarAuthenticated = () => {
                   ) : (
                     <img
                       className="h-14 w-14 rounded-full"
-                      src="/img/logos/logo.webp"
+                      src={webProps.logo}
                       alt="WowLibre Logo"
                     />
                   )}
