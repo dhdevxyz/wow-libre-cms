@@ -1,4 +1,4 @@
-import { BASE_URL } from "@/configs/configs";
+import { BASE_URL_CORE } from "@/configs/configs";
 import { GenericResponseDto, InternalServerError } from "@/dto/generic";
 import {
   AccountGameRequestDto,
@@ -13,7 +13,7 @@ export const registerAccountGame = async (
 ): Promise<void> => {
   const transactionId = uuidv4();
   try {
-    const response = await fetch(`${BASE_URL}/api/account/game/create`, {
+    const response = await fetch(`${BASE_URL_CORE}/api/account/game/create`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -57,7 +57,7 @@ export const registerAccountWeb = async (
 ): Promise<LoginData> => {
   const transactionId = uuidv4();
   try {
-    const response = await fetch(`${BASE_URL}/api/account/create`, {
+    const response = await fetch(`${BASE_URL_CORE}/api/account/create`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -1,4 +1,4 @@
-import { BASE_URL } from "@/configs/configs";
+import { BASE_URL_CORE } from "@/configs/configs";
 import { GenericResponseDto } from "@/dto/generic";
 import { FaqsModel } from "@/model/model";
 import { v4 as uuidv4 } from "uuid";
@@ -7,7 +7,7 @@ export const getFaqs = async (language: string): Promise<FaqsModel[]> => {
   try {
     const transactionId = uuidv4();
 
-    const response = await fetch(`${BASE_URL}/api/resources/faqs`, {
+    const response = await fetch(`${BASE_URL_CORE}/api/resources/faqs`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

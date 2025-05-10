@@ -1,4 +1,4 @@
-import { BASE_URL } from "@/configs/configs";
+import { BASE_URL_CORE } from "@/configs/configs";
 import { GenericResponseDto, InternalServerError } from "@/dto/generic";
 import { ServerAllAccounts } from "@/model/model";
 import { v4 as uuidv4 } from "uuid";
@@ -14,7 +14,7 @@ export const getUsersAllServer = async (
 
   try {
     const response = await fetch(
-      `${BASE_URL}/api/dashboard/accounts?size=${size}&page=${page}&server_id=${serverId}&filter=${filter}`,
+      `${BASE_URL_CORE}/api/dashboard/accounts?size=${size}&page=${page}&server_id=${serverId}&filter=${filter}`,
       {
         method: "GET",
         headers: {
@@ -62,7 +62,7 @@ export const updateMail = async (
 
   try {
     const response = await fetch(
-      `${BASE_URL}/api/dashboard/account/email?server_id=${serverId}`,
+      `${BASE_URL_CORE}/api/dashboard/account/email?server_id=${serverId}`,
       {
         method: "PUT",
         headers: {
@@ -119,7 +119,7 @@ export const banAccount = async (
   const transactionId = uuidv4();
 
   try {
-    const response = await fetch(`${BASE_URL}/api/dashboard/account/ban`, {
+    const response = await fetch(`${BASE_URL_CORE}/api/dashboard/account/ban`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

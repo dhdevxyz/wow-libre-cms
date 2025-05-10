@@ -1,4 +1,4 @@
-import { BASE_URL } from "@/configs/configs";
+import { BASE_URL_CORE } from "@/configs/configs";
 import { GenericResponseDto, InternalServerError } from "@/dto/generic";
 import { AccountDetailDto, AccountsDto, UserDetailDto } from "@/model/model";
 import { v4 as uuidv4 } from "uuid";
@@ -24,7 +24,7 @@ export const getAccounts = async (
 
   try {
     const response = await fetch(
-      `${BASE_URL}/api/account/game/available?size=${size}&page=${page}&username=${username}&server=${server}`,
+      `${BASE_URL_CORE}/api/account/game/available?size=${size}&page=${page}&username=${username}&server=${server}`,
       {
         method: "GET",
         headers: {
@@ -82,7 +82,7 @@ export const getAccountAndServerId = async (
 
   try {
     const response = await fetch(
-      `${BASE_URL}/api/account/game?server_id=${serverId}`,
+      `${BASE_URL_CORE}/api/account/game?server_id=${serverId}`,
       {
         method: "GET",
         headers: {
@@ -139,7 +139,7 @@ export const getAccount = async (
   server_id: number
 ): Promise<AccountDetailDto> => {
   const response = await fetch(
-    `${BASE_URL}/api/account/game/${account_id}/${server_id}`,
+    `${BASE_URL_CORE}/api/account/game/${account_id}/${server_id}`,
     {
       method: "GET",
       headers: {
@@ -172,7 +172,7 @@ export const getAccount = async (
  * @throws Error - Lanza errores específicos según la respuesta del servidor o si ocurre algún problema en la solicitud.
  */
 export const getUser = async (jwt: string): Promise<UserDetailDto> => {
-  const response = await fetch(`${BASE_URL}/api/account`, {
+  const response = await fetch(`${BASE_URL_CORE}/api/account`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -209,7 +209,7 @@ export const sendMail = async (
 
   try {
     const response = await fetch(
-      `${BASE_URL}/api/account/validated-mail/send`,
+      `${BASE_URL_CORE}/api/account/validated-mail/send`,
       {
         method: "PUT",
         headers: {

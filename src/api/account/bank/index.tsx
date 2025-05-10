@@ -1,4 +1,4 @@
-import { BASE_URL } from "@/configs/configs";
+import { BASE_URL_CORE } from "@/configs/configs";
 import { InternalServerError } from "@/dto/generic";
 import { ServerAvailableBank } from "@/model/model";
 import { v4 as uuidv4 } from "uuid";
@@ -10,14 +10,17 @@ export const getServersBanks = async (
   const transactionId = uuidv4();
 
   try {
-    const response = await fetch(`${BASE_URL}/api/bank/available/servers`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + jwt,
-        transaction_id: transactionId,
-      },
-    });
+    const response = await fetch(
+      `${BASE_URL_CORE}/api/bank/available/servers`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + jwt,
+          transaction_id: transactionId,
+        },
+      }
+    );
     if (response.ok && response.status === 200) {
       const responseData = await response.json();
       return responseData.data;

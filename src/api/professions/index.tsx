@@ -1,4 +1,4 @@
-import { BASE_URL } from "@/configs/configs";
+import { BASE_URL_CORE } from "@/configs/configs";
 import { GenericResponseDto, InternalServerError } from "@/dto/generic";
 import { Profession } from "@/model/model";
 import { v4 as uuidv4 } from "uuid";
@@ -13,7 +13,7 @@ export const getProfessions = async (
 
   try {
     const response = await fetch(
-      `${BASE_URL}/api/characters/professions?character_id=${characterId}&account_id=${accountId}&server_id=${serverId}`,
+      `${BASE_URL_CORE}/api/characters/professions?character_id=${characterId}&account_id=${accountId}&server_id=${serverId}`,
       {
         method: "GET",
 
@@ -64,7 +64,7 @@ export const professionsServices = async (
   try {
     const transactionId = uuidv4();
 
-    const response = await fetch(`${BASE_URL}/api/professions/services`, {
+    const response = await fetch(`${BASE_URL_CORE}/api/professions/services`, {
       method: "POST",
 
       headers: {

@@ -1,4 +1,4 @@
-import { BASE_URL } from "@/configs/configs";
+import { BASE_URL_CORE } from "@/configs/configs";
 import { GenericResponseDto, InternalServerError } from "@/dto/generic";
 import { ServerVdpDto } from "@/model/model";
 import { v4 as uuidv4 } from "uuid";
@@ -12,7 +12,7 @@ export const getServerNameAndExpansion = async (
 
   try {
     const response = await fetch(
-      `${BASE_URL}/api/server/vdp?name=${name}&expansion=${expansion}`,
+      `${BASE_URL_CORE}/api/server/vdp?name=${name}&expansion=${expansion}`,
       {
         method: "GET",
         headers: {

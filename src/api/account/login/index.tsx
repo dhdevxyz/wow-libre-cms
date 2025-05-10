@@ -1,4 +1,4 @@
-import { BASE_URL } from "@/configs/configs";
+import { BASE_URL_CORE } from "@/configs/configs";
 import { GenericResponseDto } from "@/dto/generic";
 import { LoginData } from "@/model/model";
 import { v4 as uuidv4 } from "uuid";
@@ -31,7 +31,7 @@ export const login = async (
   const transactionId = uuidv4();
 
   try {
-    const response = await fetch(`${BASE_URL}/api/auth/login`, {
+    const response = await fetch(`${BASE_URL_CORE}/api/auth/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

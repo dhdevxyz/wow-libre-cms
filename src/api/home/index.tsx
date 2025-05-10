@@ -1,4 +1,4 @@
-import { BASE_URL, BASE_URL_TRANSACTION } from "@/configs/configs";
+import { BASE_URL_CORE, BASE_URL_TRANSACTION } from "@/configs/configs";
 import { GenericResponseDto, InternalServerError } from "@/dto/generic";
 import {
   BannersHome,
@@ -15,14 +15,17 @@ export const serversPromotions = async (
 ): Promise<ServersPromos[]> => {
   try {
     const transactionId = uuidv4();
-    const response = await fetch(`${BASE_URL}/api/resources/server-promos`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        transaction_id: transactionId,
-        "Accept-Language": language,
-      },
-    });
+    const response = await fetch(
+      `${BASE_URL_CORE}/api/resources/server-promos`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          transaction_id: transactionId,
+          "Accept-Language": language,
+        },
+      }
+    );
 
     const responseData: GenericResponseDto<ServersPromos[]> =
       await response.json();
@@ -43,14 +46,17 @@ export const serversPromotions = async (
 export const bannersHome = async (language: string): Promise<BannersHome[]> => {
   try {
     const transactionId = uuidv4();
-    const response = await fetch(`${BASE_URL}/api/resources/banners-home`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        transaction_id: transactionId,
-        "Accept-Language": language,
-      },
-    });
+    const response = await fetch(
+      `${BASE_URL_CORE}/api/resources/banners-home`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          transaction_id: transactionId,
+          "Accept-Language": language,
+        },
+      }
+    );
 
     const responseData: GenericResponseDto<BannersHome[]> =
       await response.json();
@@ -73,7 +79,7 @@ export const widgetSubscription = async (
 ): Promise<PassAzerothData> => {
   try {
     const transactionId = uuidv4();
-    const response = await fetch(`${BASE_URL}/api/resources/widget-home`, {
+    const response = await fetch(`${BASE_URL_CORE}/api/resources/widget-home`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -155,7 +161,7 @@ export const getExperiences = async (
   const transactionId = uuidv4();
 
   try {
-    const response = await fetch(`${BASE_URL}/api/resources/experiences`, {
+    const response = await fetch(`${BASE_URL_CORE}/api/resources/experiences`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -197,14 +203,17 @@ export const getPlanAcquisition = async (
   const transactionId = uuidv4();
 
   try {
-    const response = await fetch(`${BASE_URL}/api/resources/plan-acquisition`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        transaction_id: transactionId,
-        "Accept-Language": language,
-      },
-    });
+    const response = await fetch(
+      `${BASE_URL_CORE}/api/resources/plan-acquisition`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          transaction_id: transactionId,
+          "Accept-Language": language,
+        },
+      }
+    );
 
     if (response.ok && response.status === 200) {
       const responseData: GenericResponseDto<PlansAcquisition[]> =

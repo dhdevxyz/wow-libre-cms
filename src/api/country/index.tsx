@@ -1,4 +1,4 @@
-import { BASE_URL } from "@/configs/configs";
+import { BASE_URL_CORE } from "@/configs/configs";
 import { GenericResponseDto } from "@/dto/generic";
 import { CountryModel } from "@/model/model";
 import { v4 as uuidv4 } from "uuid";
@@ -22,7 +22,7 @@ export const getAvailableCountries = async (): Promise<CountryModel[]> => {
   try {
     const transactionId = uuidv4();
 
-    const response = await fetch(`${BASE_URL}/api/resources/country`, {
+    const response = await fetch(`${BASE_URL_CORE}/api/resources/country`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

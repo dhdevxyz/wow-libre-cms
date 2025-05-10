@@ -1,4 +1,4 @@
-import { BASE_URL } from "@/configs/configs";
+import { BASE_URL_CORE } from "@/configs/configs";
 import { GenericResponseDto, InternalServerError } from "@/dto/generic";
 import { CharacterInventory, Characters, Friends } from "@/model/model";
 import { v4 as uuidv4 } from "uuid";
@@ -10,7 +10,7 @@ export const getCharacters = async (
 ): Promise<Characters> => {
   try {
     const response = await fetch(
-      `${BASE_URL}/api/characters?account_id=${accountId}&server_id=${serverId}`,
+      `${BASE_URL_CORE}/api/characters?account_id=${accountId}&server_id=${serverId}`,
       {
         method: "GET",
         headers: {
@@ -42,7 +42,7 @@ export const getFriends = async (
   console.log(characterId);
   try {
     const response = await fetch(
-      `${BASE_URL}/api/characters/social/friends?account_id=${accountId}&server_id=${serverId}&character_id=${characterId}`,
+      `${BASE_URL_CORE}/api/characters/social/friends?account_id=${accountId}&server_id=${serverId}&character_id=${characterId}`,
       {
         method: "GET",
         headers: {
@@ -85,7 +85,7 @@ export const deleteFriend = async (
       server_id: serverId,
     };
 
-    const response = await fetch(`${BASE_URL}/api/characters/friend`, {
+    const response = await fetch(`${BASE_URL_CORE}/api/characters/friend`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -146,7 +146,7 @@ export const sendMoneyByFriend = async (
     };
 
     const response = await fetch(
-      `${BASE_URL}/api/characters/social/send/money`,
+      `${BASE_URL_CORE}/api/characters/social/send/money`,
       {
         method: "POST",
         headers: {
@@ -209,7 +209,7 @@ export const sendLevelByFriend = async (
     };
 
     const response = await fetch(
-      `${BASE_URL}/api/characters/social/send/level`,
+      `${BASE_URL_CORE}/api/characters/social/send/level`,
       {
         method: "POST",
         headers: {
@@ -256,7 +256,7 @@ export const getInventory = async (
 
   try {
     const response = await fetch(
-      `${BASE_URL}/api/characters/inventory?account_id=${accountId}&server_id=${serverId}&character_id=${characterId}`,
+      `${BASE_URL_CORE}/api/characters/inventory?account_id=${accountId}&server_id=${serverId}&character_id=${characterId}`,
       {
         method: "GET",
         headers: {
@@ -323,7 +323,7 @@ export const sendItems = async (
     };
 
     const response = await fetch(
-      `${BASE_URL}/api/characters/inventory/transfer`,
+      `${BASE_URL_CORE}/api/characters/inventory/transfer`,
       {
         method: "POST",
         headers: {
