@@ -494,7 +494,7 @@ const Page = () => {
         <div className="empty-table-message items-center justify-center">
           <div className="content  sm:rounded-lg select-none">
             <img
-              src="/img/profile/create-account.webp"
+              src="https://static.wixstatic.com/media/5dd8a0_1316758a384a4e02818738497253ea7d~mv2.webp"
               alt="wow-account-create"
               className="logo pb-10 pt-10 "
             />
