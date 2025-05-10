@@ -1,4 +1,4 @@
-import { BASE_URL } from "@/configs/configs";
+import { BASE_URL_CORE } from "@/configs/configs";
 import { GenericResponseDto, InternalServerError } from "@/dto/generic";
 import { AccountChangePasswordGameDto } from "@/model/model";
 import { v4 as uuidv4 } from "uuid";
@@ -8,7 +8,7 @@ export const changePasswordGame = async (
   jwt: string
 ): Promise<void> => {
   const response = await fetch(
-    `${BASE_URL}/api/characters/account/change-password`,
+    `${BASE_URL_CORE}/api/characters/account/change-password`,
     {
       method: "PUT",
       headers: {
@@ -40,7 +40,7 @@ export const changePasswordUser = async (
   const transactionId = uuidv4();
   try {
     const response = await fetch(
-      `${BASE_URL}/api/account/user-password/change`,
+      `${BASE_URL_CORE}/api/account/user-password/change`,
       {
         method: "PUT",
         headers: {

@@ -1,4 +1,4 @@
-import { BASE_URL } from "@/configs/configs";
+import { BASE_URL_CORE } from "@/configs/configs";
 import { GenericResponseDto } from "@/dto/generic";
 import { ExistEmailModel } from "@/model/model";
 import { v4 as uuidv4 } from "uuid";
@@ -8,7 +8,7 @@ export const existEmail = async (email: string): Promise<ExistEmailModel> => {
 
   try {
     const response = await fetch(
-      `${BASE_URL}/api/account/search?email=${encodeURIComponent(email)}`,
+      `${BASE_URL_CORE}/api/account/search?email=${encodeURIComponent(email)}`,
       {
         method: "GET",
         headers: {
@@ -42,7 +42,7 @@ export const existPhone = async (phone: string): Promise<ExistEmailModel> => {
 
   try {
     const response = await fetch(
-      `${BASE_URL}/api/account/search?cell_phone=${phone}`,
+      `${BASE_URL_CORE}/api/account/search?cell_phone=${phone}`,
       {
         method: "GET",
         headers: {

@@ -1,4 +1,4 @@
-import { BASE_URL } from "@/configs/configs";
+import { BASE_URL_CORE } from "@/configs/configs";
 import { GenericResponseDto, InternalServerError } from "@/dto/generic";
 import { ConfigsResponse } from "@/model/model";
 import { v4 as uuidv4 } from "uuid";
@@ -11,7 +11,7 @@ export const getConfigs = async (
   const transactionId = uuidv4();
 
   try {
-    const response = await fetch(`${BASE_URL}/api/dashboard/configs`, {
+    const response = await fetch(`${BASE_URL_CORE}/api/dashboard/configs`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

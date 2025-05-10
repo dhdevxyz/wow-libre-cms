@@ -1,4 +1,4 @@
-import { BASE_URL } from "@/configs/configs";
+import { BASE_URL_CORE } from "@/configs/configs";
 import { GenericResponseDto, InternalServerError } from "@/dto/generic";
 import { GuildData, GuildMemberDto, GuildsDto } from "@/model/model";
 import { v4 as uuidv4 } from "uuid";
@@ -14,7 +14,7 @@ export const getGuilds = async (
     const transactionId = uuidv4();
 
     const response = await fetch(
-      `${BASE_URL}/api/guilds?size=${size}&page=${page}&search=${encodeURIComponent(
+      `${BASE_URL_CORE}/api/guilds?size=${size}&page=${page}&search=${encodeURIComponent(
         search
       )}&server=${server}&expansion=${expansion}`,
       {
@@ -50,7 +50,7 @@ export const getGuild = async (
     const transactionId = uuidv4();
 
     const response = await fetch(
-      `${BASE_URL}/api/guilds/${guildId}?server_id=${serverId}`,
+      `${BASE_URL_CORE}/api/guilds/${guildId}?server_id=${serverId}`,
       {
         method: "GET",
         headers: {
@@ -100,7 +100,7 @@ export const attach = async (
       guild_id: guildId,
     };
 
-    const response = await fetch(`${BASE_URL}/api/guilds/attach`, {
+    const response = await fetch(`${BASE_URL_CORE}/api/guilds/attach`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -145,7 +145,7 @@ export const getMemberDetailGuild = async (
     const transactionId = uuidv4();
 
     const response = await fetch(
-      `${BASE_URL}/api/guilds/member?server_id=${serverId}&character_id=${characterId}&account_id=${accountId}`,
+      `${BASE_URL_CORE}/api/guilds/member?server_id=${serverId}&character_id=${characterId}&account_id=${accountId}`,
       {
         method: "GET",
         headers: {
@@ -194,7 +194,7 @@ export const unlinkGuild = async (
       character_id: characterId,
     };
 
-    const response = await fetch(`${BASE_URL}/api/guilds/attach`, {
+    const response = await fetch(`${BASE_URL_CORE}/api/guilds/attach`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -240,7 +240,7 @@ export const claimBenefits = async (
   const transactionId = uuidv4();
 
   try {
-    const response = await fetch(`${BASE_URL}/api/guilds/claim-benefit`, {
+    const response = await fetch(`${BASE_URL_CORE}/api/guilds/claim-benefit`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -309,7 +309,7 @@ export const update = async (
       is_public: isPublic,
     };
 
-    const response = await fetch(`${BASE_URL}/api/guilds/edit`, {
+    const response = await fetch(`${BASE_URL_CORE}/api/guilds/edit`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

@@ -1,4 +1,4 @@
-import { BASE_URL } from "@/configs/configs";
+import { BASE_URL_CORE } from "@/configs/configs";
 import { GenericResponseDto } from "@/dto/generic";
 import { v4 as uuidv4 } from "uuid";
 
@@ -9,7 +9,7 @@ export const validateRecoverPassword = async (
 ): Promise<GenericResponseDto<void>> => {
   try {
     const response = await fetch(
-      `${BASE_URL}/api/account/password-recovery/confirm?email=${email}&code=${code}`,
+      `${BASE_URL_CORE}/api/account/password-recovery/confirm?email=${email}&code=${code}`,
       {
         method: "PUT",
         headers: {
@@ -42,7 +42,7 @@ export const recoverPassword = async (
 ): Promise<GenericResponseDto<void>> => {
   try {
     const response = await fetch(
-      `${BASE_URL}/api/account/password-recovery/request?email=${email}`,
+      `${BASE_URL_CORE}/api/account/password-recovery/request?email=${email}`,
       {
         method: "GET",
         headers: {
@@ -75,7 +75,7 @@ export const validateMail = async (
 ): Promise<GenericResponseDto<void>> => {
   try {
     const response = await fetch(
-      `${BASE_URL}/api/account/email/confirmation?code=${code}`,
+      `${BASE_URL_CORE}/api/account/email/confirmation?code=${code}`,
       {
         method: "PUT",
         headers: {

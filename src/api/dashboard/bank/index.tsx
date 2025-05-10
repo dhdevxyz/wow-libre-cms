@@ -1,4 +1,4 @@
-import { BASE_URL } from "@/configs/configs";
+import { BASE_URL_CORE } from "@/configs/configs";
 import { GenericResponseDto, InternalServerError } from "@/dto/generic";
 import { CreditLoansServer, CreditLoansServerData } from "@/model/model";
 import { v4 as uuidv4 } from "uuid";
@@ -15,7 +15,7 @@ export const getCreditLoansServer = async (
 
   try {
     const response = await fetch(
-      `${BASE_URL}/api/dashboard/credit/loans?size=${size}&page=${page}&server_id=${serverId}&filter=${filter}&asc=${asc}`,
+      `${BASE_URL_CORE}/api/dashboard/credit/loans?size=${size}&page=${page}&server_id=${serverId}&filter=${filter}&asc=${asc}`,
       {
         method: "GET",
         headers: {
@@ -64,7 +64,7 @@ export const enableLoans = async (
 
   try {
     const response = await fetch(
-      `${BASE_URL}/api/dashboard/credit/loans?loans=${loans}&service=${service}&server_id=${serverId}`,
+      `${BASE_URL_CORE}/api/dashboard/credit/loans?loans=${loans}&service=${service}&server_id=${serverId}`,
       {
         method: "PUT",
         headers: {
@@ -111,7 +111,7 @@ export const getCreditLoansData = async (
 
   try {
     const response = await fetch(
-      `${BASE_URL}/api/dashboard/credit/loans/data?server_id=${serverId}`,
+      `${BASE_URL_CORE}/api/dashboard/credit/loans/data?server_id=${serverId}`,
       {
         method: "GET",
         headers: {

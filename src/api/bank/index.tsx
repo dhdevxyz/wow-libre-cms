@@ -1,4 +1,4 @@
-import { BASE_URL } from "@/configs/configs";
+import { BASE_URL_CORE } from "@/configs/configs";
 import { GenericResponseDto } from "@/dto/generic";
 import { BankPlans, Characters } from "@/model/model";
 import { v4 as uuidv4 } from "uuid";
@@ -12,7 +12,7 @@ export const potentialClients = async (
 
   try {
     const response = await fetch(
-      `${BASE_URL}/api/characters/loan/bank?account_id=${accountId}&server_id=${serverId}`,
+      `${BASE_URL_CORE}/api/characters/loan/bank?account_id=${accountId}&server_id=${serverId}`,
       {
         method: "GET",
         headers: {
@@ -71,7 +71,7 @@ export const applyForBankLoan = async (
   const transactionId = uuidv4();
 
   try {
-    const response = await fetch(`${BASE_URL}/api/bank/request`, {
+    const response = await fetch(`${BASE_URL_CORE}/api/bank/request`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -106,7 +106,7 @@ export const getPlans = async (language: string): Promise<BankPlans[]> => {
   const transactionId = uuidv4();
 
   try {
-    const response = await fetch(`${BASE_URL}/api/resources/bank/plans`, {
+    const response = await fetch(`${BASE_URL_CORE}/api/resources/bank/plans`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

@@ -1,4 +1,4 @@
-import { BASE_URL } from "@/configs/configs";
+import { BASE_URL_CORE } from "@/configs/configs";
 import { GenericResponseDto, InternalServerError } from "@/dto/generic";
 import { AssociatedServers, ServerModel } from "@/model/model";
 import { v4 as uuidv4 } from "uuid";
@@ -7,7 +7,7 @@ export const getServers = async (): Promise<ServerModel[]> => {
   const transactionId = uuidv4();
 
   try {
-    const response = await fetch(`${BASE_URL}/api/realm`, {
+    const response = await fetch(`${BASE_URL_CORE}/api/realm`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -46,7 +46,7 @@ export const getAssociatedServers = async (
   const transactionId = uuidv4();
 
   try {
-    const response = await fetch(`${BASE_URL}/api/realm/`, {
+    const response = await fetch(`${BASE_URL_CORE}/api/realm/`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -109,7 +109,7 @@ export const createServer = async (
   const transactionId = uuidv4();
 
   try {
-    const response = await fetch(`${BASE_URL}/api/realm/create`, {
+    const response = await fetch(`${BASE_URL_CORE}/api/realm/create`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

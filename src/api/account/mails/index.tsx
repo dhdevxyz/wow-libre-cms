@@ -1,4 +1,4 @@
-import { BASE_URL } from "@/configs/configs";
+import { BASE_URL_CORE } from "@/configs/configs";
 import { MailsDto } from "@/model/model";
 import { v4 as uuidv4 } from "uuid";
 
@@ -9,7 +9,7 @@ export const getMails = async (
   serverId: number
 ): Promise<MailsDto> => {
   const response = await fetch(
-    `${BASE_URL}/api/characters/mails?character_id=${characterId}&account_id=${accountId}&server_id=${serverId}`,
+    `${BASE_URL_CORE}/api/characters/mails?character_id=${characterId}&account_id=${accountId}&server_id=${serverId}`,
     {
       method: "GET",
       headers: {

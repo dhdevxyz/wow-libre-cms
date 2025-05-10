@@ -1,4 +1,4 @@
-import { BASE_URL } from "@/configs/configs";
+import { BASE_URL_CORE } from "@/configs/configs";
 import { GenericResponseDto, InternalServerError } from "@/dto/generic";
 import { v4 as uuidv4 } from "uuid";
 
@@ -14,7 +14,7 @@ export const getAnnoucementProfession = async (
 
   try {
     const response = await fetch(
-      `${BASE_URL}/api/characters/profession/announcement`,
+      `${BASE_URL_CORE}/api/characters/profession/announcement`,
       {
         method: "POST",
         headers: {

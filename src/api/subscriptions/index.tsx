@@ -1,4 +1,4 @@
-import { BASE_URL, BASE_URL_TRANSACTION } from "@/configs/configs";
+import { BASE_URL_CORE, BASE_URL_TRANSACTION } from "@/configs/configs";
 import { GenericResponseDto, InternalServerError } from "@/dto/generic";
 import { FaqsSubscriptionsDto, SubscriptionBenefits } from "@/model/model";
 import { v4 as uuidv4 } from "uuid";
@@ -104,7 +104,7 @@ export const getFaqsSubscription = async (
 
   try {
     const response = await fetch(
-      `${BASE_URL}/api/resources/faqs-subscriptions`,
+      `${BASE_URL_CORE}/api/resources/faqs-subscriptions`,
       {
         method: "GET",
         headers: {
