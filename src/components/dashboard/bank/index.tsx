@@ -77,11 +77,11 @@ const BankDashboard: React.FC<BankDasboardProps> = ({ token, serverId }) => {
         color: "white",
         background: "#0B1218",
         willClose: () => {
-          router.push("/servers");
+          router.push("/realms");
         },
       }).then((result) => {
         if (result.isConfirmed) {
-          router.push("/servers");
+          router.push("/realms");
         }
       });
     } finally {

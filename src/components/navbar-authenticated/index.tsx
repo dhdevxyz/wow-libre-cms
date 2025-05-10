@@ -21,6 +21,7 @@ const NavbarAuthenticated = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [walletAmount, setWalletAmount] = useState(0);
   const token = Cookies.get("token");
+
   useEffect(() => {
     setAvatar(user.avatar);
     setIsLoading(false);
@@ -320,7 +321,7 @@ const NavbarAuthenticated = () => {
                         {t("navbar_authenticated.menu.logged-in.position-two")}
                       </Link>
                       <Link
-                        href="/servers"
+                        href="/realms"
                         className="block px-4 py-3 text-base text-gray-700"
                         role="menuitem"
                         id="user-menu-item-0"

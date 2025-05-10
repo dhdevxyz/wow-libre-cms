@@ -12,7 +12,7 @@ import Footer from "@/components/footer";
 
 import { useTranslation } from "react-i18next";
 import { ServerModel } from "@/model/model";
-import { getServers } from "@/api/account/servers";
+import { getServers } from "@/api/account/realms";
 import { useUserContext } from "@/context/UserContext";
 import { useRouter } from "next/navigation";
 

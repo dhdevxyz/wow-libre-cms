@@ -212,9 +212,9 @@ const ChangePassword = () => {
           {/* Image Section */}
           <div className="w-full md:w-2/3 flex items-center justify-center mt-8 md:mt-0 select-none aspect-[19/9]">
             <img
-              src="https://static.wixstatic.com/media/5dd8a0_d58fdd03abfd4f908eb5581fc2426e04~mv2.jpg"
+              src="https://static.wixstatic.com/media/5dd8a0_63a72eedb8914a68b6b9356631479b66~mv2.webp"
               alt="recovery-password"
-              className="rounded-3xl  w-full h-full object-cover"
+              className="rounded-3xl w-full h-full object-cover"
             />
           </div>
         </div>

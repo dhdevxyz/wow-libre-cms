@@ -502,7 +502,7 @@ export interface ServerModel {
 }
 
 export interface AssociatedServers {
-  servers: ServerModel[];
+  realms: ServerModel[];
   size: number;
 }
 

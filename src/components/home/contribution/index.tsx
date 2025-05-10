@@ -1,8 +1,7 @@
 "use client";
-import React from "react";
 import { useTranslation } from "react-i18next";
 
-const ContributionsHome = () => {
+const DownloadGame = () => {
   const { t } = useTranslation();
 
   return (
@@ -40,4 +39,4 @@ const ContributionsHome = () => {
   );
 };
 
-export default ContributionsHome;
+export default DownloadGame;

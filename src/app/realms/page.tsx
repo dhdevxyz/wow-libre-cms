@@ -1,11 +1,12 @@
 "use client";
-import { getAccounts, sendMail } from "@/api/account";
+import { sendMail } from "@/api/account";
+import { getAssociatedServers } from "@/api/account/realms";
 import NavbarAuthenticated from "@/components/navbar-authenticated";
 import LoadingSpinner from "@/components/utilities/loading-spinner";
 import { useUserContext } from "@/context/UserContext";
 import { InternalServerError } from "@/dto/generic";
 import useAuth from "@/hook/useAuth";
-import { AccountsModel } from "@/model/model";
+import { ServerModel } from "@/model/model";
 import Cookies from "js-cookie";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -25,11 +26,11 @@ const Page = () => {
   const { t } = useTranslation();
   const [loading, setLoading] = useState<boolean>(true);
   const [redirect, setRedirect] = useState<boolean>(false);
-  const [filteredAccounts, setFilteredAccounts] = useState<AccountsModel[]>([]);
+  const [filteredAccounts, setFilteredAccounts] = useState<ServerModel[]>([]);
   const [totalPages, setTotalPages] = useState(0);
   const [currentPage, setCurrentPage] = useState<number>(0);
   const [hasAccount, setHasAccount] = useState<boolean>(false);
-  const [accounts, setAccounts] = useState<AccountsModel[]>([]);
+  const [servers, setServers] = useState<ServerModel[]>([]);
   const [searchUsername, setUsername] = useState<string>("");
   const [searchServer, setSearchServer] = useState<string>("");
   const [dropdownVisible, setDropdownVisible] = useState<boolean>(false);
@@ -44,16 +45,10 @@ const Page = () => {
 
     const fetchData = async () => {
       try {
-        const fetchedAccounts = await getAccounts(
-          token,
-          currentPage,
-          accountsPerPage,
-          searchServer,
-          searchUsername
-        );
-        setAccounts(fetchedAccounts.accounts);
-        setTotalPages(fetchedAccounts.size);
-        setHasAccount(fetchedAccounts.size > 0);
+        const getServersVinculated = await getAssociatedServers(token);
+        setServers(getServersVinculated.realms);
+        setTotalPages(getServersVinculated.size);
+        setHasAccount(getServersVinculated.size > 0);
         setLoading(false);
       } catch (error: any) {
         if (error instanceof InternalServerError) {
@@ -67,6 +62,19 @@ const Page = () => {
               timer: 4000,
               willClose: () => {
                 clearUserData();
+                setRedirect(true);
+              },
+            });
+            return;
+          } else if (error.statusCode === 403) {
+            Swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: t("errors.role.message"),
+              color: "white",
+              background: "#0B1218",
+              timer: 4000,
+              willClose: () => {
                 setRedirect(true);
               },
             });
@@ -92,42 +100,18 @@ const Page = () => {
   }
 
   useEffect(() => {
-    const filtered = accounts.filter((account) => {
-      const matchesUsername = account.username
+    const filtered = servers.filter((account) => {
+      const matchesUsername = account.name
         .toLowerCase()
         .includes(searchUsername.toLowerCase());
-      const matchesServer = account.server
+      const matchesServer = account.name
         .toLowerCase()
         .includes(searchServer.toLowerCase());
       return matchesUsername && matchesServer;
     });
 
     setFilteredAccounts(filtered);
-  }, [searchUsername, searchServer, accounts, user]);
-
-  const handleConfirmEmail = async () => {
-    if (!token) {
-      router.push("/");
-      return;
-    }
-
-    try {
-      await sendMail(token);
-      Swal.fire({
-        title: t("account.validation-mail.title-success"),
-        text: t("account.validation-mail.message-success"),
-        icon: "success",
-        confirmButtonText: "Aceptar",
-      });
-    } catch (error: any) {
-      Swal.fire({
-        icon: "error",
-        title: t("account.validation-mail.title-error"),
-        text: error.message,
-        confirmButtonText: "Aceptar",
-      });
-    }
-  };
+  }, [searchUsername, searchServer, servers, user]);
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
@@ -188,9 +172,7 @@ const Page = () => {
                 src="https://static.wixstatic.com/media/5dd8a0_1316758a384a4e02818738497253ea7d~mv2.webp"
                 alt="Magician Casting A Power"
               />
-              <p className="mb-5 font-serif">
-                {t("account.service-unavailable.message")}
-              </p>
+              <p className="mb-5 font-serif">....</p>
               <LoadingSpinner />
             </div>
           </div>
@@ -199,18 +181,16 @@ const Page = () => {
     );
   }
 
-  const accountMaximus = accounts && accounts.length > LimitAccountRegister;
+  const accountMaximus = servers && servers.length > LimitAccountRegister;
 
   return (
     <div className="contenedor dark h-screen-md select-none ">
       <NavbarAuthenticated />
 
       <div className="text-center pt-32">
-        <h1 className="text-4xl font-bold text-white">
-          {t("account.service-available.title-txt-message")}
-        </h1>
+        <h1 className="text-4xl font-bold text-white">{t("realms.title")}</h1>
         <p className="mt-4 text-xl text-gray-300 max-w-3xl mx-auto">
-          {t("account.service-available.txt-message")}
+          {t("realms.subtitle")}
         </p>
       </div>
       {hasAccount ? (
@@ -221,11 +201,11 @@ const Page = () => {
               <button
                 id="dropdownActionButton"
                 data-dropdown-toggle="dropdownAction"
-                className="text-lg inline-flex items-center text-gray-500 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg  px-3 py-1.5 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
+                className="inline-flex items-center text-gray-500 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-3 py-1.5 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
                 type="button"
                 onClick={toggleDropdown}
               >
-                {t("account.service-available.btn-administration")}
+                Action
                 <svg
                   className="w-2.5 h-2.5 ml-2.5"
                   aria-hidden="true"
@@ -250,15 +230,15 @@ const Page = () => {
               >
                 {!accountMaximus && (
                   <ul
-                    className="py-1 text-lg text-gray-700 dark:text-gray-200 "
+                    className="py-1 text-sm text-gray-700 dark:text-gray-200"
                     aria-labelledby="dropdownActionButton"
                   >
                     <li>
                       <Link
-                        href="/register/username"
+                        href="/register/realm"
                         className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                       >
-                        {t("account.with-accounts.txt-create-account")}
+                        {t("realms.btn.create-server")}
                       </Link>
                     </li>
                   </ul>
@@ -266,9 +246,9 @@ const Page = () => {
                 <div className="py-1">
                   <a
                     href="#"
-                    className="block text-lg px-4 py-2  text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
                   >
-                    {t("account.with-accounts.txt-delete-account")}
+                    {t("realms.btn.delete-server")}
                   </a>
                 </div>
               </div>
@@ -342,28 +322,28 @@ const Page = () => {
                     <div className="flex items-center"></div>
                   </td>
                   <td scope="col" className="px-6 py-3">
-                    {t("account.column-table.position-one")}
+                    {t("realms.table.column-id")}
                   </td>
                   <td scope="col" className="px-6 py-3">
-                    {t("account.column-table.position-two")}
+                    {t("realms.table.column-name")}
                   </td>
                   <td scope="col" className="px-6 py-3">
-                    {t("account.column-table.position-three")}
+                    {t("realms.table.column-expansion")}
                   </td>
                   <td scope="col" className="px-6 py-3">
-                    {t("account.column-table.position-four")}
+                    {t("realms.table.column-status")}
                   </td>
                   <td scope="col" className="px-6 py-3">
-                    {t("account.column-table.position-five")}
+                    {t("realms.table.column-date")}
                   </td>
                   <td scope="col" className="px-6 py-3">
-                    Realmlist
+                    {t("realms.table.column-apikey")}
                   </td>
                   <td scope="col" className="px-6 py-3">
-                    {t("account.column-table.position-six")}
+                    {t("realms.table.column-web")}
                   </td>
                   <td scope="col" className="px-6 py-3">
-                    {t("account.column-table.position-action")}
+                    {t("realms.table.position-action")}
                   </td>
                 </tr>
               </thead>
@@ -393,18 +373,18 @@ const Page = () => {
                       <img
                         className="w-10 h-10 rounded-full"
                         src={row.avatar}
-                        alt="Icon Version Wow"
+                        alt="Avatar Server"
                       />
                       <div className="ps-3">
                         <div className="text-base font-semibold">
-                          {row.username}
+                          {row.name}
                         </div>
                         <div className="font-normal text-gray-500">
-                          {row.email}
+                          {row.emulator}
                         </div>
                       </div>
                     </td>
-                    <td className="px-6 py-4">{row.expansion}</td>
+                    <td className="px-6 py-4">{row.exp_name}</td>
                     <td className="px-6 py-4">
                       <div className="flex items-center">
                         <div
@@ -415,10 +395,12 @@ const Page = () => {
                         {row.status ? "Enable" : "Disable"}
                       </div>
                     </td>
-                    <td className="px-6 py-4 items-center"> {row.server}</td>
+                    <td className="px-6 py-4 items-center">
+                      {row.creation_date}
+                    </td>
                     <td
                       className="px-6 py-4 font-medium text-blue-500 text-xl dark:text-blue-500 hover:underline cursor-pointer"
-                      onClick={() => handleCopy(row.realmlist || "")}
+                      onClick={() => handleCopy(row.api_key || "")}
                     >
                       {t("account.column-table.position-btn-copy")}
                     </td>
@@ -437,22 +419,14 @@ const Page = () => {
                       </a>
                     </td>
                     <td className="px-6 py-4">
-                      {row.status ? (
-                        <a
-                          className="font-medium text-blue-600 text-xl dark:text-blue-500 hover:underline cursor-pointer"
-                          onClick={() =>
-                            router.push(
-                              `/accounts/detail?id=${row.account_id}&server_id=${row.server_id}`
-                            )
-                          }
-                        >
-                          {t("account.column-table.position-btn-admin")}
-                        </a>
-                      ) : (
-                        <span className="font-medium text-gray-500 text-xl cursor-not-allowed">
-                          {t("account.column-table.position-btn-admin")}
-                        </span>
-                      )}
+                      <a
+                        className="font-medium text-blue-600 text-xl dark:text-blue-500 hover:underline cursor-pointer"
+                        onClick={() =>
+                          router.push(`/realms/dashboard?id=${row.id}`)
+                        }
+                      >
+                        {t("account.column-table.position-btn-admin")}
+                      </a>
                     </td>
                   </tr>
                 ))}
@@ -460,8 +434,8 @@ const Page = () => {
             </table>
             <div className="flex justify-center items-center mt-10 ">
               <ReactPaginate
-                previousLabel={t("account.paginate.btn-primary")}
-                nextLabel={t("account.paginate.btn-secondary")}
+                previousLabel={t("realms.btn.paginate-btn-secondary")}
+                nextLabel={t("realms.btn.paginate-btn-primary")}
                 breakLabel={""}
                 pageCount={Math.ceil(totalPages / accountsPerPage)}
                 marginPagesDisplayed={2}
@@ -492,40 +466,25 @@ const Page = () => {
         </div>
       ) : (
         <div className="empty-table-message items-center justify-center">
-          <div className="content  sm:rounded-lg select-none">
+          <div className="content shadow-md sm:rounded-lg select-none">
             <img
-              src="/img/profile/create-account.webp"
-              alt="wow-account-create"
+              src="https://static.wixstatic.com/media/5dd8a0_1316758a384a4e02818738497253ea7d~mv2.webp"
+              alt="Create Account"
               className="logo pb-10 pt-10 "
             />
 
-            {user.pending_validation ? (
-              <p className="mb-5 text-xl">
-                {t("account.without-accounts.confirm-mail.title")}
-                <br />
-                {t("account.without-accounts.confirm-mail.description")}
-              </p>
-            ) : (
-              <p className="mb-5 text-2xl">
-                {t("account.without-accounts.title-message")}
-                <br />
-                {t("account.without-accounts.sub-title-message")}
-              </p>
-            )}
-            {user.pending_validation && (
-              <button
-                className="w-full sm:w-1/2 border border-indigo-500 text-indigo-500 px-5 py-3 rounded-xl hover:bg-indigo-500 hover:text-white hover:shadow-md transition-colors duration-300 ease-in-out"
-                onClick={handleConfirmEmail}
-              >
-                {t("account.without-accounts.confirm-mail.btn-txt")}
-              </button>
-            )}
-            {!user.pending_validation && accounts && accounts.length <= 10 && (
+            <p className="mb-5 text-lg">
+              {t("realms.realm-empty.title")}
+              <br />
+              {t("realms.realm-empty.description")}
+            </p>
+
+            {servers && servers.length <= 10 && (
               <Link
-                className="w-full sm:w-1/2 border border-indigo-500 text-indigo-500 px-5 py-3 rounded-xl hover:bg-indigo-500 hover:text-white hover:shadow-md transition-colors duration-300 ease-in-out"
-                href="/register/username"
+                className="w-full sm:w-1/2 bg-indigo-600 text-white px-5 py-3 rounded-md hover:bg-indigo-700 transition"
+                href="/register/realm"
               >
-                {t("account.without-accounts.btn-text")}
+                {t("realms.realm-empty.btn-txt")}
               </Link>
             )}
           </div>

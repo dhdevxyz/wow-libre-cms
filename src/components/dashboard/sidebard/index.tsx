@@ -13,7 +13,7 @@ const Sidebar: React.FC<{ onOptionChange: (option: string) => void }> = ({
     onOptionChange(menu);
   };
   const handleReturnPage = () => {
-    router.push("/servers");
+    router.push("/realms");
     setSelectedOption("");
   };
   return (

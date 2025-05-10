@@ -1,13 +1,13 @@
 "use client";
+import { getExperiences } from "@/api/home";
+import LoadingSpinner from "@/components/utilities/loading-spinner";
+import { useUserContext } from "@/context/UserContext";
+import { ExperiencesHome } from "@/model/model";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import "./style.css";
-import { UserContext, useUserContext } from "@/context/UserContext";
-import { getExperiences } from "@/api/home";
-import { ExperiencesHome } from "@/model/model";
-import LoadingSpinner from "@/components/utilities/loading-spinner";
 
-const ServerExperience = () => {
+const RealmsHome = () => {
   const { t } = useTranslation();
   const { user } = useUserContext();
   const [experiences, setExperiences] = useState<ExperiencesHome[]>([]);
@@ -133,4 +133,4 @@ const ServerExperience = () => {
   );
 };
 
-export default ServerExperience;
+export default RealmsHome;

@@ -2,17 +2,16 @@
 
 import { getAvailableCountries } from "@/api/country";
 import { widgetPillSubscription } from "@/api/home";
+import { webProps } from "@/constants/configs";
 import { useUserContext } from "@/context/UserContext";
 import { WidgetPillHome } from "@/model/model";
 import Cookies from "js-cookie";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import LoadingSpinner from "../../utilities/loading-spinner";
 import NavbarAuth from "./auth";
 import Searcher from "./search/searcher";
 import "./style.css";
-import { webProps } from "@/constants/configs";
 
 const Navbar = () => {
   const { t } = useTranslation();

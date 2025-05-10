@@ -1,5 +1,5 @@
 "use client";
-import { getServers } from "@/api/account/servers";
+import { getServers } from "@/api/account/realms";
 import { getGuilds } from "@/api/guilds";
 import NavbarAuthenticated from "@/components/navbar-authenticated";
 import { GuildDto, GuildsDto, ServerModel } from "@/model/model";

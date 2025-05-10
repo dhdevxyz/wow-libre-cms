@@ -28,7 +28,6 @@ const Profile = () => {
       try {
         if (token) {
           const userModel = await getUser(token);
-
           setUserDetail(userModel);
         } else {
           setRedirect(true);
@@ -147,19 +146,18 @@ const Profile = () => {
           className="relative w-full h-96 bg-cover bg-center"
           style={{
             backgroundImage:
-              "url('https://static.wixstatic.com/media/5dd8a0_86d8e9de3efb4e05a17969bbe8832a02~mv2.jpg')",
+              "url('https://static.wixstatic.com/media/5dd8a0_803d48a73d7a40329f6f7b780a50cd25~mv2.jpg')",
           }}
         >
           {/* Profile Picture */}
           <div className="absolute bottom-[-50px] left-1/2 transform -translate-x-1/2">
             <img
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWIyiczDiDAtGKbzINSuyOwN4XhhG-WE9wf2JLTGdqY2vP1hjvbfvJG05Z_Nm0hcVHL00&usqp=CAU"
+              src="https://static.wixstatic.com/media/5dd8a0_1316758a384a4e02818738497253ea7d~mv2.webp"
               alt="Profile"
               className="w-28 h-28 rounded-full border-4 border-gray-800 shadow-lg hover:scale-105 transition-transform"
             />
           </div>
         </div>
-
         {/* User Info */}
         <div className="mt-16 text-center  p-4 rounded-lg shadow-md">
           <h1 className="text-3xl font-bold mb-2">
@@ -176,7 +174,6 @@ const Profile = () => {
             {t("profile.input-country")} {userDetail?.country}
           </p>
         </div>
-
         {/* Stats */}
         <div className="flex justify-center gap-8 mt-6">
           <div className="text-center bg-gray-800 p-4 rounded-lg shadow-md">
@@ -199,15 +196,8 @@ const Profile = () => {
           </div>
         </div>
 
-        {/* Bio */}
-        <div className="mt-8 px-4 text-center">
-          <p className="text-gray-300 text-lg max-w-md mx-auto">
-            {t("profile.bio")}
-          </p>
-        </div>
-
         {/* Change Password Form */}
-        <div className="mt-8 w-full max-w-md px-4">
+        <div className="mt-16 w-full max-w-md px-4">
           <h2 className="text-xl font-bold mb-4 text-center">
             {t("profile.title")}
           </h2>

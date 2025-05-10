@@ -1,12 +1,12 @@
 import Advertising from "@/components/home/banner";
 import Bidding from "@/components/home/bidding";
-import ContributionsHome from "@/components/home/contribution";
-import Information from "@/components/home/information";
+import DownloadGame from "@/components/home/contribution";
 import ServerFeatures from "@/components/home/integration";
 import Navbar from "@/components/home/navbar-home/navbar";
+import RealmsHome from "@/components/home/realms";
 import SliderHome from "@/components/home/slider";
 import Subscription from "@/components/home/subscription";
-import ServerExperience from "@/components/home/us";
+import WelcomeHome from "@/components/home/welcome";
 
 const Home = () => {
   return (
@@ -14,14 +14,13 @@ const Home = () => {
       <Navbar />
       <Advertising />
 
-      <Information />
-      <ServerExperience />
+      <WelcomeHome />
+      <RealmsHome />
       <SliderHome />
-
       <ServerFeatures />
 
       <Bidding />
-      <ContributionsHome />
+      <DownloadGame />
 
       <Subscription />
     </>
