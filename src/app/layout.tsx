@@ -1,4 +1,5 @@
 import ClientFooter from "@/components/controllers/footerVisibility";
+import { webProps } from "@/constants/configs";
 import I18Next from "@/context/I8nProviders";
 import UserProvider from "@/context/UserContext";
 import { Analytics } from "@vercel/analytics/react";
@@ -8,7 +9,6 @@ import { Inter } from "next/font/google";
 import React from "react";
 import "./globals.css";
 import "./normalize.css";
-import { webProps } from "@/constants/configs";
 
 const inter = Inter({ subsets: ["latin"] });
 

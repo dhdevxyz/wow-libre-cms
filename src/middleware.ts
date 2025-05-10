@@ -9,7 +9,7 @@ export default function myMiddleware(request: NextRequest) {
     "/settings",
     "/character",
     "/register/account-ingame",
-    "/servers",
+    "/realms",
   ];
 
   const isProtectedPath = protectedPaths.some((path) => request.nextUrl.pathname.startsWith(path));

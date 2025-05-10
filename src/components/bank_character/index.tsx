@@ -23,7 +23,7 @@ const BankCharacter: React.FC<GuildCharacterProps> = ({
 }) => {
   const [accounts, setAccounts] = useState<AccountsModel[]>([]);
   const [serverAvailables, setServers] = useState<ServerAvailableBank[]>([]);
-  const [selectedServerId, setSelectedServerId] = useState<number | null>(null);
+  const [selectedServerId, setSelectedServerId] = useState<number>();
 
   const [selectedAccountId, setSelectedAccountId] = useState<number | null>(
     null

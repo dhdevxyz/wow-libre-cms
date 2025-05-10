@@ -11,8 +11,8 @@ import LoadingSpinner from "@/components/utilities/loading-spinner";
 import { useUserContext } from "@/context/UserContext";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import Slider from "react-slick";
 import { FaFacebook, FaWhatsapp } from "react-icons/fa";
+import Slider from "react-slick";
 
 const SliderHome = () => {
   const [partners, setPartners] = useState<ServersPromos[]>([]);
@@ -95,7 +95,7 @@ const SliderHome = () => {
       ) : partners.length === 0 ? (
         <div className="flex flex-col items-center text-white text-center mt-20">
           <img
-            src="https://bnetcmsus-a.akamaihd.net/cms/blog_header/sd/SDKC28FNI82S1696978734260.png"
+            src="https://static.wixstatic.com/media/5dd8a0_3c182df4bbfb46f0aba9f5ce8a1be128~mv2.jpg"
             alt="partners-not-found"
             className="w-32 h-32 md:w-60 md:h-60 mb-6 select-none rounded-full transition-transform duration-500 ease-in-out transform hover:rotate-180"
           />

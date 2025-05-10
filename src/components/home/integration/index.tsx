@@ -1,4 +1,5 @@
 "use client";
+import { homeProps } from "@/constants/home";
 import React from "react";
 
 import { useTranslation } from "react-i18next";
@@ -33,7 +34,7 @@ const ServerFeatures = () => {
         </div>
         <div className="grid grid-cols-1 gap-2 md:mt-0 mt-20  ">
           <img
-            src="https://static.wixstatic.com/media/5dd8a0_49558bb47b38464d88658e647a185e7f~mv2.png"
+            src={homeProps.featuresServerImg}
             alt="features"
             className="shadow shadow-teal-300 w-500% h-500 object-cover mx-auto rounded-full"
           />

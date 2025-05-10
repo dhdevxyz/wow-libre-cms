@@ -203,7 +203,7 @@
             "special-characters": "Please avoid entering special characters in the search."
         },
         "search-placeholder": "Search by username",
-        "search-server-placeholder": "Search by server",
+        "search-server-placeholder": "Search by realm",
         "service-unavailable": {
             "message": "It is not possible to obtain the details of your accounts at this time, please wait."
         },
@@ -231,7 +231,7 @@
             "position-two": "User",
             "position-three": "Expansion",
             "position-four": "Administrable",
-            "position-five": "Server",
+            "position-five": "Realm",
             "position-six": "Web",
             "position-action": "Action",
             "position-btn-admin": "Administer",
@@ -252,6 +252,9 @@
         },
         "message": {
             "expiration-session": "Oops! Your session has expired. Please authenticate again to continue."
+        },
+        "role": {
+            "message": "You do not have permission to access this section. Please contact the system administrator."
         }
     },
     "bank": {
@@ -766,19 +769,18 @@
         "label-accounts": "Accounts",
         "label-character": "Characters",
         "label-servers": "Servers",
-        "bio": "We are in a beta version. You may find some details or features that are not yet fully optimized. We offer the minimum features while we continue working and growing to provide you with a better experience. 🌟",
         "title": "Change Password",
         "input-change-password": "Current Password",
         "input-new-change-password": "New Password",
         "input-new-confirm-change-password": "Confirm Password",
         "btn-update-password": "Update Password"
     },
-    "server-accounts": {
-        "title": "Advanced management for your linked servers",
-        "subtitle": "Simplify the management of your servers and stay in control with secure and efficient tools.",
+    "realms": {
+        "title": "Advanced Administration for the Realms of Azeroth",
+        "subtitle": "Simplify the management of your realms and stay in control with secure and efficient tools.",
         "btn": {
-            "create-server": "Link Server",
-            "delete-server": "Unlink Server",
+            "create-server": "Link Realm",
+            "delete-server": "Unlink Realm",
             "paginate-btn-primary": "Next",
             "paginate-btn-secondary": "Back"
         },
@@ -788,8 +790,14 @@
             "column-expansion": "Expansion",
             "column-status": "Status",
             "column-date": "Date",
-            "column-apikey": "Api key",
-            "column-web": "Web"
+            "column-apikey": "API Key",
+            "column-web": "Website",
+            "position-action": "Action"
+        },
+        "realm-empty": {
+            "title": "No Realms Available!",
+            "description": "It looks like you don't have any linked realms. Link one to start enjoying all the features!",
+            "btn-txt": "Link Realm"
         }
     },
     "server-register": {

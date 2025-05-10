@@ -1,0 +1,17 @@
+.bg-paper-image {
+  border-radius: 20px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.bg-paper-image:hover {
+  transform: scale(1.2);
+}
+
+.buttom {
+  background-color: #19368e;
+}
+
+.buttom:hover {
+  background-color: #304994;
+  color: #fff;
+}

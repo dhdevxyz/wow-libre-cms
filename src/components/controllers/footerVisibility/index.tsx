@@ -9,7 +9,7 @@ const ClientFooter = () => {
     "/login",
     "/register",
     "/congrats",
-    "/servers/dashboard",
+    "/realms/dashboard",
   ];
 
   const isPathExcluded =

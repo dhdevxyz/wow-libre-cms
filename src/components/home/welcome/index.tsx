@@ -1,9 +1,9 @@
 "use client";
 import LoadingSpinner from "@/components/utilities/loading-spinner";
-import React from "react";
+import { homeProps } from "@/constants/home";
 import { useTranslation } from "react-i18next";
 
-const Information = () => {
+const WelcomeHome = () => {
   const { t, ready } = useTranslation();
   if (ready) {
     <div className="contenedor bg-midnight relative isolate overflow-hidden px-6 py-24 sm:py-32 lg:overflow-visible lg:px-0">
@@ -62,7 +62,7 @@ const Information = () => {
         <div className="p-4 lg:sticky lg:top-4 lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:overflow-hidden flex flex-col items-center">
           <img
             className="w-full max-w-screen-lg rounded-xl bg-gray-800 shadow-xl ring-1 ring-gray-600/10"
-            src="https://static.wixstatic.com/media/5dd8a0_6eba0e3f51f346afaa39a1ef988b1bb2~mv2.webp"
+            src={homeProps.welcomeImg}
             alt="ServerConnect"
             width={2432}
           />
@@ -165,4 +165,4 @@ const Information = () => {
   );
 };
 
-export default Information;
+export default WelcomeHome;

@@ -104,7 +104,7 @@ const IntegrationsBody: React.FC<IntegrationsBodyProps> = ({ t }) => {
                 )}
               </p>
               <a
-                href="https://www.wowlibre.com/servers"
+                href="https://www.wowlibre.com/realms"
                 target="_blank"
                 className="inline-block mt-4 rounded bg-blue-600 px-6 py-3 text-lg font-semibold text-white transition hover:bg-blue-700"
               >
@@ -336,10 +336,10 @@ const IntegrationsBody: React.FC<IntegrationsBodyProps> = ({ t }) => {
                     "integrations.configuration-server.steps.step2.description"
                   )}{" "}
                   <a
-                    href="https://www.wowlibre.com/servers"
+                    href="https://www.wowlibre.com/realms"
                     className="text-blue-400 hover:underline"
                   >
-                    www.wowlibre.com/servers
+                    www.wowlibre.com/realms
                   </a>
                   {t(
                     "integrations.configuration-server.steps.step2.description-two"

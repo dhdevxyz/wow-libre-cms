@@ -205,7 +205,7 @@
             "special-characters": "Por favor, evita ingresar caracteres especiales en la búsqueda."
         },
         "search-placeholder": "Buscar por usuario",
-        "search-server-placeholder": "Buscar por servidor",
+        "search-server-placeholder": "Buscar por reino",
         "service-unavailable": {
             "message": "No es posible obtener el detalle de tus cuentas en este momento, por favor espera."
         },
@@ -233,9 +233,9 @@
             "position-two": "Usuario",
             "position-three": "Expansion",
             "position-four": "Administrable",
-            "position-five": "Server",
+            "position-five": "Reino",
             "position-six": " Web",
-            "position-action": "Action",
+            "position-action": "Acciones",
             "position-btn-admin": "Administrar",
             "position-btn-visit": "Visitar",
             "position-btn-copy": "Copiar"
@@ -254,6 +254,9 @@
         },
         "message": {
             "expiration-session": "¡Oops! Tu sesión ha expirado. Por favor, vuelve a autenticarte para continuar."
+        },
+        "role": {
+            "message": "No tienes permisos para acceder a esta sección. Por favor, contacta al administrador del sistema."
         }
     },
     "bank": {
@@ -768,19 +771,18 @@
         "label-accounts": "Cuentas",
         "label-character": "Personajes",
         "label-servers": "Servidores",
-        "bio": "Estamos en una versión beta. Es posible que encuentres algunos detalles o funcionalidades que aún no están completamente optimizados. Contamos con las características mínimas mientras seguimos trabajando y creciendo para ofrecerte una mejor experiencia. 🌟",
         "title": "Cambiar contraseña",
         "input-change-password": "Contraseña actual",
         "input-new-change-password": "Nueva contraseña",
         "input-new-confirm-change-password": "Confirmar contraseña",
         "btn-update-password": "Actualizar contraseña"
     },
-    "server-accounts": {
-        "title": "Administración avanzada para tus servidores vinculados",
-        "subtitle": "Simplifica la gestión de tus servidores y mantén el control con herramientas seguras y eficientes.",
+    "realms": {
+        "title": "Administración avanzada para los reinos de Azeroth",
+        "subtitle": "Simplifica la gestión de tus reinos y mantén el control con herramientas seguras y eficientes.",
         "btn": {
-            "create-server": "Vincular Servidor",
-            "delete-server": "Desvincular Servidor",
+            "create-server": "Vincular Reino",
+            "delete-server": "Desvincular Reino",
             "paginate-btn-primary": "Siguiente",
             "paginate-btn-secondary": "Volver"
         },
@@ -791,7 +793,13 @@
             "column-status": "Estado",
             "column-date": "Fecha",
             "column-apikey": "Api key",
-            "column-web": "Web"
+            "column-web": "Web",
+            "position-action": "Acciones"
+        },
+        "realm-empty": {
+            "title": "¡No hay reinos disponibles!",
+            "description": "Parece que no tienes reinos vinculados. ¡Vincula uno para comenzar a disfrutar de todas las funciones!",
+            "btn-txt": "Vincular Reino"
         }
     },
     "server-register": {
