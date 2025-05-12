@@ -65,7 +65,7 @@ const ServerRegister: React.FC<ServerRegisterProps> = ({
         {
           username: username,
           password: password,
-          server_name: serverName,
+          realm_name: serverName,
           expansion: expansion,
         },
         jwt || ""
