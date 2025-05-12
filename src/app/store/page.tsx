@@ -19,7 +19,7 @@ const Store = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const productsData = await getProducts(user.language);
+        const productsData = await getProducts(user.language || "es");
         let categoriesObject: { [key: string]: CategoryDetail[] } = {};
         if (productsData instanceof Map) {
           categoriesObject = Object.fromEntries(productsData);
