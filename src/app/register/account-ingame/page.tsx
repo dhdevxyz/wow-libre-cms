@@ -83,7 +83,7 @@ const AccountIngame = () => {
         {
           username: user.username,
           password: password,
-          server_name: user.server || "",
+          realm_name: user.server || "",
           expansion: user.expansion || "",
         },
         jwt || ""
