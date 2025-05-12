@@ -172,7 +172,7 @@ const AccountDetail = () => {
               </p>
               <p className="text-white text-lg mt-2">
                 <strong>{t("account-detail.character.email")}</strong>
-                {userDetail?.email}
+                {accountDetail?.email}
               </p>
               <p className="text-white text-lg mt-2">
                 <strong>{t("account-detail.character.country")}</strong>
