@@ -138,7 +138,7 @@ const AccountDetail = () => {
         />
         <div className="text-center w-full max-w-md pt-2">
           <p className="text-4xl title-server">
-            {accountDetail?.server.split("").map((letter, index) => (
+            {accountDetail?.realm.split("").map((letter, index) => (
               <span key={index} className="text-white animate-color-cycle ">
                 {letter}
               </span>

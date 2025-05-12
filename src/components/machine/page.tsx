@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { getCoints } from "@/api/machine";
+import { getPoints } from "@/api/machine";
 import { claimMachine } from "@/api/machine";
 import { MachineDto } from "@/model/model";
 import WowheadTooltip from "@/utils/wowhead";
@@ -54,7 +54,7 @@ const SlotMachine: React.FC<MachineProps> = ({
   useEffect(() => {
     const fetchBalance = async () => {
       try {
-        const coins = await getCoints(token, serverId);
+        const coins = await getPoints(token, accountId, serverId);
         setBalance(coins.coins);
         console.log("Saldo inicial:", coins.coins);
       } catch (error) {
@@ -191,35 +191,24 @@ const SlotMachine: React.FC<MachineProps> = ({
         {/* Tarjetas de información o promociones */}
         <div className="flex flex-col items-center justify-center bg-gradient-to-r from-indigo-700 to-purple-800 p-8 rounded-xl shadow-2xl transform transition-transform duration-300 hover:scale-105 hover:shadow-2xl">
           <h1 className="text-4xl font-extrabold text-yellow-300 mb-6 text-center">
-            ¡Envía tu comprobante y recibe tus créditos!
+            ¡Consigue más créditos y sigue girando!
           </h1>
           <p className="text-lg text-white mb-8 text-center">
-            Envía el comprobante de tu pago y recibirás créditos adicionales
-            para seguir disfrutando de la máquina tragamonedas. ¡No pierdas la
-            oportunidad de obtener más recompensas y mejorar tu experiencia de
-            juego!
+            ¿Te estás quedando sin créditos? ¡No te detengas ahora! Cada tirada
+            es una nueva oportunidad de ganar a lo grande. Visita nuestra tienda
+            y recarga tus créditos al instante.
           </p>
 
           {/* Información de costo */}
           <p className="text-xl text-white font-semibold mb-6 text-center">
-            ¡Solo 10 dólares por 300 tiradas! Obtén más créditos y aumenta tus
-            probabilidades de ganar.
+            🎁 Promociones especiales activas: más créditos por menos.
+            ¡Aprovecha antes de que se acaben!
           </p>
 
           <div className="flex flex-col items-center space-y-4 w-full max-w-md">
-            <a
-              target="_blank"
-              href="https://checkout.bold.co/payment/LNK_9BQUUZNAYD"
-              className="w-full"
-            >
-              <button className="w-full px-6 py-3 text-lg font-semibold bg-gradient-to-r from-orange-400 to-yellow-500 hover:from-orange-500 hover:to-yellow-600 text-white rounded-lg shadow-lg transform transition-transform duration-300 hover:scale-105">
+            <a target="_blank" href="/store" className="w-full">
+              <button className="w-full px-6 py-3 text-xl font-semibold bg-gradient-to-r from-orange-400 to-yellow-500 hover:from-orange-500 hover:to-yellow-600 text-white rounded-lg shadow-lg transform transition-transform duration-300 hover:scale-105">
                 Comprar Créditos
-              </button>
-            </a>
-
-            <a target="_blank" href="https://wa.link/8v1hol" className="w-full">
-              <button className="w-full px-6 py-3 text-lg font-semibold bg-gradient-to-r from-teal-400 to-teal-600 hover:from-teal-500 hover:to-teal-700 text-white rounded-lg shadow-lg transform transition-transform duration-300 hover:scale-105">
-                Enviar Comprobante
               </button>
             </a>
           </div>
@@ -251,11 +240,7 @@ const SlotMachine: React.FC<MachineProps> = ({
             target="_blank"
             href="https://t.me/wowlibreservers"
             className="w-full"
-          >
-            <button className="w-full px-6 py-3 text-lg font-bold bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 text-white rounded-lg shadow-lg transition-transform duration-300 transform hover:scale-105">
-              Mas información
-            </button>
-          </a>
+          ></a>
         </div>
       </div>
 

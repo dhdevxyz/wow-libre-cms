@@ -46,7 +46,7 @@ export const getAssociatedServers = async (
   const transactionId = uuidv4();
 
   try {
-    const response = await fetch(`${BASE_URL_CORE}/api/realm/`, {
+    const response = await fetch(`${BASE_URL_CORE}/api/realm/all`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

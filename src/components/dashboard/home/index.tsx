@@ -96,7 +96,7 @@ const HomeDashboard: React.FC<HomeDashboardProps> = ({ token, serverId }) => {
         />
         <Card
           title="Promociones Redimidas"
-          value={metrics?.redeemed_promotions.toString() || "0"}
+          value={metrics?.redeemed_promotions?.toString() || "0"}
           icon={<FaGift />}
         />
         <Card

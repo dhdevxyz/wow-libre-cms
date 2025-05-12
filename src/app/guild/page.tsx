@@ -49,15 +49,11 @@ const Guild = () => {
 
   const handleServerChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedServer(event.target.value);
-    setCurrentPage(0); // Reiniciar página a la 1
+    setCurrentPage(0);
   };
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchTerm(e.target.value); // Cambiar el valor de búsqueda
-  };
-
-  const handlePageClick = (data: { selected: number }) => {
-    setCurrentPage(data.selected);
+    setSearchTerm(e.target.value);
   };
 
   return (

@@ -1,22 +1,22 @@
 "use client";
 
 import GuildCharacter from "@/components/guild_character";
-import LoadingSpinner from "@/components/utilities/loading-spinner";
-import NavbarAuthenticated from "@/components/navbar-authenticated";
-import Link from "next/link";
-import Cookies from "js-cookie";
-import Swal from "sweetalert2";
 import DisplayMoney from "@/components/money";
+import NavbarAuthenticated from "@/components/navbar-authenticated";
+import LoadingSpinner from "@/components/utilities/loading-spinner";
+import Cookies from "js-cookie";
+import Link from "next/link";
+import Swal from "sweetalert2";
 
-import { getGuild } from "@/api/guilds";
-import { GuildData } from "@/model/model";
-import { useParams, useRouter, useSearchParams } from "next/navigation";
-import React, { useEffect, useState } from "react";
-import { BenefitsModel } from "@/model/benefit-model";
 import { benefitsActive } from "@/api/benefit";
+import { getGuild } from "@/api/guilds";
 import { useUserContext } from "@/context/UserContext";
-import { useTranslation } from "react-i18next";
+import { BenefitsModel } from "@/model/benefit-model";
+import { GuildData } from "@/model/model";
 import WowheadTooltip from "@/utils/wowhead";
+import { useParams, useRouter, useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 const GuildDetail = () => {
   const searchParams = useSearchParams();
@@ -39,13 +39,14 @@ const GuildDetail = () => {
     const fetchData = async () => {
       try {
         const [guildsResponse, benefits] = await Promise.all([
-          getGuild(guildId, serverId),
+          getGuild(guildId, serverId, user.language),
           benefitsActive(user.language),
         ]);
 
         if (!guildsResponse.public_access) {
           router.push("/guild");
         }
+
         setBenefits(benefits);
         setGuild(guildsResponse);
         setIsLoading(false);
@@ -198,8 +199,8 @@ const GuildDetail = () => {
               <div>
                 <img
                   className="object-cover rounded-xl aspect-square "
-                  src="https://wow.zamimg.com/uploads/blog/images/19963-blizzard-takes-action-against-gallywix-and-gold-selling-for-real-money.jpg"
-                  alt=""
+                  src="https://static.wixstatic.com/media/5dd8a0_6974cde1ffe0448590a453517dcf4ec8~mv2.webp"
+                  alt="guild-img-one"
                 />
 
                 <h1 className="mt-4 text-2xl font-semibold  capitalize text-white">
@@ -214,8 +215,8 @@ const GuildDetail = () => {
               <div>
                 <img
                   className="object-cover rounded-xl aspect-square "
-                  src="https://i.blogs.es/b8677c/wow-monturas/500_333.webp"
-                  alt=""
+                  src="https://static.wixstatic.com/media/5dd8a0_7229fb3584494cac8e35c956582bb47d~mv2.webp"
+                  alt="guild-img-two"
                 />
 
                 <h1 className="mt-4 text-2xl font-semibold  capitalize text-white">
@@ -236,8 +237,8 @@ const GuildDetail = () => {
           <div className="lg:-mx-6 lg:flex lg:items-center ">
             <img
               className="object-cover object-center lg:w-1/2 lg:mx-6 w-full h-96  lg:h-[36rem] rounded-2xl hover:shadow hover:shadow-teal-800"
-              src="https://bnetcmsus-a.akamaihd.net/cms/blog_header/hd/HD1RQDNY2B1E1565028457549.jpg"
-              alt=""
+              src="https://static.wixstatic.com/media/5dd8a0_982b271da9de4ecc9c27c64387abb8a9~mv2.jpg"
+              alt="guild-img-three"
             />
 
             <div className="mt-8 lg:w-1/2 lg:px-6 lg:mt-0">

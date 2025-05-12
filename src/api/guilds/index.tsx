@@ -7,7 +7,7 @@ export const getGuilds = async (
   page: number = 0,
   size: number = 10,
   search: string = "",
-  server: string,
+  realm: string,
   expansion: string = "2"
 ): Promise<GuildsDto> => {
   try {
@@ -16,7 +16,7 @@ export const getGuilds = async (
     const response = await fetch(
       `${BASE_URL_CORE}/api/guilds?size=${size}&page=${page}&search=${encodeURIComponent(
         search
-      )}&server=${server}&expansion=${expansion}`,
+      )}&realm=${realm}&expansion=${expansion}`,
       {
         method: "GET",
         headers: {
@@ -44,18 +44,20 @@ export const getGuilds = async (
 
 export const getGuild = async (
   guildId: number,
-  serverId: number
+  realmId: number,
+  language: string
 ): Promise<GuildData> => {
   try {
     const transactionId = uuidv4();
 
     const response = await fetch(
-      `${BASE_URL_CORE}/api/guilds/${guildId}?server_id=${serverId}`,
+      `${BASE_URL_CORE}/api/guilds/${guildId}?realm_id=${realmId}`,
       {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
           transaction_id: transactionId,
+          "Accept-Language": language,
         },
       }
     );

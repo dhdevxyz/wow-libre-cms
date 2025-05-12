@@ -96,7 +96,7 @@ const Page = () => {
       const matchesUsername = account.username
         .toLowerCase()
         .includes(searchUsername.toLowerCase());
-      const matchesServer = account.server
+      const matchesServer = account.realm
         .toLowerCase()
         .includes(searchServer.toLowerCase());
       return matchesUsername && matchesServer;
@@ -415,7 +415,7 @@ const Page = () => {
                         {row.status ? "Enable" : "Disable"}
                       </div>
                     </td>
-                    <td className="px-6 py-4 items-center"> {row.server}</td>
+                    <td className="px-6 py-4 items-center"> {row.realm}</td>
                     <td
                       className="px-6 py-4 font-medium text-blue-500 text-xl dark:text-blue-500 hover:underline cursor-pointer"
                       onClick={() => handleCopy(row.realmlist || "")}

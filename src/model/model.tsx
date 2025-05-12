@@ -18,7 +18,7 @@ export interface ExistEmailModel {
 export interface AccountGameRequestDto {
   username: string;
   password: string;
-  server_name: string;
+  realm_name: string;
   expansion: string;
 }
 
@@ -75,7 +75,7 @@ export interface AccountsModel {
   username: string;
   account_id: number;
   email: string;
-  server: string;
+  realm: string;
   realmlist: string;
   server_id: number;
   expansion: string;
@@ -140,7 +140,7 @@ export interface AccountDetailDto {
   mute: boolean;
   last_login: string;
   os: string;
-  server: string;
+  realm: string;
   account_banned: AccountBanned;
 }
 

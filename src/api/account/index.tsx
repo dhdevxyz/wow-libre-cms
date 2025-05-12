@@ -17,14 +17,14 @@ export const getAccounts = async (
   jwt: string,
   page: number = 0,
   size: number = 10,
-  server: string | null,
+  realm: string | null,
   username: string | null
 ): Promise<AccountsDto> => {
   const transactionId = uuidv4();
 
   try {
     const response = await fetch(
-      `${BASE_URL_CORE}/api/account/game/available?size=${size}&page=${page}&username=${username}&server=${server}`,
+      `${BASE_URL_CORE}/api/account/game/available?size=${size}&page=${page}&username=${username}&realm=${realm}`,
       {
         method: "GET",
         headers: {
@@ -136,10 +136,10 @@ export const getAccountAndServerId = async (
 export const getAccount = async (
   jwt: string,
   account_id: number,
-  server_id: number
+  realm_id: number
 ): Promise<AccountDetailDto> => {
   const response = await fetch(
-    `${BASE_URL_CORE}/api/account/game/${account_id}/${server_id}`,
+    `${BASE_URL_CORE}/api/account/game/${account_id}/${realm_id}`,
     {
       method: "GET",
       headers: {

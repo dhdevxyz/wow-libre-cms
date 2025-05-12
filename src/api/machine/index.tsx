@@ -3,15 +3,16 @@ import { GenericResponseDto, InternalServerError } from "@/dto/generic";
 import { MachineCoinsDto, MachineDto } from "@/model/model";
 import { v4 as uuidv4 } from "uuid";
 
-export const getCoints = async (
+export const getPoints = async (
   token: string,
+  accountId: number,
   serverId: number
 ): Promise<MachineCoinsDto> => {
   const transactionId = uuidv4();
 
   try {
     const response = await fetch(
-      `${BASE_URL_CORE}/api/machine/coins?server_id=${serverId}`,
+      `${BASE_URL_CORE}/api/machine/points?server_id=${serverId}&account_id=${accountId}`,
       {
         method: "GET",
         headers: {
