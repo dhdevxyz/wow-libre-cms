@@ -57,41 +57,14 @@ const ContactMeans = () => {
       return;
     }
 
-    if (!cellPhone.trim() || cellPhone.length < 5) {
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: t("register.error.phone-empty"),
-        color: "white",
-        background: "#0B1218",
-        timer: 43500,
-      });
-      return;
-    }
-
     try {
-      const [emailResponse, phoneResponse] = await Promise.all([
-        existEmail(email),
-        existPhone(cellPhone),
-      ]);
+      const [emailResponse] = await Promise.all([existEmail(email)]);
 
       if (emailResponse.exist) {
         Swal.fire({
           icon: "error",
           title: "Oops...",
           text: t("register.error.email-exist"),
-          color: "white",
-          background: "#0B1218",
-          timer: 43500,
-        });
-
-        return;
-      }
-      if (phoneResponse.exist) {
-        Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: t("register.error.phone-exist"),
           color: "white",
           background: "#0B1218",
           timer: 43500,
@@ -128,7 +101,7 @@ const ContactMeans = () => {
   useEffect(() => {
     if (user) {
       setEmail(user.email);
-      setCellPhone(user.cell_phone);
+      setCellPhone(user.cell_phone || "");
     }
   }, [setUser]);
 
@@ -170,7 +143,8 @@ const ContactMeans = () => {
               htmlFor="phoneInput"
               className="mb-2 register-container-form-label"
             >
-              {t("register.section-page.contact-means.input.phone-text")}
+              {t("register.section-page.contact-means.input.phone-text")}{" "}
+              (Optional)
             </label>
             <PhoneInput
               country={"us"}
