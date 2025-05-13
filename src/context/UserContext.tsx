@@ -11,7 +11,7 @@ export interface UserModel {
   date_of_birth: Date | null;
   first_name: string;
   last_name: string;
-  cell_phone: string;
+  cell_phone: string | null;
   email: string;
   logged_in: boolean;
   avatar: string;

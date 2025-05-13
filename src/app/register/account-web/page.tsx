@@ -125,7 +125,7 @@ const AccountWeb = () => {
         date_of_birth: formattedDateOfBirth,
         first_name: user.first_name,
         last_name: user.last_name,
-        cell_phone: user.cell_phone,
+        cell_phone: user.cell_phone || null,
         email: user.email,
         password: password,
         language: language,
