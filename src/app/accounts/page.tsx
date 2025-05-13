@@ -397,10 +397,10 @@ const Page = () => {
                       />
                       <div className="ps-3">
                         <div className="text-base font-semibold">
-                          {row.username}
+                          {row.expansion_id > 2 ? row.email : row.username}
                         </div>
                         <div className="font-normal text-gray-500">
-                          {row.email}
+                          {row.expansion_id > 2 ? row.username : row.email}
                         </div>
                       </div>
                     </td>

@@ -80,6 +80,7 @@ export interface AccountsModel {
   realmlist: string;
   server_id: number;
   expansion: string;
+  expansion_id: number;
   web_site: string;
   avatar: string;
   status: boolean;
