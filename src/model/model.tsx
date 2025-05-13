@@ -28,7 +28,7 @@ export interface AccountWebRequestDto {
   date_of_birth: string;
   first_name: string;
   last_name: string;
-  cell_phone: string;
+  cell_phone: string | null;
   email: string;
   password: string;
   language: string;
