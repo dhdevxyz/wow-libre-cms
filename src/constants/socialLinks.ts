@@ -13,7 +13,7 @@ export const socialLinks = [
     },
     {
       name: "WhatsApp",
-      href: "https://www.facebook.com/people/EntropiuX-Wow/61574837116481/#",
+      href: "https://chat.whatsapp.com/DgnfLTfomNkGJRnY4C2jvJ",
       icon: "../img/footer/whatsapp.webp",
       alt: "WhatsApp Icon",
     },
