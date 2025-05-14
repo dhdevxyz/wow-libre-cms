@@ -142,7 +142,7 @@ const StoreDetail = () => {
             ) : (
               <button
                 className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-5 rounded transition duration-300"
-                onClick={openModal}
+                onClick={() => router.push("/register")}
               >
                 Registrarme
               </button>
