@@ -12,7 +12,7 @@ export const getServerNameAndExpansion = async (
 
   try {
     const response = await fetch(
-      `${BASE_URL_CORE}/api/server/vdp?name=${name}&expansion=${expansion}`,
+      `${BASE_URL_CORE}/api/realm/vdp?name=${name}&expansion=${expansion}`,
       {
         method: "GET",
         headers: {
