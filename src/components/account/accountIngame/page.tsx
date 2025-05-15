@@ -56,7 +56,7 @@ const AccountUsernameIngame = () => {
         allowEscapeKey: false,
       });
     }
-  }, [disclaimer, t]);
+  }, [disclaimer]);
 
   useEffect(() => {
     const fetchServers = async () => {
