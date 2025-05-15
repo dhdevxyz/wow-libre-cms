@@ -529,7 +529,12 @@ const Page = () => {
             {!user.pending_validation && accounts && accounts.length <= 10 && (
               <Link
                 className="w-full sm:w-1/2 border border-indigo-500 text-indigo-500 px-5 py-3 rounded-xl hover:bg-indigo-500 hover:text-white hover:shadow-md transition-colors duration-300 ease-in-out"
-                href="/register/username"
+                href={{
+                  pathname: "/register/username",
+                  query: isUserShowWelcome
+                    ? { showWelcome: "false" }
+                    : { showWelcome: "true" },
+                }}
               >
                 {t("account.without-accounts.btn-text")}
               </Link>
