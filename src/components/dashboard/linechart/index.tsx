@@ -92,25 +92,39 @@ const LineChart: React.FC<{ filteredData: any }> = ({ filteredData }) => {
     ),
     datasets: [
       {
-        label: "Prestamo",
+        label: "Capital Prestado",
         data: getFilteredData().flatMap((year) =>
-          year.months.flatMap(
-            (month) => month.days.map((day) => day.loans) // Usar los valores de préstamos
-          )
+          year.months.flatMap((month) => month.days.map((day) => day.loans))
         ),
-        borderColor: "#22c55e", // Verde
-        backgroundColor: "rgba(34, 197, 94, 0.2)",
+        borderColor: "#16a34a", // Verde oscuro
+        backgroundColor: "rgba(22, 163, 74, 0.2)",
         fill: true,
       },
       {
-        label: "Deuda restante",
+        label: "Saldo Pendiente",
         data: getFilteredData().flatMap((year) =>
-          year.months.flatMap(
-            (month) => month.days.map((day) => day.payments) // Usar los valores de pagos
-          )
+          year.months.flatMap((month) => month.days.map((day) => day.pending))
         ),
-        borderColor: "#ef4444", // Rojo
-        backgroundColor: "rgba(239, 68, 68, 0.2)",
+        borderColor: "#f97316", // Naranja
+        backgroundColor: "rgba(249, 115, 22, 0.2)",
+        fill: true,
+      },
+      {
+        label: "Monto Recuperado",
+        data: getFilteredData().flatMap((year) =>
+          year.months.flatMap((month) => month.days.map((day) => day.paid))
+        ),
+        borderColor: "#2563eb", // Azul
+        backgroundColor: "rgba(37, 99, 235, 0.2)",
+        fill: true,
+      },
+      {
+        label: "Ganancia Estimada",
+        data: getFilteredData().flatMap((year) =>
+          year.months.flatMap((month) => month.days.map((day) => day.gain))
+        ),
+        borderColor: "#eab308", // Amarillo dorado
+        backgroundColor: "rgba(234, 179, 8, 0.2)",
         fill: true,
       },
     ],

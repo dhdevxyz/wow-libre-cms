@@ -100,7 +100,7 @@ const HomeDashboard: React.FC<HomeDashboardProps> = ({ token, serverId }) => {
           icon={<FaGift />}
         />
         <Card
-          title="Usuarios Registrados por WoWLibre"
+          title="Usuarios Registrados por la Web"
           value={metrics?.external_registrations.toString() || "0"}
           icon={<FaClipboardList />}
         />

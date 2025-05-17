@@ -1,5 +1,6 @@
-import { getFaqsSubscription } from "@/api/subscriptions";
-import { FaqsSubscriptionsDto } from "@/model/model";
+import { getFaqs } from "@/api/faqs";
+import { FaqType } from "@/enums/FaqType";
+import { FaqsModel } from "@/model/model";
 import React, { useEffect, useState } from "react";
 
 interface FaqsSubscriptionsProps {
@@ -8,7 +9,7 @@ interface FaqsSubscriptionsProps {
 
 const FaqsSubscriptions: React.FC<FaqsSubscriptionsProps> = ({ language }) => {
   const [activeIndex, setActiveIndex] = useState(null);
-  const [faqs, setFaqs] = useState<FaqsSubscriptionsDto[]>();
+  const [faqs, setFaqs] = useState<FaqsModel[]>();
   const [loading, setLoading] = useState(true);
 
   const toggleAnswer = (index: any) => {
@@ -18,7 +19,7 @@ const FaqsSubscriptions: React.FC<FaqsSubscriptionsProps> = ({ language }) => {
   useEffect(() => {
     const fetchFaqs = async () => {
       try {
-        const data = await getFaqsSubscription(language);
+        const data = await getFaqs(FaqType.SUBSCRIPTION, language);
         setFaqs(data);
       } catch (err) {
         setFaqs([]);

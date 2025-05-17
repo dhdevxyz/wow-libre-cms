@@ -1,3 +1,4 @@
+import { FaqType } from "@/enums/FaqType";
 import exp from "constants";
 
 export interface CountryModel {
@@ -7,8 +8,10 @@ export interface CountryModel {
 }
 
 export interface FaqsModel {
+  id: number;
   question: string;
   answer: string;
+  type: FaqType;
 }
 
 export interface ExistEmailModel {
@@ -570,13 +573,6 @@ export interface DashboardMetrics {
 export interface RangeLevelDto {
   level_range: number;
   user_count: number;
-}
-
-/// FAQS SUBSCRIPTIOns
-
-export interface FaqsSubscriptionsDto {
-  question: string;
-  answer: string;
 }
 
 // HOME

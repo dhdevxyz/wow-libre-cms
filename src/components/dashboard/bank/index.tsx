@@ -146,11 +146,12 @@ const BankDashboard: React.FC<BankDasboardProps> = ({ token, serverId }) => {
   return (
     <div className="bg-black text-white p-6 rounded-lg">
       <h1 className="text-2xl font-bold mb-4 text-emerald-400">
-        Dashboard de Préstamos y Pagos
+        Panel de Control: Préstamos y Pagos
       </h1>
       <p className="mb-6 text-1xl text-gray-300">
-        Este dashboard muestra la relación entre los préstamos aprobados y los
-        pagos realizados en los últimos meses, junto con un listado de usuarios.
+        Visualiza la evolución de los préstamos otorgados, los saldos pendientes
+        y los pagos recuperados en los últimos meses. También puedes consultar
+        el listado de usuarios asociados a cada operación.
       </p>
 
       <div className="flex flex-col lg:flex-row gap-6">

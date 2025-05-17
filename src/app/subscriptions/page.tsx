@@ -196,19 +196,18 @@ const Subscriptions = () => {
                 </p>
               </div>
             </div>
-
             {/* Contenido a la derecha (imágenes) */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-16">
               <div className="relative h-[350px] sm:h-[450px] w-full sm:w-[300px] select-none mx-auto overflow-hidden">
                 <img
-                  src="https://static.wixstatic.com/media/5dd8a0_d98e7e1da6e64240bd0920bd00cb7c95~mv2.webp"
+                  src="https://pbs.twimg.com/media/GM6DUOyWIAA5HzL.jpg"
                   alt="Premium-subscription"
                   className="object-cover rounded-xl w-full h-full transition duration-300 hover:opacity-75"
                 />
               </div>
               <div className="relative h-[350px] sm:h-[450px] w-full sm:w-[300px] select-none mx-auto overflow-hidden">
                 <img
-                  src="https://static.wixstatic.com/media/5dd8a0_cbcd4683525e448c8502b031dfce2527~mv2.webp"
+                  src="https://i.pinimg.com/736x/13/9f/ff/139fff3479f0069e9e5046ebe4f94e8e.jpg"
                   alt="premium"
                   className="object-cover rounded-xl w-full h-full transition duration-300 hover:opacity-75"
                 />

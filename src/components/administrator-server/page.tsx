@@ -11,6 +11,7 @@ import { FaSpinner } from "react-icons/fa";
 import GuildsDashboard from "../dashboard/guilds";
 import PromotionsDashboard from "../dashboard/promotions";
 import SettingsServer from "../settings";
+import FaqsDashboard from "../dashboard/faqs";
 
 const AdministratorServer = () => {
   const [activeOption, setActiveOption] = useState("dashboard");
@@ -78,6 +79,7 @@ const AdministratorServer = () => {
           <BankDashboard token={token} serverId={serverId} />
         )}
         {activeOption === "guilds" && <GuildsDashboard />}
+        {activeOption === "faqs" && token && <FaqsDashboard token={token} />}
       </main>
     </div>
   );

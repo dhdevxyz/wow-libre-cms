@@ -3,17 +3,17 @@ import React, { useState } from "react";
 const slides = [
   {
     image:
-      "https://static.wixstatic.com/media/5dd8a0_3dc87ed818024d4aa533b06fb8da4207~mv2.webp",
-    text: "Cambia de facción o personaliza tu guerrero tantas veces como quieras. ¡Hazlo a tu manera!",
+      "https://bnetcmsus-a.akamaihd.net/cms/content_entry_media/RGGFH1LKQVDZ1736891596554.png",
+    text: "Monturas exclusivas: ¡Desbloquea monturas únicas y épicas!",
   },
   {
     image:
-      "https://static.wixstatic.com/media/5dd8a0_6bf5a01df5a8485a947ad6a425aefe50~mv2.webp",
+      "https://bnetcmsus-a.akamaihd.net/cms/blog_header/j6/J6HZ54WWRBUR1496686920277.jpg",
     text: "Traje Murlock: ¡Conviértete en un Murlock y sorprende a tus amigos!",
   },
   {
     image:
-      "https://static.wixstatic.com/media/5dd8a0_2919e1c275c941e0b89bdcde701b15c0~mv2.webp",
+      "https://i.ytimg.com/vi/lwFYm-P_7rU/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLDMOKakQWJd_SZyAkwFseYjfBm73w",
     text: "Tu asistente Vip para tu aventura!",
   },
 ];
