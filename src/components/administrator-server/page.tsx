@@ -12,6 +12,9 @@ import GuildsDashboard from "../dashboard/guilds";
 import PromotionsDashboard from "../dashboard/promotions";
 import SettingsServer from "../settings";
 import FaqsDashboard from "../dashboard/faqs";
+import TeleportDashboard from "../dashboard/teleport";
+import AdvertisingRealmForm from "../dashboard/adversing_realm";
+import { useUserContext } from "@/context/UserContext";
 
 const AdministratorServer = () => {
   const [activeOption, setActiveOption] = useState("dashboard");
@@ -21,6 +24,7 @@ const AdministratorServer = () => {
   const router = useRouter();
   const token = Cookies.get("token");
   const [loading, setLoading] = useState(true);
+  const { user } = useUserContext();
 
   const handleOptionChange = (option: string) => {
     setActiveOption(option);
@@ -80,6 +84,12 @@ const AdministratorServer = () => {
         )}
         {activeOption === "guilds" && <GuildsDashboard />}
         {activeOption === "faqs" && token && <FaqsDashboard token={token} />}
+        {activeOption === "portals" && token && (
+          <TeleportDashboard token={token} realmId={serverId} />
+        )}
+        {activeOption === "adversing" && token && (
+          <AdvertisingRealmForm token={token} user={user} realmId={serverId} />
+        )}
       </main>
     </div>
   );

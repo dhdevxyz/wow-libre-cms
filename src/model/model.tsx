@@ -1,5 +1,4 @@
 import { FaqType } from "@/enums/FaqType";
-import exp from "constants";
 
 export interface CountryModel {
   value: string;
@@ -573,22 +572,6 @@ export interface DashboardMetrics {
 export interface RangeLevelDto {
   level_range: number;
   user_count: number;
-}
-
-// HOME
-
-export interface ExperiencesHome {
-  title: string;
-  title_disclaimer: string;
-  subtitle: string;
-  realmlist: string;
-  description: string;
-  button_primary_text: string;
-  button_secondary_text: string;
-  background_image: string;
-  copy_success: boolean;
-  redirect: string;
-  disclaimer: string;
 }
 
 export interface CharacterInventory {

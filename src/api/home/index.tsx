@@ -2,7 +2,6 @@ import { BASE_URL_CORE, BASE_URL_TRANSACTION } from "@/configs/configs";
 import { GenericResponseDto, InternalServerError } from "@/dto/generic";
 import {
   BannersHome,
-  ExperiencesHome,
   PassAzerothData,
   PlansAcquisition,
   ServersPromos,
@@ -152,48 +151,6 @@ export const widgetPillSubscription = async (
     throw new Error(
       `It was not possible to obtain the images from the home: ${error.message}`
     );
-  }
-};
-
-export const getExperiences = async (
-  language: string
-): Promise<ExperiencesHome[]> => {
-  const transactionId = uuidv4();
-
-  try {
-    const response = await fetch(`${BASE_URL_CORE}/api/resources/experiences`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        transaction_id: transactionId,
-        "Accept-Language": language,
-      },
-    });
-
-    if (response.ok && response.status === 200) {
-      const responseData: GenericResponseDto<ExperiencesHome[]> =
-        await response.json();
-      return responseData.data;
-    } else {
-      const genericResponse: GenericResponseDto<void> = await response.json();
-      throw new InternalServerError(
-        `${genericResponse.message}`,
-        response.status,
-        transactionId
-      );
-    }
-  } catch (error: any) {
-    if (error instanceof TypeError && error.message === "Failed to fetch") {
-      throw new Error(`Please try again later, services are not available.`);
-    } else if (error instanceof InternalServerError) {
-      throw error;
-    } else if (error instanceof Error) {
-      throw error;
-    } else {
-      throw new Error(
-        `Unknown error occurred - TransactionId: ${transactionId}`
-      );
-    }
   }
 };
 

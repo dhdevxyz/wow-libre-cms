@@ -14,7 +14,6 @@ import { useTranslation } from "react-i18next";
 import Select from "react-select";
 import Swal from "sweetalert2";
 import "./style.css";
-import { webProps } from "@/constants/configs";
 
 const defaultCountryOptions: CountryModel[] = [
   { value: "Otro", label: "Otro", language: "pt" },

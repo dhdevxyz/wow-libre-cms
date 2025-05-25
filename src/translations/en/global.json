@@ -605,7 +605,7 @@
     "home-us": {
         "realm": "Realm",
         "experience": "Experience",
-        "sub-title": "Find the perfect server for you and live adventures you’ll never forget.",
+        "sub-title": "Find the perfect realm for you and live adventures you’ll never forget.",
         "realms": {
             "primary": {
                 "title": "An Unmatched and Unique Experience!",
@@ -989,7 +989,7 @@
         "terms-and-conditions": "Terms and Conditions",
         "terms-of-use": "Terms of Use",
         "privacy-policy": "Privacy Policy",
-        "about": "@WowLibre We develop innovative solutions for the gaming community. We enhance the gaming experience with advanced software, fostering the creation of unique and immersive worlds."
+        "about": "This site is an independent project with no official affiliation to Blizzard Entertainment. We are not affiliated with, authorized, endorsed, or licensed by Blizzard. All trademarks, game names, logos, characters, images, and other related materials are the property of Blizzard Entertainment and their respective owners."
     },
     "plans-and-pricing": {
         "title": "Plans and Pricing",

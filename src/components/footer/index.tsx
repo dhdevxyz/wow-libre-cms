@@ -1,4 +1,5 @@
 "use client";
+import { webProps } from "@/constants/configs";
 import { socialLinks } from "../../constants/socialLinks";
 import { useTranslation } from "react-i18next";
 
@@ -59,7 +60,9 @@ const Footer = () => {
       </div>
       <div className="mt-8 border-t border-gray-700 pt-8 md:flex md:items-center md:justify-between">
         <div className="text-center md:text-left text-base leading-6 text-gray-400">
-          <p className="text-2xl mb-10">{t("footer.about")}</p>
+          <p className="text-2xl mb-10">
+            © {webProps.serverName} Copyright. {t("footer.about")}
+          </p>
         </div>
       </div>
     </footer>

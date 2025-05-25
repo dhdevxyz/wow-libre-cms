@@ -9,4 +9,5 @@ export interface Teleport {
   orientation: number;
   zone: number;
   area: number;
+  faction: string;
 }

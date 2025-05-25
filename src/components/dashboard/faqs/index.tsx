@@ -98,13 +98,24 @@ const FaqsDashboard: React.FC<FaqsDashboardProps> = ({ token }) => {
   );
 
   return (
-    <div className=" text-gray-200 flex flex-col items-center md:p-24">
-      <div className="w-full max-w-screen-xl mx-auto flex flex-col md:flex-row gap-10">
+    <div className="text-gray-200 flex flex-col items-center md:p-24 relative min-h-screen">
+      <div
+        className="absolute inset-0 bg-cover bg-center opacity-60"
+        style={{
+          backgroundImage:
+            "url('https://images4.alphacoders.com/620/thumb-1920-620386.jpg')",
+        }}
+      />
+      <div className="w-full max-w-screen-xl mx-auto flex flex-col md:flex-row gap-10 relative z-10">
         {/* Formulario */}
         <section
           aria-label="Formulario para agregar FAQs"
-          className="rounded-lg shadow-lg p-8 w-full md:w-[600px]"
-          style={{ backgroundColor: "#1f2937" }}
+          className="relative rounded-lg shadow-xl p-8 w-full md:w-[600px] bg-gray-900 border border-transparent"
+          style={{
+            backgroundImage: "linear-gradient(#1f2937, #111827)",
+            borderImage: "linear-gradient(to right, #6366f1, #06b6d4)",
+            borderImageSlice: 1,
+          }}
         >
           <h2 className="text-3xl font-extrabold text-indigo-400 mb-8 tracking-wide">
             Administrador de FAQs
@@ -189,8 +200,12 @@ const FaqsDashboard: React.FC<FaqsDashboardProps> = ({ token }) => {
 
         {/* Listado */}
         <section
-          className="flex flex-col gap-6 w-full md:w-[700px]"
-          style={{ backgroundColor: "#1f2937" }}
+          className="relative flex flex-col gap-6 w-full md:w-[700px] rounded-lg shadow-xl p-6 bg-gray-900 border border-transparent"
+          style={{
+            backgroundImage: "linear-gradient(#1f2937, #111827)",
+            borderImage: "linear-gradient(to right, #6366f1, #06b6d4)",
+            borderImageSlice: 1,
+          }}
         >
           <div className="mb-4 px-4 sm:px-6 pt-6 space-y-4">
             <div>
