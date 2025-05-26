@@ -15,6 +15,7 @@ import { useUserContext } from "@/context/UserContext";
 import { ServerModel } from "@/model/model";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useTranslation } from "react-i18next";
+import LoadingSpinnerCentral from "@/components/utilities/loading-spinner-v2";
 
 const AccountUsernameIngame = () => {
   const { user, setUser } = useUserContext();
@@ -26,7 +27,8 @@ const AccountUsernameIngame = () => {
     expansion: string;
   }>();
   const router = useRouter();
-  const { t } = useTranslation();
+  const { t, ready } = useTranslation();
+  const [loading, setLoading] = useState(true);
 
   useAuth(t("errors.message.expiration-session"));
 
@@ -35,6 +37,9 @@ const AccountUsernameIngame = () => {
   const disclaimer = disclaimerParam === "true";
 
   useEffect(() => {
+    if (ready) {
+      setLoading(false);
+    }
     if (disclaimer) {
       Swal.fire({
         title: `<span style="font-family: 'Cinzel', serif; font-size: 2rem; color: #FFD700; text-shadow: 2px 2px 4px #000000;">
@@ -56,7 +61,7 @@ const AccountUsernameIngame = () => {
         allowEscapeKey: false,
       });
     }
-  }, [disclaimer]);
+  }, [disclaimer, ready]);
 
   useEffect(() => {
     const fetchServers = async () => {
@@ -161,6 +166,10 @@ const AccountUsernameIngame = () => {
   const handleVolverClick = () => {
     router.push("/accounts");
   };
+
+  if (loading) {
+    return <LoadingSpinnerCentral />;
+  }
 
   return (
     <div className="contenedor">

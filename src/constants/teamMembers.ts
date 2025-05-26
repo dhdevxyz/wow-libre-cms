@@ -16,7 +16,7 @@
 
 export const teamMembers = [
     {
-      name: "Manuel Chitiva",
+      name: "Bot Server",
       title: "Support",
       image: "https://static.wixstatic.com/media/320b56_3a4a59284b2d48fa957fa69ae985e9c3~mv2.png",
       social: {

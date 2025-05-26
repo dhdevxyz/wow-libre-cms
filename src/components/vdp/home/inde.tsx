@@ -37,7 +37,7 @@ const Vdp = () => {
   useEffect(() => {
     const fetchData = async () => {
       if (!serverName || !expansion) {
-        setRedirect(true);
+        setRedirect(false);
         return;
       }
 
@@ -49,7 +49,7 @@ const Vdp = () => {
         setServerVdp(serverVdp);
         setIsSubscribed(subscriptionActive);
       } catch (error: any) {
-        setRedirect(true);
+        setRedirect(false);
       }
     };
     fetchData();

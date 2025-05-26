@@ -4,6 +4,7 @@ import { getFaqs } from "@/api/faqs";
 import MeetTheTeam from "@/components/help/team";
 import NavbarMinimalist from "@/components/navbar-minimalist";
 import { useUserContext } from "@/context/UserContext";
+import { FaqType } from "@/enums/FaqType";
 import { FaqsModel } from "@/model/model";
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -18,7 +19,10 @@ const Help: React.FC = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response: FaqsModel[] = await getFaqs(user.language);
+        const response: FaqsModel[] = await getFaqs(
+          FaqType.SUPPORT,
+          user.language
+        );
         setFaqs(response);
       } catch (error) {
         setFaqs(faqsDefault);

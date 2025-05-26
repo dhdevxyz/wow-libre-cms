@@ -1,8 +1,9 @@
 "use client";
-import { getExperiences } from "@/api/home";
+
+import { getRealmsAdvertisement } from "@/api/realmAdvertisement";
 import LoadingSpinner from "@/components/utilities/loading-spinner";
 import { useUserContext } from "@/context/UserContext";
-import { ExperiencesHome } from "@/model/model";
+import { RealmAdvertisement } from "@/model/RealmAdvertising";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import "./style.css";
@@ -10,7 +11,7 @@ import "./style.css";
 const RealmsHome = () => {
   const { t } = useTranslation();
   const { user } = useUserContext();
-  const [experiences, setExperiences] = useState<ExperiencesHome[]>([]);
+  const [experiences, setExperiences] = useState<RealmAdvertisement[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
@@ -29,8 +30,9 @@ const RealmsHome = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await getExperiences(user.language);
+        const response = await getRealmsAdvertisement(user.language);
         setExperiences(response);
+        setError(response.length === 0);
       } catch (error: any) {
         setError(true);
       } finally {
@@ -77,42 +79,40 @@ const RealmsHome = () => {
                 <div
                   className="bg-no-repeat bg-cover bg-center h-80 rounded-xl shadow-lg overflow-hidden group"
                   style={{
-                    backgroundImage: `url(${realm.background_image})`,
+                    backgroundImage: `url(${realm.img_url})`,
                   }}
                 >
                   <div className="absolute inset-0 bg-gradient-to-t from-black via-gray-900 to-transparent opacity-0 group-hover:opacity-90 transition-opacity duration-300 flex items-center justify-center">
                     <p className="text-white text-2xl font-semibold px-6 text-center">
-                      {t(realm.disclaimer)}
+                      {t(realm.footer_disclaimer)}
                     </p>
                   </div>
                 </div>
               </div>
 
               {/* Texto */}
-              <div className="w-full md:w-1/2 text-white text-center md:text-left px-4 mb-1">
+              <div className="w-full md:w-1/2 text-white text-center md:text-left px-8 mb-1">
                 <h2 className="text-4xl lg:text-5xl font-bold mb-6">
                   {t(realm.title)}{" "}
-                  <span className="text-indigo-500 pb-2">
-                    {t(realm.title_disclaimer)}
-                  </span>
+                  <span className="text-indigo-500 pb-2">{t(realm.tag)}</span>
                   <br />
                 </h2>
                 <p className="text-gray-300 leading-relaxed text-3x mb-8">
-                  {t(realm.subtitle)}
+                  {t(realm.sub_title)}
                 </p>
                 <p className="text-gray-300 leading-relaxed text-lg mb-8">
                   {t(realm.description)}
                 </p>
 
-                {/* Botón de "Realmlist" */}
-                <div className="flex justify-center md:justify-start space-x-4">
+                {/* Botón de Primario */}
+                <div className="flex justify-center md:justify-start space-x-5">
                   <a
                     href={realm.redirect}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
                     <button className="bg-gradient-to-r from-gray-700 via-gray-800 to-gray-900 text-white font-medium py-3 px-8 rounded-full shadow-lg hover:bg-gradient-to-r hover:from-gray-600 hover:via-gray-700 hover:to-gray-800 focus:outline-none focus:ring-4 focus:ring-gray-600 focus:ring-opacity-50 transition duration-300 ease-in-out">
-                      {t(realm.button_primary_text)}
+                      {t(realm.cta_primary)}
                     </button>
                   </a>
 
@@ -121,7 +121,7 @@ const RealmsHome = () => {
                     className="bg-gradient-to-r from-indigo-600 to-indigo-800 text-white font-medium py-3 px-8 rounded-full shadow-lg hover:bg-gradient-to-r hover:from-indigo-500 hover:to-indigo-700 focus:outline-none focus:ring-4 focus:ring-indigo-600 focus:ring-opacity-50 transition duration-300 ease-in-out"
                     onClick={() => handleCopy(realm.realmlist, index)}
                   >
-                    {copiedIndex === index ? "Copied!" : "Copy Realmlist"}
+                    {copiedIndex === index ? "Copied!" : "Realmlist"}
                   </button>
                 </div>
               </div>

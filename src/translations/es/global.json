@@ -607,7 +607,7 @@
     "home-us": {
         "realm": "Reinos",
         "experience": "Actuales",
-        "sub-title": "Encuentra el servidor perfecto para ti y vive aventuras que recordarás para siempre.",
+        "sub-title": "Encuentra el reino perfecto para ti y vive aventuras que recordarás para siempre.",
         "realms": {
             "primary": {
                 "title": "¡Una Experiencia Única e Inigualable!",
@@ -991,7 +991,7 @@
         "terms-and-conditions": "Términos y condiciones",
         "terms-of-use": "Términos de uso",
         "privacy-policy": "Política de privacidad",
-        "about": "@WowLibre – Desarrollamos soluciones innovadoras para la comunidad gamer. Potenciamos la experiencia de juego con software avanzado, fomentando la creación de mundos únicos e inmersivos."
+        "about": "Este sitio es un proyecto independiente sin relación oficial con Blizzard Entertainment. No estamos afiliados, autorizados, respaldados ni licenciados por Blizzard. Todas las marcas registradas, nombres de juegos, logotipos, personajes, imágenes y demás materiales relacionados son propiedad de Blizzard Entertainment y sus respectivos titulares."
     },
     "plans-and-pricing": {
         "title": "Planes y Precios",

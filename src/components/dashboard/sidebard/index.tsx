@@ -4,7 +4,6 @@ import { useState } from "react";
 const Sidebar: React.FC<{ onOptionChange: (option: string) => void }> = ({
   onOptionChange,
 }) => {
-  const [isUsersOpen, setUsersOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState<string>("");
   const router = useRouter();
 
@@ -12,10 +11,12 @@ const Sidebar: React.FC<{ onOptionChange: (option: string) => void }> = ({
     setSelectedOption(menu);
     onOptionChange(menu);
   };
+
   const handleReturnPage = () => {
     router.push("/realms");
     setSelectedOption("");
   };
+
   return (
     <aside className="ml-[-100%] fixed z-10 top-0 pb-3 px-6 w-full flex flex-col justify-between h-screen border-r bg-black transition duration-300 md:w-4/12 lg:ml-0 lg:w-[25%] xl:w-[20%] 2xl:w-[15%]">
       <div>
@@ -40,18 +41,155 @@ const Sidebar: React.FC<{ onOptionChange: (option: string) => void }> = ({
           </h5>
           <span className="hidden text-gray-400 lg:block">Admin</span>
         </div>
-
+        <hr className="my-4 border-gray-600" />
+        <h6 className="px-4 text-xl font-semibold text-gray-400 uppercase tracking-wider">
+          Reino
+        </h6>
         <ul className="space-y-2 tracking-wide mt-8">
+          {/* Promotions */}
+          <li>
+            <a
+              href="#"
+              onClick={(e) => {
+                e.preventDefault();
+                handleMenuClick("promotions");
+              }}
+              className="relative px-4 py-3 flex items-center space-x-4 rounded-xl text-white transition-all duration-300 hover:bg-gray-700"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  className="fill-current text-gray-200 group-hover:text-cyan-300"
+                  fillRule="evenodd"
+                  d="M2 6a2 2 0 012-2h4l2 2h4a2 2 0 012 2v1H8a3 3 0 00-3 3v1.5a1.5 1.5 0 01-3 0V6z"
+                  clipRule="evenodd"
+                />
+                <path
+                  className="fill-current text-gray-200 group-hover:text-cyan-600"
+                  d="M6 12a2 2 0 012-2h8a2 2 0 012 2v2a2 2 0 01-2 2H2h2a2 2 0 002-2v-2z"
+                />
+              </svg>
+              <span className="group-hover:text-blue-400 text-white">
+                Promociones
+              </span>
+            </a>
+          </li>
+
+          {/* Settings */}
+          <li>
+            <a
+              href="#"
+              onClick={(e) => {
+                e.preventDefault();
+                handleMenuClick("portals");
+              }}
+              className="relative px-4 py-3 flex items-center space-x-4 rounded-xl text-white transition-all duration-300 hover:bg-gray-700"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  className="fill-current text-gray-200 group-hover:text-cyan-300"
+                  fillRule="evenodd"
+                  d="M2 6a2 2 0 012-2h4l2 2h4a2 2 0 012 2v1H8a3 3 0 00-3 3v1.5a1.5 1.5 0 01-3 0V6z"
+                  clipRule="evenodd"
+                />
+                <path
+                  className="fill-current text-gray-200 group-hover:text-cyan-600"
+                  d="M6 12a2 2 0 012-2h8a2 2 0 012 2v2a2 2 0 01-2 2H2h2a2 2 0 002-2v-2z"
+                />
+              </svg>
+              <span className="group-hover:text-blue-400 text-white">
+                Portales
+              </span>
+            </a>
+          </li>
+          {/* Settings */}
+          <li>
+            <a
+              href="#"
+              onClick={(e) => {
+                e.preventDefault();
+                handleMenuClick("settings");
+              }}
+              className="relative px-4 py-3 flex items-center space-x-4 rounded-xl text-white transition-all duration-300 hover:bg-gray-700"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  className="fill-current text-gray-200 group-hover:text-cyan-300"
+                  fillRule="evenodd"
+                  d="M2 6a2 2 0 012-2h4l2 2h4a2 2 0 012 2v1H8a3 3 0 00-3 3v1.5a1.5 1.5 0 01-3 0V6z"
+                  clipRule="evenodd"
+                />
+                <path
+                  className="fill-current text-gray-200 group-hover:text-cyan-600"
+                  d="M6 12a2 2 0 012-2h8a2 2 0 012 2v2a2 2 0 01-2 2H2h2a2 2 0 002-2v-2z"
+                />
+              </svg>
+              <span className="group-hover:text-blue-400 text-white">
+                Settings
+              </span>
+            </a>
+          </li>
+          {/* Reino */}
+          <li>
+            <a
+              href="#"
+              onClick={(e) => {
+                e.preventDefault();
+                handleMenuClick("adversing");
+              }}
+              className="relative px-4 py-3 flex items-center space-x-4 rounded-xl text-white transition-all duration-300 hover:bg-gray-700"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  className="fill-current text-gray-200 group-hover:text-cyan-300"
+                  fillRule="evenodd"
+                  d="M2 6a2 2 0 012-2h4l2 2h4a2 2 0 012 2v1H8a3 3 0 00-3 3v1.5a1.5 1.5 0 01-3 0V6z"
+                  clipRule="evenodd"
+                />
+                <path
+                  className="fill-current text-gray-200 group-hover:text-cyan-600"
+                  d="M6 12a2 2 0 012-2h8a2 2 0 012 2v2a2 2 0 01-2 2H2h2a2 2 0 002-2v-2z"
+                />
+              </svg>
+              <span className="group-hover:text-blue-400 text-white">
+                Reino
+              </span>
+            </a>
+          </li>
+          {/* Separador + Sección de servidor */}
+          <hr className="my-4 border-gray-600" />
+          <h6 className="px-4 text-xl font-semibold text-gray-400 uppercase tracking-wider">
+            Servidor
+          </h6>
+          {/* Dashboard */}
           <li>
             <a
               href="#"
               aria-label="dashboard"
               onClick={(e) => {
-                e.preventDefault(); // Evita que el enlace recargue la página
+                e.preventDefault();
                 handleMenuClick("dashboard");
               }}
-              className="relative px-4 py-3 flex items-center space-x-4 rounded-xl text-white 
-               transition-all duration-300 hover:bg-gray-700"
+              className="relative px-4 py-3 flex items-center space-x-4 rounded-xl text-white transition-all duration-300 hover:bg-gray-700"
             >
               <svg className="-ml-1 h-6 w-6" viewBox="0 0 24 24" fill="none">
                 <path
@@ -70,89 +208,46 @@ const Sidebar: React.FC<{ onOptionChange: (option: string) => void }> = ({
               <span className="-mr-1 font-medium text-gray-200">Dashboard</span>
             </a>
           </li>
+          {/* FAQs */}
+          <li>
+            <a
+              href="#"
+              onClick={(e) => {
+                e.preventDefault();
+                handleMenuClick("faqs");
+              }}
+              className="relative px-4 py-3 flex items-center space-x-4 rounded-xl text-white transition-all duration-300 hover:bg-gray-700"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  className="fill-current text-gray-200 group-hover:text-cyan-300"
+                  fillRule="evenodd"
+                  d="M2 6a2 2 0 012-2h4l2 2h4a2 2 0 012 2v1H8a3 3 0 00-3 3v1.5a1.5 1.5 0 01-3 0V6z"
+                  clipRule="evenodd"
+                />
+                <path
+                  className="fill-current text-gray-200 group-hover:text-cyan-600"
+                  d="M6 12a2 2 0 012-2h8a2 2 0 012 2v2a2 2 0 01-2 2H2h2a2 2 0 002-2v-2z"
+                />
+              </svg>
+              <span className="group-hover:text-blue-400 text-white">Faqs</span>
+            </a>
+          </li>
 
+          {/* Bank */}
           <li>
             <a
               href="#"
-              aria-label="users"
-              onClick={(e) => {
-                e.preventDefault();
-                handleMenuClick("users");
-              }}
-              className="relative px-4 py-3 flex items-center space-x-4 rounded-xl text-white 
-              transition-all duration-300 hover:bg-gray-700"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-              >
-                <path
-                  className="fill-current text-gray-200 group-hover:text-cyan-300"
-                  fill-rule="evenodd"
-                  d="M2 6a2 2 0 012-2h4l2 2h4a2 2 0 012 2v1H8a3 3 0 00-3 3v1.5a1.5 1.5 0 01-3 0V6z"
-                  clip-rule="evenodd"
-                />
-                <path
-                  className="fill-current text-gray-200 group-hover:text-cyan-600"
-                  d="M6 12a2 2 0 012-2h8a2 2 0 012 2v2a2 2 0 01-2 2H2h2a2 2 0 002-2v-2z"
-                />
-              </svg>
-              <span
-                className="group-hover:text-blue-400 text-white"
-                onClick={() => handleMenuClick("users")}
-              >
-                Usuarios
-              </span>
-            </a>
-          </li>
-          <li>
-            <a
-              href="#"
-              aria-label="promotions"
-              onClick={(e) => {
-                e.preventDefault();
-                handleMenuClick("promotions");
-              }}
-              className="relative px-4 py-3 flex items-center space-x-4 rounded-xl text-white 
-              transition-all duration-300 hover:bg-gray-700"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-              >
-                <path
-                  className="fill-current text-gray-200 group-hover:text-cyan-300"
-                  fill-rule="evenodd"
-                  d="M2 6a2 2 0 012-2h4l2 2h4a2 2 0 012 2v1H8a3 3 0 00-3 3v1.5a1.5 1.5 0 01-3 0V6z"
-                  clip-rule="evenodd"
-                />
-                <path
-                  className="fill-current text-gray-200 group-hover:text-cyan-600"
-                  d="M6 12a2 2 0 012-2h8a2 2 0 012 2v2a2 2 0 01-2 2H2h2a2 2 0 002-2v-2z"
-                />
-              </svg>
-              <span
-                className="group-hover:text-blue-400 text-white"
-                onClick={() => handleMenuClick("users")}
-              >
-                Promociones
-              </span>
-            </a>
-          </li>
-          <li>
-            <a
-              href="#"
-              aria-label="bank"
               onClick={(e) => {
                 e.preventDefault();
                 handleMenuClick("bank");
               }}
-              className="relative px-4 py-3 flex items-center space-x-4 rounded-xl text-white 
-              transition-all duration-300 hover:bg-gray-700"
+              className="relative px-4 py-3 flex items-center space-x-4 rounded-xl text-white transition-all duration-300 hover:bg-gray-700"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -162,33 +257,28 @@ const Sidebar: React.FC<{ onOptionChange: (option: string) => void }> = ({
               >
                 <path
                   className="fill-current text-gray-200 group-hover:text-cyan-300"
-                  fill-rule="evenodd"
+                  fillRule="evenodd"
                   d="M2 6a2 2 0 012-2h4l2 2h4a2 2 0 012 2v1H8a3 3 0 00-3 3v1.5a1.5 1.5 0 01-3 0V6z"
-                  clip-rule="evenodd"
+                  clipRule="evenodd"
                 />
                 <path
                   className="fill-current text-gray-200 group-hover:text-cyan-600"
                   d="M6 12a2 2 0 012-2h8a2 2 0 012 2v2a2 2 0 01-2 2H2h2a2 2 0 002-2v-2z"
                 />
               </svg>
-              <span
-                className="group-hover:text-blue-400 text-white"
-                onClick={() => handleMenuClick("bank")}
-              >
-                Bank
-              </span>
+              <span className="group-hover:text-blue-400 text-white">Bank</span>
             </a>
           </li>
+
+          {/* Users */}
           <li>
             <a
               href="#"
-              aria-label="settings"
               onClick={(e) => {
                 e.preventDefault();
-                handleMenuClick("settings");
+                handleMenuClick("users");
               }}
-              className="relative px-4 py-3 flex items-center space-x-4 rounded-xl text-white 
-              transition-all duration-300 hover:bg-gray-700"
+              className="relative px-4 py-3 flex items-center space-x-4 rounded-xl text-white transition-all duration-300 hover:bg-gray-700"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -198,20 +288,17 @@ const Sidebar: React.FC<{ onOptionChange: (option: string) => void }> = ({
               >
                 <path
                   className="fill-current text-gray-200 group-hover:text-cyan-300"
-                  fill-rule="evenodd"
+                  fillRule="evenodd"
                   d="M2 6a2 2 0 012-2h4l2 2h4a2 2 0 012 2v1H8a3 3 0 00-3 3v1.5a1.5 1.5 0 01-3 0V6z"
-                  clip-rule="evenodd"
+                  clipRule="evenodd"
                 />
                 <path
                   className="fill-current text-gray-200 group-hover:text-cyan-600"
                   d="M6 12a2 2 0 012-2h8a2 2 0 012 2v2a2 2 0 01-2 2H2h2a2 2 0 002-2v-2z"
                 />
               </svg>
-              <span
-                className="group-hover:text-blue-400 text-white"
-                onClick={() => handleMenuClick("settings")}
-              >
-                Settings
+              <span className="group-hover:text-blue-400 text-white">
+                Usuarios
               </span>
             </a>
           </li>
@@ -228,9 +315,9 @@ const Sidebar: React.FC<{ onOptionChange: (option: string) => void }> = ({
             stroke="currentColor"
           >
             <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
               d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
             />
           </svg>

@@ -35,7 +35,7 @@ const Teleports: React.FC<TeleportsProps> = ({
   useEffect(() => {
     const fetchPromos = async () => {
       try {
-        const teleports = await getTeleports(raceId, token);
+        const teleports = await getTeleports(raceId, serverId, token);
         setTeleports(teleports);
       } catch (error) {
         setLoading(false);
