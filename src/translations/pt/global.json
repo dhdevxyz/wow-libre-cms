@@ -124,7 +124,7 @@
                 "disclaimer": "Garantimos a completa segurança dos seus dados e você mantém total controle sobre suas informações. Se decidir cancelar a qualquer momento, excluiremos todos os seus dados do nosso sistema."
             },
             "register": {
-                "title-server-message": "Todas as informações que você compartilha conosco no Wow Libre são como o ingrediente especial da sua experiência incrível! Quanto mais soubermos, melhor poderemos proporcionar algo realmente extraordinário. Então, compartilhe esses detalhes conosco e prepare-se para algo fora deste mundo!",
+                "title-server-message": "Todas as informações que você compartilha com a gente são como o ingrediente secreto da sua experiência incrível! Quanto mais soubermos, melhor podemos criar algo realmente extraordinário para você. Então, compartilhe esses detalhes e prepare-se para algo fora de série!",
                 "input": {
                     "select-country": "País de residência",
                     "select-country-place-holder": "Selecione o país",
@@ -135,7 +135,7 @@
                 }
             },
             "kown-you": {
-                "title-server-message": "Seu nome verdadeiro pode ser usado no futuro para verificar sua identidade ao entrar em contato com o WowLibre. Por padrão, seu nome verdadeiro permanecerá oculto de outros usuários.",
+                "title-server-message": "Seu nome verdadeiro pode ser usado no futuro para verificar sua identidade ao entrar em contato com o Admin. Por padrão, seu nome verdadeiro permanecerá oculto de outros usuários.",
                 "input": {
                     "select-lastname": "Digite seu sobrenome",
                     "select-lastname-place-holder": "Digite seu sobrenome",
@@ -161,14 +161,14 @@
                 }
             },
             "terms-and-conditions": {
-                "title-server-message": "Bem-vindo ao Wow Libre! Aceitar nossas opções permite que você mergulhe em uma experiência personalizada cheia de ofertas exclusivas, notícias empolgantes e muito mais.",
+                "title-server-message": "Bem-vindo! Ao aceitar nossas opções, você mergulha em uma experiência personalizada cheia de ofertas exclusivas, novidades emocionantes e muito mais.",
                 "button": {
                     "btn-primary": "Continuar",
                     "btn-secondary": "Voltar"
                 },
                 "input": {
-                    "email-check-text": "O e-mail da conta receberá ofertas especiais, notícias e mais do Wow Libre",
-                    "term-check-text": "Eu li e aceito o seguinte: Termos e Condições",
+                    "email-check-text": "O e-mail da conta receberá ofertas especiais, novidades e outras informações da nossa comunidade.",
+                    "term-check-text": "Li e aceito o seguinte: Termos e Condições",
                     "term-check-link": "Termos e Condições"
                 }
             },

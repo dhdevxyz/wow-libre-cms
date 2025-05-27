@@ -970,7 +970,7 @@
             },
             "btn-payment": "Realizar Pago",
             "btn-admin": "Administrar Suscripción",
-            "disclaimer": "Al suscribirte, aceptas los Términos y condiciones de WowLibre. Puedes cancelar cuando quieras."
+            "disclaimer": "Al suscribirte, aceptas los Términos y condiciones. Puedes cancelar cuando quieras."
         }
     },
     "features-server": {

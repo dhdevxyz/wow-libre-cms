@@ -124,7 +124,7 @@
                 "disclaimer": "We guarantee the complete security of your data, and you retain full control over your information. If you decide to unsubscribe at any time, we will completely delete all your data from our system."
             },
             "register": {
-                "title-server-message": "All the information you share with us at Wow Libre is like the special ingredient of your amazing experience! The more we know, the better we can make you experience something truly extraordinary. So, share those details with us and get ready for something out of this world!",
+                "title-server-message": "All the information you share with us is like the secret ingredient to your mind-blowing experience! The more we know, the better we can create something truly extraordinary for you. So go ahead, share those details and get ready for something out of this world!",
                 "input": {
                     "select-country": "Country of residence",
                     "select-country-place-holder": "Select country",
@@ -135,7 +135,7 @@
                 }
             },
             "kown-you": {
-                "title-server-message": "Your real name may be used in the future to verify your identity when contacting WowLibre. By default, your real name will remain hidden from other users.",
+                "title-server-message": "Your real name may be used in the future to verify your identity when contacting Admin. By default, your real name will remain hidden from other users.",
                 "input": {
                     "select-lastname": "Enter your last name",
                     "select-lastname-place-holder": "Enter your last name",
@@ -161,13 +161,13 @@
                 }
             },
             "terms-and-conditions": {
-                "title-server-message": "Welcome to Wow Libre! Accepting our options allows you to immerse yourself in a personalized experience full of exclusive offers, exciting news, and much more.",
+                "title-server-message": "Welcome! By accepting our options, you can dive into a personalized experience full of exclusive offers, exciting news, and much more.",
                 "button": {
                     "btn-primary": "Continue",
                     "btn-secondary": "Back"
                 },
                 "input": {
-                    "email-check-text": "The account email will receive special offers, news, and more from Wow Libre",
+                    "email-check-text": "The account email will receive special offers, news, and more from our community.",
                     "term-check-text": "I have read and accept the following: Terms and Conditions",
                     "term-check-link": "Terms and Conditions"
                 }
@@ -1181,7 +1181,7 @@
             },
             "credentials-external": {
                 "title": "External Credentials",
-                "description": "These credentials are essential for our platform to securely communicate with the application. They allow us to ensure only WoW Libre can access the exposed APIs."
+                "description": "These credentials are essential for our platform to securely communicate with the application. They allow us to ensure only Admin can access the exposed APIs."
             }
         },
         "configuration-server": {
