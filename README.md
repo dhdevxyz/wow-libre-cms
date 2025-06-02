@@ -1,6 +1,6 @@
 # World of Warcraft Community Web CMS
 
-¡Bienvenido a Wow Libre Web!
+¡Bienvenido a Wow Libre CMS!
 Esta es una aplicación web desarrollada para transformar y enriquecer la experiencia de los jugadores de World of Warcraft. No se trata de una simple página de registro o tienda: nuestro objetivo es crear una plataforma dinámica, útil y atractiva para toda la comunidad.
 
 Wow Libre CMS busca ofrecer funcionalidades innovadoras que complementen y mejoren cada aventura en Azeroth.
