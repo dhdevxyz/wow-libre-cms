@@ -1,4 +1,5 @@
 "use client";
+import DiscordWidget from "@/components/discord";
 import LoadingSpinner from "@/components/utilities/loading-spinner";
 import { homeProps } from "@/constants/home";
 import { useTranslation } from "react-i18next";
@@ -60,12 +61,7 @@ const WelcomeHome = () => {
           </div>
         </div>
         <div className="p-4 lg:sticky lg:top-4 lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:overflow-hidden flex flex-col items-center">
-          <img
-            className="w-full max-w-screen-lg rounded-xl bg-gray-800 shadow-xl ring-1 ring-gray-600/10"
-            src={homeProps.welcomeImg}
-            alt="ServerConnect"
-            width={2432}
-          />
+          <DiscordWidget />
           <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 mt-8">
             <button
               onClick={() => window.open("/register", "_blank")}
