@@ -21,6 +21,8 @@ export const teamMembers = [
       image: "https://static.wixstatic.com/media/5dd8a0_a77c1de436ec401695d8b556de486524~mv2.jpg",
       social: {
         telegram:"https://t.me/WowLibre_bot",
+        facebook: "https://www.facebook.com/WowLibre/",
+        tiktok: "https://www.tiktok.com/@wowlibre",
       },
     },
   ];
