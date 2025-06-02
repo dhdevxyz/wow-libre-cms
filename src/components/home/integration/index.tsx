@@ -25,7 +25,7 @@ const ServerFeatures = () => {
           </p>
           <div className="mt-8">
             <a
-              href="/integrations"
+              href="/news"
               className="inline-block px-8 py-3 text-xl font-semibold text-white bg-indigo-600 hover:bg-indigo-700 rounded-lg shadow-lg transition duration-300"
             >
               {t("features-server.btn.text")}

@@ -48,18 +48,18 @@ const MeetTheTeam = () => {
                       </div>
                       <div className="flex items-center justify-center space-x-2 opacity-50 hover:opacity-100 transition-opacity duration-300">
                         <a
-                          href={member.social.linkedin}
-                          target="_blank"
-                          className="flex items-center justify-center rounded-full bg-gray-700 p-2 cursor-pointer hover:bg-indigo-600 transition-colors duration-200"
-                        >
-                          <i className="fab fa-linkedin text-white"></i>
-                        </a>
-                        <a
                           target="_blank"
                           href={member.social.facebook}
                           className="flex items-center justify-center rounded-full bg-gray-700 p-2 cursor-pointer hover:bg-blue-500 transition-colors duration-200"
                         >
                           <i className="fab fa-facebook text-white"></i>
+                        </a>
+                        <a
+                          target="_blank"
+                          href={member.social.telegram}
+                          className="flex items-center justify-center rounded-full bg-gray-700 p-2 cursor-pointer hover:bg-blue-500 transition-colors duration-200"
+                        >
+                          <i className="fab fa-telegram text-white"></i>
                         </a>
                         <a
                           target="_blank"

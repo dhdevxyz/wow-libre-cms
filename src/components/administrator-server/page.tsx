@@ -15,6 +15,7 @@ import FaqsDashboard from "../dashboard/faqs";
 import TeleportDashboard from "../dashboard/teleport";
 import AdvertisingRealmForm from "../dashboard/adversing_realm";
 import { useUserContext } from "@/context/UserContext";
+import NewsAdministrator from "../dashboard/news";
 
 const AdministratorServer = () => {
   const [activeOption, setActiveOption] = useState("dashboard");
@@ -89,6 +90,9 @@ const AdministratorServer = () => {
         )}
         {activeOption === "adversing" && token && (
           <AdvertisingRealmForm token={token} user={user} realmId={serverId} />
+        )}
+        {activeOption === "news" && token && (
+          <NewsAdministrator token={token} />
         )}
       </main>
     </div>
