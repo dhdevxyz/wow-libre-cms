@@ -64,7 +64,10 @@ const NewContent: React.FC = () => {
             <div className="contenedor absolute bottom-6 md:bottom-10 left-0 right-0">
               <h1 className="text-4xl md:text-8xl font-bold text-white mb-2">
                 {news.title}
-              </h1>
+              </h1>{" "}
+              <p className="text-2xl md:text-4xl font-bold text-white mb-2">
+                {news.sub_title}
+              </p>
               <div className="text-xs md:text-2xl text-gray-400">
                 {new Date(news.created_at).toLocaleDateString("en-US", {
                   year: "numeric",
@@ -80,11 +83,11 @@ const NewContent: React.FC = () => {
         {/* Botón volver a noticias */}
 
         {/* Contenido */}
-        <div className="max-w-5xl mx-auto px-4 md:px-6 py-10 md:py-16 space-y-12">
-          <div className="max-w-5xl mx-auto  pb-1">
+        <div className="max-w-7xl mx-auto px-4 md:px-6 py-10 md:py-16 space-y-12">
+          <div className="max-w-6xl mx-auto  pb-1">
             <button
               onClick={() => router.push("/news")} // Si tienes ruta específica
-              className="text-sm text-yellow-400 hover:underline"
+              className="text-xl text-yellow-400 hover:underline"
             >
               ← Volver a noticias
             </button>
@@ -106,32 +109,33 @@ const NewContent: React.FC = () => {
           {news.sections.map((section) => (
             <div
               key={section.id}
-              className={`flex flex-col ${
-                section.img_url ? "md:flex-row" : ""
-              } gap-6 md:gap-10 items-start`}
+              className="flex flex-col gap-8 py-12 border-b border-zinc-800"
             >
-              {/* Texto: se expande si no hay imagen */}
-              <div
-                className={`${
-                  section.img_url ? "md:w-[55%]" : "w-full"
-                } space-y-4`}
-              >
-                <h2 className="text-yellow-400 text-2xl md:text-4xl font-semibold">
+              {/* Texto */}
+              <div className="space-y-6">
+                <h2 className="text-yellow-400 text-3xl md:text-4xl font-bold leading-tight">
                   {section.title}
                 </h2>
-                <p className="text-base md:text-lg text-justify">
-                  {section.content}
-                </p>
+                {section.content
+                  .split(/\n{2,}|\r\n{2,}|(?:\s){2,}/) // Separar por dobles saltos o múltiples espacios
+                  .map((paragraph, idx) => (
+                    <p
+                      key={idx}
+                      className="text-base md:text-lg text-justify text-zinc-300"
+                    >
+                      {paragraph.trim()}
+                    </p>
+                  ))}
               </div>
 
-              {/* Imagen: solo si existe */}
+              {/* Imagen (si existe) */}
               {section.img_url && (
-                <div className="md:w-[45%] w-full">
-                  <div className="bg-zinc-900 rounded-lg overflow-hidden shadow-lg">
+                <div className="w-full">
+                  <div className="aspect-[4/3] bg-zinc-900 rounded-2xl overflow-hidden shadow-xl">
                     <img
                       src={section.img_url}
                       alt={section.title}
-                      className="w-full h-full max-h-[400px] object-cover object-center rounded-md"
+                      className="w-full h-full object-cover object-center"
                     />
                   </div>
                 </div>
