@@ -1,25 +1,39 @@
-# World of Warcraft Community Web Server 
+# World of Warcraft Community Web CMS
+
+¡Bienvenido a Wow Libre Web!
+Esta es una aplicación web desarrollada para transformar y enriquecer la experiencia de los jugadores de World of Warcraft. No se trata de una simple página de registro o tienda: nuestro objetivo es crear una plataforma dinámica, útil y atractiva para toda la comunidad.
+
+Wow Libre CMS busca ofrecer funcionalidades innovadoras que complementen y mejoren cada aventura en Azeroth.
+
+# 📚 Wiki
+Encuentra toda la documentación y guías en nuestro [Wiki oficial](https://github.com/ManuChitiva/wow-libre-cms/wiki).
+
+# 🛠️ Tecnologías Utilizadas
+
+- Frontend: React, Next.js, Tailwind CSS
+
+- Backend: Spring Boot, MySQL
+
+- Autenticación: Cookies para el manejo de sesiones de usuario
+
+- API: Integración con servicios REST para la gestión de cuentas y personajes
+
+# 👥 Comunidad
+
+Sitio web oficial: www.wowlibre.com
+
+Únete a nuestro Discord: discord.gg/ZhStUnAbkC
 
 
-Bienvenido a Wow Libre Web, una aplicación web creada para revolucionar la experiencia de los jugadores de World of Warcraft. Este sitio no es una simple página más: ha sido diseñado para ofrecer mucho más que opciones de compra y registro. Su propósito es convertirse en un recurso útil, dinámico y atractivo para toda la comunidad, aportando funcionalidades innovadoras que enriquecen cada partida.
+# 🤝 Contribuciones
+¿Quieres aportar al proyecto? ¡Nos encantaría contar contigo!
+
+Si tienes ideas, sugerencias o mejoras, no dudes en abrir un issue o enviar un pull request.
+
+Toda participación es bienvenida y valorada por la comunidad.
 
 
+# 🚀 Despliegue en Producción
 
-
-Wiki
-https://github.com/ManuChitiva/wow-libre-web/wiki
-
-## Tecnologías Utilizadas
-
-Frontend: React, Next.js, Tailwind CSS
-Backend: Spring Boot, MySQL
-Autenticación: Cookies para la autenticación de usuarios
-API: Integración con servicios Rest y manejo de peticiones API para detalles de cuenta y personajes
-
-
-## Contribución
-Estamos abiertos a contribuciones de la comunidad. Si tienes ideas, sugerencias o deseas colaborar, por favor, abre un issue o envía un pull request. ¡Tu participación es bienvenida!
-
-
-
-
+Publicar la aplicación es muy sencillo:
+Solo necesitas crear una cuenta gratuita en Vercel y seguir unos pocos pasos para tener tu sitio en línea.
