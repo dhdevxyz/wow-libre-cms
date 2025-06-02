@@ -16,13 +16,11 @@
 
 export const teamMembers = [
     {
-      name: "Bot Server",
+      name: "Bot IA",
       title: "Support",
-      image: "https://static.wixstatic.com/media/320b56_3a4a59284b2d48fa957fa69ae985e9c3~mv2.png",
+      image: "https://static.wixstatic.com/media/5dd8a0_a77c1de436ec401695d8b556de486524~mv2.jpg",
       social: {
-        linkedin: "https://www.linkedin.com/in/manuelchitiva/",
-        facebook: "https://www.facebook.com/WowLibre/",
-        tiktok: "https://www.tiktok.com/@wowlibre",
+        telegram:"https://t.me/WowLibre_bot",
       },
     },
   ];

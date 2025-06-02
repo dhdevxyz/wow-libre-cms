@@ -93,7 +93,7 @@ const Advertising = () => {
                   style={{
                     width: "100%",
                     height: "auto",
-                    maxHeight: "50rem",
+                    maxHeight: "60rem",
                   }}
                   className="rounded-lg"
                 />
