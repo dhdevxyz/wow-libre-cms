@@ -1,3 +1,4 @@
+import DiscordWidget from "@/components/discord";
 import Advertising from "@/components/home/banner";
 import Bidding from "@/components/home/bidding";
 import DownloadGame from "@/components/home/contribution";
@@ -19,7 +20,6 @@ const Home = () => {
       <RealmsHome />
       <SliderHome />
       <ServerFeatures />
-
       <Bidding />
       <DownloadGame />
 
