@@ -11,6 +11,7 @@ const News = () => {
   const [forumPage, setForumPage] = useState(0);
   const [loading, setLoading] = useState(true);
   const [forumLoading, setForumLoading] = useState(false);
+  const [noMoreForumNews, setNoMoreForumNews] = useState(false);
 
   useEffect(() => {
     const fetchMainNews = async () => {
@@ -44,6 +45,10 @@ const News = () => {
       const newNews = await getNews(10, nextPage);
       setForumNews((prev) => [...prev, ...newNews]);
       setForumPage(nextPage);
+
+      if (newNews.length < 10) {
+        setNoMoreForumNews(true);
+      }
     } catch (error) {
       console.error("Error loading more forum news:", error);
     } finally {
@@ -199,7 +204,7 @@ const News = () => {
             )}
 
             {/* Botón para cargar más */}
-            {forumNews.length != 0 && (
+            {forumNews.length !== 0 && !noMoreForumNews && (
               <div className="flex justify-center pt-6">
                 <button
                   onClick={handleLoadMoreForumNews}
