@@ -1173,5 +1173,38 @@
             "area": "Área",
             "faction": "Facción del Teleport"
         }
+    },
+    "adversing-realm": {
+        "title": "¡Promociona ",
+        "subtitle": "tu reino!",
+        "language": "Seleccione su idioma: ",
+        "select-language": {
+            "es": "Español",
+            "en": "Inglés",
+            "pt": "Portugués"
+        },
+        "form": {
+            "label-text": "Etiqueta",
+            "label-text-placeholder": "Ej: PvP, PvE, Roleplay",
+            "subtitle-text": "Subtítulo",
+            "subtitle-placeholder": "Ej: La mejor experiencia PvP",
+            "description-text": "Descripción del reino",
+            "description-text-placeholder": "Ej: ¡Únete a nosotros y vive la aventura!",
+            "disclaimer": "Disclaimer",
+            "disclaimer-placeholder": "Escribe un disclaimer para tu reino",
+            "img-url": "Imagen de fondo (URL)",
+            "img-url-placeholder": "URL de la imagen de fondo",
+            "cta-primary": "Texto del botón principal",
+            "cta-primary-placeholder": "Ej: ¡Únete ahora!"
+        },
+        "success": {
+            "title": "¡Promoción exitosa!",
+            "description": "Tu reino ha sido promocionado con éxito.",
+            "action": "Aceptar"
+        },
+        "btn": {
+            "primary": "Promocionar"
+        },
+        "description": "Aumenta la visibilidad de tu reino y atrae a más jugadores."
     }
 }

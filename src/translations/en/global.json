@@ -1171,5 +1171,38 @@
             "area": "Area",
             "faction": "Teleport Faction"
         }
+    },
+    "adversing-realm": {
+        "title": "Promote ",
+        "subtitle": "your realm!",
+        "language": "Select your language:",
+        "select-language": {
+            "es": "Spanish",
+            "en": "English",
+            "pt": "Portuguese"
+        },
+        "form": {
+            "label-text": "Tag",
+            "label-text-placeholder": "E.g.: PvP, PvE, Roleplay",
+            "subtitle-text": "Subtitle",
+            "subtitle-placeholder": "E.g.: The best PvP experience",
+            "description-text": "Realm description",
+            "description-text-placeholder": "E.g.: Join us and live the adventure!",
+            "disclaimer": "Disclaimer",
+            "disclaimer-placeholder": "Write a disclaimer for your realm",
+            "img-url": "Background image (URL)",
+            "img-url-placeholder": "URL of the background image",
+            "cta-primary": "Main button text",
+            "cta-primary-placeholder": "E.g.: Join now!"
+        },
+        "success": {
+            "title": "Promotion successful!",
+            "description": "Your realm has been successfully promoted.",
+            "action": "Accept"
+        },
+        "btn": {
+            "primary": "Promote"
+        },
+        "description": "Increase your realm’s visibility and attract more players."
     }
 }

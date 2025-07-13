@@ -76,7 +76,11 @@ const Sidebar: React.FC<{ onOptionChange: (option: string) => void }> = ({
                 e.preventDefault();
                 handleMenuClick("portals");
               }}
-              className="relative px-4 py-3 flex items-center space-x-4 rounded-xl text-white transition-all duration-300 hover:bg-gray-700"
+              className={`relative px-4 py-3 flex items-center space-x-4 rounded-xl text-white transition-all duration-300 hover:bg-gray-700 ${
+                selectedOption === "portals"
+                  ? "bg-gray-900 ring-2 ring-[#7a5b26]"
+                  : ""
+              }`}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -108,7 +112,11 @@ const Sidebar: React.FC<{ onOptionChange: (option: string) => void }> = ({
                 e.preventDefault();
                 handleMenuClick("adversing");
               }}
-              className="relative px-4 py-3 flex items-center space-x-4 rounded-xl text-white transition-all duration-300 hover:bg-gray-700"
+              className={`relative px-4 py-3 flex items-center space-x-4 rounded-xl text-white transition-all duration-300 hover:bg-gray-700 ${
+                selectedOption === "adversing"
+                  ? "bg-gray-900 ring-2 ring-[#7a5b26]"
+                  : ""
+              }`}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -127,7 +135,7 @@ const Sidebar: React.FC<{ onOptionChange: (option: string) => void }> = ({
                   d="M6 12a2 2 0 012-2h8a2 2 0 012 2v2a2 2 0 01-2 2H2h2a2 2 0 002-2v-2z"
                 />
               </svg>
-              <span className="group-hover:text-blue-400 text-white">
+              <span className="group-hover:text-blue-400 text-white select-none">
                 Reino
               </span>
             </a>
@@ -140,7 +148,11 @@ const Sidebar: React.FC<{ onOptionChange: (option: string) => void }> = ({
                 e.preventDefault();
                 handleMenuClick("settings");
               }}
-              className="relative px-4 py-3 flex items-center space-x-4 rounded-xl text-white transition-all duration-300 hover:bg-gray-700"
+              className={`relative px-4 py-3 flex items-center space-x-4 rounded-xl text-white transition-all duration-300 hover:bg-gray-700 ${
+                selectedOption === "settings"
+                  ? "bg-gray-900 ring-2 ring-[#7a5b26]"
+                  : ""
+              }`}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -159,7 +171,7 @@ const Sidebar: React.FC<{ onOptionChange: (option: string) => void }> = ({
                   d="M6 12a2 2 0 012-2h8a2 2 0 012 2v2a2 2 0 01-2 2H2h2a2 2 0 002-2v-2z"
                 />
               </svg>
-              <span className="group-hover:text-blue-400 text-white">
+              <span className="group-hover:text-blue-400 text-white select-none">
                 Settings
               </span>
             </a>

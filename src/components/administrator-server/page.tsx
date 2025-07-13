@@ -71,6 +71,15 @@ const AdministratorServer = () => {
 
       {/* Contenido principal */}
       <main className="ml-auto lg:w-[75%] xl:w-[80%] 2xl:w-[85%] bg-black">
+        {/* PORTALES */}
+        {activeOption === "portals" && token && (
+          <TeleportDashboard token={token} realmId={serverId} t={t} />
+        )}
+        {/* Reino */}
+        {activeOption === "adversing" && token && (
+          <AdvertisingRealmForm token={token} realmId={serverId} t={t} />
+        )}
+
         {/* HOME DASHBOARD */}
         {activeOption === "dashboard" && token && serverId && (
           <HomeDashboard token={token} serverId={serverId} />
@@ -86,12 +95,7 @@ const AdministratorServer = () => {
         )}
         {activeOption === "guilds" && <GuildsDashboard />}
         {activeOption === "faqs" && token && <FaqsDashboard token={token} />}
-        {activeOption === "portals" && token && (
-          <TeleportDashboard token={token} realmId={serverId} t={t} />
-        )}
-        {activeOption === "adversing" && token && (
-          <AdvertisingRealmForm token={token} user={user} realmId={serverId} />
-        )}
+
         {activeOption === "news" && token && (
           <NewsAdministrator token={token} />
         )}

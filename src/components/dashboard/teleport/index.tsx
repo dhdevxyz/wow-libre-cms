@@ -179,7 +179,7 @@ const TeleportDashboard: React.FC<TeleportDashboardProps> = ({
       <div className="absolute inset-0 bg-black opacity-70" />
 
       <div className="relative z-10 ">
-        <p className="m-2  pb-5 text-2xl md:text-2xl lg:text-2xl xl:text-2xl font-bold text-center text-[#d1a648] mb-4">
+        <p className="m-2  pb-5 text-2xl md:text-2xl lg:text-2xl xl:text-2xl font-bold text-center text-[#F5C657] mb-4">
           {t("teleport-dashboard.intro-text")}
         </p>
 
@@ -187,9 +187,9 @@ const TeleportDashboard: React.FC<TeleportDashboardProps> = ({
           {/* Formulario */}
           <form
             onSubmit={handleSubmit}
-            className="w-full max-w-[800px] bg-[#1a1a1a] border border-[#7a5b26] rounded-xl shadow-xl p-8 space-y-6"
+            className="w-full max-w-[800px] bg-[#1a1a1a] border border-[#7a5b26] rounded-xl p-8 space-y-6 overflow-y-auto max-h-[80vh] scrollbar-hide transition-shadow duration-300 hover:shadow-[0_0_20px_4px_#7a5b26]"
           >
-            <h2 className="text-5xl font-bold text-[#ffc53e] mb-10">
+            <h2 className="text-5xl font-bold text-[#EAC784] mb-10">
               {t("teleport-dashboard.title")}
             </h2>
 
@@ -314,8 +314,8 @@ const TeleportDashboard: React.FC<TeleportDashboardProps> = ({
           </form>
 
           {/* Listado */}
-          <div className="bg-[#1a1a1a] border border-[#7a5b26] rounded-xl shadow-xl p-8 space-y-6 overflow-y-auto max-h-[80vh] scrollbar-hide">
-            <h2 className="text-5xl font-bold text-[#ffc53e] mb-10">
+          <div className="bg-[#1a1a1a] border border-[#7a5b26] rounded-xl p-8 space-y-6 overflow-y-auto max-h-[80vh] scrollbar-hide transition-shadow duration-300 hover:shadow-[0_0_20px_4px_#7a5b26]">
+            <h2 className="text-5xl font-bold text-[#EAC784] mb-10">
               {t("teleport-dashboard.teleports-list.title")}
             </h2>
 
