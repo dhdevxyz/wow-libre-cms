@@ -173,7 +173,7 @@ const TeleportDashboard: React.FC<TeleportDashboardProps> = ({
   }
 
   return (
-    <div className="min-h-screen relative text-gray-300 p-8 bg-black mt-10">
+    <div className=" relative text-gray-300 p-8 bg-black m-10">
       {/* Imagen de fondo */}
       <div className="absolute inset-0 bg-cover bg-center opacity-40" />
       <div className="absolute inset-0 bg-black opacity-70" />

@@ -67,11 +67,98 @@ const AdvertisingRealmForm: React.FC<AdvertisingRealmFormProps> = ({
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target;
+
+    if (
+      (name === "tag" && value.length > 10) ||
+      (name === "sub_title" && value.length > 40) ||
+      (name === "description" && value.length > 40) ||
+      (name === "footer_disclaimer" && value.length > 40) ||
+      (name === "cta_primary" && value.length > 20)
+    ) {
+      Swal.fire({
+        icon: "warning",
+        title: "Warning",
+        text: "Exceeds maximum length. Please enter a valid value.",
+      });
+      return;
+    }
+
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    // TAG: min 5, max 10
+    if (!formData.tag || formData.tag.length < 5 || formData.tag.length > 10) {
+      Swal.fire({
+        icon: "warning",
+        title: "Validation",
+        text: "The tag must be between 5 and 10 characters.",
+      });
+      return;
+    }
+
+    // SUBTITLE: not null
+    if (!formData.sub_title || formData.sub_title.trim() === "") {
+      Swal.fire({
+        icon: "warning",
+        title: "Validation",
+        text: "The subtitle cannot be empty.",
+      });
+      return;
+    }
+
+    // DESCRIPTION: min 5, max 40
+    if (
+      !formData.description ||
+      formData.description.length < 5 ||
+      formData.description.length > 40
+    ) {
+      Swal.fire({
+        icon: "warning",
+        title: "Validation",
+        text: "The description must be between 5 and 40 characters.",
+      });
+      return;
+    }
+
+    // CTA PRIMARY: min 5, max 20
+    if (
+      !formData.cta_primary ||
+      formData.cta_primary.length < 5 ||
+      formData.cta_primary.length > 20
+    ) {
+      Swal.fire({
+        icon: "warning",
+        title: "Validation",
+        text: "The button text must be between 5 and 20 characters.",
+      });
+      return;
+    }
+
+    // IMG URL: not null and valid format
+    if (!formData.img_url || !isValidUrl(formData.img_url)) {
+      Swal.fire({
+        icon: "warning",
+        title: "Validation",
+        text: "The image URL is required and must be valid.",
+      });
+      return;
+    }
+
+    // FOOTER DISCLAIMER: min 5, max 40
+    if (
+      !formData.footer_disclaimer ||
+      formData.footer_disclaimer.length < 5 ||
+      formData.footer_disclaimer.length > 40
+    ) {
+      Swal.fire({
+        icon: "warning",
+        title: "Validation",
+        text: "The disclaimer must be between 5 and 40 characters.",
+      });
+      return;
+    }
 
     try {
       await createAdvertisementById(
@@ -106,6 +193,15 @@ const AdvertisingRealmForm: React.FC<AdvertisingRealmFormProps> = ({
         background: "#0B1218",
         timer: 43500,
       });
+    }
+  };
+
+  const isValidUrl = (url: string) => {
+    try {
+      new URL(url);
+      return true;
+    } catch {
+      return false;
     }
   };
 
@@ -275,6 +371,8 @@ const AdvertisingRealmForm: React.FC<AdvertisingRealmFormProps> = ({
                   placeholder={placeholder}
                   value={getValue(name as keyof RealmAdvertisement)}
                   onChange={handleChange}
+                  minLength={5}
+                  maxLength={100}
                   rows={4}
                   className="text-xl w-full rounded-md bg-[#111111] p-3 text-gray-200 border border-[#7a5b26] focus:border-[#c9aa57] focus:outline-none transition resize-none"
                   required
@@ -284,6 +382,8 @@ const AdvertisingRealmForm: React.FC<AdvertisingRealmFormProps> = ({
                   id={name}
                   name={name}
                   type="text"
+                  minLength={5}
+                  maxLength={40}
                   placeholder={placeholder}
                   value={getValue(name as keyof RealmAdvertisement)}
                   onChange={handleChange}

@@ -76,10 +76,11 @@ const Sidebar: React.FC<{ onOptionChange: (option: string) => void }> = ({
                 e.preventDefault();
                 handleMenuClick("portals");
               }}
-              className={`relative px-4 py-3 flex items-center space-x-4 rounded-xl text-white transition-all duration-300 hover:bg-gray-700 ${
+              className={`relative px-4 py-3 flex items-center space-x-4 rounded-xl transition-all duration-300 select-none
+              ${
                 selectedOption === "portals"
-                  ? "bg-gray-900 ring-2 ring-[#7a5b26]"
-                  : ""
+                  ? "bg-gradient-to-r from-[#1a1a1a] to-[#2b2b2b] shadow-[0_0_12px_2px_#e18132] text-[#e18132]"
+                  : "text-white hover:bg-gradient-to-r hover:from-[#2a2a2a] hover:to-[#1a1a1a] hover:text-[#e18132]"
               }`}
             >
               <svg
@@ -112,10 +113,11 @@ const Sidebar: React.FC<{ onOptionChange: (option: string) => void }> = ({
                 e.preventDefault();
                 handleMenuClick("adversing");
               }}
-              className={`relative px-4 py-3 flex items-center space-x-4 rounded-xl text-white transition-all duration-300 hover:bg-gray-700 ${
+              className={`relative px-4 py-3 flex items-center space-x-4 rounded-xl transition-all duration-300 select-none
+              ${
                 selectedOption === "adversing"
-                  ? "bg-gray-900 ring-2 ring-[#7a5b26]"
-                  : ""
+                  ? "bg-gradient-to-r from-[#1a1a1a] to-[#2b2b2b] shadow-[0_0_12px_2px_#e18132] text-[#e18132]"
+                  : "text-white hover:bg-gradient-to-r hover:from-[#2a2a2a] hover:to-[#1a1a1a] hover:text-[#e18132]"
               }`}
             >
               <svg
@@ -148,10 +150,11 @@ const Sidebar: React.FC<{ onOptionChange: (option: string) => void }> = ({
                 e.preventDefault();
                 handleMenuClick("settings");
               }}
-              className={`relative px-4 py-3 flex items-center space-x-4 rounded-xl text-white transition-all duration-300 hover:bg-gray-700 ${
+              className={`relative px-4 py-3 flex items-center space-x-4 rounded-xl transition-all duration-300 select-none
+              ${
                 selectedOption === "settings"
-                  ? "bg-gray-900 ring-2 ring-[#7a5b26]"
-                  : ""
+                  ? "bg-gradient-to-r from-[#1a1a1a] to-[#2b2b2b] shadow-[0_0_12px_2px_#e18132] text-[#e18132]"
+                  : "text-white hover:bg-gradient-to-r hover:from-[#2a2a2a] hover:to-[#1a1a1a] hover:text-[#e18132]"
               }`}
             >
               <svg
@@ -185,7 +188,12 @@ const Sidebar: React.FC<{ onOptionChange: (option: string) => void }> = ({
                 e.preventDefault();
                 handleMenuClick("products");
               }}
-              className="relative px-4 py-3 flex items-center space-x-4 rounded-xl text-white transition-all duration-300 hover:bg-gray-700"
+              className={`relative px-4 py-3 flex items-center space-x-4 rounded-xl transition-all duration-300 select-none
+              ${
+                selectedOption === "products"
+                  ? "bg-gradient-to-r from-[#1a1a1a] to-[#2b2b2b] shadow-[0_0_12px_2px_#e18132] text-[#e18132]"
+                  : "text-white hover:bg-gradient-to-r hover:from-[#2a2a2a] hover:to-[#1a1a1a] hover:text-[#e18132]"
+              }`}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -223,7 +231,12 @@ const Sidebar: React.FC<{ onOptionChange: (option: string) => void }> = ({
                 e.preventDefault();
                 handleMenuClick("dashboard");
               }}
-              className="relative px-4 py-3 flex items-center space-x-4 rounded-xl text-white transition-all duration-300 hover:bg-gray-700"
+              className={`relative px-4 py-3 flex items-center space-x-4 rounded-xl transition-all duration-300 select-none
+              ${
+                selectedOption === "dashboard"
+                  ? "bg-gradient-to-r from-[#1a1a1a] to-[#2b2b2b] shadow-[0_0_12px_2px_#e18132] text-[#e18132]"
+                  : "text-white hover:bg-gradient-to-r hover:from-[#2a2a2a] hover:to-[#1a1a1a] hover:text-[#e18132]"
+              }`}
             >
               <svg className="-ml-1 h-6 w-6" viewBox="0 0 24 24" fill="none">
                 <path
@@ -250,7 +263,12 @@ const Sidebar: React.FC<{ onOptionChange: (option: string) => void }> = ({
                 e.preventDefault();
                 handleMenuClick("news");
               }}
-              className="relative px-4 py-3 flex items-center space-x-4 rounded-xl text-white transition-all duration-300 hover:bg-gray-700"
+              className={`relative px-4 py-3 flex items-center space-x-4 rounded-xl transition-all duration-300 select-none
+              ${
+                selectedOption === "news"
+                  ? "bg-gradient-to-r from-[#1a1a1a] to-[#2b2b2b] shadow-[0_0_12px_2px_#e18132] text-[#e18132]"
+                  : "text-white hover:bg-gradient-to-r hover:from-[#2a2a2a] hover:to-[#1a1a1a] hover:text-[#e18132]"
+              }`}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -282,7 +300,12 @@ const Sidebar: React.FC<{ onOptionChange: (option: string) => void }> = ({
                 e.preventDefault();
                 handleMenuClick("faqs");
               }}
-              className="relative px-4 py-3 flex items-center space-x-4 rounded-xl text-white transition-all duration-300 hover:bg-gray-700"
+              className={`relative px-4 py-3 flex items-center space-x-4 rounded-xl transition-all duration-300 select-none
+              ${
+                selectedOption === "faqs"
+                  ? "bg-gradient-to-r from-[#1a1a1a] to-[#2b2b2b] shadow-[0_0_12px_2px_#e18132] text-[#e18132]"
+                  : "text-white hover:bg-gradient-to-r hover:from-[#2a2a2a] hover:to-[#1a1a1a] hover:text-[#e18132]"
+              }`}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -313,7 +336,12 @@ const Sidebar: React.FC<{ onOptionChange: (option: string) => void }> = ({
                 e.preventDefault();
                 handleMenuClick("bank");
               }}
-              className="relative px-4 py-3 flex items-center space-x-4 rounded-xl text-white transition-all duration-300 hover:bg-gray-700"
+              className={`relative px-4 py-3 flex items-center space-x-4 rounded-xl transition-all duration-300 select-none
+              ${
+                selectedOption === "bank"
+                  ? "bg-gradient-to-r from-[#1a1a1a] to-[#2b2b2b] shadow-[0_0_12px_2px_#e18132] text-[#e18132]"
+                  : "text-white hover:bg-gradient-to-r hover:from-[#2a2a2a] hover:to-[#1a1a1a] hover:text-[#e18132]"
+              }`}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -344,7 +372,12 @@ const Sidebar: React.FC<{ onOptionChange: (option: string) => void }> = ({
                 e.preventDefault();
                 handleMenuClick("users");
               }}
-              className="relative px-4 py-3 flex items-center space-x-4 rounded-xl text-white transition-all duration-300 hover:bg-gray-700"
+              className={`relative px-4 py-3 flex items-center space-x-4 rounded-xl transition-all duration-300 select-none
+              ${
+                selectedOption === "users"
+                  ? "bg-gradient-to-r from-[#1a1a1a] to-[#2b2b2b] shadow-[0_0_12px_2px_#e18132] text-[#e18132]"
+                  : "text-white hover:bg-gradient-to-r hover:from-[#2a2a2a] hover:to-[#1a1a1a] hover:text-[#e18132]"
+              }`}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -376,7 +409,12 @@ const Sidebar: React.FC<{ onOptionChange: (option: string) => void }> = ({
                 e.preventDefault();
                 handleMenuClick("advertising");
               }}
-              className="relative px-4 py-3 flex items-center space-x-4 rounded-xl text-white transition-all duration-300 hover:bg-gray-700"
+              className={`relative px-4 py-3 flex items-center space-x-4 rounded-xl transition-all duration-300 select-none
+              ${
+                selectedOption === "advertising"
+                  ? "bg-gradient-to-r from-[#1a1a1a] to-[#2b2b2b] shadow-[0_0_12px_2px_#e18132] text-[#e18132]"
+                  : "text-white hover:bg-gradient-to-r hover:from-[#2a2a2a] hover:to-[#1a1a1a] hover:text-[#e18132]"
+              }`}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -409,7 +447,12 @@ const Sidebar: React.FC<{ onOptionChange: (option: string) => void }> = ({
                 e.preventDefault();
                 handleMenuClick("votes");
               }}
-              className="relative px-4 py-3 flex items-center space-x-4 rounded-xl text-white transition-all duration-300 hover:bg-gray-700"
+              className={`relative px-4 py-3 flex items-center space-x-4 rounded-xl transition-all duration-300 select-none
+              ${
+                selectedOption === "votes"
+                  ? "bg-gradient-to-r from-[#1a1a1a] to-[#2b2b2b] shadow-[0_0_12px_2px_#e18132] text-[#e18132]"
+                  : "text-white hover:bg-gradient-to-r hover:from-[#2a2a2a] hover:to-[#1a1a1a] hover:text-[#e18132]"
+              }`}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
