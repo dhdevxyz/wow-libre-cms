@@ -1,0 +1,1117 @@
+{
+    "navbar": {
+        "language": "Wähle deine Sprache",
+        "search": {
+            "place-holder": "Gib ein, was du finden möchtest"
+        },
+        "sections": {
+            "position-one": "Gilden",
+            "position-two": "Neuigkeiten",
+            "position-three": "Bank",
+            "position-four": "Shop",
+            "position-five": "Hilfe",
+            "position-six": "Anmelden",
+            "position-seven": "Konto erstellen",
+            "position-eight": "Meine Käufe",
+            "position-nine": "Verkaufen"
+        },
+        "drop_down": {
+            "profile": "Profil",
+            "account": "Konten",
+            "close": "Abmelden"
+        }
+    },
+    "navbar_authenticated": {
+        "sections": {
+            "position-one": "Startseite",
+            "position-two": "Gilden",
+            "position-three": "Neuigkeiten",
+            "position-four": "Bank",
+            "position-five": "Shop"
+        },
+        "menu": {
+            "logged-in": {
+                "position-one": "Profil",
+                "position-two": "Konten",
+                "position-three": "Abmelden",
+                "position-four": "Server"
+            },
+            "logged-out": {
+                "position-one": "Anmelden",
+                "position-two": "Registrieren"
+            }
+        },
+        "wallet": {
+            "title": "Punkte",
+            "recharge": "Aufladen"
+        }
+    },
+    "navbar-minimalist": {
+        "sections": {
+            "position-one": "Startseite",
+            "position-two": "Gilden",
+            "position-three": "Bank",
+            "position-four": "Shop",
+            "position-five": "Neuigkeiten",
+            "position-six": "Support"
+        }
+    },
+    "register": {
+        "error": {
+            "servers-fetch-empty": "Derzeit sind keine Server für die Registrierung verfügbar. Bitte versuche es später erneut.",
+            "server-is-empty": "Bitte wähle einen Server aus, um die Registrierung abzuschließen.",
+            "special-characters": "Bitte vermeide Sonderzeichen.",
+            "birth-date-future": "Das Geburtsdatum darf nicht in der Zukunft liegen.",
+            "age-restriction": "Du musst mindestens 13 Jahre alt sein, um dich zu registrieren.",
+            "country-empty": "Bitte wähle ein gültiges Land aus.",
+            "birth-date-empty": "Bitte gib ein gültiges Geburtsdatum ein.",
+            "last-name-invalid": "Bitte stelle sicher, dass dein Nachname zwischen 5 und 50 Zeichen lang ist.",
+            "first-name-invalid": "Bitte stelle sicher, dass dein Vorname zwischen 5 und 50 Zeichen lang ist.",
+            "email-empty": "Bitte gib deine E-Mail-Adresse ein.",
+            "email-invalid": "Bitte gib eine gültige E-Mail-Adresse ein.",
+            "phone-empty": "Bitte gib eine Telefonnummer ein.",
+            "email-exist": "Die eingegebene E-Mail-Adresse ist bereits registriert. Bitte gib eine andere E-Mail-Adresse ein.",
+            "phone-exist": "Die eingegebene Telefonnummer ist bereits registriert. Bitte gib eine andere ein.",
+            "terms-and-conditions-empty": "Bitte akzeptiere die Allgemeinen Geschäftsbedingungen.",
+            "password-web-no-matches": "Passwörter stimmen nicht überein",
+            "password-web-empty": "Passwort darf nicht leer sein.",
+            "password-web-invalid-length": "Das Passwort muss mehr als 5 und weniger als 30 Zeichen lang sein.",
+            "username-empty": "Der Benutzername darf nicht leer sein",
+            "username-invalid-length": "Der Benutzername muss mehr als 5 und weniger als 20 Zeichen lang sein.",
+            "password-game-no-matches": "Passwörter stimmen nicht überein",
+            "password-game-empty": "Passwort darf nicht leer sein.",
+            "password-game-invalid-length": "Das Passwort muss mehr als 5 und weniger als 30 Zeichen lang sein."
+        },
+        "title-server-sub-title": "Registrieren auf",
+        "section-page": {
+            "finaly-create-account-game": {
+                "title-server-message": "Schütze dein Konto und wähle ein sicheres Passwort für das Spiel.",
+                "password-txt": "Spiel-Passwort",
+                "password-placeholder": "Gib dein Passwort ein",
+                "confirm-password-placeholder": "Passwort wiederholen",
+                "confirm-password-txt": "Passwort bestätigen",
+                "loading-sniper-txt": "Wir erstellen dein Konto, bitte warte einen Moment",
+                "button": {
+                    "btn-primary": "Weiter",
+                    "btn-secondary": "Zurück"
+                }
+            },
+            "account-game": {
+                "realm-txt": "Reich",
+                "select-server": "Wähle ein Reich",
+                "username-txt": "Benutzername",
+                "username-placeholder": "Gib deinen Benutzernamen ein",
+                "title-server-message": "Wähle einen Benutzernamen, der dich repräsentiert und in unserer Community glänzt! Dies wird dein persönliches Markenzeichen im Spiel sein.",
+                "email-game-placeholder": "Gib deine Spiel-E-Mail-Adresse ein",
+                "email-game-disclaimer": "In dieser Erweiterung musst du deine E-Mail-Adresse verwenden, um dich im Spiel anzumelden.",
+                "email-game-txt": "E-Mail-Adresse",
+                "show-welcome": {
+                    "title": "Willkommen in Azeroth!",
+                    "description": "Jetzt, wo du ein Web-Konto hast, musst du ein Spielkonto erstellen. Dieses Konto wird verwendet, um dich im World of Warcraft-Client anzumelden."
+                },
+                "button": {
+                    "btn-primary": "Weiter",
+                    "btn-secondary": "Zurück"
+                }
+            },
+            "congrats": {
+                "message-welcome-part-one": "Willkommen in der Community",
+                "message-welcome-part-two": "Wow Libre",
+                "body-welcome": "Wir heißen dich herzlich in unserer Community willkommen! Wir freuen uns, dich hier zu haben. Du bist nur noch einen Schritt davon entfernt, deine Lieblingsspiele kostenlos zu genießen. Schließe die Erstellung deines Spielkontos ab und fange jetzt an zu spielen!",
+                "title-details": "Details des erstellten Kontos:",
+                "btn-txt-action-primary": "Spielkonto erstellen",
+                "btn-txt-action-secondary": "Client herunterladen",
+                "disclaimer": "Wir garantieren die vollständige Sicherheit deiner Daten, und du behältst die volle Kontrolle über deine Informationen. Wenn du dich jederzeit abmelden möchtest, werden wir alle deine Daten vollständig aus unserem System löschen."
+            },
+            "register": {
+                "title-server-message": "Alle Informationen, die du mit uns teilst, sind wie die geheime Zutat für dein atemberaubendes Erlebnis! Je mehr wir wissen, desto besser können wir etwas wirklich Außergewöhnliches für dich schaffen. Also los, teile diese Details und mach dich bereit für etwas Unglaubliches!",
+                "input": {
+                    "select-country": "Land des Wohnsitzes",
+                    "select-country-place-holder": "Land auswählen",
+                    "select-birthday": "Geburtsdatum"
+                },
+                "button": {
+                    "btn-primary": "Weiter"
+                }
+            },
+            "kown-you": {
+                "title-server-message": "Dein echter Name kann in Zukunft zur Überprüfung deiner Identität bei Kontakt mit dem Admin verwendet werden. Standardmäßig bleibt dein echter Name für andere Benutzer verborgen.",
+                "input": {
+                    "select-lastname": "Gib deinen Nachnamen ein",
+                    "select-lastname-place-holder": "Gib deinen Nachnamen ein",
+                    "select-firstname": "Gib deinen Vornamen ein",
+                    "select-firstname-place-holder": "Gib deinen Vornamen ein"
+                },
+                "button": {
+                    "btn-primary": "Weiter",
+                    "btn-secondary": "Zurück"
+                }
+            },
+            "contact-means": {
+                "title-server-message": "Dies wirst du verwenden, um dich auf Websites und mobilen Apps anzumelden.",
+                "input": {
+                    "email-text": "Gib deine E-Mail-Adresse ein",
+                    "email-text-place-holder": "Gib eine gültige E-Mail-Adresse ein",
+                    "phone-text": "Gib eine Telefonnummer ein",
+                    "phone-text-place-holder": "Gib eine Kontakttelefonnummer ein."
+                },
+                "button": {
+                    "btn-primary": "Weiter",
+                    "btn-secondary": "Zurück"
+                }
+            },
+            "terms-and-conditions": {
+                "title-server-message": "Willkommen! Durch die Annahme unserer Optionen kannst du in ein personalisiertes Erlebnis mit exklusiven Angeboten, spannenden Neuigkeiten und vielem mehr eintauchen.",
+                "button": {
+                    "btn-primary": "Weiter",
+                    "btn-secondary": "Zurück"
+                },
+                "input": {
+                    "email-check-text": "Die Konto-E-Mail erhält Sonderangebote, Neuigkeiten und mehr von unserer Community.",
+                    "term-check-text": "Ich habe die folgenden Punkte gelesen und akzeptiere sie: Allgemeine Geschäftsbedingungen",
+                    "term-check-link": "Allgemeine Geschäftsbedingungen"
+                }
+            },
+            "account-web": {
+                "title-server-message": "Schütze dein Konto und wähle ein sicheres Passwort für die administrative Website.",
+                "input": {
+                    "password-web-text": "Web-Passwort",
+                    "password-web-placeholder": "Web-Passwort",
+                    "password-confirm-web-text": "Passwort bestätigen",
+                    "password-confirm-web-text-placeholder": "Passwort bestätigen"
+                },
+                "button": {
+                    "btn-primary": "Weiter",
+                    "btn-secondary": "Zurück"
+                }
+            }
+        }
+    },
+    "login": {
+        "error": {
+            "empty-field-title": "Unvollständiges Formular",
+            "empty-field-message": "Bitte fülle alle erforderlichen Felder aus, um fortzufahren",
+            "empty-field-buttom-message": "Verstanden",
+            "authentication-message": "Die Daten sind ungültig, bitte überprüfe deine Informationen"
+        },
+        "title": "Anmelden",
+        "username": "Gib deine E-Mail-Adresse ein",
+        "password": "Gib dein Passwort ein",
+        "buttom": "Anmelden",
+        "old-password": "Passwort vergessen?",
+        "create-account-message": "Erstelle dein Konto",
+        "create-account-question": "Noch kein Konto?"
+    },
+    "account": {
+        "paginate": {
+            "btn-primary": "Zurück",
+            "btn-secondary": "Weiter"
+        },
+        "errors": {
+            "special-characters": "Bitte vermeide Sonderzeichen in der Suche."
+        },
+        "search-placeholder": "Nach Benutzernamen suchen",
+        "search-server-placeholder": "Nach Reich suchen",
+        "service-unavailable": {
+            "message": "Derzeit können keine Kontodetails abgerufen werden, bitte warte."
+        },
+        "service-available": {
+            "btn-administration": "Spielkonten verwalten",
+            "title-txt-message": "Mehrere Konten, eine einfache Verwaltung",
+            "txt-message": "Füge mehrere Spielkonten hinzu und verwalte sie, ohne neue Registrierungen durchführen zu müssen."
+        },
+        "without-accounts": {
+            "title-message": "Keine registrierten Konten.",
+            "sub-title-message": "Erstelle jetzt ein Spielkonto!",
+            "btn-text": "Konto erstellen",
+            "confirm-mail": {
+                "title": "Bitte bestätige deine E-Mail-Adresse.",
+                "description": "Wir haben keine Bestätigung deiner E-Mail erhalten. Überprüfe deinen Posteingang, und wenn du die Nachricht nicht findest, kannst du sie erneut senden, indem du die Schaltfläche „E-Mail bestätigen“ verwendest.",
+                "btn-txt": "E-Mail bestätigen"
+            }
+        },
+        "with-accounts": {
+            "txt-create-account": "Konto erstellen",
+            "txt-delete-account": "Konto löschen"
+        },
+        "column-table": {
+            "position-one": "id",
+            "position-two": "Benutzer",
+            "position-three": "Erweiterung",
+            "position-four": "Verwaltbar",
+            "position-five": "Reich",
+            "position-six": "Web",
+            "position-action": "Aktion",
+            "position-btn-admin": "Verwalten",
+            "position-btn-visit": "Besuchen",
+            "position-btn-copy": "Kopieren"
+        },
+        "validation-mail": {
+            "title-success": "E-Mail gesendet!",
+            "message-success": "Wir haben dir eine E-Mail zur Bestätigung deines Kontos gesendet. Bitte überprüfe deinen Posteingang oder Spam-Ordner.",
+            "title-error": "Ein unerwarteter Fehler ist aufgetreten.",
+            "message-error": "Bitte versuche es später erneut oder wende dich an den Support."
+        }
+    },
+    "errors": {
+        "show-alert": {
+            "btn-primary": "Akzeptieren",
+            "btn-secondary": "Problem melden"
+        },
+        "message": {
+            "expiration-session": "Hoppla! Deine Sitzung ist abgelaufen. Bitte melde dich erneut an, um fortzufahren."
+        },
+        "role": {
+            "message": "Du hast keine Berechtigung, auf diesen Bereich zuzugreifen. Bitte wende dich an den Systemadministrator."
+        }
+    },
+    "bank": {
+        "btn": {
+            "primary": "Kredit beantragen",
+            "secondary": "Registrieren"
+        },
+        "title": "Meistere Azeroth mit einem exklusiven Gold-Kredit!",
+        "description": "Erhöhe dein Abenteuer in Azeroth auf ein episches Niveau mit unserem Gold-Kredit. Erhalte die Finanzierung, die du benötigst, um deine Ausrüstung zu verbessern, deine Schatzsammlung zu erweitern oder einfach die besten Spielerlebnisse in vollen Zügen zu genießen.",
+        "benefits": {
+            "primary": "Beantrage deinen Kredit und erhalte dein Geld noch heute."
+        },
+        "disclaimer": "Kredite haben Zinsen. Weitere Details findest du im Abschnitt 'Kreditführer'.",
+        "collection_guide": {
+            "title": "Azeroth-Inkassoführer",
+            "sub_title": "Wie ",
+            "sub_title_two": "funktioniert es?",
+            "guide_steps": {
+                "primary": {
+                    "title": "Zahlungserinnerungen",
+                    "description": "Du erhältst Ingame-Benachrichtigungen, die dich daran erinnern, wann dein Kredit fällig ist."
+                },
+                "secondary": {
+                    "title": "Karenzzeit",
+                    "description": "Wenn du nicht rechtzeitig zahlst, hast du eine 15-tägige Karenzzeit, um den Rückstand aufzuholen, bevor Strafen verhängt werden."
+                },
+                "tertiary": {
+                    "title": "Folgen eines Zahlungsausfalls",
+                    "description": "Wenn du nicht zahlst, zieht das System automatisch das geschuldete Gold von deinen Konten ab. Wenn nicht genug Gold vorhanden ist, werden Ingame-Gegenstände im entsprechenden Wert abgezogen."
+                }
+            }
+        },
+        "loan_guide": {
+            "title": "Kreditführer",
+            "sub_title": "Erhalte den idealen Kreditplan",
+            "complementary_subtitle": "Wähle den Plan, der am besten zu deinen Bedürfnissen passt",
+            "guide_steps": {
+                "primary": {
+                    "title": "Anforderungen",
+                    "requirements": {
+                        "primary": "Mindestens 23 Spielstunden",
+                        "secondary": "Muss Stufe 80 sein"
+                    }
+                },
+                "secondary": {
+                    "title": "Wähle den idealen Plan für dich",
+                    "description": "Wähle den perfekten Plan, der zu deinen Bedürfnissen passt und dein Erlebnis verbessert."
+                },
+                "tertiary": {
+                    "title": "Dein Gold-Paket ist unterwegs!",
+                    "description": "In wenigen Minuten erhältst du dein wertvolles Paket per Ingame-Post."
+                },
+                "quaternary": {
+                    "title": "Denke an die rechtzeitige Zahlung!",
+                    "description": "Genieße das frisch erhaltene Gold in deinem Spiel, aber vergiss nicht den Zahlungstermin."
+                }
+            }
+        },
+        "plans": {
+            "title": "Entdecke unsere Pläne!",
+            "subtitle": "Klare Preise, die auf deine Bedürfnisse zugeschnitten sind. Volle Transparenz, damit du das Beste für dein Konto auswählen kannst!"
+        },
+        "our_clients": {
+            "title": "Unsere Kunden",
+            "subtitle": "Kundenstimmen",
+            "testimony": {
+                "title": "Hallo! 👋",
+                "sub_title": "Ich bin Fizzle Glint",
+                "primary_paragraph": "In einer fernen Region von Azeroth gab es einmal einen Abenteurer namens Fizzle, der, verführt von einem Angebot für einfaches Gold, beschloss, ohne zu zögern einen Kredit aufzunehmen. Obwohl das Gold versprach, seine Ausrüstung zu verbessern und seine Truhen mit Schätzen zu füllen, entdeckte er bald, dass Schulden und unerfüllte Versprechen zu einer überwältigenden Last wurden.",
+                "secondary_paragraph": "Fizzle lernte es auf die harte Tour: Manchmal kann Gier uns auf dunkle Pfade führen. Anstatt das Gold ohne Rücksicht auf die Konsequenzen anzunehmen, ist es besser, unsere Optionen sorgfältig abzuwägen und Wege zu wählen, die nicht zur Verzweiflung führen.",
+                "tertiary_paragraph": "Denke also nach, bevor du eine Entscheidung triffst. Gold mag glänzen, aber Freiheit und Seelenfrieden sind weit wertvoller.",
+                "text_link": "Hast du Fragen? ",
+                "sub_text_link": " Besuche uns auf ",
+                "facebook_text_link": " Facebook"
+            }
+        },
+        "bank_characters": {
+            "title": "Charakterauswahl",
+            "description": "Wähle den Charakter aus, für den du den Kredit beantragen möchtest. Wenn einige Charaktere nicht erscheinen, liegt das daran, dass sie die Kreditvoraussetzungen nicht erfüllen.",
+            "select-account": "Wähle ein Konto",
+            "select-character": "Wähle einen Charakter",
+            "select-server": "Wähle einen Server",
+            "success-loan": "Haha, du hast dein Gold! Aber denk dran, mein Freund, dieser Deal füllt auch meine Taschen. Vergiss deine Zahlungen nicht, sonst wird mich der Zins noch mehr zum Lächeln bringen!",
+            "btn": {
+                "primary": "Akzeptieren",
+                "loading": "Kredit wird beantragt...",
+                "secondary": "Abbrechen"
+            }
+        },
+        "errors": {
+            "fails_to_obtain_accounts": "Hoppla! Wir haben Probleme, deine Konten abzurufen. Bitte versuche es später erneut!",
+            "fails_to_obtain_characters": "Hoppla! Wir haben Probleme, deine Charaktere abzurufen. Bitte versuche es später erneut!"
+        }
+    },
+    "guild": {
+        "table": {
+            "position-one": "Id",
+            "position-two": "Name",
+            "position-three": "Besitzer",
+            "position-four": "Reich",
+            "position-five": "Erstellungsdatum",
+            "position-six": "Mitglieder",
+            "position-seven": "Geld",
+            "position-eight": "Soziale Netzwerke",
+            "position-nine": "Aktion"
+        },
+        "guild-txt": "Gilde",
+        "btn": {
+            "primary": "Weiter",
+            "secondary": "Zurück"
+        },
+        "availability": {
+            "title": "Schmiede deine Legende: Erkunde die Gilden von Azeroth",
+            "description": "Entdecke eine Welt der Kameradschaft und epischen Abenteuer. Finde deine perfekte Gemeinschaft unter den legendären Gilden von World of Warcraft, wo Freundschaft und Strategie sich vereinen, um die Grenzen von Azeroth herauszufordern.",
+            "select-server": "Wähle einen Server",
+            "search-name": "Suche nach Namen"
+        },
+        "no-availability": {
+            "title": "Keine Gilden gefunden!",
+            "description": "Sei Teil des Abenteuers und hinterlasse deine Spuren in Azeroth! Gründe deine eigene Gilde und sammle andere Helden, um epische Herausforderungen zu meistern und neue Horizonte zu erobern. Warte nicht länger, dein Vermächtnis erwartet dich!"
+        },
+        "loading": {
+            "title": "Gilden werden geladen, bitte warten",
+            "description": "Wir suchen nach den verfügbaren Gilden auf diesem Server. Bitte warte einen Moment!"
+        }
+    },
+    "guild-detail": {
+        "welcome-txt": "Willkommen bei",
+        "btn-authenticated": "Verknüpfe mich",
+        "btn-unauthenticated": "Registrieren",
+        "statistics": {
+            "member-txt": "Eingeschriebene Mitglieder",
+            "benefits-txt": "Vorteile",
+            "gold-guild-txt": "Gildengeld"
+        },
+        "incentive": {
+            "title": "Vorteile einer Gildenzugehörigkeit",
+            "description": "Der Beitritt zu einer Gemeinschaft von Spielern in einem MMORPG bietet ein einzigartiges und bereicherndes Erlebnis. Es ermöglicht dir, dich mit anderen begeisterten Spielern zu verbinden, gemeinsam spannende Herausforderungen zu meistern und auf exklusive Ressourcen zuzugreifen, die dein Spielerlebnis verbessern."
+        },
+        "competition": {
+            "title": "Wetteifere mit anderen Gilden",
+            "description": "Nimm an Wettbewerben teil, damit deine Gilde exklusive Vorteile für ihre Mitglieder verdienen kann.",
+            "event-txt": "Herausforderungs-Updates, alle 6 Monate"
+        },
+        "events": {
+            "title": "Veranstaltungen der ",
+            "duration": "6 Monate",
+            "description": "Erhaltene Preise werden während der Veranstaltung an alle Gildenmitglieder vergeben. Nach diesem Zeitraum werden die Herausforderungen aktualisiert und müssen erneut abgeschlossen werden, um die Vorteile zu erhalten."
+        },
+        "benefits": {
+            "title": "Vorteile ",
+            "subtitle": "Erhalten",
+            "disclaimer": "Durch den Beitritt zu dieser Gilde kannst du folgende Vorteile erhalten:",
+            "no-benefits": "Diese Gilde hat noch keine Vorteile"
+        },
+        "event": {
+            "primary": {
+                "title": "Globales Event: Widerstandsfähigkeit im kapitalistischen Zeitalter",
+                "description": "Gildenführer haben die Macht, den Reichtum ihrer Mitglieder in einzigartige Preise und exklusive Vorteile umzuwandeln. Schließe dich dem Widerstand an und hilf deiner Gilde, neue Horizonte in dieser globalen Herausforderung zu erobern."
+            },
+            "secondary": {
+                "title": "Gildenbelohnungen",
+                "description": "Jede von der Gilde verdiente Belohnung öffnet die Tür zu exklusiven Vorteilen für alle ihre Mitglieder. Nimm teil und stelle sicher, dass jeder Sieg auch deiner ist!"
+            }
+        }
+    },
+    "guild-characters": {
+        "errors": {
+            "failed-characters-fetch": "Charaktere des ausgewählten Kontos konnten nicht abgerufen werden."
+        },
+        "message-success-guild-attach": "Verknüpfung erfolgreich",
+        "title": "Charakterauswahl",
+        "description": "Wähle den Charakter aus, den du mit der Gilde verknüpfen möchtest",
+        "select-characters-txt": "Wähle einen Charakter",
+        "select-account-txt": "Wähle ein Konto",
+        "btn": {
+            "cancel": "Abbrechen",
+            "loading": "Beitritt läuft...",
+            "primary": "Beitreten"
+        }
+    },
+    "home-voting-platforms": {
+        "title": "Stimme für unsere Server ab",
+        "description": "Unterstütze unsere Server und hilf uns zu wachsen. Deine Stimme zählt für uns.",
+        "btn-information": "Ich brauche Hilfe!",
+        "benefit": "Verdiene Punkte für jede Abstimmung",
+        "disclaimer": "Stimme für uns und hilf uns zu wachsen!",
+        "empty-server-list-title": "Unsere Experten sind im Einsatz!",
+        "empty-server-list-subtitle": "Derzeit sind keine Dienste verfügbar, aber unsere tapferen Profis schärfen ihre Fähigkeiten, um dir die besten Erlebnisse zu bieten.",
+        "btn-register-txt": "Registrieren",
+        "btn-register-discover": "Für Server abstimmen"
+    },
+    "account-detail": {
+        "character-no-select": {
+            "friend": {
+                "title": "⚔️ Wähle deinen Helden! ⚔️",
+                "subtitle": "In Azeroth liegt die wahre Stärke in der Freundschaft. Füge deine Verbündeten hinzu und begib dich auf epische Abenteuer!",
+                "text": "Gemeinsam werdet ihr Herausforderungen meistern und Siege feiern. Freundschaft ist die mächtigste Magie von allen!"
+            },
+            "mails": {
+                "title": "⚔️ Wähle deinen Helden! ⚔️",
+                "subtitle": "Kommunikation ist der Schlüssel in der Welt von Warcraft. Sende Briefe und Nachrichten an deine Freunde und Verbündeten!",
+                "text": "Teile deine Abenteuer, Strategien und Geheimnisse. Jedes Wort zählt im Kampf um Azeroths Schicksal!"
+            },
+            "professions": {
+                "title": "⚔️ Wähle deinen Helden! ⚔️",
+                "subtitle": "Werde ein Meisterschmied, Alchemist oder sogar ein weiser Verzauberer! Die Möglichkeiten sind endlos... wähle deinen Weg im Spiel!",
+                "text": "Der Schlüssel zur Macht liegt in deinen Händen. Berufe bringen dich auf das nächste Level!"
+            },
+            "guilds": {
+                "title": "⚔️ Wähle deinen Helden! ⚔️",
+                "subtitle": "Azeroths Stärke liegt in der Einheit. Tritt einer mächtigen Gilde bei und kämpfe Seite an Seite mit deinen Freunden!",
+                "text": "Gemeinsam könnt ihr große Herausforderungen meistern und ein ewiges Vermächtnis schmieden. Das Abenteuer beginnt hier!"
+            },
+            "premium": {
+                "title": "⚔️ Wähle deinen Champion! ⚔️",
+                "subtitle": "Nutze die Privilegien deines Abonnements voll aus",
+                "text": "Entfalte das volle Potenzial deines Helden mit exklusiven Vorteilen. Lass jede Schlacht zählen!"
+            },
+            "promotions": {
+                "title": "⚔️ Schmiede dein Schicksal! ⚔️",
+                "subtitle": "Nutze legendäre Angebote",
+                "text": "Schalte epische Promotionen frei und verbessere dein Abenteuer. Verpasse diese Gelegenheit nicht!"
+            },
+            "roulette": {
+                "title": "⚔️ Wähle deinen Champion! ⚔️",
+                "subtitle": "Nutze legendäre Angebote",
+                "text": "Teste dein Glück und verbessere dein Abenteuer mit epischen Promotionen! Verpasse diese Gelegenheit nicht!"
+            },
+            "teleport": {
+                "title": "⚔️ Wähle dein Schicksal, Champion! ⚔️",
+                "subtitle": "Teleport ist jetzt für dich verfügbar",
+                "text": "Aktiviere ihn jetzt und reise frei durch die Welt!"
+            }
+        },
+        "errors": {
+            "fetch-invalid-character": "Charakterinformationen konnten nicht abgerufen werden. Bitte versuche es später erneut."
+        },
+        "loading-txt": "Laden...",
+        "hidden-menu": "Details ausblenden",
+        "visible-menu": "Details anzeigen",
+        "character": {
+            "title": "Charakterinformationen",
+            "name": "Name: ",
+            "email": "E-Mail: ",
+            "country": "Land: ",
+            "username": "Benutzername: "
+        },
+        "no-characters": "Keine Charaktere verfügbar.",
+        "tabs": {
+            "var1": "Freunde",
+            "var2": "Nachrichten",
+            "var3": "Konto",
+            "var4": "Berufe",
+            "var5": "Gilde",
+            "var6": "Premium",
+            "var7": "Promotionen",
+            "var8": "Roulette",
+            "var9": "Portal",
+            "var10": "Konten"
+        }
+    },
+    "support": {
+        "title": "Support-Service",
+        "subtitle": "Entdecke unser Engagement für außergewöhnlich qualitativen Support.",
+        "faqs": {
+            "title": "Häufig gestellte Fragen"
+        },
+        "team": {
+            "title": "Ein erfahrenes und leidenschaftliches Team steht dir zur Verfügung",
+            "subtitle": "Top-Experten auf ihrem Gebiet, bereit für jede Herausforderung."
+        }
+    },
+    "reset-password": {
+        "section-one": {
+            "title": "Setze dein Passwort zurück",
+            "sub-title": "Erhalte wieder Zugriff auf dein Konto und genieße unsere Dienste ohne Unterbrechung weiter. Fülle das folgende Formular aus, um dein Passwort zurückzusetzen und dein Konto zu sichern.",
+            "var-mail": "E-Mail-Adresse",
+            "var-mail-placeholder": "Gib deine E-Mail-Adresse ein",
+            "success-message": "E-Mail gesendet. Bitte überprüfe deinen Posteingang und verwende den Code innerhalb der nächsten 3 Minuten.",
+            "error-send-message": "Fehler beim Senden der E-Mail. Bitte versuche es erneut.",
+            "btn": {
+                "send": "Wird gesendet...",
+                "txt": "Passwort zurücksetzen"
+            }
+        },
+        "section-two": {
+            "title": "Überprüfe deinen Sicherheitscode",
+            "sub-title": "Gib den Sicherheitscode ein, den wir gerade an deine E-Mail gesendet haben, um deine Identität zu bestätigen.",
+            "disclaimer": "Erinnerung: Der Sicherheitscode ist nur 3 Minuten gültig.",
+            "btn": {
+                "send": "Wird überprüft...",
+                "txt": "Code bestätigen",
+                "return": "Zurück"
+            },
+            "title-success": "Überprüfe deine E-Mail",
+            "success-message": "Wir haben dir ein temporäres Passwort an deine E-Mail gesendet. Verwende es, um auf dein Konto zuzugreifen, und aktualisiere es nach der Anmeldung auf ein sicheres Passwort."
+        }
+    },
+    "home-products": {
+        "title": "Unglaubliche Angebote",
+        "subtitle": "Verpasse nicht die unwiderstehlichsten Promotionen, die nur für dich sind! Nutze sie jetzt!",
+        "offer-day": {
+            "title": "Exklusives Tagesangebot!",
+            "disclaimer": "Entdecke die erstaunlichsten Promotionen nur für heute!",
+            "btn": {
+                "primary": "Jetzt holen",
+                "alternative": "Shop"
+            }
+        },
+        "carrousel-offert": {
+            "title": "Exklusive Angebote nur für dich",
+            "btn": "Angebot einlösen"
+        }
+    },
+    "home-information": {
+        "title": "Tritt noch heute bei!",
+        "sub-title": "Die beste Gaming-Community",
+        "description": "Entdecke eine innovative Plattform, die dir fortschrittliche Tools und ein unvergleichliches Spielerlebnis bietet. Tritt jetzt bei und bringe deine Community auf das nächste Level!",
+        "push-deploy": {
+            "title": "Kontinuierliche Verbesserungen.",
+            "description": "Unsere Plattform entwickelt sich ständig weiter, mit neuen Funktionen und Optimierungen, um dein Erlebnis zu verbessern."
+        },
+        "certificates": {
+            "title": "Garantierte Sicherheit.",
+            "description": "Wir schützen deine Informationen mit SSL-Sicherheitszertifikaten und fortschrittlichen Protokollen, um ein sicheres und zuverlässiges Erlebnis zu gewährleisten."
+        },
+        "database": {
+            "title": "Deine Daten sind immer geschützt.",
+            "description": "Wir führen regelmäßige Backups durch, um deine Informationen jederzeit sicher zu halten. Dein Konto und dein Fortschritt sind vollständig geschützt!"
+        },
+        "congrats": "Dein Feedback ist uns wichtig. Wenn du Verbesserungsvorschläge hast, zögere nicht, sie mit uns zu teilen. Gemeinsam lassen wir diese Community gedeihen!",
+        "notice": {
+            "title": "Dein Abenteuer ist sicher!",
+            "description": "Wir schützen deine Informationen nach höchsten Sicherheitsstandards. Genieße dein Erlebnis sorgenfrei und mit vollem Vertrauen."
+        },
+        "btn": {
+            "primary": "Jetzt beitreten",
+            "secondary": "Spiel herunterladen"
+        }
+    },
+    "home-us": {
+        "realm": "Reich",
+        "experience": "Erfahrung",
+        "sub-title": "Finde das perfekte Reich für dich und erlebe Abenteuer, die du nie vergessen wirst.",
+        "realms": {
+            "primary": {
+                "title": "Ein unvergleichliches und einzigartiges Erlebnis!",
+                "sub-title": "Reich x100 - Stufe 80 Promotion",
+                "description": "Wage dich an den Lich King mit unserem innovativen Auto-Balancing-System, das es dir ermöglicht, Dungeons solo oder mit einer kleinen Gruppe von Abenteurern zu absolvieren. Genieße den Endinhalt der Erweiterung ohne Komplikationen oder Grenzen.",
+                "btn-txt": "Mehr entdecken"
+            },
+            "secondary": {
+                "title": "Ein unvergleichliches Erlebnis!",
+                "sub-title": "Progressives Reich",
+                "description": "Am 1. Februar startet unsere Community ein progressives WoW 3.3.5-Reich mit einem Twink-Thema. Jede Woche werden neue Stufen freigeschaltet, damit du ein einzigartiges Erlebnis genießen kannst.",
+                "btn-txt": "Mehr entdecken"
+            }
+        }
+    },
+    "friend-detail": {
+        "errors": {
+            "character-is-null": "Bitte wähle einen Charakter aus, um die Details anzuzeigen.",
+            "friend-is-empty": "Oh nein! Du hast keine Freunde.",
+            "friend-is-empty-description": "Es scheint, du hast noch keine Freunde zu deiner Liste hinzugefügt. Verbinde dich mit anderen Abenteurern, um dein soziales Netzwerk im Spiel aufzubauen."
+        },
+        "title": "Freundesliste",
+        "nivel": "Stufe:",
+        "clase": "Klasse:",
+        "raza": "Volk:",
+        "estado": "Status:",
+        "btn": {
+            "previous_label": "Zurück",
+            "next_label": "Weiter"
+        }
+    },
+    "friend-detail-modal": {
+        "nivel": "Stufe:",
+        "clase": "Klasse:",
+        "raza": "Volk:",
+        "estado": "Status:",
+        "send-levels": {
+            "btn-txt": "Stufen schenken",
+            "cost": {
+                "title": "Kosten: ",
+                "sub-title": "pro Stufe",
+                "note": "Denk daran: die maximale Stufe ist ",
+                "note-overcharge": "Wenn du einen höheren Betrag sendest als erlaubt,",
+                "note-overcharge-v2": " wirst du trotzdem belastet.",
+                "question": "Anzahl der Stufen:",
+                "btn": {
+                    "success": "Bestätigen",
+                    "back": "Abbrechen"
+                }
+            }
+        },
+        "send-gold": {
+            "btn-txt": "Gold senden",
+            "gif-gold": {
+                "title": "Kosten: ",
+                "sub-title": "Goldmenge:",
+                "btn": {
+                    "success": "Bestätigen",
+                    "back": "Abbrechen"
+                }
+            }
+        },
+        "send-items": {
+            "btn-txt": "Gegenstände senden"
+        },
+        "delete-friend": {
+            "btn-txt": "Freund entfernen"
+        },
+        "messages-erros": {
+            "delete-friend": {
+                "title": "Freund entfernt",
+                "success": "Dein Freund wurde erfolgreich entfernt.",
+                "error": "Fehler beim Entfernen des Freundes."
+            },
+            "send-level": {
+                "title": "Stufe erfolgreich geschenkt",
+                "success": "Die Stufe wurde erfolgreich an deinen Freund übermittelt."
+            },
+            "send-money": {
+                "title": "Gold erfolgreich gesendet",
+                "success": "Das Gold wurde erfolgreich an deinen Freund übermittelt."
+            },
+            "lvl-max": "Die Stufe darf 80 nicht überschreiten.",
+            "lvl-min": "Die Stufe muss höher als 0 sein.",
+            "money-empty": "Die zu sendende Goldmenge muss mindestens 1 betragen."
+        }
+    },
+    "mails-items": {
+        "title": "Gegenstandsdetails",
+        "item-empty": "Keine Gegenstände verfügbar.",
+        "item-found": "Gegenstandsdetails: ",
+        "btn-close": "Schließen"
+    },
+    "mails": {
+        "title": "Nachrichten",
+        "detail-item": "Gegenstandsdetails",
+        "submitted-by": "Gesendet von: ",
+        "expires": "Läuft ab: ",
+        "mail-empty": "Du hast keine Nachrichten.",
+        "btn": {
+            "next": "Weiter",
+            "back": "Zurück"
+        },
+        "error": "Nachrichten, die mit dem Charakter verknüpft sind, konnten nicht abgerufen werden."
+    },
+    "professions": {
+        "description": "Dienste verwalten",
+        "messages": {
+            "announcement-title": "Nachricht gesendet!",
+            "announcement-description": "Deine Nachricht wird in Kürze veröffentlicht."
+        },
+        "empty": {
+            "title": "Entdecke neue Fähigkeiten!",
+            "subtitle": "Du hast noch keine Berufe erlernt. Tauche ein in die Welt von World of Warcraft und entdecke unzählige Berufe, die dein Spielerlebnis verbessern! Werde ein Meisterhandwerker, ein erfahrener Kräuterkundiger oder ein innovativer Ingenieur. Die Möglichkeiten sind endlos!"
+        },
+        "question": {
+            "title": "Was bewirken die Schaltflächen?",
+            "subtitle": "Bekannt geben: ",
+            "description": "Durch Klicken auf diese Schaltfläche wird eine Nachricht innerhalb des Servers gesendet. Dies ist nützlich, um andere Spieler auf deine Fähigkeiten oder Dienste im Spiel aufmerksam zu machen."
+        },
+        "btn": {
+            "send-announcement": "Ankündigung senden"
+        }
+    },
+    "send-announcement": {
+        "title": "Bestätigen",
+        "subtitle": "Die Kosten betragen {{cost}} g. Möchtest du fortfahren?",
+        "btn": {
+            "next": "Akzeptieren",
+            "back": "Abbrechen"
+        }
+    },
+    "guild-character": {
+        "character-empty-guild": {
+            "title": "Du bist mit keiner Gilde verknüpft",
+            "description": "Es scheint, du bist noch kein Mitglied einer Gilde. Tritt einer bei, um die Vorteile zu genießen!",
+            "btn-txt": "Suchen"
+        },
+        "guild-section": {
+            "leader": "Anführer",
+            "create-date": "Erstellungsdatum",
+            "discord": "Dem Discord-Server beitreten",
+            "status-privacity": "Zugriffsstatus: ",
+            "benefits-available": "Verfügbare Vorteile: ",
+            "private-access": "Privater Zugriff",
+            "public-access": "Öffentlicher Zugriff",
+            "btn-claim-benefit": "Vorteile beanspruchen",
+            "btn-unvite-guild": "Verlassen"
+        },
+        "messages": {
+            "character-guild-failed": "Die verknüpfte Gilde konnte nicht abgerufen werden. Bitte versuche es später erneut.",
+            "title-vinculation-success": "Verknüpfung",
+            "text-vinculation-success": "Du hast dich erfolgreich mit der Gilde verknüpft.",
+            "title-benefit-success": "Vorteile",
+            "text-benefit-success": "Vorteile wurden erfolgreich beansprucht.",
+            "title-update-guild-success": "Aktualisierung",
+            "text-update-guild-success": "Du hast die Einstellungen erfolgreich aktualisiert."
+        }
+    },
+    "guild-model-edit": {
+        "btn": {
+            "edit": "Bearbeiten",
+            "cancel": "Abbrechen",
+            "save": "Speichern"
+        },
+        "title": "Gildeneinstellungen bearbeiten",
+        "private-txt": "Privat",
+        "public-txt": "Öffentlich",
+        "multifacction": "Multifraktion aktivieren",
+        "discord": "Discord-Link"
+    },
+    "profile": {
+        "input-date-birthdate": "Geburtsdatum",
+        "input-country": "Land",
+        "label-accounts": "Konten",
+        "label-character": "Charaktere",
+        "label-servers": "Server",
+        "title": "Passwort ändern",
+        "input-change-password": "Aktuelles Passwort",
+        "input-new-change-password": "Neues Passwort",
+        "input-new-confirm-change-password": "Passwort bestätigen",
+        "btn-update-password": "Passwort aktualisieren"
+    },
+    "realms": {
+        "title": "Erweiterte Verwaltung für die Reiche von Azeroth",
+        "subtitle": "Vereinfache die Verwaltung deiner Reiche und behalte mit sicheren und effizienten Tools die Kontrolle.",
+        "btn": {
+            "create-server": "Reich verknüpfen",
+            "delete-server": "Reich trennen",
+            "paginate-btn-primary": "Weiter",
+            "paginate-btn-secondary": "Zurück"
+        },
+        "table": {
+            "column-id": "Id",
+            "column-name": "Name",
+            "column-expansion": "Erweiterung",
+            "column-status": "Status",
+            "column-date": "Datum",
+            "column-apikey": "API-Schlüssel",
+            "column-web": "Webseite",
+            "position-action": "Aktion"
+        },
+        "realm-empty": {
+            "title": "Keine Reiche verfügbar!",
+            "description": "Es scheint, du hast keine verknüpften Reiche. Verknüpfe eines, um alle Funktionen zu nutzen!",
+            "btn-txt": "Reich verknüpfen"
+        }
+    },
+    "server-register": {
+        "title": "Richte deinen Server ein und bringe ihn mit wenigen Klicks auf das nächste Level.",
+        "character-text": "Verbleibende Zeichen:",
+        "default-txt-select": "Wähle eine Option",
+        "selection-mobile": {
+            "title": "Abschnitt auswählen",
+            "information": "Allgemeine Informationen",
+            "details": "Zugangsdetails",
+            "security": "Sicherheit",
+            "integration": "Integration"
+        },
+        "selection-desktop": {
+            "information": "Allgemeine Informationen",
+            "details": "Zugangsdetails",
+            "security": "Sicherheit",
+            "integration": "Integration"
+        },
+        "form": {
+            "name-server": "Servername",
+            "name-server-placeholder": "Gib den Servernamen ein",
+            "web": "Web",
+            "web-placeholder": "Gib die Server-Webseite ein",
+            "expansion": "Erweiterung",
+            "host": "Host",
+            "realmlist": "Realmlist",
+            "realmlist-placeholder": "Gib die Server-Realmlist ein",
+            "type-server": "Servertyp",
+            "password": "Passwort",
+            "password-placeholder": "Gib ein Passwort für dein Konto ein",
+            "password-confirm": "Passwort bestätigen",
+            "password-confirm-placeholder": "Bestätige dein Passwort",
+            "username-external": "Benutzer",
+            "username-external-placeholder": "Gib einen Integrationsbenutzer ein",
+            "password-external": "Passwort",
+            "password-external-placeholder": "Gib ein Integrationspasswort ein",
+            "emulator": "Emulator"
+        },
+        "btn": {
+            "link-txt": "Verknüpfen",
+            "return-txt": "Zurück"
+        }
+    },
+    "promotions-character": {
+        "messages": {
+            "title-success-claim-promo": "Vorteil erfolgreich beansprucht! 🎉",
+            "text-success-claim-promo": "Deine Belohnung ist jetzt verfügbar. Viel Spaß!"
+        },
+        "lvl-min": "Mindeststufe",
+        "lvl-max": "Höchststufe",
+        "btns": {
+            "pagination-next": "Weiter",
+            "pagination-return": "Zurück"
+        },
+        "promotion-empty": {
+            "title": "Derzeit sind keine Promotionen verfügbar",
+            "subtitle": "Keine Sorge! Tritt unseren Kommunikationskanälen bei und bleibe über zukünftige Promotionen informiert.",
+            "description": "Verpasse unsere tollen Promotionen nicht! 🚀",
+            "benefit-promo": {
+                "title": "Exklusive Promotionen",
+                "benefits": {
+                    "primary": "Zugang zu besonderen Geschenken und Vorteilen"
+                }
+            },
+            "support-promo": {
+                "title": "Priorisierter Support",
+                "description": "Wenn du Probleme mit einer Promotion hast, gehe zu unserem Support-Kanal und erkläre deinen Fall, um schnell Hilfe zu erhalten."
+            },
+            "btn-invitation": "Kanal beitreten"
+        }
+    },
+    "account-character": {
+        "title": "Aktueller Kontostatus",
+        "description": "Stärke die Verteidigung deiner digitalen Welt mit einem starken und sicheren Passwort. Sei der Held deines World of Warcraft-Epos, indem du deine virtuellen Schätze mit einem unüberwindbaren Schlüssel schützt.",
+        "account-banned": {
+            "blocking-date": "Sperrdatum: ",
+            "unlock-date": "Entsperrdatum: ",
+            "banned-by": "Gesperrt von GM: ",
+            "silenced-by": "Stummgeschaltet von GM: "
+        },
+        "btn": {
+            "edit": "Bearbeiten",
+            "update": "Aktualisieren",
+            "cancel": "Abbrechen"
+        },
+        "form": {
+            "new-password-account": "Neues Passwort",
+            "new-password-account-placeholder": "Gib dein neues Passwort ein",
+            "new-password-account-confirm": "Passwort bestätigen",
+            "new-password-account-confirm-placeholder": "Bestätige dein neues Passwort",
+            "password-web-txt": "Web-Passwort",
+            "password-web-placeholder": "Gib dein Web-Konto-Passwort ein",
+            "password-web-disclaimer": "Gib dein Web-Konto-Passwort ein, um die Änderungen zu bestätigen."
+        },
+        "messages": {
+            "password-not-match": "Passwörter stimmen nicht überein",
+            "password-not-match-txt": "Bitte stelle sicher, dass die Passwörter übereinstimmen.",
+            "password-is-empty": "Passwort ist leer",
+            "password-is-empty-txt": "Bitte stelle sicher, dass das Passwort nicht leer ist.",
+            "password-length-invalid": "Ungültiges Passwort",
+            "password-length-invalid-txt": "Bitte stelle sicher, dass das Passwort länger als 5 Zeichen und kürzer als 30 ist.",
+            "password-change-password-success": "Passwort aktualisiert",
+            "password-change-password-success-txt": "Das Passwort wurde erfolgreich aktualisiert.",
+            "password-change-password-success-btn": "Verstanden",
+            "error-change-password": "Ein unerwarteter Fehler ist aufgetreten. Das Passwort konnte nicht geändert werden."
+        }
+    },
+    "subscription": {
+        "title": "Azeroth Epic Pass",
+        "description": "Abonniere und genieße die besten Vorteile zu einem unglaublichen Preis.",
+        "recurrency": "/Monat",
+        "btn-active": {
+            "text": "Ich möchte abonnieren"
+        },
+        "btn-inactive": {
+            "text": "Registrieren"
+        },
+        "btn-subscription-active": {
+            "text": "Abonnement verwalten"
+        },
+        "disclaimer": "Durch das Abonnieren akzeptierst du die Allgemeinen Geschäftsbedingungen von WowLibre. Du kannst jederzeit kündigen.",
+        "benefits": {
+            "title": "Vorteile",
+            "primary": {
+                "title": "Kostenlose Dienste",
+                "description": "Wechsle die Fraktion oder benenne deine Charaktere um, alles komplett kostenlos!"
+            },
+            "secondary": {
+                "title": "Kostenlose Gegenstände und Reittiere beim Abonnieren!",
+                "description": "Erhalte exklusive kostenlose Gegenstände und Reittiere als Belohnung für deine Unterstützung der Community. Abonniere jetzt und beginne, diese tollen Vorteile zu genießen!"
+            }
+        },
+        "benefits-vip": {
+            "title": "Preise!",
+            "description": "Die Preise variieren je nach Server. Einige der unten gezeigten Preise werden speziell für jeden Server verteilt."
+        },
+        "adversing": {
+            "title": "Unwiderstehlicher Werbeplan!",
+            "description": "Verpasse diese Gelegenheit nicht und genieße alle Vorteile eines Premium-Abonnements!"
+        },
+        "partners": {
+            "title": "Partner-Server",
+            "description": "Deine Abonnement-Vorteile werden automatisch auf alle integrierten Reiche und Server in der WoW Libre-Community angewendet."
+        },
+        "payment-methods": {
+            "title": "Sonderpreis",
+            "currency": "/Monat",
+            "sub-title": "Zahlungsmethoden",
+            "payments": {
+                "primary": "Kreditkarte",
+                "second": "Banküberweisung",
+                "three": "Bar"
+            },
+            "btn-payment": "Zahlung vornehmen",
+            "btn-admin": "Abonnement verwalten",
+            "disclaimer": "Durch das Abonnieren akzeptierst du die Allgemeinen Geschäftsbedingungen von WowLibre. Du kannst jederzeit kündigen."
+        }
+    },
+    "features-server": {
+        "title": "Entdecke unsere Updates",
+        "short-description": "Bleibe täglich über die Änderungen und Verbesserungen informiert, die wir an unseren Servern vornehmen. Wir arbeiten ständig daran, dir das beste Spielerlebnis zu bieten!",
+        "detailed-description": "Unser Expertenteam ist bestrebt, das beste Spielerlebnis zu bieten. Wir arbeiten ständig an der Verbesserung unserer Server, um dir eine optimale Spielumgebung zu bieten. Wir sind immer für dich da!",
+        "summary": "Wir arbeiten ständig daran, dir das beste Spielerlebnis zu bieten!",
+        "btn": {
+            "text": "Updates anzeigen"
+        }
+    },
+    "home-who-we-are": {
+        "title": "Bereit loszulegen?",
+        "description": "Wenn du das Spiel, Addons oder andere Tools herunterladen musst, um das Erlebnis voll auszukosten, bist du hier genau richtig! Hier findest du alles, was du brauchst, um dein Abenteuer in Azeroth zu beginnen.",
+        "btn-text": "Spiel herunterladen"
+    },
+    "footer": {
+        "terms-and-conditions": "Allgemeine Geschäftsbedingungen",
+        "terms-of-use": "Nutzungsbedingungen",
+        "privacy-policy": "Datenschutzrichtlinie",
+        "about": "Diese Seite ist ein unabhängiges Projekt ohne offizielle Verbindung zu Blizzard Entertainment. Wir sind nicht mit Blizzard verbunden, autorisiert, unterstützt oder lizenziert. Alle Marken, Spielnamen, Logos, Charaktere, Bilder und andere verwandte Materialien sind Eigentum von Blizzard Entertainment und deren jeweiligen Eigentümern."
+    },
+    "plans-and-pricing": {
+        "title": "Pläne und Preise",
+        "description": "Wähle einen Plan und lass unser Expertenteam die Einrichtung übernehmen. Genieße einfach das Wachstum!"
+    },
+    "vdp-server": {
+        "header": {
+            "btn": {
+                "register-text": "Registrieren",
+                "realmlist": "Realmlist kopieren",
+                "copy": "Kopiert!",
+                "website": "Webseite besuchen"
+            }
+        },
+        "body": {
+            "title": "Server-Features"
+        },
+        "events": {
+            "title": "Kommende Events",
+            "description": "Entdecke die spannendsten Events auf unserem Server. Verpasse sie nicht!"
+        },
+        "subscription-active": {
+            "title": "Abo aktiv!",
+            "description": "Genieße alle Vorteile deines Premium-Abonnements. Nutze dein Spielerlebnis optimal!",
+            "disclaimer": "Entdecke alle dir zur Verfügung stehenden Vorteile und mache das Beste aus deinem Abonnement.",
+            "btn-text": "Abonnement verwalten"
+        },
+        "subscription-inactive": {
+            "title": "Tritt bei und schalte exklusive Vorteile frei",
+            "description": "Erhalte frühzeitigen Zugang zu exklusiven Inhalten, Sonderrabatten und einem grenzenlosen Erlebnis. Werde noch heute Mitglied und bringe dein Erlebnis auf das nächste Level!",
+            "btn-text": "Jetzt abonnieren"
+        },
+        "notice": {
+            "title": "Neuigkeiten",
+            "description": "Entdecke die neuesten Nachrichten von unserem Server.",
+            "disclaimer": "Letzte Ankündigungen",
+            "by": "Veröffentlicht von",
+            "comments": "Kommentare",
+            "resolved": "Gelöst"
+        }
+    },
+    "teleport": {
+        "empty": {
+            "title": "Derzeit sind keine Teleporte konfiguriert",
+            "description": "Keine Sorge! Wende dich an den Support für weitere Informationen.",
+            "disclaimer": "Teleport ist eine Premium-Funktion, mit der du schnell zu verschiedenen Bereichen der Karte reisen kannst.",
+            "cards": {
+                "card-one": {
+                    "title": "In einem Gebiet feststecken und nicht rauskommen?",
+                    "description": "Mit Teleport vergisst du, in gefährlichen oder schwer zugänglichen Gebieten festzustecken."
+                },
+                "card-two": {
+                    "title": "Kein Teleport verfügbar?",
+                    "description": "Wende dich an den Support für weitere Informationen zur Teleport-Verfügbarkeit auf deinem Server."
+                }
+            }
+        },
+        "available": {
+            "description": "Nutze Teleport, um schnell zu dem Gebiet deiner Wahl zu reisen.",
+            "btn-txt": "Aktivieren"
+        },
+        "pagination": {
+            "next": "Weiter",
+            "previous": "Zurück"
+        },
+        "success": {
+            "title": "Charakter erfolgreich teleportiert!",
+            "text": "Teleportation wurde erfolgreich aktiviert!"
+        }
+    },
+    "privacy": {
+        "title": "Datenschutzrichtlinie",
+        "intro": "Diese Datenschutzrichtlinie beschreibt, wie wir personenbezogene Daten in der Nutzung unserer CMS-Software verwalten. Durch die Nutzung dieses Systems erklärst du dich mit den hier beschriebenen Bedingungen einverstanden.",
+        "sections": {
+            "infoCollection": {
+                "title": "1. Erhebung von Informationen",
+                "content": "Wir erheben keine personenbezogenen Daten ohne deine ausdrückliche Zustimmung. Wenn du dich entscheidest, sie bereitzustellen (z. B. über Kontakt- oder Anmeldeformulare), werden sie mit höchster Vertraulichkeit behandelt."
+            },
+            "infoUsage": {
+                "title": "2. Verwendung von Informationen",
+                "content": "Erhobene Daten werden ausschließlich für die ausdrücklich angegebenen Zwecke verwendet, wie z. B. zur Verbesserung des Dienstes, zur Verwaltung deines Kontos oder zur Beantwortung deiner Anfragen."
+            },
+            "dataSharing": {
+                "title": "3. Weitergabe von Daten",
+                "content": "Wir verkaufen oder teilen deine Daten nicht mit Dritten, es sei denn, dies ist gesetzlich vorgeschrieben oder mit deiner ausdrücklichen Zustimmung."
+            },
+            "security": {
+                "title": "4. Sicherheit",
+                "content": "Wir wenden technische und organisatorische Maßnahmen an, um deine Daten vor unbefugtem Zugriff, Verlust oder Veränderung zu schützen."
+            },
+            "changes": {
+                "title": "5. Änderungen dieser Richtlinie",
+                "content": "Wir behalten uns das Recht vor, diese Richtlinie jederzeit ohne vorherige Ankündigung zu ändern. Änderungen werden mit ihrer Veröffentlichung auf unserer offiziellen Website oder Repository wirksam. Wir empfehlen, diesen Abschnitt regelmäßig zu überprüfen."
+            },
+            "footer": "Für weitere Informationen über unsere CMS, seine Prinzipien und kommende Veröffentlichungen, besuche",
+            "brand": "Wow Libre"
+        }
+    },
+    "terms": {
+        "title": "Allgemeine Geschäftsbedingungen",
+        "intro": "Dieses Dokument legt die Nutzungsbedingungen für unsere Open-Source-CMS-Software fest, die von unserer Community entwickelt wurde. Durch den Zugriff, die Installation oder die Nutzung unseres Systems erklärst du dich damit einverstanden, alle unten aufgeführten Klauseln einzuhalten. Wir empfehlen, sie vor Beginn sorgfältig zu lesen.",
+        "sections": {
+            "license": {
+                "title": "1. Nutzungslizenz",
+                "content": "Das CMS wird unter einer Dual-Lizenz vertrieben:\n\nPersönliche oder nicht-kommerzielle Nutzung: Du darfst die Software frei nutzen, modifizieren und unter den Bedingungen unserer Open Community License, inspiriert von Open-Source-Prinzipien, weiterverteilen.\n\nKommerzielle Nutzung: Wenn du diese CMS als Basis für eine Plattform, ein Produkt oder einen gewinnorientierten Dienst nutzen möchtest, musst du zuerst eine spezielle kommerzielle Lizenz erwerben. Diese Lizenz umfasst zusätzliche Bedingungen und kann Gebühren proportional zum Nutzungsgrad oder erzielten Einnahmen beinhalten.\n\nUnautorisierte kommerzielle Nutzung wird als Verstoß gegen die Lizenzbedingungen betrachtet und kann rechtliche Schritte nach sich ziehen. Um eine kommerzielle Lizenz anzufordern, kontaktiere uns bitte über unsere offizielle Website."
+            },
+            "liability": {
+                "title": "2. Haftungsbeschränkung",
+                "content": "Diese Software wird \"wie besehen\" und ohne jegliche ausdrückliche oder stillschweigende Garantien bereitgestellt. Unter keinen Umständen haften wir für direkte oder indirekte Schäden, Datenverlust, Dienstunterbrechungen oder andere Folgen, die aus der Nutzung des CMS entstehen."
+            },
+            "community": {
+                "title": "3. Community-Beiträge",
+                "content": "Wir schätzen die Beiträge, die Entwickler zum Projekt leisten. Durch die Einreichung von Verbesserungen, Korrekturen oder Vorschlägen gewährst du das Recht, dass dein Beitrag unter denselben Bedingungen wie die ursprüngliche Lizenz in die Software aufgenommen wird, um eine offene und kollaborative Entwicklung zu fördern."
+            },
+            "changes": {
+                "title": "4. Änderungen der Bedingungen",
+                "content": "Wir behalten uns das Recht vor, diese Bedingungen jederzeit ohne vorherige Ankündigung zu ändern. Änderungen werden mit ihrer Veröffentlichung auf unserem offiziellen Repository oder unserer Website wirksam. Wir empfehlen, diesen Abschnitt regelmäßig zu überprüfen."
+            },
+            "footer": "Für weitere Informationen über unser CMS, seine Prinzipien und kommende Veröffentlichungen, besuche",
+            "brand": "Wow Libre"
+        }
+    }
+}
